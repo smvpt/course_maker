@@ -1,10 +1,11 @@
-"""python -m pipeline.verify.run --ch <id> → out/<id>/verify/report.json (ReviewOutput).
+"""python -m pipeline.verify.run --ch <id> → out/<id>/verify/report.json (ReviewOutput) + trust.json.
 
 Детерминированные проверки слоя (+ задания курса П3 и сценарии П4, если уже есть):
 цитаты на своих страницах, числа из исходных единиц, термины не раньше определения.
 Код выхода 1, если есть critical.
 """
 import argparse
+import json
 import sys
 from pathlib import Path
 
@@ -14,6 +15,7 @@ from pipeline.verify.pages import load_pages, out_root
 from pipeline.verify.quotes import check_quote_md, md_from_units
 from pipeline.verify.remarks import SEV_ORDER, one_per_target
 from pipeline.verify.scene import check_scene, check_script, load_misconceptions
+from pipeline.verify import trust
 from pipeline.verify.terms import check_terms, node_texts
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -110,7 +112,8 @@ def _check_tasks(tasks, nodes, sources):
     return remarks
 
 
-def run(ch, out_dir, team=""):
+def run(ch, out_dir, team="", journal_root=ROOT):
+    """report.json + trust.json. Журнал правок — в journal_root, лог LLM — out/_metrics/llm_calls.jsonl."""
     out_dir = Path(out_dir)
     layer = _load(out_dir / "layer.json", Layer)
     units = _load(out_dir / "units.json", ChapterUnits)
@@ -145,6 +148,9 @@ def run(ch, out_dir, team=""):
     vdir = out_dir / "verify"
     vdir.mkdir(parents=True, exist_ok=True)
     (vdir / "report.json").write_text(report.model_dump_json(by_alias=True, indent=2), encoding="utf-8")
+    passport = trust.build(ch, out_dir, layer, report, md, sources, journal_root,
+                           out_dir.parent / "_metrics" / "llm_calls.jsonl")
+    (vdir / "trust.json").write_text(json.dumps(passport, ensure_ascii=False, indent=2), encoding="utf-8")
     code = 1 if any(r.severity == "critical" for r in report.remarks) else 0
     return report, code
 
@@ -156,7 +162,7 @@ def main(argv=None):
     a = ap.parse_args(argv)
     report, code = run(a.ch, out_root() / a.ch, a.team)
     counts = {s: sum(r.severity == s for r in report.remarks) for s in SEV_ORDER}
-    print(f"verify {a.ch}: {len(report.remarks)} замечаний {counts} → out/{a.ch}/verify/report.json")
+    print(f"verify {a.ch}: {len(report.remarks)} замечаний {counts} → {out_root() / a.ch / 'verify' / 'report.json'}")
     return code
 
 

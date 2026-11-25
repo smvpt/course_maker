@@ -4,7 +4,7 @@ from pathlib import Path
 
 import jsonschema
 
-from contracts.models import ChapterUnits, Layer, Script, Tasks
+from contracts.models import ChapterUnits, Coverage, Layer, Script, Tasks
 from pipeline.verify import run as vrun
 from pipeline.verify.terms import check_terms
 
@@ -41,6 +41,13 @@ def _units(ch):
 
 def _write(out, ch, nodes, tasks=None, script=None):
     out.mkdir(parents=True, exist_ok=True)
+    cov = Coverage(chapter=ch, rows=[
+        dict(unit_id="p001.01", kind="paragraph", page_pdf=1, excerpt="Пористость песчаника", node_ids=[nodes[0]["id"]]),
+        dict(unit_id="p002.01", kind="paragraph", page_pdf=2, excerpt="Глинистость", node_ids=[nodes[-1]["id"]]),
+        dict(unit_id="p003.01", kind="paragraph", page_pdf=3, excerpt="Характерное время", node_ids=[],
+             reason="за рамками главы"),
+    ])
+    (out / "coverage.json").write_text(cov.model_dump_json(by_alias=True, indent=2), encoding="utf-8")
     (out / "units.json").write_text(_units(ch).model_dump_json(by_alias=True, indent=2), encoding="utf-8")
     layer = Layer.model_validate(dict(chapter=ch, source=str(MD), nodes=nodes))
     (out / "layer.json").write_text(layer.model_dump_json(by_alias=True, indent=2), encoding="utf-8")
@@ -66,8 +73,14 @@ def _clean_nodes():
 def test_clean_chapter_no_remarks(tmp_path):
     out = tmp_path / "mini"
     _write(out, "mini", _clean_nodes())
-    report, code = vrun.run("mini", out)
+    report, code = vrun.run("mini", out, journal_root=tmp_path)
     assert report.remarks == [] and code == 0
+    trust = json.loads((out / "verify/trust.json").read_text(encoding="utf-8"))
+    assert trust["coverage"] == {"units": 3, "in_nodes": 2, "with_reason": 1, "pct_in_nodes": 66.7,
+                                 "pct_accounted": 100.0}
+    assert trust["quotes"]["pct"] == 100.0 and trust["numbers"]["pct"] == 100.0
+    assert trust["remarks"] == {"critical": 0, "significant": 0, "minor": 0}
+    assert trust["manual"]["person_minutes"] == 0
     saved = json.loads((out / "verify/report.json").read_text(encoding="utf-8"))
     jsonschema.validate(saved, SCHEMA)
     assert saved["package_id"] == "mini"
@@ -95,7 +108,19 @@ def test_broken_chapter_remarks(tmp_path):
                   ])
     out = tmp_path / "mini"
     _write(out, "mini", nodes, tasks, script)
-    report, code = vrun.run("mini", out)
+    metrics = tmp_path / "_metrics"
+    metrics.mkdir()
+    (metrics / "llm_calls.jsonl").write_text("\n".join(json.dumps(r) for r in [
+        {"chapter": "mini", "cache_hit": False, "money_usd": 0.5, "tokens_in": 100, "tokens_out": 10},
+        {"chapter": "mini", "cache_hit": True, "money_usd": 0.5, "tokens_in": 100, "tokens_out": 10},
+        {"chapter": "other", "cache_hit": False, "money_usd": 9.0},
+    ]), encoding="utf-8")
+    report, code = vrun.run("mini", out, journal_root=tmp_path)
+    trust = json.loads((out / "verify/trust.json").read_text(encoding="utf-8"))
+    assert trust["quotes"] == {"claims": 3, "found": 1, "other_page": 1, "not_found": 1, "pct": 33.3}
+    assert trust["numbers"]["found"] < trust["numbers"]["total"]
+    assert trust["cost"]["money_usd"] == 0.5 and trust["cost"]["cached"] == 1 and trust["cost"]["llm_calls"] == 2
+    assert trust["remarks"]["critical"] == 1
     by = {r.target: r for r in report.remarks}
     jsonschema.validate(json.loads((out / "verify/report.json").read_text(encoding="utf-8")), SCHEMA)
 
