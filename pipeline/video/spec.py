@@ -288,6 +288,12 @@ def load_route(ch: str, node_id: str, layer_path: Path | None, routing_path: Pat
     return select(layer, routing, ch, node_id)
 
 
+def _write_pair(out: Path, script: Script, scene: SceneSpec) -> None:
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "script.json").write_text(script.model_dump_json(by_alias=True, indent=2), encoding="utf-8")
+    (out / "scene_spec.json").write_text(scene.model_dump_json(by_alias=True, indent=2), encoding="utf-8")
+
+
 def run(ch: str, node_id: str, layer_path: Path | None, routing_path: Path | None, out_root: Path,
         domain: str = "geology", dataset: Path | None = None) -> Path:
     if not ID_RE.match(domain):
@@ -295,17 +301,86 @@ def run(ch: str, node_id: str, layer_path: Path | None, routing_path: Path | Non
     node, route, fmt = load_route(ch, node_id, layer_path, routing_path, out_root)
     script, scene = generate(node, route, fmt, ROOT / "domain" / domain / "templates", dataset)
     out = output_dir(out_root, ch, node.id, fmt)
-    out.mkdir(parents=True, exist_ok=True)
-    (out / "script.json").write_text(script.model_dump_json(by_alias=True, indent=2), encoding="utf-8")
-    (out / "scene_spec.json").write_text(scene.model_dump_json(by_alias=True, indent=2), encoding="utf-8")
+    _write_pair(out, script, scene)
     return out
+
+
+BATCH_STATUSES = ("создана", "готова, без LLM", "ошибка")
+
+
+def run_all(ch: str, layer_path: Path | None, routing_path: Path | None, out_root: Path,
+            domain: str = "geology", dataset: Path | None = None) -> dict:
+    """Спецификации всех видеоузлов главы (видео в format или secondary_format).
+
+    Готовая пара проверяется теми же проверками, что video.build перед повторным использованием, и используется
+    без LLM; неполная или не прошедшая проверку — ошибка, файлы не перезаписываются. Пары нет — генератор.
+    Набор данных передаётся только шаблонам, которым он нужен. Ошибка узла записывается, остальные продолжаются.
+    """
+    from pipeline.video.build import _check_ready_pair            # та же проверка готовой пары, что у video.build
+    from pipeline.video.inputs import VideoInputError
+    if not ID_RE.match(ch) or not ID_RE.match(domain):
+        raise SpecError("--ch и --domain — только [a-z0-9_.-]")
+    layer_path, routing_path = default_paths(ch, out_root, layer_path, routing_path)
+    layer = _load(layer_path, Layer, "учебный слой; путь можно задать --layer")
+    routing = _load(routing_path, Routing, "маршрутизация; путь можно задать --routing")
+    for what, chapter in (("layer.json", layer.chapter), ("routing.json", routing.chapter)):
+        if chapter != ch:
+            raise SpecError(f"{what} относится к главе «{chapter}», а запрошена --ch {ch}")
+    templates_dir = ROOT / "domain" / domain / "templates"
+    entries, seen = [], set()
+    for route in routing.routes:
+        if route.format in VIDEO_FORMATS:
+            fmt_ru, src = route.format, "format"
+        elif route.secondary_format in VIDEO_FORMATS:
+            fmt_ru, src = route.secondary_format, "secondary_format"
+        else:
+            continue
+        if route.node_id in seen:
+            continue
+        seen.add(route.node_id)
+        e = {"node_id": route.node_id, "format_ru": fmt_ru, "format_source": src, "format": VIDEO_FORMATS[fmt_ru],
+             "template": route.template, "status": None, "dir": None, "dataset_used": False, "error": None}
+        try:
+            node, route_, fmt = select(layer, routing, ch, route.node_id)
+            cfg = load_template_config(templates_dir, route_.template)
+            needs_data = bool(cfg and cfg.get("requires_dataset"))
+            out = output_dir(out_root, ch, node.id, fmt)
+            e["dir"] = str(out)
+            sp, cp = out / "script.json", out / "scene_spec.json"
+            if sp.exists() and cp.exists():
+                _check_ready_pair(sp, cp, node, route_, fmt, dataset if needs_data else None, domain)
+                e["status"] = "готова, без LLM"
+            elif sp.exists() or cp.exists():
+                raise SpecError(f"в {out} только один файл из пары script.json/scene_spec.json — пара неполная; "
+                                f"не перезаписывается — удалите его, чтобы сгенерировать заново")
+            else:
+                script, scene = generate(node, route_, fmt, templates_dir, dataset if needs_data else None)
+                _write_pair(out, script, scene)
+                e["status"], e["dataset_used"] = "создана", needs_data
+        except (SpecError, VideoInputError) as err:
+            e["status"], e["error"] = "ошибка", str(err)
+        except Exception as err:      # сбой одного узла не останавливает остальные; причина записана
+            e["status"], e["error"] = "ошибка", f"{type(err).__name__}: {err}"
+        entries.append(e)
+    summary = {k: sum(x["status"] == k for x in entries) for k in BATCH_STATUSES}
+    report = {"chapter": ch, "domain": domain, "dataset": str(dataset) if dataset else None,
+              "inputs": {"layer": str(layer_path), "routing": str(routing_path)},
+              "video_nodes": len(entries), "summary": summary, "nodes": entries,
+              "note": "только script.json и scene_spec.json; видео не рендерится"}
+    path = out_root / ch / "videos" / "spec_report.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    report["path"] = str(path)
+    return report
 
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="python -m pipeline.video.spec", description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--ch", required=True, help="id главы")
-    ap.add_argument("--node", required=True, help="id узла учебного слоя")
+    which = ap.add_mutually_exclusive_group(required=True)
+    which.add_argument("--node", help="id одного узла учебного слоя")
+    which.add_argument("--all", action="store_true", help="все узлы с видео в основном или дополнительном формате")
     ap.add_argument("--layer", type=Path, help="layer.json (по умолчанию out/<ch>/layer.json)")
     ap.add_argument("--routing", type=Path, help="routing.json (по умолчанию out/<ch>/routing.json)")
     ap.add_argument("--out-root", type=Path, default=ROOT / "out")
@@ -313,6 +388,21 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--dataset", type=Path, help="описание набора данных (dataset.json + LAS) для шаблонов с данными (T2)")
     a = ap.parse_args(argv)
     os.environ.setdefault("CH", a.ch)   # pipeline.llm пишет главу в журнал вызовов
+    if a.all:
+        try:
+            rep = run_all(a.ch, a.layer, a.routing, a.out_root, a.domain, a.dataset)
+        except SpecError as e:
+            print(f"ОШИБКА video.spec: {e}", file=sys.stderr)
+            return 2
+        print(f"видеоузлов: {rep['video_nodes']} — " + ", ".join(f"{k}: {v}" for k, v in rep["summary"].items()))
+        for e in rep["nodes"]:
+            line = f"  {e['node_id']} [{e['format_ru']}, {e['template']}]: {e['status']}"
+            if e["error"]:
+                print(line + " — " + e["error"].splitlines()[0], file=sys.stderr)
+            else:
+                print(line)
+        print(f"отчёт: {rep['path']}")
+        return 3 if rep["summary"]["ошибка"] else 0
     try:
         out = run(a.ch, a.node, a.layer, a.routing, a.out_root, a.domain, a.dataset)
     except SpecError as e:
@@ -320,8 +410,8 @@ def main(argv: list[str] | None = None) -> int:
         return 2
     script = json.loads((out / "script.json").read_text(encoding="utf-8"))
     est = script["ext"]["video"]["duration_estimate"]
-    print(f"script.json, scene_spec.json: {out}\n"
-          f"фраз: {len(script['phrases'])}, длительность — оценка {est['seconds']} с ({est['method']})")
+    print(f"script.json, scene_spec.json: {out}")
+    print(f"фраз: {len(script['phrases'])}, длительность — оценка {est['seconds']} с ({est['method']})")
     return 0
 
 

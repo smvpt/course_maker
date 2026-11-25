@@ -167,11 +167,36 @@ def check_scene(spec: SceneSpec, script: Script, real_data_ok: bool = False) -> 
     return problems
 
 
+def _source_structure_problems(key: str, src) -> list[str]:
+    """Структура источника до чтения полей: повреждённый источник — замечание, а не исключение."""
+    if not isinstance(src, dict):
+        return [f"param_sources.{key}: ожидается объект {{claim_ids, numbers, derivation, factor}}, "
+                f"получено {type(src).__name__}"]
+    problems = []
+    if not isinstance(src.get("claim_ids"), list) or not all(isinstance(x, str) for x in src["claim_ids"]):
+        problems.append(f"param_sources.{key}.claim_ids — список строк, получено {src.get('claim_ids')!r}")
+    if not isinstance(src.get("numbers"), list) or not all(isinstance(x, str) for x in src["numbers"]):
+        problems.append(f"param_sources.{key}.numbers — список строк с числами как в тексте, получено "
+                        f"{src.get('numbers')!r}")
+    factor = src.get("factor", 1.0)
+    if isinstance(factor, bool) or not isinstance(factor, (int, float)) or not math.isfinite(factor) or factor <= 0:
+        problems.append(f"param_sources.{key}.factor — конечное число > 0, получено {factor!r}")
+    if "derivation" in src and not isinstance(src["derivation"], str):
+        problems.append(f"param_sources.{key}.derivation — строка, получено {type(src['derivation']).__name__}")
+    return problems
+
+
 def param_source_problems(spec: SceneSpec, node: Node, cfg: dict) -> list[str]:
-    """Каждый физический параметр шаблона — с источником: claim узла, где есть указанные числа."""
+    """Каждый физический параметр шаблона — с источником: claim узла, где есть указанные числа.
+    Структура источников проверяется до чтения полей; повреждённая — замечание."""
     problems: list[str] = []
     claims = {c.id: c for c in node.claims}
-    sources = spec.ext.get("video", {}).get("param_sources", {})
+    video = spec.ext.get("video", {})
+    if not isinstance(video, dict):
+        return [f"ext.video — объект, получено {type(video).__name__}"]
+    sources = video.get("param_sources", {})
+    if not isinstance(sources, dict):
+        return [f"ext.video.param_sources — объект «параметр → источник», получено {type(sources).__name__}"]
     for key, d in cfg["params"].items():
         if key not in spec.params:
             continue
@@ -180,9 +205,13 @@ def param_source_problems(spec: SceneSpec, node: Node, cfg: dict) -> list[str]:
         if not needs:
             continue
         src = sources.get(key)
-        if not src:
+        if src is None or src == {}:
             problems.append(f"params.{key}: физический параметр без источника в узле (param_sources.{key}); "
                             f"если числа в узле нет — не включай параметр, а укажи его в missing_params")
+            continue
+        broken = _source_structure_problems(key, src)
+        if broken:
+            problems += broken
             continue
         foreign = [c for c in src["claim_ids"] if c not in claims]
         if foreign:
@@ -200,11 +229,7 @@ def param_source_problems(spec: SceneSpec, node: Node, cfg: dict) -> list[str]:
         if len(src["numbers"]) == 1 and not missing:
             # одно число источника: значение = число × factor (пересчёт единиц), иначе источник не подтверждает значение
             factor = src.get("factor", 1.0)
-            try:
-                expected = float(src["numbers"][0].replace(",", ".")) * float(factor)
-            except (TypeError, ValueError):
-                problems.append(f"params.{key}: factor {factor!r} — не число")
-                continue
+            expected = float(src["numbers"][0].replace(",", ".")) * float(factor)
             if isinstance(value, bool) or not isinstance(value, (int, float)) or \
                     not math.isclose(float(value), expected, rel_tol=1e-6):
                 problems.append(f"params.{key} = {value!r}, а источник даёт {src['numbers'][0]} × factor {factor:g} "

@@ -186,3 +186,28 @@ def test_derived_from_several_numbers_is_marked_unchecked(node):
                                                  "derivation": "A = q·μ/(4π·k·h)"}})
     assert param_source_problems(spec, n, CFG_D) == []
     assert spec.ext["video"]["param_sources"]["scale"]["arithmetic_checked"] is False
+
+
+@pytest.mark.parametrize("sources,needle", [
+    ({"hole_diameter_m": "0,2159 м"}, "объект"),                                       # источник — строка
+    ({"hole_diameter_m": {"claim_ids": CLAIM, "numbers": ["215,9"], "derivation": "x"}}, "claim_ids"),
+    ({"hole_diameter_m": {"claim_ids": [CLAIM], "numbers": 215.9, "derivation": "x"}}, "numbers"),
+    ({"hole_diameter_m": {"claim_ids": [CLAIM], "numbers": [215.9], "derivation": "x"}}, "numbers"),
+    ({"hole_diameter_m": {"claim_ids": [CLAIM], "numbers": ["215,9"], "derivation": "x", "factor": "мм"}}, "factor"),
+    ({"hole_diameter_m": {"claim_ids": [CLAIM], "numbers": ["215,9"], "derivation": "x", "factor": -1}}, "factor"),
+    (["hole_diameter_m"], "param_sources"),                                           # не объект целиком
+])
+def test_damaged_param_source_gives_a_remark_not_a_crash(node, sources, needle):
+    n = _with_claim(node, "Диаметр ствола 215,9 мм.")
+    s = _scene()
+    s.params = {"hole_diameter_m": 0.2159}
+    s.ext = {"video": {"param_sources": sources}}
+    probs = param_source_problems(s, n, CFG_D)
+    assert any(needle in p for p in probs), probs
+
+
+def test_damaged_ext_video_gives_a_remark(node):
+    s = _scene()
+    s.params = {"hole_diameter_m": 0.2159}
+    s.ext = {"video": "повреждено"}
+    assert any("ext.video" in p for p in param_source_problems(s, node, CFG_D))

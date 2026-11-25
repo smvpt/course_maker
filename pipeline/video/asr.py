@@ -128,48 +128,58 @@ def sync_report(tts: list[tuple], asr: list[tuple], limit_s: float = SYNC_LIMIT_
       (известная особенность меток Whisper). Каждое исключение записывается с обоснованием.
     ok = True — только если все слова синхронны или подпадают под исключение.
     """
-    def flat_tts(words):
-        out = []
-        for t0, t1, w in words:
-            out += [(t0, t1, x) for x in normalize_words(w)]
-        return out
-
-    def flat_asr(words):
+    def flat(words, has_first: bool):
+        """Слова → нормализованные части. Метка, покрывшая несколько частей («гамма-каротаж»), задаёт только
+        начало первой части и конец последней; внутренние границы неизвестны (None) и не сравниваются."""
         out = []
         for item in words:
             t0, t1, w = item[:3]
-            first = bool(item[3]) if len(item) > 3 else False
-            for k, x in enumerate(normalize_words(w)):
-                out.append((t0, t1, x, first and k == 0))
+            first = bool(item[3]) if has_first and len(item) > 3 else False
+            parts = normalize_words(w)
+            for k, x in enumerate(parts):
+                out.append((t0 if k == 0 else None, t1 if k == len(parts) - 1 else None, x, first and k == 0))
         return out
 
-    a, b = flat_tts(tts), flat_asr(asr)
-    ops = _align([w for _, _, w in a], [w[2] for w in b])
+    a, b = flat(tts, False), flat(asr, True)
+    ops = _align([x[2] for x in a], [x[2] for x in b])
     pairs = [(i, j) for kind, i, j in ops if kind == "ok"]
     if not pairs:
         return {"matched_words": 0, "ok": None, "status": "не проверено", "limit_s": limit_s,
                 "note": "ни одно слово распознавания не совпало со словами сценария — синхрон не измерен"}
     desync, uncertain, exceptions, worst = [], [], [], []
+    unmeasured = 0
     for i, j in pairs:
-        ds, de = b[j][0] - a[i][0], b[j][1] - a[i][1]
-        rec = {"word": a[i][2], "tts_start": round(a[i][0], 3), "start_diff": round(ds, 3), "end_diff": round(de, 3)}
-        s_bad, e_bad = abs(ds) > limit_s, abs(de) > limit_s
+        ds = b[j][0] - a[i][0] if a[i][0] is not None and b[j][0] is not None else None
+        de = b[j][1] - a[i][1] if a[i][1] is not None and b[j][1] is not None else None
+        if ds is None and de is None:
+            unmeasured += 1                       # обе границы внутри составного слова — не измерено
+            continue
+        rec = {"word": a[i][2], "tts_start": round(a[i][0], 3) if a[i][0] is not None else None,
+               "start_diff": round(ds, 3) if ds is not None else None,
+               "end_diff": round(de, 3) if de is not None else None}
+        s_bad = ds is not None and abs(ds) > limit_s
+        e_bad = de is not None and abs(de) > limit_s
         if s_bad and e_bad:
             desync.append(rec)
         elif s_bad or e_bad:
-            prev_end = a[i - 1][1] if i > 0 else 0.0
-            snapped = (b[j][3] and not e_bad and ds < -limit_s and b[j][0] >= prev_end - limit_s)
+            prev_end = next((a[k][1] for k in range(i - 1, -1, -1) if a[k][1] is not None), 0.0)
+            snapped = (b[j][3] and de is not None and not e_bad and s_bad and ds < 0 and b[j][0] >= prev_end - limit_s)
             if snapped:
                 exceptions.append({**rec, "reason": SNAP_REASON})
                 worst.append(abs(de))
                 continue
-            uncertain.append(rec)
-        worst.append(max(abs(ds), abs(de)))
+            uncertain.append(rec)                 # за порогом одна граница (или единственная известная) — не успех
+        worst.append(max(abs(x) for x in (ds, de) if x is not None))
+    if not worst:                                  # совпавшие слова есть, но ни одной известной границы
+        return {"matched_words": len(pairs), "unmeasured_words": unmeasured, "ok": None, "status": "не проверено",
+                "limit_s": limit_s, "desynced_words": [], "uncertain_words": [], "boundary_exceptions": [],
+                "note": "у совпавших слов нет измеримых границ (только внутренние части составных слов) — "
+                        "синхрон не измерен"}
     ok = False if desync else (None if uncertain else True)
     return {"matched_words": len(pairs), "measure": "по слову — обе границы (начало и конец)",
             "median_abs_s": round(statistics.median(worst), 3), "p95_abs_s": round(float(np.percentile(worst, 95)), 3),
             "max_abs_s": round(max(worst), 3), "desynced_words": desync, "uncertain_words": uncertain,
-            "boundary_exceptions": exceptions, "limit_s": limit_s, "ok": ok,
+            "boundary_exceptions": exceptions, "unmeasured_words": unmeasured, "limit_s": limit_s, "ok": ok,
             "status": "не проверено" if ok is None else "проверено автоматически"}
 
 
