@@ -8,7 +8,7 @@ import os
 
 from contracts.models import ChapterUnits
 from pipeline.common import config, domain, io, paths
-from pipeline.structure.build import Context, build
+from pipeline.structure.build import Context, book_meta, build, chapter_title
 
 TYPES_DOC = paths.ORGANIZERS / "06_подача_и_референсы" / "подача_доменов_геологии.md"
 VIEWERS = paths.ORGANIZERS / "04_доменные_заготовки" / "портреты_зрителя.md"
@@ -47,6 +47,7 @@ def run(spec: config.ChapterSpec):
     os.environ["CH"] = spec.id
     cu = io.load(ChapterUnits, paths.units(spec.id))
     layer, cov = build(cu, spec.md.read_text(encoding="utf-8"), context(spec))
+    layer.ext["core"].update({"title": chapter_title(cu.units), **book_meta(spec)})
     io.save(layer, paths.layer(spec.id))
     io.save(cov, paths.coverage(spec.id))
     no_node = sum(1 for r in cov.rows if not r.node_ids)

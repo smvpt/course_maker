@@ -37,6 +37,8 @@ class ChapterSpec(BaseModel):
     prereading: Optional[Path] = None
     prereq_cards: Optional[Path] = None
     errata: Optional[Path] = None
+    author: Optional[str] = None                    # для шапки курса; нет — из имени PDF «Автор - Книга - год»
+    book: Optional[str] = None
 
     @field_validator("id")
     @classmethod
@@ -122,7 +124,8 @@ def chapter(ch: str) -> ChapterSpec:
 
 def from_args(md: str, ch: Optional[str] = None, pdf: Optional[str] = None, pages: Optional[str] = None,
               errata: Optional[str] = None, prereq: Optional[str] = None, domain: Optional[str] = None,
-              language: Optional[str] = None) -> ChapterSpec:
+              language: Optional[str] = None, author: Optional[str] = None,
+              book: Optional[str] = None) -> ChapterSpec:
     return ChapterSpec(
         id=ch or slug_id(Path(md).stem),
         md=Path(md),
@@ -132,6 +135,8 @@ def from_args(md: str, ch: Optional[str] = None, pdf: Optional[str] = None, page
         prereq_cards=Path(prereq) if prereq else None,
         domain=domain or "geology",
         language=language or None,
+        author=author or None,
+        book=book or None,
     )
 
 
@@ -154,11 +159,14 @@ def add_chapter_args(parser) -> None:
     parser.add_argument("--prereq")
     parser.add_argument("--domain")
     parser.add_argument("--language", choices=["ru", "en"])
+    parser.add_argument("--author", help="автор книги (для шапки курса)")
+    parser.add_argument("--book", help="название книги (для шапки курса)")
 
 
 def spec_from_ns(ns) -> ChapterSpec:
     return resolve(ch=ns.ch, md=ns.md, pdf=ns.pdf, pages=ns.pages, errata=ns.errata,
-                   prereq=ns.prereq, domain=ns.domain, language=ns.language)
+                   prereq=ns.prereq, domain=ns.domain, language=ns.language,
+                   author=ns.author, book=ns.book)
 
 
 @lru_cache(maxsize=None)

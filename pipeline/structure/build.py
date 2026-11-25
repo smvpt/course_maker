@@ -9,17 +9,21 @@ from __future__ import annotations
 import os
 import re
 import sys
+from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from typing import Optional
 
 from contracts.models import (ChapterUnits, Claim, Coverage, CoverageRow, DifficultyPair, Field_, Layer, Link,
                               NeedsScan, Node, Unit)
-from pipeline.common import config
+from pipeline.common import config, paths
 from pipeline.ingest.parse import split_pages
 from pipeline.llm import complete_json, fallbacks, resolve_model
 from pipeline.structure import quotes
-from pipeline.structure.schemas import Assignments, NodeDraft, Plan, PlanNode, QuoteFix
+from pipeline.verify import pages as verify_pages
+from pipeline.verify import quotes as verify_quotes
+from rapidfuzz import fuzz
+from pipeline.structure.schemas import Assignments, ClaimDraft, NodeDraft, Plan, PlanNode, QuoteFix
 
 BAD_REASONS = {"", "непоказуемо", "неважно", "не важно", "слишком сложно"}
 COVERAGE_ROUNDS = 2
@@ -171,8 +175,44 @@ def _model_fields(obj) -> None:
                 _model_fields(v)
 
 
+def check_claim_quote(near: dict[int, str], near_units: dict[int, str], md_path, quote: str,
+                      page: int) -> tuple[Optional[int], str, Optional[str]]:
+    """(страница, цитата, как найдена). exact — дословно (правило организаторов); recovered — сверка П2 нашла,
+    цитата заменена дословным отрывком md; fuzzy — сверка П2 нашла, дословный отрывок не выделить; None — нет."""
+    for pages in (near, near_units):              # сырой md, затем текст единиц (колонтитулы убраны)
+        found = quotes.find(pages, quote, page)
+        if found is not None:
+            return found, quote, "exact"
+    r = verify_quotes.check_quote_md(md_path, page, quote)        # интерфейс П2 (pipeline/verify/quotes.py)
+    if r.status not in ("found", "other_page"):
+        return None, quote, None
+    raw = near.get(r.page, "") + "\n" + near.get(r.page + 1, "")
+    exact = quotes.recover(raw, quote)
+    if (exact and quotes.find(near, exact, r.page) == r.page
+            and fuzz.ratio(verify_pages.normalize(exact), verify_pages.normalize(quote)) >= verify_quotes.THRESHOLD):
+        return r.page, exact, "recovered"
+    return r.page, quote, "fuzzy"
+
+
+def resolve_claim(c: ClaimDraft, near: dict[int, str], near_units: dict[int, str],
+                  md_path) -> tuple[Optional[int], str, Optional[str]]:
+    """Цитата утверждения: дословно → сверка П2 (+ дословный отрывок md) → дозапрос quote_fix, если не дословно.
+    Дозапрос не дал дословной — остаётся похожая (fuzzy), которую нашла сверка П2."""
+    page, quote, match = check_claim_quote(near, near_units, md_path, c.quote, c.page_pdf)
+    if match in (None, "fuzzy"):
+        fix = complete_json("core/quote_fix", {
+            "claim": c.text, "quote": c.quote, "page": c.page_pdf,
+            "pages": "\n\n".join(f"<!-- page {p} -->\n{t}" for p, t in near.items()),
+        }, schema=QuoteFix, tier="default")
+        if fix.found and fix.quote:
+            p2, q2, m2 = check_claim_quote(near, near_units, md_path, fix.quote, fix.page_pdf or c.page_pdf)
+            if p2 is not None and (page is None or m2 != "fuzzy"):
+                return p2, q2, m2
+    return page, quote, match
+
+
 def node_stage(pn: PlanNode, idx: int, nodes: list[PlanNode], units_by_id: dict[str, Unit],
-               md_pages: dict[int, str], ctx: Context, chapter: str) -> Node:
+               md_pages: dict[int, str], ctx: Context, chapter: str, md_path=None) -> Node:
     node_id = f"{chapter}.{pn.slug}"
     known = [t for n in nodes[:idx] for t in n.terms_introduced]
     nunits = [units_by_id[x] for x in pn.unit_ids]
@@ -193,24 +233,9 @@ def node_stage(pn: PlanNode, idx: int, nodes: list[PlanNode], units_by_id: dict[
     near = {p: md_pages[p] for p in range(pages[0] - 1, pages[-1] + 2) if p in md_pages}
     near_units = quotes.unit_pages([u for u in units_by_id.values() if pages[0] - 1 <= u.page_pdf <= pages[-1] + 1])
 
-    def locate(quote: str, page: int) -> Optional[int]:
-        """Сырой md, затем текст единиц (там колонтитул между страницами уже убран)."""
-        found = quotes.find(near, quote, page)
-        return found if found is not None else quotes.find(near_units, quote, page)
-
     claims = []
     for c in d.claims:
-        page = locate(c.quote, c.page_pdf)
-        quote = c.quote
-        if page is None:
-            fix = complete_json("core/quote_fix", {
-                "claim": c.text, "quote": c.quote, "page": c.page_pdf,
-                "pages": "\n\n".join(f"<!-- page {p} -->\n{t}" for p, t in near.items()),
-            }, schema=QuoteFix, tier="default")
-            if fix.found and fix.quote:
-                page = locate(fix.quote, fix.page_pdf or c.page_pdf)
-                if page is not None:
-                    quote = fix.quote
+        page, quote, match = resolve_claim(c, near, near_units, md_path)
         if page is None and len(quote.strip()) < 8:
             dropped.append({"claim": c.text, "why": "цитата не найдена и короче 8 символов"})
             warn(f"{node_id}: утверждение без цитаты отброшено: {c.text[:60]}")
@@ -218,7 +243,9 @@ def node_stage(pn: PlanNode, idx: int, nodes: list[PlanNode], units_by_id: dict[
         cl = Claim(id=f"{node_id}#c{len(claims) + 1}", text=c.text, kind=c.kind,
                    page_pdf=page if page is not None else c.page_pdf, quote=quote, source_kind=c.source_kind,
                    by_model=page is None or c.source_kind == "figure_description_model")
-        cl.ext["core"] = {"quote_verified": page is not None}
+        cl.ext["core"] = {"quote_verified": page is not None, "quote_match": match}
+        if match == "recovered":
+            cl.ext["core"]["quote_by_model"] = c.quote
         if page is None:
             warn(f"{node_id}: цитата не найдена на стр. {c.page_pdf}: «{quote[:60]}»")
         claims.append(cl)
@@ -286,6 +313,31 @@ def term_order_issues(nodes: list[Node]) -> list[dict]:
             for n in nodes for t in n.terms_used if first.get(t.lower(), 0) > n.order]
 
 
+NUMBER_ONLY_HEADING = re.compile(r"^(глава|часть|раздел|chapter|part|section)\s+[\dIVXLCivxlc]+\.?$", re.I)
+
+
+def chapter_title(units) -> Optional[str]:
+    """Название главы — первый заголовок; «Глава V» без названия склеивается со следующим заголовком."""
+    heads = [re.sub(r"^#+\s*", "", u.text).strip() for u in units if u.kind == "heading"]
+    heads = [h for h in heads if h]
+    if not heads:
+        return None
+    if NUMBER_ONLY_HEADING.match(heads[0]) and len(heads) > 1:
+        return f"{heads[0].rstrip('.')}. {heads[1]}"
+    return heads[0]
+
+
+def book_meta(spec: config.ChapterSpec) -> dict:
+    """Автор и книга для шапки курса: из конфига или аргументов, иначе из имени PDF «Автор - Книга[ - год]»."""
+    if spec.author or spec.book:
+        return {"author": spec.author, "book": spec.book, "meta_source": "config"}
+    if spec.pdf:
+        parts = [x.strip() for x in spec.pdf.stem.split(" - ")]
+        if len(parts) >= 2 and all(parts[:2]):
+            return {"author": parts[0], "book": parts[1], "meta_source": "pdf_name"}
+    return {"author": None, "book": None, "meta_source": None}
+
+
 def generated_by() -> str:
     model = resolve_model("strong")[0]
     extra = [m for m in fallbacks("strong") if m != model]
@@ -300,7 +352,9 @@ def build(cu: ChapterUnits, md: str, ctx: Context) -> tuple[Layer, Coverage]:
     md_pages = dict(split_pages(md))
     workers = int(os.environ.get("LLM_WORKERS", "4"))
     with ThreadPoolExecutor(max_workers=workers) as ex:
-        nodes = list(ex.map(lambda a: node_stage(a[1], a[0], nodes_plan, units_by_id, md_pages, ctx, cu.chapter),
+        md_path = Path(cu.source) if Path(cu.source).is_absolute() else paths.ROOT / cu.source
+        nodes = list(ex.map(lambda a: node_stage(a[1], a[0], nodes_plan, units_by_id, md_pages, ctx, cu.chapter,
+                                                 md_path),
                             enumerate(nodes_plan)))
 
     layer = Layer(chapter=cu.chapter, source=cu.source, pdf_pages=[str(p) for p in cu.pdf_pages],

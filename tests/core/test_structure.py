@@ -171,3 +171,82 @@ def test_quote_search():
     pages_from_units = quotes.unit_pages([m.Unit(unit_id="p040.01", kind="paragraph", page_pdf=40,
                                                  text="фацию пляжа")])
     assert quotes.find(pages_from_units, "фацию пляжа", 40) == 40
+
+
+def test_hyphenated_line_break_is_a_line_break():
+    """«переносы» из правила организаторов: пере-\nнос слова — тот же текст."""
+    assert quotes.find({5: "давление в пла-\nсте падает"}, "давление в пласте падает", 5) == 5
+
+
+def test_recover_exact_text_from_md():
+    """Модель записала формулу словами — из md берётся дословный отрывок между якорями."""
+    page = "Здесь коэффициент пьезопроводности $\\varkappa$ равен отношению проницаемости к вязкости и сжимаемости."
+    q = "коэффициент пьезопроводности каппа равен отношению проницаемости к вязкости"
+    exact = quotes.recover(page, q)
+    assert exact == "коэффициент пьезопроводности $\\varkappa$ равен отношению проницаемости к вязкости"
+    assert quotes.find({1: page}, exact, 1) == 1
+    assert quotes.recover(page, "совсем другой текст про бурение скважин долотом") is None
+
+
+def test_claim_quote_fixed_without_llm_via_verify(fake_llm, monkeypatch):
+    """Строгая сверка не нашла, сверка П2 нашла → цитата заменена дословным текстом md, quote_fix не зовётся."""
+    import pipeline.verify.quotes as vq
+    calls = []
+    monkeypatch.setattr(vq, "check_quote_md", lambda md, page, quote: calls.append(quote) or
+                        vq.QuoteResult("found", page, 95.0))
+    md = "<!-- page 7 -->\nЗдесь коэффициент $\\varkappa$ равен отношению проницаемости к вязкости и сжимаемости.\n"
+    near = {7: md.split("-->")[1]}
+    got = build.check_claim_quote(near, {}, md_path="x.md", quote="коэффициент каппа равен отношению проницаемости к вязкости",
+                                  page=7)
+    assert got == (7, "коэффициент $\\varkappa$ равен отношению проницаемости к вязкости", "recovered")
+    assert calls
+
+
+def test_fuzzy_match_still_asks_for_exact_quote(monkeypatch):
+    """Сверка П2 нашла лишь похожее — дозапрос quote_fix; дословная цитата от него заменяет похожую."""
+    near = {3: "Пласт сложен песчаниками с прослоями глин мощностью до двух метров."}
+    seq = [(3, "песчаники с глинами до 2 м", "fuzzy"), (3, "песчаниками с прослоями глин", "exact")]
+    monkeypatch.setattr(build, "check_claim_quote", lambda *a: seq.pop(0))
+    asked = []
+    monkeypatch.setattr(build, "complete_json", lambda prompt, vars, schema, tier="default", images=None:
+                        asked.append(prompt) or s.QuoteFix(found=True, quote="песчаниками с прослоями глин", page_pdf=3))
+    claim = build.resolve_claim(s.ClaimDraft(text="т", kind="observation", page_pdf=3, quote="песчаники с глинами до 2 м",
+                                             source_kind="text"), near, {}, "x.md")
+    assert asked == ["core/quote_fix"] and claim == (3, "песчаниками с прослоями глин", "exact")
+
+
+def U(uid, text, kind="heading"):
+    return m.Unit(unit_id=uid, page_pdf=int(uid[1:4]), kind=kind, text=text)
+
+
+def test_chapter_title_from_first_heading():
+    assert build.chapter_title([U("p030.01", "абзац", "paragraph"), U("p030.02", "## 1.2 Дельты [Deltas]")]) == \
+        "1.2 Дельты [Deltas]"
+    # «Глава V» само по себе не название: склеивается со следующим заголовком
+    assert build.chapter_title([U("p090.01", "# Глава V"), U("p090.02", "# Литологическая интерпретация")]) == \
+        "Глава V. Литологическая интерпретация"
+    assert build.chapter_title([U("p001.01", "# Chapter 3"), U("p001.02", "## Drilling fluids")]) == \
+        "Chapter 3. Drilling fluids"
+    assert build.chapter_title([U("p001.01", "текст", "paragraph")]) is None
+
+
+def test_book_meta_from_config_args_or_pdf_name(tmp_path):
+    from pipeline.common import config
+    md = MINI / "chapter.md"
+    spec = config.from_args(md=str(md), ch="x", author="Барабошкин", book="Практическая седиментология")
+    assert build.book_meta(spec) == {"author": "Барабошкин", "book": "Практическая седиментология", "meta_source": "config"}
+
+    pdf = tmp_path / "Басниев и др - Нефтегазовая гидромеханика - 2005.pdf"
+    pdf.write_bytes(b"%PDF")
+    spec = config.from_args(md=str(md), ch="x", pdf=str(pdf))
+    assert build.book_meta(spec) == {"author": "Басниев и др", "book": "Нефтегазовая гидромеханика",
+                                     "meta_source": "pdf_name"}
+
+    assert build.book_meta(config.from_args(md=str(md), ch="x")) == {"author": None, "book": None, "meta_source": None}
+
+
+def test_configured_chapters_have_author_and_book():
+    from pipeline.common import config
+    for ch in config.chapters():
+        meta = build.book_meta(config.chapter(ch))
+        assert meta["author"] and meta["book"], ch

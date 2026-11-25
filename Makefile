@@ -4,7 +4,7 @@
 #   make test                            все тесты, без сети
 #   make smoke                           быстрый прогон без ключа (LLM_OFFLINE=1)
 #   make all CH=<id>                     глава из config/chapters.yaml
-#   make all MD=<глава.md> [PDF=…] [PAGES=a-b] [ERRATA=…] [PREREQ=…] [DOMAIN=…] [VIDEO=1]
+#   make all MD=<глава.md> [PDF=…] [PAGES=a-b] [ERRATA=…] [PREREQ=…] [DOMAIN=…] [AUTHOR=…] [BOOK=…] [VIDEO=1]
 #                                        любая глава без правки файлов
 #   make rebuild NODE=<id> [CH=<id>]     пересборка шага и ролика после правки layer.json
 #   make check PKG=<review_package.json> [OUT=<путь>]
@@ -15,7 +15,8 @@ export PYTHONUTF8 := 1
 
 CHAPTER_ARGS = $(if $(CH),--ch "$(CH)") $(if $(MD),--md "$(MD)") $(if $(PDF),--pdf "$(PDF)") \
 	$(if $(PAGES),--pages "$(PAGES)") $(if $(ERRATA),--errata "$(ERRATA)") \
-	$(if $(PREREQ),--prereq "$(PREREQ)") $(if $(DOMAIN),--domain "$(DOMAIN)")
+	$(if $(PREREQ),--prereq "$(PREREQ)") $(if $(DOMAIN),--domain "$(DOMAIN)") \
+	$(if $(AUTHOR),--author "$(AUTHOR)") $(if $(BOOK),--book "$(BOOK)")
 
 need = @test -n "$($(1))" || { echo "нужно задать $(1)=… ($(2))" >&2; exit 2; }
 
