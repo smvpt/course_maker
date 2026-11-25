@@ -221,3 +221,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Проект «Глава → курс» (П1)
+out/
+data/pages/
+*.tmp
+# git на Windows не различает регистр: строка MANIFEST выше скрывала бы manifest/ и MANIFEST.md
+!manifest/
+!MANIFEST.md
