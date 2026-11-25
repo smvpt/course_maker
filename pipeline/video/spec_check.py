@@ -121,8 +121,10 @@ def check_script(script: Script, node: Node, fmt: str) -> list[str]:
     return problems
 
 
-def check_scene(spec: SceneSpec, script: Script) -> list[str]:
+def check_scene(spec: SceneSpec, script: Script, real_data_ok: bool = False) -> list[str]:
+    """real_data_ok — набор данных ролика подтверждён как реальный: тогда классу A можно «реальные данные»."""
     problems = shot_link_problems(script, spec)
+    allowed_labels = {**ALLOWED_LABELS, "A": ALLOWED_LABELS["A"] | ({"реальные данные"} if real_data_ok else set())}
     flat = [pid for s in spec.shots for pid in s.phrase_ids]
     order = [p.id for p in script.phrases]
     if sorted(flat) == sorted(order) and flat != order:
@@ -130,7 +132,7 @@ def check_scene(spec: SceneSpec, script: Script) -> list[str]:
     if not spec.shots:
         problems.append("нет кадров")
     for s in spec.shots:
-        allowed = ALLOWED_LABELS.get(s.frame_class)
+        allowed = allowed_labels.get(s.frame_class)
         if allowed is None:
             problems.append(f"кадр {s.id}: класс {s.frame_class} не используется (нет фото-источников)")
         elif s.label not in allowed:
@@ -170,7 +172,11 @@ def param_source_problems(spec: SceneSpec, node: Node, cfg: dict) -> list[str]:
     claims = {c.id: c for c in node.claims}
     sources = spec.ext.get("video", {}).get("param_sources", {})
     for key, d in cfg["params"].items():
-        if d.get("kind") != "physical" or key not in spec.params:
+        if key not in spec.params:
+            continue
+        needs = d.get("kind") == "physical" or (
+            d.get("kind") == "rule" and isinstance(spec.params[key], dict) and spec.params[key].get("status") == "из узла")
+        if not needs:
             continue
         src = sources.get(key)
         if not src:

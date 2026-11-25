@@ -15,6 +15,16 @@ TEMPLATE_INFO = {
 # формат маршрутизации → формат ролика, кадр
 VIDEO_FORMATS = {"шортс": "short", "длинное видео": "long"}
 ASPECT = {"short": "шортс 9:16, вертикальный кадр", "long": "разбор 16:9, горизонтальный кадр"}
+# Какие форматы собирает каждый реализованный шаблон. Общий источник для video.spec (проверка до LLM)
+# и video.build. Шаблона нет в таблице — рендер для него ещё не реализован, спецификация допустима.
+TEMPLATE_FORMATS = {"hello": {"short"}, "T1": {"short"}, "T2": {"long"}}
+
+
+def format_problem(template: str, fmt: str) -> str | None:
+    allowed = TEMPLATE_FORMATS.get(template)
+    if allowed is not None and fmt not in allowed:
+        return f"шаблон {template} собирается только в формате {sorted(allowed)}, запрошен {fmt}"
+    return None
 
 
 def load_template_config(templates_dir, template: str) -> dict | None:

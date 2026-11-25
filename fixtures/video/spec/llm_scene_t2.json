@@ -1,0 +1,47 @@
+{
+  "params": {
+    "curves": [
+      {"mnemonic": "GR", "kind": "GR", "unit": "API", "label": "ГК"},
+      {"mnemonic": "RT", "kind": "RES", "unit": "OHMM", "label": "УЭС"},
+      {"mnemonic": "NPHI", "kind": "NEUTRON", "unit": "V/V", "label": "ННК"}
+    ],
+    "interval_m": [1000, 1100],
+    "rule": {
+      "status": "условное",
+      "conditions": [
+        {"curve": "GR", "op": "<", "value": 60},
+        {"curve": "RT", "op": ">", "value": 20},
+        {"curve": "NPHI", "op": ">", "value": 0.15}
+      ],
+      "conclusion": "кандидат для проверки",
+      "caveat": "высокое сопротивление само по себе ничего не доказывает"
+    },
+    "borehole_exaggeration": 20,
+    "evolve_shot_ids": ["s2", "s3"]
+  },
+  "param_sources": {},
+  "missing_params": [],
+  "objects": ["ствол с прибором (схема)", "треки кривых", "колонка решения", "шкала глубины"],
+  "invariants": ["глубина растёт вниз", "прибор и раскрытые кривые на одной глубине"],
+  "assumptions": ["правило условное, пороги для демонстрации"],
+  "exaggerations": ["ствол и прибор шире в 20 раз"],
+  "shots": [
+    {"id": "s1", "phrase_ids": ["p1"], "frame_class": "A", "label": "симуляция",
+     "shows": "прибор у верха интервала", "plaque": "не в масштабе: ствол шире в 20 раз"},
+    {"id": "s2", "phrase_ids": ["p2", "p3", "p4", "p5", "p6", "p7"], "frame_class": "A", "label": "симуляция",
+     "shows": "прибор идёт вниз, кривые раскрываются", "plaque": "не в масштабе: ствол шире в 20 раз"},
+    {"id": "s3", "phrase_ids": ["p8", "p9", "p10"], "frame_class": "A", "label": "симуляция",
+     "shows": "правило, пауза на вопрос, ответ", "plaque": "не в масштабе: ствол шире в 20 раз"},
+    {"id": "s4", "phrase_ids": ["p11", "p12", "p13"], "frame_class": "A", "label": "симуляция",
+     "shows": "вся запись и колонка решения", "plaque": "не в масштабе: ствол шире в 20 раз"},
+    {"id": "s5", "phrase_ids": ["p14"], "frame_class": "A", "label": "симуляция",
+     "shows": "истинный масштаб ствола", "plaque": null},
+    {"id": "s6", "phrase_ids": ["p15"], "frame_class": "A", "label": "симуляция",
+     "shows": "вопрос на перенос", "plaque": "не в масштабе: ствол шире в 20 раз"}
+  ],
+  "true_scale_shot_id": "s5",
+  "convention": "русская школа ГИС",
+  "data_sources": ["набор данных из --dataset"],
+  "references": [],
+  "historical_objects": []
+}

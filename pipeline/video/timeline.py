@@ -6,10 +6,13 @@
 """
 from __future__ import annotations
 
+import math
 import re
 import wave
 from dataclasses import dataclass
 from pathlib import Path
+
+import numpy as np
 
 LEAD_IN_S = 0.3   # тишина до первой фразы: плеер не съедает начало
 TAIL_S = 1.0      # финальное состояние держится после последней фразы
@@ -200,3 +203,32 @@ def format_vtt(cues: list[Cue], note: str | None = None) -> str:
     for i, c in enumerate(cues, 1):
         out += [str(i), f"{_ts(c.start)} --> {_ts(c.end)}", c.text, ""]
     return "\n".join(out).rstrip("\n") + "\n"
+
+
+# ---------------------------------------------------------------- прогресс сцены по звуку
+
+def progress_knots(segments: list[tuple[str, float, float]], evolve: set[str], t_end: float
+                   ) -> list[tuple[float, float]]:
+    """Опорные точки (время ролика, значение прогресса): время симуляции T1, глубина T2.
+
+    Прогресс идёт от 0 до t_end равномерно, но только пока звучат фразы из evolve;
+    в паузах и вне этих фраз стоит. После последней такой фразы держится t_end.
+    """
+    if not math.isfinite(t_end) or t_end <= 0:
+        raise ValueError(f"t_end должно быть конечным числом > 0, получено {t_end}")
+    live = [(a, b) for pid, a, b in segments if pid in evolve]
+    total = sum(b - a for a, b in live)
+    if total <= 0:
+        raise ValueError("нет фраз, на которых идёт время симуляции (evolve_shot_ids)")
+    knots, acc = [(0.0, 0.0)], 0.0
+    for a, b in live:
+        knots.append((a, acc))
+        acc += (b - a) / total * t_end
+        knots.append((b, acc))
+    knots[-1] = (knots[-1][0], t_end)
+    return knots
+
+
+def progress_at(tau: float, knots: list[tuple[float, float]]) -> float:
+    xs, ys = zip(*knots)
+    return float(np.interp(tau, xs, ys))

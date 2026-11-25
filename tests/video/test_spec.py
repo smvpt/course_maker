@@ -68,11 +68,11 @@ def test_success_writes_contract_files(tmp_path, llm, capsys):
     script = Script.model_validate_json((out / "script.json").read_text(encoding="utf-8"))
     scene = SceneSpec.model_validate_json((out / "scene_spec.json").read_text(encoding="utf-8"))
     assert (script.video_id, script.node_id, script.format) == (NODE + ".short", NODE, "short")
-    assert (scene.video_id, scene.node_id, scene.template) == (NODE + ".short", NODE, "T2")
+    assert (scene.video_id, scene.node_id, scene.template) == (NODE + ".short", NODE, "T3")
     assert [c["prompt"] for c in fake.calls] == ["video/script", "video/scene_spec"]
     v = scene.ext["video"]
     assert v["sources"][0]["claim_id"] == NODE + "#c1" and v["sources"][0]["page_or_dataset"] == "стр. 95"
-    assert v["route"]["template"] == "T2" and v["route"]["format"] == "шортс"
+    assert v["route"]["template"] == "T3" and v["route"]["format"] == "шортс"
     est = script.ext["video"]["duration_estimate"]
     assert 40 <= est["seconds"] <= 75 and "не замер" in est["method"]
     assert "оценка" in capsys.readouterr().out
@@ -254,3 +254,106 @@ def test_template_without_config_gets_generic_contract(tmp_path, llm):
     fake = llm()
     assert _run(tmp_path) == 0                                 # узел с T2: конфигурации T2 пока нет
     assert "не описаны" in fake.calls[1]["vars"]["template_contract"]
+
+
+# ---------------------------------------------------------------- стыковка с T2
+
+T2_ROUTING = FIX / "routing_t2.json"
+T2_DATASET = ROOT / "fixtures" / "video" / "t2_demo" / "dataset.json"
+
+
+def _run_t2(tmp_path, *extra):
+    return spec.main(["--ch", CH, "--node", NODE, "--layer", str(FIX / "layer.json"), "--routing", str(T2_ROUTING),
+                      "--out-root", str(tmp_path), *extra])
+
+
+def _t2_scene(mutate=None):
+    return _answer("llm_scene_t2.json", mutate)
+
+
+def test_t2_spec_with_dataset_is_saved_and_passes_t2_checks(tmp_path, llm):
+    from pipeline.video.t2_template import prepare
+    from pipeline.video.templates import load_template_config
+    fake = llm([_answer("llm_script_long.json")], [_t2_scene()])
+    assert _run_t2(tmp_path, "--dataset", str(T2_DATASET)) == 0
+    contract = fake.calls[1]["vars"]["template_contract"]
+    assert "RT [OHMM]" in contract and "«симуляция»" in contract and "rule" in contract
+    out = _out(tmp_path, NODE + ".long")
+    script = Script.model_validate_json((out / "script.json").read_text(encoding="utf-8"))
+    scene = SceneSpec.model_validate_json((out / "scene_spec.json").read_text(encoding="utf-8"))
+    assert scene.template == "T2" and script.format == "long"
+    assert scene.params["dataset"] == "fixtures/video/t2_demo/dataset.json"       # подставил код
+    assert scene.params["borehole_diameter_m"] == 0.2
+    prov = scene.ext["video"]["dataset_provenance"]
+    assert prov["kind"] == "synthetic" and prov["file"] == "synthetic_well.las" and prov["well"] == "SYNTH-1"
+    prep = prepare(scene, script, load_template_config(ROOT / "domain" / "geology" / "templates", "T2"))
+    assert prep["dataset"].label == "симуляция"
+
+
+def test_t2_without_dataset_is_a_clear_error_before_llm(tmp_path, llm, capsys):
+    fake = llm([_answer("llm_script_long.json")], [_t2_scene()])
+    assert _run_t2(tmp_path) == 2
+    assert "--dataset" in capsys.readouterr().err
+    assert fake.calls == []
+
+
+def test_t2_dataset_without_borehole_diameter_is_an_error(tmp_path, llm, capsys):
+    d = json.loads(T2_DATASET.read_text(encoding="utf-8"))
+    d.pop("borehole_diameter_m")
+    d["las"] = str(T2_DATASET.parent / d["las"])
+    p = tmp_path / "dataset.json"
+    p.write_text(json.dumps(d, ensure_ascii=False), encoding="utf-8")
+    llm([_answer("llm_script_long.json")], [_t2_scene()])
+    assert _run_t2(tmp_path, "--dataset", str(p)) == 2
+    assert "borehole_diameter_m" in capsys.readouterr().err
+
+
+@pytest.mark.parametrize("mutate,needle", [
+    (lambda d: d["shots"][1].update(label="реальные данные"), "реальные данные"),
+    (lambda d: d["shots"][1].update(frame_class="B", label="схема"), "класс A"),
+    (lambda d: d["params"]["curves"][1].update(unit="OHM.M"), "OHM.M"),
+    (lambda d: d["params"]["curves"][0].update(mnemonic="SP"), "SP"),
+    (lambda d: d["params"]["rule"].update(conclusion="пласт нефтеносный"), "не доказательство нефти"),
+    (lambda d: d["params"]["rule"].update(caveat=""), "caveat"),
+    (lambda d: d["params"].update(interval_m=[950, 1100]), "интервал"),
+    (lambda d: d["shots"][2].update(plaque="не в масштабе: ствол шире в 5 раз"), "20"),
+])
+def test_t2_incompatible_scene_fails_after_repair(tmp_path, llm, capsys, mutate, needle):
+    bad = _t2_scene(mutate)
+    fake = llm([_answer("llm_script_long.json")], [bad, bad])
+    assert _run_t2(tmp_path, "--dataset", str(T2_DATASET)) == 2
+    assert needle in capsys.readouterr().err
+    assert needle in fake.calls[2]["vars"]["feedback"]
+    assert not _out(tmp_path, NODE + ".long").exists()
+
+
+def test_t2_rule_from_node_needs_sources(tmp_path, llm, capsys):
+    bad = _t2_scene(lambda d: d["params"]["rule"].update(status="из узла"))
+    llm([_answer("llm_script_long.json")], [bad, bad])
+    assert _run_t2(tmp_path, "--dataset", str(T2_DATASET)) == 2
+    assert "params.rule" in capsys.readouterr().err
+
+
+def test_dataset_for_template_without_data_is_an_error(tmp_path, llm, capsys):
+    llm()
+    assert _run(tmp_path, "--dataset", str(T2_DATASET)) == 2
+    assert "не нужен" in capsys.readouterr().err
+
+
+def test_template_format_mismatch_is_rejected_before_llm(tmp_path, llm, capsys):
+    r = json.loads(T2_ROUTING.read_text(encoding="utf-8"))
+    r["routes"][0]["format"] = "шортс"
+    p = tmp_path / "routing.json"
+    p.write_text(json.dumps(r, ensure_ascii=False), encoding="utf-8")
+    fake = llm([_answer("llm_script_long.json")], [_t2_scene()])
+    assert spec.main(["--ch", CH, "--node", NODE, "--layer", str(FIX / "layer.json"), "--routing", str(p),
+                      "--out-root", str(tmp_path), "--dataset", str(T2_DATASET)]) == 2
+    err = capsys.readouterr().err
+    assert "T2" in err and "short" in err and "long" in err
+    assert fake.calls == []
+
+
+def test_build_and_spec_share_template_formats():
+    from pipeline.video import build
+    from pipeline.video.templates import TEMPLATE_FORMATS
+    assert build.TEMPLATES is TEMPLATE_FORMATS

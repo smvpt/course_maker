@@ -32,3 +32,13 @@ def test_check_inside_safe_zone():
     lay.check_inside("ok", left, right, bottom, top)
     with pytest.raises(LayoutError, match="подпись"):
         lay.check_inside("подпись", left, right, bottom - 0.01, top)
+
+
+def test_long_format_reference_frame():
+    from pipeline.video.layout import LONG_SAFE_ZONE, REF_LONG
+    lay = Layout(LONG_SAFE_ZONE, min_caption_px=44, ref=REF_LONG)
+    left, right, bottom, top = lay.safe_box()
+    u = 8 / 1080
+    assert right - left == pytest.approx((1920 - 2 * 96) * u)
+    assert top == pytest.approx(4 - 54 * u) and bottom == pytest.approx(-4 + 100 * u)
+    assert lay.font_size(44) == pytest.approx(44 * u * 72)      # 44 px на кадре высотой 1080

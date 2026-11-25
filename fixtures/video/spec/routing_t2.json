@@ -1,0 +1,20 @@
+{
+  "chapter": "video_spec_fixture",
+  "routes": [
+    {
+      "node_id": "video_spec_fixture.mixed_section",
+      "format": "длинное видео",
+      "secondary_format": null,
+      "video_scores": {
+        "time": 1,
+        "invisible": 2,
+        "scale": 1,
+        "counterintuitive": 2,
+        "cause_effect": 2
+      },
+      "hook_short": false,
+      "template": "T2",
+      "why": "фикстура: узел И/Н — каротаж, разбор 16:9 по шаблону T2"
+    }
+  ]
+}

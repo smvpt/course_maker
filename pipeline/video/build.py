@@ -17,16 +17,18 @@ from pathlib import Path
 
 from pipeline.video import media
 from pipeline.video.inputs import ID_RE, VideoInputError, load_inputs
-from pipeline.video.layout import FRAME_H, FRAME_W, Layout, LayoutError
+from pipeline.video.layout import FRAME_H, LONG_SAFE_ZONE, REF_LONG, REF_H, REF_W, Layout, LayoutError
 from pipeline.video.media import ToolError
 from pipeline.video.timeline import build_timeline, format_vtt, subtitle_cues, assemble_wav
+from pipeline.video.templates import TEMPLATE_FORMATS, format_problem
 from pipeline.video.tts import DEFAULT_VOICE, TtsError, TtsParams, synthesize
 
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_STYLEGUIDE = ROOT / "data" / "organizers" / "03_стайлгайд" / "styleguide.json"
 SAMPLE_RATE = 24000          # родная частота edge-tts (audio-24khz-48kbitrate-mono-mp3)
-RES = {"short": {"final": (1080, 1920, 30), "draft": (540, 960, 15)}}
-TEMPLATES = {"hello", "T1"}
+RES = {"short": {"final": (1080, 1920, 30), "draft": (540, 960, 15)},
+       "long": {"final": (1920, 1080, 30), "draft": (960, 540, 15)}}
+TEMPLATES = TEMPLATE_FORMATS          # шаблон → форматы: общий источник с video.spec
 TARGET_WPM = (110, 150)
 VTT_NOTES = {
     "word": "тайминги: пословные метки edge-tts (WordBoundary), сдвинуты на начало фразы в таймлайне",
@@ -72,6 +74,8 @@ def _prepare_template(spec, script, sg: dict, templates_dir: Path) -> tuple[dict
         if not isinstance(spec.params.get("title"), str) or not spec.params["title"].strip():
             raise VideoInputError("SceneSpec.params.title обязателен для шаблона hello")
         return {"title": spec.params["title"]}, {}, {}
+    if spec.template == "T2":
+        return _prepare_t2(spec, script, sg, templates_dir)
     from pipeline.video import t1_template
     cfg = t1_template.load_config(templates_dir)
     prep = t1_template.prepare(spec, script, cfg)
@@ -83,10 +87,33 @@ def _prepare_template(spec, script, sg: dict, templates_dir: Path) -> tuple[dict
     return {"t1": prep}, {"field": _sg_color(sg, prep["field_color_key"])}, info
 
 
+def _prepare_t2(spec, script, sg: dict, templates_dir: Path) -> tuple[dict, dict, dict]:
+    from pipeline.video import t2_template
+    from pipeline.video.templates import load_template_config
+    cfg = load_template_config(templates_dir, "T2")
+    if cfg is None:
+        raise VideoInputError(f"нет описания шаблона T2: {Path(templates_dir) / 'T2.json'}")
+    prep = t2_template.prepare(spec, script, cfg)
+    disp = cfg["display"]
+    colors = {"curve_colors": {cv["mnemonic"]: _sg_color(sg, f"curves.{cv['kind']}") for cv in prep["curves"]},
+              "tool": _sg_color(sg, disp["tool_color"]), "mud": _sg_color(sg, disp["mud_color"]),
+              "uncertainty": _sg_color(sg, disp["rule_unknown_color"]),
+              "rule_true": sg[disp["rule_true_color"]], "schema": sg["provenance"]["схема"]}
+    ds = prep["dataset"]
+    info = {"model": cfg["model"], "config": str(Path(templates_dir) / "T2.json"),
+            "dataset_provenance": ds.provenance, "data_label": ds.label,
+            "curves": [{k: cv[k] for k in ("mnemonic", "kind", "unit", "label", "log", "range")} for cv in prep["curves"]],
+            "interval_m": [prep["top"], prep["bottom"]], "rule": {k: v for k, v in prep["rule"].items()},
+            "rule_counts": {"выполнено": int((prep["rule_state"] == 1).sum()), "не выполнено": int((prep["rule_state"] == 0).sum()),
+                            "нет данных": int((prep["rule_state"] == -1).sum())},
+            "borehole_exaggeration": prep["exaggeration"]}
+    return {"t2": prep, "chain": disp["chain"], "school_label": disp["school_label"]}, colors, info
+
+
 def _render(scene_cls, plan: dict, work: Path, w: int, h: int, fps: int, background: str) -> Path:
     from manim import tempconfig
     cfg = {"pixel_width": w, "pixel_height": h, "frame_rate": fps, "frame_height": FRAME_H,
-           "frame_width": FRAME_W, "media_dir": str(work / "manim"), "disable_caching": True,
+           "frame_width": FRAME_H * w / h, "media_dir": str(work / "manim"), "disable_caching": True,
            "background_color": background, "progress_bar": "none", "verbosity": "WARNING",
            "output_file": "scene", "preview": False}
     with tempconfig(cfg):
@@ -142,13 +169,16 @@ def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, f
     script, spec = load_inputs(script_path, spec_path, node_id=node)
     fmt = fmt or script.format
     if fmt not in RES:
-        raise VideoInputError(f"формат {fmt}: пока собирается только short (9:16)")
+        raise VideoInputError(f"формат {fmt} неизвестен; есть {sorted(RES)}")
     if spec.template not in TEMPLATES:
         raise VideoInputError(f"шаблон сцены «{spec.template}» не реализован; есть: {sorted(TEMPLATES)}")
+    if format_problem(spec.template, fmt):
+        raise VideoInputError(format_problem(spec.template, fmt))
     sg = _styleguide(styleguide)
     tpl_plan, tpl_colors, tpl_info = _prepare_template(spec, script, sg, ROOT / "domain" / domain / "templates")
     _check_font(sg["font"])
-    layout = Layout(sg["safe_zone"], sg["min_caption_px"])
+    layout = (Layout(sg["safe_zone"], sg["min_caption_px"], ref=(REF_W, REF_H)) if fmt == "short"
+              else Layout(LONG_SAFE_ZONE, sg["min_caption_px"], ref=REF_LONG))
     w, h, fps = RES[fmt]["draft" if draft else "final"]
 
     out = out_root / ch / "videos" / script.video_id
@@ -184,7 +214,9 @@ def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, f
     plan = {"layout": layout, "font": sg["font"], "fps": fps, "segments": segs, "total": tl.total,
             "speech_total": tl.speech_total, **tpl_plan,
             "colors": {"text": sg["text"], "muted": sg["muted"], "panel": sg["panel"], **tpl_colors}}
-    if spec.template == "T1":
+    if spec.template == "T2":
+        from pipeline.video.scene_t2 import T2Scene as scene_cls
+    elif spec.template == "T1":
         from pipeline.video.scene_t1 import T1Scene as scene_cls
     else:
         from pipeline.video.scene_hello import HelloScene as scene_cls

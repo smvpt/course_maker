@@ -1,0 +1,142 @@
+{
+  "phrases": [
+    {
+      "id": "p1",
+      "beat": "hook",
+      "claim_id": "video_spec_fixture.mixed_section#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0,
+      "text": "Почему одна и та же кривая может обмануть даже опытного интерпретатора?",
+      "on_screen": "Одна кривая — разные породы?"
+    },
+    {
+      "id": "p2",
+      "beat": "problem",
+      "claim_id": "video_spec_fixture.mixed_section#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0,
+      "text": "Когда в разрезе смешаны разные породы и флюиды, по одному виду кривых коллектор не выделить.",
+      "on_screen": "Смешанный разрез: вид кривой не помогает"
+    },
+    {
+      "id": "p3",
+      "beat": "solution",
+      "claim_id": "video_spec_fixture.mixed_section#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0,
+      "text": "Разные сочетания породы и флюида дают похожие отклики приборов, поэтому глазу не на что опереться.",
+      "on_screen": "Похожие отклики — разные причины"
+    },
+    {
+      "id": "p4",
+      "beat": "solution",
+      "claim_id": "video_spec_fixture.mixed_section#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0,
+      "text": "Поэтому значения кривых пересчитывают в свойства пород и добавляют геологические сведения о разрезе.",
+      "on_screen": "Расчёт плюс геология"
+    },
+    {
+      "id": "p5",
+      "beat": "solution",
+      "claim_id": "video_spec_fixture.mixed_section#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0,
+      "text": "Каждая кривая отвечает на свой вопрос, поэтому их читают вместе, а не по одной.",
+      "on_screen": "Кривые читают вместе"
+    },
+    {
+      "id": "p6",
+      "beat": "solution",
+      "claim_id": "video_spec_fixture.mixed_section#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0,
+      "text": "Значения переводят в свойства породы и сверяют с тем, что известно о разрезе.",
+      "on_screen": "Значения → свойства породы"
+    },
+    {
+      "id": "p7",
+      "beat": "solution",
+      "claim_id": "video_spec_fixture.mixed_section#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0,
+      "text": "Без этого шага похожие отклики разных пород легко принять за одно и то же.",
+      "on_screen": "Иначе — путаница пород"
+    },
+    {
+      "id": "p8",
+      "beat": "naming",
+      "claim_id": "video_spec_fixture.mixed_section#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0,
+      "text": "Такой подход называется количественной интерпретацией: решение принимают по расчёту, а не по рисунку кривой.",
+      "on_screen": "Количественная интерпретация"
+    },
+    {
+      "id": "p9",
+      "beat": "prediction",
+      "claim_id": "video_spec_fixture.mixed_section#c1",
+      "is_analogy": false,
+      "pause_after_s": 1.2,
+      "text": "Как вы думаете, хватит ли в смешанном разрезе одного взгляда на кривые?",
+      "on_screen": "Хватит ли взгляда на кривые?"
+    },
+    {
+      "id": "p10",
+      "beat": "data",
+      "claim_id": "video_spec_fixture.mixed_section#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0,
+      "text": "Видим: одинаковые значения кривых встречаются против разных пород — значит, вид кривой не определяет породу.",
+      "on_screen": "Сигнал одинаковый → порода разная"
+    },
+    {
+      "id": "p11",
+      "beat": "data",
+      "claim_id": "video_spec_fixture.mixed_section#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0,
+      "text": "Видим: на одних и тех же значениях кривой лежат разные породы этого разреза.",
+      "on_screen": "Одно значение — разные породы"
+    },
+    {
+      "id": "p12",
+      "beat": "data",
+      "claim_id": "video_spec_fixture.mixed_section#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0,
+      "text": "Значит, решение принимают по расчёту и сведениям о разрезе, а не по рисунку.",
+      "on_screen": "Решение — по расчёту"
+    },
+    {
+      "id": "p13",
+      "beat": "data",
+      "claim_id": "video_spec_fixture.mixed_section#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0,
+      "text": "Расчёт показывает, где коллектор вероятен, а где нужна дополнительная проверка.",
+      "on_screen": "Где нужна проверка"
+    },
+    {
+      "id": "p14",
+      "beat": "decision",
+      "claim_id": "video_spec_fixture.mixed_section#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0,
+      "text": "Специалист выделяет коллектор только по количественной интерпретации и сверяется с геологическими сведениями.",
+      "on_screen": "Решение: расчёт и геологические данные"
+    },
+    {
+      "id": "p15",
+      "beat": "transfer",
+      "claim_id": "video_spec_fixture.mixed_section#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0,
+      "text": "Где ещё правило, выученное на одном типе разреза, перестанет работать на другом?",
+      "on_screen": "Где ещё сломается привычное правило?"
+    }
+  ],
+  "prediction_question": "Как вы думаете, хватит ли в смешанном разрезе одного взгляда на кривые?",
+  "transfer_question": "Где ещё правило, выученное на одном типе разреза, перестанет работать на другом?",
+  "data_it_bridge": "Классификатор, обученный на одном типе разреза, может ошибиться на другом — это сдвиг распределения."
+}

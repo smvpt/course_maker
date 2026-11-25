@@ -77,29 +77,5 @@ class PressureModel:
         return math.sqrt(4 * self.kappa * t * x) if t > 0 else 0.0
 
 
-# ---------------------------------------------------------------- время симуляции по звуку
-
-def sim_time_knots(segments: list[tuple[str, float, float]], evolve: set[str], t_end: float
-                   ) -> list[tuple[float, float]]:
-    """Опорные точки (время ролика, время симуляции).
-
-    Время симуляции идёт от 0 до t_end равномерно, но только пока звучат фразы из evolve;
-    в паузах и вне этих фраз стоит. После последней такой фразы держится t_end.
-    """
-    _positive("t_end", t_end)
-    live = [(a, b) for pid, a, b in segments if pid in evolve]
-    total = sum(b - a for a, b in live)
-    if total <= 0:
-        raise ValueError("нет фраз, на которых идёт время симуляции (evolve_shot_ids)")
-    knots, acc = [(0.0, 0.0)], 0.0
-    for a, b in live:
-        knots.append((a, acc))
-        acc += (b - a) / total * t_end
-        knots.append((b, acc))
-    knots[-1] = (knots[-1][0], t_end)
-    return knots
-
-
-def sim_time(tau: float, knots: list[tuple[float, float]]) -> float:
-    xs, ys = zip(*knots)
-    return float(np.interp(tau, xs, ys))
+# время симуляции по звуку — общая функция таймлайна (используется и T2)
+from pipeline.video.timeline import progress_at as sim_time, progress_knots as sim_time_knots  # noqa: E402,F401

@@ -8,3 +8,5 @@ edge-tts==7.3.1
 # T1: расчёт поля давления (scipy.special.exp1, brentq); обе ставятся и с manim, пины — явно
 numpy==2.5.5
 scipy==1.18.1
+# T2: чтение LAS
+lasio==0.34

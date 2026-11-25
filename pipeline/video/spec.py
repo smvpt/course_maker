@@ -21,7 +21,8 @@ from contracts.models import Layer, Node, Phrase, Route, Routing, SceneSpec, Scr
 from pipeline.video.inputs import ID_RE
 from pipeline.video.spec_check import (ESTIMATE_WPM, DURATION_S, check_scene, check_script, count_words,
                                        estimate_duration, param_source_problems, source_language, sources_table)
-from pipeline.video.templates import ASPECT, TEMPLATE_INFO, VIDEO_FORMATS, load_template_config, template_contract
+from pipeline.video.templates import (ASPECT, TEMPLATE_INFO, VIDEO_FORMATS, format_problem, load_template_config,
+                                      template_contract)
 
 ROOT = Path(__file__).resolve().parents[2]
 ATTEMPTS = 2
@@ -94,6 +95,8 @@ def select(layer: Layer, routing: Routing, ch: str, node_id: str) -> tuple[Node,
         raise SpecError(f"в маршруте узла {node_id} не задан шаблон сцены (template)")
     if route.template not in TEMPLATE_INFO:
         raise SpecError(f"шаблон {route.template} из routing.json неизвестен; есть {sorted(TEMPLATE_INFO)}")
+    if format_problem(route.template, fmt):                 # до вызова LLM: та же таблица, что у video.build
+        raise SpecError(f"узел {node_id}: {format_problem(route.template, fmt)}")
     return nodes[node_id], route, fmt
 
 
@@ -138,10 +141,51 @@ def _template_problems(scene: SceneSpec, script: Script, node: Node, cfg: dict |
     if scene.template == "T1":
         from pipeline.video import t1_template
         problems += t1_template.check(scene, script, cfg)
+    if scene.template == "T2":
+        from pipeline.video import t2_template
+        problems += t2_template.check(scene, script, cfg)
     return problems
 
 
-def generate(node: Node, route: Route, fmt: str, templates_dir: Path) -> tuple[Script, SceneSpec]:
+def _dataset_for(template: str, cfg: dict | None, dataset_path: Path | None):
+    """Набор данных для шаблона, которому он нужен: (Dataset, параметры, которые подставляет код, сводка)."""
+    if cfg is None or not cfg.get("requires_dataset"):
+        if dataset_path is not None:
+            raise SpecError(f"--dataset задан, а шаблону {template} набор данных не нужен")
+        return None, {}, ""
+    if dataset_path is None:
+        raise SpecError(f"шаблону {template} нужен набор данных: --dataset <описание dataset.json с LAS>")
+    from pipeline.video.inputs import VideoInputError
+    from pipeline.video.las_data import load_dataset
+    try:
+        ds = load_dataset(dataset_path, cfg)
+    except VideoInputError as e:
+        raise SpecError(str(e)) from e
+    if ds.borehole_diameter_m is None and "borehole_diameter_m" in cfg["params"]:
+        raise SpecError(f"в описании набора данных {dataset_path} нет borehole_diameter_m — "
+                        f"значение не выдумывается, добавьте его с источником в описание")
+    path = Path(dataset_path).resolve()
+    try:
+        ref = path.relative_to(ROOT).as_posix()
+    except ValueError:
+        ref = str(path)
+    injected = {"dataset": ref, "borehole_diameter_m": ds.borehole_diameter_m}
+    injected = {k: v for k, v in injected.items() if k in cfg["params"]}
+    lo, hi = ds.interval
+    summary = "\n".join([
+        "", "Набор данных (подставлен кодом; dataset и borehole_diameter_m в params не задавай):",
+        f"- происхождение: {ds.kind}; метка кадров с этими данными — «{ds.label}»",
+        f"- источник: {ds.provenance['source']}; файл {ds.provenance['file']}; скважина {ds.well}",
+        f"- интервал набора: {lo:g}–{hi:g} м; шаг глубины {float(ds.depth[1] - ds.depth[0]):g} м",
+        "- кривые (мнемоника и единица точно как в LAS): "
+        + ", ".join(f"{m} [{u}]" for m, u in ds.units.items()),
+        f"- диаметр ствола: {ds.borehole_diameter_m:g} м ({ds.provenance.get('borehole_diameter_source') or 'из описания'})",
+    ])
+    return ds, injected, summary
+
+
+def generate(node: Node, route: Route, fmt: str, templates_dir: Path,
+             dataset_path: Path | None = None) -> tuple[Script, SceneSpec]:
     video_id = f"{node.id}.{fmt}"
     lo, hi = DURATION_S[fmt]
     lang = source_language(node)
@@ -150,6 +194,7 @@ def generate(node: Node, route: Route, fmt: str, templates_dir: Path) -> tuple[S
             "aspect": ASPECT[fmt], "template": route.template, "template_about": TEMPLATE_INFO[route.template],
             "node": node.model_dump(by_alias=True, exclude={"ext"})}
     cfg = load_template_config(templates_dir, route.template)
+    ds, injected, ds_summary = _dataset_for(route.template, cfg, dataset_path)   # до вызова модели
 
     script = _generate(
         "video/script",
@@ -167,15 +212,20 @@ def generate(node: Node, route: Route, fmt: str, templates_dir: Path) -> tuple[S
             raise SpecError(f"в узле {node.id} нет данных для параметров шаблона {route.template}: "
                             f"{sorted(d.missing_params)}. Физические параметры не выдумываются: добавьте их "
                             f"в утверждения узла или выберите другой шаблон в маршрутизации")
-        scene = SceneSpec(video_id=video_id, node_id=node.id, template=route.template,
-                          **d.model_dump(exclude={"param_sources", "missing_params"}))
+        data = d.model_dump(exclude={"param_sources", "missing_params"})
+        data["params"] = {**data["params"], **injected}          # значения из набора данных — от кода
+        scene = SceneSpec(video_id=video_id, node_id=node.id, template=route.template, **data)
         scene.ext["video"] = {"param_sources": {k: v.model_dump() for k, v in d.param_sources.items()}}
+        if ds is not None:
+            scene.ext["video"]["dataset_provenance"] = ds.provenance
         return scene
 
     scene = _generate(
-        "video/scene_spec", {**base, "phrases": phrases, "template_contract": template_contract(route.template, cfg)},
+        "video/scene_spec",
+        {**base, "phrases": phrases, "template_contract": template_contract(route.template, cfg) + ds_summary},
         SceneDraft, TIER_SCENE, scene_from,
-        lambda s: check_scene(s, script) + _template_problems(s, script, node, cfg))
+        lambda s: check_scene(s, script, real_data_ok=bool(ds and ds.real_verified))
+        + _template_problems(s, script, node, cfg))
 
     est = estimate_duration(script)
     words = sum(count_words(p.text) for p in script.phrases)
@@ -192,7 +242,7 @@ def generate(node: Node, route: Route, fmt: str, templates_dir: Path) -> tuple[S
 
 
 def run(ch: str, node_id: str, layer_path: Path | None, routing_path: Path | None, out_root: Path,
-        domain: str = "geology") -> Path:
+        domain: str = "geology", dataset: Path | None = None) -> Path:
     if not ID_RE.match(ch):
         raise SpecError(f"--ch «{ch}» — допустимы только [a-z0-9_.-]")
     if not ID_RE.match(domain):
@@ -202,7 +252,7 @@ def run(ch: str, node_id: str, layer_path: Path | None, routing_path: Path | Non
     layer = _load(layer_path, Layer, "учебный слой; путь можно задать --layer")
     routing = _load(routing_path, Routing, "маршрутизация; путь можно задать --routing")
     node, route, fmt = select(layer, routing, ch, node_id)
-    script, scene = generate(node, route, fmt, ROOT / "domain" / domain / "templates")
+    script, scene = generate(node, route, fmt, ROOT / "domain" / domain / "templates", dataset)
     out = out_root / ch / "videos" / script.video_id
     out.mkdir(parents=True, exist_ok=True)
     (out / "script.json").write_text(script.model_dump_json(by_alias=True, indent=2), encoding="utf-8")
@@ -219,10 +269,11 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--routing", type=Path, help="routing.json (по умолчанию out/<ch>/routing.json)")
     ap.add_argument("--out-root", type=Path, default=ROOT / "out")
     ap.add_argument("--domain", default="geology", help="доменный пакет: конфигурации шаблонов в domain/<домен>/templates/")
+    ap.add_argument("--dataset", type=Path, help="описание набора данных (dataset.json + LAS) для шаблонов с данными (T2)")
     a = ap.parse_args(argv)
     os.environ.setdefault("CH", a.ch)   # pipeline.llm пишет главу в журнал вызовов
     try:
-        out = run(a.ch, a.node, a.layer, a.routing, a.out_root, a.domain)
+        out = run(a.ch, a.node, a.layer, a.routing, a.out_root, a.domain, a.dataset)
     except SpecError as e:
         print(f"ОШИБКА video.spec: {e}", file=sys.stderr)
         return 2
