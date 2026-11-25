@@ -27,6 +27,7 @@ from pipeline.course import guess as guess_mod, interactive as inter_mod
 from pipeline.course.order import break_cycles, group_parts, order_nodes, part_of
 from pipeline.course.pernode import read_store
 from pipeline.course.steptext import Para, node_hash, read_step_text
+from pipeline.course.tasks import MISMATCH
 from pipeline.illus import gen as illus_gen
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -717,6 +718,9 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
             note("task_dropped", msg, **extra)
             down_tasks += 1
             down_reason = down_reason or d["errors"][0]
+        elif any(e.startswith(MISMATCH) for e in d["errors"]):
+            warn("task_answer_mismatch", f"задание {d['slot']} ({d['type']}) шага {d['node']} выброшено: помеченный ответ противоречит цитате книги "
+                 f"(слепая проверка): {d['errors'][0]}", **extra)
         else:
             warn("task_dropped", msg, **extra)
     inter_store = read_store(course / "interactive.json", ch)

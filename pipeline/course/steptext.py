@@ -241,6 +241,14 @@ def validate_node(node: Node, paras: list[Para]) -> list[str]:
         marks = MARK_RE.findall(p.text)
         if len(marks) != len(p.terms):
             errors.append(f"{tag}: [[…]] в тексте {len(marks)}, а в terms {len(p.terms)}: выдели ровно те термины, что перечислены в terms")
+        if p.block == "main":
+            if len(marks) > 1:
+                errors.append(f"{tag}: в «Суть» не больше одного термина [[…]] (сейчас {len(marks)}): синонимы пиши в скобках обычным текстом, "
+                              "остальные термины вводи в блоке «как это работает» или другом")
+            if "**" in p.text or "__" in p.text:
+                errors.append(f"{tag}: в «Суть» нет жирного шрифта: выдели термин только как [[…]], синонимы — обычным текстом в скобках")
+        elif len(marks) > 2:
+            errors.append(f"{tag}: не больше двух терминов [[…]] на абзац (сейчас {len(marks)}): раздели мысль на два абзаца")
         for t in p.terms:
             if t not in node.terms_introduced:
                 errors.append(f"{tag}: термин {t!r} не из terms_introduced узла")

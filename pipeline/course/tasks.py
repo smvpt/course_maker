@@ -14,6 +14,7 @@ import ast
 import json
 import math
 import random
+import re
 import sys
 from pathlib import Path
 from typing import Literal, Optional
@@ -59,6 +60,17 @@ class LlmTask(BaseModel):
 
 class LlmTasks(BaseModel):
     tasks: list[LlmTask]
+
+
+class AnswerPick(BaseModel):
+    n: int                                   # номер задания в запросе (с 1)
+    answer: list[str]                        # id вариантов (single/multiple), id в верном порядке (order), слова пропусков (gap)
+    claim_id: str                            # утверждение, на которое опирается ответ
+    evidence: str                            # фраза, дословно взятая из цитаты этого утверждения
+
+
+class AnswerPicks(BaseModel):
+    picks: list[AnswerPick]
 
 
 # ---------------------------------------------------------------- план главы
@@ -285,6 +297,79 @@ def build_task(node: Node, t: LlmTask, task_id: str) -> Task:
                 unit=t.calc.unit.strip() or None)
 
 
+# ---------------------------------------------------------------- слепая проверка ответа
+
+MISMATCH = "ответ слепой проверки не совпал с помеченным"
+CHECKED_TYPES = ("single", "multiple", "order", "gap")
+
+
+def _squash(text: str) -> str:
+    """Для сверки с цитатой: без пробелов, переносов и регистра (как в схемах организаторов)."""
+    return re.sub(r"\s+", "", text).lower()
+
+
+def _blind_item(n: int, t: Task) -> dict:
+    item = {"n": n, "type": t.type, "prompt": t.prompt}
+    if t.type != "gap":
+        item["options"] = [{"id": o.id, "text": o.text} for o in t.options]    # порядок показа; отметки верного нет
+    return item
+
+
+def _expected(t: Task) -> list[str]:
+    return [str(a) for a in (t.answer if isinstance(t.answer, list) else [t.answer])]
+
+
+def _same(t: Task, got: list[str]) -> bool:
+    want = _expected(t)
+    if t.type in ("single", "multiple"):
+        return set(got) == set(want) and len(got) == len(set(got))
+    if t.type == "order":
+        return got == want
+    return [_squash(g) for g in got] == [_squash(w) for w in want]
+
+
+def _shown(t: Task, ids: list[str]) -> str:
+    if t.type == "gap":
+        return ", ".join(ids)
+    text = {o.id: o.text for o in t.options}
+    return "; ".join(f"«{text.get(i, i)}»" for i in ids)
+
+
+def blind_check(node: Node, built: list[Task]) -> dict[str, list[str]]:
+    """Проверка ответа «вслепую»: модель получает ТОЛЬКО цитаты утверждений из claim_ids заданий, условия и варианты без
+    отметки верного, сама выбирает ответ и называет утверждение и фразу-опору. Возвращает {id задания: [ошибки]} для
+    заданий, где её ответ не совпал с помеченным или опора не дословно из цитаты. calc не проверяется: ответ считает код.
+    LlmError модели пробрасывается."""
+    checked = [t for t in built if t.type in CHECKED_TYPES]
+    if not checked:
+        return {}
+    quotes = {c.id: c.quote for c in node.claims}
+    cited = {cid: quotes[cid] for t in checked for cid in t.claim_ids if cid in quotes}
+    language = "ru" if cyrillic_share(" ".join(cited.values())) >= 0.5 else "en"
+    out = complete_json(prompt="course/answer_check", schema=AnswerPicks, tier="default",
+                        vars={"claims": json.dumps(cited, ensure_ascii=False, indent=1),
+                              "items": json.dumps([_blind_item(i, t) for i, t in enumerate(checked, 1)], ensure_ascii=False, indent=1),
+                              "language": language})
+    picks = {p.n: p for p in out.picks}
+    problems: dict[str, list[str]] = {}
+    for i, t in enumerate(checked, 1):
+        p = picks.get(i)
+        errs: list[str] = []
+        if p is None:
+            errs.append("слепая проверка не вернула ответ на это задание")
+        else:
+            if p.claim_id not in t.claim_ids or p.claim_id not in quotes:
+                errs.append(f"опора {p.claim_id!r} не из claim_ids задания ({t.claim_ids})")
+            elif _squash(p.evidence) == "" or _squash(p.evidence) not in _squash(quotes[p.claim_id]):
+                errs.append(f"фраза-опора не дословно из цитаты {p.claim_id}: «{p.evidence}»")
+            if not _same(t, p.answer):
+                errs.append(f"{MISMATCH}: по цитате {p.claim_id} («{p.evidence}») модель выбрала {_shown(t, p.answer)}, "
+                            f"помечено {_shown(t, _expected(t))}. Перепроверь по цитате, какой ответ верен, и перепиши задание")
+        if errs:
+            problems[t.id] = errs
+    return problems
+
+
 # ---------------------------------------------------------------- вызов модели
 
 def complete_json(**kw):
@@ -307,6 +392,7 @@ def generate_node_tasks(node: Node, planned: list[dict], misconceptions: list[di
     done: dict[int, LlmTask] = {}
     errors: dict[int, list[str]] = {}
     pending = list(range(len(planned)))
+    checked_ok: set[int] = set()             # слоты, чей ответ подтвердила слепая проверка
     feedback = "нет, это первая попытка"
     failure: Optional[LlmError] = None
     for _ in range(ATTEMPTS):
@@ -336,6 +422,26 @@ def generate_node_tasks(node: Node, planned: list[dict], misconceptions: list[di
                 done[slot] = out.tasks[pos]
                 errors.pop(slot, None)
         pending = still
+        fresh = [slot for slot in sorted(done) if slot not in checked_ok]
+        if fresh:
+            built = [build_task(node, done[slot], f"{node.id}.t{slot + 1}") for slot in fresh]
+            try:
+                problems = blind_check(node, built)
+            except LlmError as e:
+                failure = e
+                for slot in fresh:
+                    errors[slot] = [f"проверка ответа не выполнена, задание не принято: отказ модели: {e}"]
+                    del done[slot]
+                pending = sorted(pending + fresh)
+                break
+            for slot, b in zip(fresh, built):
+                if b.id in problems:
+                    errors[slot] = problems[b.id]
+                    del done[slot]
+                    pending.append(slot)
+                else:
+                    checked_ok.add(slot)
+            pending.sort()
         if not pending:
             break
         feedback = "\n".join(f"- {e}" for slot in pending for e in errors[slot])
