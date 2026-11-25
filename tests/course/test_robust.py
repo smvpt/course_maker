@@ -145,3 +145,21 @@ def test_h1_falls_back_to_chapter_id(tmp_path):
     course = build("mini_test", out_root=out, pages_dir=tmp_path / "pages")
     html = (course / "index.html").read_text(encoding="utf-8")
     assert re.search(r"<h1>\s*mini_test\s*</h1>", html)
+
+
+def test_no_title_warns_and_falls_back_to_chapter_id(tmp_path, capsys):
+    out = _put(tmp_path, _layer())
+    course = build("mini_test", out_root=out, pages_dir=tmp_path / "pages")
+    assert "WARNING" in capsys.readouterr().err
+    w = [x for x in _report(course)["warnings"] if x["code"] == "no_title"]
+    assert len(w) == 1 and "title" in w[0]["message"]
+    assert re.search(r"<h1>\s*mini_test\s*</h1>", (course / "index.html").read_text(encoding="utf-8"))
+
+
+def test_title_present_means_no_title_warning(tmp_path, capsys):
+    layer = _layer()
+    layer.ext = {"core": {"title": "Сопротивление и насыщение пласта"}}
+    out = _put(tmp_path, layer)
+    course = build("mini_test", out_root=out, pages_dir=tmp_path / "pages")
+    assert "no_title" not in [x["code"] for x in _report(course)["warnings"]]
+    assert "WARNING" not in capsys.readouterr().err

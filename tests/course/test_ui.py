@@ -250,3 +250,12 @@ def test_it_page_empty_state_when_layer_has_no_it_fields(tmp_path):
     (d / "layer.json").write_text(layer.model_dump_json(by_alias=True, indent=2), encoding="utf-8")
     course = build("mini_test", out_root=tmp_path / "out", pages_dir=tmp_path / "pages")
     assert "нет описаний" in _read(course, "it.html")
+
+
+def test_mobile_nav_uses_short_it_label_with_full_accessible_name(tmp_path):
+    html = _read(_course(tmp_path), "index.html")
+    nav = re.search(r'<nav class="main-nav" aria-label="Разделы курса">(.*?)</nav>', html, re.S).group(1)
+    assert re.search(r'<a href="it.html"[^>]*aria-label="ИТ-задачи"', nav)
+    assert '<span class="short" aria-hidden="true">ИТ</span>' in nav
+    css = (ASSETS / "course.css").read_text(encoding="utf-8")
+    assert "span:has(+ .short)" in css

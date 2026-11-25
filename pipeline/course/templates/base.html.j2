@@ -11,6 +11,7 @@
 </script>
 <link rel="stylesheet" href="assets/tokens.css">
 <link rel="stylesheet" href="assets/course.css">
+{% block head %}{% endblock %}
 </head>
 <body data-ch="{{ ch }}" data-page="{{ page }}">
 <a class="skip" href="#content">К содержанию</a>
@@ -32,6 +33,7 @@
 </main>
 {% block after_main %}{% endblock %}
 <script type="application/json" id="course-meta">{{ meta | tojson }}</script>
+{% block scripts %}{% endblock %}
 <script src="assets/course.js"></script>
 </body>
 </html>

@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import os
 import re
 import shutil
 import sys
@@ -21,6 +22,7 @@ from PIL import Image
 
 from contracts.models import Illustrations, Layer, Node, ReviewOutput, Routing, Task, Tasks
 from pipeline.course.order import break_cycles, group_parts, order_nodes, part_of
+from pipeline.course.steptext import Para, load_step_text, node_hash
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
@@ -116,6 +118,23 @@ def task_view(t: Task, i: int) -> dict:
     return {"t": t, "i": i, "answer": answer_text(t),
             "parts": gap_parts(t.prompt) if t.type == "gap" else None,
             "short": short if len(short) <= 140 else short[:139] + "…"}
+
+
+# ---------------------------------------------------------------- текст шага (step_text.json, задача 2)
+
+def paras_view(node: Node, paras: list[Para]) -> dict[str, list[dict]]:
+    """Абзацы по блокам. «стр. N» — страницы именно тех утверждений, на которые ссылается абзац."""
+    page_of = {c.id: c.page_pdf for c in node.claims}
+    out: dict[str, list[dict]] = {}
+    for p in paras:
+        for cid in p.claim_ids:
+            if cid not in page_of:
+                raise ValueError(f"step_text.json: шаг {node.id}: абзац ссылается на несуществующее утверждение {cid}")
+        html = Markup(re.sub(r"\[\[(.+?)\]\]", r"<dfn>\1</dfn>", str(Markup.escape(p.text))))   # термин при первом упоминании
+        out.setdefault(p.block, []).append({
+            "html": html, "by": "hypothesis" if p.hypothesis else "model", "limit": p.limit,
+            "pages": sorted({page_of[c] for c in p.claim_ids}), "claims": " ".join(p.claim_ids)})
+    return out
 
 
 # ---------------------------------------------------------------- вид шага
@@ -216,7 +235,8 @@ def node_pages(node: Node) -> list[int]:
     return sorted(pages)
 
 
-def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path, tasks: list[Task]) -> dict:
+def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path, tasks: list[Task],
+              paras: list[Para] | None = None) -> dict:
     fixes = ocr_fixes(node)
     text_claims = [c for c in node.claims if c.source_kind not in ("formula", "table")]
     formulas = [c for c in node.claims if c.source_kind == "formula"]
@@ -268,6 +288,7 @@ def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path
         ("b-main", "Суть", has_text(lay.main)),
         ("b-why", "Зачем этот шаг", has_text(node.why_here)),
         ("b-how", "Как это работает", has_text(lay.mechanism) or bool(text_claims)),
+        ("b-quotes", "Цитаты автора", paras is not None and bool(text_claims)),
         ("b-formulas", "Формулы", bool(formulas)),
         ("b-tables", "Таблицы книги", bool(tables)),
         ("b-examples", "Разбор примеров из главы", bool(node.worked_examples)),
@@ -301,6 +322,9 @@ def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path
         "illus": illus,
         "media": media,
         "tasks": [task_view(t, i + 1) for i, t in enumerate(tasks)],
+        "tasks_json": Markup(json.dumps({t.id: {"type": t.type, "answer": t.answer, "tolerance": t.tolerance} for t in tasks},
+                                        ensure_ascii=False).replace("</", "<\\/")),
+        "paras": paras_view(node, paras) if paras is not None else None,
         "check_items": check_items,
         "route": inp["routes"].get(node.id),
         "pages": node_pages(node),
@@ -468,7 +492,8 @@ def _has_video(ch_dir: Path, node_id: str) -> bool:
 
 
 def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
-          pages_dir: Path = ROOT / "data/pages", styleguide: Path = STYLEGUIDE) -> Path:
+          pages_dir: Path = ROOT / "data/pages", styleguide: Path = STYLEGUIDE,
+          generate: bool = False, domain: str | None = None) -> Path:
     ch_dir = out_root / ch
     inp = load_inputs(ch_dir)
     layer: Layer = inp["layer"]
@@ -499,13 +524,27 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
         warn("partial_parts", f'у узлов нет ext["core"]["part"], они попали в часть «Глава»: {", ".join(no_part)}',
              nodes=no_part)
 
+    if not layer.ext.get("core", {}).get("title"):
+        warn("no_title", 'нет layer.ext["core"]["title"]: в заголовке курса показан id главы')
+
     course = ch_dir / "course"
     (course / "assets").mkdir(parents=True, exist_ok=True)
     for f in ("course.css", "course.js"):
         shutil.copy2(HERE / "assets" / f, course / "assets" / f)
+    shutil.copytree(HERE / "assets/katex", course / "assets/katex", dirs_exist_ok=True)   # формулы без CDN
     style = json.loads(styleguide.read_text(encoding="utf-8"))
     (course / "assets/tokens.css").write_text(tokens_css(style), encoding="utf-8")
 
+    if generate:                                   # текст шагов и задания: модель только через pipeline.llm
+        from pipeline.course import generate as gen
+        gen.run(layer, ch_dir, course, node, domain)
+    step_text = load_step_text(course / "step_text.json", ch)
+    orig = {n.id: n for n in layer.nodes}
+    fresh = {nid: st.paragraphs for nid, st in step_text.items() if nid in orig and st.hash == node_hash(orig[nid])}
+    stale = [nid for nid in step_text if nid in orig and nid not in fresh]
+    if stale:
+        warn("stale_step_text", f"step_text.json устарел для шагов {', '.join(stale)} (узел изменился после генерации): "
+             "они собраны из полей слоя, запусти сборку без --no-llm", nodes=stale)
     tasks = load_tasks(ch, course, layer)
     tasks_by_step: dict[str, list[Task]] = {}
     for t in tasks:
@@ -532,7 +571,7 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
         if node is not None and n.id != node:
             continue
         render(f"step-{n.id}.html", "step.html.j2",
-               v=step_view(n, inp, course, pages_src, ch_dir, tasks_by_step.get(n.id, [])),
+               v=step_view(n, inp, course, pages_src, ch_dir, tasks_by_step.get(n.id, []), fresh.get(n.id)),
                idx=i, prev=ordered[i - 1] if i > 0 else None,
                next=ordered[i + 1] if i + 1 < len(ordered) else None, titles=titles, page="step")
 
@@ -552,20 +591,22 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
         (course / "errata.html").unlink()
 
     all_pages = sorted({p for n in ordered for p in node_pages(n)})
-    report = {"chapter": ch, "nodes": len(ordered), "tasks": len(tasks), "warnings": warnings,
+    report = {"chapter": ch, "nodes": len(ordered), "tasks": len(tasks), "step_text_nodes": len(fresh), "warnings": warnings,
               "missing_scans": [p for p in all_pages if not (pages_src / f"p{p}.png").exists()]}
     (course / "build_report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     return course
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="layer.json → out/<ch>/course/")
+    ap = argparse.ArgumentParser(description="layer.json → out/<ch>/course/ (с текстом шагов и заданиями через LLM)")
     ap.add_argument("--ch", required=True)
-    ap.add_argument("--node")
-    ap.add_argument("--out", type=Path, default=ROOT / "out", help="корень out/ (по умолчанию out/)")
+    ap.add_argument("--node", help="пересобрать один шаг (его текст и задания генерируются заново, если узел изменился)")
+    ap.add_argument("--no-llm", action="store_true", help="не звать модель: использовать step_text.json и tasks.json как есть")
+    ap.add_argument("--domain", help="доменный пакет (по умолчанию — из out/<ch>/units.json)")
+    ap.add_argument("--out", type=Path, default=Path(os.environ.get("OUT_DIR") or ROOT / "out"), help="корень out/")
     ap.add_argument("--pages", type=Path, default=ROOT / "data/pages", help="корень сканов страниц")
     a = ap.parse_args()
-    course = build(a.ch, out_root=a.out, node=a.node, pages_dir=a.pages)
+    course = build(a.ch, out_root=a.out, node=a.node, pages_dir=a.pages, generate=not a.no_llm, domain=a.domain)
     print(f"курс: {course / 'index.html'}")
 
 

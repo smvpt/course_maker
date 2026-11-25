@@ -2,6 +2,9 @@
 {% from "_macros.html.j2" import badge, path_list, main_nav %}
 {% block title %}{{ v.title }} — {{ chapter_title }}{% endblock %}
 {% block mainclass %}with-side{% endblock %}
+{% block head %}{% if v.formulas %}<link rel="stylesheet" href="assets/katex/katex.min.css">
+<noscript><style>.formula[data-katex] .tex:not(.rendered) { visibility: visible; }</style></noscript>{% endif %}{% endblock %}
+{% block scripts %}{% if v.formulas %}<script src="assets/katex/katex.min.js"></script>{% endif %}{% endblock %}
 
 {# «стр. N» — компактный чип в конце абзаца, в той же строке #}
 {% macro chips(pages) -%}
@@ -12,7 +15,14 @@
 <button type="button" class="pg" data-claim="{{ c.id }}">стр. {{ c.page_pdf }}</button>
 {%- endmacro %}
 
-{# абзац из поля слоя: страницы узла (точная привязка к claim_ids — задача 2) #}
+{# абзацы, написанные по узлу (step_text.json): «стр. N» — страницы утверждений, на которые ссылается абзац #}
+{% macro gen(items) -%}
+{% for p in items %}
+<div class="para{% if p.limit %} limit{% endif %}" data-claims="{{ p.claims }}"><p data-by="{{ p.by }}">{{ p.html }} {{ badge(p.by) }} {{ chips(p.pages) }}</p></div><!--/para-->
+{% endfor %}
+{%- endmacro %}
+
+{# запасной вариант без step_text.json: абзац из поля слоя, страницы — все страницы узла #}
 {% macro field(f, extra="") -%}
 {% if has_text(f) %}
 <div class="para"><p data-by="{{ by_of(f) }}">{{ extra }}{{ f.text }} {{ badge(by_of(f)) }} {{ chips(v.node.pages) }}</p></div><!--/para-->
@@ -74,17 +84,27 @@
 </nav>
 
 {% if v.show["b-main"] %}
-<section id="b-main" class="block block-main"><h2>Суть</h2>{{ field(n.layers.main) }}</section>
+<section id="b-main" class="block block-main"><h2>Суть</h2>{% if v.paras %}{{ gen(v.paras.get("main", [])) }}{% else %}{{ field(n.layers.main) }}{% endif %}</section>
 {% endif %}
 
 {% if v.show["b-why"] %}
-<section id="b-why" class="block"><h2>Зачем этот шаг</h2>{{ field(n.why_here) }}</section>
+<section id="b-why" class="block"><h2>Зачем этот шаг</h2>{% if v.paras %}{{ gen(v.paras.get("why", [])) }}{% else %}{{ field(n.why_here) }}{% endif %}</section>
 {% endif %}
 
 {% if v.show["b-how"] %}
 <section id="b-how" class="block"><h2>Как это работает</h2>
+  {% if v.paras %}
+  {{ gen(v.paras.get("how", [])) }}
+  {% else %}
   {{ field(n.layers.mechanism) }}
   {% for c in v.text_claims %}{{ claim_para(c) }}{% endfor %}
+  {% endif %}
+</section>
+{% endif %}
+
+{% if v.show["b-quotes"] %}
+<section id="b-quotes" class="block"><h2>{{ icon("quotes") }}Цитаты автора</h2>
+  {% call fold("цитаты автора") %}{% for c in v.text_claims %}{{ claim_para(c) }}{% endfor %}{% endcall %}
 </section>
 {% endif %}
 
@@ -92,7 +112,7 @@
 <section id="b-formulas" class="block"><h2>Формулы</h2>
   {% for c in v.formulas %}
   <div class="para" id="{{ c.id | replace('#', '--') }}">
-    <div class="formula"><span class="formula-label">формула</span><code class="tex" data-tex="{{ c.quote }}">{{ c.quote }}</code></div>
+    <div class="formula"{% if v.formulas %} data-katex{% endif %}><span class="formula-label">формула</span><code class="tex" data-tex="{{ c.quote }}">{{ c.quote }}</code></div>
     <p data-by="{{ by_of(c) }}">{{ c.text }} {{ badge(by_of(c)) }} {{ claim_chip(c) }}</p>
   </div><!--/para-->
   {% endfor %}
@@ -136,26 +156,29 @@
 
 {% if v.show["b-practice"] %}
 <section id="b-practice" class="block"><h2>Как делает специалист</h2>
+  {% if v.paras %}{{ gen(v.paras.get("practice", [])) }}{% else %}
   {{ field(n.layers.practice) }}
   {% if n.now_practice %}{{ field(n.now_practice, "Как сейчас: ") }}{% endif %}
+  {% endif %}
 </section>
 {% endif %}
 
 {% if v.show["b-nuances"] %}
 <section id="b-nuances" class="block"><h2>Нюансы</h2>
-  {% call fold("нюансы") %}{{ field(n.layers.nuances) }}{% endcall %}
+  {% call fold("нюансы") %}{% if v.paras %}{{ gen(v.paras.get("nuances", [])) }}{% else %}{{ field(n.layers.nuances) }}{% endif %}{% endcall %}
 </section>
 {% endif %}
 
 {% if v.show["b-misconception"] %}
 <section id="b-misconception" class="block block-warn"><h2>{{ icon("warning") }}Частая ошибка</h2>
-  {{ field(n.misconception) }}
+  {% if v.paras %}{{ gen(v.paras.get("misconception", [])) }}{% else %}{{ field(n.misconception) }}{% endif %}
 </section>
 {% endif %}
 
 {% if v.show["b-decision"] %}
 {% set d = n.decision_on_data %}
 <section id="b-decision" class="block"><h2>Решение на данных</h2>
+  {% if v.paras %}{{ gen(v.paras.get("decision", [])) }}{% endif %}
   <div class="para decision">
     <div class="sig-flow" data-by="{{ by_of(d) }}">
       <div class="sig"><h3>Сигнал</h3><ul>{% for f in d.features %}<li>{{ f }}</li>{% endfor %}</ul></div>
@@ -165,23 +188,27 @@
       <div class="concl"><h3>Вывод</h3><p>{{ d.conclusion }}</p></div>
     </div>
     {% if d.counterexample %}<p class="counter" data-by="{{ by_of(d) }}"><strong>Контрпример.</strong> {{ d.counterexample }}</p>{% endif %}
-    <p class="src-line">{{ badge(by_of(d)) }} {{ chips(n.pages) }}</p>
+    <p class="src-line">{{ badge(by_of(d)) }}{% if not v.paras %} {{ chips(n.pages) }}{% endif %}</p>
   </div><!--/para-->
 </section>
 {% endif %}
 
 {% if v.show["b-data"] %}
 <section id="b-data" class="block"><h2>Что это значит для данных</h2>
+  {% if v.paras %}{{ gen(v.paras.get("data", [])) }}{% else %}
   {{ field(n.data_meaning.from_chapter) }}
   {{ field(n.data_meaning.breaks, "Где ломается: ") }}
   {% for h in v.hypotheses %}{{ field(h) }}{% endfor %}
+  {% endif %}
 </section>
 {% endif %}
 
 {% if v.show["b-analogy"] %}
 <section id="b-analogy" class="block"><h2>{{ icon("lightbulb") }}Аналогия</h2>
+  {% if v.paras %}{{ gen(v.paras.get("analogy", [])) }}{% else %}
   <div class="para"><p data-by="{{ by_of(n.it_analogy) }}">{{ n.it_analogy.text }} {{ badge(by_of(n.it_analogy)) }}{% if not n.it_analogy.breaks_where.strip() %} {{ chips(n.pages) }}{% endif %}</p>
   {% if n.it_analogy.breaks_where.strip() %}<p class="limit" data-by="{{ by_of(n.it_analogy) }}"><strong>Где перестаёт работать:</strong> {{ n.it_analogy.breaks_where }} {{ chips(n.pages) }}</p>{% endif %}</div><!--/para-->
+  {% endif %}
 </section>
 {% endif %}
 
@@ -194,7 +221,7 @@
 
 {% if v.show["b-deeper"] %}
 <section id="b-deeper" class="block"><h2>Глубже</h2>
-  {% call fold("глубже") %}{% for d in v.deeper %}{{ field(d) }}{% endfor %}{% endcall %}
+  {% call fold("глубже") %}{% if v.paras %}{{ gen(v.paras.get("deeper", [])) }}{% else %}{% for d in v.deeper %}{{ field(d) }}{% endfor %}{% endif %}{% endcall %}
 </section>
 {% endif %}
 
@@ -252,7 +279,7 @@
     {% elif t.type == "order" %}
     <ol class="order" aria-label="Расставь по порядку">
       {% for o in t.options %}
-      <li class="order-item" data-id="{{ o.id }}"><span class="opt-text">{{ o.text }}</span>
+      <li class="order-item" data-id="{{ o.id }}"><span class="drag-handle" aria-hidden="true" title="Перетащи">{{ icon("dots-six-vertical") }}</span><span class="opt-text">{{ o.text }}</span>
         <span class="order-btns"><button type="button" class="tool" data-move="up" aria-label="Выше: {{ o.text }}">{{ icon("caret-down") }}</button><button type="button" class="tool" data-move="down" aria-label="Ниже: {{ o.text }}">{{ icon("caret-down") }}</button></span></li>
       {% endfor %}
     </ol>
@@ -260,11 +287,12 @@
     <p class="calc"><input type="number" step="any" inputmode="decimal" class="calc-input" aria-label="Ответ{% if t.unit %}, {{ t.unit }}{% endif %}">{% if t.unit %} <span class="muted">{{ t.unit }}</span>{% endif %}</p>
     {% endif %}
     <p class="task-actions"><button type="button" class="btn" data-action="check">Проверить</button></p>
-    <div class="feedback" hidden>
+    <div class="task-msg" role="status" aria-live="polite"></div>
+    <div class="feedback" hidden tabindex="-1">
       <div class="fb-status" role="status"><span class="fb-ok">{{ icon("check-circle") }}Верно</span><span class="fb-bad">{{ icon("x-circle") }}Неверно</span></div>
       <p><strong>Правильный ответ:</strong> {{ it.answer }}</p>
       <p class="fb-expl">{{ t.explanation }}</p>
-      <p class="fb-btns"><button type="button" class="btn-small" data-action="reread" data-claim="{{ t.claim_ids[0] }}">{{ icon("book-open") }}<span>Перечитать</span></button><button type="button" class="btn-small" data-action="understood" aria-pressed="false">{{ icon("check") }}<span>Я понял</span></button></p>
+      <p class="fb-btns"><button type="button" class="btn-small" data-action="reread" data-claim="{{ t.claim_ids[0] }}">{{ icon("book-open") }}<span>Перечитать</span></button><button type="button" class="btn-small" data-action="understood" aria-pressed="false">{{ icon("check") }}<span>Я понял</span></button><button type="button" class="btn-small" data-action="again">{{ icon("arrow-counter-clockwise") }}<span>Ещё раз</span></button></p>
     </div>
   </article>
   {% endfor %}
@@ -305,6 +333,7 @@
 </footer>
 </article>
 <script type="application/json" id="step-data">{{ v.data_json }}</script>
+{% if v.tasks %}<script type="application/json" id="tasks-data">{{ v.tasks_json }}</script>{% endif %}
 {% endblock %}
 
 {% block after_main %}

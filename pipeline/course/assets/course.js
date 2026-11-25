@@ -116,12 +116,14 @@
   });
 
   /* ---------- общее: счётчик ✦, отметки «пройден», состояния заданий ---------- */
-  var solved = meta.tasks.filter(function (t) { return taskState(t.id) === "ok"; }).length;
-  var counter = document.getElementById("solved-count");
-  if (counter) {
+  function updateCounter() {
+    var counter = document.getElementById("solved-count");
+    if (!counter) return;
+    var solved = meta.tasks.filter(function (t) { return taskState(t.id) === "ok"; }).length;
     counter.textContent = String(solved);
     document.getElementById("solved-link").setAttribute("aria-label", "Решено заданий: " + solved + " из " + meta.tasks.length);
   }
+  updateCounter();
   document.querySelectorAll("li[data-node]").forEach(function (li) { li.classList.toggle("done", isDone(li.dataset.node)); });
   document.querySelectorAll("[data-task-chip]").forEach(function (chip) {
     var s = taskState(chip.dataset.taskChip);
@@ -138,13 +140,17 @@
   var stepData = readJSON("step-data");
   if (stepData) initStep(stepData);
 
-  function highlightPara(id) {
-    var target = document.getElementById(id);
-    if (!target) return false;
+  function highlightEl(target) {
     for (var p = target.parentElement; p; p = p.parentElement) if (p.tagName === "DETAILS") p.open = true;
     target.scrollIntoView({ block: "center" });
     target.classList.add("hl");
     setTimeout(function () { target.classList.remove("hl"); }, 4000);
+  }
+  /* «Перечитать»: абзац шага, который ссылается на утверждение; если такого нет — сам блок утверждения с цитатой */
+  function highlightClaim(claimId) {
+    var target = document.querySelector('.para[data-claims~="' + claimId + '"]') || document.getElementById(claimAnchor(claimId));
+    if (!target) return false;
+    highlightEl(target);
     return true;
   }
 
@@ -245,29 +251,220 @@
       openBook(b.dataset.claim || null, b.dataset.page ? Number(b.dataset.page) : null, b);
     });
 
-    /* «Перечитать» / «Я понял» в разборе ответа (проверка ответа — логика заданий, задача 3) */
-    document.querySelectorAll(".task").forEach(function (task) {
-      var reread = task.querySelector('[data-action="reread"]');
-      if (reread) reread.addEventListener("click", function () { highlightPara(claimAnchor(reread.dataset.claim)); });
+    /* формулы: KaTeX из assets курса; если он не загрузился, остаётся подписанный моноширинный блок */
+    document.querySelectorAll(".tex[data-tex]").forEach(function (el) {
+      if (window.katex) {
+        window.katex.render(el.dataset.tex.replace(/^\s*\$+|\$+\s*$/g, ""), el, { displayMode: true, throwOnError: false, strict: "ignore" });
+      } else {
+        console.error("KaTeX не загружен: формула показана исходным текстом");
+      }
+      el.classList.add("rendered");
+    });
+
+    /* задания */
+    var specs = readJSON("tasks-data") || {};
+    document.querySelectorAll(".task").forEach(function (task) { initTask(task, specs[task.dataset.task]); });
+
+    function paintChip(taskId) {
+      document.querySelectorAll('[data-task-chip="' + taskId + '"]').forEach(function (chip) {
+        var st = taskState(taskId);
+        chip.dataset.state = st;
+        chip.setAttribute("aria-label", "Задание " + chip.textContent.trim() + ": " + STATE_RU[st]);
+      });
+    }
+    function saveResult(taskId, state) {
+      if (state) taskRes[taskId] = state; else delete taskRes[taskId];
+      store.set(K.tasks, taskRes);
+      if (state === "bad") {                 // снова ошиблись: задание возвращается в «Мои ошибки»
+        understood = understood.filter(function (x) { return x !== taskId; });
+        store.set(K.understood, understood);
+      }
+      paintChip(taskId);
+      updateCounter();
+      refresh();
+    }
+    function normWord(w) { return String(w).trim().toLowerCase().replace(/ё/g, "е").replace(/\s+/g, " "); }
+
+    function initTask(task, spec) {
+      var id = task.dataset.task;
+      var checkBtn = task.querySelector('[data-action="check"]');
+      var fb = task.querySelector(".feedback");
+      var msg = task.querySelector(".task-msg");
+      var list = task.querySelector(".order");
+      var controls = task.querySelectorAll("input, .order-btns button");
+
+      function answerFromPage() {
+        if (spec.type === "single") {
+          var r = task.querySelector("input[type=radio]:checked");
+          return r ? r.value : null;
+        }
+        if (spec.type === "multiple") {
+          var v = [].map.call(task.querySelectorAll("input[type=checkbox]:checked"), function (i) { return i.value; });
+          return v.length ? v : null;
+        }
+        if (spec.type === "order") {
+          return [].map.call(list.children, function (li) { return li.dataset.id; });
+        }
+        if (spec.type === "gap") {
+          var gaps = [].slice.call(task.querySelectorAll(".gap")).sort(function (a, b) { return a.dataset.gap - b.dataset.gap; });
+          var words = gaps.map(function (g) { return g.value.trim(); });
+          return words.every(Boolean) ? words : null;
+        }
+        var n = parseFloat(task.querySelector(".calc-input").value.replace(",", "."));
+        return isNaN(n) ? null : n;
+      }
+      function isRight(ans) {
+        if (spec.type === "single") return ans === spec.answer;
+        if (spec.type === "multiple") return ans.length === spec.answer.length && ans.every(function (x) { return spec.answer.indexOf(x) >= 0; });
+        if (spec.type === "order") return ans.join("|") === spec.answer.join("|");
+        if (spec.type === "gap") return ans.every(function (w, i) { return normWord(w) === normWord(spec.answer[i]); });
+        return Math.abs(ans - spec.answer) <= (spec.tolerance || 0) + 1e-9;
+      }
+      var EMPTY_MSG = {
+        single: "Выбери один вариант и нажми «Проверить».", multiple: "Отметь варианты и нажми «Проверить».",
+        gap: "Заполни все пропуски.", calc: "Введи число."
+      };
+      function lock(on) {
+        controls.forEach(function (c) { c.disabled = on; });
+        if (list) list.classList.toggle("locked", on);
+        checkBtn.hidden = on;
+      }
+      function mark(ans) {
+        if (spec.type === "single" || spec.type === "multiple") {
+          var right = [].concat(spec.answer);
+          task.querySelectorAll(".opt").forEach(function (opt) {
+            var inp = opt.querySelector("input");
+            var isRightOpt = right.indexOf(inp.value) >= 0;
+            opt.classList.toggle("correct", isRightOpt);
+            opt.classList.toggle("wrong", !isRightOpt && inp.checked);
+          });
+        } else if (spec.type === "order") {
+          [].forEach.call(list.children, function (li, i) {
+            var ok = li.dataset.id === spec.answer[i];
+            li.classList.toggle("correct", ok);
+            li.classList.toggle("wrong", !ok && ans !== null);
+          });
+        } else if (spec.type === "gap" && ans) {
+          task.querySelectorAll(".gap").forEach(function (g, i) {
+            var ok = normWord(g.value) === normWord(spec.answer[g.dataset.gap - 1]);
+            g.classList.toggle("correct", ok);
+            g.classList.toggle("wrong", !ok);
+          });
+        } else if (spec.type === "calc" && ans !== null) {
+          task.querySelector(".calc-input").classList.add(isRight(ans) ? "correct" : "wrong");
+        }
+      }
+      function show(ok, ans) {
+        if (ans === null && spec.type === "order") {      // решённое ранее: показываем верный порядок
+          spec.answer.forEach(function (oid) {
+            list.appendChild([].filter.call(list.children, function (li) { return li.dataset.id === oid; })[0]);
+          });
+        }
+        mark(ans);
+        fb.hidden = false;
+        fb.dataset.result = ok ? "ok" : "bad";
+        lock(true);
+      }
+      function clear() {
+        fb.hidden = true;
+        msg.textContent = "";
+        task.querySelectorAll(".correct, .wrong").forEach(function (e) { e.classList.remove("correct", "wrong"); });
+        task.querySelectorAll("input[type=radio], input[type=checkbox]").forEach(function (i) { i.checked = false; });
+        task.querySelectorAll(".gap, .calc-input").forEach(function (i) { i.value = ""; });
+        lock(false);
+      }
+
+      checkBtn.addEventListener("click", function () {
+        var ans = answerFromPage();
+        if (ans === null) { msg.textContent = EMPTY_MSG[spec.type]; return; }
+        msg.textContent = "";
+        var ok = isRight(ans);
+        show(ok, ans);
+        saveResult(id, ok ? "ok" : "bad");
+        fb.focus();
+        fb.scrollIntoView({ block: "nearest" });
+      });
+      task.querySelector('[data-action="reread"]').addEventListener("click", function (ev) {
+        highlightClaim(ev.currentTarget.dataset.claim);
+      });
       var got = task.querySelector('[data-action="understood"]');
-      if (got) got.addEventListener("click", function () {
-        var id = task.dataset.task;
+      got.setAttribute("aria-pressed", understood.indexOf(id) >= 0 ? "true" : "false");
+      got.addEventListener("click", function () {
         var on = got.getAttribute("aria-pressed") !== "true";
         got.setAttribute("aria-pressed", on ? "true" : "false");
         understood = understood.filter(function (x) { return x !== id; });
         if (on) understood.push(id);
         store.set(K.understood, understood);
       });
-    });
+      task.querySelector('[data-action="again"]').addEventListener("click", function () {
+        clear();
+        saveResult(id, null);
+        checkBtn.focus();
+      });
+
+      /* порядок: кнопки ↑↓ (клавиатура) и перетаскивание за ручку (pointer events: мышь и палец) */
+      if (list) {
+        var announce = function (li) {
+          var items = [].slice.call(list.children);
+          msg.textContent = "«" + li.querySelector(".opt-text").textContent + "»: позиция " + (items.indexOf(li) + 1) + " из " + items.length;
+        };
+        list.addEventListener("click", function (ev) {
+          var b = ev.target.closest("[data-move]");
+          if (!b || b.disabled) return;
+          var li = b.closest(".order-item");
+          var other = b.dataset.move === "up" ? li.previousElementSibling : li.nextElementSibling;
+          if (other) {
+            if (b.dataset.move === "up") list.insertBefore(li, other); else list.insertBefore(other, li);
+            b.focus();                         // перенос узла в DOM сбрасывает фокус
+          }
+          announce(li);
+        });
+        var dragged = null;
+        list.addEventListener("pointerdown", function (ev) {
+          var h = ev.target.closest(".drag-handle");
+          if (!h || list.classList.contains("locked")) return;
+          ev.preventDefault();
+          dragged = h.closest(".order-item");
+          dragged.classList.add("dragging");
+          list.setPointerCapture(ev.pointerId);   // захват на списке: сам элемент при перестановке переносится в DOM
+        });
+        list.addEventListener("pointermove", function (ev) {
+          if (!dragged) return;
+          var before = null;
+          [].some.call(list.children, function (li) {
+            if (li === dragged) return false;
+            var r = li.getBoundingClientRect();
+            if (ev.clientY < r.top + r.height / 2) { before = li; return true; }
+            return false;
+          });
+          if (before !== dragged.nextElementSibling) list.insertBefore(dragged, before);
+        });
+        var drop = function () {
+          if (!dragged) return;
+          dragged.classList.remove("dragging");
+          announce(dragged);
+          dragged = null;
+        };
+        list.addEventListener("pointerup", drop);
+        list.addEventListener("pointercancel", drop);
+      }
+
+      /* уже решённое: показываем верные ответы и разбор (что отвечал ученик, мы не храним) */
+      if (taskState(id) !== "none") show(taskState(id) === "ok", null);
+    }
 
     /* переход по ссылке «Перечитать»: #<id абзаца> или #task-…; якоря оглавления (разделы) браузер ведёт сам */
     function focusHash() {
       if (location.hash.length < 2) return;
       var id = decodeURIComponent(location.hash.slice(1));
+      var m = /^(.+)--(c\d+)$/.exec(id);
+      if (m) { highlightClaim(m[1] + "#" + m[2]); return; }
       var t = document.getElementById(id);
-      if (t && (t.classList.contains("para") || t.classList.contains("task"))) highlightPara(id);
+      if (t && (t.classList.contains("para") || t.classList.contains("task"))) highlightEl(t);
     }
-    focusHash();
+    /* после load: браузер сам доскролливает к якорю уже после наших скриптов и перебил бы подсветку */
+    if (document.readyState === "complete") focusHash();
+    else window.addEventListener("load", function () { setTimeout(focusHash, 0); });
     window.addEventListener("hashchange", focusHash);
   }
 
