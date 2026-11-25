@@ -26,6 +26,30 @@ def _load(path: Path, model: type[BaseModel]) -> BaseModel:
         raise VideoInputError(f"{path} не проходит контракт {model.__name__}:\n{e}") from e
 
 
+def shot_link_problems(script: Script, spec: SceneSpec) -> list[str]:
+    """Каждая фраза ровно в одном кадре, кадр не пуст, ссылки только на существующие фразы, id кадров уникальны."""
+    problems: list[str] = []
+    ids = [p.id for p in script.phrases]
+    shot_ids = [s.id for s in spec.shots]
+    dup = sorted({i for i in shot_ids if shot_ids.count(i) > 1})
+    if dup:
+        problems.append(f"id кадров повторяются: {dup}")
+    seen: dict[str, str] = {}
+    for shot in spec.shots:
+        if not shot.phrase_ids:
+            problems.append(f"кадр {shot.id}: пустой phrase_ids — у каждого кадра хотя бы одна фраза")
+        for pid in shot.phrase_ids:
+            if pid not in ids:
+                problems.append(f"кадр {shot.id} ссылается на неизвестную фразу {pid}")
+            elif pid in seen:
+                problems.append(f"фраза {pid} в двух кадрах: {seen[pid]} и {shot.id}")
+            seen[pid] = shot.id
+    for pid in ids:
+        if pid not in seen:
+            problems.append(f"фраза {pid} не входит ни в один кадр SceneSpec.shots")
+    return problems
+
+
 def check_pair(script: Script, spec: SceneSpec, node_id: str | None = None) -> None:
     problems: list[str] = []
     ids = [p.id for p in script.phrases]
@@ -49,17 +73,7 @@ def check_pair(script: Script, spec: SceneSpec, node_id: str | None = None) -> N
         problems.append(f"node_id не совпадает: Script «{script.node_id}», SceneSpec «{spec.node_id}»")
     if node_id is not None and script.node_id != node_id:
         problems.append(f"--node {node_id}, а вход сделан для узла {script.node_id}")
-    seen: dict[str, str] = {}
-    for shot in spec.shots:
-        for pid in shot.phrase_ids:
-            if pid not in ids:
-                problems.append(f"кадр {shot.id} ссылается на неизвестную фразу {pid}")
-            elif pid in seen:
-                problems.append(f"фраза {pid} в двух кадрах: {seen[pid]} и {shot.id}")
-            seen[pid] = shot.id
-    for pid in ids:
-        if pid not in seen:
-            problems.append(f"фраза {pid} не входит ни в один кадр SceneSpec.shots")
+    problems += shot_link_problems(script, spec)
     if problems:
         raise VideoInputError("вход видео некорректен:\n- " + "\n- ".join(problems))
 

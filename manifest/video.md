@@ -14,6 +14,7 @@
 | Голос | ru-RU-DmitryNeural (основной) | условия сервиса Microsoft | см. edge-tts |
 | FFmpeg / ffprobe | N-127043-g5a54fcf75e-20260930, win64 GPL-сборка (winget-пакет `yt-dlp.FFmpeg`), libx264, AAC | GPL-3.0 (сборка с libx264) | нет |
 | Шрифт | Segoe UI (системный шрифт Windows, задан в стайлгайде) | лицензия Microsoft в составе Windows | нет |
-| pydantic / pytest (из ядра) | 2.14.4 / 9.2.0 | MIT / MIT | нет |
+| pydantic / pytest (из ядра) | 2.13.5 / 9.2.0 | MIT / MIT | нет |
+| LLM через `pipeline.llm` (ядро П1, модель из `config/llm.yaml`) | см. `manifest/core.md` | условия провайдера | **да**: `video.spec` отправляет провайдеру LLM узел учебного слоя (поля узла, утверждения с цитатами) и утверждённые фразы сценария. Текст главы целиком не отправляется |
 
 Кэш синтеза — `cache/tts/<sha256>.mp3` + `.json`. Ключ: текст + голос + rate + volume + pitch + тип меток. В `.json` записаны версия edge-tts и метки речи. При `TTS_OFFLINE=1` промах кэша — ошибка, без сети.

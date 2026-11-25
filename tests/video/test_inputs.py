@@ -58,6 +58,7 @@ def test_contract_violation(tmp_path):
     (None, lambda c: c.update(node_id="other.node"), "node_id"),
     (None, lambda c: c["shots"][0].update(phrase_ids=["p9"]), "p9"),
     (None, lambda c: c["shots"][1].update(phrase_ids=["p1"]), "p2"),
+    (None, lambda c: c["shots"].append(dict(c["shots"][0], id="s9", phrase_ids=[])), "s9"),
     (lambda s: s.update(video_id="../escape"), lambda c: c.update(video_id="../escape"), "video_id"),
 ])
 def test_semantic_errors(tmp_path, script, spec, msg):
