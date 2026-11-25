@@ -8,14 +8,15 @@ import argparse
 import sys
 from pathlib import Path
 
-from contracts.models import ChapterUnits, Layer, Remark, ReviewOutput, Script, Tasks
+from contracts.models import ChapterUnits, Layer, Remark, ReviewOutput, SceneSpec, Script, Tasks
 from pipeline.verify.numbers import missing_numbers
 from pipeline.verify.pages import load_pages
 from pipeline.verify.quotes import check_quote_md, md_from_units
+from pipeline.verify.remarks import SEV_ORDER, one_per_target
+from pipeline.verify.scene import check_scene, check_script, load_misconceptions
 from pipeline.verify.terms import check_terms, node_texts
 
 ROOT = Path(__file__).resolve().parents[2]
-SEV_ORDER = {"critical": 0, "significant": 1, "minor": 2}
 
 
 def _fmt(nums):
@@ -28,7 +29,7 @@ def _load(path, model):
     return model.model_validate_json(path.read_text(encoding="utf-8"))
 
 
-def _node_sources(node, units_by_id, md_pages):
+def node_sources(node, units_by_id, md_pages):
     """Исходные тексты узла: его единицы главы (или его страницы md) + цитаты утверждений."""
     missing = [u for u in node.unit_ids if u not in units_by_id]
     if missing:
@@ -71,7 +72,7 @@ def _numbers_remark(target, texts, sources, page, where):
 def _check_numbers(layer, units_by_id, md_pages):
     remarks = []
     for node in layer.nodes:
-        src = _node_sources(node, units_by_id, md_pages)
+        src = node_sources(node, units_by_id, md_pages)
         page = node.pages[0] if node.pages else node.claims[0].page_pdf
         for c in node.claims:
             r = _numbers_remark(c.id, [c.text], src, c.page_pdf, "формулировка утверждения")
@@ -109,39 +110,6 @@ def _check_tasks(tasks, nodes, sources):
     return remarks
 
 
-def _check_script(script, nodes, sources, claim_ids):
-    remarks = []
-    if script.node_id not in nodes:
-        raise ValueError(f"сценарий {script.video_id}: узла {script.node_id} нет в слое")
-    page = nodes[script.node_id].pages[0] if nodes[script.node_id].pages else None
-    for ph in script.phrases:
-        problems = []
-        if ph.claim_id and ph.claim_id not in claim_ids:
-            problems.append(f"claim_id {ph.claim_id} нет в слое")
-        miss = missing_numbers(ph.text + " \n" + (ph.on_screen or ""), sources[script.node_id])
-        if miss:
-            problems.append(f"чисел {_fmt(miss)} нет в исходных единицах узла")
-        if problems:
-            remarks.append(Remark(target=f"{script.video_id}.{ph.id}", category="other", severity="significant",
-                                  page_pdf=page, problem="фраза сценария: " + "; ".join(problems),
-                                  fix="ссылаться на утверждение слоя и брать числа только из главы"))
-    return remarks
-
-
-def _one_per_target(remarks):
-    """Схема организаторов: одно замечание на цель. Сливаем, первым — самое тяжёлое."""
-    merged = {}
-    for r in sorted(remarks, key=lambda r: SEV_ORDER[r.severity]):
-        m = merged.get(r.target)
-        if m is None:
-            merged[r.target] = r.model_copy()
-        else:
-            m.problem += "; " + r.problem
-            m.fix += "; " + r.fix
-    order = {r.target: i for i, r in reversed(list(enumerate(remarks)))}
-    return sorted(merged.values(), key=lambda r: (SEV_ORDER[r.severity], order[r.target]))
-
-
 def run(ch, out_dir, team=""):
     out_dir = Path(out_dir)
     layer = _load(out_dir / "layer.json", Layer)
@@ -150,7 +118,7 @@ def run(ch, out_dir, team=""):
     md_pages = load_pages(md)
     units_by_id = {u.unit_id: u.text for u in units.units}
     nodes = {n.id: n for n in layer.nodes}
-    sources = {n.id: _node_sources(n, units_by_id, md_pages) for n in layer.nodes}
+    sources = {n.id: node_sources(n, units_by_id, md_pages) for n in layer.nodes}
     claim_ids = {c.id for n in layer.nodes for c in n.claims}
 
     remarks = _check_claims(layer, md) + _check_numbers(layer, units_by_id, md_pages) + _check_terms(layer)
@@ -162,10 +130,17 @@ def run(ch, out_dir, team=""):
         stats["tasks_checked"] = True
     for sp in sorted((out_dir / "videos").glob("*/script.json")):
         script = _load(sp, Script)
-        remarks += _check_script(script, nodes, sources, claim_ids)
+        if script.node_id not in nodes:
+            raise ValueError(f"{sp}: узла {script.node_id} нет в слое")
+        spec_path = sp.parent / "scene_spec.json"
+        if spec_path.exists():
+            remarks += check_scene(_load(spec_path, SceneSpec), script, claim_ids, sources[script.node_id],
+                                   units.domain)
+        else:
+            remarks += check_script(script, claim_ids, sources[script.node_id], load_misconceptions(units.domain))
         stats["scripts_checked"].append(script.video_id)
 
-    report = ReviewOutput(package_id=ch, team=team, remarks=_one_per_target(remarks))
+    report = ReviewOutput(package_id=ch, team=team, remarks=one_per_target(remarks))
     report.ext["verify"] = stats
     vdir = out_dir / "verify"
     vdir.mkdir(parents=True, exist_ok=True)
