@@ -5,7 +5,9 @@
      last        id шага                         последний открытый шаг
      checks      {id шага: {read, video}}        ручные пункты чек-листа
      cards       {id шага: "know" | "repeat"}    карточки
-     tasks       {id задания: "ok" | "bad"}      результат последней проверки (пишет логика заданий, задача 3)
+     tasks       {id задания: "ok" | "bad"}      результат последней проверки
+     answers     {id задания: ответ ученика}     single: id варианта; multiple и order: список id; gap: список слов;
+                                                 calc: число. После перезагрузки показываем выбор ученика
      understood  [id задания, ...]               «Я понял» в списке ошибок; логика заданий убирает id,
                                                  если то же задание снова решено неверно
    Тема и подсветка «автор / модель» — общие для всех глав: course:theme, course:by. */
@@ -26,7 +28,7 @@
     }
   };
   var K = {};
-  ["done", "last", "checks", "cards", "tasks", "understood"].forEach(function (n) { K[n] = "course:" + ch + ":" + n; });
+  ["done", "last", "checks", "cards", "tasks", "answers", "understood"].forEach(function (n) { K[n] = "course:" + ch + ":" + n; });
   K.theme = "course:theme";
   K.by = "course:by";
 
@@ -50,6 +52,7 @@
 
   var done = store.get(K.done, []);
   var taskRes = store.get(K.tasks, {});
+  var answers = store.get(K.answers, {});
   var understood = store.get(K.understood, []);
   var cardMarks = store.get(K.cards, {});
 
@@ -272,9 +275,10 @@
         chip.setAttribute("aria-label", "Задание " + chip.textContent.trim() + ": " + STATE_RU[st]);
       });
     }
-    function saveResult(taskId, state) {
-      if (state) taskRes[taskId] = state; else delete taskRes[taskId];
+    function saveResult(taskId, state, ans) {
+      if (state) { taskRes[taskId] = state; answers[taskId] = ans; } else { delete taskRes[taskId]; delete answers[taskId]; }
       store.set(K.tasks, taskRes);
+      store.set(K.answers, answers);
       if (state === "bad") {                 // снова ошиблись: задание возвращается в «Мои ошибки»
         understood = understood.filter(function (x) { return x !== taskId; });
         store.set(K.understood, understood);
@@ -354,11 +358,31 @@
           task.querySelector(".calc-input").classList.add(isRight(ans) ? "correct" : "wrong");
         }
       }
+      function setOrder(ids) {
+        ids.forEach(function (oid) {
+          list.appendChild([].filter.call(list.children, function (li) { return li.dataset.id === oid; })[0]);
+        });
+      }
+      /* вернуть на страницу выбор ученика (после перезагрузки) */
+      function applyAnswer(ans) {
+        if (spec.type === "single") {
+          var r = task.querySelector('input[type=radio][value="' + ans + '"]');
+          if (r) r.checked = true;
+        } else if (spec.type === "multiple") {
+          task.querySelectorAll("input[type=checkbox]").forEach(function (c) { c.checked = ans.indexOf(c.value) >= 0; });
+        } else if (spec.type === "order") {
+          setOrder(ans);
+        } else if (spec.type === "gap") {
+          task.querySelectorAll(".gap").forEach(function (g) { g.value = ans[g.dataset.gap - 1] || ""; });
+        } else {
+          task.querySelector(".calc-input").value = String(ans);
+        }
+      }
       function show(ok, ans) {
-        if (ans === null && spec.type === "order") {      // решённое ранее: показываем верный порядок
-          spec.answer.forEach(function (oid) {
-            list.appendChild([].filter.call(list.children, function (li) { return li.dataset.id === oid; })[0]);
-          });
+        if (ans === null) {
+          if (spec.type === "order") setOrder(spec.answer);   // выбор не сохранён (старые данные): показываем верный порядок
+        } else {
+          applyAnswer(ans);
         }
         mark(ans);
         fb.hidden = false;
@@ -380,7 +404,7 @@
         msg.textContent = "";
         var ok = isRight(ans);
         show(ok, ans);
-        saveResult(id, ok ? "ok" : "bad");
+        saveResult(id, ok ? "ok" : "bad", ans);
         fb.focus();
         fb.scrollIntoView({ block: "nearest" });
       });
@@ -449,8 +473,8 @@
         list.addEventListener("pointercancel", drop);
       }
 
-      /* уже решённое: показываем верные ответы и разбор (что отвечал ученик, мы не храним) */
-      if (taskState(id) !== "none") show(taskState(id) === "ok", null);
+      /* уже решённое: выбор ученика, верные ответы и разбор */
+      if (taskState(id) !== "none") show(taskState(id) === "ok", id in answers ? answers[id] : null);
     }
 
     /* переход по ссылке «Перечитать»: #<id абзаца> или #task-…; якоря оглавления (разделы) браузер ведёт сам */

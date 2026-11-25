@@ -14,8 +14,9 @@ ROOT = Path(__file__).resolve().parents[2]
 MINI = ROOT / "fixtures/course/mini_layer.json"
 SCHEMA = ROOT / "data/organizers/01_схемы/task.schema.json"
 RES = "mini.resistivity_depends_on_fluid"
-REF = "misc.high_res_is_oil"
-MISC = [{"id": REF, "text": "Высокое сопротивление всегда означает нефть."}, {"id": "misc.other", "text": "Другое заблуждение."}]
+REF = "misc.high_res_oil"
+MISC = json.loads((ROOT / "data/organizers/04_доменные_заготовки/misconceptions.json").read_text(encoding="utf-8"))
+assert REF in {m["id"] for m in MISC}
 
 
 def _layer() -> Layer:
@@ -92,10 +93,11 @@ def test_plan_covers_chapter_requirements_and_is_deterministic():
     assert any(s["kind"] == "data" for s in p1[RES])            # у узла с решением на данных своё задание «на данных»
 
 
-def test_plan_fails_loudly_for_chapter_too_small():
+def test_plan_for_tiny_chapter_does_not_fail():
+    # раньше падало; теперь заданий просто меньше 15, а check_chapter предупреждает (см. test_degrade.py)
     layer = _layer()
-    with pytest.raises(ValueError, match="нужно ≥15"):
-        T.plan(layer.nodes[:1])
+    slots = [s for ss in T.plan(layer.nodes[:1]).values() for s in ss]
+    assert len(slots) == T.CAP_PER_NODE < T.MIN_TASKS
 
 
 def test_plan_without_numbers_has_no_calc_and_still_has_data():
@@ -273,7 +275,7 @@ def test_ensure_tasks_is_incremental(tmp_path, llm):
     assert only.calls == []
 
 
-def test_ensure_tasks_feeds_errors_back_and_fails_loudly(tmp_path, llm):
+def test_ensure_tasks_feeds_errors_back_then_drops_what_never_passes(tmp_path, llm):
     layer = _layer()
 
     def bad_first(n, tasks):
@@ -283,30 +285,31 @@ def test_ensure_tasks_feeds_errors_back_and_fails_loudly(tmp_path, llm):
     fake = llm(FakeLLM(layer, tamper=bad_first))
     T.ensure_tasks(layer, tmp_path / "a", MISC)
     assert "zzz#c1" in fake.calls[1]["vars"]["feedback"] and len(fake.calls) == 5
+    assert json.loads(fake.calls[1]["vars"]["requested"]) == json.loads(fake.calls[0]["vars"]["requested"])[:1]   # повтор — только неудавшийся слот
 
     def always_bad(n, tasks):
         tasks[0].claim_ids = ["zzz#c1"]
         return tasks
     llm(FakeLLM(layer, tamper=always_bad))
-    with pytest.raises(ValueError, match="zzz#c1"):
-        T.ensure_tasks(layer, tmp_path / "b", MISC)
+    res = T.ensure_tasks(layer, tmp_path / "b", MISC)                  # не падает: неудавшееся задание выброшено
+    dropped = res.ext["course"]["dropped"]
+    assert len(dropped) == 4 and all("zzz#c1" in " ".join(d["errors"]) for d in dropped)
+    assert len(res.tasks) == 16 - 4
 
 
-def test_check_chapter_hard_requirements():
+def test_check_chapter_reports_violations_as_warnings_not_errors():
     layer = _layer()
     node = _node(layer)
-    mk = lambda ty, kind: T.build_task(node, _fake_task(node, {"type": ty, "kind": kind}), f"t{ty}{kind}{id(object())}")
-    few = [mk("single", "data")] * 3
-    with pytest.raises(ValueError, match="не меньше 15"):
-        T.check_chapter(layer, few)
-    no_data = [mk(t, "recall") for t in T.ROTATION] * 3
-    for i, t in enumerate(no_data):
-        t.id = f"x{i}"
-    with pytest.raises(ValueError, match="kind=data"):
-        T.check_chapter(layer, no_data)
-    no_calc = [mk(t, "data") for t in T.ROTATION if t != "calc"] * 4
-    with pytest.raises(ValueError, match="calc"):
-        T.check_chapter(layer, no_calc)
+    mk = lambda ty, kind, i: T.build_task(node, _fake_task(node, {"type": ty, "kind": kind}), f"t{i}")
+    few = [mk("single", "data", i) for i in range(3)]
+    assert "few_tasks" in {w["code"] for w in T.check_chapter(layer, few, emit=False)}
+    no_data = [mk(t, "recall", i) for i, t in enumerate(list(T.ROTATION) * 3)]
+    codes = {w["code"] for w in T.check_chapter(layer, no_data, emit=False)}
+    assert "no_data_task" in codes and "few_tasks" not in codes
+    no_calc = [mk(t, "data", i) for i, t in enumerate([t for t in T.ROTATION if t != "calc"] * 4)]
+    w = [x for x in T.check_chapter(layer, no_calc, emit=False) if x["code"] == "missing_task_type"]
+    assert w and w[0]["types"] == ["calc"]                      # формулы в главе есть, а расчёта нет
+    assert T.check_chapter(layer, [mk(t, "data", i) for i, t in enumerate(list(T.ROTATION) * 3)], emit=False) == []
 
 
 def test_check_chapter_without_numbers_warns_instead_of_failing(capsys):
@@ -317,3 +320,21 @@ def test_check_chapter_without_numbers_warns_instead_of_failing(capsys):
     tasks = [T.build_task(node, _fake_task(node, {"type": t, "kind": "data"}), f"x{i}") for i, t in enumerate([t for t in T.ROTATION if t != "calc"] * 4)]
     warnings = T.check_chapter(layer, tasks)
     assert warnings[0]["code"] == "calc_not_possible" and "WARNING" in capsys.readouterr().err
+
+
+def test_safe_eval_huge_power_fails_fast_instead_of_hanging():
+    import time
+    for expr in ("a ** a ** a", "a * 10 ** 10 ** 10", "10 ** (a * 10 ** 10)"):
+        t0 = time.time()
+        with pytest.raises(ValueError, match="не вычисляется"):
+            T.safe_eval(expr, {"a": 10}, {"10"})
+        assert time.time() - t0 < 2, expr
+
+
+def test_safe_eval_complex_result_is_a_clear_error():
+    with pytest.raises(ValueError, match="не вычисляется"):
+        T.safe_eval("(1 - a) ** 0.5", {"a": 10}, {"10", "0.5"} | T.SMALL_CONSTANTS)
+
+
+def test_safe_eval_works_in_floats():
+    assert T.safe_eval("a / 4", {"a": 10}, {"10"}) == 2.5          # не целочисленное деление

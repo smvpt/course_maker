@@ -4,7 +4,9 @@
 Что делает код: распределяет типы и виды заданий по главе (≥15, все 5 типов, хотя бы одно kind=data), проверяет
 каждое задание, перемешивает варианты, ЗАДАЁТ ID, а ответ в calc ВЫЧИСЛЯЕТ (Python, безопасный разбор выражения):
 модель даёт только переменные из узла и выражение по формуле главы, числа в ответе от неё не берутся.
-Не прошло проверку — модели возвращается список ошибок; после трёх попыток — исключение.
+Не прошло проверку — модели возвращается список ошибок только по этому заданию; после трёх попыток задание
+выбрасывается (запись в tasks.json → ext.course.dropped, предупреждение в build_report.json), курс собирается с тем,
+что есть. Меньше 15 заданий или невозможный тип — тоже предупреждение, не ошибка.
 """
 from __future__ import annotations
 
@@ -17,7 +19,7 @@ from pathlib import Path
 from typing import Literal, Optional
 
 from contracts.models import Layer, Node, Task, TaskOption, Tasks
-from pipeline.course.steptext import (cyrillic_share, node_dict, node_hash, norm, numbers_in, sentences, source_text,
+from pipeline.course.steptext import (LlmError, call_llm, cyrillic_share, node_dict, node_hash, norm, numbers_in, sentences, source_text,
                                       words, VIEWER_FILE, quote_language)
 from pydantic import BaseModel, Field
 
@@ -73,11 +75,10 @@ def _data_capable(node: Node) -> bool:
 
 
 def plan(nodes: list[Node]) -> dict[str, list[dict]]:
-    """node_id → [{"type", "kind"}]. Зависит только от слоя: на одной главе план всегда один."""
+    """node_id → [{"type", "kind"}]. Зависит только от слоя: на одной главе план всегда один.
+    Мало узлов — заданий получится меньше MIN_TASKS: это предупреждение check_chapter, а не ошибка."""
     n = len(nodes)
     per = min(CAP_PER_NODE, max(1, math.ceil(MIN_TASKS / n)))
-    if n * per < MIN_TASKS:
-        raise ValueError(f"в главе {n} шагов: больше {CAP_PER_NODE} заданий на шаг не планируем, получится {n * per}, нужно ≥{MIN_TASKS}")
     out: dict[str, list[dict]] = {}
     counter = 0
     for node in nodes:
@@ -96,9 +97,8 @@ def plan(nodes: list[Node]) -> dict[str, list[dict]]:
     # хотя бы одно задание «на данных»: у узла с решением на данных, иначе у узла со смыслом для данных
     if not any(s["kind"] == "data" for ss in out.values() for s in ss):
         host = next((n for n in nodes if n.decision_on_data is not None), None) or next((n for n in nodes if _data_capable(n)), None)
-        if host is None:
-            raise ValueError("в главе нет ни одного узла с решением на данных или смыслом для данных: нечего взять для задания kind=data")
-        out[host.id][0]["kind"] = "data"
+        if host is not None:
+            out[host.id][0]["kind"] = "data"
     for n in nodes:                                           # узлу с решением на данных — своё задание на данных
         if n.decision_on_data is not None and not any(s["kind"] == "data" for s in out[n.id]):
             out[n.id][0]["kind"] = "data"
@@ -106,6 +106,11 @@ def plan(nodes: list[Node]) -> dict[str, list[dict]]:
 
 
 # ---------------------------------------------------------------- расчёт кодом
+
+class _ToFloat(ast.NodeTransformer):
+    def visit_Constant(self, node: ast.Constant) -> ast.Constant:
+        return ast.copy_location(ast.Constant(float(node.value)), node)
+
 
 def safe_eval(expression: str, variables: dict[str, float], allowed_numbers: set[str]) -> float:
     try:
@@ -137,9 +142,12 @@ def safe_eval(expression: str, variables: dict[str, float], allowed_numbers: set
     unused = sorted(set(variables) - used)
     if unused:
         raise ValueError(f"переменные {unused} не используются в выражении {expression!r}")
+    # Всё считаем во float: целая степень вроде 10**10**10 иначе вычисляется бесконечно, а у float это быстрый OverflowError.
+    tree = ast.fix_missing_locations(_ToFloat().visit(tree))
+    env = {**FUNCS, **{k: float(v) for k, v in variables.items()}}
     try:
-        value = float(eval(compile(tree, "<calc>", "eval"), {"__builtins__": {}}, {**FUNCS, **variables}))   # noqa: S307 — дерево проверено выше
-    except (ZeroDivisionError, ValueError, OverflowError) as e:
+        value = float(eval(compile(tree, "<calc>", "eval"), {"__builtins__": {}}, env))   # noqa: S307 — дерево проверено выше
+    except (ZeroDivisionError, ValueError, OverflowError, TypeError) as e:     # TypeError: комплексный результат
         raise ValueError(f"выражение {expression!r} не вычисляется: {e}")
     if not math.isfinite(value):
         raise ValueError(f"выражение {expression!r} даёт не число")
@@ -280,50 +288,82 @@ def build_task(node: Node, t: LlmTask, task_id: str) -> Task:
 # ---------------------------------------------------------------- вызов модели
 
 def complete_json(**kw):
-    from pipeline.llm import complete_json as impl   # точка входа в LLM — только pipeline.llm (CLAUDE.md §2)
-    return impl(**kw)
+    return call_llm(**kw)
 
 
-def generate_node_tasks(node: Node, planned: list[dict], misconceptions: list[dict], language: str, viewer: str) -> list[Task]:
+def generate_node_tasks(node: Node, planned: list[dict], misconceptions: list[dict], language: str, viewer: str
+                        ) -> tuple[list[Task], list[dict], list[dict]]:
+    """Задания узла. Возвращает (прошедшие проверку, выброшенные, предупреждения узла).
+
+    Проверка идёт по каждому заданию отдельно: на следующую попытку модели возвращаются только слоты, которые не
+    прошли, с их ошибками. После ATTEMPTS попыток оставшиеся слоты выбрасываются. LlmError (модель недоступна)
+    не перехватывается здесь: его обрабатывает ensure_tasks."""
     misc_ids = {m["id"] for m in misconceptions}
     catalogue = list(misconceptions)
     if node.misconception and node.misconception.ref and node.misconception.ref not in misc_ids:
         catalogue.append({"id": node.misconception.ref, "text": node.misconception.text})
         misc_ids.add(node.misconception.ref)
+    done: dict[int, LlmTask] = {}
+    errors: dict[int, list[str]] = {}
+    pending = list(range(len(planned)))
     feedback = "нет, это первая попытка"
     for _ in range(ATTEMPTS):
+        requested = [planned[i] for i in pending]
         out = complete_json(prompt="course/tasks", schema=LlmTasks, tier="default",
                             vars={"node": json.dumps(node_dict(node), ensure_ascii=False, indent=1),
-                                  "requested": json.dumps(planned, ensure_ascii=False),
+                                  "requested": json.dumps(requested, ensure_ascii=False),
                                   "misconceptions": json.dumps(catalogue, ensure_ascii=False, indent=1),
                                   "viewer": viewer, "language": language, "feedback": feedback})
-        errors = validate_node_tasks(node, out.tasks, planned, misc_ids)
-        if not errors:
-            return [build_task(node, t, f"{node.id}.t{i}") for i, t in enumerate(out.tasks, 1)]
-        feedback = "\n".join(f"- {e}" for e in errors)
-    raise ValueError(f"{node.id}: задания не прошли проверку за {ATTEMPTS} попытки:\n{feedback}")
+        still: list[int] = []
+        for pos, slot in enumerate(pending):
+            if pos >= len(out.tasks):
+                errors[slot] = ["модель не вернула это задание"]
+                still.append(slot)
+                continue
+            errs = validate_task(node, out.tasks[pos], planned[slot], misc_ids, f"задание {slot + 1}")
+            if errs:
+                errors[slot] = errs
+                still.append(slot)
+            else:
+                done[slot] = out.tasks[pos]
+                errors.pop(slot, None)
+        pending = still
+        if not pending:
+            break
+        feedback = "\n".join(f"- {e}" for slot in pending for e in errors[slot])
+    tasks = [build_task(node, done[i], f"{node.id}.t{i + 1}") for i in sorted(done)]
+    dropped = [{"node": node.id, "slot": i + 1, "type": planned[i]["type"], "errors": errors[i]} for i in pending]
+    warnings: list[dict] = []
+    ref = node.misconception.ref if node.misconception else None
+    choice = [t for t in done.values() if t.type in ("single", "multiple")]
+    if ref and choice and not any(o.misconception == ref for t in choice for o in t.options):
+        warnings.append({"code": "misconception_unused", "node": node.id, "ref": ref,
+                         "message": f"шаг {node.id}: ни один неверный вариант не построен на заблуждении {ref}"})
+    return tasks, dropped, warnings
 
 
 # ---------------------------------------------------------------- глава целиком
 
-def check_chapter(layer: Layer, tasks: list[Task]) -> list[dict]:
-    """Требования главы. Возвращает предупреждения; нарушение жёсткого требования — ValueError."""
+def check_chapter(layer: Layer, tasks: list[Task], emit: bool = True) -> list[dict]:
+    """Требования главы (≥15, все 5 типов, хотя бы одно kind=data). Нарушения — предупреждения, не ошибки."""
     warnings: list[dict] = []
+
+    def warn(code: str, message: str, **extra) -> None:
+        warnings.append({"code": code, "message": message, **extra})
+        if emit:
+            print(f"WARNING: {message}", file=sys.stderr)
+
     if len(tasks) < MIN_TASKS:
-        raise ValueError(f"заданий {len(tasks)}, нужно не меньше {MIN_TASKS}")
+        warn("few_tasks", f"заданий {len(tasks)}, нужно не меньше {MIN_TASKS}", count=len(tasks))
+    if tasks and not any(t.kind == "data" for t in tasks):
+        warn("no_data_task", "нет ни одного задания kind=data")
     types = {t.type for t in tasks}
-    if not any(t.kind == "data" for t in tasks):
-        raise ValueError("нет ни одного задания kind=data")
-    if "calc" not in types:
-        if any(calc_capable(n) for n in layer.nodes):
-            raise ValueError("в главе есть формулы и числа, но нет ни одного задания calc")
-        if len(types) < 4:
-            raise ValueError(f"типов заданий {len(types)}, нужно не меньше 4 из 5 (calc в этой главе невозможен)")
-        msg = "в главе нет формул и чисел для расчёта: заданий calc нет, типов 4 из 5"
-        print(f"WARNING: {msg}", file=sys.stderr)
-        warnings.append({"code": "calc_not_possible", "message": msg})
-    elif len(types) < 5:
-        raise ValueError(f"типов заданий {len(types)}, нужны все 5, нет: {sorted(set(ROTATION) - types)}")
+    missing = [t for t in ROTATION if t not in types]
+    if "calc" in missing and not any(calc_capable(n) for n in layer.nodes):
+        warn("calc_not_possible", "в главе нет формул и чисел для расчёта: заданий calc нет")
+        missing.remove("calc")
+    if missing and tasks:
+        warn("missing_task_type", f"нет заданий типов: {', '.join(missing)}", types=missing)
     return warnings
 
 
@@ -337,30 +377,49 @@ def load_tasks(path: Path, ch: str) -> Optional[Tasks]:
 
 
 def ensure_tasks(layer: Layer, course_dir: Path, misconceptions: list[dict], only: Optional[str] = None) -> Tasks:
-    """Дописывает tasks.json: узлы без заданий или изменившиеся (по хэшу) генерируются, остальные берутся из файла."""
+    """Дописывает tasks.json: узлы без заданий, изменившиеся (по хэшу) и с ранее выброшенными заданиями генерируются
+    заново, остальные берутся из файла. Модель недоступна — слоты текущего и остальных узлов выбрасываются без
+    повторных обращений к ней."""
     path = course_dir / "tasks.json"
     old = load_tasks(path, layer.chapter)
-    old_hashes = (old.ext.get("course", {}).get("hashes", {}) if old else {})
+    oc = old.ext.get("course", {}) if old else {}
+    old_hashes = oc.get("hashes", {})
+    retry = {d["node"] for d in oc.get("dropped", [])}
     viewer = (ROOT / VIEWER_FILE).read_text(encoding="utf-8")
     language = quote_language(layer)
     planned = plan(layer.nodes)
     by_node: dict[str, list[Task]] = {n.id: [t for t in (old.tasks if old else []) if t.step_id == n.id] for n in layer.nodes}
-    hashes = {n.id: old_hashes[n.id] for n in layer.nodes if n.id in old_hashes and by_node[n.id]}
+    hashes = {n.id: old_hashes[n.id] for n in layer.nodes if n.id in old_hashes and (by_node[n.id] or n.id in retry)}
+    dropped = [d for d in oc.get("dropped", []) if d["node"] in by_node]
+    node_warnings = [w for w in oc.get("node_warnings", []) if w["node"] in by_node]
+    generated_all = True
+    down: Optional[str] = None
     for n in layer.nodes:
         if only is not None and n.id != only:
+            generated_all = generated_all and bool(hashes.get(n.id))
             continue
         h = node_hash(n)
-        if hashes.get(n.id) == h and by_node[n.id]:
+        if hashes.get(n.id) == h and n.id not in retry:
             continue
-        by_node[n.id] = generate_node_tasks(n, planned[n.id], misconceptions, language, viewer)
+        dropped = [d for d in dropped if d["node"] != n.id]
+        node_warnings = [w for w in node_warnings if w["node"] != n.id]
+        if down is None:
+            try:
+                by_node[n.id], new_dropped, new_warnings = generate_node_tasks(n, planned[n.id], misconceptions, language, viewer)
+            except LlmError as e:
+                down = str(e)
+        if down is not None:
+            by_node[n.id] = []
+            new_dropped = [{"node": n.id, "slot": i + 1, "type": s["type"], "errors": [f"модель недоступна: {down}"]}
+                           for i, s in enumerate(planned[n.id])]
+            new_warnings = []
+        dropped += new_dropped
+        node_warnings += new_warnings
         hashes[n.id] = h
     tasks = [t for n in layer.nodes for t in by_node[n.id]]
-    warnings: list[dict] = []
-    if all(by_node[n.id] for n in layer.nodes):
-        warnings = check_chapter(layer, tasks)
-    else:
-        print("WARNING: задания есть не у всех узлов, проверка главы (≥15, типы, kind=data) пропущена", file=sys.stderr)
-    result = Tasks(chapter=layer.chapter, tasks=tasks, ext={"course": {"hashes": hashes, "warnings": warnings}})
+    warnings = check_chapter(layer, tasks, emit=False) if only is None or generated_all else []
+    result = Tasks(chapter=layer.chapter, tasks=tasks,
+                   ext={"course": {"hashes": hashes, "warnings": warnings, "dropped": dropped, "node_warnings": node_warnings}})
     course_dir.mkdir(parents=True, exist_ok=True)
     path.write_text(result.model_dump_json(by_alias=True, indent=2), encoding="utf-8")
     return result

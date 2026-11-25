@@ -3,7 +3,8 @@
 Модель переписывает поля узла абзацами; каждый абзац привязан к утверждениям узла (claim_ids), по ним курс
 ставит точную «стр. N». Всё, что можно проверить кодом, проверяется здесь: ссылки на утверждения, числа,
 длина фраз, 2–3 фразы в сути, термины, покрытие блоков, русский язык. Не прошло — модели возвращается список
-ошибок; после трёх попыток — исключение (никаких заглушек).
+ошибок; после трёх попыток шаг считается неудавшимся: курс всё равно собирается, а страница шага строится из
+полей слоя (запись об отказе — в step_text.json, предупреждение — в build_report.json).
 
 В курсе результат лежит в node.ext["course"] = {"hash", "paragraphs"} (см. build.apply_step_text).
 """
@@ -44,9 +45,27 @@ class StepTextNode(Base):
     paragraphs: list[Para]
 
 
+class StepTextFailure(Base):
+    hash: str
+    errors: list[str]
+
+
 class StepText(Base):
     chapter: str
     nodes: dict[str, StepTextNode]
+    failed: dict[str, StepTextFailure] = Field(default_factory=dict)   # шаги, где текст не удался: курс берёт поля слоя
+
+
+class GenerationFailed(ValueError):
+    """Ответ модели не прошёл проверки за все попытки."""
+
+    def __init__(self, message: str, errors: list[str]):
+        super().__init__(message)
+        self.errors = errors
+
+
+class LlmError(RuntimeError):
+    """Модель недоступна или вернула непригодный ответ (сеть, ключ, оборванный JSON). Причина — в __cause__."""
 
 
 # ---------------------------------------------------------------- разбор текста
@@ -215,9 +234,18 @@ def validate_node(node: Node, paras: list[Para]) -> list[str]:
 
 # ---------------------------------------------------------------- вызов модели
 
-def complete_json(**kw):
+def call_llm(**kw):
     from pipeline.llm import complete_json as impl   # точка входа в LLM — только pipeline.llm (CLAUDE.md §2)
-    return impl(**kw)
+    try:
+        return impl(**kw)
+    except (KeyError, TypeError, FileNotFoundError):
+        raise        # нет промпта, не хватает переменной: это наша ошибка, не отказ модели — падаем громко
+    except Exception as e:
+        raise LlmError(f"{type(e).__name__}: {e}") from e
+
+
+def complete_json(**kw):
+    return call_llm(**kw)
 
 
 def quote_language(layer: Layer) -> str:
@@ -235,33 +263,56 @@ def generate_node(node: Node, language: str, viewer: str) -> list[Para]:
         if not errors:
             return out.paragraphs
         feedback = "\n".join(f"- {e}" for e in errors)
-    raise ValueError(f"{node.id}: текст шага не прошёл проверку за {ATTEMPTS} попытки:\n{feedback}")
+    raise GenerationFailed(f"{node.id}: текст шага не прошёл проверку за {ATTEMPTS} попытки:\n{feedback}",
+                           [e.removeprefix("- ") for e in feedback.splitlines()])
 
 
-def load_step_text(path: Path, ch: str) -> dict[str, StepTextNode]:
+def read_step_text(path: Path, ch: str) -> Optional[StepText]:
     if not path.exists():
-        return {}
+        return None
     st = StepText.model_validate_json(path.read_text(encoding="utf-8"))
     if st.chapter != ch:
         raise ValueError(f"{path}: chapter={st.chapter!r}, а запрошена глава {ch!r}")
-    return st.nodes
+    return st
+
+
+def load_step_text(path: Path, ch: str) -> dict[str, StepTextNode]:
+    st = read_step_text(path, ch)
+    return st.nodes if st else {}
 
 
 def ensure_step_text(layer: Layer, course_dir: Path, only: Optional[str] = None) -> dict[str, StepTextNode]:
-    """Дописывает step_text.json: новые и изменившиеся узлы (по хэшу) генерируются, остальные берутся из файла."""
+    """Дописывает step_text.json: новые, изменившиеся и ранее неудавшиеся узлы генерируются, остальные берутся из файла.
+
+    Не прошло проверки за все попытки — отказ записывается в failed, остальные шаги продолжаются. Модель недоступна —
+    отказ записывается и для текущего шага, и для остальных, не обращаясь к модели повторно."""
     path = course_dir / "step_text.json"
-    nodes = load_step_text(path, layer.chapter)
+    old = read_step_text(path, layer.chapter)
     ids = {n.id for n in layer.nodes}
-    nodes = {k: v for k, v in nodes.items() if k in ids}
+    nodes = {k: v for k, v in (old.nodes if old else {}).items() if k in ids}
+    failed = {k: v for k, v in (old.failed if old else {}).items() if k in ids}
     viewer = (Path(__file__).resolve().parents[2] / VIEWER_FILE).read_text(encoding="utf-8")
     language = quote_language(layer)
+    down: Optional[str] = None
     for n in layer.nodes:
         if only is not None and n.id != only:
             continue
         h = node_hash(n)
         if n.id in nodes and nodes[n.id].hash == h:
             continue
-        nodes[n.id] = StepTextNode(hash=h, paragraphs=generate_node(n, language, viewer))
+        nodes.pop(n.id, None)
+        if down is not None:
+            failed[n.id] = StepTextFailure(hash=h, errors=[f"модель недоступна: {down}"])
+            continue
+        try:
+            nodes[n.id] = StepTextNode(hash=h, paragraphs=generate_node(n, language, viewer))
+            failed.pop(n.id, None)
+        except GenerationFailed as e:
+            failed[n.id] = StepTextFailure(hash=h, errors=e.errors)
+        except LlmError as e:
+            down = str(e)
+            failed[n.id] = StepTextFailure(hash=h, errors=[f"модель недоступна: {down}"])
     course_dir.mkdir(parents=True, exist_ok=True)
-    path.write_text(StepText(chapter=layer.chapter, nodes=nodes).model_dump_json(by_alias=True, indent=2), encoding="utf-8")
+    path.write_text(StepText(chapter=layer.chapter, nodes=nodes, failed=failed).model_dump_json(by_alias=True, indent=2),
+                    encoding="utf-8")
     return nodes

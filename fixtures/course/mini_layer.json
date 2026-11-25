@@ -3,6 +3,7 @@
   "source": "mini_test.md",
   "pdf_pages": ["10", "11", "12"],
   "generated_by": "фикстура П3, написана вручную",
+  "ext": {"core": {"title": "Сопротивление и насыщение пласта (фикстура)"}},
   "nodes": [
     {
       "id": "mini.resistivity_depends_on_fluid",
@@ -28,10 +29,10 @@
       ],
       "links": [
         {"type": "prerequisite", "target": "mini.porosity_basics"},
-        {"type": "refutes_misconception", "target": "misc.high_res_is_oil"},
+        {"type": "refutes_misconception", "target": "misc.high_res_oil"},
         {"type": "to_data", "target": "data.las_curve"}
       ],
-      "misconception": {"ref": "misc.high_res_is_oil", "text": "Высокое сопротивление всегда означает нефть.", "by_model": true},
+      "misconception": {"ref": "misc.high_res_oil", "text": "Высокое сопротивление всегда означает нефть.", "by_model": true},
       "data_meaning": {
         "from_chapter": {"text": "Кривая сопротивления — главный признак насыщения в модели.", "by_model": true},
         "breaks": {"text": "Плотные породы тоже дают высокое сопротивление без нефти.", "by_model": true},

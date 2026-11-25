@@ -83,7 +83,7 @@ def test_page_chip_is_inline_at_end_of_paragraph(tmp_path):
 def test_formula_is_labeled_monospace_without_katex(tmp_path):
     html = _read(_course(tmp_path), RES)
     assert re.search(r'<span class="formula-label">формула</span><code class="tex"', html)
-    assert "katex" not in html.lower()
+    assert "katex" in html.lower() and not re.search(r'(src|href)="(https?:)?//', html)   # KaTeX есть и только локальный
 
 
 def test_toc_collapsible_and_collapsed_on_narrow_screens(tmp_path):

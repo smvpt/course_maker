@@ -250,3 +250,10 @@ def test_cli_fails_loudly_without_layer(tmp_path):
     r = subprocess.run([sys.executable, "-m", "pipeline.course.build", "--ch", "nope", "--out", str(tmp_path), "--no-llm"],
                        cwd=ROOT, capture_output=True, text=True, encoding="utf-8", env=UTF8)
     assert r.returncode != 0 and "layer.json" in r.stderr
+
+
+def test_script_stores_and_restores_the_students_choice():
+    js = (ROOT / "pipeline/course/assets/course.js").read_text(encoding="utf-8")
+    assert '"answers"' in js and "store.set(K.answers, answers)" in js
+    assert "function applyAnswer" in js and "id in answers ? answers[id] : null" in js
+    assert "answers     {id задания: ответ ученика}" in js          # контракт описан в начале файла

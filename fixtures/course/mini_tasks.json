@@ -6,7 +6,7 @@
       "claim_ids": ["mini.resistivity_depends_on_fluid#c1"],
       "prompt": "Пласт показывает высокое сопротивление. Что можно уверенно сказать?",
       "options": [
-        {"id": "a", "text": "В нём точно нефть", "misconception": "misc.high_res_is_oil"},
+        {"id": "a", "text": "В нём точно нефть", "misconception": "misc.high_res_oil"},
         {"id": "b", "text": "Нужны ещё признаки: плотная порода тоже даёт высокое сопротивление", "misconception": null},
         {"id": "c", "text": "Он насыщен водой", "misconception": null}
       ],
@@ -19,7 +19,7 @@
       "options": [
         {"id": "a", "text": "Высокое сопротивление"},
         {"id": "b", "text": "Отрицательная аномалия ПС"},
-        {"id": "c", "text": "Высокая плотность породы", "misconception": "misc.high_res_is_oil"}
+        {"id": "c", "text": "Высокая плотность породы", "misconception": "misc.high_res_oil"}
       ],
       "answer": ["a", "b"], "explanation": "Нужны оба признака сразу, одного сопротивления мало.", "kind": "data"
     },

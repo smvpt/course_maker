@@ -31,5 +31,6 @@ def load_misconceptions(domain: str) -> list[dict]:
 
 def run(layer: Layer, ch_dir: Path, course_dir: Path, node: Optional[str], domain: Optional[str]) -> None:
     os.environ.setdefault("CH", layer.chapter)           # llm.py пишет главу в метрики из этой переменной
+    misconceptions = load_misconceptions(resolve_domain(ch_dir, domain))   # входы проверяем до первого вызова модели
     ensure_step_text(layer, course_dir, only=node)
-    ensure_tasks(layer, course_dir, load_misconceptions(resolve_domain(ch_dir, domain)), only=node)
+    ensure_tasks(layer, course_dir, misconceptions, only=node)

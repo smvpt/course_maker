@@ -22,7 +22,7 @@ from PIL import Image
 
 from contracts.models import Illustrations, Layer, Node, ReviewOutput, Routing, Task, Tasks
 from pipeline.course.order import break_cycles, group_parts, order_nodes, part_of
-from pipeline.course.steptext import Para, load_step_text, node_hash
+from pipeline.course.steptext import Para, node_hash, read_step_text
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
@@ -59,10 +59,11 @@ def load_inputs(ch_dir: Path) -> dict:
 
 # ---------------------------------------------------------------- задания (tasks.json делает задача 3 этого же модуля)
 
-def load_tasks(ch: str, course_dir: Path, layer: Layer) -> list[Task]:
+def load_tasks(ch: str, course_dir: Path, layer: Layer) -> tuple[list[Task], dict]:
+    """Задания и служебные данные генерации (ext.course: предупреждения, выброшенные задания)."""
     path = course_dir / "tasks.json"
     if not path.exists():
-        return []
+        return [], {}
     tasks = _read(path, Tasks)
     if tasks.chapter != ch:
         raise ValueError(f"{path}: chapter={tasks.chapter!r}, а запрошена глава {ch!r}")
@@ -73,7 +74,7 @@ def load_tasks(ch: str, course_dir: Path, layer: Layer) -> list[Task]:
         missing = [c for c in t.claim_ids if c not in claims[t.step_id]]
         if missing:
             raise ValueError(f"{path}: задание {t.id}: нет утверждений {missing} в шаге {t.step_id}")
-    return tasks.tasks
+    return tasks.tasks, tasks.ext.get("course", {})
 
 
 def answer_text(t: Task) -> str:
@@ -538,14 +539,24 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
     if generate:                                   # текст шагов и задания: модель только через pipeline.llm
         from pipeline.course import generate as gen
         gen.run(layer, ch_dir, course, node, domain)
-    step_text = load_step_text(course / "step_text.json", ch)
+    stored = read_step_text(course / "step_text.json", ch)
+    step_text = stored.nodes if stored else {}
     orig = {n.id: n for n in layer.nodes}
+    for nid, f in (stored.failed if stored else {}).items():       # текст не удался: шаг собран из полей слоя
+        if nid in orig and f.hash == node_hash(orig[nid]):
+            warn("step_text_fallback", f"текст шага {nid} не прошёл проверки, шаг собран из полей слоя: {f.errors[0]}",
+                 node=nid, errors=f.errors)
     fresh = {nid: st.paragraphs for nid, st in step_text.items() if nid in orig and st.hash == node_hash(orig[nid])}
     stale = [nid for nid in step_text if nid in orig and nid not in fresh]
     if stale:
         warn("stale_step_text", f"step_text.json устарел для шагов {', '.join(stale)} (узел изменился после генерации): "
              "они собраны из полей слоя, запусти сборку без --no-llm", nodes=stale)
-    tasks = load_tasks(ch, course, layer)
+    tasks, tasks_ext = load_tasks(ch, course, layer)
+    for w in tasks_ext.get("warnings", []) + tasks_ext.get("node_warnings", []):
+        warn(w["code"], w["message"], **{k: v for k, v in w.items() if k not in ("code", "message")})
+    for d in tasks_ext.get("dropped", []):
+        warn("task_dropped", f"задание {d['slot']} ({d['type']}) шага {d['node']} выброшено: {d['errors'][0]}",
+             node=d["node"], slot=d["slot"], type=d["type"], errors=d["errors"])
     tasks_by_step: dict[str, list[Task]] = {}
     for t in tasks:
         tasks_by_step.setdefault(t.step_id, []).append(t)
