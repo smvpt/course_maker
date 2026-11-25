@@ -140,3 +140,17 @@ def test_verdict_keeps_part_checks():
                                 "problem": "шире главы", "fix": "в чистых коллекторах"})
     assert v.checks[0].match is False
     assert Verdict.model_validate({"verdict": "supported"}).checks == []
+
+
+def test_spec_fields_resolves_paths():
+    spec = {"plaque": ["не в масштабе"], "exaggerations": ["ствол шире", "контакты резкие"],
+            "params": {"layers": [{"props": {"rho": 3}}, {"props": {"rho": 40}}]}, "beats": [{"action": {}}]}
+    got = external.spec_fields(spec, "plaque; exaggerations; params.layers[1].props.rho; beats[5].action")
+    assert got == {"plaque": ["не в масштабе"], "exaggerations": ["ствол шире", "контакты резкие"],
+                   "params.layers[1].props.rho": 40, "beats[5].action": "нет такого поля в спецификации"}
+
+
+def test_scene_fact_gets_its_fields(tmp_path, fake_llm):
+    external.review(_pkg(tmp_path), tmp_path / "a.json")
+    rel = json.loads(next(c for c in fake_llm if c["target"] == "S01")["vars"]["related"])
+    assert rel["fact_fields"] == {"params.depth_axis": "up"}

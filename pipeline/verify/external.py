@@ -7,6 +7,7 @@ LLM-критиком со своим контекстом; страницы и �
 """
 import argparse
 import json
+import re
 import sys
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -29,6 +30,28 @@ def _chapter_md(pkg_path, pkg):
 
 def _claim_view(c):
     return {"id": c.id, "text": c.text, "kind": c.kind, "page_pdf": c.page_pdf, "quote": c.quote}
+
+
+_PATH_TOKEN = re.compile(r"([^.\[\]]+)|\[(\d+)\]")
+NO_FIELD = "нет такого поля в спецификации"
+
+
+def spec_fields(spec, spec_path):
+    """Значения полей спецификации из spec_path («plaque; params.layers[2].props.rho») — модели под рукой."""
+    out = {}
+    for path in (p.strip() for p in (spec_path or "").split(";")):
+        if not path:
+            continue
+        cur = spec
+        for name, idx in _PATH_TOKEN.findall(path):
+            if idx:
+                cur = cur[int(idx)] if isinstance(cur, list) and int(idx) < len(cur) else NO_FIELD
+            else:
+                cur = cur.get(name, NO_FIELD) if isinstance(cur, dict) else NO_FIELD
+            if cur is NO_FIELD:
+                break
+        out[path] = cur
+    return out
 
 
 def _domain_checklist(domain):
@@ -89,6 +112,7 @@ def _job(ctx, target):
         checklist = "—"
         if it.type == "scene_fact":
             rel["scene_spec"] = ctx.scenes.get(it.video_id)
+            rel["fact_fields"] = spec_fields(rel["scene_spec"] or {}, it.spec_path)
             checklist = ctx.checklist
         related = json.dumps(rel, ensure_ascii=False, indent=1)
         return (it.type, d, page_context(ctx.pages, claim_pages), related, checklist, None,
