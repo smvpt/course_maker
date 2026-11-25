@@ -13,8 +13,8 @@
         "cause_effect": 2
       },
       "hook_short": false,
-      "template": "T3",
-      "why": "фикстура: шаблон без конфигурации (T3) — общие проверки video.spec"
+      "template": "T4",
+      "why": "фикстура: шаблон без конфигурации (T4 ещё не описан) — общие проверки video.spec"
     },
     {
       "node_id": "video_spec_fixture.en_quote",
@@ -28,8 +28,8 @@
         "cause_effect": 2
       },
       "hook_short": false,
-      "template": "T3",
-      "why": "фикстура: шаблон без конфигурации (T3) — общие проверки video.spec"
+      "template": "T4",
+      "why": "фикстура: шаблон без конфигурации (T4 ещё не описан) — общие проверки video.spec"
     },
     {
       "node_id": "video_spec_fixture.text_only",
@@ -60,6 +60,21 @@
       "hook_short": false,
       "template": "T1",
       "why": "фикстура: синтетический узел для стыковки video.spec с T1"
+    },
+    {
+      "node_id": "video_spec_fixture.delta_t3",
+      "format": "шортс",
+      "secondary_format": null,
+      "video_scores": {
+        "time": 2,
+        "invisible": 1,
+        "scale": 2,
+        "counterintuitive": 1,
+        "cause_effect": 2
+      },
+      "hook_short": false,
+      "template": "T3",
+      "why": "фикстура: синтетический узел для стыковки video.spec с T3"
     }
   ]
 }

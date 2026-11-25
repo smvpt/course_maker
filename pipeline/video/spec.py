@@ -144,6 +144,9 @@ def _template_problems(scene: SceneSpec, script: Script, node: Node, cfg: dict |
     if scene.template == "T2":
         from pipeline.video import t2_template
         problems += t2_template.check(scene, script, cfg)
+    if scene.template == "T3":
+        from pipeline.video import t3_template
+        problems += t3_template.check(scene, script, cfg)
     return problems
 
 

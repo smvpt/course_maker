@@ -271,3 +271,21 @@ def test_valid_ready_pair_still_reused_without_llm(tmp_path, builds, llm, monkey
     _ready(tmp_path, llm)
     monkeypatch.setitem(sys.modules, "pipeline.llm", None)
     assert _auto(tmp_path) == 0 and len(builds) == 2
+
+
+# ---------------------------------------------------------------- T3: готовая пара проходит проверки шаблона
+
+def test_ready_t3_pair_is_reused_and_rechecked(tmp_path, builds, llm, capsys, monkeypatch):
+    node = CH + ".delta_t3"
+    claim = node + "#c1"
+    llm([_answer("llm_script.json", lambda d: [p.update(claim_id=claim) for p in d["phrases"]])],
+        [_answer("llm_scene_t3.json")])
+    assert _auto(tmp_path, node) == 0
+    monkeypatch.setitem(sys.modules, "pipeline.llm", None)
+    assert _auto(tmp_path, node) == 0 and len(builds) == 2                   # повтор без LLM
+    d = _pair_dir(tmp_path, node)
+    spec = json.loads((d / "scene_spec.json").read_text(encoding="utf-8"))
+    spec["params"]["vertical_exaggeration"] = 20                             # плашки остались с «50»
+    (d / "scene_spec.json").write_text(json.dumps(spec, ensure_ascii=False), encoding="utf-8")
+    assert _auto(tmp_path, node) == 2 and len(builds) == 2
+    assert "T3" in capsys.readouterr().err

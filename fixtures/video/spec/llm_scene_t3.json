@@ -1,0 +1,138 @@
+{
+  "params": {
+    "depth_m": 20,
+    "foreset_angle_deg": 3,
+    "supply_m3_per_yr": 500000,
+    "initial_radius_m": 1000,
+    "t_end_yr": 1000,
+    "n_layers": 5,
+    "r_max_m": 5000,
+    "lobe_angle_deg": 180,
+    "vertical_exaggeration": 50,
+    "evolve_shot_ids": [
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "param_sources": {
+    "depth_m": {
+      "claim_ids": [
+        "video_spec_fixture.delta_t3#c1"
+      ],
+      "numbers": [
+        "20"
+      ],
+      "derivation": "из утверждения, м"
+    },
+    "foreset_angle_deg": {
+      "claim_ids": [
+        "video_spec_fixture.delta_t3#c1"
+      ],
+      "numbers": [
+        "3"
+      ],
+      "derivation": "из утверждения, градусы"
+    },
+    "supply_m3_per_yr": {
+      "claim_ids": [
+        "video_spec_fixture.delta_t3#c2"
+      ],
+      "numbers": [
+        "500000"
+      ],
+      "derivation": "из утверждения, м³/год"
+    }
+  },
+  "missing_params": [],
+  "objects": [
+    "план лопасти с береговыми линиями слоёв",
+    "разрез по оси лопасти (линия А–Б)",
+    "слои по возрасту",
+    "уровень моря",
+    "часы симуляции"
+  ],
+  "invariants": [
+    "план и разрез строятся из одного радиуса береговой линии",
+    "слои не пересекаются и не исчезают; молодые лежат на старых и мористее",
+    "объём каждого слоя равен притоку осадка за его интервал"
+  ],
+  "assumptions": [
+    "уровень моря постоянен, погружения и размыва нет"
+  ],
+  "exaggerations": [
+    "вертикаль разреза увеличена в 50 раз"
+  ],
+  "shots": [
+    {
+      "id": "s1",
+      "phrase_ids": [
+        "p1"
+      ],
+      "frame_class": "B",
+      "label": "симуляция",
+      "shows": "начальное тело",
+      "plaque": "не в масштабе: вертикаль увеличена в 50 раз"
+    },
+    {
+      "id": "s2",
+      "phrase_ids": [
+        "p2",
+        "p3"
+      ],
+      "frame_class": "B",
+      "label": "симуляция",
+      "shows": "рост лопасти",
+      "plaque": "не в масштабе: вертикаль увеличена в 50 раз"
+    },
+    {
+      "id": "s3",
+      "phrase_ids": [
+        "p4",
+        "p5"
+      ],
+      "frame_class": "B",
+      "label": "симуляция",
+      "shows": "проградация",
+      "plaque": "не в масштабе: вертикаль увеличена в 50 раз"
+    },
+    {
+      "id": "s4",
+      "phrase_ids": [
+        "p6",
+        "p7"
+      ],
+      "frame_class": "B",
+      "label": "симуляция",
+      "shows": "пауза, затем ответ",
+      "plaque": "не в масштабе: вертикаль увеличена в 50 раз"
+    },
+    {
+      "id": "s5",
+      "phrase_ids": [
+        "p8"
+      ],
+      "frame_class": "B",
+      "label": "симуляция",
+      "shows": "истинный масштаб",
+      "plaque": null
+    },
+    {
+      "id": "s6",
+      "phrase_ids": [
+        "p9"
+      ],
+      "frame_class": "B",
+      "label": "симуляция",
+      "shows": "вопрос на перенос",
+      "plaque": "не в масштабе: вертикаль увеличена в 50 раз"
+    }
+  ],
+  "true_scale_shot_id": "s5",
+  "convention": "отметки от уровня моря, глубина растёт вниз; расстояние от точки питания",
+  "data_sources": [
+    "расчёт по утверждениям узла"
+  ],
+  "references": [],
+  "historical_objects": []
+}

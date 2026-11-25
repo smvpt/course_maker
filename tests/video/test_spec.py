@@ -68,11 +68,11 @@ def test_success_writes_contract_files(tmp_path, llm, capsys):
     script = Script.model_validate_json((out / "script.json").read_text(encoding="utf-8"))
     scene = SceneSpec.model_validate_json((out / "scene_spec.json").read_text(encoding="utf-8"))
     assert (script.video_id, script.node_id, script.format) == (NODE + ".short", NODE, "short")
-    assert (scene.video_id, scene.node_id, scene.template) == (NODE + ".short", NODE, "T3")
+    assert (scene.video_id, scene.node_id, scene.template) == (NODE + ".short", NODE, "T4")
     assert [c["prompt"] for c in fake.calls] == ["video/script", "video/scene_spec"]
     v = scene.ext["video"]
     assert v["sources"][0]["claim_id"] == NODE + "#c1" and v["sources"][0]["page_or_dataset"] == "стр. 95"
-    assert v["route"]["template"] == "T3" and v["route"]["format"] == "шортс"
+    assert v["route"]["template"] == "T4" and v["route"]["format"] == "шортс"
     est = script.ext["video"]["duration_estimate"]
     assert 40 <= est["seconds"] <= 75 and "не замер" in est["method"]
     assert "оценка" in capsys.readouterr().out
@@ -252,7 +252,7 @@ def test_t1_missing_physical_params_are_a_clear_error_not_invented(tmp_path, llm
 
 def test_template_without_config_gets_generic_contract(tmp_path, llm):
     fake = llm()
-    assert _run(tmp_path) == 0                                 # узел с T2: конфигурации T2 пока нет
+    assert _run(tmp_path) == 0                                 # узел с T4: конфигурации T4 нет
     assert "не описаны" in fake.calls[1]["vars"]["template_contract"]
 
 
@@ -357,3 +357,53 @@ def test_build_and_spec_share_template_formats():
     from pipeline.video import build
     from pipeline.video.templates import TEMPLATE_FORMATS
     assert build.TEMPLATES is TEMPLATE_FORMATS
+
+
+# ---------------------------------------------------------------- стыковка с T3
+
+T3_NODE = CH + ".delta_t3"
+
+
+def _t3_script():
+    claim = T3_NODE + "#c1"
+    return _answer("llm_script.json", lambda d: [p.update(claim_id=claim) for p in d["phrases"]])
+
+
+def test_t3_spec_is_saved_and_passes_t3_checks(tmp_path, llm):
+    from pipeline.video.t3_template import prepare
+    from pipeline.video.templates import load_template_config
+    fake = llm([_t3_script()], [_answer("llm_scene_t3.json")])
+    assert _run(tmp_path, node=T3_NODE) == 0
+    contract = fake.calls[1]["vars"]["template_contract"]
+    assert "supply_m3_per_yr" in contract and "вертикаль увеличена" in contract
+    out = _out(tmp_path, T3_NODE + ".short")
+    script = Script.model_validate_json((out / "script.json").read_text(encoding="utf-8"))
+    scene = SceneSpec.model_validate_json((out / "scene_spec.json").read_text(encoding="utf-8"))
+    prep = prepare(scene, script, load_template_config(ROOT / "domain" / "geology" / "templates", "T3"))
+    assert scene.template == "T3" and prep["exaggeration"] == 50
+    assert set(scene.ext["video"]["param_sources"]) == {"depth_m", "foreset_angle_deg", "supply_m3_per_yr"}
+
+
+@pytest.mark.parametrize("mutate,needle", [
+    (lambda d: d["shots"][1].update(label="схема"), "симуляция"),
+    (lambda d: d["params"].update(n_layers=40), "n_layers"),
+    (lambda d: d["params"].update(r_max_m=2000), "за окно"),
+    (lambda d: d["param_sources"].pop("supply_m3_per_yr"), "supply_m3_per_yr"),
+    (lambda d: d["param_sources"]["depth_m"].update(numbers=["35"]), "35"),
+])
+def test_t3_incompatible_scene_fails_after_repair(tmp_path, llm, capsys, mutate, needle):
+    bad = _answer("llm_scene_t3.json", mutate)
+    fake = llm([_t3_script()], [bad, bad])
+    assert _run(tmp_path, node=T3_NODE) == 2
+    assert needle in capsys.readouterr().err and needle in fake.calls[2]["vars"]["feedback"]
+    assert not _out(tmp_path, T3_NODE + ".short").exists()
+
+
+def test_t3_missing_physical_params_are_a_clear_error(tmp_path, llm, capsys):
+    def missing(d):
+        d["params"].pop("supply_m3_per_yr")
+        d["param_sources"].pop("supply_m3_per_yr")
+        d["missing_params"] = ["supply_m3_per_yr"]
+    fake = llm([_t3_script()], [_answer("llm_scene_t3.json", missing)])
+    assert _run(tmp_path, node=T3_NODE) == 2
+    assert "supply_m3_per_yr" in capsys.readouterr().err and len(fake.calls) == 2

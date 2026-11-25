@@ -86,6 +86,8 @@ def _prepare_template(spec, script, sg: dict, templates_dir: Path) -> tuple[dict
         return {"title": spec.params["title"]}, {}, {}
     if spec.template == "T2":
         return _prepare_t2(spec, script, sg, templates_dir)
+    if spec.template == "T3":
+        return _prepare_t3(spec, script, sg, templates_dir)
     from pipeline.video import t1_template
     cfg = t1_template.load_config(templates_dir)
     prep = t1_template.prepare(spec, script, cfg)
@@ -118,6 +120,26 @@ def _prepare_t2(spec, script, sg: dict, templates_dir: Path) -> tuple[dict, dict
                             "нет данных": int((prep["rule_state"] == -1).sum())},
             "borehole_exaggeration": prep["exaggeration"]}
     return {"t2": prep, "chain": disp["chain"], "school_label": disp["school_label"]}, colors, info
+
+
+def _prepare_t3(spec, script, sg: dict, templates_dir: Path) -> tuple[dict, dict, dict]:
+    from pipeline.video import t3_template
+    from pipeline.video.templates import load_template_config
+    cfg = load_template_config(templates_dir, "T3")
+    if cfg is None:
+        raise VideoInputError(f"нет описания шаблона T3: {Path(templates_dir) / 'T3.json'}")
+    prep = t3_template.prepare(spec, script, cfg)
+    disp = cfg["display"]
+    colors = {"layer": _sg_color(sg, disp["layer_color"]), "initial": _sg_color(sg, disp["initial_body_color"]),
+              "basin": _sg_color(sg, disp["basin_color"]), "background": sg["background"]}
+    m = prep["model"]
+    info = {"model": cfg["model"], "assumptions": cfg["assumptions"], "limitations": cfg["limitations"],
+            "config": str(Path(templates_dir) / "T3.json"),
+            "params": {k: spec.params.get(k, d.get("default")) for k, d in cfg["params"].items()},
+            "foreset_length_m": round(m.foreset_length, 3), "r_start_m": m.r0_m, "r_end_m": round(prep["r_end"], 3),
+            "layer_times_yr": [float(x) for x in prep["layer_times"]],
+            "auto_checks": t3_template.auto_checks(prep)}
+    return {"t3": prep}, colors, info
 
 
 def _render(scene_cls, plan: dict, work: Path, w: int, h: int, fps: int, background: str) -> Path:
@@ -196,6 +218,14 @@ def _auto_checks(spec, tpl_info: dict) -> dict:
         auto["label_matches_source"] = (True, "t1_template.prepare: все кадры A/B с меткой «симуляция» — кадр считается моделью")
         auto["one_state_variable"] = (True, "по построению: карта и график — одна функция PressureModel.delta_p от одного "
                                             "времени (тест test_field_and_graph_come_from_one_function)")
+    if spec.template == "T3":
+        auto.update(tpl_info["auto_checks"])
+        auto["label_matches_source"] = (True, "t3_template.prepare: все кадры класса B с меткой «симуляция» — план и "
+                                              "разрез считаются моделью")
+        auto["one_state_variable"] = (True, "по построению: план и разрез — одна функция LobeModel.surface от одного "
+                                            "радиуса R(t) (тест test_plan_and_section_come_from_one_state)")
+        auto["depth_down"] = (True, "по построению: отметки разреза от уровня моря, глубина откладывается вниз; "
+                                    "глубина бассейна подписана")
     if spec.template == "T2":
         prov = tpl_info["dataset_provenance"]
         auto["label_matches_source"] = (True, f"t2_template.prepare: метка кадров «{tpl_info['data_label']}» соответствует "
@@ -355,6 +385,8 @@ def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, f
             "colors": {"text": sg["text"], "muted": sg["muted"], "panel": sg["panel"], **tpl_colors}}
     if spec.template == "T2":
         from pipeline.video.scene_t2 import T2Scene as scene_cls
+    elif spec.template == "T3":
+        from pipeline.video.scene_t3 import T3Scene as scene_cls
     elif spec.template == "T1":
         from pipeline.video.scene_t1 import T1Scene as scene_cls
     else:
