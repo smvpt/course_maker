@@ -1,0 +1,27 @@
+{% extends "base.html.j2" %}
+{% block title %}Карта связей — {{ chapter_title }}{% endblock %}
+{% block main %}
+<h1>Карта связей</h1>
+<p class="muted">Стрелка ведёт от шага-опоры к шагу, который на него опирается. Отступ — глубина опоры.</p>
+<div class="map-wrap">
+<svg class="map" viewBox="0 0 {{ m.w }} {{ m.h }}" role="img" aria-labelledby="map-t">
+  <title id="map-t">Граф опор между шагами главы</title>
+  <defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="ah"/></marker></defs>
+  {% for e in m.edges %}<path class="edge" d="{{ e }}" marker-end="url(#ah)"/>{% endfor %}
+  {% for b in m.boxes %}
+  <a href="step-{{ b.id }}.html" class="map-node" data-node="{{ b.id }}">
+    <title>{{ b.full }}</title>
+    <rect x="{{ b.x + 12 }}" y="{{ b.y }}" width="{{ b.w - 12 }}" height="{{ b.h }}" rx="8"/>
+    <text x="{{ b.x + 22 }}" y="{{ b.y + 25 }}"><tspan class="map-num">{{ b.num }}.</tspan> {{ b.label }}</text>
+  </a>
+  {% endfor %}
+</svg>
+</div>
+<h2>Опоры по шагам</h2>
+<ol class="map-list">
+{% for n in nodes %}
+  {% set pre = n.links | selectattr("type", "equalto", "prerequisite") | map(attribute="target") | select("in", titles) | list %}
+  <li><a href="step-{{ n.id }}.html">{{ titles[n.id] }}</a>{% if pre %} — опирается на: {% for p in pre %}<a href="step-{{ p }}.html">{{ titles[p] }}</a>{% if not loop.last %}, {% endif %}{% endfor %}{% else %} — без опор{% endif %}</li>
+{% endfor %}
+</ol>
+{% endblock %}

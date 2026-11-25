@@ -1,0 +1,144 @@
+{
+  "chapter": "mini_test",
+  "source": "mini_test.md",
+  "pdf_pages": ["10", "11", "12"],
+  "generated_by": "фикстура П3, написана вручную",
+  "ext": {"core": {"title": "Сопротивление и насыщение пласта (фикстура)"}},
+  "nodes": [
+    {
+      "id": "mini.resistivity_depends_on_fluid",
+      "order": 1,
+      "title": "Сопротивление пласта определяется флюидом в порах",
+      "title_novice": "Что меняет сопротивление пласта",
+      "why_here": {"text": "Опирается на понятие пористости из предыдущего шага.", "by_model": true},
+      "difficulty": {"primary": "Ф", "secondary": null},
+      "threshold": true,
+      "pages": [11],
+      "layers": {
+        "topic": {"text": "Сопротивление и флюид", "by_model": false},
+        "main": {"text": "Нефть почти не проводит ток, а солёная вода проводит хорошо. Поэтому нефтенасыщенный пласт имеет высокое сопротивление.", "by_model": true},
+        "mechanism": {"text": "Ток в породе идёт по воде в порах; чем меньше воды, тем выше сопротивление.", "by_model": true},
+        "practice": {"text": "Интерпретатор сравнивает сопротивление пласта с водоносным пластом той же породы.", "by_model": true},
+        "nuances": {"text": "", "by_model": false},
+        "deeper": [{"text": "Зависимость описывается формулой Арчи.", "by_model": true}]
+      },
+      "claims": [
+        {"id": "mini.resistivity_depends_on_fluid#c1", "text": "Нефтенасыщенный пласт имеет сопротивление в несколько раз выше водонасыщенного.", "kind": "observation", "page_pdf": 11, "page_print": 9, "quote": "сопротивление нефтенасыщенного пласта в 5-10 раз превышает сопротивление того же пласта при полном водонасыщении", "source_kind": "text", "by_model": false},
+        {"id": "mini.resistivity_depends_on_fluid#c2", "text": "Параметр насыщения равен отношению сопротивлений.", "kind": "inference", "page_pdf": 11, "page_print": 9, "quote": "P_н = \\rho_{нп} / \\rho_{вп}", "source_kind": "formula", "by_model": false},
+        {"id": "mini.resistivity_depends_on_fluid#c3", "text": "Таблица граничных значений параметра насыщения.", "kind": "observation", "page_pdf": 12, "page_print": 10, "quote": "| Порода | P_н граничное |\n|---|---|\n| песчаник | 3,5 |\n| алевролит | 2,8 |", "source_kind": "table", "by_model": false}
+      ],
+      "links": [
+        {"type": "prerequisite", "target": "mini.porosity_basics"},
+        {"type": "refutes_misconception", "target": "misc.high_res_oil"},
+        {"type": "to_data", "target": "data.las_curve"}
+      ],
+      "misconception": {"ref": "misc.high_res_oil", "text": "Высокое сопротивление всегда означает нефть.", "by_model": true},
+      "data_meaning": {
+        "from_chapter": {"text": "Кривая сопротивления — главный признак насыщения в модели.", "by_model": true},
+        "breaks": {"text": "Плотные породы тоже дают высокое сопротивление без нефти.", "by_model": true},
+        "hypotheses": [{"text": "Признак «сопротивление / сопротивление водоносного соседа» устойчивее сырого значения.", "by_model": true, "hypothesis": true}]
+      },
+      "it_analogy": {"text": "Как нормировка признака на базовую линию.", "breaks_where": "Базовый водоносный пласт есть не в каждой скважине.", "by_model": true},
+      "now_practice": null,
+      "inefficiency_lens": null,
+      "terms_introduced": ["параметр насыщения"],
+      "terms_used": ["пористость"],
+      "needs_scan": [],
+      "decision_on_data": {"features": ["высокое сопротивление", "отрицательная аномалия ПС"], "rule": "Оба признака вместе указывают на проницаемый нефтенасыщенный пласт.", "conclusion": "Интервал рекомендуют к испытанию.", "counterexample": "Плотный известняк: сопротивление высокое, аномалии ПС нет."},
+      "worked_examples": [{"page_pdf": 12, "condition": "Сопротивление пласта 40 Ом·м, водоносного — 5 Ом·м.", "steps": ["Делим 40 на 5.", "Сравниваем с граничным 3,5."], "result": "P_н = 8 > 3,5 — пласт нефтенасыщен.", "figure": "рис. 3, стр. 12"}],
+      "book_tasks": [{"number": "5.2", "page_pdf": 12, "text": "Определите характер насыщения пласта по диаграммам рис. 4.", "figure": "рис. 4, стр. 12"}],
+      "ext": {"core": {"part": "Часть 2. Насыщение", "ocr_fixes": [{"page_pdf": 12, "was": "3.S", "now": "3,5", "where": "таблица граничных значений"}]}}
+    },
+    {
+      "id": "mini.porosity_basics",
+      "order": 2,
+      "title": "Пористость горных пород",
+      "title_novice": "Что такое пористость",
+      "why_here": {"text": "Первое понятие главы.", "by_model": false},
+      "difficulty": {"primary": "М", "secondary": null},
+      "threshold": false,
+      "pages": [10],
+      "layers": {
+        "topic": {"text": "Пустоты в породе", "by_model": false},
+        "main": {"text": "Пористость — доля пустот в объёме породы.", "by_model": false},
+        "mechanism": {"text": "Пустоты образуются между зёрнами при накоплении осадка.", "by_model": true},
+        "practice": {"text": "Пористость оценивают по керну и по каротажу.", "by_model": true},
+        "nuances": {"text": "Не все поры сообщаются между собой.", "by_model": true},
+        "deeper": []
+      },
+      "claims": [
+        {"id": "mini.porosity_basics#c1", "text": "Пористость — отношение объёма пор к объёму породы.", "kind": "observation", "page_pdf": 10, "page_print": 8, "quote": "коэффициентом пористости называют отношение объёма пор к объёму породы", "source_kind": "text", "by_model": false}
+      ],
+      "links": [],
+      "misconception": null,
+      "data_meaning": {
+        "from_chapter": {"text": "Пористость — целевая переменная регрессии по каротажу.", "by_model": true},
+        "breaks": {"text": "", "by_model": true},
+        "hypotheses": []
+      },
+      "it_analogy": {"text": "Как доля незаполненных ячеек в таблице.", "breaks_where": "Поры бывают изолированными, ячейки — нет.", "by_model": true},
+      "terms_introduced": ["пористость"],
+      "pages_note": "поле сверх схемы, должно игнорироваться",
+      "ext": {"core": {"part": "Часть 1. Основы"}}
+    },
+    {
+      "id": "mini.reservoir_decision",
+      "order": 3,
+      "title": "Выделение коллектора по комплексу методов",
+      "title_novice": "Как решают: коллектор или нет",
+      "why_here": {"text": "Сводит предыдущие шаги в решение.", "by_model": true},
+      "difficulty": {"primary": "Р", "secondary": "И"},
+      "threshold": false,
+      "pages": [12],
+      "layers": {
+        "topic": {"text": "Решение по комплексу", "by_model": false},
+        "main": {"text": "Коллектор выделяют по нескольким методам сразу.", "by_model": true},
+        "mechanism": {"text": "Каждый метод отвечает на свой вопрос: проницаемость, насыщение, литология.", "by_model": true},
+        "practice": {"text": "", "by_model": false},
+        "nuances": {"text": "", "by_model": false},
+        "deeper": []
+      },
+      "claims": [
+        {"id": "mini.reservoir_decision#c1", "text": "Коллектор выделяют по совокупности признаков нескольких методов.", "kind": "inference", "page_pdf": 12, "page_print": 10, "quote": "выделение коллекторов производится по комплексу геофизических методов", "source_kind": "text", "by_model": false}
+      ],
+      "links": [{"type": "prerequisite", "target": "mini.resistivity_depends_on_fluid"}],
+      "data_meaning": {
+        "from_chapter": {"text": "", "by_model": true},
+        "breaks": {"text": "", "by_model": true},
+        "hypotheses": []
+      },
+      "it_analogy": {"text": "Как ансамбль моделей.", "breaks_where": "Методы физически связаны, ошибки не независимы.", "by_model": true},
+      "terms_introduced": [],
+      "ext": {"core": {"part": "Часть 2. Насыщение"}}
+    },
+    {
+      "id": "mini.history_note",
+      "order": 4,
+      "title": "Историческая справка о методе сопротивлений",
+      "why_here": {"text": "Контекст метода.", "by_model": true},
+      "difficulty": {"primary": "В", "secondary": null},
+      "threshold": false,
+      "pages": [10],
+      "layers": {
+        "topic": {"text": "История метода", "by_model": false},
+        "main": {"text": "Метод сопротивлений предложен в 1920-х годах.", "by_model": true},
+        "mechanism": {"text": "", "by_model": false},
+        "practice": {"text": "", "by_model": false},
+        "nuances": {"text": "", "by_model": false},
+        "deeper": []
+      },
+      "claims": [
+        {"id": "mini.history_note#c1", "text": "Метод сопротивлений появился в 1920-х годах.", "kind": "observation", "page_pdf": 10, "page_print": 8, "quote": "первые измерения сопротивления в скважине выполнены в 1927 году", "source_kind": "text", "by_model": false}
+      ],
+      "links": [],
+      "data_meaning": {
+        "from_chapter": {"text": "", "by_model": true},
+        "breaks": {"text": "", "by_model": true},
+        "hypotheses": []
+      },
+      "it_analogy": {"text": "Как первая версия протокола.", "breaks_where": "Старые приборы мерили иначе, данные несопоставимы напрямую.", "by_model": true},
+      "terms_introduced": [],
+      "ext": {"core": {"part": "Часть 1. Основы"}}
+    }
+  ]
+}

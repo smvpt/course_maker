@@ -1,0 +1,24 @@
+{% extends "base.html.j2" %}
+{% block title %}Карточки — {{ chapter_title }}{% endblock %}
+{% block main %}
+<h1>Карточки повторения</h1>
+<p class="muted">Вспомни суть шага, открой карточку и отметь: знаю или повторить. Отметки хранятся в этом браузере.</p>
+<p class="filter"><label><input type="checkbox" id="only-repeat"> Только «повторить»</label></p>
+<ol class="cards">
+{% for n in nodes %}
+  <li class="card" data-node="{{ n.id }}">
+    <details>
+      <summary><span class="num">{{ loop.index }}</span> {{ n.title_novice or n.title }}</summary>
+      <div class="card-back">
+        <p data-by="{{ by_of(n.layers.main) }}">{{ n.layers.main.text }}</p>
+        <p><a href="step-{{ n.id }}.html">Открыть шаг</a></p>
+      </div>
+    </details>
+    <div class="card-btns" role="group" aria-label="Оценка">
+      <button type="button" class="btn-small" data-mark="know" aria-pressed="false">{{ icon("check") }}<span>Знаю</span></button>
+      <button type="button" class="btn-small" data-mark="repeat" aria-pressed="false">{{ icon("arrow-left") }}<span>Повторить</span></button>
+    </div>
+  </li>
+{% endfor %}
+</ol>
+{% endblock %}

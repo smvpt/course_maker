@@ -1,0 +1,30 @@
+{% extends "base.html.j2" %}
+{% block title %}Задания — {{ chapter_title }}{% endblock %}
+{% block main %}
+<h1>Задания</h1>
+{% if not groups %}
+<div class="empty-state">
+  <p><strong>В этой главе заданий пока нет.</strong></p>
+  <p class="muted">Когда задания появятся, здесь будет список по шагам с отметками «верно / неверно». Пока можно читать шаги и повторять по карточкам.</p>
+  <p><a class="btn" href="index.html">{{ icon("house") }}<span>К пути по главе</span></a></p>
+</div>
+{% else %}
+<p class="muted">Все задания главы по шагам. Состояние — «верно», «неверно» или «не решено» — текстом и значком.</p>
+{% for s, items in groups %}
+<section class="task-group">
+  <h2><a href="step-{{ s.id }}.html">{{ loop.index }}. {{ s.title }}</a></h2>
+  <ol class="task-list">
+  {% for it in items %}
+    <li>
+      <a href="step-{{ s.id }}.html#task-{{ it.t.id }}">
+        <span class="tnum" data-task-chip="{{ it.t.id }}" data-state="none" aria-hidden="true">{{ it.i }}</span>
+        <span class="tprompt">{{ it.short }}</span>
+        <span class="tstate" data-task-state="{{ it.t.id }}">не решено</span>
+      </a>
+    </li>
+  {% endfor %}
+  </ol>
+</section>
+{% endfor %}
+{% endif %}
+{% endblock %}

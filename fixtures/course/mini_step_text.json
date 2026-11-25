@@ -1,0 +1,58 @@
+{
+  "chapter": "mini_test",
+  "nodes": {
+    "mini.resistivity_depends_on_fluid": {
+      "hash": "placeholder",
+      "paragraphs": [
+        {"block": "main", "text": "Нефть почти не проводит ток, а солёная вода проводит хорошо. Поэтому нефтенасыщенный пласт имеет высокое сопротивление.", "claim_ids": ["mini.resistivity_depends_on_fluid#c1"]},
+        {"block": "why", "text": "Этот шаг опирается на пористость: ток идёт по воде в порах.", "claim_ids": ["mini.resistivity_depends_on_fluid#c1"]},
+        {"block": "how", "text": "Ток в породе идёт по воде в порах. Чем меньше воды, тем выше сопротивление.", "claim_ids": ["mini.resistivity_depends_on_fluid#c1"]},
+        {"block": "how", "text": "Автор приводит оценку: сопротивление нефтенасыщенного пласта в 5-10 раз выше, чем при полном водонасыщении.", "claim_ids": ["mini.resistivity_depends_on_fluid#c1"]},
+        {"block": "how", "text": "Для оценки автор вводит [[параметр насыщения]] — отношение сопротивлений нефтеносного и водоносного пласта.", "claim_ids": ["mini.resistivity_depends_on_fluid#c2"], "terms": ["параметр насыщения"]},
+        {"block": "how", "text": "Граничные значения параметра насыщения для разных пород даны в таблице книги.", "claim_ids": ["mini.resistivity_depends_on_fluid#c3"]},
+        {"block": "practice", "text": "Интерпретатор сравнивает сопротивление пласта с водоносным пластом той же породы.", "claim_ids": ["mini.resistivity_depends_on_fluid#c1"]},
+        {"block": "misconception", "text": "Частая ошибка: считать, что высокое сопротивление всегда означает нефть.", "claim_ids": ["mini.resistivity_depends_on_fluid#c1"]},
+        {"block": "decision", "text": "Два признака вместе ведут от сигнала через правило к выводу о пласте.", "claim_ids": ["mini.resistivity_depends_on_fluid#c1"]},
+        {"block": "data", "text": "В данных кривая сопротивления служит главным признаком насыщения для модели.", "claim_ids": ["mini.resistivity_depends_on_fluid#c1"]},
+        {"block": "data", "text": "Но плотные породы тоже дают высокое сопротивление без нефти, и тогда признак ломается.", "claim_ids": ["mini.resistivity_depends_on_fluid#c1"]},
+        {"block": "data", "text": "Возможно, отношение к сопротивлению водоносного соседа устойчивее сырого значения.", "claim_ids": ["mini.resistivity_depends_on_fluid#c1"], "hypothesis": true},
+        {"block": "analogy", "text": "Это похоже на нормировку признака на базовую линию.", "claim_ids": ["mini.resistivity_depends_on_fluid#c1"]},
+        {"block": "analogy", "text": "Аналогия перестаёт работать там, где в скважине нет водоносного пласта для сравнения.", "claim_ids": ["mini.resistivity_depends_on_fluid#c1"], "limit": true},
+        {"block": "deeper", "text": "Глубже зависимость описывается формулой Арчи.", "claim_ids": ["mini.resistivity_depends_on_fluid#c1"]}
+      ]
+    },
+    "mini.porosity_basics": {
+      "hash": "placeholder",
+      "paragraphs": [
+        {"block": "main", "text": "[[Пористость]] — доля пустот в объёме породы. Пустоты образуются между зёрнами при накоплении осадка.", "claim_ids": ["mini.porosity_basics#c1"], "terms": ["пористость"]},
+        {"block": "why", "text": "Это первое понятие главы.", "claim_ids": ["mini.porosity_basics#c1"]},
+        {"block": "how", "text": "Коэффициент пористости — отношение объёма пор к объёму породы.", "claim_ids": ["mini.porosity_basics#c1"]},
+        {"block": "practice", "text": "Пористость оценивают по керну и по каротажу.", "claim_ids": ["mini.porosity_basics#c1"]},
+        {"block": "nuances", "text": "Не все поры сообщаются между собой.", "claim_ids": ["mini.porosity_basics#c1"]},
+        {"block": "data", "text": "Для данных пористость — целевая переменная регрессии по каротажу.", "claim_ids": ["mini.porosity_basics#c1"]},
+        {"block": "analogy", "text": "Это похоже на долю незаполненных ячеек в таблице.", "claim_ids": ["mini.porosity_basics#c1"]},
+        {"block": "analogy", "text": "Аналогия перестаёт работать, потому что поры бывают изолированными, а ячейки — нет.", "claim_ids": ["mini.porosity_basics#c1"], "limit": true}
+      ]
+    },
+    "mini.reservoir_decision": {
+      "hash": "placeholder",
+      "paragraphs": [
+        {"block": "main", "text": "Коллектор выделяют по нескольким методам сразу. Каждый метод отвечает на свой вопрос.", "claim_ids": ["mini.reservoir_decision#c1"]},
+        {"block": "why", "text": "Этот шаг сводит предыдущие шаги в одно решение.", "claim_ids": ["mini.reservoir_decision#c1"]},
+        {"block": "how", "text": "Методы отвечают на разные вопросы: о проницаемости, насыщении или литологии.", "claim_ids": ["mini.reservoir_decision#c1"]},
+        {"block": "analogy", "text": "Это похоже на ансамбль моделей.", "claim_ids": ["mini.reservoir_decision#c1"]},
+        {"block": "analogy", "text": "Аналогия перестаёт работать, потому что методы физически связаны и их ошибки не независимы.", "claim_ids": ["mini.reservoir_decision#c1"], "limit": true}
+      ]
+    },
+    "mini.history_note": {
+      "hash": "placeholder",
+      "paragraphs": [
+        {"block": "main", "text": "Метод сопротивлений предложен в 1920-х годах. Первые измерения в скважине сделаны в 1927 году.", "claim_ids": ["mini.history_note#c1"]},
+        {"block": "why", "text": "Этот шаг даёт исторический контекст метода.", "claim_ids": ["mini.history_note#c1"]},
+        {"block": "how", "text": "По данным книги, первые измерения сопротивления в скважине выполнили в 1927 году.", "claim_ids": ["mini.history_note#c1"]},
+        {"block": "analogy", "text": "Это похоже на первую версию протокола.", "claim_ids": ["mini.history_note#c1"]},
+        {"block": "analogy", "text": "Аналогия перестаёт работать, потому что старые приборы мерили иначе и данные нельзя сравнивать напрямую.", "claim_ids": ["mini.history_note#c1"], "limit": true}
+      ]
+    }
+  }
+}

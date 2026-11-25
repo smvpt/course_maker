@@ -1,0 +1,29 @@
+{# Общие куски: список шагов пути (боковая панель, шторка, обложка) и метка «автор / модель / гипотеза». #}
+{% macro badge(by) -%}
+<span class="by by-{{ by }}">{{ {"author": "автор", "model": "модель", "hypothesis": "гипотеза"}[by] }}</span>
+{%- endmacro %}
+
+{% macro path_list(steps, current=None) -%}
+<ol class="path-list">
+{% for s in steps %}
+  <li data-node="{{ s.id }}"{% if s.id == current %} class="current"{% endif %}>
+    <a href="step-{{ s.id }}.html"{% if s.id == current %} aria-current="step"{% endif %}>
+      <span class="num">{{ loop.index }}</span>
+      <span class="st-title">{{ s.title }}</span>
+      <span class="done-mark">{{ icon("check-circle") }}<span class="sr">пройден</span></span>
+    </a>
+  </li>
+{% endfor %}
+</ol>
+{%- endmacro %}
+
+{% macro main_nav(page, label) -%}
+{% set items = [("index", "index.html", "Путь", "house", None), ("tasks", "tasks.html", "Задания", "list-checks", None),
+                ("progress", "progress.html", "Прогресс", "chart-bar", None), ("summary", "summary.html", "Конспект", "article", None),
+                ("it", "it.html", "ИТ-задачи", "cpu", "ИТ")] %}
+<nav class="main-nav" aria-label="{{ label }}">
+  {% for key, href, text, ic, short in items %}
+  <a href="{{ href }}"{% if short %} aria-label="{{ text }}"{% endif %}{% if page == key or (key == "index" and page == "step") %} aria-current="page"{% endif %}>{{ icon(ic) }}<span>{{ text }}</span>{% if short %}<span class="short" aria-hidden="true">{{ short }}</span>{% endif %}</a>
+  {% endfor %}
+</nav>
+{%- endmacro %}

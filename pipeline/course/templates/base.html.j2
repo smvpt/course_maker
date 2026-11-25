@@ -1,0 +1,39 @@
+{% from "_macros.html.j2" import main_nav %}
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ chapter_title }}{% endblock %}</title>
+<script>
+/* тема до отрисовки, чтобы не мигало; localStorage может быть недоступен на file:// */
+(function () { try { var t = localStorage.getItem("course:theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {} })();
+</script>
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/course.css">
+{% block head %}{% endblock %}
+</head>
+<body data-ch="{{ ch }}" data-page="{{ page }}">
+<a class="skip" href="#content">К содержанию</a>
+<header class="top">
+  <a class="brand" href="index.html" title="К пути по главе"><span class="brand-title">{{ chapter_title }}</span></a>
+  {{ main_nav(page, "Разделы курса") }}
+  <div class="top-tools">
+    {% if n_tasks %}
+    <a class="counter" href="progress.html" id="solved-link" aria-label="Решено заданий: 0 из {{ n_tasks }}"><span aria-hidden="true">✦</span><span id="solved-count" aria-hidden="true">0</span></a>
+    {% endif %}
+    {% block tools %}{% endblock %}
+    <button type="button" id="toggle-theme" class="tool" aria-label="Сменить тему">
+      <span class="ic-dark">{{ icon("moon") }}</span><span class="ic-light">{{ icon("sun") }}</span>
+    </button>
+  </div>
+</header>
+<main id="content" tabindex="-1" class="{% block mainclass %}{% endblock %}">
+{% block main %}{% endblock %}
+</main>
+{% block after_main %}{% endblock %}
+<script type="application/json" id="course-meta">{{ meta | tojson }}</script>
+{% block scripts %}{% endblock %}
+<script src="assets/course.js"></script>
+</body>
+</html>

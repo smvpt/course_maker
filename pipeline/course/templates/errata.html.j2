@@ -1,0 +1,17 @@
+{% extends "base.html.j2" %}
+{% block title %}Лист опечаток — {{ chapter_title }}{% endblock %}
+{% block main %}
+<h1>Лист опечаток</h1>
+<p class="muted">Исправления распознавания текста книги. В таблицах шагов такие места подсвечены.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Лист опечаток">
+<table>
+  <thead><tr><th scope="col">Стр.</th><th scope="col">Было</th><th scope="col">Стало</th><th scope="col">Где</th><th scope="col">Шаг</th></tr></thead>
+  <tbody>
+  {% for e in errata %}
+    <tr><td>{{ e.page_pdf }}</td><td>{{ e.was }}</td><td>{{ e.now }}</td><td>{{ e.get("where") or "—" }}</td>
+        <td><a href="step-{{ e.node.id }}.html">{{ e.node.title_novice or e.node.title }}</a></td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}
