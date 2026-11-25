@@ -119,19 +119,6 @@ def test_build_normalises_terms_in_stored_step_text_too(tmp_path):
 
 # ---------------------------------------------------------------- второй заход: полоса шагов, правая колонка, иконки
 
-def test_step_strip_one_square_per_step_with_name_current_and_scroll(tmp_path):
-    _, _, html = _built(tmp_path)
-    strip = html[html.index('class="step-strip"'):html.index("</nav>", html.index('class="step-strip"'))]
-    assert strip.count("<li ") == 4                                       # по шагу главы
-    assert re.search(r'<a href="step-mini\.porosity_basics\.html" title="Шаг \d+: [^"]+" aria-label="Шаг \d+: [^"]+"', strip)
-    assert strip.count('aria-current="true"') == 1 and 'class="current"' in strip
-    css = (ROOT / "pipeline/course/assets/course.css").read_text(encoding="utf-8")
-    assert re.search(r"@media \(min-width: 1024px\)\s*\{\s*\.step-strip \{ display: block", css)
-    assert re.search(r"\.step-strip ol \{[^}]*overflow-x: auto", css) and ".step-strip li.done a" in css and ".step-strip li.current a" in css
-    js = (ROOT / "pipeline/course/assets/course.js").read_text(encoding="utf-8")
-    assert '.step-strip li[data-node]' in js and "— пройден" in js          # статус из того же localStorage, в доступном имени
-
-
 def test_right_column_card_source_button_and_mini_progress(tmp_path):
     _, _, html = _built(tmp_path)
     aside = html[html.index('class="step-aside"'):html.index("</aside>", html.index('class="step-aside"'))]
@@ -225,7 +212,7 @@ def test_summary_has_formulas_with_katex_and_is_printable(tmp_path):
     printed = css[css.rindex("@media print"):]
     assert ".sum-step { break-inside: auto; }" in printed and "max-height: 70mm" in printed
     prints = "".join(re.findall(r"@media print \{(.*?)\n\}", css, re.S))
-    for hidden in (".top", ".brand", ".main-nav", ".step-aside", ".step-strip"):
+    for hidden in (".top", ".brand", ".main-nav", ".step-aside"):
         assert hidden in prints, hidden
 
 

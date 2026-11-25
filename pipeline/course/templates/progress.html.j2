@@ -15,13 +15,13 @@
   <div class="mbar" id="mastery-bar" role="img" aria-label="Нет данных">
     <span class="seg seg-bad" data-seg-bar="repeat"></span><span class="seg seg-warn" data-seg-bar="reinforce"></span><span class="seg seg-ok" data-seg-bar="mastered"></span>
   </div>
-  <p id="mastery-legend" class="muted">Нужно повторить: 0 · Закрепить: 0 · Освоено: 0</p>
 </section>
 
 <div class="tabs" role="group" aria-label="Статус шагов">
-  <button type="button" data-tab="repeat" aria-pressed="true">Нужно повторить <span class="tab-n" data-tab-n="repeat">0</span></button>
-  <button type="button" data-tab="reinforce" aria-pressed="false">Закрепить <span class="tab-n" data-tab-n="reinforce">0</span></button>
-  <button type="button" data-tab="mastered" aria-pressed="false">Освоено <span class="tab-n" data-tab-n="mastered">0</span></button>
+  <button type="button" data-tab="new" aria-pressed="true" title="Не начато: ответов ещё нет">Не начато <span class="tab-n" data-tab-n="new">0</span></button>
+  <button type="button" data-tab="repeat" aria-pressed="false" title="Нужно повторить: есть неверные ответы" aria-label="Нужно повторить">Повторить <span class="tab-n" data-tab-n="repeat">0</span></button>
+  <button type="button" data-tab="reinforce" aria-pressed="false" title="Закрепить: часть заданий решена верно">Закрепить <span class="tab-n" data-tab-n="reinforce">0</span></button>
+  <button type="button" data-tab="mastered" aria-pressed="false" title="Освоено: все задания решены верно">Освоено <span class="tab-n" data-tab-n="mastered">0</span></button>
 </div>
 <ul id="progress-list" class="progress-list"></ul>
 <p id="progress-empty" class="empty" hidden>В этой вкладке пока пусто.</p>

@@ -658,6 +658,19 @@ def heading_title(ch_dir: Path | None) -> str | None:
     return None
 
 
+def book_label(layer: Layer, ch_dir: Path | None = None) -> str | None:
+    """«Автор — книга» для надписи на главной. Поля поставляет П1: ext["core"]["book"] / ["author"] слоя или те же поля в units.json
+    (верхний уровень или ext.core). Нет ни одного — None: курс пишет «Курс по главе книги»."""
+    sources = [layer.ext.get("core", {})]
+    units_path = ch_dir / "units.json" if ch_dir else None
+    if units_path is not None and units_path.exists():
+        u = json.loads(units_path.read_text(encoding="utf-8"))
+        sources += [u, u.get("ext", {}).get("core", {})]
+    author = next((s["author"].strip() for s in sources if isinstance(s.get("author"), str) and s["author"].strip()), "")
+    book = next((s["book"].strip() for s in sources if isinstance(s.get("book"), str) and s["book"].strip()), "")
+    return " — ".join(x for x in (author, book) if x) or None
+
+
 def chapter_title(layer: Layer, ch_dir: Path | None = None) -> str:
     """Название главы: layer.ext["core"]["title"] (поставляет П1) → первый заголовок главы из units.json → id главы."""
     return layer.ext.get("core", {}).get("title") or heading_title(ch_dir) or layer.chapter
@@ -812,7 +825,7 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
     meta = {"ch": ch, "steps": steps,
             "tasks": [{"id": t.id, "step_id": t.step_id, "claim_ids": t.claim_ids, "type": t.type, "kind": t.kind,
                        "prompt": mask_gaps(t.prompt), "explanation": t.explanation} for t in tasks]}
-    common = {"ch": ch, "chapter_title": chapter_title(layer, ch_dir), "has_errata": bool(errata), "steps": steps,
+    common = {"ch": ch, "chapter_title": chapter_title(layer, ch_dir), "book_label": book_label(layer, ch_dir), "has_errata": bool(errata), "steps": steps,
               "n_tasks": len(tasks), "meta": meta, "total_minutes": sum(s["minutes"] for s in steps)}
     titles = {n.id: n.title_novice or n.title for n in ordered}
 
@@ -838,7 +851,8 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
     render("mistakes.html", "mistakes.html.j2", page="mistakes")
     render("cards.html", "cards.html.j2", nodes=ordered, page="cards")
     sum_extras = {n.id: {"formulas": [c for c in n.claims if c.source_kind == "formula"],
-                         "illus": [{"il": il, "src": f"assets/illus/{Path(il.file).name}"} for il in inp["illus"].get(n.id, [])[:2]]}
+                         "illus": [{"il": il, "src": f"assets/illus/{Path(il.file).name}"}
+                               for il in inp["illus"].get(n.id, []) if il.ext.get("kind") != "chain"][:2]}
                   for n in ordered}                      # конспект: формулы и иллюстрации шага (файлы копирует страница шага)
     render("summary.html", "summary.html.j2", nodes=ordered, page="summary", extras=sum_extras,
            has_formulas=any(e["formulas"] for e in sum_extras.values()))

@@ -49,8 +49,8 @@
 {%- endmacro %}
 
 {% block tools %}
-<button type="button" id="toggle-by" class="tool" aria-pressed="false" title="Подсветить: автор / модель / гипотезы">
-  {{ icon("user") }}<span class="sr">автор</span>/{{ icon("robot") }}<span class="sr">модель</span>
+<button type="button" id="toggle-by" class="tool" aria-pressed="false" title="Автор / модель: подсветить, что написал автор книги, а что модель" aria-label="Автор / модель: подсветить, что написал автор книги, а что модель">
+  {{ icon("user") }}{{ icon("robot") }}<span class="tool-label" aria-hidden="true">Автор / модель</span>
 </button>
 {% endblock %}
 
@@ -62,17 +62,8 @@
 </aside>
 
 <article class="step" data-node="{{ n.id }}">
-<nav class="step-strip" aria-label="Шаги главы">
-  <ol>
-  {% for s in steps %}
-    <li data-node="{{ s.id }}" data-title="{{ s.title }}"{% if s.id == n.id %} class="current"{% endif %}>
-      <a href="step-{{ s.id }}.html" title="Шаг {{ loop.index }}: {{ s.title }}" aria-label="Шаг {{ loop.index }}: {{ s.title }}"{% if s.id == n.id %} aria-current="true"{% endif %}><span class="strip-n">{{ loop.index }}</span><span class="strip-ok">{{ icon("check") }}</span></a>
-    </li>
-  {% endfor %}
-  </ol>
-</nav>
 <header class="step-head">
-  <p class="kicker">Шаг {{ idx + 1 }} из {{ steps | length }} · ≈ {{ v.minutes }} мин{% if v.pages_label %} · {{ v.pages_label }}{% endif %}{% if n.threshold %} · <span class="threshold">пороговое понятие</span>{% endif %}</p>
+  <p class="kicker">Шаг {{ idx + 1 }} из {{ steps | length }} · ≈ {{ v.minutes }} мин{% if v.pages_label %} · {{ v.pages_label }}{% endif %}{% if n.threshold %} · <span class="threshold" title="без него следующие шаги будут непонятны">ключевое понятие</span>{% endif %}</p>
   <h1>{{ v.title }}</h1>
   {% if has_text(n.layers.topic) %}<p class="topic subtitle" data-by="{{ by_of(n.layers.topic) }}">{{ n.layers.topic.text }}</p>{% endif %}
   {% if v.prereqs %}
@@ -428,7 +419,7 @@
     {% if n.claims %}<button type="button" class="pg pg-btn" data-claim="{{ (v.text_claims[0] if v.text_claims else n.claims[0]).id }}">{{ icon("magnifying-glass") }}Проверь по книге</button>{% endif %}
     <div class="side-progress">
       <div class="bar slim"><span id="step-bar-side"></span></div>
-      <p id="step-progress-side" class="muted">Прогресс шага: 0 из {{ v.check_items }}</p>
+      <p id="step-progress-side" class="muted">Прочитано: нет{% if v.tasks %} · задания 0 из {{ v.tasks | length }}{% endif %}</p>
     </div>
   </div>
 </aside>

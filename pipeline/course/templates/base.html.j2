@@ -21,7 +21,7 @@
   {{ main_nav(page, "Разделы курса") }}
   <div class="top-tools">
     {% if n_tasks %}
-    <a class="counter" href="progress.html" id="solved-link" aria-label="Решено заданий: 0 из {{ n_tasks }}"><span aria-hidden="true" class="spark">{{ icon("sparkle") }}</span><span id="solved-count" aria-hidden="true">0</span></a>
+    <a class="counter" href="progress.html" id="solved-link" title="Решено заданий" aria-label="Решено заданий: 0 из {{ n_tasks }}"><span aria-hidden="true" class="spark">{{ icon("sparkle") }}</span><span id="solved-count" aria-hidden="true">0</span><span class="counter-label" aria-hidden="true">решено</span></a>
     {% endif %}
     {% block tools %}{% endblock %}
     <button type="button" id="toggle-theme" class="tool" aria-label="Сменить тему">

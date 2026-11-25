@@ -2,7 +2,7 @@
 {% block main %}
 {% set part_names = parts | map(attribute=0) | unique | list %}
 <section class="cover hero">
-  <p class="kicker">Демо-курс по главе</p>
+  <p class="kicker">{% if book_label %}Курс по книге: {{ book_label }}{% else %}Курс по главе книги{% endif %}</p>
   <h1>{{ chapter_title }}</h1>
   <p class="meta">{{ steps | length }} {{ steps | length | plural("шаг", "шага", "шагов") }} · ≈ {{ total_minutes }} мин{% if n_tasks %} · {{ n_tasks }} {{ n_tasks | plural("задание", "задания", "заданий") }}{% endif %}{% if part_names | length > 1 %} · частей: {{ part_names | length }}{% endif %}</p>
 
@@ -28,7 +28,7 @@
     {% for pn in part_names %}<button type="button" data-part="{{ pn }}" aria-pressed="false">{{ pn }}</button>{% endfor %}
   </div>
   {% endif %}
-  <div class="segment" role="group" aria-label="Какие шаги показывать">
+  <div class="segment" role="group" aria-label="Какие шаги показывать" hidden>
     <button type="button" data-seg="all" aria-pressed="true">Все</button>
     <button type="button" data-seg="repeat" aria-pressed="false">Повторить</button>
   </div>
@@ -38,7 +38,7 @@
 {% set ns = namespace(i=0) %}
 {% for part, nodes in parts %}
   <section class="part" data-part="{{ part }}">
-    <h2>{{ part }}</h2>
+    {% if part_names | length > 1 %}<h2>{{ part }}</h2>{% endif %}
     <ol class="steps-list timeline">
     {% for n in nodes %}
       {% set s = steps[ns.i] %}

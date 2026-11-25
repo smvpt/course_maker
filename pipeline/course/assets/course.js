@@ -74,13 +74,14 @@
     });
     return st;
   }
-  /* освоено: все задания верно; повторить: есть неверное; закрепить: остальное */
+  /* не начато: ответов нет; повторить: есть неверные; освоено: все верно; закрепить: часть верно, неверных нет */
   function mastery(stepId) {
     var st = stepStats(stepId);
     if (!st.total) return null;
     if (st.ok === st.total) return "mastered";
     if (st.bad > 0) return "repeat";
-    return "reinforce";
+    if (st.ok > 0) return "reinforce";
+    return "new";
   }
   function needsRepeat(stepId) { return cardMarks[stepId] === "repeat" || stepStats(stepId).openBad > 0; }
   var STATE_RU = { ok: "верно", bad: "неверно", none: "не решено" };
@@ -128,13 +129,6 @@
   }
   updateCounter();
   document.querySelectorAll("li[data-node]").forEach(function (li) { li.classList.toggle("done", isDone(li.dataset.node)); });
-  document.querySelectorAll(".step-strip li[data-node]").forEach(function (li, i) {          /* полоса шагов: статус в доступное имя */
-    var a = li.querySelector("a");
-    a.setAttribute("aria-label", "Шаг " + (i + 1) + ": " + li.dataset.title + (li.classList.contains("done") ? " — пройден" : ""));
-    a.title = a.getAttribute("aria-label");
-  });
-  var cur = document.querySelector(".step-strip li.current");
-  if (cur && cur.scrollIntoView) { var ol = cur.parentElement; ol.scrollLeft = Math.max(0, cur.offsetLeft - ol.clientWidth / 2 + cur.offsetWidth / 2); }
   document.querySelectorAll("[data-task-chip]").forEach(function (chip) {
     var s = taskState(chip.dataset.taskChip);
     chip.dataset.state = s;
@@ -408,7 +402,9 @@
       var sideBar = document.getElementById("step-bar-side");
       if (sideBar) {
         sideBar.style.width = Math.round(100 * okCount / boxes.length) + "%";
-        document.getElementById("step-progress-side").textContent = "Прогресс шага: " + okCount + " из " + boxes.length;
+        var readBox = document.querySelector('[data-check="read"]');
+        document.getElementById("step-progress-side").textContent = (readBox && readBox.checked ? "Прочитано" : "Прочитано: нет") +
+          (taskList.length ? " · задания " + stepStats(nodeId).ok + " из " + taskList.length : "");
       }
       var all = okCount === boxes.length;
       document.getElementById("done-banner").hidden = !all;
@@ -816,6 +812,8 @@
     }
     bindGroup(".part-tabs button", "part", "part");
     bindGroup(".segment button", "seg", "seg");
+    var seg = document.querySelector(".segment");
+    if (seg) seg.hidden = !meta.steps.some(function (s) { return needsRepeat(s.id); });      // фильтр нужен, только когда есть что повторять
   }
 
   /* ---------- карточки ---------- */
@@ -842,18 +840,19 @@
   if (page === "progress" && meta.tasks.length) renderProgress();
 
   function renderProgress() {
-    var groups = { repeat: [], reinforce: [], mastered: [] };
+    var KEYS = ["new", "repeat", "reinforce", "mastered"];
+    var groups = { new: [], repeat: [], reinforce: [], mastered: [] };
     meta.steps.forEach(function (s) { var m = mastery(s.id); if (m) groups[m].push(s); });
-    var total = groups.repeat.length + groups.reinforce.length + groups.mastered.length;
+    var total = KEYS.reduce(function (n, k) { return n + groups[k].length; }, 0);
     var pct = Math.round(100 * groups.mastered.length / total);
     document.getElementById("mastery-pct").textContent = pct + "% освоено";
-    ["repeat", "reinforce", "mastered"].forEach(function (k) {
-      document.querySelector('[data-seg-bar="' + k + '"]').style.width = (100 * groups[k].length / total) + "%";
+    KEYS.forEach(function (k) {
+      var bar = document.querySelector('[data-seg-bar="' + k + '"]');
+      if (bar) bar.style.width = (100 * groups[k].length / total) + "%";          // «не начато» — пустое место полосы
       document.querySelector('[data-tab-n="' + k + '"]').textContent = String(groups[k].length);
     });
-    var legend = "Нужно повторить: " + groups.repeat.length + " · Закрепить: " + groups.reinforce.length + " · Освоено: " + groups.mastered.length;
-    document.getElementById("mastery-legend").textContent = legend;
-    document.getElementById("mastery-bar").setAttribute("aria-label", pct + "% освоено. " + legend);
+    document.getElementById("mastery-bar").setAttribute("aria-label", pct + "% освоено. Не начато: " + groups.new.length +
+      ", нужно повторить: " + groups.repeat.length + ", закрепить: " + groups.reinforce.length + ", освоено: " + groups.mastered.length);
 
     var tabs = document.querySelectorAll(".tabs button");
     var list = document.getElementById("progress-list");
@@ -865,7 +864,7 @@
       empty.hidden = groups[tab].length > 0;
     }
     tabs.forEach(function (b) { b.addEventListener("click", function () { show(b.dataset.tab); }); });
-    show(["repeat", "reinforce", "mastered"].filter(function (k) { return groups[k].length; })[0]);
+    show(KEYS.filter(function (k) { return groups[k].length; })[0]);                // открыт первый непустой
   }
 
   function progressRow(s) {

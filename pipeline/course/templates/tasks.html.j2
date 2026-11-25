@@ -10,7 +10,7 @@
   <p><a class="btn" href="index.html">{{ icon("house") }}<span>К пути по главе</span></a></p>
 </div>
 {% else %}
-<p class="muted">Все задания главы по шагам. Состояние — «верно», «неверно» или «не решено» — текстом и значком.</p>
+<p class="muted">Отвечайте по шагам — после ответа будет разбор и ссылка на страницу книги.</p>
 {% for s, items in groups %}
 <section class="task-group">
   <h2><a href="step-{{ s.id }}.html">{{ loop.index }}. {{ s.title }}</a></h2>

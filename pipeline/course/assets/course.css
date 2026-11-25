@@ -377,7 +377,7 @@ body.only-repeat .card:not(.mark-repeat) { display: none; }
   .sum-step { break-inside: avoid; }
   .formula { overflow: visible; break-inside: avoid; }
   .illus, .illus img { break-inside: avoid; max-width: 100%; }
-  .brand, .main-nav, .top-tools, .step-aside, .step-strip, .counter { display: none !important; }
+  .brand, .main-nav, .top-tools, .step-aside, .counter { display: none !important; }
   a { text-decoration: none; }
   .block-main, .side-card, .task, .card-box { box-shadow: none; }
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -533,24 +533,10 @@ main { padding: var(--sp-4) var(--sp-4) 6.5rem; }
 /* порог. понятие не ломается пополам */
 .threshold { display: inline-block; white-space: nowrap; }
 
-/* полоса шагов, как в Stepik (только десктоп) */
-.step-strip { display: none; }
-.step-aside { display: none; }
 @media (min-width: 1024px) {
-  .step-strip { display: block; margin: 0 0 var(--sp-4); }
-  .step-strip ol { display: flex; gap: var(--sp-2); margin: 0; padding: var(--sp-1) 0 var(--sp-2); list-style: none; overflow-x: auto; scrollbar-width: thin; scroll-behavior: smooth; }
-  .step-strip li { flex: none; }
-  .step-strip a { position: relative; display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 8px;
-    background: var(--panel); color: var(--text); font-weight: 600; text-decoration: none; }
-  .step-strip a:hover { border-color: var(--ui-link); }
-  .step-strip .strip-ok { display: none; }
-  .step-strip li.done a { background: var(--ui-ok); border-color: var(--ui-ok); color: var(--bg); }
-  .step-strip li.done .strip-n { display: none; }
-  .step-strip li.done .strip-ok { display: inline-flex; }
-  .step-strip li.current a { border: 2px solid var(--ui-accent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--ui-accent) 25%, transparent); }
-  .step-strip li.done.current a { border-color: var(--ui-accent); }
   main.with-side > .step { margin: 0 auto; width: 100%; }
 }
+.step-aside { display: none; }
 @media (min-width: 1280px) {
   main.with-side { max-width: 88rem; grid-template-columns: 17.5rem minmax(0, 1fr) 15rem; }
   main.with-side > .step { margin: 0; }
@@ -618,3 +604,26 @@ main { padding: var(--sp-4) var(--sp-4) 6.5rem; }
   .illus figcaption { font-size: 10pt; }
   li { break-inside: avoid; }
 }
+
+
+/* ====================== третий заход: понятность ====================== */
+/* плашки «автор» / «модель» — только при включённом переключателе; «гипотеза» видна всегда (честность) */
+body:not(.show-by) .by-author, body:not(.show-by) .by-model { display: none; }
+/* подписи в шапке: на десктопе текст, на мобильном — иконка и title */
+.tool-label, .counter-label { display: none; }
+@media (min-width: 1100px) {
+  .tool-label, .counter-label { display: inline; font-size: 1rem; }
+  #toggle-by { padding: 0 var(--sp-3); gap: var(--sp-2); }
+  .counter-label { color: var(--muted); font-weight: 600; }
+}
+/* карточки повторения: лицевая сторона (название) → «Показать суть» → «Знаю / Повторить» */
+.card summary { list-style: none; display: flex; align-items: center; gap: var(--sp-3); }
+.card summary::-webkit-details-marker { display: none; }
+.card-title { flex: 1 1 auto; min-width: 0; font-weight: 600; }
+.reveal { flex: none; display: inline-flex; align-items: center; gap: var(--sp-1); color: var(--ui-link); font-weight: 600; }
+.reveal .when-open { display: none; }
+.card details[open] .reveal .when-open { display: inline; }
+.card details[open] .reveal .when-closed { display: none; }
+.card details[open] .reveal .ic { transform: rotate(180deg); }
+.card details:not([open]) ~ .card-btns { display: none; }
+.fine { margin-top: var(--sp-6); color: var(--muted); font-size: 1rem; }
