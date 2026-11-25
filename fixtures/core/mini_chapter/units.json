@@ -1,0 +1,437 @@
+{
+  "ext": {},
+  "chapter": "barenblatt_mini",
+  "source": "fixtures/core/mini_chapter/chapter.md",
+  "language": "ru",
+  "domain": "geology",
+  "pdf_pages": [
+    38,
+    39,
+    40
+  ],
+  "units": [
+    {
+      "ext": {},
+      "unit_id": "p038.01",
+      "kind": "formula",
+      "page_pdf": 38,
+      "text": "$$- dt \\int_{\\Gamma} dl \\int_{z_0}^{h+z_0} u_n dz = - dt \\int_{\\Gamma} q_n dl, \\quad \\boldsymbol{q} = \\int_{z_0}^{z_0+h} \\boldsymbol{u} dz, \\quad (11.77)$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.02",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "text": "где $\\Gamma$ — замкнутый контур, ограничивающий площадку $S$; $u_n$ — нормальная компонента скорости $\\boldsymbol{u}$; $q_n$ — нормальная компонента вектора потока $\\boldsymbol{q}$ на $\\Gamma$.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.03",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "text": "Приравнивая (11.76) и (11.77), по формуле преобразования контурного интеграла в интеграл по площади и с учетом того, что площадка $S$ может быть выбрана произвольно, получаем уравнение",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.04",
+      "kind": "formula",
+      "page_pdf": 38,
+      "text": "$$m h_{,t} + \\text{div}_2 \\boldsymbol{q} = 0. \\quad (11.78)$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.05",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "text": "Заметим, что уравнение (11.78) — точное, справедливое независимо от каких-либо допущений.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.06",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "text": "Для установления связи между $q$ и $h$ воспользуемся предположением о пологости движения.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.07",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "text": "По предыдущему, давление в этом случае распределяется по вертикали с точностью до малых величин по гидростатическому закону, так что величина $H = z + p/\\rho g$ вдоль каждой вертикали будет постоянна и равна $h + z_0$:",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.08",
+      "kind": "formula",
+      "page_pdf": 38,
+      "text": "$$H = h + z_0 + O(u_z/C); \\quad \\boldsymbol{u} = - C \\text{grad}_2(h + z_0) + O(u_z).$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.09",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "text": "Таким образом, пренебрегая малыми величинами, скорость $\\boldsymbol{u}$ можно вынести из-под знака интегрирования по вертикали в соотношении (11.77), определяющем вектор $q$. Получаем",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.10",
+      "kind": "formula",
+      "page_pdf": 38,
+      "text": "$$\\boldsymbol{q} = - C h \\text{grad}_2(h + z_0). \\quad (11.79)$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.11",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "text": "Подставляя (11.79) в (11.78), имеем",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.12",
+      "kind": "formula",
+      "page_pdf": 38,
+      "text": "$$h_{,t} = (C/m) \\text{div}(h \\text{grad}(h + z_0)). \\quad (11.80)$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.13",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "text": "В частности, если поверхность водоупора представляет собой горизонтальную плоскость ($z_0 = 0$), уравнение (11.80) принимает вид:",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.14",
+      "kind": "formula",
+      "page_pdf": 38,
+      "text": "$$h_{,t} = a \\Delta h^2, \\quad a = C/2m = 2^{-1} k \\rho g (\\mu m)^{-1}. \\quad (11.81)$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.15",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "text": "Уравнения (11.80) и (11.81) были впервые получены Буссинеском.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.16",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "text": "Для стационарных движений уравнение Буссинеска приводится к уравнению Лапласа для квадратичной функции напора:",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.17",
+      "kind": "formula",
+      "page_pdf": 38,
+      "text": "$$\\Delta \\chi = 0, \\quad \\chi = 2^{-1} (h^2 + 2 h z_0). \\quad (11.82)$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.18",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "text": "Теория пологих безнапорных движений приближенная. Несмотря на это, при фильтрации в области, ограниченной цилиндрической поверхностью с вертикальными образующими и горизонтальным водоупором, на основе такой теории получаются точные значения дебитов и точные распределения по плоскости вектора интегрального потока $\\boldsymbol{q}$ [34].",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.19",
+      "kind": "heading",
+      "page_pdf": 38,
+      "text": "## § 4. Нестационарное движение однородной сжимаемой жидкости. Линейная теория$^1$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.20",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "text": "Постановка основных задач. Простейший и наиболее изученный случай нестационарной фильтрации — движение однородной слабосжимаемой жидкости в упруго деформируемом пласте. Это движение (см. § 1.4) описывается уравнением нъезопроводности для давления $p$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.21",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "text": "$^1$ См. также [47, 6, 12, 44].",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.01",
+      "kind": "formula",
+      "page_pdf": 39,
+      "text": "$$\\partial p/\\partial t = \\varkappa (\\partial^2 p/\\partial x^2 + \\partial^2 p/\\partial y^2 + \\partial^2 p/\\partial z^2) \\equiv \\varkappa \\Delta p, \\quad (\\text{II.83})$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.02",
+      "kind": "paragraph",
+      "page_pdf": 39,
+      "text": "по форме совпадающим с классическим уравнением теплопроводности.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.03",
+      "kind": "paragraph",
+      "page_pdf": 39,
+      "text": "Область, в которой ищется распределение давления в жидкости, та же, что рассматривалась для стационарных течений: пористый пласт, часть границ которого непроницаема, а другая часть сообщается с вскрывающими пласт скважинами и соседними пластами.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.04",
+      "kind": "paragraph",
+      "page_pdf": 39,
+      "text": "Граничные условия в задачах линейной нестационарной фильтрации задаются на границах того же типа, что и в задачах напорной стационарной фильтрации: непроницаемых границах, скважинах, галереях, контурах питания. Однако теперь давление, напор или расход, задаваемые на скважинах или галереях, являются, вообще говоря, функциями времени. Часто в модельных задачах задается мгновенное изменение давления или расхода на скважине или галерее от начального до некоторого конечного, что соответствует физически быстрому пуску или закрытию скважины или галереи.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.05",
+      "kind": "paragraph",
+      "page_pdf": 39,
+      "text": "Все принятые обычно варианты граничных условий укладываются в общую форму",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.06",
+      "kind": "formula",
+      "page_pdf": 39,
+      "text": "$$(ap + b\\partial p/\\partial n) = f(x, y, z, t), a^2 + b^2 \\neq 0; b/a \\geqslant 0. \\quad (\\text{II.84})$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.07",
+      "kind": "paragraph",
+      "page_pdf": 39,
+      "text": "Из общей теории уравнения теплопроводности известно, что если на границе области задано условие (II.84), а в начальный момент времени $t=0$ условие",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.08",
+      "kind": "formula",
+      "page_pdf": 39,
+      "text": "$$p(x, y, z, 0) = \\varphi(x, y, z), \\quad (\\text{II.85})$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.09",
+      "kind": "paragraph",
+      "page_pdf": 39,
+      "text": "то существует единственное распределение давления $p(x, y, z, t)$, удовлетворяющее уравнению (II.83) и условиям (II.84), (II.85), непрерывное в замкнутой области $D$, включая границу, на любом конечном интервале времени $0 \\leqslant t \\leqslant T$.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.10",
+      "kind": "paragraph",
+      "page_pdf": 39,
+      "text": "Хорошо разработанная техника решения уравнения теплопроводности (см., например, [40]) применима и к задачам теории упругого режима фильтрации. Однако специфика этих задач, связанная с наличием некоторых малых параметров (например, отношение радиуса скважины к расстоянию между скважинами, расстояние между скважинами к расстоянию до контура питания) в ряде случаев существенно упрощает решение.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.11",
+      "kind": "paragraph",
+      "page_pdf": 39,
+      "text": "В типичных условиях нефтяного или газового месторождения или водоносного пласта толщина пласта много меньше его горизонтальной протяженности, что позволяет рассматривать течение как плоскопараллельное. Рассмотрим несколько характерных случаев.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.01",
+      "kind": "paragraph",
+      "page_pdf": 40,
+      "text": "Плоскопараллельное одномерное движение. Пусть скорость течения параллельна оси $x$ не зависит от координат $y$ и $z$. Давление при этом удовлетворяет уравнению",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.02",
+      "kind": "formula",
+      "page_pdf": 40,
+      "text": "$$\\partial p / \\partial t = \\varkappa \\partial^2 p / \\partial x^2 \\quad 0 \\leqslant x \\leqslant L. \\tag{II.85}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.03",
+      "kind": "paragraph",
+      "page_pdf": 40,
+      "text": "Наиболее интересны случаи, для которых в начальный момент времени движение в пласте стационарно. Поскольку стационарное распределение давления также удовлетворяет уравнению (II.86), удобно отсчитывать давление в каждой точке от стационарного значения $P_0(x)$. Таким образом, разность $P=p-P_0$ удовлетворяет уравнению (II.84) с нулевым начальным условием $P(x,0) = 0$.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.04",
+      "kind": "paragraph",
+      "page_pdf": 40,
+      "text": "Пусть при $x=L$ (на контуре питания) давление сохраняет постоянное значение, равное начальному, а через сечение $x=0$ отбирается жидкость, и давление в нем меняется по закону $p=f(t)$. Чтобы получить решение при указанных начальных и краевых условиях, применим преобразование Лапласа, т. е. введем функцию",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.05",
+      "kind": "formula",
+      "page_pdf": 40,
+      "text": "$$L \\{P(x, t)\\} = \\bar{P}(x, \\sigma) = \\int_0^\\infty e^{-t\\sigma} P(x, t) dt. \\tag{II.87}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.06",
+      "kind": "paragraph",
+      "page_pdf": 40,
+      "text": "Для $\\bar{P}$ получим задачу",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.07",
+      "kind": "formula",
+      "page_pdf": 40,
+      "text": "$$d^2 \\bar{P} / dx^2 - \\nu^2 \\bar{P} = 0; \\quad \\begin{array}{l} \\bar{P}(0) = L \\{f(t)\\} = F(\\sigma); \\\\ \\bar{P}(L) = 0; \\quad \\nu^2 = \\sigma/\\varkappa, \\end{array} \\tag{II.88}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.08",
+      "kind": "paragraph",
+      "page_pdf": 40,
+      "text": "имеющую решение",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.09",
+      "kind": "formula",
+      "page_pdf": 40,
+      "text": "$$\\bar{P} = F(\\sigma) \\operatorname{sh}[(L-x)\\nu] / \\operatorname{sh}(L\\nu). \\tag{II.89}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.10",
+      "kind": "paragraph",
+      "page_pdf": 40,
+      "text": "Чтобы перейти от изображения к функции $P(x, t)$, предположим вначале, что в сечении $x=0$ давление мгновенно принимает фиксированное значение $P=p^0 \\neq 0$. Тогда $F(\\sigma) = p^0/\\sigma$.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.11",
+      "kind": "formula",
+      "page_pdf": 40,
+      "text": "$$\\bar{P} = (p^0/\\sigma) \\operatorname{sh}[(L-x)\\nu] / \\operatorname{sh}(L\\nu). \\tag{II.90}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.12",
+      "kind": "paragraph",
+      "page_pdf": 40,
+      "text": "Рассмотрим асимптотику решений при малых временах, чему, согласно теории преобразования Лапласа, соответствуют большие значения $|\\sigma|$. Выразим в (II.90) гиперболические функции через показательные и, считая $2L \\sqrt{\\frac{\\sigma}{\\varkappa}} \\gg 1$, разложим это выражение в ряд по степеням $\\exp(-2L \\sqrt{\\sigma/\\varkappa})$, т. е.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.13",
+      "kind": "formula",
+      "page_pdf": 40,
+      "text": "$$\\bar{P}(x, \\sigma) = (p^0/\\sigma) \\left\\{ \\sum_{n=0}^\\infty \\exp(-\\nu(x+2Ln)) - \\sum_{n=0}^\\infty \\exp(-\\nu(2L(n+1)-x)) \\right\\}. \\tag{II.91}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.14",
+      "kind": "paragraph",
+      "page_pdf": 40,
+      "text": "Производя почленное обращение ряда (II.91), с помощью формул обращения, выведенных, например, в [25], имеем",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.15",
+      "kind": "formula",
+      "page_pdf": 40,
+      "text": "$$P(x, t) = P^0 \\sum_{n=0}^\\infty \\{\\operatorname{erfc}[(2Ln+x)/2\\sqrt{\\varkappa t}] - \\operatorname{erfc}[(2L(n+1)-x)/2\\sqrt{\\varkappa t}]\\}. \\tag{II.92}$$",
+      "figure_ref": null,
+      "image_path": null
+    }
+  ]
+}

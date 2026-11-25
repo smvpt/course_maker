@@ -1,0 +1,40 @@
+{
+  "ext": {},
+  "chapter": "barenblatt_mini",
+  "routes": [
+    {
+      "ext": {},
+      "node_id": "barenblatt_mini.piezo_equation",
+      "format": "длинное видео",
+      "secondary_format": "карточки",
+      "video_scores": {
+        "ext": {},
+        "time": 2,
+        "invisible": 2,
+        "scale": 1,
+        "counterintuitive": 2,
+        "cause_effect": 2
+      },
+      "hook_short": false,
+      "template": "T1",
+      "why": "Ф: невидимое давление меняется во времени; контринтуитивно (не волна, а диффузия) — ролик с анимацией поля давления; термины — карточками."
+    },
+    {
+      "ext": {},
+      "node_id": "barenblatt_mini.gallery_step_erfc",
+      "format": "интерактив",
+      "secondary_format": "шортс",
+      "video_scores": {
+        "ext": {},
+        "time": 2,
+        "invisible": 2,
+        "scale": 0,
+        "counterintuitive": 1,
+        "cause_effect": 2
+      },
+      "hook_short": false,
+      "template": "T1",
+      "why": "М: формула с параметрами κ, L, t — интерактив, где зритель двигает время и видит профиль erfc; короткий ролик про отражение от контура питания."
+    }
+  ]
+}
