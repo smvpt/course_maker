@@ -290,6 +290,12 @@ def classify(e: Exception) -> str:
     return "other"
 
 
+def brief(e: Exception, limit: int = 300) -> str:
+    """Текст ошибки провайдера в одну короткую строку: litellm присылает многострочный JSON."""
+    text = " ".join(str(e).split())
+    return f"{type(e).__name__}: " + (text if len(text) <= limit else text[:limit - 1] + "…")
+
+
 def call_llm(**kw):
     from pipeline.llm import complete_json as impl   # точка входа в LLM — только pipeline.llm (CLAUDE.md §2)
     for attempt in range(len(PAUSES) + 1):
@@ -300,11 +306,11 @@ def call_llm(**kw):
         except Exception as e:
             kind = classify(e)
             if kind == "auth":
-                raise LlmAuthError(f"{type(e).__name__}: {e}") from e
+                raise LlmAuthError(brief(e)) from e
             if kind == "transient" and attempt < len(PAUSES):
                 _pause(PAUSES[attempt])
                 continue
-            raise LlmError(f"{type(e).__name__}: {e}") from e
+            raise LlmError(brief(e)) from e
 
 
 def complete_json(**kw):

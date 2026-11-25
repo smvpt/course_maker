@@ -376,3 +376,18 @@ def test_stale_tasks_are_dropped_with_warning_not_a_crash(tmp_path, capsys):
     assert (course / "index.html").exists()
     # файл на диске не трогаем: следующая генерация перезапишет его сама
     assert len(json.loads((course / "tasks.json").read_text(encoding="utf-8"))["tasks"]) == 5
+
+
+def test_provider_error_text_is_collapsed_to_one_short_line(monkeypatch, pauses):
+    """Настоящий litellm присылает многострочный JSON: он не должен рвать строку «ИТОГ СБОРКИ» и stderr."""
+    blob = 'litellm.NotFoundError: GeminiException - {\n  "error": {\n    "code": 404,\n    "message": "' + "модель недоступна " * 60 + '"\n  }\n}\n'
+    _fake_provider(monkeypatch, lambda n, kw: (_ for _ in ()).throw(type("NotFoundError", (Exception,), {"status_code": 404})(blob)))
+    with pytest.raises(LlmError) as e:
+        steptext.call_llm(prompt="x")
+    msg = str(e.value)
+    assert "\n" not in msg and msg.startswith("NotFoundError:") and "404" in msg and len(msg) <= 330 and msg.endswith("…")
+    state = LlmState()
+    state.failure(e.value)
+    state.failure(e.value)
+    state.failure(e.value)
+    assert state.down and "\n" not in state.down
