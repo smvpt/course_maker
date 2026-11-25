@@ -77,6 +77,26 @@
   <div class="legend-by" aria-hidden="true">{{ badge("author") }} {{ badge("model") }} {{ badge("hypothesis") }}</div>
 </header>
 
+{% if v.guess %}
+{% set g = v.guess %}
+<section id="guess" class="guess" aria-labelledby="guess-h" data-truth="{{ 'true' if g.truth else 'false' }}">
+  <h2 id="guess-h">{{ icon("lightbulb") }}Сначала угадай</h2>
+  <p class="guess-q">«{{ g.statement }}» {{ badge("model") }}</p>
+  <p class="guess-ask" id="guess-ask">Как думаешь: это верно?</p>
+  <div class="guess-btns" role="group" aria-labelledby="guess-ask">
+    <button type="button" class="btn" data-answer="true">Верно</button>
+    <button type="button" class="btn" data-answer="false">Неверно</button>
+    <button type="button" class="btn-small" data-action="skip">Пропустить вопрос</button>
+  </div>
+  <div class="guess-result" hidden tabindex="-1" role="status">
+    <p class="guess-verdict"><span class="gv-ok">{{ icon("check-circle") }}Совпало</span><span class="gv-bad">{{ icon("x-circle") }}Не совпало</span>:
+      <span class="gv-true">на самом деле это верно.</span><span class="gv-false">на самом деле это неверно.</span></p>
+    <p class="guess-expl">{{ g.explanation }} {{ chips(g.pages) }}</p>
+  </div>
+</section>
+{% endif %}
+
+<div id="step-body">
 <nav class="toc" aria-label="На этой странице">
   <details open id="toc-details"><summary>На этой странице</summary>
   <ol>{% for id, t in v.toc %}<li><a href="#{{ id }}">{{ t }}</a></li>{% endfor %}</ol>
@@ -180,13 +200,18 @@
 <section id="b-decision" class="block"><h2>Решение на данных</h2>
   {% if v.paras %}{{ gen(v.paras.get("decision", [])) }}{% endif %}
   <div class="para decision">
-    <div class="sig-flow" data-by="{{ by_of(d) }}">
+    <div class="sig-flow" data-by="{{ by_of(d) }}" data-stepper>
       <div class="sig"><h3>Сигнал</h3><ul>{% for f in d.features %}<li>{{ f }}</li>{% endfor %}</ul></div>
       <div class="arrow" aria-hidden="true">{{ icon("arrow-right") }}</div>
       <div class="rule"><h3>Правило</h3><p>{{ d.rule }}</p></div>
       <div class="arrow" aria-hidden="true">{{ icon("arrow-right") }}</div>
       <div class="concl"><h3>Вывод</h3><p>{{ d.conclusion }}</p></div>
     </div>
+    <p class="stepper-ctl" hidden>
+      <span class="stepper-text" aria-live="polite">Шаг 1 из 3: признаки</span>
+      <button type="button" class="btn-small" data-stepper-next>Дальше: правило</button>
+      <button type="button" class="btn-small" data-stepper-all>Показать всё</button>
+    </p>
     {% if d.counterexample %}<p class="counter" data-by="{{ by_of(d) }}"><strong>Контрпример.</strong> {{ d.counterexample }}</p>{% endif %}
     <p class="src-line">{{ badge(by_of(d)) }}{% if not v.paras %} {{ chips(n.pages) }}{% endif %}</p>
   </div><!--/para-->
@@ -242,6 +267,32 @@
     <figcaption>{{ it.il.caption }}{% if it.il.label %} · <span class="prov">{{ it.il.label }}</span>{% endif %}{% if it.il.source %} · {{ it.il.source }}{% endif %}</figcaption>
   </figure>
   {% endfor %}
+</section>
+{% endif %}
+
+{% if v.show["b-interactive"] %}
+{% set it = v.inter %}
+{% set sl = it.data.slider %}
+<section id="b-interactive" class="block"><h2>{{ icon("sliders-horizontal") }}Интерактив <span class="prov-chip">симуляция</span></h2>
+  <p class="inter-title"><strong>{{ it.data.title }}</strong></p>
+  <p class="muted">{{ it.data.note }} {{ badge("model") }}</p>
+  <div class="inter" data-template="{{ it.data.template }}">
+    <div class="inter-controls">
+      <label for="inter-slider">{{ sl.label }}{% if sl.unit %}, {{ sl.unit }}{% endif %}</label>
+      <input type="range" id="inter-slider" min="0" max="{{ it.steps - 1 }}" step="1" value="0">
+      <output id="inter-readout" for="inter-slider">Двигай слайдер: стрелки на клавиатуре или палец.</output>
+    </div>
+    <svg class="inter-chart" id="inter-chart" viewBox="0 0 400 380" role="img"
+         aria-label="График «{{ it.data.title }}». Слайдер меняет значение; те же числа есть в таблице под графиком."></svg>
+  </div>
+  <p class="muted">Значения рассчитаны кодом по формуле главы, а не измерены. {{ chips([it.data.page]) }}</p>
+  {% call fold("таблица значений") %}
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Таблица значений интерактива">
+    <table><thead><tr>{% for h in it.head %}<th scope="col">{{ h }}</th>{% endfor %}</tr></thead>
+    <tbody>{% for r in it.rows %}<tr>{% for c in r %}<td>{{ c }}</td>{% endfor %}</tr>{% endfor %}</tbody></table>
+  </div>
+  {% endcall %}
+  <script type="application/json" id="inter-data">{{ it.json }}</script>
 </section>
 {% endif %}
 
@@ -324,6 +375,7 @@
     {% else %}<a class="btn" href="cards.html">Дальше: карточки{{ icon("arrow-right") }}</a>{% endif %}
   </div>
 </section>
+</div><!--/step-body-->
 
 <footer class="step-foot">
   <nav class="pager" aria-label="Соседние шаги">

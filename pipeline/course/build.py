@@ -21,8 +21,11 @@ from markupsafe import Markup
 from PIL import Image
 
 from contracts.models import Illustrations, Layer, Node, ReviewOutput, Routing, Task, Tasks
+from pipeline.course import guess as guess_mod, interactive as inter_mod
 from pipeline.course.order import break_cycles, group_parts, order_nodes, part_of
+from pipeline.course.pernode import read_store
 from pipeline.course.steptext import Para, node_hash, read_step_text
+from pipeline.illus import gen as illus_gen
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
@@ -160,6 +163,19 @@ def paras_view(node: Node, paras: list[Para]) -> dict[str, list[dict]]:
     return out
 
 
+# ---------------------------------------------------------------- интерактив (interactive.json, задача 5)
+
+def inter_view(data: dict, style_raw: dict) -> dict:
+    """Данные интерактива + палитра из styleguide (цвета рисует JS из этих данных, а не из CSS)."""
+    gs = illus_gen.Style(style_raw)
+    badge = gs.prov("симуляция")
+    palette = {"bg": gs.bg, "panel": gs.panel, "text": gs.text, "muted": gs.muted, "color": gs.curve(data["curve_key"]) or gs.measurement,
+               "badge": badge, "badgeText": gs.on(badge)}
+    head, rows = inter_mod.table_rows(data)
+    return {"data": data, "head": head, "rows": rows, "steps": len(data["slider"]["values"]),
+            "json": Markup(json.dumps({**data, "palette": palette}, ensure_ascii=False).replace("</", "<\\/"))}
+
+
 # ---------------------------------------------------------------- вид шага
 
 def by_of(f) -> str:
@@ -259,7 +275,8 @@ def node_pages(node: Node) -> list[int]:
 
 
 def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path, tasks: list[Task],
-              paras: list[Para] | None = None) -> dict:
+              paras: list[Para] | None = None, interactive: dict | None = None, guess: dict | None = None,
+              style_raw: dict | None = None) -> dict:
     fixes = ocr_fixes(node)
     text_claims = [c for c in node.claims if c.source_kind not in ("formula", "table")]
     formulas = [c for c in node.claims if c.source_kind == "formula"]
@@ -292,6 +309,9 @@ def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path
     }
 
     media = video_view(node, inp, course, ch_dir)
+    inter = inter_view(interactive, style_raw) if interactive else None
+    if inter and media is not None and media["kind"] == "pending":
+        media = None                                   # есть интерактив: ссылка на паспорт вместо ролика не нужна
     illus = []
     for il in inp["illus"].get(node.id, []):
         src = ch_dir / il.file                            # file — путь относительно out/<ch>/, напр. illus/<узел>.chain.svg
@@ -325,6 +345,7 @@ def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path
         ("b-deeper", "Глубже", any(has_text(d) for d in lay.deeper)),
         ("b-tasks", "Задачи из книги", bool(node.book_tasks)),
         ("b-illus", "Иллюстрации", bool(illus)),
+        ("b-interactive", "Интерактив", inter is not None),
         ("b-media", "Ролик", media is not None),
         ("b-quiz", "Задания", bool(tasks)),
         ("b-source", "Источник", True),
@@ -344,6 +365,8 @@ def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path
         "prereqs": [l.target for l in node.links if l.type == "prerequisite"],
         "illus": illus,
         "media": media,
+        "inter": inter,
+        "guess": guess,
         "tasks": [task_view(t, i + 1) for i, t in enumerate(tasks)],
         "tasks_json": Markup(json.dumps({t.id: {"type": t.type, "answer": t.answer, "tolerance": t.tolerance} for t in tasks},
                                         ensure_ascii=False).replace("</", "<\\/")),
@@ -379,7 +402,7 @@ def video_view(node: Node, inp: dict, course: Path, ch_dir: Path) -> dict | None
         dst.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(passport, dst)
         return {"kind": "pending", "passport": f"media/{node.id}/passport.json"}
-    return {"kind": "pending", "passport": None}
+    return None                                    # нет ни ролика, ни паспорта: блок не показываем
 
 
 # ---------------------------------------------------------------- «Где здесь ИТ-задачи»
@@ -516,7 +539,7 @@ def _has_video(ch_dir: Path, node_id: str) -> bool:
 
 def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
           pages_dir: Path = ROOT / "data/pages", styleguide: Path = STYLEGUIDE,
-          generate: bool = False, domain: str | None = None) -> Path:
+          generate: bool = False, domain: str | None = None, extras: bool = False) -> Path:
     ch_dir = out_root / ch
     inp = load_inputs(ch_dir)
     layer: Layer = inp["layer"]
@@ -545,6 +568,9 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
     if node is not None and node not in {n.id for n in ordered}:
         raise ValueError(f"узла {node!r} нет в {ch_dir / 'layer.json'}")
 
+    inter_plan, inter_no_data = inter_mod.plan(layer.nodes, inp["routes"], (ch_dir / "routing.json").exists(),
+                                               lambda nid: _has_video(ch_dir, nid))
+
     no_part = [n.id for n in layer.nodes if not n.ext.get("core", {}).get("part")]
     if len(no_part) == len(layer.nodes):
         warn("no_parts", 'ни у одного узла нет ext["core"]["part"]: вся глава собрана одной частью «Глава»')
@@ -566,7 +592,7 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
     state = None
     if generate:                                   # текст шагов и задания: модель только через pipeline.llm
         from pipeline.course import generate as gen
-        state = gen.run(layer, ch_dir, course, node, domain)
+        state = gen.run(layer, ch_dir, course, node, domain, extras=extras, style=style, interactive_plan=inter_plan)
     stored = read_step_text(course / "step_text.json", ch)
     step_text = stored.nodes if stored else {}
     orig = {n.id: n for n in layer.nodes}
@@ -599,14 +625,38 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
             down_reason = down_reason or d["errors"][0]
         else:
             warn("task_dropped", msg, **extra)
+    inter_store = read_store(course / "interactive.json", ch)
+    guess_store = read_store(course / "guesses.json", ch)
+    guess_ids = {n.id for n in layer.nodes if guess_mod.wanted(n)}
+    down_other = 0
+    for nid in inter_no_data:
+        warn("interactive_no_data", f"шагу {nid} нужен интерактив (маршрутизация дала видео, ролика нет), но в нём нет формулы: интерактив не показан",
+             node=nid)
+    for store, wanted_ids, what, code in ((inter_store, set(inter_plan), "интерактив", "interactive"),
+                                          (guess_store, guess_ids, "вопрос «сначала угадай»", "guess")):
+        for nid, f in (store.failed if store else {}).items():
+            if nid not in wanted_ids or f.hash != node_hash(orig[nid]):
+                continue
+            msg = f"{what} шага {nid} не показан: {f.errors[0]}"
+            if f.errors[0].startswith(DOWN):
+                note(f"{code}_failed", msg, node=nid, errors=f.errors)
+                down_other += 1
+                down_reason = down_reason or f.errors[0]
+            else:
+                warn("interactive_no_data" if f.errors[0].startswith("модель ответила") else f"{code}_failed", msg, node=nid, errors=f.errors)
+    fresh_inter = {nid: e.data["data"] for nid, e in (inter_store.nodes if inter_store else {}).items()
+                   if nid in inter_plan and e.hash == node_hash(orig[nid])}
+    fresh_guess = {nid: e.data for nid, e in (guess_store.nodes if guess_store else {}).items()
+                   if nid in guess_ids and e.hash == node_hash(orig[nid])}
     for w in inp["illus_warnings"]:                  # предупреждения генератора иллюстраций: в отчёт, в stderr их уже печатал он сам
         note(w["code"], w["message"], **{k: v for k, v in w.items() if k not in ("code", "message")})
     for rec in stale_tasks:
         warn("task_stale", f"задание {rec['task']} шага {rec['node']} выброшено: слой изменился после генерации ({rec['errors'][0]})",
              task=rec["task"], node=rec["node"], errors=rec["errors"])
-    if down_steps or down_tasks:                    # одно понятное предупреждение вместо десятков одинаковых
-        warn("model_unavailable", f"{down_reason}: без текста модели {len(down_steps)} шагов, не создано {down_tasks} заданий; "
-             "остальное собрано из слоя", steps=down_steps, tasks=down_tasks)
+    if down_steps or down_tasks or down_other:      # одно понятное предупреждение вместо десятков одинаковых
+        warn("model_unavailable", f"{down_reason}: без текста модели {len(down_steps)} шагов, не создано {down_tasks} заданий"
+             + (f", без интерактива и вопросов {down_other}" if down_other else "") + "; остальное собрано из слоя",
+             steps=down_steps, tasks=down_tasks)
     tasks_by_step: dict[str, list[Task]] = {}
     for t in tasks:
         tasks_by_step.setdefault(t.step_id, []).append(t)
@@ -632,7 +682,8 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
         if node is not None and n.id != node:
             continue
         render(f"step-{n.id}.html", "step.html.j2",
-               v=step_view(n, inp, course, pages_src, ch_dir, tasks_by_step.get(n.id, []), fresh.get(n.id)),
+               v=step_view(n, inp, course, pages_src, ch_dir, tasks_by_step.get(n.id, []), fresh.get(n.id),
+                              fresh_inter.get(n.id), fresh_guess.get(n.id), style),
                idx=i, prev=ordered[i - 1] if i > 0 else None,
                next=ordered[i + 1] if i + 1 < len(ordered) else None, titles=titles, page="step")
 
@@ -666,7 +717,8 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
     print(line, file=sys.stderr)
     summary = {"text_model_steps": len(fresh), "steps": len(ordered), "tasks": len(tasks), "tasks_dropped": dropped_n,
                "fallback_steps": len(ordered) - len(fresh), "model": model, "line": line}
-    report = {"chapter": ch, "nodes": len(ordered), "tasks": len(tasks), "step_text_nodes": len(fresh), "summary": summary,
+    report = {"chapter": ch, "nodes": len(ordered), "tasks": len(tasks), "step_text_nodes": len(fresh), "interactive_steps": len(fresh_inter),
+              "guess_steps": len(fresh_guess), "summary": summary,
               "warnings": warnings, "missing_scans": [p for p in all_pages if not (pages_src / f"p{p}.png").exists()]}
     (course / "build_report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     return course
@@ -681,7 +733,8 @@ def main() -> None:
     ap.add_argument("--out", type=Path, default=Path(os.environ.get("OUT_DIR") or ROOT / "out"), help="корень out/")
     ap.add_argument("--pages", type=Path, default=ROOT / "data/pages", help="корень сканов страниц")
     a = ap.parse_args()
-    course = build(a.ch, out_root=a.out, node=a.node, pages_dir=a.pages, generate=not a.no_llm, domain=a.domain)
+    course = build(a.ch, out_root=a.out, node=a.node, pages_dir=a.pages, generate=not a.no_llm, domain=a.domain,
+                   extras=not a.no_llm)
     print(f"курс: {course / 'index.html'}")
 
 

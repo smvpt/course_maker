@@ -8,6 +8,7 @@
      tasks       {id задания: "ok" | "bad"}      результат последней проверки
      answers     {id задания: ответ ученика}     single: id варианта; multiple и order: список id; gap: список слов;
                                                  calc: число. После перезагрузки показываем выбор ученика
+     guess       {id шага: "true"|"false"|"skip"}  ответ на вопрос «сначала угадай»
      understood  [id задания, ...]               «Я понял» в списке ошибок; логика заданий убирает id,
                                                  если то же задание снова решено неверно
    Тема и подсветка «автор / модель» — общие для всех глав: course:theme, course:by. */
@@ -28,7 +29,7 @@
     }
   };
   var K = {};
-  ["done", "last", "checks", "cards", "tasks", "answers", "understood"].forEach(function (n) { K[n] = "course:" + ch + ":" + n; });
+  ["done", "last", "checks", "cards", "tasks", "answers", "understood", "guess"].forEach(function (n) { K[n] = "course:" + ch + ":" + n; });
   K.theme = "course:theme";
   K.by = "course:by";
 
@@ -155,6 +156,122 @@
     if (!target) return false;
     highlightEl(target);
     return true;
+  }
+
+
+  /* ---------- интерактив: слайдер → график. Значения посчитал код (Python) и положил в страницу, здесь только рисуем ---------- */
+  function se(tag, attrs, text) {                   // адрес пространства имён — литералом: var ниже вызова initStep был бы ещё undefined
+    var e = document.createElementNS("http://www.w3.org/2000/svg", tag);
+    Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+  function ruNum(v) {
+    var s = (v === Math.round(v) && Math.abs(v) < 1e7) ? String(Math.round(v)) : String(Number(v.toPrecision(4)));
+    if (/e/.test(s)) { var m = s.split("e"); s = m[0] + "·10^" + parseInt(m[1], 10); }
+    return s.replace(".", ",");
+  }
+  function niceTicks(lo, hi, n) {
+    var span = hi - lo;
+    if (span <= 0) return [lo];
+    var raw = span / (n - 1), mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    var step = [1, 2, 2.5, 5, 10].map(function (m) { return m * mag; }).filter(function (v) { return v >= raw; })[0];
+    var out = [];
+    for (var t = Math.ceil(lo / step - 1e-9) * step; t <= hi + step * 1e-9; t += step) out.push(Number(t.toPrecision(10)));
+    return out;
+  }
+  function wrapText(text, max) {
+    var lines = [], cur = "";
+    text.split(/\s+/).forEach(function (w) {
+      if (cur && cur.length + 1 + w.length > max) { lines.push(cur); cur = w; } else { cur = (cur + " " + w).trim(); }
+    });
+    if (cur) lines.push(cur);
+    return lines;
+  }
+
+  function initInteractive(d) {
+    var P = d.palette, S = d.slider, Y = d.y, X = d.x, T = d.template;
+    var svg = document.getElementById("inter-chart"), slider = document.getElementById("inter-slider"), out = document.getElementById("inter-readout");
+    var W = 400, FS = 18, LH = 25, pl = 74, pr = T === "growth" ? 296 : 384, n = S.values.length;
+    function lab(o) { return o.unit ? o.label + ", " + o.unit : o.label; }
+    var hlo, hhi, vlo, vhi, hlab, vlab, depth = T === "profile";
+    if (T === "profile") {
+      hlo = Y.min; hhi = Y.max; vlo = S.values[0]; vhi = S.values[n - 1]; hlab = lab(Y); vlab = lab(S) + " (глубина растёт вниз)";
+      var pad = (hhi - hlo) * 0.05; hlo -= pad; hhi += pad;
+    } else if (T === "distribution") {
+      hlo = X.values[0]; hhi = X.values[X.values.length - 1]; vlo = Y.min; vhi = Y.max; hlab = lab(X); vlab = lab(Y);
+    } else {
+      hlo = S.values[0]; hhi = S.values[n - 1]; vlo = Y.min; vhi = Y.max; hlab = lab(S); vlab = lab(Y);
+    }
+    var top = wrapText("по вертикали: " + vlab, 34), bot = wrapText("по горизонтали: " + hlab, 34);
+    var pt = 16 + top.length * LH + 8, ph = 240, pb = pt + ph;
+    var H = pb + 34 + bot.length * LH + 8 + 32 + 16;
+    var hp = function (v) { return pl + (v - hlo) / ((hhi - hlo) || 1) * (pr - pl); };
+    var vp = function (v) { var f = (v - vlo) / ((vhi - vlo) || 1); return depth ? pt + f * ph : pb - f * ph; };
+    svg.textContent = "";
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    svg.setAttribute("font-family", "system-ui, 'Segoe UI', sans-serif");
+    svg.appendChild(se("rect", { width: W, height: H, rx: 12, fill: P.bg }));
+    top.forEach(function (l, i) { svg.appendChild(se("text", { x: 16, y: 16 + FS - 4 + i * LH, "font-size": FS, fill: P.muted }, l)); });
+    niceTicks(hlo, hhi, 4).forEach(function (t) {
+      svg.appendChild(se("line", { x1: hp(t), y1: pt, x2: hp(t), y2: pb, stroke: P.muted, "stroke-width": 1, "stroke-opacity": 0.35 }));
+      svg.appendChild(se("text", { x: hp(t), y: pb + 24, "font-size": FS, fill: P.text, "text-anchor": "middle" }, ruNum(t)));
+    });
+    niceTicks(vlo, vhi, 5).forEach(function (t) {
+      svg.appendChild(se("line", { x1: pl, y1: vp(t), x2: pr, y2: vp(t), stroke: P.muted, "stroke-width": 1, "stroke-opacity": 0.35 }));
+      svg.appendChild(se("text", { x: pl - 8, y: vp(t) + 6, "font-size": FS, fill: P.text, "text-anchor": "end" }, ruNum(t)));
+    });
+    svg.appendChild(se("line", { x1: pl, y1: pt, x2: pl, y2: pb, stroke: P.muted, "stroke-width": 2 }));
+    svg.appendChild(se("line", { x1: pl, y1: depth ? pt : pb, x2: pr, y2: depth ? pt : pb, stroke: P.muted, "stroke-width": 2 }));
+    bot.forEach(function (l, i) { svg.appendChild(se("text", { x: 16, y: pb + 34 + FS - 4 + i * LH, "font-size": FS, fill: P.muted }, l)); });
+
+    var line = { fill: "none", "stroke-linejoin": "round", "stroke-linecap": "round" };
+    var ghosts = [], full = null, cur, dot, hline = null, bar = null;
+    if (T === "distribution") {
+      [0, n - 1].forEach(function (k) {
+        var g = se("polyline", Object.assign({}, line, { stroke: P.muted, "stroke-width": 2, "stroke-dasharray": "6 5",
+          points: X.values.map(function (x, j) { return hp(x) + "," + vp(d.series[k][j]); }).join(" ") }));
+        svg.appendChild(g);
+      });
+    } else {
+      var pts = S.values.map(function (s, k) { return depth ? hp(d.series[k]) + "," + vp(s) : hp(s) + "," + vp(d.series[k]); }).join(" ");
+      svg.appendChild(se("polyline", Object.assign({}, line, { stroke: P.color, "stroke-opacity": 0.3, "stroke-width": 2.5, points: pts })));
+    }
+    cur = se("polyline", Object.assign({}, line, { stroke: P.color, "stroke-width": 3.5, points: "" }));
+    svg.appendChild(cur);
+    if (depth) { hline = se("line", { x1: pl, x2: pr, stroke: P.muted, "stroke-width": 2, "stroke-dasharray": "6 5" }); svg.appendChild(hline); }
+    if (T !== "distribution") { dot = se("circle", { r: 7, fill: P.color, stroke: P.bg, "stroke-width": 2 }); svg.appendChild(dot); }
+    if (T === "growth") {
+      svg.appendChild(se("rect", { x: 316, y: pt, width: 62, height: ph, rx: 6, fill: "none", stroke: P.muted, "stroke-width": 2 }));
+      bar = se("rect", { x: 318, width: 58, rx: 4, fill: P.color });
+      svg.appendChild(bar);
+    }
+    var bw = "симуляция".length * FS * 0.6 + 28, by = H - 16 - 32;
+    svg.appendChild(se("rect", { x: W - 16 - bw, y: by, width: bw, height: 32, rx: 16, fill: P.badge }));
+    svg.appendChild(se("text", { x: W - 16 - bw / 2, y: by + 22, "font-size": FS, "font-weight": 700, fill: P.badgeText, "text-anchor": "middle" }, "симуляция"));
+
+    function update(i) {
+      var sv = S.values[i], text;
+      if (T === "distribution") {
+        var row = d.series[i];
+        cur.setAttribute("points", X.values.map(function (x, j) { return hp(x) + "," + vp(row[j]); }).join(" "));
+        text = lab(S) + ": " + ruNum(sv) + " · " + Y.label + ": от " + ruNum(Math.min.apply(null, row)) + " до " + ruNum(Math.max.apply(null, row)) + (Y.unit ? " " + Y.unit : "");
+      } else {
+        var yv = d.series[i], p = [];
+        for (var k = 0; k <= i; k++) p.push(depth ? hp(d.series[k]) + "," + vp(S.values[k]) : hp(S.values[k]) + "," + vp(d.series[k]));
+        cur.setAttribute("points", p.join(" "));
+        dot.setAttribute("cx", depth ? hp(yv) : hp(sv));
+        dot.setAttribute("cy", depth ? vp(sv) : vp(yv));
+        if (hline) { hline.setAttribute("y1", vp(sv)); hline.setAttribute("y2", vp(sv)); }
+        if (bar) { var hh = Math.max(2, (yv - vlo) / ((vhi - vlo) || 1) * (ph - 4)); bar.setAttribute("y", pb - 2 - hh); bar.setAttribute("height", hh); }
+        text = lab(S) + ": " + ruNum(sv) + " → " + lab(Y) + ": " + ruNum(yv);
+      }
+      out.textContent = text;
+      slider.setAttribute("aria-valuetext", text);
+    }
+    slider.addEventListener("input", function () { update(Number(slider.value)); });
+    slider.value = String(Math.round((n - 1) * 0.4));
+    update(Number(slider.value));
   }
 
   function initStep(data) {
@@ -476,6 +593,53 @@
       /* уже решённое: выбор ученика, верные ответы и разбор */
       if (taskState(id) !== "none") show(taskState(id) === "ok", id in answers ? answers[id] : null);
     }
+
+    /* «Сначала угадай»: шаг открывается вопросом; без ответа тело шага скрыто (кроме перехода по ссылке на абзац) */
+    var box = document.getElementById("guess");
+    if (box) {
+      var body0 = document.getElementById("step-body"), res = box.querySelector(".guess-result");
+      var gbtns = box.querySelectorAll("[data-answer]"), gskip = box.querySelector('[data-action="skip"]');
+      var truth = box.dataset.truth === "true", saved = store.get(K.guess, {});
+      var reveal = function (answer) {
+        body0.hidden = false;
+        gbtns.forEach(function (b) { b.disabled = true; b.setAttribute("aria-pressed", b.dataset.answer === answer ? "true" : "false"); });
+        gskip.hidden = true;
+        if (answer !== "skip") { res.dataset.result = answer === String(truth) ? "ok" : "bad"; res.hidden = false; }
+      };
+      var choose = function (answer) {
+        saved[nodeId] = answer;
+        store.set(K.guess, saved);
+        reveal(answer);
+        if (answer !== "skip") res.focus();
+      };
+      if (saved[nodeId]) reveal(saved[nodeId]);
+      else if (location.hash.length < 2) body0.hidden = true;
+      gbtns.forEach(function (b) { b.addEventListener("click", function () { choose(b.dataset.answer); }); });
+      gskip.addEventListener("click", function () { choose("skip"); });
+    }
+
+    /* «Решение на данных» по шагам: признаки → правило → вывод (без JS видно всё сразу) */
+    var flow = document.querySelector(".sig-flow[data-stepper]");
+    if (flow) {
+      var ctl = flow.parentElement.querySelector(".stepper-ctl"), stext = ctl.querySelector(".stepper-text");
+      var snext = ctl.querySelector("[data-stepper-next]"), sall = ctl.querySelector("[data-stepper-all]");
+      var counterEx = flow.parentElement.querySelector(".counter");
+      var NAMES = ["признаки", "правило", "вывод"], NEXT = ["Дальше: правило", "Дальше: вывод", "Сначала"], stage = 1;
+      var paint = function () {
+        flow.dataset.stage = String(stage);
+        stext.textContent = "Шаг " + stage + " из 3: " + NAMES[stage - 1];
+        snext.textContent = NEXT[stage - 1];
+        sall.hidden = stage === 3;
+        if (counterEx) counterEx.hidden = stage < 3;
+      };
+      ctl.hidden = false;
+      paint();
+      snext.addEventListener("click", function () { stage = stage === 3 ? 1 : stage + 1; paint(); });
+      sall.addEventListener("click", function () { stage = 3; paint(); });
+    }
+
+    var idata = readJSON("inter-data");
+    if (idata) initInteractive(idata);
 
     /* переход по ссылке «Перечитать»: #<id абзаца> или #task-…; якоря оглавления (разделы) браузер ведёт сам */
     function focusHash() {

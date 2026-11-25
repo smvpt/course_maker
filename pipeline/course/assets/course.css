@@ -255,6 +255,37 @@ video { width: 100%; max-height: 80vh; background: #000; border-radius: var(--ra
 .tstate { color: var(--muted); font-weight: 600; }
 .task-group h2 a { color: var(--text); text-decoration: none; }
 
+/* ---------- интерактив, «сначала угадай», решение на данных по шагам ---------- */
+.prov-chip { display: inline-block; padding: 0 .55rem; border: 1px solid var(--muted); border-radius: 99px; color: var(--muted); font-size: 1rem; font-weight: 600; }
+.inter { margin: .5rem 0 1rem; }
+.inter-controls { display: grid; gap: .4rem; margin-bottom: .6rem; }
+.inter-controls label { font-weight: 600; }
+.inter-controls input[type="range"] { width: 100%; height: 44px; accent-color: var(--ui-accent); cursor: pointer; }
+.inter-controls output { color: var(--muted); }
+.inter-chart { display: block; width: 100%; max-width: 30rem; height: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+
+.guess { margin: 1rem 0; padding: 1rem; border: 1px solid var(--ui-accent); border-radius: var(--radius);
+  background: color-mix(in srgb, var(--ui-accent) 8%, var(--panel)); }
+.guess h2 { margin-bottom: .4rem; }
+.guess-q { font-size: 1.2rem; font-weight: 600; }
+.guess-btns { display: flex; flex-wrap: wrap; gap: .5rem; margin: .5rem 0; }
+.guess .btn[aria-pressed="true"] { outline: 3px solid var(--ui-link); outline-offset: 2px; }
+.guess .btn:disabled { opacity: .75; cursor: default; }
+.guess-result { margin-top: .75rem; padding-top: .75rem; border-top: 1px solid var(--border); }
+.guess-result:focus { outline: none; }
+.gv-ok, .gv-bad { display: none; align-items: center; gap: .4rem; font-weight: 700; }
+.guess-result[data-result="ok"] .gv-ok { display: inline-flex; color: var(--ui-ok); }
+.guess-result[data-result="bad"] .gv-bad { display: inline-flex; color: var(--ui-bad); }
+.gv-true, .gv-false { display: none; }
+.guess[data-truth="true"] .gv-true, .guess[data-truth="false"] .gv-false { display: inline; }
+
+.sig-flow[data-stage="1"], .sig-flow[data-stage="2"] { grid-template-columns: 1fr; }
+.sig-flow[data-stage="1"] .rule, .sig-flow[data-stage="1"] .concl, .sig-flow[data-stage="1"] .arrow,
+.sig-flow[data-stage="2"] .concl, .sig-flow[data-stage="2"] .rule + .arrow { display: none; }
+.sig-flow[data-stage="2"] .arrow { transform: rotate(90deg); justify-self: center; }
+.stepper-ctl { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin: .6rem 0; }
+.stepper-text { font-weight: 600; margin-right: .25rem; }
+
 /* ---------- прогресс и ошибки ---------- */
 .mbar { display: flex; height: 1.4rem; border: 1px solid var(--border); border-radius: 99px; overflow: hidden; margin: .6rem 0; background: var(--bg); }
 .seg { display: block; height: 100%; width: 0; }
@@ -340,7 +371,7 @@ body.only-repeat .card:not(.mark-repeat) { display: none; }
 
 @media print {
   :root { --bg: #fff; --panel: #fff; --text: #000; --muted: #333; --border: #bbb; --ui-link: #000; }
-  .top, .skip, .no-print, .step-bar, .step-foot, .toc, dialog, .path-side, .check, .step-progress { display: none !important; }
+  .inter-controls, .guess-btns, .stepper-ctl, .top, .skip, .no-print, .step-bar, .step-foot, .toc, dialog, .path-side, .check, .step-progress { display: none !important; }
   main, main.with-side { display: block; max-width: none; padding: 0; }
   body { font-size: 12pt; }
   .sum-step { break-inside: avoid; }
