@@ -1,3 +1,4 @@
 # Включает зависимости всех модулей. Новый requirements/<модуль>.txt — добавить строкой сюда
 # (tests/core/test_repo.py падает, если файл не включён).
 -r requirements/core.txt
+-r requirements/verify.txt
