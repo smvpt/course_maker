@@ -62,3 +62,15 @@ def test_mini_units_equal_ingest_output():
     cu = parse.build_units((MINI / "chapter.md").read_text(encoding="utf-8"), chapter="barenblatt_mini", source="x")
     fx = io.load(m.ChapterUnits, MINI / "units.json")
     assert [(u.unit_id, u.kind, u.text) for u in cu.units] == [(u.unit_id, u.kind, u.text) for u in fx.units]
+
+
+def test_live_chapter_matches_organizer_schemas():
+    """Настоящий прогон ядра (Барабошкин §1–2, Gemini) — образец для П2–П4: схемы и связность."""
+    import jsonschema
+    live = paths.ROOT / "fixtures" / "core" / "live_baraboshkin_par1-2"
+    for name, schema in (("layer", "node"), ("coverage", "coverage"), ("routing", "routing")):
+        jsonschema.validate(json.loads((live / f"{name}.json").read_text(encoding="utf-8")),
+                            json.loads((paths.SCHEMAS / f"{schema}.schema.json").read_text(encoding="utf-8")))
+    layer = io.load(m.Layer, live / "layer.json")
+    routing = io.load(m.Routing, live / "routing.json")
+    assert [r.node_id for r in routing.routes] == [n.id for n in layer.nodes]

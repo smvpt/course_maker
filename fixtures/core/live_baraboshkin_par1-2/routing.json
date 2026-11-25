@@ -1,0 +1,146 @@
+{
+  "ext": {
+    "core": {
+      "foreign_routes": [],
+      "template_fixed": [
+        {
+          "node": "baraboshkin_par1-2.delta_classification",
+          "was": null,
+          "now": "T2"
+        }
+      ],
+      "hooks_unset": [
+        "baraboshkin_par1-2.wave_dominated_deltas"
+      ]
+    }
+  },
+  "chapter": "baraboshkin_par1-2",
+  "routes": [
+    {
+      "ext": {
+        "core": {
+          "video_score": 7
+        }
+      },
+      "node_id": "baraboshkin_par1-2.deltas_overview",
+      "format": "длинное видео",
+      "secondary_format": "интерактив",
+      "video_scores": {
+        "ext": {},
+        "time": 2,
+        "invisible": 1,
+        "scale": 2,
+        "counterintuitive": 0,
+        "cause_effect": 2
+      },
+      "hook_short": false,
+      "template": "T3",
+      "why": "Тип трудности М (механизм процесса): формирование дельты во времени и пространстве требует долгого видео с анимацией (критерии time, scale, cause_effect)."
+    },
+    {
+      "ext": {
+        "core": {
+          "video_score": 3
+        }
+      },
+      "node_id": "baraboshkin_par1-2.delta_facies_general",
+      "format": "практикум на данных",
+      "secondary_format": "карточки",
+      "video_scores": {
+        "ext": {},
+        "time": 0,
+        "invisible": 1,
+        "scale": 1,
+        "counterintuitive": 0,
+        "cause_effect": 1
+      },
+      "hook_short": false,
+      "template": null,
+      "why": "Тип трудности Р (распознавание) и Пр: работа с ассоциациями фаций требует практических заданий на классификацию и сопоставление признаков."
+    },
+    {
+      "ext": {
+        "core": {
+          "video_score": 5
+        }
+      },
+      "node_id": "baraboshkin_par1-2.delta_classification",
+      "format": "интерактив",
+      "secondary_format": "практикум на данных",
+      "video_scores": {
+        "ext": {},
+        "time": 1,
+        "invisible": 0,
+        "scale": 1,
+        "counterintuitive": 1,
+        "cause_effect": 2
+      },
+      "hook_short": false,
+      "template": "T2",
+      "why": "Тип трудности Н (неопределенность и решение): выбор типа дельты по соотношению факторов требует интерактивного сценария (критерии cause_effect, counterintuitive)."
+    },
+    {
+      "ext": {
+        "core": {
+          "video_score": 6
+        }
+      },
+      "node_id": "baraboshkin_par1-2.fluvial_deltas_overview",
+      "format": "длинное видео",
+      "secondary_format": "практикум на данных",
+      "video_scores": {
+        "ext": {},
+        "time": 2,
+        "invisible": 1,
+        "scale": 1,
+        "counterintuitive": 0,
+        "cause_effect": 2
+      },
+      "hook_short": false,
+      "template": "T1",
+      "why": "Тип трудности М (механизм процесса): динамика речного стока и формирования рукавов во времени (критерии time, cause_effect)."
+    },
+    {
+      "ext": {
+        "core": {
+          "video_score": 4
+        }
+      },
+      "node_id": "baraboshkin_par1-2.wave_dominated_deltas",
+      "format": "шортс",
+      "secondary_format": "карточки",
+      "video_scores": {
+        "ext": {},
+        "time": 1,
+        "invisible": 0,
+        "scale": 1,
+        "counterintuitive": 1,
+        "cause_effect": 1
+      },
+      "hook_short": false,
+      "template": "T3",
+      "why": "Тип трудности М: волновое перераспределение осадков показано через короткую динамическую модель (критерии time, counterintuitive)."
+    },
+    {
+      "ext": {
+        "core": {
+          "video_score": 7
+        }
+      },
+      "node_id": "baraboshkin_par1-2.tide_dominated_deltas",
+      "format": "длинное видео",
+      "secondary_format": "практикум на данных",
+      "video_scores": {
+        "ext": {},
+        "time": 2,
+        "invisible": 1,
+        "scale": 1,
+        "counterintuitive": 1,
+        "cause_effect": 2
+      },
+      "hook_short": false,
+      "template": "T1",
+      "why": "Тип трудности М: циклическая смена приливов и отливов формирует сложную динамику слоистости во времени (критерии time, cause_effect)."
+    }
+  ]
+}

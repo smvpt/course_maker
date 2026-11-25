@@ -1,0 +1,600 @@
+{
+  "ext": {},
+  "chapter": "baraboshkin_par1-2",
+  "rows": [
+    {
+      "ext": {},
+      "unit_id": "p030.01",
+      "kind": "heading",
+      "page_pdf": 30,
+      "excerpt": "1.2 Дельты [Deltas]",
+      "node_ids": [
+        "baraboshkin_par1-2.deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p030.02",
+      "kind": "paragraph",
+      "page_pdf": 30,
+      "excerpt": "Дельта — конус выноса обломочного материала, приносимого рекой, возникающий в месте достижения",
+      "node_ids": [
+        "baraboshkin_par1-2.deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p030.03",
+      "kind": "paragraph",
+      "page_pdf": 30,
+      "excerpt": "- субаэральной части конуса дельты [subaerial delta] — дельтовой равнины, - авандельты",
+      "node_ids": [
+        "baraboshkin_par1-2.deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p031.01",
+      "kind": "paragraph",
+      "page_pdf": 31,
+      "excerpt": "Морфология границы дельтовой равнины и авандельты — фронта дельты — отражает динамику",
+      "node_ids": [
+        "baraboshkin_par1-2.delta_classification"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p031.02",
+      "kind": "paragraph",
+      "page_pdf": 31,
+      "excerpt": "- преимущественно флювиальные [fluvial] дельты; - дельты с преобладающим волновым (штормовым) [wave-dominated]",
+      "node_ids": [
+        "baraboshkin_par1-2.delta_classification"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p031.03",
+      "kind": "figure",
+      "page_pdf": 31,
+      "excerpt": "Рис. 1.14. Морфология и фации дельты [8]. 1 — береговые валы; 2",
+      "node_ids": [
+        "baraboshkin_par1-2.deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p031.04",
+      "kind": "paragraph",
+      "page_pdf": 31,
+      "excerpt": "Дельтам присущи следующие общие черты:",
+      "node_ids": [
+        "baraboshkin_par1-2.deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p031.05",
+      "kind": "paragraph",
+      "page_pdf": 31,
+      "excerpt": "- Мощные, преимущественно терригенные разрезы как с трансгрессивной, так и с регрессивной",
+      "node_ids": [
+        "baraboshkin_par1-2.deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p032.01",
+      "kind": "paragraph",
+      "page_pdf": 32,
+      "excerpt": "• В крупных, длительно живущих дельтах в различных случаях возникает серия отдельных",
+      "node_ids": [
+        "baraboshkin_par1-2.deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p032.02",
+      "kind": "figure",
+      "page_pdf": 32,
+      "excerpt": "Рис. 1.15. Схема основных типов дельт [8]. 1 — паралические илы и",
+      "node_ids": [
+        "baraboshkin_par1-2.delta_classification"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p032.03",
+      "kind": "paragraph",
+      "page_pdf": 32,
+      "excerpt": "Обычно различают следующие фации дельт:",
+      "node_ids": [
+        "baraboshkin_par1-2.delta_facies_general"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p032.04",
+      "kind": "paragraph",
+      "page_pdf": 32,
+      "excerpt": "•протоковые; •прирусловых валов; •межпротоковых понижений; •заливов и лагун; •авандельт — бары, косы,",
+      "node_ids": [
+        "baraboshkin_par1-2.delta_facies_general"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p032.05",
+      "kind": "paragraph",
+      "page_pdf": 32,
+      "excerpt": "Эти фации группируются в несколько фациальных парагенезов, отражающих как тип дельты, так",
+      "node_ids": [
+        "baraboshkin_par1-2.delta_facies_general"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p032.06",
+      "kind": "paragraph",
+      "page_pdf": 32,
+      "excerpt": "Фациальная ассоциация дельтовой равнины [deltaic plain] охватывает накопление осадков в протоках и",
+      "node_ids": [
+        "baraboshkin_par1-2.delta_facies_general"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p032.07",
+      "kind": "paragraph",
+      "page_pdf": 32,
+      "excerpt": "Фациальная ассоциация фронта дельты [delta front] наиболее часто представлена регрессивной последовательностью, отвечающей",
+      "node_ids": [
+        "baraboshkin_par1-2.delta_facies_general"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p033.01",
+      "kind": "figure",
+      "page_pdf": 33,
+      "excerpt": "Рис. 1.16. Классификация современных дельт по преобладающему процессу во фронтальной части дельты",
+      "node_ids": [
+        "baraboshkin_par1-2.delta_classification"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p033.02",
+      "kind": "paragraph",
+      "page_pdf": 33,
+      "excerpt": "Фациальная ассоциация отмирания дельты включает те фации, которые накапливаются вследствие отмирания дельты",
+      "node_ids": [
+        "baraboshkin_par1-2.delta_facies_general"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p033.03",
+      "kind": "paragraph",
+      "page_pdf": 33,
+      "excerpt": "- позволяют коррелировать разрезы с иным латеральным соотношением фаций, - помогают построить",
+      "node_ids": [
+        "baraboshkin_par1-2.delta_facies_general"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p034.01",
+      "kind": "heading",
+      "page_pdf": 34,
+      "excerpt": "1.2.1 Преимущественно флювиальные дельты [Fluvial deltas]",
+      "node_ids": [
+        "baraboshkin_par1-2.fluvial_deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p034.02",
+      "kind": "paragraph",
+      "page_pdf": 34,
+      "excerpt": "Ассоциации флювиальной дельтовой равнины (Рис. 1.18) включают фации крупных флювиальных дельтовых рукавов,",
+      "node_ids": [
+        "baraboshkin_par1-2.fluvial_deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p034.03",
+      "kind": "figure",
+      "page_pdf": 34,
+      "excerpt": "Рис. 1.17. Потоковая косая слоистость в дельтовых песчаниках. Верхняя юра, скв. Западно-Монсеевская-30.",
+      "node_ids": [
+        "baraboshkin_par1-2.fluvial_deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p035.01",
+      "kind": "paragraph",
+      "page_pdf": 35,
+      "excerpt": "В разрезах намывных валов [washover levee] преобладают тонкие слои песчаников с эрозионной",
+      "node_ids": [
+        "baraboshkin_par1-2.fluvial_deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p035.02",
+      "kind": "paragraph",
+      "page_pdf": 35,
+      "excerpt": "Конус выноса промоины — пластоподобное или линзовидное тело с эрозионной подошвой и",
+      "node_ids": [
+        "baraboshkin_par1-2.fluvial_deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p035.03",
+      "kind": "paragraph",
+      "page_pdf": 35,
+      "excerpt": "Для устьевых баров [mouth bar] свойственны разрезы с постепенным увеличением размера зерен",
+      "node_ids": [
+        "baraboshkin_par1-2.fluvial_deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p035.04",
+      "kind": "paragraph",
+      "page_pdf": 35,
+      "excerpt": "Разрезы каналов промоин [channels] характеризуются мощностью 1–4м и слагаются фациями заполнения канала,",
+      "node_ids": [
+        "baraboshkin_par1-2.fluvial_deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p036.01",
+      "kind": "table",
+      "page_pdf": 36,
+      "excerpt": "Основные факты Интерпретация 9 Алевролиты красные, грубозернистые, с норами беспозвоночных и обильными",
+      "node_ids": [
+        "baraboshkin_par1-2.fluvial_deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p036.02",
+      "kind": "figure",
+      "page_pdf": 36,
+      "excerpt": "Рис. 1.18. Разрез каменноугольного дельтового рукава флювиальной дельты, Тагфорд, Шропшир [2]",
+      "node_ids": [
+        "baraboshkin_par1-2.fluvial_deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p036.03",
+      "kind": "paragraph",
+      "page_pdf": 36,
+      "excerpt": "Разрезы дельтовых рукавов [delta channels] мощнее разрезов каналов промоин, подобны разрезам русел",
+      "node_ids": [
+        "baraboshkin_par1-2.fluvial_deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p037.01",
+      "kind": "figure",
+      "page_pdf": 37,
+      "excerpt": "Рис. 1.19. Потоковая косая слоистость в дельтовых песчаниках. Средняя юра, скв. Северо-Пионерская-1.",
+      "node_ids": [
+        "baraboshkin_par1-2.fluvial_deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.01",
+      "kind": "figure",
+      "page_pdf": 38,
+      "excerpt": "Рис. 1.20. Палеопочва, венчающая прослой угля зарастающей дельты. Верхняя юра, скв. Западно-Моисеевская-30.",
+      "node_ids": [
+        "baraboshkin_par1-2.fluvial_deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.02",
+      "kind": "figure",
+      "page_pdf": 38,
+      "excerpt": "Рис. 1.21. Прослой угля, завершающий разрез зарастающего дельтового рукава. Верхняя юра, скв.",
+      "node_ids": [
+        "baraboshkin_par1-2.fluvial_deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.03",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "excerpt": "Крупномасштабные оползания берегов могут быть важной особенностью дельтовых проток, так как оползни",
+      "node_ids": [
+        "baraboshkin_par1-2.fluvial_deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.01",
+      "kind": "paragraph",
+      "page_pdf": 39,
+      "excerpt": "Неустойчивый характер дельтовых рукавов определяет небольшую длительность их существования по сравнению с",
+      "node_ids": [
+        "baraboshkin_par1-2.fluvial_deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.02",
+      "kind": "paragraph",
+      "page_pdf": 39,
+      "excerpt": "Разрезы фронтов дельт характеризуются существенными различиями. Как правило, они начинаются с мощного",
+      "node_ids": [
+        "baraboshkin_par1-2.fluvial_deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.03",
+      "kind": "figure",
+      "page_pdf": 39,
+      "excerpt": "Рис. 1.22. Тонкодисперсный растительный детрит на поверхности напластования дельтовых фаций. Верхняя юра,",
+      "node_ids": [
+        "baraboshkin_par1-2.fluvial_deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.04",
+      "kind": "paragraph",
+      "page_pdf": 39,
+      "excerpt": "Фациальная ассоциация отмирания дельт включает тонкий маркирующий слой, прослеживаемый повсеместно. Отмирание в",
+      "node_ids": [
+        "baraboshkin_par1-2.fluvial_deltas_overview"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.01",
+      "kind": "heading",
+      "page_pdf": 40,
+      "excerpt": "1.2.2 Преимущественно волновые дельты [Wave-dominated deltas]",
+      "node_ids": [
+        "baraboshkin_par1-2.wave_dominated_deltas"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.02",
+      "kind": "paragraph",
+      "page_pdf": 40,
+      "excerpt": "Ассоциации дельтовой равнины волновых дельт (Рис. 1.23) включают песчаники флювиальных русловых каналов",
+      "node_ids": [
+        "baraboshkin_par1-2.wave_dominated_deltas"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.03",
+      "kind": "paragraph",
+      "page_pdf": 40,
+      "excerpt": "Фронт дельт представлен разрезами с увеличением зернистости вверх, похожими на разрезы продвигающихся",
+      "node_ids": [
+        "baraboshkin_par1-2.wave_dominated_deltas"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.04",
+      "kind": "paragraph",
+      "page_pdf": 40,
+      "excerpt": "Волновые процессы способны перераспределять большую часть осадка, поэтому характерны правильная пляжевая береговая",
+      "node_ids": [
+        "baraboshkin_par1-2.wave_dominated_deltas"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p041.01",
+      "kind": "paragraph",
+      "page_pdf": 41,
+      "excerpt": "Волновая переработка после отмирания дельты значительна, что приводит к широкому распространению неполных,",
+      "node_ids": [
+        "baraboshkin_par1-2.wave_dominated_deltas"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p041.02",
+      "kind": "figure",
+      "page_pdf": 41,
+      "excerpt": "Рис. 1.23. Развитие разрезов фронта дельты в волновой дельтовой системе, мел Техаса.",
+      "node_ids": [
+        "baraboshkin_par1-2.wave_dominated_deltas"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p041.03",
+      "kind": "heading",
+      "page_pdf": 41,
+      "excerpt": "1.2.3 Преимущественно приливные дельты [Tide-dominated deltas]",
+      "node_ids": [
+        "baraboshkin_par1-2.tide_dominated_deltas"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p041.04",
+      "kind": "paragraph",
+      "page_pdf": 41,
+      "excerpt": "Разрезы приливных дельтовых равнин включают фации приливных рукавов и фации приливных отмелей,",
+      "node_ids": [
+        "baraboshkin_par1-2.tide_dominated_deltas"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p041.05",
+      "kind": "paragraph",
+      "page_pdf": 41,
+      "excerpt": "Дельтовые рукава, подверженные действию приливов, отличаются незначительной извилистостью, разветвленной и иногда воронкообразной",
+      "node_ids": [
+        "baraboshkin_par1-2.tide_dominated_deltas"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p042.01",
+      "kind": "table",
+      "page_pdf": 42,
+      "excerpt": "Основные факты Интерпретация 9 Алевролиты мощные, темно-красные, грубозернистые, с линзами и выдержанными",
+      "node_ids": [
+        "baraboshkin_par1-2.tide_dominated_deltas"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p042.02",
+      "kind": "figure",
+      "page_pdf": 42,
+      "excerpt": "Рис. 1.24. Разрез каменноугольного дельтового рукава приливной дельты, Лидни, Глостершир [2]",
+      "node_ids": [
+        "baraboshkin_par1-2.tide_dominated_deltas"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p042.03",
+      "kind": "paragraph",
+      "page_pdf": 42,
+      "excerpt": "Разрезы приливных рукавов начинаются с грубого внутриформационного галечника с фрагментами морской фауны,",
+      "node_ids": [
+        "baraboshkin_par1-2.tide_dominated_deltas"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p043.01",
+      "kind": "figure",
+      "page_pdf": 43,
+      "excerpt": "Рис. 1.25. Трехмерная модель фронта дельты и нижней дельтовой равнины приливной дельты",
+      "node_ids": [
+        "baraboshkin_par1-2.tide_dominated_deltas"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p043.02",
+      "kind": "paragraph",
+      "page_pdf": 43,
+      "excerpt": "Приливные протоки менее склонны изменять направление и отмирать, но могут мигрировать. Форма",
+      "node_ids": [
+        "baraboshkin_par1-2.tide_dominated_deltas"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p043.03",
+      "kind": "paragraph",
+      "page_pdf": 43,
+      "excerpt": "Внутридельтовые области включают лагуны, мелкие приливные каналы или ручьи и литорали, чувствительные",
+      "node_ids": [
+        "baraboshkin_par1-2.tide_dominated_deltas"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p044.01",
+      "kind": "paragraph",
+      "page_pdf": 44,
+      "excerpt": "В аридном климате могут формироваться илистые и песчаные отмели местами с соляными",
+      "node_ids": [
+        "baraboshkin_par1-2.tide_dominated_deltas"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p044.02",
+      "kind": "paragraph",
+      "page_pdf": 44,
+      "excerpt": "Основными чертами фронта дельты являются приливные гряды, радиально расположенные по отношению к",
+      "node_ids": [
+        "baraboshkin_par1-2.tide_dominated_deltas"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p044.03",
+      "kind": "paragraph",
+      "page_pdf": 44,
+      "excerpt": "Отмирание дельт такого типа может приводить к формированию обширных заболоченных равнин.",
+      "node_ids": [
+        "baraboshkin_par1-2.tide_dominated_deltas"
+      ],
+      "reason": null
+    }
+  ]
+}
