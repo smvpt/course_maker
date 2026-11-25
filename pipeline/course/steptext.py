@@ -12,7 +12,10 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
+import threading
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Literal, Optional
 
@@ -85,20 +88,44 @@ class LlmState:
         self.in_a_row = 0
         self.failures = 0
         self.calls = 0
+        self._lock = threading.Lock()                       # узлы обрабатываются в нескольких потоках
 
     def success(self) -> None:
-        self.calls += 1
-        self.in_a_row = 0
+        with self._lock:
+            self.calls += 1
+            self.in_a_row = 0
 
     def failure(self, e: LlmError) -> None:
-        self.calls += 1
-        self.failures += 1
-        if isinstance(e, LlmAuthError):
-            self.down = str(e)
-            return
-        self.in_a_row += 1
-        if self.in_a_row >= self.MAX_IN_A_ROW:
-            self.down = f"{self.MAX_IN_A_ROW} отказа подряд, последний: {e}"
+        with self._lock:
+            self.calls += 1
+            self.failures += 1
+            if isinstance(e, LlmAuthError):
+                self.down = str(e)
+                return
+            self.in_a_row += 1
+            if self.in_a_row >= self.MAX_IN_A_ROW and self.down is None:
+                self.down = f"{self.MAX_IN_A_ROW} отказа подряд, последний: {e}"
+
+
+def workers() -> int:
+    """Число потоков обработки узлов: COURSE_WORKERS (по умолчанию 4). Неверное значение — ошибка, а не молчаливая подмена."""
+    raw = os.environ.get("COURSE_WORKERS", "4")
+    try:
+        n = int(raw)
+    except ValueError:
+        n = 0
+    if n < 1:
+        raise ValueError(f"COURSE_WORKERS={raw!r}: нужно целое число потоков от 1")
+    return n
+
+
+def run_parallel(items: list, job) -> list:
+    """job(item) для каждого элемента в пуле потоков; результаты — в порядке items, а не завершения.
+    job сам превращает отказы модели в результат; любое другое исключение (баг) пробрасывается."""
+    if workers() == 1 or len(items) <= 1:
+        return [job(x) for x in items]
+    with ThreadPoolExecutor(max_workers=workers()) as pool:
+        return list(pool.map(job, items))
 
 
 # ---------------------------------------------------------------- разбор текста
@@ -364,6 +391,7 @@ def ensure_step_text(layer: Layer, course_dir: Path, only: Optional[str] = None,
     failed = {k: v for k, v in (old.failed if old else {}).items() if k in ids}
     viewer = (Path(__file__).resolve().parents[2] / VIEWER_FILE).read_text(encoding="utf-8")
     language = quote_language(layer)
+    todo = []
     for n in layer.nodes:
         if only is not None and n.id != only:
             continue
@@ -371,20 +399,30 @@ def ensure_step_text(layer: Layer, course_dir: Path, only: Optional[str] = None,
         if n.id in nodes and nodes[n.id].hash == h:
             continue
         nodes.pop(n.id, None)
+        todo.append((n, h))
+
+    def job(item):
+        n, h = item
         if state.down is not None:
-            failed[n.id] = StepTextFailure(hash=h, errors=[f"модель недоступна: {state.down}"])
-            continue
+            return None, StepTextFailure(hash=h, errors=[f"модель недоступна: {state.down}"])
         try:
-            nodes[n.id] = StepTextNode(hash=h, paragraphs=generate_node(n, language, viewer))
-            failed.pop(n.id, None)
-            state.success()
+            paragraphs = generate_node(n, language, viewer)
         except GenerationFailed as e:
-            failed[n.id] = StepTextFailure(hash=h, errors=e.errors)
             state.success()                                # модель ответила, просто неверно
+            return None, StepTextFailure(hash=h, errors=e.errors)
         except LlmError as e:
             state.failure(e)
             reason = f"модель недоступна: {state.down}" if state.down else f"отказ модели: {e}"
-            failed[n.id] = StepTextFailure(hash=h, errors=[reason])
+            return None, StepTextFailure(hash=h, errors=[reason])
+        state.success()
+        return StepTextNode(hash=h, paragraphs=paragraphs), None
+
+    for (n, _), (ok, fail) in zip(todo, run_parallel(todo, job)):   # итог собирается в порядке слоя, файл пишет один поток
+        if ok is not None:
+            nodes[n.id] = ok
+            failed.pop(n.id, None)
+        else:
+            failed[n.id] = fail
     course_dir.mkdir(parents=True, exist_ok=True)
     path.write_text(StepText(chapter=layer.chapter, nodes=nodes, failed=failed).model_dump_json(by_alias=True, indent=2),
                     encoding="utf-8")

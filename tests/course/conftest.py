@@ -19,3 +19,9 @@ def _blind_check_off_unless_asked(request, monkeypatch):
 
 def pytest_configure(config):
     config.addinivalue_line("markers", "blind: тест слепой проверки ответа, без подмены blind_check")
+
+
+@pytest.fixture(autouse=True)
+def _one_worker_by_default(monkeypatch):
+    """Тесты с моками, считающими вызовы по порядку, идут в одном потоке; параллельные тесты ставят COURSE_WORKERS сами."""
+    monkeypatch.setenv("COURSE_WORKERS", "1")

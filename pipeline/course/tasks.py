@@ -20,7 +20,7 @@ from pathlib import Path
 from typing import Literal, Optional
 
 from contracts.models import Layer, Node, Task, TaskOption, Tasks
-from pipeline.course.steptext import (LlmError, LlmState, call_llm, cyrillic_share, node_dict, node_hash, norm, numbers_in, sentences, source_text,
+from pipeline.course.steptext import (LlmError, LlmState, call_llm, cyrillic_share, node_dict, node_hash, norm, numbers_in, run_parallel, sentences, source_text,
                                       words, VIEWER_FILE, quote_language)
 from pydantic import BaseModel, Field
 
@@ -509,6 +509,7 @@ def ensure_tasks(layer: Layer, course_dir: Path, misconceptions: list[dict], onl
     dropped = [d for d in oc.get("dropped", []) if d["node"] in by_node]
     node_warnings = [w for w in oc.get("node_warnings", []) if w["node"] in by_node]
     generated_all = True
+    todo = []
     for n in layer.nodes:
         if only is not None and n.id != only:
             generated_all = generated_all and bool(hashes.get(n.id))
@@ -518,17 +519,22 @@ def ensure_tasks(layer: Layer, course_dir: Path, misconceptions: list[dict], onl
             continue
         dropped = [d for d in dropped if d["node"] != n.id]
         node_warnings = [w for w in node_warnings if w["node"] != n.id]
-        if state.down is None:
-            by_node[n.id], new_dropped, new_warnings, failure = generate_node_tasks(n, planned[n.id], misconceptions, language, viewer)
-            if failure is not None:
-                state.failure(failure)
-            else:
-                state.success()
+        todo.append((n, h))
+
+    def job(item):
+        n, _ = item
+        if state.down is not None:
+            return [], [{"node": n.id, "slot": i + 1, "type": s["type"], "errors": [f"модель недоступна: {state.down}"]}
+                        for i, s in enumerate(planned[n.id])], []
+        built, new_dropped, new_warnings, failure = generate_node_tasks(n, planned[n.id], misconceptions, language, viewer)
+        if failure is not None:
+            state.failure(failure)
         else:
-            by_node[n.id] = []
-            new_dropped = [{"node": n.id, "slot": i + 1, "type": s["type"], "errors": [f"модель недоступна: {state.down}"]}
-                           for i, s in enumerate(planned[n.id])]
-            new_warnings = []
+            state.success()
+        return built, new_dropped, new_warnings
+
+    for (n, h), (built, new_dropped, new_warnings) in zip(todo, run_parallel(todo, job)):   # в порядке слоя, не завершения
+        by_node[n.id] = built
         dropped += new_dropped
         node_warnings += new_warnings
         hashes[n.id] = h

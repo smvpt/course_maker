@@ -11,7 +11,7 @@ from pathlib import Path
 from typing import Callable, Optional
 
 from contracts.models import Base, Layer
-from pipeline.course.steptext import GenerationFailed, LlmError, LlmState, node_hash
+from pipeline.course.steptext import GenerationFailed, LlmError, LlmState, node_hash, run_parallel
 
 
 class Entry(Base):
@@ -53,6 +53,7 @@ def ensure_per_node(layer: Layer, path: Path, wanted: set[str], make: Callable, 
     old = read_store(path, layer.chapter)
     nodes = {k: v for k, v in (old.nodes if old else {}).items() if k in wanted}
     failed = {k: v for k, v in (old.failed if old else {}).items() if k in wanted}
+    todo = []
     for n in layer.nodes:
         if n.id not in wanted or (only is not None and n.id != only):
             continue
@@ -60,20 +61,30 @@ def ensure_per_node(layer: Layer, path: Path, wanted: set[str], make: Callable, 
         if n.id in nodes and nodes[n.id].hash == h:
             continue
         nodes.pop(n.id, None)
+        todo.append((n, h))
+
+    def job(item):
+        n, h = item
         if state.down is not None:
-            failed[n.id] = Failure(hash=h, errors=[f"модель недоступна: {state.down}"])
-            continue
+            return None, Failure(hash=h, errors=[f"модель недоступна: {state.down}"])
         try:
-            nodes[n.id] = Entry(hash=h, data=make(n))
-            failed.pop(n.id, None)
-            state.success()
+            data = make(n)
         except (GenerationFailed, NotFeasible) as e:
-            failed[n.id] = Failure(hash=h, errors=e.errors)
             state.success()                                  # модель ответила, просто неверно или «нельзя»
+            return None, Failure(hash=h, errors=e.errors)
         except LlmError as e:
             state.failure(e)
             reason = f"модель недоступна: {state.down}" if state.down else f"отказ модели: {e}"
-            failed[n.id] = Failure(hash=h, errors=[reason])
+            return None, Failure(hash=h, errors=[reason])
+        state.success()
+        return Entry(hash=h, data=data), None
+
+    for (n, _), (ok, fail) in zip(todo, run_parallel(todo, job)):
+        if ok is not None:
+            nodes[n.id] = ok
+            failed.pop(n.id, None)
+        else:
+            failed[n.id] = fail
     path.parent.mkdir(parents=True, exist_ok=True)
     store = NodeStore(chapter=layer.chapter, nodes=nodes, failed=failed)
     path.write_text(store.model_dump_json(by_alias=True, indent=2), encoding="utf-8")
