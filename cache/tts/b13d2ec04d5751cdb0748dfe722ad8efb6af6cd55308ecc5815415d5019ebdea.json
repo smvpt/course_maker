@@ -1,0 +1,86 @@
+{
+  "key": "b13d2ec04d5751cdb0748dfe722ad8efb6af6cd55308ecc5815415d5019ebdea",
+  "text": "Поэтому тело дельты ищут около устья крупной реки: оно ограничено по площади.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+0%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 5000000,
+      "text": "Поэтому"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 6000000,
+      "duration": 2750000,
+      "text": "тело"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8750000,
+      "duration": 4625000,
+      "text": "дельты"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 13375000,
+      "duration": 3750000,
+      "text": "ищут"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 17125000,
+      "duration": 3500000,
+      "text": "около"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 20625000,
+      "duration": 3500000,
+      "text": "устья"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 24125000,
+      "duration": 3625000,
+      "text": "крупной"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 27750000,
+      "duration": 3625000,
+      "text": "реки"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 32750000,
+      "duration": 3125000,
+      "text": "оно"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 35875000,
+      "duration": 5875000,
+      "text": "ограничено"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 41750000,
+      "duration": 1125000,
+      "text": "по"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 42875000,
+      "duration": 5875000,
+      "text": "площади"
+    }
+  ]
+}

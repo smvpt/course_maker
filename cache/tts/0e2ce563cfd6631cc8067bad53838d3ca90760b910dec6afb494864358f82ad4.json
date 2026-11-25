@@ -1,0 +1,74 @@
+{
+  "key": "0e2ce563cfd6631cc8067bad53838d3ca90760b910dec6afb494864358f82ad4",
+  "text": "Как вы думаете, где в дельте накопится больше всего осадка?",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+0%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 2500000,
+      "text": "Как"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 3500000,
+      "duration": 1125000,
+      "text": "вы"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 4625000,
+      "duration": 5875000,
+      "text": "думаете"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 11750000,
+      "duration": 2750000,
+      "text": "где"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 14500000,
+      "duration": 500000,
+      "text": "в"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 15000000,
+      "duration": 3500000,
+      "text": "дельте"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 18500000,
+      "duration": 5000000,
+      "text": "накопится"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 23500000,
+      "duration": 3250000,
+      "text": "больше"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 26750000,
+      "duration": 3000000,
+      "text": "всего"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 29750000,
+      "duration": 5750000,
+      "text": "осадка"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "key": "57bf5a0428d6464f7d63a3a8a6b2924a3cee75149aa486de10ec7528b961fd13",
+  "text": "Тело дельты ограничено по площади, поэтому депоцентр формируется рядом с устьем.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+0%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 3375000,
+      "text": "Тело"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 4375000,
+      "duration": 3750000,
+      "text": "дельты"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8125000,
+      "duration": 6000000,
+      "text": "ограничено"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 14125000,
+      "duration": 1125000,
+      "text": "по"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 15250000,
+      "duration": 5375000,
+      "text": "площади"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 23375000,
+      "duration": 4375000,
+      "text": "поэтому"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 27750000,
+      "duration": 6000000,
+      "text": "депоцентр"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 33750000,
+      "duration": 6625000,
+      "text": "формируется"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 40375000,
+      "duration": 3250000,
+      "text": "рядом"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 43625000,
+      "duration": 875000,
+      "text": "с"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 44500000,
+      "duration": 5000000,
+      "text": "устьем"
+    }
+  ]
+}

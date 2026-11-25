@@ -1,0 +1,68 @@
+{
+  "key": "d6fcbf83d3d124e35433314ea06d0903543eac9df0c954f22c0ea638b8887ee7",
+  "text": "Этот конус выноса у устья реки и называют дельтой.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+0%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 3750000,
+      "text": "Этот"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 4750000,
+      "duration": 3625000,
+      "text": "конус"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8375000,
+      "duration": 5250000,
+      "text": "выноса"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 13625000,
+      "duration": 1500000,
+      "text": "у"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 15125000,
+      "duration": 3125000,
+      "text": "устья"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 18250000,
+      "duration": 4125000,
+      "text": "реки"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 22375000,
+      "duration": 1125000,
+      "text": "и"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 23500000,
+      "duration": 5125000,
+      "text": "называют"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 28625000,
+      "duration": 5875000,
+      "text": "дельтой"
+    }
+  ]
+}

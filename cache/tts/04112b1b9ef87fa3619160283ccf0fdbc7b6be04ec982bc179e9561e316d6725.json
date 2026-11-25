@@ -1,0 +1,74 @@
+{
+  "key": "04112b1b9ef87fa3619160283ccf0fdbc7b6be04ec982bc179e9561e316d6725",
+  "text": "Лопасть дельты продвигается, затем отмирает, и стадия продвижения повторяется снова.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+0%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 6125000,
+      "text": "Лопасть"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 7125000,
+      "duration": 3750000,
+      "text": "дельты"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 10875000,
+      "duration": 7875000,
+      "text": "продвигается"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 19875000,
+      "duration": 3375000,
+      "text": "затем"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 23250000,
+      "duration": 5625000,
+      "text": "отмирает"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 31125000,
+      "duration": 1000000,
+      "text": "и"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 32125000,
+      "duration": 4125000,
+      "text": "стадия"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 36250000,
+      "duration": 6125000,
+      "text": "продвижения"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 42375000,
+      "duration": 6375000,
+      "text": "повторяется"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 48750000,
+      "duration": 5125000,
+      "text": "снова"
+    }
+  ]
+}

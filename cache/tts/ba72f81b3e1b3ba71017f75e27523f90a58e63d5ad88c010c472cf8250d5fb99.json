@@ -1,0 +1,98 @@
+{
+  "key": "ba72f81b3e1b3ba71017f75e27523f90a58e63d5ad88c010c472cf8250d5fb99",
+  "text": "Решение — смотреть на дельту как на конус выноса там, где река достигает базиса эрозии.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+0%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 7375000,
+      "text": "Решение"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 9500000,
+      "duration": 4750000,
+      "text": "смотреть"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 14250000,
+      "duration": 1125000,
+      "text": "на"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 15375000,
+      "duration": 3250000,
+      "text": "дельту"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 18625000,
+      "duration": 2000000,
+      "text": "как"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 20625000,
+      "duration": 1000000,
+      "text": "на"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 21625000,
+      "duration": 3375000,
+      "text": "конус"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 25000000,
+      "duration": 4125000,
+      "text": "выноса"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 29125000,
+      "duration": 3000000,
+      "text": "там"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 34250000,
+      "duration": 2250000,
+      "text": "где"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 36500000,
+      "duration": 2625000,
+      "text": "река"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 39125000,
+      "duration": 5875000,
+      "text": "достигает"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 45000000,
+      "duration": 5250000,
+      "text": "базиса"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 50250000,
+      "duration": 6375000,
+      "text": "эрозии"
+    }
+  ]
+}

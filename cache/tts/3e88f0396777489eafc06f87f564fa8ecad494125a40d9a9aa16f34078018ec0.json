@@ -1,0 +1,86 @@
+{
+  "key": "3e88f0396777489eafc06f87f564fa8ecad494125a40d9a9aa16f34078018ec0",
+  "text": "Геометрию определяют речной сток, климат, тектонические движения, рельеф, волны и приливные течения.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+0%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 7875000,
+      "text": "Геометрию"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8875000,
+      "duration": 6000000,
+      "text": "определяют"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 14875000,
+      "duration": 3625000,
+      "text": "речной"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 18500000,
+      "duration": 4875000,
+      "text": "сток"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 24750000,
+      "duration": 5000000,
+      "text": "климат"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 31875000,
+      "duration": 7625000,
+      "text": "тектонические"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 39500000,
+      "duration": 6000000,
+      "text": "движения"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 46875000,
+      "duration": 5750000,
+      "text": "рельеф"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 54000000,
+      "duration": 5500000,
+      "text": "волны"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 59500000,
+      "duration": 1375000,
+      "text": "и"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 60875000,
+      "duration": 5000000,
+      "text": "приливные"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 65875000,
+      "duration": 8125000,
+      "text": "течения"
+    }
+  ]
+}

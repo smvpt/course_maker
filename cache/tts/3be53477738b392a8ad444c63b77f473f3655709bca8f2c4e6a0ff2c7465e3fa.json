@@ -1,0 +1,74 @@
+{
+  "key": "3be53477738b392a8ad444c63b77f473f3655709bca8f2c4e6a0ff2c7465e3fa",
+  "text": "А повторяющиеся пачки в разрезе читают как смену стадий лопастей.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+0%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 1875000,
+      "text": "А"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 2875000,
+      "duration": 8750000,
+      "text": "повторяющиеся"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 11625000,
+      "duration": 3875000,
+      "text": "пачки"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 15500000,
+      "duration": 250000,
+      "text": "в"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 15750000,
+      "duration": 4875000,
+      "text": "разрезе"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 20625000,
+      "duration": 4000000,
+      "text": "читают"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 24625000,
+      "duration": 1750000,
+      "text": "как"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 26375000,
+      "duration": 4125000,
+      "text": "смену"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 30500000,
+      "duration": 3625000,
+      "text": "стадий"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 34125000,
+      "duration": 7625000,
+      "text": "лопастей"
+    }
+  ]
+}

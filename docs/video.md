@@ -276,13 +276,23 @@ LAS хранится в Git байт в байт: `fixtures/video/.gitattributes
 
 Хотя бы одного кадра в истинном масштабе у схемы нет, потому что нет масштаба. Это сказано на кадре и в паспорте.
 
-Проверка рендера на настоящем узле. Пара `fixtures/video/t3_deltas/` **написана вручную, это не ответ модели**: в ней только утверждения c1–c5 узла.
+Проверка рендера на настоящем узле. Пара `fixtures/video/t3_deltas/` **написана вручную, это не ответ модели**: в ней только утверждения c1–c5 узла. Эта пара позволяет П3 пересобрать именно проверочный ролик без ключа LLM. В `cache/tts/` сохранены 19 фраз голоса `ru-RU-SvetlanaNeural` (38 файлов, около 0,7 МБ); при другом голосе этот кэш не подойдёт.
+
+Из корня репозитория, после установки зависимостей (`python -m pip install -r requirements.txt`), FFmpeg/ffprobe и шрифта Segoe UI (см. `manifest/video.md`):
 
 ```powershell
+$env:LLM_OFFLINE = "1"
+$env:TTS_OFFLINE = "1"
 .venv\Scripts\python -m pipeline.video.build --ch baraboshkin_par1-2 --node baraboshkin_par1-2.deltas_overview `
     --script fixtures/video/t3_deltas/script.json --scene-spec fixtures/video/t3_deltas/scene_spec.json `
-    --layer fixtures/core/live_baraboshkin_par1-2/layer.json --draft
+    --layer fixtures/core/live_baraboshkin_par1-2/layer.json --voice ru-RU-SvetlanaNeural --draft
 ```
+
+Выход: `out/baraboshkin_par1-2/videos/baraboshkin_par1-2.deltas_overview.long/` — MP4, VTT, `passport.json`, `script.json`, `scene_spec.json` и отчёты. `node_id` — `baraboshkin_par1-2.deltas_overview`, `video_id` — `baraboshkin_par1-2.deltas_overview.long`: стандартный ID для длинного ролика, чтобы П3 проверил поиск по `video_id` и привязку к узлу. После сборки П3 пересобирает курс этой главы; её `layer.json` и `routing.json` должны быть уже подготовлены ядром в `out/baraboshkin_par1-2/`. Таблица источников в паспорте должна содержать пять утверждений с точными цитатами, а `build_report.sources_check.ok` — `true`.
+
+LLM и сервис озвучки для этой команды не нужны. Локальная ASR-модель `small` (~480 МБ) при первом запуске скачивается с Hugging Face, если её ещё нет в кэше пользователя. Для проверки только подключения видео к курсу можно добавить `--skip-asr`: паспорт честно отметит распознавание как «не проверено».
+
+**Код выхода 3:** MP4, VTT и паспорт записаны, но озвучка не прошла проверку или ASR пропущено. Это не успешная проверка качества звука. В последнем локальном прогоне этого сценария проверка озвучки не пройдена; ролик предназначен для технической стыковки, до финальной сдачи звук нужно проверить и исправить. Код 2 означает ошибку сборки. Рендер работает без окна предпросмотра; после его завершения записываются новый MP4 и паспорт.
 
 Настоящая пара по маршруту — `video.spec --ch baraboshkin_par1-2 --node baraboshkin_par1-2.deltas_overview` (нужен LLM: ключ в `.env` или кэш видеопромптов в `cache/llm/`).
 
