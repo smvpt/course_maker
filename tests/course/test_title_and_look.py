@@ -135,7 +135,7 @@ def test_step_strip_one_square_per_step_with_name_current_and_scroll(tmp_path):
 def test_right_column_card_source_button_and_mini_progress(tmp_path):
     _, _, html = _built(tmp_path)
     aside = html[html.index('class="step-aside"'):html.index("</aside>", html.index('class="step-aside"'))]
-    assert re.search(r"Источник: стр\. \d+", aside) and "Проверь по книге" in aside
+    assert re.search(r'class="side-pages">стр\. \d+', aside) and "Источник: " not in aside and len(re.findall(r">Источник<", aside)) == 1 and "Проверь по книге" in aside
     cid = re.search(r'class="pg pg-btn" data-claim="([^"]+)"', aside).group(1)
     assert cid.startswith("mini.resistivity_depends_on_fluid#c") and 'id="step-bar-side"' in aside and 'id="step-progress-side"' in aside
     css = (ROOT / "pipeline/course/assets/course.css").read_text(encoding="utf-8")
@@ -169,6 +169,7 @@ def test_one_icon_set_phosphor_regular_without_glyphs_or_emoji():
 def test_every_step_block_has_its_own_icon_and_empty_states_have_one():
     tpl = (ROOT / "pipeline/course/templates/step.html.j2").read_text(encoding="utf-8")
     blocks = re.findall(r'<section id="(b-[a-z]+)"[^>]*><h2>(?:\{\{ icon\("([a-z-]+)"\) \}\})?', tpl)
+    blocks = list(dict(blocks).items())                                 # b-interactive описан дважды (схема и слайдер): один блок
     assert len(blocks) >= 18
     assert [b for b, ic in blocks if not ic] == []
     icons = [ic for _, ic in blocks]
@@ -180,3 +181,59 @@ def test_every_step_block_has_its_own_icon_and_empty_states_have_one():
         assert 'class="empty-ic"' in t and 'aria-hidden="true"' in t[t.index('class="empty-ic"') - 10:t.index('class="empty-ic"') + 60], f
     css = (ROOT / "pipeline/course/assets/course.css").read_text(encoding="utf-8")
     assert re.search(r"\.main-nav \.ic[^{]*\{[^}]*width: 24px", css) and re.search(r"^\.ic \{ width: 20px; height: 20px", css, re.M)
+
+
+# ---------------------------------------------------------------- логотип KERN
+
+def test_brand_svgs_are_clean_geometry_in_reference_colours():
+    import xml.etree.ElementTree as ET
+    b = ROOT / "pipeline/course/assets/brand"
+    texts = {n: (b / f"{n}.svg").read_text(encoding="utf-8") for n in ("symbol", "logo", "logo-mono", "favicon")}
+    for n, t in texts.items():
+        ET.fromstring(t)                                                         # валидный XML
+        assert "<image" not in t and "base64" not in t and 'aria-label="KERN"' in t, n   # не растр, доступное имя
+        assert len(t) < 6000, n
+    for c in ("#C9A66B", "#7F8C8D", "#3B82F6", "#5D6D7E", "#0F1419"):
+        assert c in texts["symbol"] + texts["favicon"], c
+    assert "#ECEFF4" in texts["favicon"]                                         # тёмная вкладка браузера
+    assert "<text" in texts["logo"] and ">KERN<" in texts["logo"] and "system-ui" in texts["logo"] and "Segoe UI" in texts["logo"]
+    assert "clipPath" in texts["symbol"] and "clipPath" not in texts["favicon"] and "<text" not in texts["favicon"]   # favicon — только цилиндр
+    assert "#FFFFFF" in texts["logo-mono"] and not any(c in texts["logo-mono"] for c in ("#C9A66B", "#3B82F6"))        # белая версия
+
+
+def test_header_has_the_logo_and_every_page_has_the_favicon(tmp_path):
+    course, index, step = _built(tmp_path)
+    assert (course / "assets/brand/favicon.svg").exists() and (course / "assets/brand/logo.svg").exists()
+    for page in course.glob("*.html"):
+        html = page.read_text(encoding="utf-8")
+        assert '<link rel="icon" type="image/svg+xml" href="assets/brand/favicon.svg">' in html, page.name
+        header = html[html.index('<header class="top">'):html.index("</header>")]
+        assert 'class="brand-logo"' in header and 'aria-label="KERN"' in header and ">KERN<" in header, page.name
+        assert header.index("brand-logo") < header.index("brand-title"), page.name       # название главы — справа от логотипа
+
+
+# ---------------------------------------------------------------- конспект и печать
+
+def test_summary_has_formulas_with_katex_and_is_printable(tmp_path):
+    course, _, _ = _built(tmp_path)
+    html = (course / "summary.html").read_text(encoding="utf-8")
+    assert 'data-tex="' in html and 'class="formula" data-katex' in html                       # формулы шага есть в конспекте
+    assert 'href="assets/katex/katex.min.css"' in html and 'src="assets/katex/katex.min.js"' in html
+    js = (ROOT / "pipeline/course/assets/course.js").read_text(encoding="utf-8")
+    assert 'if (page === "summary") renderFormulas();' in js and "function renderFormulas" in js
+    css = (ROOT / "pipeline/course/assets/course.css").read_text(encoding="utf-8")
+    printed = css[css.rindex("@media print"):]
+    assert ".sum-step { break-inside: auto; }" in printed and "max-height: 70mm" in printed
+    prints = "".join(re.findall(r"@media print \{(.*?)\n\}", css, re.S))
+    for hidden in (".top", ".brand", ".main-nav", ".step-aside", ".step-strip"):
+        assert hidden in prints, hidden
+
+
+def test_summary_without_formulas_does_not_load_katex(tmp_path):
+    layer = _layer()
+    for n in layer.nodes:
+        n.claims = [c for c in n.claims if c.source_kind != "formula"]
+    out = _put(tmp_path, layer)
+    course = build("mini_test", out_root=out, pages_dir=tmp_path / "pages")
+    html = (course / "summary.html").read_text(encoding="utf-8")
+    assert "katex" not in html and 'data-tex' not in html

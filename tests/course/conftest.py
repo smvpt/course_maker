@@ -25,3 +25,11 @@ def pytest_configure(config):
 def _one_worker_by_default(monkeypatch):
     """Тесты с моками, считающими вызовы по порядку, идут в одном потоке; параллельные тесты ставят COURSE_WORKERS сами."""
     monkeypatch.setenv("COURSE_WORKERS", "1")
+
+
+@pytest.fixture(autouse=True)
+def _scheme_model_off(monkeypatch):
+    """Схема-исследование строится вызовом модели; тесты, где её нет в плане, не ходят в сеть: модель «отвечает», что построить нельзя.
+    Тесты схемы подменяют scheme.complete_json сами."""
+    from pipeline.course import scheme
+    monkeypatch.setattr(scheme, "complete_json", lambda **kw: scheme.SchemeSpec(feasible=False))

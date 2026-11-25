@@ -219,11 +219,17 @@ def paras_view(node: Node, paras: list[Para]) -> dict[str, list[dict]]:
 def inter_view(data: dict, style_raw: dict) -> dict:
     """Данные интерактива + палитра из styleguide (цвета рисует JS из этих данных, а не из CSS)."""
     gs = illus_gen.Style(style_raw)
+    if data["template"] == "scheme":
+        parts = []
+        for p in data["parts"]:
+            color = style_raw["lithology"][p["rock"]]["color"] if p["rock"] else None
+            parts.append({**p, "color": color, "on": gs.on(color) if color else None})
+        return {"scheme": True, "data": data, "parts": parts, "json": Markup(json.dumps(data, ensure_ascii=False).replace("</", "<\\/"))}
     badge = gs.prov("симуляция")
     palette = {"bg": gs.bg, "panel": gs.panel, "text": gs.text, "muted": gs.muted, "color": gs.curve(data["curve_key"]) or gs.measurement,
                "badge": badge, "badgeText": gs.on(badge)}
     head, rows = inter_mod.table_rows(data)
-    return {"data": data, "head": head, "rows": rows, "steps": len(data["slider"]["values"]),
+    return {"scheme": False, "data": data, "head": head, "rows": rows, "steps": len(data["slider"]["values"]),
             "json": Markup(json.dumps({**data, "palette": palette}, ensure_ascii=False).replace("</", "<\\/"))}
 
 
@@ -629,7 +635,12 @@ def make_env() -> Environment:
         svg = icons[name].replace("<svg ", '<svg class="ic" aria-hidden="true" focusable="false" ', 1)
         return Markup(svg)
 
-    env.globals.update(icon=icon, by_of=by_of, has_text=has_text)
+    def brand(name: str) -> Markup:
+        """Логотип KERN встроенным SVG: обводка и надпись берут цвет темы (--kern-ink), доступное имя — «KERN»."""
+        svg = (HERE / "assets/brand" / f"{name}.svg").read_text(encoding="utf-8")
+        return Markup(svg.replace("<svg ", '<svg class="brand-logo" ', 1).replace(' width="372" height="128"', "").replace(' width="164" height="128"', ""))
+
+    env.globals.update(icon=icon, brand=brand, by_of=by_of, has_text=has_text)
     env.filters["plural"] = plural
     return env
 
@@ -685,6 +696,8 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
 
     inter_plan, inter_no_data = inter_mod.plan(layer.nodes, inp["routes"], inp["has_routing"],
                                                lambda nid: _has_video(ch_dir, nid))
+    scheme_ids = set(inter_no_data)                  # нужен интерактив, формулы нет: «схема-исследование» из утверждений узла
+    inter_wanted = set(inter_plan) | scheme_ids
     for prob in inp["routing_problems"]:
         warn(prob["code"], prob["message"], **{k: v for k, v in prob.items() if k not in ("code", "message")})
 
@@ -705,13 +718,14 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
     for f in ("course.css", "course.js"):
         shutil.copy2(HERE / "assets" / f, course / "assets" / f)
     shutil.copytree(HERE / "assets/katex", course / "assets/katex", dirs_exist_ok=True)   # формулы без CDN
+    shutil.copytree(HERE / "assets/brand", course / "assets/brand", dirs_exist_ok=True)   # логотип KERN и favicon
     style = json.loads(styleguide.read_text(encoding="utf-8"))
     (course / "assets/tokens.css").write_text(tokens_css(style), encoding="utf-8")
 
     state = None
     if generate:                                   # текст шагов и задания: модель только через pipeline.llm
         from pipeline.course import generate as gen
-        state = gen.run(layer, ch_dir, course, node, domain, extras=extras, style=style, interactive_plan=inter_plan)
+        state = gen.run(layer, ch_dir, course, node, domain, extras=extras, style=style, interactive_plan=inter_plan, scheme_plan=scheme_ids)
     stored = read_step_text(course / "step_text.json", ch)
     step_text = stored.nodes if stored else {}
     orig = {n.id: n for n in layer.nodes}
@@ -757,9 +771,11 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
     guess_ids = {n.id for n in layer.nodes if guess_mod.wanted(n)}
     down_other = 0
     for nid in inter_no_data:
+        if inter_store and (nid in inter_store.nodes or nid in inter_store.failed):
+            continue                                  # схему пробовали строить: итог (или причина отказа) ниже
         warn("interactive_no_data", f"шагу {nid} нужен интерактив (маршрутизация дала видео, ролика нет), но в нём нет формулы: интерактив не показан",
              node=nid)
-    for store, wanted_ids, what, code in ((inter_store, set(inter_plan), "интерактив", "interactive"),
+    for store, wanted_ids, what, code in ((inter_store, inter_wanted, "интерактив", "interactive"),
                                           (guess_store, guess_ids, "вопрос «сначала угадай»", "guess")):
         for nid, f in (store.failed if store else {}).items():
             if nid not in wanted_ids or f.hash != node_hash(orig[nid]):
@@ -772,7 +788,7 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
             else:
                 warn("interactive_no_data" if f.errors[0].startswith("модель ответила") else f"{code}_failed", msg, node=nid, errors=f.errors)
     fresh_inter = {nid: e.data["data"] for nid, e in (inter_store.nodes if inter_store else {}).items()
-                   if nid in inter_plan and e.hash == node_hash(orig[nid])}
+                   if nid in inter_wanted and e.hash == node_hash(orig[nid])}
     fresh_guess = {nid: e.data for nid, e in (guess_store.nodes if guess_store else {}).items()
                    if nid in guess_ids and e.hash == node_hash(orig[nid])}
     for w in inp["illus_warnings"]:                  # предупреждения генератора иллюстраций: в отчёт, в stderr их уже печатал он сам
@@ -821,7 +837,11 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
     render("progress.html", "progress.html.j2", page="progress")
     render("mistakes.html", "mistakes.html.j2", page="mistakes")
     render("cards.html", "cards.html.j2", nodes=ordered, page="cards")
-    render("summary.html", "summary.html.j2", nodes=ordered, page="summary")
+    sum_extras = {n.id: {"formulas": [c for c in n.claims if c.source_kind == "formula"],
+                         "illus": [{"il": il, "src": f"assets/illus/{Path(il.file).name}"} for il in inp["illus"].get(n.id, [])[:2]]}
+                  for n in ordered}                      # конспект: формулы и иллюстрации шага (файлы копирует страница шага)
+    render("summary.html", "summary.html.j2", nodes=ordered, page="summary", extras=sum_extras,
+           has_formulas=any(e["formulas"] for e in sum_extras.values()))
     render("it.html", "it.html.j2", items=it_items(ordered), page="it")
     render("map.html", "map.html.j2", m=map_view(ordered), nodes=ordered, titles=titles, page="map")
     if errata:

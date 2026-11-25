@@ -281,6 +281,24 @@
 {% if v.show["b-interactive"] %}
 {% set it = v.inter %}
 {% set sl = it.data.slider %}
+{% if it.scheme %}
+<section id="b-interactive" class="block"><h2>{{ icon("sliders-horizontal") }}Интерактив <span class="prov-chip">схема</span></h2>
+  <p class="inter-title"><strong>{{ it.data.title }}</strong></p>
+  <p class="muted">{{ it.data.note }} {{ badge("model") }}</p>
+  <div class="scheme" data-template="scheme" data-layout="{{ it.data.layout }}">
+    <div class="scheme-tools" role="group" aria-label="Режим схемы">
+      <button type="button" class="btn-small" data-mode="explore" aria-pressed="true">Исследовать</button>
+      <button type="button" class="btn-small" data-mode="quiz" aria-pressed="false">Проверь себя</button>
+    </div>
+    <ol class="scheme-parts" aria-label="Части схемы">
+      {% for p in it.parts %}<li><button type="button" class="scheme-part" data-i="{{ loop.index0 }}"{% if p.color %} style="--part-bg: {{ p.color }}; --part-fg: {{ p.on }}"{% endif %}><span class="scheme-n">{{ loop.index }}</span><span class="scheme-label">{{ p.label }}</span></button></li>{% endfor %}
+    </ol>
+    <div class="scheme-detail" id="scheme-detail" aria-live="polite" tabindex="-1"><p class="muted">Выбери часть схемы: клик, Enter или пробел.</p></div>
+  </div>
+  <p class="muted">Схема собрана из утверждений узла, а не из измерений: у каждой части есть страница книги.</p>
+  <script type="application/json" id="inter-data">{{ it.json }}</script>
+</section>
+{% else %}
 <section id="b-interactive" class="block"><h2>{{ icon("sliders-horizontal") }}Интерактив <span class="prov-chip">симуляция</span></h2>
   <p class="inter-title"><strong>{{ it.data.title }}</strong></p>
   <p class="muted">{{ it.data.note }} {{ badge("model") }}</p>
@@ -302,6 +320,7 @@
   {% endcall %}
   <script type="application/json" id="inter-data">{{ it.json }}</script>
 </section>
+{% endif %}
 {% endif %}
 
 {% if v.show["b-media"] %}
@@ -405,7 +424,7 @@
 <aside class="step-aside" aria-label="Источник и прогресс шага">
   <div class="side-card">
     <h2>{{ icon("book-open") }}Источник</h2>
-    <p class="side-pages">{% if v.pages_label %}Источник: {{ v.pages_label }}{% else %}Страницы книги не указаны{% endif %}</p>
+    <p class="side-pages">{{ v.pages_label or "Страницы не указаны" }}</p>
     {% if n.claims %}<button type="button" class="pg pg-btn" data-claim="{{ (v.text_claims[0] if v.text_claims else n.claims[0]).id }}">{{ icon("magnifying-glass") }}Проверь по книге</button>{% endif %}
     <div class="side-progress">
       <div class="bar slim"><span id="step-bar-side"></span></div>

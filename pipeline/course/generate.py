@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Optional
 
 from contracts.models import Layer
-from pipeline.course import guess as guess_mod, interactive as inter_mod
+from pipeline.course import guess as guess_mod, interactive as inter_mod, scheme as scheme_mod
 from pipeline.course.pernode import ensure_per_node
 from pipeline.course.steptext import LlmState, ensure_step_text, quote_language
 from pipeline.course.tasks import ensure_tasks
@@ -32,7 +32,8 @@ def load_misconceptions(domain: str) -> list[dict]:
 
 
 def run(layer: Layer, ch_dir: Path, course_dir: Path, node: Optional[str], domain: Optional[str],
-        extras: bool = False, style: Optional[dict] = None, interactive_plan: Optional[dict[str, str]] = None) -> LlmState:
+        extras: bool = False, style: Optional[dict] = None, interactive_plan: Optional[dict[str, str]] = None,
+        scheme_plan: Optional[set[str]] = None) -> LlmState:
     """Генерирует текст шагов и задания; с extras — ещё интерактив и вопросы «сначала угадай».
     Возвращает состояние модели (для итога сборки)."""
     os.environ.setdefault("CH", layer.chapter)           # llm.py пишет главу в метрики из этой переменной
@@ -44,8 +45,11 @@ def run(layer: Layer, ch_dir: Path, course_dir: Path, node: Optional[str], domai
         language = quote_language(layer)
         curves = {k: v["ru"] for k, v in style["curves"].items()}
         plan = interactive_plan or {}
-        ensure_per_node(layer, course_dir / "interactive.json", set(plan),
-                        lambda n: inter_mod.make_interactive(n, plan[n.id], curves, language), state, only=node)
+        schemes = scheme_plan or set()                      # узлы без формул: «схема-исследование» из утверждений узла
+        rocks = {k: v["ru"] for k, v in style["lithology"].items()}
+        ensure_per_node(layer, course_dir / "interactive.json", set(plan) | schemes,
+                        lambda n: scheme_mod.make_scheme(n, rocks, language) if n.id in schemes
+                        else inter_mod.make_interactive(n, plan[n.id], curves, language), state, only=node)
         ensure_per_node(layer, course_dir / "guesses.json", {n.id for n in layer.nodes if guess_mod.wanted(n)},
                         lambda n: guess_mod.make_guess(n, language), state, only=node)
     return state

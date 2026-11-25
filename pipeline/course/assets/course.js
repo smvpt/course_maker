@@ -195,6 +195,107 @@
     return lines;
   }
 
+  /* формулы: KaTeX из assets курса; если он не загрузился, остаётся подписанный моноширинный блок */
+  function renderFormulas() {
+    document.querySelectorAll(".tex[data-tex]").forEach(function (el) {
+      if (window.katex) {
+        window.katex.render(el.dataset.tex.replace(/^\s*\$+|\$+\s*$/g, ""), el, { displayMode: true, throwOnError: false, strict: "ignore" });
+      } else {
+        console.error("KaTeX не загружен: формула показана исходным текстом");
+      }
+      el.classList.add("rendered");
+    });
+  }
+  if (page === "summary") renderFormulas();
+
+  /* схема-исследование: клик по части → описание, «стр. N» и «Проверь по книге»; режим «проверь себя» — найди часть по описанию.
+     Всё из утверждений узла (данные встроены в страницу), ничего не считается и не придумывается. */
+  function initScheme(d) {
+    var root = document.querySelector(".scheme"), detail = document.getElementById("scheme-detail");
+    var btns = [].slice.call(root.querySelectorAll(".scheme-part")), parts = d.parts, mode = "explore";
+    var quiz = { order: [], k: 0, score: 0, answered: false };
+    function chips(p, row) {
+      [el("button", "pg", "стр. " + p.page), el("button", "btn-small pg", "Проверь по книге")].forEach(function (b) {
+        b.type = "button";
+        b.dataset.claim = p.claim_id;
+        row.appendChild(b);
+      });
+    }
+    function clearMarks() { btns.forEach(function (b) { b.classList.remove("correct", "wrong"); b.setAttribute("aria-pressed", "false"); }); }
+    function showPart(i) {
+      clearMarks();
+      btns[i].setAttribute("aria-pressed", "true");
+      var p = parts[i];
+      detail.textContent = "";
+      detail.appendChild(el("h3", null, (i + 1) + ". " + p.label));
+      detail.appendChild(el("p", null, p.description));
+      var row = el("p", "scheme-links");
+      chips(p, row);
+      detail.appendChild(row);
+    }
+    function seeded(n) {                                   // детерминированный порядок вопросов: одинаков при каждой загрузке
+      var a = [], s = 7 * n + 3, i, j, t;
+      for (i = 0; i < n; i++) a.push(i);
+      for (i = n - 1; i > 0; i--) { s = (s * 1103515245 + 12345) % 2147483648; j = s % (i + 1); t = a[i]; a[i] = a[j]; a[j] = t; }
+      return a;
+    }
+    function ask() {
+      clearMarks();
+      quiz.answered = false;
+      detail.textContent = "";
+      var p = parts[quiz.order[quiz.k]];
+      detail.appendChild(el("h3", null, "Вопрос " + (quiz.k + 1) + " из " + parts.length));
+      detail.appendChild(el("p", null, p.description));
+      detail.appendChild(el("p", "muted", "Какая это часть схемы? Нажми на неё."));
+    }
+    function answer(i) {
+      if (quiz.answered) return;
+      quiz.answered = true;
+      var right = quiz.order[quiz.k], p = parts[right], ok = i === right;
+      if (ok) quiz.score++;
+      btns[right].classList.add("correct");
+      if (!ok) btns[i].classList.add("wrong");
+      detail.textContent = "";
+      var st = el("p", "scheme-verdict " + (ok ? "ok" : "bad"), ok ? "Верно: " + p.label : "Неверно. Это «" + p.label + "»");
+      st.setAttribute("role", "status");
+      detail.appendChild(st);
+      detail.appendChild(el("p", null, p.description));
+      var row = el("p", "scheme-links");
+      chips(p, row);
+      var next = el("button", "btn-small", quiz.k + 1 < parts.length ? "Дальше" : "Результат");
+      next.type = "button";
+      next.addEventListener("click", function () {
+        quiz.k++;
+        if (quiz.k < parts.length) { ask(); return; }
+        detail.textContent = "";
+        detail.appendChild(el("h3", null, "Результат: " + quiz.score + " из " + parts.length));
+        var again = el("button", "btn-small", "Ещё раз");
+        again.type = "button";
+        again.addEventListener("click", startQuiz);
+        detail.appendChild(again);
+        detail.focus();
+      });
+      row.appendChild(next);
+      detail.appendChild(row);
+      next.focus();
+    }
+    function startQuiz() { quiz = { order: seeded(parts.length), k: 0, score: 0, answered: false }; ask(); }
+    function setMode(m) {
+      mode = m;
+      root.querySelectorAll("[data-mode]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.mode === m)); });
+      clearMarks();
+      if (m === "quiz") startQuiz();
+      else { detail.textContent = ""; detail.appendChild(el("p", "muted", "Выбери часть схемы: клик, Enter или пробел.")); }
+    }
+    root.querySelectorAll("[data-mode]").forEach(function (b) { b.addEventListener("click", function () { setMode(b.dataset.mode); }); });
+    btns.forEach(function (b) {
+      b.addEventListener("click", function () {
+        var i = Number(b.dataset.i);
+        if (mode === "quiz") answer(i); else showPart(i);
+      });
+    });
+  }
+
   function initInteractive(d) {
     var P = d.palette, S = d.slider, Y = d.y, X = d.x, T = d.template;
     var svg = document.getElementById("inter-chart"), slider = document.getElementById("inter-slider"), out = document.getElementById("inter-readout");
@@ -382,15 +483,7 @@
       openBook(b.dataset.claim || null, b.dataset.page ? Number(b.dataset.page) : null, b);
     });
 
-    /* формулы: KaTeX из assets курса; если он не загрузился, остаётся подписанный моноширинный блок */
-    document.querySelectorAll(".tex[data-tex]").forEach(function (el) {
-      if (window.katex) {
-        window.katex.render(el.dataset.tex.replace(/^\s*\$+|\$+\s*$/g, ""), el, { displayMode: true, throwOnError: false, strict: "ignore" });
-      } else {
-        console.error("KaTeX не загружен: формула показана исходным текстом");
-      }
-      el.classList.add("rendered");
-    });
+    renderFormulas();
 
     /* задания */
     var specs = readJSON("tasks-data") || {};
@@ -650,7 +743,7 @@
     }
 
     var idata = readJSON("inter-data");
-    if (idata) initInteractive(idata);
+    if (idata) { if (idata.template === "scheme") initScheme(idata); else initInteractive(idata); }
 
     /* переход по ссылке «Перечитать»: #<id абзаца> или #task-…; якоря оглавления (разделы) браузер ведёт сам */
     function focusHash() {

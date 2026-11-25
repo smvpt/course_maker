@@ -28,7 +28,7 @@ a { color: var(--ui-link); text-underline-offset: 2px; }
 /* ---------- шапка и навигация ---------- */
 .top { position: sticky; top: 0; z-index: 8; height: var(--head-h); display: flex; align-items: center; gap: .5rem;
   padding: 0 .75rem; background: var(--panel); border-bottom: 1px solid var(--border); }
-.brand { flex: 1 1 0; min-width: 0; color: var(--text); text-decoration: none; font-weight: 700; }
+.brand { flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: var(--sp-3, 12px); color: var(--text); text-decoration: none; font-weight: 700; }
 .brand-title { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .top-tools { display: flex; gap: .25rem; flex: none; align-items: center; }
 .tool { display: inline-flex; align-items: center; justify-content: center; gap: .15rem; min-width: 44px; min-height: 44px;
@@ -375,6 +375,12 @@ body.only-repeat .card:not(.mark-repeat) { display: none; }
   main, main.with-side { display: block; max-width: none; padding: 0; }
   body { font-size: 12pt; }
   .sum-step { break-inside: avoid; }
+  .formula { overflow: visible; break-inside: avoid; }
+  .illus, .illus img { break-inside: avoid; max-width: 100%; }
+  .brand, .main-nav, .top-tools, .step-aside, .step-strip, .counter { display: none !important; }
+  a { text-decoration: none; }
+  .block-main, .side-card, .task, .card-box { box-shadow: none; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
 
 
@@ -568,4 +574,47 @@ main { padding: var(--sp-4) var(--sp-4) 6.5rem; }
   .timeline .row-end { flex: 1 1 100%; justify-content: flex-start; }
   .task-list a { grid-template-columns: auto minmax(0, 1fr); }
   .task-list .tstate { grid-column: 2; }
+}
+
+/* ====================== схема-исследование (интерактив без формул) ====================== */
+.scheme-tools { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin: var(--sp-2) 0 var(--sp-3); }
+.scheme-tools .btn-small[aria-pressed="true"] { background: var(--ui-accent); color: var(--ui-on-accent); border-color: transparent; font-weight: 600; }
+.scheme-parts { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-2); }
+.scheme-part { display: flex; align-items: center; gap: var(--sp-3); width: 100%; min-height: 48px; padding: var(--sp-2) var(--sp-4); text-align: left;
+  font: inherit; color: var(--text); background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; }
+.scheme-part:hover { border-color: var(--ui-link); }
+.scheme-part[aria-pressed="true"] { outline: 3px solid var(--ui-link); outline-offset: 2px; }
+.scheme-n { flex: none; display: inline-grid; place-items: center; width: 1.75rem; height: 1.75rem; border-radius: 50%; border: 1px solid currentColor; font-weight: 700; }
+.scheme-label { font-weight: 600; }
+/* цепочка: части по порядку, между ними стрелка-соединитель */
+.scheme[data-layout="chain"] .scheme-parts li { position: relative; }
+.scheme[data-layout="chain"] .scheme-parts li:not(:last-child)::after { content: ""; position: absolute; left: 1.45rem; bottom: calc(-1 * var(--sp-2)); width: 2px; height: var(--sp-2); background: var(--border); }
+/* слои колонки: полосы вплотную, цвет породы из легенды styleguide (цвет — часть содержания схемы) */
+.scheme[data-layout="layers"] .scheme-parts { gap: 0; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.scheme[data-layout="layers"] .scheme-part { min-height: 56px; border: 0; border-radius: 0; border-bottom: 1px solid rgba(0, 0, 0, .25);
+  background: var(--part-bg, var(--panel)); color: var(--part-fg, var(--text)); }
+.scheme[data-layout="layers"] .scheme-parts li:last-child .scheme-part { border-bottom: 0; }
+.scheme-part.correct { box-shadow: inset 0 0 0 3px var(--ui-ok); }
+.scheme-part.wrong { box-shadow: inset 0 0 0 3px var(--ui-bad); }
+.scheme-detail { margin-top: var(--sp-3); padding: var(--sp-4); background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-card); }
+.scheme-detail:focus { outline: none; }
+.scheme-detail h3 { margin-bottom: var(--sp-2); }
+.scheme-links { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); margin: var(--sp-3) 0 0; }
+.scheme-verdict { font-weight: 700; margin-bottom: var(--sp-2); }
+.scheme-verdict.ok { color: var(--ui-ok); }
+.scheme-verdict.bad { color: var(--ui-bad); }
+
+/* логотип KERN в шапке */
+.brand-logo { --kern-ink: var(--text); flex: none; height: 34px; width: auto; display: block; }
+.brand-title { padding-left: var(--sp-3); border-left: 1px solid var(--border); }
+@media (max-width: 560px) { .brand-title { display: none; } .brand-logo { height: 30px; } }
+
+/* печать конспекта: секции шага могут переходить на следующую страницу (иначе пустые поля), рисунки не выше трети листа */
+@media print {
+  .sum-step { break-inside: auto; }
+  .sum-step h2 { break-after: avoid; }
+  .illus { margin: 0 0 8pt; }
+  .illus img { max-height: 70mm; width: auto; max-width: 100%; border: 0; }
+  .illus figcaption { font-size: 10pt; }
+  li { break-inside: avoid; }
 }

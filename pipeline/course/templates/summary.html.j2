@@ -1,5 +1,7 @@
 {% extends "base.html.j2" %}
 {% block title %}Конспект — {{ chapter_title }}{% endblock %}
+{% block head %}{% if has_formulas %}<link rel="stylesheet" href="assets/katex/katex.min.css">{% endif %}{% endblock %}
+{% block scripts %}{% if has_formulas %}<script src="assets/katex/katex.min.js"></script>{% endif %}{% endblock %}
 {% block main %}
 <h1>Конспект: {{ chapter_title }}</h1>
 <p class="no-print"><button type="button" class="btn" onclick="window.print()">{{ icon("printer") }}<span>Печать / PDF</span></button></p>
@@ -7,6 +9,16 @@
 <section class="sum-step">
   <h2>{{ loop.index }}. {{ n.title_novice or n.title }} <span class="muted">· стр. {{ n.pages | join(", ") }}</span></h2>
   {% if has_text(n.layers.main) %}<p data-by="{{ by_of(n.layers.main) }}">{{ n.layers.main.text }}</p>{% endif %}
+  {% set ex = extras[n.id] %}
+  {% for c in ex.formulas %}
+  <div class="formula" data-katex><span class="formula-label">формула</span><code class="tex" data-tex="{{ c.quote }}">{{ c.quote }}</code></div>
+  {% endfor %}
+  {% for it in ex.illus %}
+  <figure class="illus">
+    <img src="{{ it.src }}" alt="{{ it.il.alt }}">
+    <figcaption>{{ it.il.caption }}{% if it.il.label %} · <span class="prov">{{ it.il.label }}</span>{% endif %}</figcaption>
+  </figure>
+  {% endfor %}
   {% set dm = n.data_meaning %}
   {% if has_text(dm.from_chapter) or has_text(dm.breaks) or dm.hypotheses %}
   <ul class="sum-data">

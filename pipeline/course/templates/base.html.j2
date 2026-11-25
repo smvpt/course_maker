@@ -9,6 +9,7 @@
 /* тема до отрисовки, чтобы не мигало; localStorage может быть недоступен на file:// */
 (function () { try { var t = localStorage.getItem("course:theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {} })();
 </script>
+<link rel="icon" type="image/svg+xml" href="assets/brand/favicon.svg">
 <link rel="stylesheet" href="assets/tokens.css">
 <link rel="stylesheet" href="assets/course.css">
 {% block head %}{% endblock %}
@@ -16,7 +17,7 @@
 <body data-ch="{{ ch }}" data-page="{{ page }}">
 <a class="skip" href="#content">К содержанию</a>
 <header class="top">
-  <a class="brand" href="index.html" title="К пути по главе"><span class="brand-title">{{ chapter_title }}</span></a>
+  <a class="brand" href="index.html" title="KERN — к пути по главе">{{ brand("logo") }}<span class="brand-title">{{ chapter_title }}</span></a>
   {{ main_nav(page, "Разделы курса") }}
   <div class="top-tools">
     {% if n_tasks %}
