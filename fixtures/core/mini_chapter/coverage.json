@@ -1,0 +1,485 @@
+{
+  "ext": {},
+  "chapter": "barenblatt_mini",
+  "rows": [
+    {
+      "ext": {},
+      "unit_id": "p038.01",
+      "kind": "formula",
+      "page_pdf": 38,
+      "excerpt": "- dt int_ Gamma dl int_ z_0 ^ h+z_0 u_n",
+      "node_ids": [],
+      "reason": "окончание § 3 (безнапорные течения, уравнение Буссинеска) на первой странице главы — вне § 4"
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.02",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "excerpt": "где Gamma — замкнутый контур, ограничивающий площадку S ; u_n",
+      "node_ids": [],
+      "reason": "окончание § 3 (безнапорные течения, уравнение Буссинеска) на первой странице главы — вне § 4"
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.03",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "excerpt": "Приравнивая (11.76) и (11.77), по формуле преобразования контурного интеграла в",
+      "node_ids": [],
+      "reason": "окончание § 3 (безнапорные течения, уравнение Буссинеска) на первой странице главы — вне § 4"
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.04",
+      "kind": "formula",
+      "page_pdf": 38,
+      "excerpt": "m h_ ,t + text div _2 boldsymbol q =",
+      "node_ids": [],
+      "reason": "окончание § 3 (безнапорные течения, уравнение Буссинеска) на первой странице главы — вне § 4"
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.05",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "excerpt": "Заметим, что уравнение (11.78) — точное, справедливое независимо от каких-либо",
+      "node_ids": [],
+      "reason": "окончание § 3 (безнапорные течения, уравнение Буссинеска) на первой странице главы — вне § 4"
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.06",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "excerpt": "Для установления связи между q и h воспользуемся предположением о",
+      "node_ids": [],
+      "reason": "окончание § 3 (безнапорные течения, уравнение Буссинеска) на первой странице главы — вне § 4"
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.07",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "excerpt": "По предыдущему, давление в этом случае распределяется по вертикали с",
+      "node_ids": [],
+      "reason": "окончание § 3 (безнапорные течения, уравнение Буссинеска) на первой странице главы — вне § 4"
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.08",
+      "kind": "formula",
+      "page_pdf": 38,
+      "excerpt": "H = h + z_0 + O(u_z/C); quad boldsymbol u",
+      "node_ids": [],
+      "reason": "окончание § 3 (безнапорные течения, уравнение Буссинеска) на первой странице главы — вне § 4"
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.09",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "excerpt": "Таким образом, пренебрегая малыми величинами, скорость boldsymbol u можно вынести",
+      "node_ids": [],
+      "reason": "окончание § 3 (безнапорные течения, уравнение Буссинеска) на первой странице главы — вне § 4"
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.10",
+      "kind": "formula",
+      "page_pdf": 38,
+      "excerpt": "boldsymbol q = - C h text grad _2(h +",
+      "node_ids": [],
+      "reason": "окончание § 3 (безнапорные течения, уравнение Буссинеска) на первой странице главы — вне § 4"
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.11",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "excerpt": "Подставляя (11.79) в (11.78), имеем",
+      "node_ids": [],
+      "reason": "окончание § 3 (безнапорные течения, уравнение Буссинеска) на первой странице главы — вне § 4"
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.12",
+      "kind": "formula",
+      "page_pdf": 38,
+      "excerpt": "h_ ,t = (C/m) text div (h text grad (h",
+      "node_ids": [],
+      "reason": "окончание § 3 (безнапорные течения, уравнение Буссинеска) на первой странице главы — вне § 4"
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.13",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "excerpt": "В частности, если поверхность водоупора представляет собой горизонтальную плоскость (",
+      "node_ids": [],
+      "reason": "окончание § 3 (безнапорные течения, уравнение Буссинеска) на первой странице главы — вне § 4"
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.14",
+      "kind": "formula",
+      "page_pdf": 38,
+      "excerpt": "h_ ,t = a Delta h^2, quad a = C/2m",
+      "node_ids": [],
+      "reason": "окончание § 3 (безнапорные течения, уравнение Буссинеска) на первой странице главы — вне § 4"
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.15",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "excerpt": "Уравнения (11.80) и (11.81) были впервые получены Буссинеском.",
+      "node_ids": [],
+      "reason": "окончание § 3 (безнапорные течения, уравнение Буссинеска) на первой странице главы — вне § 4"
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.16",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "excerpt": "Для стационарных движений уравнение Буссинеска приводится к уравнению Лапласа для",
+      "node_ids": [],
+      "reason": "окончание § 3 (безнапорные течения, уравнение Буссинеска) на первой странице главы — вне § 4"
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.17",
+      "kind": "formula",
+      "page_pdf": 38,
+      "excerpt": "Delta chi = 0, quad chi = 2^ -1 (h^2",
+      "node_ids": [],
+      "reason": "окончание § 3 (безнапорные течения, уравнение Буссинеска) на первой странице главы — вне § 4"
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.18",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "excerpt": "Теория пологих безнапорных движений приближенная. Несмотря на это, при фильтрации",
+      "node_ids": [],
+      "reason": "окончание § 3 (безнапорные течения, уравнение Буссинеска) на первой странице главы — вне § 4"
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.19",
+      "kind": "heading",
+      "page_pdf": 38,
+      "excerpt": "§ 4. Нестационарное движение однородной сжимаемой жидкости. Линейная теория ^1",
+      "node_ids": [
+        "barenblatt_mini.piezo_equation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.20",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "excerpt": "Постановка основных задач. Простейший и наиболее изученный случай нестационарной фильтрации",
+      "node_ids": [
+        "barenblatt_mini.piezo_equation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p038.21",
+      "kind": "paragraph",
+      "page_pdf": 38,
+      "excerpt": "^1 См. также [47, 6, 12, 44].",
+      "node_ids": [],
+      "reason": "сноска: только номера источников в списке литературы, мысли автора нет"
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.01",
+      "kind": "formula",
+      "page_pdf": 39,
+      "excerpt": "partial p/ partial t = varkappa ( partial^2 p/ partial",
+      "node_ids": [
+        "barenblatt_mini.piezo_equation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.02",
+      "kind": "paragraph",
+      "page_pdf": 39,
+      "excerpt": "по форме совпадающим с классическим уравнением теплопроводности.",
+      "node_ids": [
+        "barenblatt_mini.piezo_equation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.03",
+      "kind": "paragraph",
+      "page_pdf": 39,
+      "excerpt": "Область, в которой ищется распределение давления в жидкости, та же,",
+      "node_ids": [
+        "barenblatt_mini.piezo_equation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.04",
+      "kind": "paragraph",
+      "page_pdf": 39,
+      "excerpt": "Граничные условия в задачах линейной нестационарной фильтрации задаются на границах",
+      "node_ids": [
+        "barenblatt_mini.piezo_equation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.05",
+      "kind": "paragraph",
+      "page_pdf": 39,
+      "excerpt": "Все принятые обычно варианты граничных условий укладываются в общую форму",
+      "node_ids": [
+        "barenblatt_mini.piezo_equation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.06",
+      "kind": "formula",
+      "page_pdf": 39,
+      "excerpt": "(ap + b partial p/ partial n) = f(x, y,",
+      "node_ids": [
+        "barenblatt_mini.piezo_equation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.07",
+      "kind": "paragraph",
+      "page_pdf": 39,
+      "excerpt": "Из общей теории уравнения теплопроводности известно, что если на границе",
+      "node_ids": [
+        "barenblatt_mini.piezo_equation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.08",
+      "kind": "formula",
+      "page_pdf": 39,
+      "excerpt": "p(x, y, z, 0) = varphi(x, y, z), quad (",
+      "node_ids": [
+        "barenblatt_mini.piezo_equation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.09",
+      "kind": "paragraph",
+      "page_pdf": 39,
+      "excerpt": "то существует единственное распределение давления p(x, y, z, t) ,",
+      "node_ids": [
+        "barenblatt_mini.piezo_equation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.10",
+      "kind": "paragraph",
+      "page_pdf": 39,
+      "excerpt": "Хорошо разработанная техника решения уравнения теплопроводности (см., например, [40]) применима",
+      "node_ids": [
+        "barenblatt_mini.piezo_equation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p039.11",
+      "kind": "paragraph",
+      "page_pdf": 39,
+      "excerpt": "В типичных условиях нефтяного или газового месторождения или водоносного пласта",
+      "node_ids": [
+        "barenblatt_mini.piezo_equation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.01",
+      "kind": "paragraph",
+      "page_pdf": 40,
+      "excerpt": "Плоскопараллельное одномерное движение. Пусть скорость течения параллельна оси x не",
+      "node_ids": [
+        "barenblatt_mini.gallery_step_erfc"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.02",
+      "kind": "formula",
+      "page_pdf": 40,
+      "excerpt": "partial p / partial t = varkappa partial^2 p /",
+      "node_ids": [
+        "barenblatt_mini.gallery_step_erfc"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.03",
+      "kind": "paragraph",
+      "page_pdf": 40,
+      "excerpt": "Наиболее интересны случаи, для которых в начальный момент времени движение",
+      "node_ids": [
+        "barenblatt_mini.gallery_step_erfc"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.04",
+      "kind": "paragraph",
+      "page_pdf": 40,
+      "excerpt": "Пусть при x=L (на контуре питания) давление сохраняет постоянное значение,",
+      "node_ids": [
+        "barenblatt_mini.gallery_step_erfc"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.05",
+      "kind": "formula",
+      "page_pdf": 40,
+      "excerpt": "L P(x, t) = bar P (x, sigma) = int_0^",
+      "node_ids": [
+        "barenblatt_mini.gallery_step_erfc"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.06",
+      "kind": "paragraph",
+      "page_pdf": 40,
+      "excerpt": "Для bar P получим задачу",
+      "node_ids": [
+        "barenblatt_mini.gallery_step_erfc"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.07",
+      "kind": "formula",
+      "page_pdf": 40,
+      "excerpt": "d^2 bar P / dx^2 - nu^2 bar P =",
+      "node_ids": [
+        "barenblatt_mini.gallery_step_erfc"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.08",
+      "kind": "paragraph",
+      "page_pdf": 40,
+      "excerpt": "имеющую решение",
+      "node_ids": [
+        "barenblatt_mini.gallery_step_erfc"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.09",
+      "kind": "formula",
+      "page_pdf": 40,
+      "excerpt": "bar P = F( sigma) operatorname sh [(L-x) nu] /",
+      "node_ids": [
+        "barenblatt_mini.gallery_step_erfc"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.10",
+      "kind": "paragraph",
+      "page_pdf": 40,
+      "excerpt": "Чтобы перейти от изображения к функции P(x, t) , предположим",
+      "node_ids": [
+        "barenblatt_mini.gallery_step_erfc"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.11",
+      "kind": "formula",
+      "page_pdf": 40,
+      "excerpt": "bar P = (p^0/ sigma) operatorname sh [(L-x) nu] /",
+      "node_ids": [
+        "barenblatt_mini.gallery_step_erfc"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.12",
+      "kind": "paragraph",
+      "page_pdf": 40,
+      "excerpt": "Рассмотрим асимптотику решений при малых временах, чему, согласно теории преобразования",
+      "node_ids": [
+        "barenblatt_mini.gallery_step_erfc"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.13",
+      "kind": "formula",
+      "page_pdf": 40,
+      "excerpt": "bar P (x, sigma) = (p^0/ sigma) left sum_ n=0",
+      "node_ids": [
+        "barenblatt_mini.gallery_step_erfc"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.14",
+      "kind": "paragraph",
+      "page_pdf": 40,
+      "excerpt": "Производя почленное обращение ряда (II.91), с помощью формул обращения, выведенных,",
+      "node_ids": [
+        "barenblatt_mini.gallery_step_erfc"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p040.15",
+      "kind": "formula",
+      "page_pdf": 40,
+      "excerpt": "P(x, t) = P^0 sum_ n=0 ^ infty operatorname erfc",
+      "node_ids": [
+        "barenblatt_mini.gallery_step_erfc"
+      ],
+      "reason": null
+    }
+  ]
+}

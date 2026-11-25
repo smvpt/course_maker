@@ -1,0 +1,64 @@
+# Наши обучающие и контрольные главы. Тестовые сюда НЕ вписываются:
+# они запускаются аргументами — make all MD=<глава.md> [PDF=…] [PAGES=a-b] [ERRATA=…] [PREREQ=…] [DOMAIN=…].
+#
+# Поля главы:
+#   md            путь к md (метки <!-- page N --> = страницы PDF)            обязательно
+#   pdf           путь к PDF для сканов страниц                               необязательно
+#   pages         диапазоны страниц PDF [[a, b], ...]; нет — все метки файла  необязательно
+#   start_heading регулярка заголовка, с которого начинается глава на первой странице
+#   end_heading   регулярка заголовка, на котором глава кончается (сам заголовок не входит)
+#   language      ru | en; нет — определяется по тексту
+#   domain        доменный пакет domain/<имя>/, по умолчанию geology
+#   prereading    короткое чтение к обучающей главе (md)
+#   prereq_cards  карточки-предпосылки (md): их термины structure считает известными
+#   errata        лист опечаток распознавания: ingest применяет и помечает исправления
+
+chapters:
+  latyshova_gl5_par17-20:          # ТЗ: гл. V §17–20; на стр. 90 перед ней хвост §16, на 108 начинается §21
+    md: data/books/train_latyshova.md
+    pdf: "data/pdf/Латышова - Практическое руководство по интерпретации диаграмм геофизических исследований скважин - 1991.pdf"
+    pages: [[90, 108]]
+    start_heading: '^#\s*Глава\s+V\s*$'
+    end_heading: '^#+\s*§\s*21\.'
+    language: ru
+    domain: geology
+
+  basniev_gl23-24:                 # ТЗ: гл. XXIII и гл. XXIV §1; §2 «Метод Пирвердяна» начинается на стр. 500
+    md: data/books/train_basniev.md
+    pdf: "data/pdf/Басниев и др - Нефтегазовая гидромеханика - 2005.pdf"
+    pages: [[474, 500]]
+    end_heading: '^#+\s*§\s*2\.\s*Метод\s+А\.\s*М\.\s*Пирвердяна'
+    language: ru
+    domain: geology
+
+  kuznetsov_gl10:                  # ТЗ: гл. 10 §10.1–10.4
+    md: data/books/train_kuznetsov.md
+    pdf: "data/pdf/Кузнецов Литология природных резервуаров нефти и газа 2012.pdf"
+    pages: [[200, 222]]
+    language: ru
+    domain: geology
+
+  vendelshtein_gl1:                # ТЗ: гл. I, «косвенные количественные признаки», стр. 9–14 и 20–30
+    md: data/books/ctrl_vendelshtein.md
+    pdf: "data/pdf/Вендельштейн и др - Геофизические методы определения параметров нефтегазовых коллекторов - 1978.pdf"
+    pages: [[9, 14], [20, 30]]
+    language: ru
+    domain: geology
+
+  barenblatt_par4:                 # ТЗ: §4 «Нестационарное движение … Линейная теория»; §5 начинается на стр. 51
+    md: data/books/ctrl_barenblatt.md
+    pdf: "data/pdf/Баренблатт и др - Движение жидкостей и газов в природных пластах - 1984.pdf"
+    pages: [[38, 51]]
+    start_heading: '^#+\s*§\s*4\.\s*Нестационарное'
+    end_heading: '^#+\s*§\s*5\.'
+    language: ru
+    domain: geology
+
+  baraboshkin_par1-2:              # ТЗ: §1.2 «Дельты», стр. 30–44; §1.3 начинается на стр. 44
+    md: data/books/ctrl_baraboshkin_b.md
+    pdf: "data/pdf/Барабошкин - Практическая седиментология (терригенные коллектора) - 2007.pdf"
+    pages: [[30, 44]]
+    start_heading: '^#+\s*1\.2\s+Дельты'
+    end_heading: '^#+\s*1\.3\s'
+    language: ru
+    domain: geology

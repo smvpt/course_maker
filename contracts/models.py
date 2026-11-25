@@ -18,6 +18,13 @@ from typing import Any, Literal, Optional, Union
 from pydantic import BaseModel, ConfigDict, Field
 
 
+def Omit() -> Any:
+    """Необязательное поле, для которого схема организаторов НЕ допускает null:
+    при None поле не пишется в JSON. Поля, где схема допускает null, остаются `= None`
+    и пишутся как null (поэтому exclude_none не используем)."""
+    return Field(default=None, exclude_if=lambda v: v is None)
+
+
 class Base(BaseModel):
     model_config = ConfigDict(extra="allow", populate_by_name=True)
     ext: dict[str, Any] = Field(default_factory=dict)
@@ -63,7 +70,7 @@ class Field_(Base):
     """$defs/field: текст с пометкой происхождения."""
     text: str
     by_model: bool
-    hypothesis: Optional[bool] = None
+    hypothesis: Optional[bool] = Omit()
 
 
 SourceKind = Literal["text", "formula", "table", "task", "figure_caption", "figure_description_model"]
@@ -78,13 +85,13 @@ class Claim(Base):
     quote: str = Field(min_length=8)   # дословно из md
     source_kind: SourceKind
     by_model: bool
-    needs_scan: Optional[bool] = None
+    needs_scan: Optional[bool] = Omit()
 
 
 class Link(Base):
     type: Literal["prerequisite", "example_of", "refutes_misconception", "to_data"]
     target: str                  # id узла, misc.* или data.*
-    note: Optional[str] = None
+    note: Optional[str] = Omit()
 
 
 class DifficultyPair(Base):
@@ -137,7 +144,7 @@ class DecisionOnData(Base):
     features: list[str]
     rule: str
     conclusion: str
-    counterexample: Optional[str] = None
+    counterexample: Optional[str] = Omit()
 
 
 class WorkedExample(Base):
@@ -186,7 +193,7 @@ class Layer(Base):
     chapter: str
     source: str
     pdf_pages: list[str] = Field(default_factory=list)
-    generated_by: Optional[str] = None
+    generated_by: Optional[str] = Omit()
     nodes: list[Node] = Field(min_length=1)
 
 
@@ -229,7 +236,7 @@ class Route(Base):
     format: FormatRu
     secondary_format: Optional[FormatRu] = None
     video_scores: VideoScores
-    hook_short: Optional[bool] = None
+    hook_short: Optional[bool] = Omit()
     template: Optional[str] = None   # "T1".."T4"
     why: str
 
@@ -260,7 +267,7 @@ class Task(Base):
     tolerance: Optional[float] = None
     unit: Optional[str] = None
     explanation: str             # одна фраза
-    kind: Optional[Literal["recall", "understanding", "transfer", "data"]] = None
+    kind: Optional[Literal["recall", "understanding", "transfer", "data"]] = Omit()
 
 
 class Tasks(Base):
@@ -279,7 +286,7 @@ class Illustration(Base):
     file: str
     frame_class: FrameClass
     origin: Literal["code_from_data", "code_from_model", "photo", "redrawn_from_book", "ai_generated"]
-    label: Optional[IllusLabel] = None   # ai_generated → класс C/D, label «иллюстрация ИИ», prompt обязателен
+    label: Optional[IllusLabel] = Omit()   # ai_generated → класс C/D, label «иллюстрация ИИ», prompt обязателен
     caption: str
     alt: str
     source: Optional[str] = None
@@ -301,14 +308,14 @@ class ScriptLine(Base):
     t_end: float
     text: str
     claim_id: Optional[str] = None
-    is_analogy: Optional[bool] = None
-    on_screen: Optional[str] = None
+    is_analogy: Optional[bool] = Omit()
+    on_screen: Optional[str] = Omit()
 
 
 class SourceRow(Base):
     claim_id: str
     page_or_dataset: str
-    quote: Optional[str] = None
+    quote: Optional[str] = Omit()
 
 
 class PassportFrame(Base):
@@ -320,7 +327,7 @@ class PassportFrame(Base):
 class ChecklistAnswer(Base):
     item: str                    # pc.* из physics_checklist.json
     answer: Literal["да", "нет", "н/п"]
-    note: Optional[str] = None
+    note: Optional[str] = Omit()
 
 
 class Passport(Base):
@@ -456,7 +463,7 @@ class Remark(Base):
 
 class ReviewOutput(Base):
     package_id: str
-    team: Optional[str] = None
+    team: Optional[str] = Omit()
     remarks: list[Remark]
 
 

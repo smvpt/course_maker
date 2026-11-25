@@ -1,0 +1,29 @@
+# Модели по tier. Имя модели — в формате litellm "<провайдер>/<модель>":
+#   anthropic/claude-opus-5-5, openai/<модель>, gemini/<модель> …
+# Переопределение без правки файлов (в .env или окружении):
+#   LLM_MODEL=<модель>                    — для всех tier сразу
+#   LLM_MODEL_DEFAULT / LLM_MODEL_STRONG / LLM_MODEL_VISION — для одного tier (сильнее LLM_MODEL)
+# Ключ провайдера — его стандартная переменная: ANTHROPIC_API_KEY / OPENAI_API_KEY / GEMINI_API_KEY.
+
+tiers:
+  default:
+    model: anthropic/claude-opus-5-5
+    max_tokens: 16000
+    params: {}          # доп. параметры вызова litellm. temperature не задаём: часть моделей её отвергает
+  strong:
+    model: anthropic/claude-opus-5-5
+    max_tokens: 32000
+    params: {}
+  vision:
+    model: anthropic/claude-opus-5-5
+    max_tokens: 8000
+    params: {}
+
+timeout_s: 600
+json_retries: 2         # повторы при невалидном JSON (CLAUDE.md §2)
+
+# Цены, USD за 1 млн токенов. Для модели не из списка — расчёт litellm; если неизвестна и ему — money_usd: null + предупреждение.
+prices:
+  anthropic/claude-opus-5-5:   {input: 4.00, output: 20.00}
+  anthropic/claude-sonnet-5-5: {input: 2.00, output: 10.00}
+  anthropic/claude-haiku-5-5:  {input: 0.10, output: 0.50}
