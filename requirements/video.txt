@@ -1,0 +1,6 @@
+# Видео (П4). Python 3.12.10 (64-bit). Проверено на Windows 11 в .venv.
+# Внешние программы (не pip): FFmpeg/ffprobe с libx264 — см. manifest/video.md.
+# pydantic и pytest нужны контрактам и тестам; их пинит requirements/core.txt (П1),
+# в .venv П4 стояли pydantic==2.14.4, pytest==9.2.0.
+manim==0.22.1
+edge-tts==7.3.1

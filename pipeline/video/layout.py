@@ -1,0 +1,44 @@
+"""Компоновка в пикселях опорного кадра 9:16 1080×1920 (так задан стайлгайд).
+
+Сцена Manim имеет высоту FRAME_H единиц при любом разрешении рендера, поэтому
+пиксели опорного кадра переводятся в единицы сцены одинаково для черновика и финала.
+"""
+from __future__ import annotations
+
+REF_W, REF_H = 1080, 1920
+FRAME_H = 8.0
+FRAME_W = FRAME_H * REF_W / REF_H
+PT_PER_UNIT = 72  # Manim/Pango: кегль (em) в единицах сцены = font_size / 72 (замерено по Segoe UI)
+
+
+class LayoutError(ValueError):
+    pass
+
+
+class Layout:
+    def __init__(self, safe_zone: dict, min_caption_px: int):
+        self.safe = {k: int(safe_zone[k]) for k in ("top", "bottom", "side")}
+        self.min_caption_px = int(min_caption_px)
+
+    @staticmethod
+    def units(px: float) -> float:
+        return px * FRAME_H / REF_H
+
+    def font_size(self, px: float) -> float:
+        """font_size Manim для кегля px на опорном кадре; мельче минимума стайлгайда — ошибка."""
+        if px < self.min_caption_px:
+            raise LayoutError(f"кегль {px} px мельче минимума стайлгайда {self.min_caption_px} px")
+        return self.units(px) * PT_PER_UNIT
+
+    def safe_box(self) -> tuple[float, float, float, float]:
+        """(left, right, bottom, top) безопасной зоны в единицах сцены."""
+        return (-FRAME_W / 2 + self.units(self.safe["side"]),
+                FRAME_W / 2 - self.units(self.safe["side"]),
+                -FRAME_H / 2 + self.units(self.safe["bottom"]),
+                FRAME_H / 2 - self.units(self.safe["top"]))
+
+    def check_inside(self, name: str, left: float, right: float, bottom: float, top: float) -> None:
+        sl, sr, sb, st = self.safe_box()
+        eps = 1e-9
+        if left < sl - eps or right > sr + eps or bottom < sb - eps or top > st + eps:
+            raise LayoutError(f"«{name}» выходит за безопасную зону 9:16 {self.safe} (px опорного кадра)")
