@@ -1,0 +1,20 @@
+{% extends "base.html.j2" %}
+{% block title %}Конспект — {{ chapter_title }}{% endblock %}
+{% block main %}
+<h1>Конспект: {{ chapter_title }}</h1>
+<p class="no-print"><button type="button" class="btn" onclick="window.print()">{{ icon("printer") }}<span>Печать / PDF</span></button></p>
+{% for n in nodes %}
+<section class="sum-step">
+  <h2>{{ loop.index }}. {{ n.title_novice or n.title }} <span class="muted">· стр. {{ n.pages | join(", ") }}</span></h2>
+  {% if has_text(n.layers.main) %}<p data-by="{{ by_of(n.layers.main) }}">{{ n.layers.main.text }}</p>{% endif %}
+  {% set dm = n.data_meaning %}
+  {% if has_text(dm.from_chapter) or has_text(dm.breaks) or dm.hypotheses %}
+  <ul class="sum-data">
+    {% if has_text(dm.from_chapter) %}<li data-by="{{ by_of(dm.from_chapter) }}"><strong>Для данных:</strong> {{ dm.from_chapter.text }}</li>{% endif %}
+    {% if has_text(dm.breaks) %}<li data-by="{{ by_of(dm.breaks) }}"><strong>Где ломается:</strong> {{ dm.breaks.text }}</li>{% endif %}
+    {% for h in dm.hypotheses %}{% if has_text(h) %}<li data-by="{{ by_of(h) }}"><strong>{{ "Гипотеза" if by_of(h) == "hypothesis" else "Вывод" }}:</strong> {{ h.text }}</li>{% endif %}{% endfor %}
+  </ul>
+  {% endif %}
+</section>
+{% endfor %}
+{% endblock %}

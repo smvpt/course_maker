@@ -1,0 +1,43 @@
+{% extends "base.html.j2" %}
+{% block main %}
+<section class="cover">
+  <p class="crumbs">Демо-курс по главе</p>
+  <h1>{{ chapter_title }}</h1>
+  <p class="meta">{{ steps | length }} шагов · ≈ {{ total_minutes }} мин · частей: {{ parts | map(attribute=0) | unique | list | length }}</p>
+  <div class="progress" aria-label="Прогресс"><div class="bar"><span id="progress-bar"></span></div><p id="progress-text" aria-live="polite">Пройдено 0 из {{ steps | length }}</p></div>
+  <p><a id="resume" class="btn" href="step-{{ steps[0].id }}.html">{{ icon("play") }}<span>Начать</span></a></p>
+</section>
+
+<nav class="path" aria-label="Путь по главе">
+{% set ns = namespace(i=0) %}
+{% for part, nodes in parts %}
+  <section class="part">
+    <h2>{{ part }}</h2>
+    <ol class="steps-list">
+    {% for n in nodes %}
+      {% set ns.i = ns.i + 1 %}
+      <li data-node="{{ n.id }}">
+        <a href="step-{{ n.id }}.html">
+          <span class="num">{{ ns.i }}</span>
+          <span class="st-title">{{ n.title_novice or n.title }}</span>
+          <span class="st-meta">≈ {{ steps[ns.i - 1].minutes }} мин</span>
+          <span class="done-mark" aria-hidden="true">{{ icon("check-circle") }}</span>
+        </a>
+      </li>
+    {% endfor %}
+    </ol>
+  </section>
+{% endfor %}
+</nav>
+
+<section class="extras">
+  <h2>После главы</h2>
+  <ul class="extras-list">
+    <li><a href="cards.html">{{ icon("cards") }}<span>Карточки «знаю / повторить»</span></a></li>
+    <li><a href="summary.html">{{ icon("article") }}<span>Конспект для печати</span></a></li>
+    <li><a href="map.html">{{ icon("tree-structure") }}<span>Карта связей шагов</span></a></li>
+    {% if has_errata %}<li><a href="errata.html">{{ icon("warning") }}<span>Лист опечаток</span></a></li>{% endif %}
+  </ul>
+</section>
+<script type="application/json" id="steps-data">{{ steps | tojson }}</script>
+{% endblock %}

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ chapter_title }}{% endblock %}</title>
+<script>
+/* тема до отрисовки, чтобы не мигало; localStorage может быть недоступен на file:// */
+(function () { try { var t = localStorage.getItem("course:theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {} })();
+</script>
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/course.css">
+</head>
+<body data-ch="{{ ch }}" data-page="{{ page }}">
+<a class="skip" href="#content">К содержанию</a>
+<header class="top">
+  <nav class="top-nav" aria-label="Разделы курса">
+    <a href="index.html" class="brand">{{ icon("house") }}<span>Путь</span></a>
+    <a href="cards.html">{{ icon("cards") }}<span>Карточки</span></a>
+    <a href="summary.html">{{ icon("article") }}<span>Конспект</span></a>
+    <a href="map.html">{{ icon("tree-structure") }}<span>Карта</span></a>
+    {% if has_errata %}<a href="errata.html">{{ icon("warning") }}<span>Опечатки</span></a>{% endif %}
+  </nav>
+  <div class="top-tools">
+    {% block tools %}{% endblock %}
+    <button type="button" id="toggle-theme" class="tool" aria-label="Сменить тему">
+      <span class="ic-dark">{{ icon("moon") }}</span><span class="ic-light">{{ icon("sun") }}</span>
+    </button>
+  </div>
+</header>
+<main id="content" tabindex="-1">
+{% block main %}{% endblock %}
+</main>
+<script src="assets/course.js"></script>
+</body>
+</html>

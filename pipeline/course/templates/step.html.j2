@@ -1,0 +1,240 @@
+{% extends "base.html.j2" %}
+{% block title %}{{ v.title }} — {{ chapter_title }}{% endblock %}
+
+{% macro badge(by) -%}
+<span class="by by-{{ by }}">{{ {"author": "автор", "model": "модель", "hypothesis": "гипотеза"}[by] }}</span>
+{%- endmacro %}
+
+{% macro page_refs(pages) -%}
+<span class="refs">{% for p in pages %}<button type="button" class="pg" data-page="{{ p }}">{{ icon("book-open") }}стр. {{ p }}</button>{% endfor %}</span>
+{%- endmacro %}
+
+{% macro claim_ref(c) -%}
+<button type="button" class="pg" data-claim="{{ c.id }}">{{ icon("book-open") }}стр. {{ c.page_pdf }}</button>
+{%- endmacro %}
+
+{# абзац из поля слоя: стр. — страницы узла (точная привязка к claim_ids появится в задаче 2) #}
+{% macro field(f, extra="") -%}
+{% if has_text(f) %}
+<div class="para"><p data-by="{{ by_of(f) }}">{{ extra }}{{ f.text }} {{ badge(by_of(f)) }}</p>{{ page_refs(v.node.pages) }}</div><!--/para-->
+{% endif %}
+{%- endmacro %}
+
+{% macro claim_para(c) -%}
+<div class="para" id="{{ c.id | replace('#', '--') }}">
+  <p data-by="{{ by_of(c) }}">{{ c.text }} {{ badge(by_of(c)) }}{% if c.kind != "observation" %} <span class="kind">{{ {"inference": "вывод", "assumption": "допущение"}[c.kind] }}</span>{% endif %}</p>
+  <blockquote class="quote" data-by="author">{{ icon("quotes") }}<span>{{ c.quote }}</span></blockquote>
+  <span class="refs">{{ claim_ref(c) }}</span>
+</div><!--/para-->
+{%- endmacro %}
+
+{% block tools %}
+<button type="button" id="toggle-by" class="tool" aria-pressed="false" title="Подсветить: автор / модель / гипотезы">
+  {{ icon("user") }}<span class="sr">автор</span>/{{ icon("robot") }}<span class="sr">модель</span>
+</button>
+{% endblock %}
+
+{% block main %}
+{% set n = v.node %}
+<article class="step" data-node="{{ n.id }}">
+<header class="step-head">
+  <p class="crumbs">Шаг {{ idx + 1 }} из {{ steps | length }} · ≈ {{ v.minutes }} мин{% if n.threshold %} · <span class="threshold">пороговое понятие</span>{% endif %}</p>
+  <h1>{{ v.title }}</h1>
+  {% if n.title_novice and n.title_novice != n.title %}<p class="book-title">В книге: «{{ n.title }}»</p>{% endif %}
+  {% if has_text(n.layers.topic) %}<p class="topic" data-by="{{ by_of(n.layers.topic) }}">{{ n.layers.topic.text }}</p>{% endif %}
+  {% if v.prereqs %}
+  <p class="prereq">Опирается на: {% for p in v.prereqs %}{% if p in titles %}<a href="step-{{ p }}.html">{{ titles[p] }}</a>{% else %}{{ p }}{% endif %}{% if not loop.last %}, {% endif %}{% endfor %}</p>
+  {% endif %}
+  <div class="legend-by" aria-hidden="true">{{ badge("author") }} {{ badge("model") }} {{ badge("hypothesis") }}</div>
+</header>
+
+<nav class="toc" aria-label="На этой странице">
+  <details open><summary>На этой странице</summary>
+  <ol>{% for id, t in v.toc %}<li><a href="#{{ id }}">{{ t }}</a></li>{% endfor %}</ol>
+  </details>
+</nav>
+
+{% if v.show["b-main"] %}
+<section id="b-main" class="block block-main"><h2>Суть</h2>{{ field(n.layers.main) }}</section>
+{% endif %}
+
+{% if v.show["b-why"] %}
+<section id="b-why" class="block"><h2>Зачем этот шаг</h2>{{ field(n.why_here) }}</section>
+{% endif %}
+
+{% if v.show["b-how"] %}
+<section id="b-how" class="block"><h2>Как это работает</h2>
+  {{ field(n.layers.mechanism) }}
+  {% for c in v.text_claims %}{{ claim_para(c) }}{% endfor %}
+</section>
+{% endif %}
+
+{% if v.show["b-formulas"] %}
+<section id="b-formulas" class="block"><h2>Формулы</h2>
+  {% for c in v.formulas %}
+  <div class="para" id="{{ c.id | replace('#', '--') }}">
+    <div class="formula"><code class="tex" data-tex="{{ c.quote }}">{{ c.quote }}</code></div>
+    <p data-by="{{ by_of(c) }}">{{ c.text }} {{ badge(by_of(c)) }}</p>
+    <span class="refs">{{ claim_ref(c) }}</span>
+  </div><!--/para-->
+  {% endfor %}
+</section>
+{% endif %}
+
+{% if v.show["b-tables"] %}
+<section id="b-tables" class="block"><h2>Таблицы книги</h2>
+  {% for t in v.tables %}
+  <div class="para" id="{{ t.claim.id | replace('#', '--') }}">
+    <p data-by="{{ by_of(t.claim) }}">{{ t.claim.text }} {{ badge(by_of(t.claim)) }}</p>
+    {% if t.rows %}
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Таблица книги, стр. {{ t.claim.page_pdf }}">
+      <table data-by="author">
+        <thead><tr>{% for h in t.rows[0] %}<th scope="col">{{ h }}</th>{% endfor %}</tr></thead>
+        <tbody>{% for r in t.rows[1:] %}<tr>{% for x in r %}<td>{{ x }}</td>{% endfor %}</tr>{% endfor %}</tbody>
+      </table>
+    </div>
+    {% else %}
+    <pre class="table-raw" data-by="author" tabindex="0">{{ t.claim.quote }}</pre>
+    {% endif %}
+    <span class="refs">{{ claim_ref(t.claim) }}</span>
+  </div><!--/para-->
+  {% endfor %}
+</section>
+{% endif %}
+
+{% if v.show["b-examples"] %}
+<section id="b-examples" class="block"><h2>Разбор примеров из главы</h2>
+  {% for w in n.worked_examples %}
+  <div class="para example">
+    <p data-by="{{ by_of(w) }}"><strong>Условие.</strong> {{ w.condition }} {{ badge(by_of(w)) }}</p>
+    {% if w.steps %}<ol class="steps" data-by="{{ by_of(w) }}">{% for s in w.steps %}<li>{{ s }}</li>{% endfor %}</ol>{% endif %}
+    <p data-by="{{ by_of(w) }}"><strong>Итог.</strong> {{ w.result }}</p>
+    {% if w.figure %}<p class="fig-ref">Рисунок в книге: {{ w.figure }}</p>{% endif %}
+    {{ page_refs([w.page_pdf]) }}
+  </div><!--/para-->
+  {% endfor %}
+</section>
+{% endif %}
+
+{% if v.show["b-practice"] %}
+<section id="b-practice" class="block"><h2>Как делает специалист</h2>
+  {{ field(n.layers.practice) }}
+  {% if n.now_practice %}{{ field(n.now_practice, "Как сейчас: ") }}{% endif %}
+</section>
+{% endif %}
+
+{% if v.show["b-nuances"] %}
+<section id="b-nuances" class="block"><h2>Нюансы</h2>{{ field(n.layers.nuances) }}</section>
+{% endif %}
+
+{% if v.show["b-misconception"] %}
+<section id="b-misconception" class="block block-warn"><h2>{{ icon("warning") }}Частая ошибка</h2>
+  {{ field(n.misconception) }}
+</section>
+{% endif %}
+
+{% if v.show["b-decision"] %}
+{% set d = n.decision_on_data %}
+<section id="b-decision" class="block"><h2>Решение на данных</h2>
+  <div class="para decision">
+    <div class="sig-flow" data-by="{{ by_of(d) }}">
+      <div class="sig"><h3>Сигнал</h3><ul>{% for f in d.features %}<li>{{ f }}</li>{% endfor %}</ul></div>
+      <div class="arrow" aria-hidden="true">{{ icon("arrow-right") }}</div>
+      <div class="rule"><h3>Правило</h3><p>{{ d.rule }}</p></div>
+      <div class="arrow" aria-hidden="true">{{ icon("arrow-right") }}</div>
+      <div class="concl"><h3>Вывод</h3><p>{{ d.conclusion }}</p></div>
+    </div>
+    {% if d.counterexample %}<p class="counter" data-by="{{ by_of(d) }}"><strong>Контрпример.</strong> {{ d.counterexample }}</p>{% endif %}
+    <p>{{ badge(by_of(d)) }}</p>
+    {{ page_refs(n.pages) }}
+  </div><!--/para-->
+</section>
+{% endif %}
+
+{% if v.show["b-data"] %}
+<section id="b-data" class="block"><h2>Что это значит для данных</h2>
+  {{ field(n.data_meaning.from_chapter) }}
+  {{ field(n.data_meaning.breaks, "Где ломается: ") }}
+  {% for h in v.hypotheses %}{{ field(h) }}{% endfor %}
+</section>
+{% endif %}
+
+{% if v.show["b-analogy"] %}
+<section id="b-analogy" class="block"><h2>{{ icon("lightbulb") }}Аналогия</h2>
+  <div class="para"><p data-by="{{ by_of(n.it_analogy) }}">{{ n.it_analogy.text }} {{ badge(by_of(n.it_analogy)) }}</p>
+  {% if n.it_analogy.breaks_where.strip() %}<p class="limit" data-by="{{ by_of(n.it_analogy) }}"><strong>Где перестаёт работать:</strong> {{ n.it_analogy.breaks_where }}</p>{% endif %}
+  {{ page_refs(v.node.pages) }}</div><!--/para-->
+</section>
+{% endif %}
+
+{% if v.show["b-terms"] %}
+<section id="b-terms" class="block"><h2>Новые понятия</h2>
+  {% if n.terms_introduced %}<ul class="terms">{% for t in n.terms_introduced %}<li><dfn>{{ t }}</dfn></li>{% endfor %}</ul>{% endif %}
+  {% if n.terms_used %}<p class="muted">Используются: {{ n.terms_used | join(", ") }}</p>{% endif %}
+</section>
+{% endif %}
+
+{% if v.show["b-deeper"] %}
+<section id="b-deeper" class="block"><details><summary><h2>Глубже</h2></summary>
+  {% for d in v.deeper %}{{ field(d) }}{% endfor %}
+</details></section>
+{% endif %}
+
+{% if v.show["b-tasks"] %}
+<section id="b-tasks" class="block"><h2>Задачи из книги</h2>
+  {% for t in n.book_tasks %}
+  <div class="para"><p data-by="{{ by_of(t) }}"><strong>Задача {{ t.number }}.</strong> {{ t.text }} {{ badge(by_of(t)) }}</p>
+  {% if t.figure %}<p class="fig-ref">Нужен рисунок: {{ t.figure }}</p>{% endif %}
+  {{ page_refs([t.page_pdf]) }}</div><!--/para-->
+  {% endfor %}
+</section>
+{% endif %}
+
+{% if v.show["b-illus"] %}
+<section id="b-illus" class="block"><h2>Иллюстрации</h2>
+  {% for it in v.illus %}
+  <figure class="illus">
+    <img src="{{ it.src }}" alt="{{ it.il.alt }}" loading="lazy">
+    <figcaption>{{ it.il.caption }}{% if it.il.label %} · <span class="prov">{{ it.il.label }}</span>{% endif %}{% if it.il.source %} · {{ it.il.source }}{% endif %}</figcaption>
+  </figure>
+  {% endfor %}
+</section>
+{% endif %}
+
+{% if v.show["b-media"] %}
+<section id="b-media" class="block"><h2>{{ icon("play") }}Ролик</h2>
+  {% if v.media.kind == "video" %}
+  <video controls preload="metadata" src="{{ v.media.src }}">
+    {% if v.media.vtt %}<track kind="subtitles" srclang="ru" label="Русские субтитры" src="{{ v.media.vtt }}" default>{% endif %}
+  </video>
+  {% else %}
+  <p class="muted">Ролик по этому шагу не собран{% if v.media.passport %}; спецификация сцены — в <a href="{{ v.media.passport }}">паспорте ролика</a>{% endif %}.</p>
+  {% endif %}
+</section>
+{% endif %}
+
+<section id="b-source" class="block"><h2>Источник</h2>
+  <p class="muted">Каждое утверждение шага — со страницей PDF и дословной цитатой. Нажми «стр. N», чтобы сверить по книге.</p>
+  <ol class="sources">
+  {% for c in n.claims %}
+    <li><button type="button" class="pg" data-claim="{{ c.id }}">{{ icon("book-open") }}стр. {{ c.page_pdf }}{% if c.page_print %} (печ. {{ c.page_print }}){% endif %}</button> {{ c.text }}</li>
+  {% endfor %}
+  </ol>
+</section>
+
+<footer class="step-foot">
+  <button type="button" id="mark-done" class="btn" aria-pressed="false">{{ icon("check") }}<span>Шаг пройден</span></button>
+  <nav class="pager" aria-label="Соседние шаги">
+    {% if prev %}<a rel="prev" href="step-{{ prev.id }}.html">{{ icon("arrow-left") }}<span>{{ titles[prev.id] }}</span></a>{% else %}<a href="index.html">{{ icon("arrow-left") }}<span>К пути</span></a>{% endif %}
+    {% if next %}<a rel="next" href="step-{{ next.id }}.html"><span>{{ titles[next.id] }}</span>{{ icon("arrow-right") }}</a>{% else %}<a href="cards.html"><span>К карточкам</span>{{ icon("arrow-right") }}</a>{% endif %}
+  </nav>
+</footer>
+</article>
+
+<dialog id="book" aria-labelledby="book-h">
+  <form method="dialog" class="dlg-close"><button type="submit" class="tool" aria-label="Закрыть">{{ icon("x-circle") }}</button></form>
+  <h2 id="book-h">Проверь по книге</h2>
+  <div id="book-body"></div>
+</dialog>
+<script type="application/json" id="step-data">{{ v.data_json }}</script>
+{% endblock %}
