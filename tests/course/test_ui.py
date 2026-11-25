@@ -36,6 +36,12 @@ def _read(course: Path, name: str) -> str:
     return (course / name).read_text(encoding="utf-8")
 
 
+def course_data(course: Path) -> dict:
+    """Общие данные курса: assets/course-data.js («window.COURSE_DATA = {...};»), а не копия в каждой странице."""
+    text = (course / "assets/course-data.js").read_text(encoding="utf-8")
+    return json.loads(text[len("window.COURSE_DATA = "):].rstrip().rstrip(";"))
+
+
 # ---------------------------------------------------------------- цвета
 
 def test_ui_css_never_uses_legend_colors():
@@ -122,13 +128,13 @@ def test_step_has_progress_checklist_bottom_bar_sidebar_and_drawer(tmp_path):
 
 @pytest.mark.parametrize("name", ["index.html", "cards.html", "map.html", "summary.html", "glossary.html", RES])
 def test_menu_has_three_groups_with_icons_and_labels_on_every_page(tmp_path, name):
-    html = _read(_course(tmp_path), name)
+    html = _read(_course(tmp_path, with_tasks=True), name)
     header = html[html.index('<header class="top">'):html.index("</header>")]
     assert 'class="main-nav"' not in html and "counter" not in header                # из шапки убраны пункты навигации и счётчик
     menu = re.search(r'<dialog id="menu".*?</dialog>', html, re.S).group(0)
     assert re.findall(r'<h3 class="menu-group">([^<]+)</h3>', menu) == ["Курс", "Повторение", "Настройки"]
     labels = re.findall(r'<a href="[a-z]+\.html"[^>]*>(?:<svg.*?</svg>)<span>([^<]+)</span>', menu, re.S)
-    assert [l for l in labels if l != "Лист опечаток"] == ["Путь", "Все задания", "Словарь главы", "Конспект", "Карта связей", "ИТ-задачи", "Прогресс", "Ошибки", "Карточки"]
+    assert [l for l in labels if l != "Лист опечаток"] == ["Путь", "Все задания", "Словарь главы", "Конспект", "Карта связей", "Что ломается в данных", "Прогресс", "Ошибки", "Карточки"]
     for target in ("index", "tasks", "glossary", "summary", "map", "it", "progress", "mistakes", "cards"):
         assert f'href="{target}.html"' in menu
     assert menu.count("<svg") >= 10 and 'aria-current="page"' in menu
@@ -141,7 +147,7 @@ def test_index_cards_tabs_and_segments(tmp_path):
     assert 'id="resume"' in html and "Начать" in html
     assert 'class="part-tabs"' in html and html.count("data-part=") >= 4   # 2 таба + «Все» + секции
     assert 'data-seg="all"' in html and 'data-seg="repeat"' in html
-    assert "Шаг 1 · ≈" in html
+    assert 'class="st-meta">≈' in html and "Шаг 1 · ≈" not in html           # номер уже в кружке таймлайна: «Шаг N ·» в мете убран
     assert 'class="badge"' not in html          # заданий нет — бейджа «решено» нет
     assert 'id="solved-count"' not in html      # и счётчика ✦ нет
 
@@ -178,7 +184,7 @@ def test_tasks_make_counter_badges_and_hub_page(tmp_path):
     course = _course(tmp_path, with_tasks=True)
     idx = _read(course, "index.html")
     assert 'id="solved-count"' in idx and "Решено заданий: 0 из 5" in idx
-    assert 'data-badge="mini.resistivity_depends_on_fluid" data-total="3">решено 0/3' in idx
+    assert 'data-badge="mini.resistivity_depends_on_fluid" data-total="3" hidden>решено 0/3' in idx      # бейдж — только после первого ответа
     assert "3 задания" in idx and "1 задание" in idx
     hub = _read(course, "tasks.html")
     assert hub.count("data-task-state=") == 5 and "step-mini.porosity_basics.html#task-mini.t04" in hub
@@ -237,16 +243,16 @@ def test_progress_and_mistakes_skeleton_with_tasks(tmp_path):
         assert f'data-tab="{tab}"' in prog
     assert "Нужно повторить" in prog and "Закрепить" in prog and "Освоено" in prog
     assert 'id="mistakes-list"' in mis and 'id="restore-understood"' in mis
-    meta = json.loads(re.search(r'id="course-meta">(.*?)</script>', prog, re.S).group(1))
+    meta = course_data(course)["meta"]
     assert [t["id"] for t in meta["tasks"]][:2] == ["mini.t01", "mini.t02"]
     assert "{{" not in json.dumps(meta)          # пропуски gap в метаданных замаскированы
 
 
 def test_extras_link_to_mistakes_and_it_page(tmp_path):
-    course = _course(tmp_path)
+    course = _course(tmp_path, with_tasks=True)
     assert 'href="mistakes.html"' in _read(course, "index.html")
     it = _read(course, "it.html")
-    assert "Где здесь ИТ-задачи" in it and "Где ломается в данных" in it
+    assert "Что ломается в данных" in it and "Где здесь ИТ-задачи" not in it and "Где ломается в данных" in it
     assert re.search(r'data-by="hypothesis"><dt>Гипотеза</dt>', it)
     assert "Где аналогия перестаёт работать" in it
 
@@ -268,7 +274,8 @@ def test_it_page_empty_state_when_layer_has_no_it_fields(tmp_path):
 def test_header_has_logo_search_progress_and_menu_button_and_no_bottom_nav(tmp_path):
     html = _read(_course(tmp_path), "index.html")
     header = html[html.index('<header class="top">'):html.index("</header>")]
-    assert header.index("brand-logo") < header.index('id="search-input"') < header.index("top-progress") < header.index('id="open-menu"')
+    assert header.index("brand-logo") < header.index("crumbs-top") < header.index('id="search-input"') < header.index('id="open-menu"')
+    assert "Шаг 1 из" not in header and 'id="step-bar"' not in header and "top-progress" not in header     # «шаг N из M» — в кикере шага
     assert 'aria-label="Поиск"' in header and 'title="Меню"' in header and "Меню</span>" in header
     css = (ASSETS / "course.css").read_text(encoding="utf-8")
     assert "span:has(+ .short)" not in css and ".main-nav" not in css           # нижней навигации из пяти пунктов больше нет

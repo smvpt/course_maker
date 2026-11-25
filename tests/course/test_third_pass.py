@@ -3,7 +3,7 @@ import json
 import re
 from pathlib import Path
 
-from pipeline.course.build import book_label, build
+from pipeline.course.build import book_parts, build
 from pipeline.illus import run as R
 from tests.course.test_gen_build import _build, _setup
 from tests.course.test_illus import CurveLLM, _setup as _illus_setup, _style
@@ -63,23 +63,25 @@ def test_index_filter_is_hidden_until_something_needs_repeating(tmp_path):
     assert "seg.hidden = !meta.steps.some(function (s) { return needsRepeat(s.id); })" in JS
 
 
-def test_index_kicker_book_label_and_single_part_heading(tmp_path):
+def test_index_has_no_duplicate_kicker_and_author_book_go_to_course_json(tmp_path):
     layer = _layer()
     out = _put(tmp_path, layer)
-    html = (build("mini_test", out_root=out, pages_dir=tmp_path / "p") / "index.html").read_text(encoding="utf-8")
-    assert '<p class="kicker">Курс по главе книги</p>' in html and "Демо-курс" not in html
+    course = build("mini_test", out_root=out, pages_dir=tmp_path / "p")
+    html = (course / "index.html").read_text(encoding="utf-8")
+    assert 'class="kicker"' not in html and "Демо-курс" not in html and 'id="hero-search-input"' not in html      # hero не дублируется кикером и вторым полем поиска
+    info = json.loads((course / "course.json").read_text(encoding="utf-8"))
+    assert info["author"] is None and info["book"] is None                                                       # данных нет — хаб напишет только название
     (out / "mini_test/units.json").write_text(json.dumps({"chapter": "mini_test", "source": "x.md", "language": "ru", "domain": "geology",
                                                           "pdf_pages": [1], "units": [], "author": "Барабошкин", "book": "Практическая седиментология"},
                                                          ensure_ascii=False), encoding="utf-8")
-    html = (build("mini_test", out_root=out, pages_dir=tmp_path / "p") / "index.html").read_text(encoding="utf-8")
-    assert '<p class="kicker">Курс по книге: Барабошкин — Практическая седиментология</p>' in html
-    assert book_label(layer, out / "mini_test") == "Барабошкин — Практическая седиментология"
+    course = build("mini_test", out_root=out, pages_dir=tmp_path / "p")
+    info = json.loads((course / "course.json").read_text(encoding="utf-8"))
+    assert (info["author"], info["book"]) == ("Барабошкин", "Практическая седиментология")
+    assert book_parts(layer, None) == (None, None)
     layer.ext = {"core": {"book": "Только книга"}}
-    assert book_label(layer, None) is None                                       # нужны оба поля
-    layer.ext = {"core": {"author": None, "book": "Книга"}}
-    assert book_label(layer, None) is None                                       # null вместо автора — тоже «по главе книги»
+    assert book_parts(layer, None) == (None, "Только книга")                                                       # хаб показывает «автор — книга», только если есть оба
     layer.ext = {"core": {"title": None, "author": "Автор", "book": "Книга"}}
-    assert book_label(layer, None) == "Автор — Книга" and book_label(_layer(), None) is None
+    assert book_parts(layer, None) == ("Автор", "Книга")
 
 
 def test_single_part_has_no_part_heading_but_several_parts_keep_theirs(tmp_path):
@@ -99,7 +101,7 @@ def test_by_badges_only_with_the_switch_and_settings_in_the_menu(tmp_path):
     assert "toggle-by" not in header and "toggle-theme" not in header and "counter" not in header      # из шапки убраны ✦, автор/модель, тема
     menu = re.search(r'<dialog id="menu".*?</dialog>', html, re.S).group(0)
     assert [m for m in re.findall(r'data-theme-set="([a-z]+)"', menu)] == ["system", "light", "dark"]
-    assert "Показывать, что написал автор, а что модель" in menu and 'role="switch"' in menu and 'id="by-help"' in menu
+    assert "Показать, что из книги, а что пересказ" in menu and 'role="switch"' in menu and 'id="by-help"' in menu
     assert 'aria-label="Решено заданий: 0 из' in menu and 'id="solved-count"' in menu                    # счётчик решённых — в меню
     assert re.search(r'id="toggle-by"[^>]*data-by-switch', html) and html.count("data-by-switch") == 3     # меню, карточка справа, строка под шапкой
     assert re.search(r"body:not\(\.show-by\) \.by-author, body:not\(\.show-by\) \.by-model \{ display: none; \}", CSS)
@@ -108,19 +110,21 @@ def test_by_badges_only_with_the_switch_and_settings_in_the_menu(tmp_path):
 
 def test_step_labels_key_concept_and_progress_in_plain_units(tmp_path):
     html = _page(tmp_path, f"step-{RES}.html")
-    assert "пороговое понятие" not in html and "Прочитано: нет · задания 0 из 3" in html
+    assert "пороговое понятие" not in html and "Прочитано" not in html.split('class="step-aside"')[1].split("</aside>")[0]
+    assert "Задания: 0 из 3" in html.split('class="step-aside"')[1]
     assert "Прогресс шага: 0 из" in html                                                           # для скринридера остаётся в #step-progress-text
-    assert '"Прочитано: нет"' in JS and '" · задания "' in JS
+    assert '"Задания: " + okTasks' in JS and "Прочитано" not in JS.split("step-progress-side")[1][:400]
     assert "step-strip" not in html and "step-strip" not in CSS and "step-strip" not in JS
 
 
-def test_key_concept_label_when_node_is_threshold(tmp_path):
+def test_key_concept_is_a_small_star_with_a_hint_not_a_pill(tmp_path):
     layer = _layer()
     for n in layer.nodes:
         n.threshold = True
     out = _put(tmp_path, layer)
     html = (build("mini_test", out_root=out, pages_dir=tmp_path / "p") / f"step-{RES}.html").read_text(encoding="utf-8")
-    assert 'class="threshold" title="без него следующие шаги будут непонятны">ключевое понятие</span>' in html and "пороговое" not in html
+    assert re.search(r'<span class="key-concept" title="Ключевое понятие: без него следующие шаги будут непонятны" tabindex="0">(?:<svg.*?</svg>)<span class="sr">ключевое понятие</span></span>', html, re.S)
+    assert "threshold" not in html and "пороговое" not in html and "threshold" not in CSS
 
 
 # 10. без текстов «от разработчика»

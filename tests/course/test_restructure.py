@@ -19,17 +19,24 @@ def _html(course, name):
     return (course / name).read_text(encoding="utf-8")
 
 
+def _course_data(course):
+    text = (course / "assets/course-data.js").read_text(encoding="utf-8")
+    return json.loads(text[len("window.COURSE_DATA = "):].rstrip().rstrip(";"))
+
+
 def _json(html, ident):
     return json.loads(re.search(rf'id="{ident}">(.*?)</script>', html, re.S).group(1))
 
 
 # ---------------------------------------------------------------- 2. поиск
-def test_search_index_is_embedded_json_on_every_page_and_covers_titles_terms_and_blocks(tmp_path):
+def test_search_index_is_one_data_file_per_course_and_covers_titles_terms_and_blocks(tmp_path):
     course = _course(tmp_path)
     for page in course.glob("*.html"):
-        index = _json(_html(course, page.name), "search-index")
-        assert isinstance(index, list) and index, page.name
-    index = _json(_html(course, "index.html"), "search-index")
+        html = _html(course, page.name)
+        assert 'id="search-index"' not in html and 'src="assets/course-data.js"' in html, page.name     # индекс — один файл на курс, не копия в каждой странице
+        assert len(html.encode()) < 80_000, (page.name, len(html.encode()))                              # вес страницы < 80 КБ
+    index = _course_data(course)["search"]
+    assert isinstance(index, list) and index
     kinds = {e["k"] for e in index}
     assert {"step", "para", "term"} <= kinds
     assert all({"k", "s", "t", "b", "a", "x"} <= set(e) for e in index)
@@ -45,7 +52,7 @@ def test_search_index_is_embedded_json_on_every_page_and_covers_titles_terms_and
 
 def test_search_is_offline_and_has_keyboard_and_stem_matching():
     assert "fetch(" not in JS and "XMLHttpRequest" not in JS
-    for needle in ('readJSON("search-index")', "function stem(w)", 'ev.key === "/"', 'ev.key === "ArrowDown"', 'ev.key === "Enter"', ".replace(/ё/g, \"е\")",
+    for needle in ('DATA.search', "function stem(w)", 'ev.key === "/"', 'ev.key === "ArrowDown"', 'ev.key === "Enter"', ".replace(/ё/g, \"е\")",
                    "document.querySelector(\"dialog[open]\")", "function goTo(href)", "history.pushState"):
         assert needle in JS, needle
 
@@ -55,7 +62,7 @@ def test_header_search_field_hero_search_and_mobile_toggle(tmp_path):
     for name in ("index.html", f"step-{RES}.html", "glossary.html"):
         html = _html(course, name)
         assert 'id="search-input"' in html and 'placeholder="Найти термин или тему"' in html and 'id="open-search"' in html and 'role="listbox"' in html
-    assert 'id="hero-search-input"' in _html(course, "index.html")
+    assert 'id="hero-search-input"' not in _html(course, "index.html")                      # на главной курса одно поле поиска — в шапке
     assert re.search(r"@media \(max-width: 767\.98px\)[^@]*\.search \{ display: none; \}", CSS, re.S) and ".top.search-open .search" in CSS
 
 

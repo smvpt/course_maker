@@ -13,11 +13,12 @@
      understood  [id задания, ...]               «Я понял» в списке ошибок; логика заданий убирает id,
                                                  если то же задание снова решено неверно
    Тема ("system" | "light" | "dark"), подсветка «автор / модель» и закрытая подсказка первого шага — общие для всех глав:
-   course:theme, course:by, course:hint. */
+   course:theme, course:by, course:hint, course:last ({ch, step, title}). */
 (function () {
   "use strict";
 
-  var meta = JSON.parse(document.getElementById("course-meta").textContent);
+  var DATA = window.COURSE_DATA || {};                 // assets/course-data.js: общие данные курса (шаги, задания, индекс поиска) — один файл, не копия в каждой странице
+  var meta = DATA.meta;
   var ch = meta.ch;
   var page = document.body.dataset.page;
 
@@ -35,6 +36,7 @@
   K.theme = "course:theme";
   K.by = "course:by";
   K.hint = "course:hint";
+  K.lastCourse = "course:last";                          // общий для всех курсов: последний открытый курс и шаг (читает главная всех курсов)
 
   function norm(t) { return String(t).toLowerCase().replace(/ё/g, "е"); }
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -105,6 +107,7 @@
 
   /* ---------- меню, тема, «автор / модель» ---------- */
   var root = document.documentElement;
+  requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.add("theme-ready"); }); });   // переходы цветов — только после первого кадра
   var menu = document.getElementById("menu");
   document.querySelectorAll("[data-open-menu]").forEach(function (b) { b.addEventListener("click", function () { openDialog(menu, b); }); });
 
@@ -147,14 +150,6 @@
     chip.setAttribute("aria-label", "Задание " + chip.textContent.trim() + ": " + STATE_RU[s]);
   });
   document.querySelectorAll("[data-task-state]").forEach(function (e) { e.textContent = STATE_RU[taskState(e.dataset.taskState)]; });
-
-  /* ---------- прогресс по курсу в шапке (на страницах, кроме шага) ---------- */
-  var courseBar = document.getElementById("course-bar");
-  if (courseBar) {
-    var doneN = meta.steps.filter(function (st) { return isDone(st.id); }).length;
-    courseBar.style.width = Math.round(100 * doneN / meta.steps.length) + "%";
-    document.getElementById("course-progress-text").textContent = "Пройдено " + doneN + " из " + meta.steps.length;
-  }
 
   /* ---------- страница шага ---------- */
   var stepData = readJSON("step-data");
@@ -227,7 +222,7 @@
     var btns = [].slice.call(root.querySelectorAll(".scheme-part")), parts = d.parts, mode = "explore";
     var quiz = { order: [], k: 0, score: 0, answered: false };
     function chips(p, row) {
-      [el("button", "pg", "стр. " + p.page), el("button", "btn-small pg", "Проверь по книге")].forEach(function (b) {
+      [el("button", "pg", "стр. " + p.page), el("button", "btn-small pg", "Открыть страницу книги")].forEach(function (b) {
         b.type = "button";
         b.dataset.claim = p.claim_id;
         row.appendChild(b);
@@ -396,6 +391,7 @@
   function initStep(data) {
     var nodeId = data.node_id;
     store.set(K.last, nodeId);
+    store.set(K.lastCourse, { ch: ch, step: nodeId, title: (document.querySelector(".step h1") || {}).textContent || nodeId });
 
     /* чек-лист → прогресс шага → «Шаг пройден» */
     var checks = store.get(K.checks, {});
@@ -415,10 +411,9 @@
       document.getElementById("step-progress-text").textContent = "Прогресс шага: " + okCount + " из " + boxes.length;
       var sideBar = document.getElementById("step-bar-side");
       if (sideBar) {
-        sideBar.style.width = Math.round(100 * okCount / boxes.length) + "%";
-        var readBox = document.querySelector('[data-check="read"]');
-        document.getElementById("step-progress-side").textContent = (readBox && readBox.checked ? "Прочитано" : "Прочитано: нет") +
-          (taskList.length ? " · задания " + stepStats(nodeId).ok + " из " + taskList.length : "");
+        var okTasks = stepStats(nodeId).ok;
+        sideBar.style.width = Math.round(100 * okTasks / taskList.length) + "%";
+        document.getElementById("step-progress-side").textContent = "Задания: " + okTasks + " из " + taskList.length;
       }
       var all = okCount === boxes.length;
       document.getElementById("done-banner").hidden = !all;
@@ -773,7 +768,6 @@
   /* ---------- путь ---------- */
   if (page === "index") {
     var n = meta.steps.filter(function (s) { return isDone(s.id); }).length;
-    document.getElementById("progress-bar").style.width = Math.round(100 * n / meta.steps.length) + "%";
     document.getElementById("progress-text").textContent = "Пройдено " + n + " из " + meta.steps.length;
     var ring = document.getElementById("ring-fg");
     if (ring) {
@@ -796,6 +790,7 @@
       var st = stepStats(b.dataset.badge);
       b.textContent = "решено " + st.ok + "/" + st.total;
       b.classList.toggle("complete", st.ok === st.total);
+      b.hidden = st.ok + st.bad === 0;                    // пока ничего не отвечено — бейджа нет
     });
 
     var filter = { part: "", seg: "all" };
@@ -847,6 +842,10 @@
       });
     });
     var only = document.getElementById("only-repeat");
+    var filterRow = only.closest(".filter");
+    var showFilter = function () { filterRow.hidden = !Object.keys(cardMarks).some(function (k) { return cardMarks[k] === "repeat"; }); };   // фильтр нужен, когда есть что повторять
+    showFilter();
+    document.querySelectorAll(".card [data-mark]").forEach(function (b) { b.addEventListener("click", showFilter); });
     only.addEventListener("change", function () { document.body.classList.toggle("only-repeat", only.checked); });
   }
 
@@ -886,6 +885,10 @@
     li.appendChild(el("p", "pl-title", s.title));
     var segs = el("div", "msegs");
     var list = tasksOf[s.id];
+    if (mastery(s.id) === "new") {                          // ничего не решено: кружки-«не решено» — шум, достаточно числа заданий
+      li.appendChild(el("p", "muted", list.length + " " + (list.length === 1 ? "задание" : list.length < 5 ? "задания" : "заданий")));
+      segs = null;
+    }
     var firstBad = null;
     list.forEach(function (t, i) {
       var st = taskState(t.id);
@@ -897,9 +900,9 @@
       var g = el("span", "gl gl-" + st);
       g.setAttribute("aria-hidden", "true");
       seg.appendChild(g);
-      segs.appendChild(seg);
+      if (segs) segs.appendChild(seg);
     });
-    li.appendChild(segs);
+    if (segs) li.appendChild(segs);
     var btns = el("div", "pl-btns");
     var target = firstBad || list[0];
     if (mastery(s.id) === "new") {
@@ -982,8 +985,8 @@
     document.querySelectorAll(".map-node").forEach(function (a) { if (isDone(a.dataset.node)) a.classList.add("done"); });
   }
 
-  /* ---------- офлайн-поиск: индекс встроен в страницу (#search-index), без fetch ---------- */
-  var searchIndex = readJSON("search-index") || [];
+  /* ---------- офлайн-поиск: индекс в assets/course-data.js (подключён <script src>), без fetch ---------- */
+  var searchIndex = DATA.search || [];
   var searchHost = document.querySelector(".top");
   function stem(w) { return w.length > 4 ? w.slice(0, w.length - 2) : w; }           // простое совпадение основы: «сопротивлению» ~ «сопротивление»
   function searchWords(q) { return norm(q).split(/[^a-zа-я0-9]+/).filter(function (w) { return w.length > 1; }).map(stem); }

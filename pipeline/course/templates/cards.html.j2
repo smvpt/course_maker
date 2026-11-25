@@ -5,7 +5,7 @@
 <h1>Карточки повторения</h1>
 {{ review_tabs("cards") }}
 <p class="muted">Вспомни суть шага, открой карточку и отметь: знаю или повторить.</p>
-<p class="filter"><label><input type="checkbox" id="only-repeat"> Только «повторить»</label></p>
+<p class="filter" hidden><label><input type="checkbox" id="only-repeat"> Только «повторить»</label></p>
 <ol class="cards">
 {% for n in nodes %}
   <li class="card" data-node="{{ n.id }}">

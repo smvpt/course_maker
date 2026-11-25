@@ -112,8 +112,9 @@ def test_video_dirs_order_and_index_icon(tmp_path):
     course = build("mini_test", out_root=out, pages_dir=tmp_path / "pages")
     index = (course / "index.html").read_text(encoding="utf-8")
     assert "ролик" in index.split(f'data-node="{RES}"')[1].split("</li>")[0]
-    assert json.loads(re.search(r'id="course-meta">(.*?)</script>', index, re.S).group(1))["steps"][0]["video"] in (True, False)
-    assert [s for s in json.loads(re.search(r'id="course-meta">(.*?)</script>', index, re.S).group(1))["steps"] if s["id"] == RES][0]["video"] is True
+    text = (course / "assets/course-data.js").read_text(encoding="utf-8")
+    steps = json.loads(text[len("window.COURSE_DATA = "):].rstrip().rstrip(";"))["meta"]["steps"]
+    assert steps[0]["video"] in (True, False) and [s for s in steps if s["id"] == RES][0]["video"] is True
 
 
 def test_step_without_any_video_dir_has_no_media_block(tmp_path):

@@ -58,18 +58,23 @@
 
 <article class="step" data-node="{{ n.id }}">
 <header class="step-head">
-  <p class="kicker">Шаг {{ idx + 1 }} из {{ steps | length }} · ≈ {{ v.minutes }} мин{% if v.pages_label %} · {{ v.pages_label }}{% endif %}{% if n.threshold %} · <span class="threshold" title="без него следующие шаги будут непонятны">ключевое понятие</span>{% endif %}</p>
+  <p class="kicker">Шаг {{ idx + 1 }} из {{ steps | length }} · ≈ {{ v.minutes }} мин{% if v.pages_label %} · {{ v.pages_label }}{% endif %}{% if n.threshold %} · <span class="key-concept" title="Ключевое понятие: без него следующие шаги будут непонятны" tabindex="0">{{ icon("star") }}<span class="sr">ключевое понятие</span></span>{% endif %}</p>
   <h1>{{ v.title }}</h1>
   {% if has_text(n.layers.topic) %}<p class="topic subtitle" data-by="{{ by_of(n.layers.topic) }}">{{ n.layers.topic.text }}</p>{% endif %}
   {% if v.prereqs %}
   <p class="prereq"><span class="prereq-label">Опирается на</span> {% for p in v.prereqs %}{% if p in titles %}<a class="prereq-chip" href="step-{{ p }}.html">{{ titles[p] }}</a>{% else %}<span class="prereq-chip">{{ p }}</span>{% endif %} {% endfor %}</p>
   {% endif %}
-  <div class="legend-by" aria-hidden="true">{{ badge("author") }} {{ badge("model") }} {{ badge("hypothesis") }}</div>
+  <div class="bar slim step-bar-inline" aria-hidden="true"><span id="step-bar"></span></div>
+  <p id="step-progress-text" class="sr" aria-live="polite">Прогресс шага: 0 из {{ v.check_items }}</p>
 </header>
+<div class="by-legend" role="note">
+  <p class="by-legend-row"><span class="sw sw-author" aria-hidden="true"></span>из книги (слова автора) <span class="sw-sep" aria-hidden="true">·</span> <span class="sw sw-model" aria-hidden="true"></span>пересказ ИИ <span class="sw-sep" aria-hidden="true">·</span> <span class="sw sw-hyp" aria-hidden="true"></span>гипотеза</p>
+  <p class="by-legend-note">Пересказ проверен по странице книги — нажмите «стр. N».</p>
+</div>
 <div class="source-compact" aria-label="Источник шага">
   <span class="side-pages">{{ icon("book-open") }}{{ v.pages_label or "Страницы не указаны" }}</span>
-  {% if n.claims %}<button type="button" class="pg pg-btn" data-claim="{{ (v.text_claims[0] if v.text_claims else n.claims[0]).id }}">{{ icon("magnifying-glass") }}Проверь по книге</button>{% endif %}
-  <label class="switch"><input type="checkbox" role="switch" data-by-switch><span class="switch-track" aria-hidden="true"></span><span class="switch-text">Автор / модель</span></label>
+  {% if n.claims %}<button type="button" class="pg pg-btn" data-claim="{{ (v.text_claims[0] if v.text_claims else n.claims[0]).id }}">{{ icon("magnifying-glass") }}Открыть страницу книги</button>{% endif %}
+  <label class="switch"><input type="checkbox" role="switch" data-by-switch><span class="switch-track" aria-hidden="true"></span><span class="switch-text">Показать, что из книги, а что пересказ</span></label>
 </div>
 
 {% if v.guess %}
@@ -437,12 +442,14 @@
   <div class="side-card">
     <h2>{{ icon("book-open") }}Источник</h2>
     <p class="side-pages">{{ v.pages_label or "Страницы не указаны" }}</p>
-    {% if n.claims %}<button type="button" class="pg pg-btn" data-claim="{{ (v.text_claims[0] if v.text_claims else n.claims[0]).id }}">{{ icon("magnifying-glass") }}Проверь по книге</button>{% endif %}
-    <label class="switch"><input type="checkbox" role="switch" id="toggle-by" data-by-switch><span class="switch-track" aria-hidden="true"></span><span class="switch-text">Автор / модель</span></label>
+    {% if n.claims %}<button type="button" class="pg pg-btn" data-claim="{{ (v.text_claims[0] if v.text_claims else n.claims[0]).id }}">{{ icon("magnifying-glass") }}Открыть страницу книги</button>{% endif %}
+    <label class="switch"><input type="checkbox" role="switch" id="toggle-by" data-by-switch><span class="switch-track" aria-hidden="true"></span><span class="switch-text">Показать, что из книги, а что пересказ</span></label>
+    {% if v.tasks %}
     <div class="side-progress">
       <div class="bar slim"><span id="step-bar-side"></span></div>
-      <p id="step-progress-side" class="muted" data-side-progress>Прочитано: нет{% if v.tasks %} · задания 0 из {{ v.tasks | length }}{% endif %}</p>
+      <p id="step-progress-side" class="muted" data-side-progress>Задания: 0 из {{ v.tasks | length }}</p>
     </div>
+    {% endif %}
   </div>
 </aside>
 <script type="application/json" id="step-data">{{ v.data_json }}</script>
@@ -460,7 +467,7 @@
 
 <dialog id="book" aria-labelledby="book-h">
   <form method="dialog" class="dlg-close"><button type="submit" class="tool" aria-label="Закрыть">{{ icon("x") }}</button></form>
-  <h2 id="book-h">Проверь по книге</h2>
+  <h2 id="book-h">Страница книги</h2>
   <div id="book-body"></div>
 </dialog>
 {% endblock %}

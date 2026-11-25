@@ -262,7 +262,7 @@ def build_glossary(ordered: list[Node], fresh: dict[str, list[Para]]) -> list[di
                 if c is not None:
                     e.update(definition=c.text, page=c.page_pdf, claim=c.id)
             items.append(e)
-    return sorted(items, key=lambda e: e["key"])
+    return sorted((e for e in items if e["definition"]), key=lambda e: e["key"])      # термин без определения в словарь не попадает: «см. шаг» — не определение
 
 
 def search_index(ordered: list[Node], fresh: dict[str, list[Para]], glossary: list[dict]) -> list[dict]:
@@ -721,18 +721,29 @@ def make_env() -> Environment:
                       undefined=StrictUndefined, trim_blocks=True, lstrip_blocks=True)
     icons = {p.stem: p.read_text(encoding="utf-8") for p in (HERE / "assets/icons").glob("*.svg")}
 
+    used: list[str] = []                                  # иконки, показанные на странице: их спрайт ставится в конце body
+
     def icon(name: str) -> Markup:
         if name not in icons:
             raise KeyError(f"нет иконки {name}.svg в pipeline/course/assets/icons")
-        svg = icons[name].replace("<svg ", '<svg class="ic" aria-hidden="true" focusable="false" ', 1)
-        return Markup(svg)
+        used.append(name)
+        return Markup(f'<svg class="ic" aria-hidden="true"><use href="#i-{name}"/></svg>')
+
+    def sprite() -> Markup:
+        """Один <symbol> на каждую иконку страницы (внешний файл через <use> на file:// не работает)."""
+        symbols = []
+        for name in sorted(set(used)):
+            inner = re.sub(r"^<svg[^>]*>|</svg>\s*$", "", icons[name].strip())
+            symbols.append(f'<symbol id="i-{name}" viewBox="0 0 256 256" fill="currentColor">{inner}</symbol>')
+        return Markup('<svg class="sprite" aria-hidden="true" width="0" height="0" style="position:absolute">' + "".join(symbols) + "</svg>")
 
     def brand(name: str) -> Markup:
         """Логотип KERN встроенным SVG: обводка и надпись берут цвет темы (--kern-ink), доступное имя — «KERN»."""
         svg = (HERE / "assets/brand" / f"{name}.svg").read_text(encoding="utf-8")
         return Markup(svg.replace("<svg ", '<svg class="brand-logo" ', 1).replace(' width="372" height="128"', "").replace(' width="164" height="128"', ""))
 
-    env.globals.update(icon=icon, brand=brand, by_of=by_of, has_text=has_text)
+    env.globals.update(icon=icon, sprite=sprite, brand=brand, by_of=by_of, has_text=has_text)
+    env.used_icons = used
     env.filters["plural"] = plural
     return env
 
@@ -750,17 +761,18 @@ def heading_title(ch_dir: Path | None) -> str | None:
     return None
 
 
-def book_label(layer: Layer, ch_dir: Path | None = None) -> str | None:
-    """«Автор — книга» для надписи на главной. Поля поставляет П1: ext["core"]["author"] и ["book"] слоя (могут быть null) или те же поля
-    в units.json (верхний уровень или ext.core). Нужны ОБА; иначе None: курс пишет «Курс по главе книги»."""
+def book_parts(layer: Layer, ch_dir: Path | None = None) -> tuple[str | None, str | None]:
+    """(автор, книга) для карточки курса на главной всех курсов. Поля поставляет П1: ext["core"]["author"] и ["book"] слоя (могут быть
+    null) или те же поля в units.json (верхний уровень или ext.core). Нет значения — None; «автор — книга» хаб пишет, только если есть оба."""
     sources = [layer.ext.get("core", {})]
     units_path = ch_dir / "units.json" if ch_dir else None
     if units_path is not None and units_path.exists():
         u = json.loads(units_path.read_text(encoding="utf-8"))
         sources += [u, u.get("ext", {}).get("core", {})]
-    author = next((s["author"].strip() for s in sources if isinstance(s.get("author"), str) and s["author"].strip()), "")
-    book = next((s["book"].strip() for s in sources if isinstance(s.get("book"), str) and s["book"].strip()), "")
-    return f"{author} — {book}" if author and book else None          # одного из полей нет: надпись «Курс по главе книги»
+
+    def first(key: str) -> str | None:
+        return next((s[key].strip() for s in sources if isinstance(s.get(key), str) and s[key].strip()), None)
+    return first("author"), first("book")
 
 
 def chapter_title(layer: Layer, ch_dir: Path | None = None) -> str:
@@ -770,7 +782,8 @@ def chapter_title(layer: Layer, ch_dir: Path | None = None) -> str:
 
 def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
           pages_dir: Path = ROOT / "data/pages", styleguide: Path = STYLEGUIDE,
-          generate: bool = False, domain: str | None = None, extras: bool = False) -> Path:
+          generate: bool = False, domain: str | None = None, extras: bool = False, hub: bool = False) -> Path:
+    """hub=True — рядом будет главная всех курсов (её собирает pipeline.course.hub): в шапке появятся «Курсы / название главы»."""
     ch_dir = out_root / ch
     inp = load_inputs(ch_dir)
     layer: Layer = inp["layer"]
@@ -918,12 +931,24 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
             "tasks": [{"id": t.id, "step_id": t.step_id, "claim_ids": t.claim_ids, "type": t.type, "kind": t.kind,
                        "prompt": mask_gaps(t.prompt), "explanation": t.explanation} for t in tasks]}
     glossary = build_glossary(ordered, fresh)
-    search_json = Markup(json.dumps(search_index(ordered, fresh, glossary), ensure_ascii=False).replace("</", "<\\/"))   # офлайн-поиск: без fetch
-    common = {"search_json": search_json, "ch": ch, "chapter_title": chapter_title(layer, ch_dir), "book_label": book_label(layer, ch_dir), "has_errata": bool(errata), "steps": steps,
-              "n_tasks": len(tasks), "meta": meta, "total_minutes": sum(s["minutes"] for s in steps)}
+    search = search_index(ordered, fresh, glossary)
+    it_list = it_items(ordered)
+    # общие данные курса — один файл на курс (assets/course-data.js, подключается <script src>, на file:// работает без fetch),
+    # а не копия в каждой странице: страница шага ≈ 60 КБ вместо ≈ 175 КБ
+    (course / "assets/course-data.js").write_text("window.COURSE_DATA = " + json.dumps({"meta": meta, "search": search}, ensure_ascii=False) + ";\n", encoding="utf-8")
+    minutes_total = sum(s["minutes"] for s in steps)
+    author, book = book_parts(layer, ch_dir)
+    (course / "course.json").write_text(json.dumps({                    # для главной всех курсов (pipeline.course.hub)
+        "ch": ch, "title": chapter_title(layer, ch_dir), "author": author, "book": book, "minutes": minutes_total, "tasks": len(tasks),
+        "steps": [{"id": s["id"], "title": s["title"], "minutes": s["minutes"], "tasks": s["tasks"]} for s in steps],
+        "task_ids": [t.id for t in tasks], "search": search}, ensure_ascii=False), encoding="utf-8")
+    common = {"ch": ch, "chapter_title": chapter_title(layer, ch_dir), "has_errata": bool(errata), "steps": steps,
+              "n_tasks": len(tasks), "total_minutes": minutes_total, "hub": hub, "has_glossary": any(g["definition"] for g in glossary),
+              "has_it": bool(it_list)}
     titles = {n.id: n.title_novice or n.title for n in ordered}
 
     def render(name: str, tpl: str, **ctx) -> None:
+        env.used_icons.clear()
         html = env.get_template(tpl).render(**common, **ctx)
         (course / name).write_text(html, encoding="utf-8")
 
@@ -951,7 +976,7 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
     render("glossary.html", "glossary.html.j2", items=glossary, page="glossary")
     render("summary.html", "summary.html.j2", nodes=ordered, page="summary", extras=sum_extras,
            has_formulas=any(e["formulas"] for e in sum_extras.values()))
-    render("it.html", "it.html.j2", items=it_items(ordered), page="it")
+    render("it.html", "it.html.j2", items=it_list, page="it")
     render("map.html", "map.html.j2", m=map_view(ordered), nodes=ordered, titles=titles, page="map")
     if errata:
         render("errata.html", "errata.html.j2", errata=errata, page="errata")
@@ -990,8 +1015,10 @@ def main() -> None:
     ap.add_argument("--pages", type=Path, default=ROOT / "data/pages", help="корень сканов страниц")
     a = ap.parse_args()
     course = build(a.ch, out_root=a.out, node=a.node, pages_dir=a.pages, generate=not a.no_llm, domain=a.domain,
-                   extras=not a.no_llm)
-    print(f"курс: {course / 'index.html'}")
+                   extras=not a.no_llm, hub=True)
+    from pipeline.course import hub
+    home = hub.build_hub(a.out)                         # главная всех курсов обновляется в конце каждой сборки
+    print(f"курс: {course / 'index.html'}\nглавная всех курсов: {home}")
 
 
 if __name__ == "__main__":

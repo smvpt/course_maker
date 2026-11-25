@@ -104,7 +104,6 @@ li.last > a { border-color: var(--ui-accent); }
 @media (max-width: 1023.98px) { main:has(.step) { padding-bottom: 7rem; } }
 
 .book-title, .topic { color: var(--muted); }
-.threshold { padding: 0 .45rem; border: 1px solid var(--muted); border-radius: 6px; font-weight: 600; }
 .step-progress p { margin-top: .3rem; color: var(--muted); }
 .legend-by { display: flex; gap: .4rem; flex-wrap: wrap; margin: .5rem 0; }
 .toc { margin: 1rem 0; padding: .5rem .75rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--panel); }
@@ -492,7 +491,6 @@ main { padding: var(--sp-4) var(--sp-4) var(--sp-8); }
 .mastery { margin-bottom: var(--sp-6); }
 
 /* порог. понятие не ломается пополам */
-.threshold { display: inline-block; white-space: nowrap; }
 
 @media (min-width: 1024px) {
   main.with-side > .step { margin: 0 auto; width: 100%; }
@@ -777,3 +775,81 @@ dialog#book::backdrop, dialog.menu::backdrop { animation: page-in var(--t-mid) v
 #b-why { margin: var(--sp-3) 0; }
 #b-why h3.block-h { font-size: 1rem; margin-bottom: var(--sp-1); color: var(--muted); }
 .tier { scroll-margin-top: calc(var(--head-h) + var(--sp-2)); }
+
+/* ====================== сетка и масштаб: «под линеечку» ====================== */
+/* один контейнер ~1200px, контент шага ~680px, отступы 4/8/12/16/24/32/48, радиусы 8 (кнопки, метки) и 12 (карточки);
+   текст 16px (ТЗ: не меньше), h1 28 (мобильный 24), h2 20, h3 17, кнопки 40px (мобильный 44), padding карточек 16 (мобильный 14) */
+:root { --sp-12: 48px; --r-sm: 8px; --radius: 12px; }
+body { font: 1rem/1.6 var(--font-ui); }
+h1, .hero h1, .step-head h1 { font-size: 1.75rem; line-height: 1.25; margin: var(--sp-2) 0 var(--sp-3); }
+h2, .block h2, .it-step h2, .task-group h2, .sum-step h2, .part h2 { font-size: 1.25rem; line-height: 1.3; }
+h3, .block h3.block-h, .gloss dt { font-size: 1.0625rem; }
+.tier-h { font-size: 1.25rem; }
+.tier-h .ic { width: 24px; height: 24px; }
+.block-main h3.block-h { font-size: 1rem; }
+.block-main .para p { font-size: 1.0625rem; line-height: 1.6; }
+.lead, .subtitle, .prompt, .guess-q { font-size: 1rem; }
+.hero .meta, .resume-title { font-size: 1.0625rem; }
+.btn, .btn-small, .tool, .bar-btn, .pg-btn, .switch, .review-tabs a, .menu-list a, .scheme-part { min-height: 40px; }
+.btn, .btn-small, .tool, .bar-btn, .pg-btn { border-radius: var(--r-sm); }
+.pg, .status, .badge, .prov-chip, .by, .prereq-chip { border-radius: var(--r-sm); }
+.card-box, .task, .gloss, .tiles a, .course-link, .it-step, .progress-list li, .mistakes-list li, .card, .guess, .side-card, .block-main, .scheme-detail, .empty-state { padding: var(--sp-4); }
+@media (max-width: 767.98px) {
+  h1, .hero h1, .step-head h1 { font-size: 1.5rem; }
+  .btn, .btn-small, .tool, .bar-btn, .pg-btn, .switch, .review-tabs a, .menu-list a, .scheme-part, .search input { min-height: 44px; }
+  .card-box, .task, .gloss, .tiles a, .course-link, .it-step, .progress-list li, .mistakes-list li, .card, .guess, .side-card, .block-main, .scheme-detail { padding: 14px; }
+}
+@media (min-width: 900px) { body { font-size: 1rem; } h1, .hero h1, .step-head h1 { font-size: 1.75rem; } }
+/* контейнер: шапка и страницы выровнены по одной левой линии */
+main { max-width: 1200px; margin: 0 auto; padding: var(--sp-4) var(--sp-4) var(--sp-8); }
+main:not(.with-side):not(.hub) > :not(.materials):not(.cover):not(.index-controls):not(.path) { max-width: 760px; }
+main > .cover, main > .path, main > .index-controls { max-width: 760px; }
+main > .materials { max-width: none; }
+@media (min-width: 1024px) {
+  main.with-side { max-width: 1216px; grid-template-columns: 16rem minmax(0, 680px) 14rem; gap: var(--sp-6); }
+  main.with-side > .step { max-width: 680px; }
+}
+@media (min-width: 1024px) and (max-width: 1279.98px) { main.with-side { grid-template-columns: 16rem minmax(0, 680px); } }
+.top { padding: 0 max(var(--sp-4), calc((100vw - 1200px) / 2 + var(--sp-4))); }
+/* ---- шапка: логотип 24px (монохромный) · «Курсы / название главы» · поиск по центру · «Меню» ---- */
+.brand { flex: none; display: inline-flex; align-items: center; min-height: 40px; color: var(--text); }
+.brand-logo { height: 24px; width: auto; color: var(--text); }
+.crumbs-top { flex: 0 1 auto; min-width: 0; }
+.crumbs-top ol { display: flex; align-items: center; gap: var(--sp-2); margin: 0; padding: 0; list-style: none; min-width: 0; }
+.crumbs-top li { min-width: 0; white-space: nowrap; }
+.crumbs-top a { color: var(--muted); text-decoration: none; }
+.crumbs-top a:hover { color: var(--text); text-decoration: underline; }
+.crumbs-top .crumb-cur { overflow: hidden; text-overflow: ellipsis; }
+.crumbs-top .crumb-cur a { color: var(--text); font-weight: 600; border: 0; padding: 0; display: inline; }
+.crumbs-top .crumb-sep { color: var(--muted); }
+.brand-title { border: 0; padding: 0; }
+.search { flex: 0 1 26rem; margin: 0 auto; max-width: 26rem; }
+@media (max-width: 767.98px) { .crumbs-top { display: none; } .search-toggle { margin-left: auto; } .top.search-open .search { margin: 0; } }
+/* ---- карточка «Начать»: ниже и легче ---- */
+.resume-card { padding: var(--sp-3) var(--sp-4); gap: var(--sp-3); box-shadow: 0 2px 10px color-mix(in srgb, var(--ui-accent) 22%, transparent); }
+.ring { width: 40px; height: 40px; }
+.ring-play .ic { width: 20px; height: 20px; }
+.resume-title { font-size: 1.0625rem; line-height: 1.3; }
+.hero h1 { margin-bottom: var(--sp-2); }
+.hero .lead { margin-bottom: var(--sp-3); }
+/* ---- ключевое понятие: звёздочка с подсказкой, без плашки ---- */
+.key-concept { display: inline-flex; vertical-align: -3px; color: var(--ui-link); cursor: help; }
+.key-concept .ic { width: 18px; height: 18px; }
+/* ---- шкала прогресса шага в кикере ---- */
+.step-bar-inline { width: 100%; max-width: 12rem; margin: var(--sp-1) 0 var(--sp-2); height: 4px; }
+/* ---- легенда «из книги / пересказ / гипотеза» (видна при включённом переключателе) ---- */
+body:not(.show-by) .by-legend { display: none; }
+.by-legend { margin: 0 0 var(--sp-4); padding: var(--sp-3) var(--sp-4); background: var(--panel); border: 1px solid var(--border); border-radius: 12px; }
+.by-legend p { margin: 0; }
+.by-legend-note { margin-top: var(--sp-1) !important; color: var(--muted); }
+.sw { display: inline-block; width: 12px; height: 18px; margin-right: var(--sp-2); vertical-align: -3px; }
+.sw-author { background: linear-gradient(var(--text), var(--text)) left / 4px 100% no-repeat, rgba(127, 127, 127, .14); }
+.sw-model { background: repeating-linear-gradient(to bottom, var(--muted) 0 6px, transparent 6px 10px) left / 4px 100% no-repeat; }
+.sw-hyp { width: 14px; outline: 2px dotted var(--muted); outline-offset: -1px; }
+.sw-sep { margin: 0 var(--sp-2); color: var(--muted); }
+/* ---- плавная смена темы — только после первого кадра (класс theme-ready ставит JS через requestAnimationFrame) ---- */
+html.theme-ready body, html.theme-ready .top, html.theme-ready .card-box, html.theme-ready .task, html.theme-ready .side-card { transition: background-color var(--t-mid) var(--ease), color var(--t-mid) var(--ease), border-color var(--t-mid) var(--ease); }
+main { animation: page-in var(--t-fast) var(--ease); }
+
+.search-inline { margin: var(--sp-3) 0 var(--sp-4); max-width: 26rem; }
+@media (max-width: 767.98px) { .review-tabs a { padding: 0 var(--sp-3); gap: var(--sp-1); } }

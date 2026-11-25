@@ -2,7 +2,6 @@
 {% block main %}
 {% set part_names = parts | map(attribute=0) | unique | list %}
 <section class="cover hero">
-  <p class="kicker">{% if book_label %}Курс по книге: {{ book_label }}{% else %}Курс по главе книги{% endif %}</p>
   <h1>{{ chapter_title }}</h1>
   <p class="lead">Курс по главе книги для тех, кто работает с данными: {{ steps | length }} {{ steps | length | plural("короткий шаг", "коротких шага", "коротких шагов") }}, ≈ {{ total_minutes }} {{ total_minutes | plural("минута", "минуты", "минут") }}{% if n_tasks %}, {{ n_tasks }} {{ n_tasks | plural("задание", "задания", "заданий") }}{% endif %}. Каждое утверждение можно проверить по странице книги.</p>
 
@@ -18,13 +17,6 @@
     </span>
     <span class="sr">Открыть шаг</span>
   </a>
-  <div class="bar slim"><span id="progress-bar"></span></div>
-  <div class="search search-hero" role="search">
-    <label class="sr" for="hero-search-input">Найти термин или тему</label>
-    <span class="search-ic" aria-hidden="true">{{ icon("magnifying-glass") }}</span>
-    <input id="hero-search-input" type="search" placeholder="Найти термин или тему" autocomplete="off" spellcheck="false" aria-controls="hero-search-results" aria-expanded="false">
-    <div id="hero-search-results" class="search-results" role="listbox" aria-label="Результаты поиска" hidden></div>
-  </div>
 </section>
 
 <div class="index-controls">
@@ -54,10 +46,10 @@
           <span class="num">{{ ns.i }}</span>
           <span class="row-main">
             <span class="st-title">{{ s.title }}</span>
-            <span class="st-meta">Шаг {{ ns.i }} · ≈ {{ s.minutes }} мин{% if s.tasks %} · {{ s.tasks }} {{ s.tasks | plural("задание", "задания", "заданий") }}{% endif %}{% if s.illus %} · {{ s.illus }} {{ s.illus | plural("иллюстрация", "иллюстрации", "иллюстраций") }}{% endif %}{% if s.video %} · {{ icon("video-camera") }}ролик{% endif %}</span>
+            <span class="st-meta">≈ {{ s.minutes }} мин{% if s.tasks %} · {{ s.tasks }} {{ s.tasks | plural("задание", "задания", "заданий") }}{% endif %}{% if s.illus %} · {{ s.illus }} {{ s.illus | plural("иллюстрация", "иллюстрации", "иллюстраций") }}{% endif %}{% if s.video %} · {{ icon("video-camera") }}ролик{% endif %}</span>
           </span>
           <span class="row-end">
-            {% if s.tasks %}<span class="badge" data-badge="{{ n.id }}" data-total="{{ s.tasks }}">решено 0/{{ s.tasks }}</span>{% endif %}
+            {% if s.tasks %}<span class="badge" data-badge="{{ n.id }}" data-total="{{ s.tasks }}" hidden>решено 0/{{ s.tasks }}</span>{% endif %}
             <span class="done-mark">{{ icon("check-circle") }}<span class="sr">пройден</span></span>
           </span>
         </a>
@@ -72,12 +64,12 @@
 <section class="materials" aria-labelledby="materials-h">
   <h2 id="materials-h">Материалы главы</h2>
   <ul class="tiles">
-    <li><a href="glossary.html">{{ icon("book-bookmark") }}<span class="tile-t">Словарь главы</span><span class="tile-d">Термины с определениями и страницей книги</span></a></li>
-    <li><a href="it.html">{{ icon("cpu") }}<span class="tile-t">ИТ-задачи</span><span class="tile-d">Что это значит для данных и что в них ломается</span></a></li>
+    {% if has_glossary %}<li><a href="glossary.html">{{ icon("book-bookmark") }}<span class="tile-t">Словарь главы</span><span class="tile-d">Термины с определениями и страницей книги</span></a></li>{% endif %}
+    {% if has_it %}<li><a href="it.html">{{ icon("cpu") }}<span class="tile-t">Что ломается в данных</span><span class="tile-d">Что значит каждый шаг для данных и где они ломаются</span></a></li>{% endif %}
     <li><a href="summary.html">{{ icon("article") }}<span class="tile-t">Конспект</span><span class="tile-d">Главное по шагам, печать в PDF</span></a></li>
     <li><a href="map.html">{{ icon("tree-structure") }}<span class="tile-t">Карта связей</span><span class="tile-d">Какой шаг на каком держится</span></a></li>
-    <li><a href="progress.html">{{ icon("arrow-counter-clockwise") }}<span class="tile-t">Повторение</span><span class="tile-d">Прогресс, ошибки и карточки</span></a></li>
-    <li><a href="tasks.html">{{ icon("list-checks") }}<span class="tile-t">Все задания</span><span class="tile-d">{% if n_tasks %}{{ n_tasks }} {{ n_tasks | plural("задание", "задания", "заданий") }} по шагам с разбором{% else %}Список заданий по шагам{% endif %}</span></a></li>
+    <li><a href="{% if n_tasks %}progress.html{% else %}cards.html{% endif %}">{{ icon("arrow-counter-clockwise") }}<span class="tile-t">Повторение</span><span class="tile-d">{% if n_tasks %}Прогресс, ошибки и карточки{% else %}Карточки «знаю / повторить»{% endif %}</span></a></li>
+    {% if n_tasks %}<li><a href="tasks.html">{{ icon("list-checks") }}<span class="tile-t">Все задания</span><span class="tile-d">{{ n_tasks }} {{ n_tasks | plural("задание", "задания", "заданий") }} по шагам с разбором</span></a></li>{% endif %}
     {% if has_errata %}<li><a href="errata.html">{{ icon("warning") }}<span class="tile-t">Лист опечаток</span><span class="tile-d">Что исправлено в распознанном тексте</span></a></li>{% endif %}
   </ul>
 </section>

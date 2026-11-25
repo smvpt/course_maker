@@ -2,12 +2,12 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
+<script>
+/* тема ДО отрисовки (первым в <head>): иначе мелькнёт светлая; localStorage на file:// может быть недоступен */
+(function () { try { var t = JSON.parse(localStorage.getItem("course:theme")); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {} })();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% block title %}{{ chapter_title }}{% endblock %}</title>
-<script>
-/* тема до отрисовки, чтобы не мигало; localStorage может быть недоступен на file:// */
-(function () { try { var t = localStorage.getItem("course:theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {} })();
-</script>
 <link rel="icon" type="image/svg+xml" href="assets/brand/favicon.svg">
 <link rel="stylesheet" href="assets/tokens.css">
 <link rel="stylesheet" href="assets/course.css">
@@ -16,7 +16,13 @@
 <body data-ch="{{ ch }}" data-page="{{ page }}">
 <a class="skip" href="#content">К содержанию</a>
 <header class="top">
-  <a class="brand" href="index.html" title="KERN — к пути по главе">{{ brand("logo") }}<span class="brand-title">{{ chapter_title }}</span></a>
+  <a class="brand" href="{% if hub %}../../index.html{% else %}index.html{% endif %}" title="KERN{% if hub %} — все курсы{% else %} — к пути по главе{% endif %}">{{ brand("symbol-mono") }}</a>
+  <nav class="crumbs-top" aria-label="Вы здесь">
+    <ol>
+      {% if hub %}<li><a href="../../index.html">Курсы</a></li><li class="crumb-sep" aria-hidden="true">/</li>{% endif %}
+      <li class="crumb-cur"><a class="brand-title" href="index.html"{% if page == "index" %} aria-current="page"{% endif %}>{{ chapter_title }}</a></li>
+    </ol>
+  </nav>
   <div class="search" role="search">
     <label class="sr" for="search-input">Поиск по курсу</label>
     <span class="search-ic" aria-hidden="true">{{ icon("magnifying-glass") }}</span>
@@ -25,16 +31,6 @@
     <div id="search-results" class="search-results" role="listbox" aria-label="Результаты поиска" hidden></div>
   </div>
   <button type="button" id="open-search" class="tool search-toggle" aria-label="Поиск" title="Поиск (клавиша /)" aria-expanded="false">{{ icon("magnifying-glass") }}</button>
-  <div class="top-progress">
-    {% if page == "step" %}
-    <span class="top-label">Шаг {{ idx + 1 }} из {{ steps | length }}</span>
-    <div class="bar slim"><span id="step-bar"></span></div>
-    <p id="step-progress-text" class="sr" aria-live="polite">Прогресс шага: 0 из {{ v.check_items }}</p>
-    {% else %}
-    <span class="top-label" id="course-progress-text">Пройдено 0 из {{ steps | length }}</span>
-    <div class="bar slim"><span id="course-bar"></span></div>
-    {% endif %}
-  </div>
   <button type="button" id="open-menu" class="tool menu-btn" data-open-menu aria-haspopup="dialog" aria-controls="menu" title="Меню">{{ icon("list") }}<span class="menu-label">Меню</span></button>
 </header>
 <main id="content" tabindex="-1" class="{% block mainclass %}{% endblock %}">
@@ -48,16 +44,17 @@
   <nav aria-label="Разделы курса">
     <h3 class="menu-group">Курс</h3>
     <ul class="menu-list">
-      {% for key, href, text, ic in (("index", "index.html", "Путь", "house"), ("tasks", "tasks.html", "Все задания", "list-checks"), ("glossary", "glossary.html", "Словарь главы", "book-bookmark"),
-                                      ("summary", "summary.html", "Конспект", "article"), ("map", "map.html", "Карта связей", "tree-structure"), ("it", "it.html", "ИТ-задачи", "cpu")) %}
-      <li><a href="{{ href }}"{% if page == key or (key == "index" and page == "step") %} aria-current="page"{% endif %}>{{ icon(ic) }}<span>{{ text }}</span></a></li>
+      {% for key, href, text, ic, shown in (("index", "index.html", "Путь", "house", True), ("tasks", "tasks.html", "Все задания", "list-checks", n_tasks),
+                                            ("glossary", "glossary.html", "Словарь главы", "book-bookmark", has_glossary), ("summary", "summary.html", "Конспект", "article", True),
+                                            ("map", "map.html", "Карта связей", "tree-structure", True), ("it", "it.html", "Что ломается в данных", "cpu", has_it)) %}
+      {% if shown %}<li><a href="{{ href }}"{% if page == key or (key == "index" and page == "step") %} aria-current="page"{% endif %}>{{ icon(ic) }}<span>{{ text }}</span></a></li>{% endif %}
       {% endfor %}
       {% if has_errata %}<li><a href="errata.html"{% if page == "errata" %} aria-current="page"{% endif %}>{{ icon("warning") }}<span>Лист опечаток</span></a></li>{% endif %}
     </ul>
     <h3 class="menu-group">Повторение</h3>
     <ul class="menu-list">
-      <li><a href="progress.html"{% if page == "progress" %} aria-current="page"{% endif %}{% if n_tasks %} id="solved-link" aria-label="Решено заданий: 0 из {{ n_tasks }}"{% endif %}>{{ icon("chart-bar") }}<span>Прогресс</span>{% if n_tasks %}<span class="menu-count" id="solved-count" aria-hidden="true">0</span>{% endif %}</a></li>
-      <li><a href="mistakes.html"{% if page == "mistakes" %} aria-current="page"{% endif %}>{{ icon("arrow-counter-clockwise") }}<span>Ошибки</span></a></li>
+      {% if n_tasks %}<li><a href="progress.html"{% if page == "progress" %} aria-current="page"{% endif %} id="solved-link" aria-label="Решено заданий: 0 из {{ n_tasks }}">{{ icon("chart-bar") }}<span>Прогресс</span><span class="menu-count" id="solved-count" aria-hidden="true">0</span></a></li>
+      <li><a href="mistakes.html"{% if page == "mistakes" %} aria-current="page"{% endif %}>{{ icon("arrow-counter-clockwise") }}<span>Ошибки</span></a></li>{% endif %}
       <li><a href="cards.html"{% if page == "cards" %} aria-current="page"{% endif %}>{{ icon("cards") }}<span>Карточки</span></a></li>
     </ul>
   </nav>
@@ -69,13 +66,13 @@
       <button type="button" class="btn-small" data-theme-set="light" aria-pressed="false">{{ icon("sun") }}<span>Светлая</span></button>
       <button type="button" class="btn-small" data-theme-set="dark" aria-pressed="false">{{ icon("moon") }}<span>Тёмная</span></button>
     </div>
-    <label class="switch"><input type="checkbox" role="switch" data-by-switch id="setting-by" aria-describedby="by-help"><span class="switch-track" aria-hidden="true"></span><span class="switch-text">Показывать, что написал автор, а что модель</span></label>
-    <p id="by-help" class="muted menu-help">У абзацев появятся плашки «автор» и «модель»; гипотезы помечены всегда.</p>
+    <label class="switch"><input type="checkbox" role="switch" data-by-switch id="setting-by" aria-describedby="by-help"><span class="switch-track" aria-hidden="true"></span><span class="switch-text">Показать, что из книги, а что пересказ</span></label>
+    <p id="by-help" class="muted menu-help">Над текстом шага появится легенда, у абзацев — метки «из книги» и «пересказ»; гипотезы помечены всегда.</p>
   </div>
 </dialog>
-<script type="application/json" id="search-index">{{ search_json }}</script>
-<script type="application/json" id="course-meta">{{ meta | tojson }}</script>
+{{ sprite() }}
 {% block scripts %}{% endblock %}
+<script src="assets/course-data.js"></script>
 <script src="assets/course.js"></script>
 </body>
 </html>

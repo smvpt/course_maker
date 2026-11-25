@@ -21,7 +21,7 @@
   <div class="gloss" data-key="{{ g.key }}">
     <dt><strong class="gloss-term">{{ g.term }}</strong></dt>
     <dd>
-      <p>{% if g.definition %}{{ g.definition }}{% else %}Определение — в тексте шага.{% endif %}</p>
+      <p>{{ g.definition }}</p>
       <p class="gloss-meta">
         {% if g.page %}<span class="gloss-page">{{ icon("book-open") }}стр. {{ g.page }}</span>{% endif %}
         <a href="step-{{ g.node }}.html#{{ g.anchor }}">К шагу «{{ g.step_title }}»</a>

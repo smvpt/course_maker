@@ -61,7 +61,8 @@ def test_step_header_is_a_compact_kicker_with_pages_and_prereq_chips(tmp_path):
     assert re.search(r'class="kicker">Шаг \d+ из \d+ · ≈ \d+ мин · стр\. \d+', head)
     assert "В книге:" not in head and 'class="step-bar-top"' not in head
     site = html[html.index('<header class="top">'):html.index("</header>")]
-    assert 'id="step-bar"' in site and re.search(r"Шаг \d+ из \d+</span>", site)            # «шаг N из M» и тонкая полоса — в шапке сайта
+    assert 'id="step-bar"' not in site and "Шаг" not in site                                  # «шаг N из M» убран из шапки: он в кикере шага
+    assert 'id="step-bar"' in head and "Прогресс шага: 0 из" in head                          # тонкая полоса шага — в шапке шага
 
 
 def test_page_toc_is_gone_in_favour_of_tiers():
@@ -80,13 +81,13 @@ def test_home_hero_has_lead_start_card_with_ring_search_tiles_and_timeline(tmp_p
     _, html, _ = _built(tmp_path)
     assert re.search(r'class="lead">Курс по главе книги для тех, кто работает с данными: \d+ коротких? шаг(?:а|ов)?, ≈ \d+ минут[аы]?, \d+ (задание|задания|заданий)\. '
                      r'Каждое утверждение можно проверить по странице книги\.</p>', html)
-    assert 'id="resume"' in html and 'class="ring"' in html and 'id="ring-fg"' in html and 'id="hero-search-input"' in html
-    assert 'placeholder="Найти термин или тему"' in html
+    assert 'id="resume"' in html and 'class="ring"' in html and 'id="ring-fg"' in html and 'id="hero-search-input"' not in html
+    assert html.count('placeholder="Найти термин или тему"') == 1                              # одно поле поиска — в шапке
     assert 'class="steps-list timeline"' in html
     row = html[html.index('class="step-row"'):]
     assert row.count('class="st-meta"') >= 1 and 'class="st-sub"' not in html
     tiles = re.findall(r'<span class="tile-t">([^<]+)</span><span class="tile-d">([^<]+)</span>', html[html.index('class="materials"'):])
-    assert [t for t, _ in tiles if t != "Лист опечаток"] == ["Словарь главы", "ИТ-задачи", "Конспект", "Карта связей", "Повторение", "Все задания"]
+    assert [t for t, _ in tiles if t != "Лист опечаток"] == ["Словарь главы", "Что ломается в данных", "Конспект", "Карта связей", "Повторение", "Все задания"]
     assert all(d.strip() for _, d in tiles) and html.index('class="materials"') > html.index('class="path"')       # плитки ниже пути шагов
 
 
@@ -126,18 +127,13 @@ def test_build_normalises_terms_in_stored_step_text_too(tmp_path):
 def test_right_column_card_source_button_and_mini_progress(tmp_path):
     _, _, html = _built(tmp_path)
     aside = html[html.index('class="step-aside"'):html.index("</aside>", html.index('class="step-aside"'))]
-    assert re.search(r'class="side-pages">стр\. \d+', aside) and "Источник: " not in aside and len(re.findall(r">Источник<", aside)) == 1 and "Проверь по книге" in aside
+    assert re.search(r'class="side-pages">стр\. \d+', aside) and "Источник: " not in aside and len(re.findall(r">Источник<", aside)) == 1 and "Открыть страницу книги" in aside and "Проверь по книге" not in aside and "Прочитано" not in aside
     cid = re.search(r'class="pg pg-btn" data-claim="([^"]+)"', aside).group(1)
     assert cid.startswith("mini.resistivity_depends_on_fluid#c") and 'id="step-bar-side"' in aside and 'id="step-progress-side"' in aside
     css = (ROOT / "pipeline/course/assets/course.css").read_text(encoding="utf-8")
     assert ".step-aside { display: none; }" in css
     assert re.search(r"@media \(min-width: 1280px\)\s*\{\s*main\.with-side \{[^}]*grid-template-columns: 17\.5rem minmax\(0, 1fr\) 15rem", css)
     assert re.search(r"\.step-aside \{ display: block; position: sticky", css)
-
-
-def test_threshold_pill_does_not_wrap_in_the_middle():
-    css = (ROOT / "pipeline/course/assets/course.css").read_text(encoding="utf-8")
-    assert re.search(r"\.threshold \{[^}]*white-space: nowrap", css)
 
 
 def test_one_icon_set_phosphor_regular_without_glyphs_or_emoji():

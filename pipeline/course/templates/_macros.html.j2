@@ -1,6 +1,6 @@
 {# Общие куски: список шагов пути (боковая панель, шторка, обложка) и метка «автор / модель / гипотеза». #}
 {% macro badge(by) -%}
-<span class="by by-{{ by }}">{{ {"author": "автор", "model": "модель", "hypothesis": "гипотеза"}[by] }}</span>
+<span class="by by-{{ by }}">{{ {"author": "из книги", "model": "пересказ", "hypothesis": "гипотеза"}[by] }}</span>
 {%- endmacro %}
 
 {% macro path_list(steps, current=None) -%}

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<script>
+/* тема ДО отрисовки (первым в <head>): иначе мелькнёт светлая; localStorage на file:// может быть недоступен */
+(function () { try { var t = JSON.parse(localStorage.getItem("course:theme")); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {} })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KERN — курсы по главам книг</title>
+<link rel="icon" type="image/svg+xml" href="assets/brand/favicon.svg">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/course.css">
+<link rel="stylesheet" href="assets/hub.css">
+</head>
+<body data-page="hub">
+<a class="skip" href="#content">К содержанию</a>
+<header class="top">
+  <span class="brand-spacer"></span>
+  <div class="search" role="search">
+    <label class="sr" for="search-input">Поиск по всем курсам</label>
+    <span class="search-ic" aria-hidden="true">{{ icon("magnifying-glass") }}</span>
+    <input id="search-input" type="search" placeholder="Найти термин или тему во всех курсах" autocomplete="off" spellcheck="false" aria-controls="search-results" aria-expanded="false">
+    <kbd class="search-key" aria-hidden="true">/</kbd>
+    <div id="search-results" class="search-results" role="listbox" aria-label="Результаты поиска" hidden></div>
+  </div>
+  <button type="button" id="open-search" class="tool search-toggle" aria-label="Поиск" title="Поиск (клавиша /)" aria-expanded="false">{{ icon("magnifying-glass") }}</button>
+  <button type="button" id="hub-theme" class="tool menu-btn" title="Тема: системная" aria-label="Тема: системная">{{ icon("desktop") }}<span class="menu-label" id="hub-theme-label">Системная</span></button>
+</header>
+<main id="content" tabindex="-1" class="hub">
+  <section class="hub-hero">
+    {{ brand("logo") }}
+    <p class="lead">Курсы по главам книг для тех, кто работает с данными. Каждое утверждение — со страницей книги.</p>
+  </section>
+
+  <section id="hub-continue" class="hub-continue" aria-labelledby="hub-continue-h">
+    <h2 id="hub-continue-h" class="sr">Продолжить</h2>
+    <a id="hub-resume" class="resume-card" href="{{ courses[0].ch }}/course/index.html">
+      <span class="ring" aria-hidden="true">
+        <svg viewBox="0 0 64 64" width="40" height="40"><circle class="ring-bg" cx="32" cy="32" r="28"/><circle class="ring-fg" id="hub-ring" cx="32" cy="32" r="28" transform="rotate(-90 32 32)"/></svg>
+        <span class="ring-play">{{ icon("play") }}</span>
+      </span>
+      <span class="resume-text">
+        <span class="resume-label" id="hub-resume-label">Начните с:</span>
+        <span class="resume-title" id="hub-resume-title">{{ courses[0].title }}</span>
+        <span class="resume-sub" id="hub-resume-sub"></span>
+      </span>
+    </a>
+  </section>
+
+  <section id="hub-review" class="hub-review" aria-labelledby="hub-review-h" hidden>
+    <h2 id="hub-review-h">Повторить сегодня</h2>
+    <ul id="hub-review-list" class="review-list"></ul>
+  </section>
+
+  <section class="hub-courses" aria-labelledby="hub-courses-h">
+    <h2 id="hub-courses-h">Ваши курсы</h2>
+    <ul class="course-cards">
+      {% for c in courses %}
+      <li class="course-card" data-ch="{{ c.ch }}">
+        <a class="course-link" href="{{ c.ch }}/course/index.html">
+          <h3>{{ c.title }}</h3>
+          {% if c.author and c.book %}<p class="course-book">{{ c.author }} — {{ c.book }}</p>{% endif %}
+          <p class="course-meta">{{ c.steps | length }} {{ c.steps | length | plural("шаг", "шага", "шагов") }} · ≈ {{ c.minutes }} мин{% if c.tasks %} · {{ c.tasks }} {{ c.tasks | plural("задание", "задания", "заданий") }}{% endif %}</p>
+          <div class="bar slim" aria-hidden="true"><span></span></div>
+          <p class="course-status"><span class="status" data-status="new">Не начат</span><span class="course-done"></span></p>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+</main>
+{{ sprite() }}
+<script type="application/json" id="hub-data">{{ data_json }}</script>
+<script type="application/json" id="hub-search">{{ search_json }}</script>
+<script src="assets/hub.js"></script>
+</body>
+</html>
