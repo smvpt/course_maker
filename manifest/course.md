@@ -5,7 +5,7 @@
 | Jinja2 | 3.1.6 | BSD-3-Clause | нет |
 | Pillow (ужатие сканов страниц) | 13.0.0 | MIT-CMU (HPND) | нет |
 | jsonschema (тесты схем организаторов) | 4.26.0 | MIT | нет |
-| Phosphor Icons, regular, SVG в `pipeline/course/assets/icons/` | core@main, скачано 25.11.2026 | MIT | нет |
+| Phosphor Icons, regular, SVG в `pipeline/course/assets/icons/` (все иконки курса — один набор) | @phosphor-icons/core 2.1.1 (npm), скачано 26.11.2026 | MIT (LICENSE-phosphor.txt) | нет |
 | KaTeX (формулы), файлы в `pipeline/course/assets/katex/`: js, css, шрифты woff2 | 0.16.22, скачано 25.11.2026 | MIT | нет |
 | LLM (текст шагов, задания): только через `pipeline/llm.py` П1 | — | — | да: в модель уходит текст узла слоя (см. манифест ядра) |
 

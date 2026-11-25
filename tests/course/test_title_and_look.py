@@ -74,7 +74,7 @@ def test_sidebar_is_280px_16px_two_line_titles_with_status_circle():
     css = (ROOT / "pipeline/course/assets/course.css").read_text(encoding="utf-8")
     assert "17.5rem" in css and "-webkit-line-clamp: 2" in css and "line-height: 1.3" in css
     assert re.search(r"\.path-list a\s*\{[^}]*font-size:\s*1rem", css)
-    assert re.search(r"li\.done > a \.num::after\s*\{[^}]*content:\s*\"✓\"", css)
+    assert re.search(r"li\.done > a \.num::after\s*\{[^}]*mask:\s*var\(--i-check\)", css)             # галочка — иконка Phosphor, не глиф
 
 
 def test_home_hero_has_meta_line_start_card_with_ring_and_timeline(tmp_path):
@@ -115,3 +115,68 @@ def test_build_normalises_terms_in_stored_step_text_too(tmp_path):
     html = (course / f"step-{RES}.html").read_text(encoding="utf-8")
     block = html[html.index('id="b-main"'):html.index("</section>", html.index('id="b-main"'))]
     assert block.count("<dfn>") == 1 and "чужой термин" in block and "<strong>" not in block and "**" not in block
+
+
+# ---------------------------------------------------------------- второй заход: полоса шагов, правая колонка, иконки
+
+def test_step_strip_one_square_per_step_with_name_current_and_scroll(tmp_path):
+    _, _, html = _built(tmp_path)
+    strip = html[html.index('class="step-strip"'):html.index("</nav>", html.index('class="step-strip"'))]
+    assert strip.count("<li ") == 4                                       # по шагу главы
+    assert re.search(r'<a href="step-mini\.porosity_basics\.html" title="Шаг \d+: [^"]+" aria-label="Шаг \d+: [^"]+"', strip)
+    assert strip.count('aria-current="true"') == 1 and 'class="current"' in strip
+    css = (ROOT / "pipeline/course/assets/course.css").read_text(encoding="utf-8")
+    assert re.search(r"@media \(min-width: 1024px\)\s*\{\s*\.step-strip \{ display: block", css)
+    assert re.search(r"\.step-strip ol \{[^}]*overflow-x: auto", css) and ".step-strip li.done a" in css and ".step-strip li.current a" in css
+    js = (ROOT / "pipeline/course/assets/course.js").read_text(encoding="utf-8")
+    assert '.step-strip li[data-node]' in js and "— пройден" in js          # статус из того же localStorage, в доступном имени
+
+
+def test_right_column_card_source_button_and_mini_progress(tmp_path):
+    _, _, html = _built(tmp_path)
+    aside = html[html.index('class="step-aside"'):html.index("</aside>", html.index('class="step-aside"'))]
+    assert re.search(r"Источник: стр\. \d+", aside) and "Проверь по книге" in aside
+    cid = re.search(r'class="pg pg-btn" data-claim="([^"]+)"', aside).group(1)
+    assert cid.startswith("mini.resistivity_depends_on_fluid#c") and 'id="step-bar-side"' in aside and 'id="step-progress-side"' in aside
+    css = (ROOT / "pipeline/course/assets/course.css").read_text(encoding="utf-8")
+    assert ".step-aside { display: none; }" in css
+    assert re.search(r"@media \(min-width: 1280px\)\s*\{\s*main\.with-side \{[^}]*grid-template-columns: 17\.5rem minmax\(0, 1fr\) 15rem", css)
+    assert re.search(r"\.step-aside \{ display: block; position: sticky", css)
+
+
+def test_threshold_pill_does_not_wrap_in_the_middle():
+    css = (ROOT / "pipeline/course/assets/course.css").read_text(encoding="utf-8")
+    assert re.search(r"\.threshold \{[^}]*white-space: nowrap", css)
+
+
+def test_one_icon_set_phosphor_regular_without_glyphs_or_emoji():
+    icons = list((ROOT / "pipeline/course/assets/icons").glob("*.svg"))
+    assert len(icons) >= 40
+    for f in icons:
+        svg = f.read_text(encoding="utf-8")
+        assert 'viewBox="0 0 256 256"' in svg and 'fill="currentColor"' in svg and "stroke" not in svg, f.name   # один набор, цвет — currentColor
+    assert (ROOT / "pipeline/course/assets/icons/LICENSE-phosphor.txt").read_text(encoding="utf-8").startswith("MIT License")
+    banned = re.compile("[✦✓✕○▾▴→←]|[\U0001F300-\U0001FAFF☀-⛿✀-➿]")
+    for folder in ("templates",):
+        for f in (ROOT / "pipeline/course" / folder).glob("*.j2"):
+            m = banned.search(f.read_text(encoding="utf-8"))
+            assert m is None, (f.name, m and m.group())
+    for f in ("assets/course.css", "assets/course.js"):
+        m = banned.search((ROOT / "pipeline/course" / f).read_text(encoding="utf-8").replace("→", ""))   # «→» в подписях графика — текст, не иконка
+        assert m is None, (f, m and m.group())
+
+
+def test_every_step_block_has_its_own_icon_and_empty_states_have_one():
+    tpl = (ROOT / "pipeline/course/templates/step.html.j2").read_text(encoding="utf-8")
+    blocks = re.findall(r'<section id="(b-[a-z]+)"[^>]*><h2>(?:\{\{ icon\("([a-z-]+)"\) \}\})?', tpl)
+    assert len(blocks) >= 18
+    assert [b for b, ic in blocks if not ic] == []
+    icons = [ic for _, ic in blocks]
+    assert len(icons) == len(set(icons)), sorted({i for i in icons if icons.count(i) > 1})
+    names = {p.stem for p in (ROOT / "pipeline/course/assets/icons").glob("*.svg")}
+    assert set(icons) <= names
+    for f in ("it", "mistakes", "progress", "tasks"):
+        t = (ROOT / f"pipeline/course/templates/{f}.html.j2").read_text(encoding="utf-8")
+        assert 'class="empty-ic"' in t and 'aria-hidden="true"' in t[t.index('class="empty-ic"') - 10:t.index('class="empty-ic"') + 60], f
+    css = (ROOT / "pipeline/course/assets/course.css").read_text(encoding="utf-8")
+    assert re.search(r"\.main-nav \.ic[^{]*\{[^}]*width: 24px", css) and re.search(r"^\.ic \{ width: 20px; height: 20px", css, re.M)

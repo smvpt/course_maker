@@ -4,6 +4,7 @@
 <h1>Мой прогресс</h1>
 {% if not n_tasks %}
 <div class="empty-state">
+  <p class="empty-ic" aria-hidden="true">{{ icon("chart-bar") }}</p>
   <p><strong>Заданий в этой главе пока нет, поэтому освоение считать не по чему.</strong></p>
   <p class="muted">Пройденные шаги отмечены на странице пути.</p>
   <p><a class="btn" href="index.html">{{ icon("house") }}<span>К пути по главе</span></a></p>
@@ -24,6 +25,6 @@
 </div>
 <ul id="progress-list" class="progress-list"></ul>
 <p id="progress-empty" class="empty" hidden>В этой вкладке пока пусто.</p>
-<p class="muted legend-segs">Значки в полосках: ✓ верно, ✕ неверно, ○ не решено.</p>
+<p class="muted legend-segs">Значки в полосках: <span class="gl gl-ok" aria-hidden="true"></span> верно, <span class="gl gl-bad" aria-hidden="true"></span> неверно, <span class="gl gl-none" aria-hidden="true"></span> не решено.</p>
 {% endif %}
 {% endblock %}

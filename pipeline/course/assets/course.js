@@ -84,7 +84,6 @@
   }
   function needsRepeat(stepId) { return cardMarks[stepId] === "repeat" || stepStats(stepId).openBad > 0; }
   var STATE_RU = { ok: "верно", bad: "неверно", none: "не решено" };
-  var GLYPH = { ok: "✓", bad: "✕", none: "○" };
 
   /* ---------- окна ---------- */
   var lastTrigger = null;
@@ -119,7 +118,7 @@
     applyBy(on); store.set(K.by, on);
   });
 
-  /* ---------- общее: счётчик ✦, отметки «пройден», состояния заданий ---------- */
+  /* ---------- общее: счётчик решённых заданий, отметки «пройден», состояния заданий ---------- */
   function updateCounter() {
     var counter = document.getElementById("solved-count");
     if (!counter) return;
@@ -129,6 +128,13 @@
   }
   updateCounter();
   document.querySelectorAll("li[data-node]").forEach(function (li) { li.classList.toggle("done", isDone(li.dataset.node)); });
+  document.querySelectorAll(".step-strip li[data-node]").forEach(function (li, i) {          /* полоса шагов: статус в доступное имя */
+    var a = li.querySelector("a");
+    a.setAttribute("aria-label", "Шаг " + (i + 1) + ": " + li.dataset.title + (li.classList.contains("done") ? " — пройден" : ""));
+    a.title = a.getAttribute("aria-label");
+  });
+  var cur = document.querySelector(".step-strip li.current");
+  if (cur && cur.scrollIntoView) { var ol = cur.parentElement; ol.scrollLeft = Math.max(0, cur.offsetLeft - ol.clientWidth / 2 + cur.offsetWidth / 2); }
   document.querySelectorAll("[data-task-chip]").forEach(function (chip) {
     var s = taskState(chip.dataset.taskChip);
     chip.dataset.state = s;
@@ -298,6 +304,11 @@
       if (tp) tp.textContent = stepStats(nodeId).ok + " из " + taskList.length;
       document.getElementById("step-bar").style.width = Math.round(100 * okCount / boxes.length) + "%";
       document.getElementById("step-progress-text").textContent = "Прогресс шага: " + okCount + " из " + boxes.length;
+      var sideBar = document.getElementById("step-bar-side");
+      if (sideBar) {
+        sideBar.style.width = Math.round(100 * okCount / boxes.length) + "%";
+        document.getElementById("step-progress-side").textContent = "Прогресс шага: " + okCount + " из " + boxes.length;
+      }
       var all = okCount === boxes.length;
       document.getElementById("done-banner").hidden = !all;
       if (isDone(nodeId) !== all) setDone(nodeId, all);
@@ -777,7 +788,7 @@
       seg.dataset.state = st;
       seg.setAttribute("role", "img");
       seg.setAttribute("aria-label", "Задание " + (i + 1) + ": " + STATE_RU[st]);
-      var g = el("span", null, GLYPH[st]);
+      var g = el("span", "gl gl-" + st);
       g.setAttribute("aria-hidden", "true");
       seg.appendChild(g);
       segs.appendChild(seg);

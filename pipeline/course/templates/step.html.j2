@@ -62,6 +62,15 @@
 </aside>
 
 <article class="step" data-node="{{ n.id }}">
+<nav class="step-strip" aria-label="Шаги главы">
+  <ol>
+  {% for s in steps %}
+    <li data-node="{{ s.id }}" data-title="{{ s.title }}"{% if s.id == n.id %} class="current"{% endif %}>
+      <a href="step-{{ s.id }}.html" title="Шаг {{ loop.index }}: {{ s.title }}" aria-label="Шаг {{ loop.index }}: {{ s.title }}"{% if s.id == n.id %} aria-current="true"{% endif %}><span class="strip-n">{{ loop.index }}</span><span class="strip-ok">{{ icon("check") }}</span></a>
+    </li>
+  {% endfor %}
+  </ol>
+</nav>
 <header class="step-head">
   <p class="kicker">Шаг {{ idx + 1 }} из {{ steps | length }} · ≈ {{ v.minutes }} мин{% if v.pages_label %} · {{ v.pages_label }}{% endif %}{% if n.threshold %} · <span class="threshold">пороговое понятие</span>{% endif %}</p>
   <h1>{{ v.title }}</h1>
@@ -97,21 +106,21 @@
 
 <div id="step-body">
 <nav class="toc" aria-label="Разделы шага">
-  <details open id="toc-details"><summary>Разделы</summary>
+  <details open id="toc-details"><summary>{{ icon("list") }}Разделы<span class="toc-caret">{{ icon("caret-down") }}</span></summary>
   <ol>{% for id, t in v.toc %}<li><a href="#{{ id }}">{{ t }}</a></li>{% endfor %}</ol>
   </details>
 </nav>
 
 {% if v.show["b-main"] %}
-<section id="b-main" class="block block-main"><h2>Суть</h2>{% if v.paras %}{{ gen(v.paras.get("main", [])) }}{% else %}{{ field(n.layers.main) }}{% endif %}</section>
+<section id="b-main" class="block block-main"><h2>{{ icon("target") }}Суть</h2>{% if v.paras %}{{ gen(v.paras.get("main", [])) }}{% else %}{{ field(n.layers.main) }}{% endif %}</section>
 {% endif %}
 
 {% if v.show["b-why"] %}
-<section id="b-why" class="block"><h2>{{ icon("lightbulb") }}Зачем этот шаг</h2>{% if v.paras %}{{ gen(v.paras.get("why", [])) }}{% else %}{{ field(n.why_here) }}{% endif %}</section>
+<section id="b-why" class="block"><h2>{{ icon("question") }}Зачем этот шаг</h2>{% if v.paras %}{{ gen(v.paras.get("why", [])) }}{% else %}{{ field(n.why_here) }}{% endif %}</section>
 {% endif %}
 
 {% if v.show["b-how"] %}
-<section id="b-how" class="block"><h2>{{ icon("sliders-horizontal") }}Как это работает</h2>
+<section id="b-how" class="block"><h2>{{ icon("gear") }}Как это работает</h2>
   {% if v.paras %}
   {{ gen(v.paras.get("how", [])) }}
   {% else %}
@@ -128,7 +137,7 @@
 {% endif %}
 
 {% if v.show["b-formulas"] %}
-<section id="b-formulas" class="block"><h2>{{ icon("cpu") }}Формулы</h2>
+<section id="b-formulas" class="block"><h2>{{ icon("function") }}Формулы</h2>
   {% for c in v.formulas %}
   <div class="para" id="{{ c.id | replace('#', '--') }}">
     <div class="formula"{% if v.formulas %} data-katex{% endif %}><span class="formula-label">формула</span><code class="tex" data-tex="{{ c.quote }}">{{ c.quote }}</code></div>
@@ -139,7 +148,7 @@
 {% endif %}
 
 {% if v.show["b-tables"] %}
-<section id="b-tables" class="block"><h2>{{ icon("list") }}Таблицы книги</h2>
+<section id="b-tables" class="block"><h2>{{ icon("table") }}Таблицы книги</h2>
   {% call fold("таблицы книги") %}
   {% for t in v.tables %}
   <div class="para" id="{{ t.claim.id | replace('#', '--') }}">
@@ -161,7 +170,7 @@
 {% endif %}
 
 {% if v.show["b-examples"] %}
-<section id="b-examples" class="block"><h2>{{ icon("exam") }}Разбор примеров из главы</h2>
+<section id="b-examples" class="block"><h2>{{ icon("chalkboard-simple") }}Разбор примеров из главы</h2>
   {% for w in n.worked_examples %}
   <div class="para example">
     <p data-by="{{ by_of(w) }}"><strong>Условие.</strong> {{ w.condition }}</p>
@@ -174,7 +183,7 @@
 {% endif %}
 
 {% if v.show["b-practice"] %}
-<section id="b-practice" class="block"><h2>{{ icon("user") }}Как делает специалист</h2>
+<section id="b-practice" class="block"><h2>{{ icon("wrench") }}Как делает специалист</h2>
   {% if v.paras %}{{ gen(v.paras.get("practice", [])) }}{% else %}
   {{ field(n.layers.practice) }}
   {% if n.now_practice %}{{ field(n.now_practice, "Как сейчас: ") }}{% endif %}
@@ -196,7 +205,7 @@
 
 {% if v.show["b-decision"] %}
 {% set d = n.decision_on_data %}
-<section id="b-decision" class="block"><h2>Решение на данных</h2>
+<section id="b-decision" class="block"><h2>{{ icon("scales") }}Решение на данных</h2>
   {% if v.paras %}{{ gen(v.paras.get("decision", [])) }}{% endif %}
   <div class="para decision">
     <div class="sig-flow" data-by="{{ by_of(d) }}" data-stepper>
@@ -218,7 +227,7 @@
 {% endif %}
 
 {% if v.show["b-data"] %}
-<section id="b-data" class="block"><h2>Что это значит для данных</h2>
+<section id="b-data" class="block"><h2>{{ icon("chart-line") }}Что это значит для данных</h2>
   {% if v.paras %}{{ gen(v.paras.get("data", [])) }}{% else %}
   {{ field(n.data_meaning.from_chapter) }}
   {{ field(n.data_meaning.breaks, "Где ломается: ") }}
@@ -228,7 +237,7 @@
 {% endif %}
 
 {% if v.show["b-analogy"] %}
-<section id="b-analogy" class="block"><h2>{{ icon("lightbulb") }}Аналогия</h2>
+<section id="b-analogy" class="block"><h2>{{ icon("arrows-left-right") }}Аналогия</h2>
   {% if v.paras %}{{ gen(v.paras.get("analogy", [])) }}{% else %}
   <div class="para"><p data-by="{{ by_of(n.it_analogy) }}">{{ n.it_analogy.text }} {{ badge(by_of(n.it_analogy)) }}{% if not n.it_analogy.breaks_where.strip() %} {{ chips(n.pages) }}{% endif %}</p>
   {% if n.it_analogy.breaks_where.strip() %}<p class="limit" data-by="{{ by_of(n.it_analogy) }}"><strong>Где перестаёт работать:</strong> {{ n.it_analogy.breaks_where }} {{ chips(n.pages) }}</p>{% endif %}</div><!--/para-->
@@ -237,20 +246,20 @@
 {% endif %}
 
 {% if v.show["b-terms"] %}
-<section id="b-terms" class="block"><h2>Новые понятия</h2>
+<section id="b-terms" class="block"><h2>{{ icon("book-bookmark") }}Новые понятия</h2>
   {% if n.terms_introduced %}<ul class="terms">{% for t in n.terms_introduced %}<li><dfn>{{ t }}</dfn></li>{% endfor %}</ul>{% endif %}
   {% if n.terms_used %}<p class="muted">Используются: {{ n.terms_used | join(", ") }}</p>{% endif %}
 </section>
 {% endif %}
 
 {% if v.show["b-deeper"] %}
-<section id="b-deeper" class="block"><h2>Глубже</h2>
+<section id="b-deeper" class="block"><h2>{{ icon("stack") }}Глубже</h2>
   {% call fold("глубже") %}{% if v.paras %}{{ gen(v.paras.get("deeper", [])) }}{% else %}{% for d in v.deeper %}{{ field(d) }}{% endfor %}{% endif %}{% endcall %}
 </section>
 {% endif %}
 
 {% if v.show["b-tasks"] %}
-<section id="b-tasks" class="block"><h2>Задачи из книги</h2>
+<section id="b-tasks" class="block"><h2>{{ icon("pencil-simple-line") }}Задачи из книги</h2>
   {% for t in n.book_tasks %}
   <div class="para"><p data-by="{{ by_of(t) }}"><strong>Задача {{ t.number }}.</strong> {{ t.text }} {{ badge(by_of(t)) }} {{ chips([t.page_pdf]) }}</p>
   {% if t.figure %}<p class="fig-ref">Нужен рисунок: {{ t.figure }}</p>{% endif %}</div><!--/para-->
@@ -259,7 +268,7 @@
 {% endif %}
 
 {% if v.show["b-illus"] %}
-<section id="b-illus" class="block"><h2>Иллюстрации</h2>
+<section id="b-illus" class="block"><h2>{{ icon("image") }}Иллюстрации</h2>
   {% for it in v.illus %}
   <figure class="illus">
     <img src="{{ it.src }}" alt="{{ it.il.alt }}" loading="lazy">
@@ -319,7 +328,7 @@
 
 {# Задания: разметка заложена, проверка ответов подключается в задаче 3 #}
 {% if v.show["b-quiz"] %}
-<section id="b-quiz" class="block"><h2>{{ icon("exam") }}Задания</h2>
+<section id="b-quiz" class="block"><h2>{{ icon("list-checks") }}Задания</h2>
   <div class="task-row" role="group" aria-label="Задания шага">
     {% for it in v.tasks %}<a class="tnum" href="#task-{{ it.t.id }}" data-task-chip="{{ it.t.id }}" data-state="none" aria-label="Задание {{ it.i }}: не решено">{{ it.i }}</a>{% endfor %}
   </div>
@@ -359,7 +368,7 @@
 </section>
 {% endif %}
 
-<section id="b-source" class="block"><h2>Источник</h2>
+<section id="b-source" class="block"><h2>{{ icon("book-open") }}Источник</h2>
   <p class="muted">Каждое утверждение шага — со страницей PDF и дословной цитатой. Нажми «стр. N», чтобы сверить по книге.</p>
   <ol class="sources">
   {% for c in n.claims %}
@@ -368,7 +377,7 @@
   </ol>
 </section>
 
-<section id="b-check" class="block check"><h2>Чек-лист шага</h2>
+<section id="b-check" class="block check"><h2>{{ icon("check-square") }}Чек-лист шага</h2>
   <ul class="checklist">
     <li><label class="check-item"><input type="checkbox" data-check="read"><span>Прочитано</span></label></li>
     {% if v.show["b-media"] and v.media.kind == "video" %}
@@ -393,6 +402,17 @@
   </nav>
 </footer>
 </article>
+<aside class="step-aside" aria-label="Источник и прогресс шага">
+  <div class="side-card">
+    <h2>{{ icon("book-open") }}Источник</h2>
+    <p class="side-pages">{% if v.pages_label %}Источник: {{ v.pages_label }}{% else %}Страницы книги не указаны{% endif %}</p>
+    {% if n.claims %}<button type="button" class="pg pg-btn" data-claim="{{ (v.text_claims[0] if v.text_claims else n.claims[0]).id }}">{{ icon("magnifying-glass") }}Проверь по книге</button>{% endif %}
+    <div class="side-progress">
+      <div class="bar slim"><span id="step-bar-side"></span></div>
+      <p id="step-progress-side" class="muted">Прогресс шага: 0 из {{ v.check_items }}</p>
+    </div>
+  </div>
+</aside>
 <script type="application/json" id="step-data">{{ v.data_json }}</script>
 {% if v.tasks %}<script type="application/json" id="tasks-data">{{ v.tasks_json }}</script>{% endif %}
 {% endblock %}
