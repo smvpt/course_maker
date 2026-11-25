@@ -21,6 +21,8 @@ tiers:
 
 timeout_s: 600
 json_retries: 2         # повторы при невалидном JSON (CLAUDE.md §2)
+transient_retries: 6    # повторы при перегрузке/лимитах провайдера (429, 503, таймаут)
+transient_backoff_s: 5  # пауза 5, 10, 20, 40, 80, 160 с
 
 # Цены, USD за 1 млн токенов. Для модели не из списка — расчёт litellm; если неизвестна и ему — money_usd: null + предупреждение.
 prices:
