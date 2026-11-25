@@ -20,7 +20,9 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoes
 from markupsafe import Markup
 from PIL import Image
 
-from contracts.models import Illustrations, Layer, Node, ReviewOutput, Routing, Task, Tasks
+from typing import get_args
+
+from contracts.models import FormatRu, Illustrations, Layer, Node, ReviewOutput, Route, Task, Tasks
 from pipeline.course import guess as guess_mod, interactive as inter_mod
 from pipeline.course.order import break_cycles, group_parts, order_nodes, part_of
 from pipeline.course.pernode import read_store
@@ -42,13 +44,61 @@ def _read(path: Path, model):
     return model.model_validate_json(path.read_text(encoding="utf-8"))
 
 
+KNOWN_FORMATS = set(get_args(FormatRu))
+KNOWN_TEMPLATES = {"T1", "T2", "T3", "T4"}
+
+
+def load_routes(path: Path) -> tuple[dict[str, Route], list[dict], bool]:
+    """Маршруты из routing.json, терпимо к ошибкам: (маршруты по id узла, замечания, файл пригоден).
+
+    Неизвестный шаблон (не T1–T4) отбрасывается, маршрут остаётся: интерактив выберет шаблон по типу трудности узла.
+    Неизвестный формат или маршрут без обязательных полей пропускается. Нечитаемый файл считается отсутствующим.
+    Каждое замечание попадёт в stderr и build_report.json."""
+    problems: list[dict] = []
+
+    def bad(code: str, message: str, node: str | None = None) -> None:
+        problems.append({"code": code, "message": message, **({"node": node} if node else {})})
+
+    try:
+        raw = json.loads(path.read_text(encoding="utf-8"))
+        items = raw["routes"]
+        if not isinstance(items, list):
+            raise TypeError(f"routes должен быть списком, а не {type(items).__name__}")
+    except (ValueError, KeyError, TypeError) as e:       # JSONDecodeError — ValueError; запись о причине остаётся в замечаниях
+        bad("routing_unreadable", f"routing.json нельзя прочитать ({type(e).__name__}: {e}): маршрутизация не учитывается")
+        return {}, problems, False
+    routes: dict[str, Route] = {}
+    for item in items:
+        nid = item.get("node_id") if isinstance(item, dict) else None
+        if not isinstance(item, dict) or not nid:
+            bad("routing_invalid_route", f"в routing.json запись без node_id пропущена: {str(item)[:80]}")
+            continue
+        item = dict(item)
+        if item.get("format") not in KNOWN_FORMATS:
+            bad("routing_unknown_format", f"маршрут шага {nid}: неизвестный формат {item.get('format')!r}, маршрут пропущен", nid)
+            continue
+        if item.get("secondary_format") is not None and item["secondary_format"] not in KNOWN_FORMATS:
+            bad("routing_unknown_format", f"маршрут шага {nid}: неизвестный дополнительный формат {item['secondary_format']!r}, он не учитывается", nid)
+            item["secondary_format"] = None
+        if item.get("template") is not None and item["template"] not in KNOWN_TEMPLATES:
+            bad("routing_unknown_template", f"маршрут шага {nid}: шаблон {item['template']!r} не из T1–T4, шаблон выбран по типу трудности узла", nid)
+            item["template"] = None
+        try:
+            routes[nid] = Route.model_validate(item)
+        except ValueError as e:                            # pydantic.ValidationError
+            bad("routing_invalid_route", f"маршрут шага {nid} не соответствует схеме, пропущен: {str(e).splitlines()[0]}", nid)
+    return routes, problems, True
+
+
 def load_inputs(ch_dir: Path) -> dict:
     layer_path = ch_dir / "layer.json"
     if not layer_path.exists():
         raise FileNotFoundError(f"нет {layer_path}: сначала make structure (П1)")
     inp = {"layer": _read(layer_path, Layer), "routes": {}, "remarks": None, "illus": {}, "illus_warnings": []}
+    inp["has_routing"] = False
+    inp["routing_problems"] = []
     if (ch_dir / "routing.json").exists():
-        inp["routes"] = {r.node_id: r for r in _read(ch_dir / "routing.json", Routing).routes}
+        inp["routes"], inp["routing_problems"], inp["has_routing"] = load_routes(ch_dir / "routing.json")
     if (ch_dir / "verify/report.json").exists():
         remarks: dict[str, object] = {}
         for r in _read(ch_dir / "verify/report.json", ReviewOutput).remarks:
@@ -568,8 +618,10 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
     if node is not None and node not in {n.id for n in ordered}:
         raise ValueError(f"узла {node!r} нет в {ch_dir / 'layer.json'}")
 
-    inter_plan, inter_no_data = inter_mod.plan(layer.nodes, inp["routes"], (ch_dir / "routing.json").exists(),
+    inter_plan, inter_no_data = inter_mod.plan(layer.nodes, inp["routes"], inp["has_routing"],
                                                lambda nid: _has_video(ch_dir, nid))
+    for prob in inp["routing_problems"]:
+        warn(prob["code"], prob["message"], **{k: v for k, v in prob.items() if k not in ("code", "message")})
 
     no_part = [n.id for n in layer.nodes if not n.ext.get("core", {}).get("part")]
     if len(no_part) == len(layer.nodes):
