@@ -20,8 +20,8 @@ from pydantic import BaseModel, ValidationError
 from contracts.models import Layer, Node, Phrase, Route, Routing, SceneSpec, Script, Shot
 from pipeline.video.inputs import ID_RE
 from pipeline.video.spec_check import (ESTIMATE_WPM, DURATION_S, check_scene, check_script, count_words,
-                                       estimate_duration, source_language, sources_table)
-from pipeline.video.templates import ASPECT, TEMPLATE_INFO, VIDEO_FORMATS
+                                       estimate_duration, param_source_problems, source_language, sources_table)
+from pipeline.video.templates import ASPECT, TEMPLATE_INFO, VIDEO_FORMATS, load_template_config, template_contract
 
 ROOT = Path(__file__).resolve().parents[2]
 ATTEMPTS = 2
@@ -42,6 +42,12 @@ class ScriptDraft(BaseModel):
     data_it_bridge: str
 
 
+class ParamSource(BaseModel):
+    claim_ids: list[str]
+    numbers: list[str]
+    derivation: str
+
+
 class SceneDraft(BaseModel):
     params: dict
     objects: list[str]
@@ -54,6 +60,8 @@ class SceneDraft(BaseModel):
     data_sources: list[str] = []
     references: list[str] = []
     historical_objects: list[str] = []
+    param_sources: dict[str, ParamSource] = {}   # источники физических параметров шаблона
+    missing_params: list[str] = []               # физические параметры, которых в узле нет
 
 
 def _load(path: Path, model: type[BaseModel], hint: str) -> BaseModel:
@@ -122,7 +130,18 @@ def _generate(prompt: str, vars: dict, schema: type[BaseModel], tier: str, build
                     + "\n- ".join(problems))
 
 
-def generate(node: Node, route: Route, fmt: str) -> tuple[Script, SceneSpec]:
+def _template_problems(scene: SceneSpec, script: Script, node: Node, cfg: dict | None) -> list[str]:
+    """Требования конкретного шаблона (из его конфигурации) — до сохранения спецификации."""
+    if cfg is None:
+        return []
+    problems = param_source_problems(scene, node, cfg)
+    if scene.template == "T1":
+        from pipeline.video import t1_template
+        problems += t1_template.check(scene, script, cfg)
+    return problems
+
+
+def generate(node: Node, route: Route, fmt: str, templates_dir: Path) -> tuple[Script, SceneSpec]:
     video_id = f"{node.id}.{fmt}"
     lo, hi = DURATION_S[fmt]
     lang = source_language(node)
@@ -130,6 +149,7 @@ def generate(node: Node, route: Route, fmt: str) -> tuple[Script, SceneSpec]:
     base = {"format_ru": route.format if route.format in VIDEO_FORMATS else route.secondary_format,
             "aspect": ASPECT[fmt], "template": route.template, "template_about": TEMPLATE_INFO[route.template],
             "node": node.model_dump(by_alias=True, exclude={"ext"})}
+    cfg = load_template_config(templates_dir, route.template)
 
     script = _generate(
         "video/script",
@@ -142,11 +162,20 @@ def generate(node: Node, route: Route, fmt: str) -> tuple[Script, SceneSpec]:
 
     phrases = [{"id": p.id, "beat": p.beat, "text": p.text, "on_screen": p.on_screen, "claim_id": p.claim_id}
                for p in script.phrases]
+    def scene_from(d: SceneDraft) -> SceneSpec:
+        if d.missing_params:   # данных в узле нет — повтор не поможет, выдумывать нельзя
+            raise SpecError(f"в узле {node.id} нет данных для параметров шаблона {route.template}: "
+                            f"{sorted(d.missing_params)}. Физические параметры не выдумываются: добавьте их "
+                            f"в утверждения узла или выберите другой шаблон в маршрутизации")
+        scene = SceneSpec(video_id=video_id, node_id=node.id, template=route.template,
+                          **d.model_dump(exclude={"param_sources", "missing_params"}))
+        scene.ext["video"] = {"param_sources": {k: v.model_dump() for k, v in d.param_sources.items()}}
+        return scene
+
     scene = _generate(
-        "video/scene_spec", {**base, "phrases": phrases},
-        SceneDraft, TIER_SCENE,
-        lambda d: SceneSpec(video_id=video_id, node_id=node.id, template=route.template, **d.model_dump()),
-        lambda s: check_scene(s, script))
+        "video/scene_spec", {**base, "phrases": phrases, "template_contract": template_contract(route.template, cfg)},
+        SceneDraft, TIER_SCENE, scene_from,
+        lambda s: check_scene(s, script) + _template_problems(s, script, node, cfg))
 
     est = estimate_duration(script)
     words = sum(count_words(p.text) for p in script.phrases)
@@ -157,19 +186,23 @@ def generate(node: Node, route: Route, fmt: str) -> tuple[Script, SceneSpec]:
                               "method": f"оценка до синтеза: {words} слов при {ESTIMATE_WPM} слов/мин + паузы; "
                                         f"не замер, фактическая длительность — после озвучки"},
         "source_language": lang, "route": route_info}
-    scene.ext["video"] = {"sources": sources_table(script, node), "route": route_info}
+    scene.ext["video"].update({"sources": sources_table(script, node), "route": route_info,
+                               "template_config": str(Path(templates_dir) / f"{route.template}.json") if cfg else None})
     return script, scene
 
 
-def run(ch: str, node_id: str, layer_path: Path | None, routing_path: Path | None, out_root: Path) -> Path:
+def run(ch: str, node_id: str, layer_path: Path | None, routing_path: Path | None, out_root: Path,
+        domain: str = "geology") -> Path:
     if not ID_RE.match(ch):
         raise SpecError(f"--ch «{ch}» — допустимы только [a-z0-9_.-]")
+    if not ID_RE.match(domain):
+        raise SpecError(f"--domain «{domain}» — допустимы только [a-z0-9_.-]")
     layer_path = layer_path or out_root / ch / "layer.json"
     routing_path = routing_path or out_root / ch / "routing.json"
     layer = _load(layer_path, Layer, "учебный слой; путь можно задать --layer")
     routing = _load(routing_path, Routing, "маршрутизация; путь можно задать --routing")
     node, route, fmt = select(layer, routing, ch, node_id)
-    script, scene = generate(node, route, fmt)
+    script, scene = generate(node, route, fmt, ROOT / "domain" / domain / "templates")
     out = out_root / ch / "videos" / script.video_id
     out.mkdir(parents=True, exist_ok=True)
     (out / "script.json").write_text(script.model_dump_json(by_alias=True, indent=2), encoding="utf-8")
@@ -185,10 +218,11 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--layer", type=Path, help="layer.json (по умолчанию out/<ch>/layer.json)")
     ap.add_argument("--routing", type=Path, help="routing.json (по умолчанию out/<ch>/routing.json)")
     ap.add_argument("--out-root", type=Path, default=ROOT / "out")
+    ap.add_argument("--domain", default="geology", help="доменный пакет: конфигурации шаблонов в domain/<домен>/templates/")
     a = ap.parse_args(argv)
     os.environ.setdefault("CH", a.ch)   # pipeline.llm пишет главу в журнал вызовов
     try:
-        out = run(a.ch, a.node, a.layer, a.routing, a.out_root)
+        out = run(a.ch, a.node, a.layer, a.routing, a.out_root, a.domain)
     except SpecError as e:
         print(f"ОШИБКА video.spec: {e}", file=sys.stderr)
         return 2

@@ -9,6 +9,8 @@
 | ManimPango (рендер текста, Pango) | 0.7.1 | MIT | нет |
 | pycairo | 1.29.2 | LGPL-2.1-only OR MPL-1.1 | нет |
 | PyAV (запись видео Manim) | 19.0.2 | BSD-3-Clause | нет |
+| NumPy | 2.5.5 | BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0 | нет |
+| SciPy (T1: интегральная показательная функция E1, поиск корня) | 1.18.1 | BSD-3-Clause | нет |
 | edge-tts | 7.3.1 | LGPL-3.0 | **да**: текст фразы сценария → онлайн-синтез Microsoft Edge (wss://speech.platform.bing.com). Больше ничего не отправляется |
 | aiohttp (транспорт edge-tts) | 3.14.5 | Apache-2.0 AND MIT | через edge-tts |
 | Голос | ru-RU-DmitryNeural (основной) | условия сервиса Microsoft | см. edge-tts |

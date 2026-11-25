@@ -77,3 +77,22 @@ def test_offline_without_cache_is_a_clear_error(tmp_path, capsys, tools_ok, monk
     monkeypatch.setenv("TTS_OFFLINE", "1")
     assert build.main(_args(tmp_path)) == 2
     assert "TTS_OFFLINE=1" in capsys.readouterr().err
+
+
+def test_t1_bad_params_fail_before_tts(tmp_path, capsys, tools_ok, monkeypatch):
+    t1 = FIX.parent / "t1_demo"
+    spec = json.loads((t1 / "scene_spec.json").read_text(encoding="utf-8"))
+    spec["params"]["kappa_m2_s"] = -1
+    p = tmp_path / "spec.json"
+    p.write_text(json.dumps(spec, ensure_ascii=False), encoding="utf-8")
+
+    def no_network(text, params):
+        raise AssertionError("озвучка не должна запускаться при ошибке параметров")
+    monkeypatch.setattr(tts, "_fetch", no_network)
+    args = ["--ch", "video_t1", "--node", "video_t1_demo.pressure_diffusion", "--script", str(t1 / "script.json"),
+            "--scene-spec", str(p), "--draft", "--out-root", str(tmp_path / "out"),
+            "--cache-dir", str(tmp_path / "cache")]
+    assert build.main(args) == 2
+    err = capsys.readouterr().err
+    assert "параметры T1" in err and "kappa_m2_s" in err
+    assert not (tmp_path / "out").exists()

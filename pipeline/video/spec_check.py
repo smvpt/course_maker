@@ -164,6 +164,34 @@ def check_scene(spec: SceneSpec, script: Script) -> list[str]:
     return problems
 
 
+def param_source_problems(spec: SceneSpec, node: Node, cfg: dict) -> list[str]:
+    """Каждый физический параметр шаблона — с источником: claim узла, где есть указанные числа."""
+    problems: list[str] = []
+    claims = {c.id: c for c in node.claims}
+    sources = spec.ext.get("video", {}).get("param_sources", {})
+    for key, d in cfg["params"].items():
+        if d.get("kind") != "physical" or key not in spec.params:
+            continue
+        src = sources.get(key)
+        if not src:
+            problems.append(f"params.{key}: физический параметр без источника в узле (param_sources.{key}); "
+                            f"если числа в узле нет — не включай параметр, а укажи его в missing_params")
+            continue
+        foreign = [c for c in src["claim_ids"] if c not in claims]
+        if foreign:
+            problems.append(f"params.{key}: claim_id {foreign} не из узла {node.id}")
+        own = [c for c in src["claim_ids"] if c in claims]
+        if not own or not src["numbers"]:
+            problems.append(f"params.{key}: в param_sources нужны claim_ids узла и числа из них")
+            continue
+        text = "\n".join(f"{claims[c].text}\n{claims[c].quote}" for c in own)
+        found = {n.replace(",", ".") for n in NUM_RE.findall(text)}
+        for n in src["numbers"]:
+            if n.replace(",", ".") not in found:
+                problems.append(f"params.{key}: число {n} не найдено в тексте и цитате {own}")
+    return problems
+
+
 def sources_table(script: Script, node: Node) -> list[dict]:
     """Таблица «утверждение → страница + цитата» для паспорта — кодом из claims узла, в порядке фраз."""
     claims = {c.id: c for c in node.claims}

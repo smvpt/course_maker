@@ -26,7 +26,7 @@ ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_STYLEGUIDE = ROOT / "data" / "organizers" / "03_стайлгайд" / "styleguide.json"
 SAMPLE_RATE = 24000          # родная частота edge-tts (audio-24khz-48kbitrate-mono-mp3)
 RES = {"short": {"final": (1080, 1920, 30), "draft": (540, 960, 15)}}
-TEMPLATES = {"hello"}
+TEMPLATES = {"hello", "T1"}
 TARGET_WPM = (110, 150)
 VTT_NOTES = {
     "word": "тайминги: пословные метки edge-tts (WordBoundary), сдвинуты на начало фразы в таймлайне",
@@ -42,8 +42,8 @@ class BuildCheckError(RuntimeError):
 def _styleguide(path: Path) -> dict:
     try:
         sg = json.loads(Path(path).read_text(encoding="utf-8"))
-        return {"background": sg["background"], "text": sg["text"], "muted": sg["muted"],
-                "provenance": sg["provenance"], "font": sg["fonts"]["ui"],
+        return {"background": sg["background"], "panel": sg["panel"], "text": sg["text"], "muted": sg["muted"],
+                "provenance": sg["provenance"], "raw": sg, "font": sg["fonts"]["ui"],
                 "min_caption_px": sg["fonts"]["min_caption_px_at_1080"], "safe_zone": sg["safe_zone"]}
     except FileNotFoundError as e:
         raise VideoInputError(f"стайлгайд не найден: {path}") from e
@@ -57,15 +57,40 @@ def _check_font(font: str) -> None:
         raise ToolError(f"шрифт стайлгайда «{font}» не установлен в системе — кириллица не отрисуется как задано")
 
 
-def _render(plan: dict, work: Path, w: int, h: int, fps: int, background: str) -> Path:
+def _sg_color(sg: dict, dotted: str) -> str:
+    v = sg["raw"]
+    for k in dotted.split("."):
+        if not isinstance(v, dict) or k not in v:
+            raise VideoInputError(f"в стайлгайде нет цвета {dotted}")
+        v = v[k]
+    return v["color"] if isinstance(v, dict) else v
+
+
+def _prepare_template(spec, script, sg: dict, templates_dir: Path) -> tuple[dict, dict, dict]:
+    """Проверка параметров шаблона ДО озвучки и рендера: (данные для сцены, доп. цвета, сведения для отчёта)."""
+    if spec.template == "hello":
+        if not isinstance(spec.params.get("title"), str) or not spec.params["title"].strip():
+            raise VideoInputError("SceneSpec.params.title обязателен для шаблона hello")
+        return {"title": spec.params["title"]}, {}, {}
+    from pipeline.video import t1_template
+    cfg = t1_template.load_config(templates_dir)
+    prep = t1_template.prepare(spec, script, cfg)
+    info = {"model": cfg["model"], "influence_radius": cfg["influence_radius"],
+            "params": {k: spec.params.get(k, d.get("default")) for k, d in cfg["params"].items()},
+            "r_influence_end_m": round(prep["r_influence_end"], 3),
+            "well_argument_end": prep["well_argument_end"], "color_max_mpa": prep["color_max"],
+            "graph_max_mpa": prep["graph_max"], "config": str(Path(templates_dir) / "T1.json")}
+    return {"t1": prep}, {"field": _sg_color(sg, prep["field_color_key"])}, info
+
+
+def _render(scene_cls, plan: dict, work: Path, w: int, h: int, fps: int, background: str) -> Path:
     from manim import tempconfig
-    from pipeline.video.scene_hello import HelloScene
     cfg = {"pixel_width": w, "pixel_height": h, "frame_rate": fps, "frame_height": FRAME_H,
            "frame_width": FRAME_W, "media_dir": str(work / "manim"), "disable_caching": True,
            "background_color": background, "progress_bar": "none", "verbosity": "WARNING",
            "output_file": "scene", "preview": False}
     with tempconfig(cfg):
-        scene = HelloScene()
+        scene = scene_cls()
         scene.plan = plan
         scene.render()
         out = Path(scene.renderer.file_writer.movie_file_path)
@@ -108,9 +133,11 @@ def _verify(mp4: Path, tl, w: int, h: int, fps: int) -> dict:
 
 
 def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, fmt: str | None,
-          voice: str, styleguide: Path, out_root: Path, cache_dir: Path) -> dict:
+          voice: str, styleguide: Path, out_root: Path, cache_dir: Path, domain: str = "geology") -> dict:
     if not ID_RE.match(ch):
         raise VideoInputError(f"--ch «{ch}» — допустимы только [a-z0-9_.-]")
+    if not ID_RE.match(domain):
+        raise VideoInputError(f"--domain «{domain}» — допустимы только [a-z0-9_.-]")
     media.require("ffmpeg"), media.require("ffprobe")
     script, spec = load_inputs(script_path, spec_path, node_id=node)
     fmt = fmt or script.format
@@ -118,9 +145,8 @@ def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, f
         raise VideoInputError(f"формат {fmt}: пока собирается только short (9:16)")
     if spec.template not in TEMPLATES:
         raise VideoInputError(f"шаблон сцены «{spec.template}» не реализован; есть: {sorted(TEMPLATES)}")
-    if not isinstance(spec.params.get("title"), str) or not spec.params["title"].strip():
-        raise VideoInputError("SceneSpec.params.title обязателен для шаблона hello")
     sg = _styleguide(styleguide)
+    tpl_plan, tpl_colors, tpl_info = _prepare_template(spec, script, sg, ROOT / "domain" / domain / "templates")
     _check_font(sg["font"])
     layout = Layout(sg["safe_zone"], sg["min_caption_px"])
     w, h, fps = RES[fmt]["draft" if draft else "final"]
@@ -152,13 +178,17 @@ def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, f
     if missing:
         raise VideoInputError(f"в стайлгайде нет цвета метки происхождения для {missing}")
     segs =[{"phrase_id": s.phrase_id, "start": s.start, "end": s.end, "hold_end": s.hold_end,
-             "on_screen": p.on_screen, "label": shot_of[p.id].label,
-             "label_color": sg["provenance"][shot_of[p.id].label]}
+             "on_screen": p.on_screen, "shot_id": shot_of[p.id].id, "plaque": shot_of[p.id].plaque,
+             "label": shot_of[p.id].label, "label_color": sg["provenance"][shot_of[p.id].label]}
             for s, p in zip(tl.segments, script.phrases)]
-    plan = {"layout": layout, "colors": {"text": sg["text"], "muted": sg["muted"]}, "font": sg["font"],
-            "fps": fps, "segments": segs, "total": tl.total, "speech_total": tl.speech_total,
-            "title": spec.params["title"]}
-    scene_mp4 = _render(plan, work, w, h, fps, sg["background"])
+    plan = {"layout": layout, "font": sg["font"], "fps": fps, "segments": segs, "total": tl.total,
+            "speech_total": tl.speech_total, **tpl_plan,
+            "colors": {"text": sg["text"], "muted": sg["muted"], "panel": sg["panel"], **tpl_colors}}
+    if spec.template == "T1":
+        from pipeline.video.scene_t1 import T1Scene as scene_cls
+    else:
+        from pipeline.video.scene_hello import HelloScene as scene_cls
+    scene_mp4 = _render(scene_cls, plan, work, w, h, fps, sg["background"])
 
     # 4. сборка: нормализация −16 LUFS, H.264, длина = длина дорожки
     measured = media.loudnorm_measure(speech_wav)
@@ -189,7 +219,28 @@ def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, f
               "loudnorm_input": measured, "words": n_words, "wpm": wpm,
               "warnings": [] if TARGET_WPM[0] <= wpm <= TARGET_WPM[1] else
               [f"темп {wpm} слов/мин вне {TARGET_WPM[0]}–{TARGET_WPM[1]}"],
+              "template": spec.template, "template_info": tpl_info,
+              "shots": [{"shot_id": sid, "start_s": round(min(x["start"] for x in segs if x["shot_id"] == sid), 3),
+                         "end_s": round(max(x["hold_end"] for x in segs if x["shot_id"] == sid), 3),
+                         "plaque": next(x["plaque"] for x in segs if x["shot_id"] == sid),
+                         "true_scale": sid == spec.true_scale_shot_id}
+                        for sid in dict.fromkeys(x["shot_id"] for x in segs)],
               "subtitle_timing": kinds, "cues": len(cues), "mp4": str(mp4), "vtt": str(vtt), "probe": check}
+    # кадры для ревью: середина окна каждого shot и последний кадр (финальное состояние)
+    frames_dir = out / "frames"
+    if frames_dir.is_dir():
+        for f in frames_dir.glob("*.png"):
+            f.unlink()
+    report["frames"] = []
+    for sh in report["shots"]:
+        t_mid = round((sh["start_s"] + sh["end_s"]) / 2, 3)
+        png = frames_dir / f"{sh['shot_id']}.png"
+        media.extract_frame(mp4, t_mid, png)
+        report["frames"].append({"shot_id": sh["shot_id"], "t_s": t_mid, "file": str(png)})
+    last = frames_dir / "final.png"
+    media.extract_frame(mp4, max(tl.total - 1.5 / fps, 0.0), last)
+    report["frames"].append({"shot_id": report["shots"][-1]["shot_id"], "t_s": round(tl.total - 1.5 / fps, 3),
+                             "file": str(last)})
     (out / "timeline.json").write_text(json.dumps(timeline, ensure_ascii=False, indent=2), encoding="utf-8")
     (out / "build_report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     (out / "script.json").write_text(script.model_dump_json(by_alias=True, indent=2), encoding="utf-8")
@@ -208,6 +259,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--draft", action="store_true", help="черновик 540×960, 15 к/с")
     ap.add_argument("--voice", default=DEFAULT_VOICE, help="голос edge-tts (один на всю серию)")
     ap.add_argument("--styleguide", type=Path, default=DEFAULT_STYLEGUIDE)
+    ap.add_argument("--domain", default="geology", help="доменный пакет: настройки шаблонов в domain/<домен>/templates/")
     ap.add_argument("--out-root", type=Path, default=ROOT / "out")
     ap.add_argument("--cache-dir", type=Path, default=ROOT / "cache" / "tts")
     a = ap.parse_args(argv)
@@ -216,7 +268,7 @@ def main(argv: list[str] | None = None) -> int:
             raise VideoInputError("нужны --script и --scene-spec: генерация их из layer.json (video.spec) "
                                   "ещё не реализована")
         r = build(a.ch, a.node, a.script, a.scene_spec, a.draft, a.format, a.voice,
-                  a.styleguide, a.out_root, a.cache_dir)
+                  a.styleguide, a.out_root, a.cache_dir, a.domain)
     except (VideoInputError, TtsError, ToolError, LayoutError, BuildCheckError) as e:
         print(f"ОШИБКА video.build: {e}", file=sys.stderr)
         return 2

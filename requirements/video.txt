@@ -5,3 +5,6 @@
 # PyYAML==6.0.3, python-dotenv==1.2.4 — версии ядра.
 manim==0.22.1
 edge-tts==7.3.1
+# T1: расчёт поля давления (scipy.special.exp1, brentq); обе ставятся и с manim, пины — явно
+numpy==2.5.5
+scipy==1.18.1

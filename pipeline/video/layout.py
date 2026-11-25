@@ -41,4 +41,7 @@ class Layout:
         sl, sr, sb, st = self.safe_box()
         eps = 1e-9
         if left < sl - eps or right > sr + eps or bottom < sb - eps or top > st + eps:
-            raise LayoutError(f"«{name}» выходит за безопасную зону 9:16 {self.safe} (px опорного кадра)")
+            px = lambda u: round(u / self.units(1))
+            raise LayoutError(f"«{name}» выходит за безопасную зону 9:16 {self.safe} (px опорного кадра): "
+                              f"x {px(left - sl)}…{px(right - sr)}, y {px(bottom - sb)}…{px(top - st)} "
+                              f"относительно границ зоны")

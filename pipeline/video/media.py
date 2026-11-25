@@ -112,3 +112,10 @@ def trailing_silence(path: Path, total_s: float, noise_db: int = -50) -> float:
     if len(ends) < len(starts) or ends[-1] >= total_s - 0.05:
         return max(0.0, total_s - starts[-1])
     return 0.0
+
+
+def extract_frame(video: Path, t: float, out_png: Path) -> None:
+    """Один кадр ролика в момент t (с) — для визуального ревью."""
+    out_png.parent.mkdir(parents=True, exist_ok=True)
+    _run([require("ffmpeg"), "-y", "-hide_banner", "-v", "error", "-ss", f"{t:.3f}", "-i", str(video),
+          "-frames:v", "1", str(out_png)])

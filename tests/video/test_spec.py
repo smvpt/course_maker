@@ -164,3 +164,93 @@ def test_missing_llm_module_is_a_clear_error(tmp_path, monkeypatch, capsys):
     monkeypatch.setitem(sys.modules, "pipeline.llm", None)
     assert _run(tmp_path) == 2
     assert "pipeline.llm" in capsys.readouterr().err
+
+
+# ---------------------------------------------------------------- стыковка с T1
+
+T1_NODE = CH + ".pressure_t1"
+
+
+def _t1_script():
+    claim = T1_NODE + "#c1"
+    return _answer("llm_script.json", lambda d: [p.update(claim_id=claim) for p in d["phrases"]])
+
+
+def _t1_scene(mutate=None):
+    return _answer("llm_scene_t1.json", mutate)
+
+
+def test_t1_spec_is_saved_and_passes_t1_checks(tmp_path, llm):
+    from pipeline.video.t1_template import load_config, prepare
+    fake = llm([_t1_script()], [_t1_scene()])
+    assert _run(tmp_path, node=T1_NODE) == 0
+    contract = fake.calls[1]["vars"]["template_contract"]
+    assert "kappa_m2_s" in contract and "симуляция" in contract and "missing_params" in contract
+    out = _out(tmp_path, T1_NODE + ".short")
+    script = Script.model_validate_json((out / "script.json").read_text(encoding="utf-8"))
+    scene = SceneSpec.model_validate_json((out / "scene_spec.json").read_text(encoding="utf-8"))
+    assert scene.template == "T1"
+    prep = prepare(scene, script, load_config(ROOT / "domain" / "geology" / "templates"))   # то, что сделает build
+    assert prep["exaggeration"] == 100 and prep["true_scale_shot_id"] == "s5"
+    src = scene.ext["video"]["param_sources"]
+    assert set(src) == {"kappa_m2_s", "pressure_scale_mpa", "r_well_m"}
+    assert "param_sources" not in scene.params and "missing_params" not in scene.params
+
+
+@pytest.mark.parametrize("mutate,needle", [
+    (lambda d: d["shots"][1].update(label="схема"), "симуляция"),
+    (lambda d: d["shots"][1].update(label="реальные данные"), "симуляция"),
+    (lambda d: d["shots"][0].update(frame_class="D", label="схема"), "симуляция"),
+    (lambda d: d["shots"][2].update(plaque="не в масштабе: скважина крупнее в 50 раз"), "100"),
+    (lambda d: d["params"].update(r_max_m=100), "выходит за окно"),
+    (lambda d: d["params"].update(speed_m_s=2), "speed_m_s"),
+    (lambda d: d["params"].update(evolve_shot_ids=["s42"]), "evolve_shot_ids"),
+])
+def test_t1_incompatible_scene_fails_after_repair(tmp_path, llm, capsys, mutate, needle):
+    bad = _t1_scene(mutate)
+    fake = llm([_t1_script()], [bad, bad])
+    assert _run(tmp_path, node=T1_NODE) == 2
+    err = capsys.readouterr().err
+    assert needle in err
+    assert needle in fake.calls[2]["vars"]["feedback"]          # замечание ушло в повторную попытку
+    assert not _out(tmp_path, T1_NODE + ".short").exists()
+
+
+def test_t1_repair_attempt_fixes_labels(tmp_path, llm):
+    bad = _t1_scene(lambda d: d["shots"][1].update(label="схема"))
+    fake = llm([_t1_script()], [bad, _t1_scene()])
+    assert _run(tmp_path, node=T1_NODE) == 0
+    assert "симуляция" in fake.calls[2]["vars"]["feedback"]
+
+
+@pytest.mark.parametrize("mutate,needle", [
+    (lambda d: d["param_sources"].pop("kappa_m2_s"), "kappa_m2_s"),
+    (lambda d: d["param_sources"]["kappa_m2_s"].update(numbers=["0,7"]), "0,7"),
+    (lambda d: d["param_sources"]["kappa_m2_s"].update(claim_ids=["other.node#c1"]), "other.node#c1"),
+    (lambda d: d["param_sources"]["kappa_m2_s"].update(numbers=[]), "kappa_m2_s"),
+])
+def test_t1_physical_params_need_a_source_in_the_node(tmp_path, llm, capsys, mutate, needle):
+    bad = _t1_scene(mutate)
+    fake = llm([_t1_script()], [bad, bad])
+    assert _run(tmp_path, node=T1_NODE) == 2
+    assert needle in capsys.readouterr().err
+    assert needle in fake.calls[2]["vars"]["feedback"]
+
+
+def test_t1_missing_physical_params_are_a_clear_error_not_invented(tmp_path, llm, capsys):
+    def missing(d):
+        d["params"].pop("pressure_scale_mpa")
+        d["param_sources"].pop("pressure_scale_mpa")
+        d["missing_params"] = ["pressure_scale_mpa"]
+    fake = llm([_t1_script()], [_t1_scene(missing)])
+    assert _run(tmp_path, node=T1_NODE) == 2
+    err = capsys.readouterr().err
+    assert "pressure_scale_mpa" in err and "нет данных" in err
+    assert len(fake.calls) == 2                                # без повторной попытки: данных в узле нет
+    assert not _out(tmp_path, T1_NODE + ".short").exists()
+
+
+def test_template_without_config_gets_generic_contract(tmp_path, llm):
+    fake = llm()
+    assert _run(tmp_path) == 0                                 # узел с T2: конфигурации T2 пока нет
+    assert "не описаны" in fake.calls[1]["vars"]["template_contract"]

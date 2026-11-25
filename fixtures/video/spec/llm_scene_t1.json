@@ -1,0 +1,45 @@
+{
+  "params": {
+    "kappa_m2_s": 0.5,
+    "pressure_scale_mpa": 0.1,
+    "r_well_m": 0.1,
+    "r_max_m": 300,
+    "t_end_s": 21600,
+    "threshold_mpa": 0.02,
+    "well_exaggeration": 100,
+    "evolve_shot_ids": ["s2", "s3", "s4"]
+  },
+  "param_sources": {
+    "kappa_m2_s": {"claim_ids": ["video_spec_fixture.pressure_t1#c1"], "numbers": ["0,5"],
+                   "derivation": "значение из утверждения, уже в м²/с"},
+    "pressure_scale_mpa": {"claim_ids": ["video_spec_fixture.pressure_t1#c2"], "numbers": ["0,1"],
+                           "derivation": "значение из утверждения, МПа"},
+    "r_well_m": {"claim_ids": ["video_spec_fixture.pressure_t1#c2"], "numbers": ["0,1"],
+                 "derivation": "значение из утверждения, м"}
+  },
+  "missing_params": [],
+  "objects": ["карта пласта в плане с цветом падения давления", "значок скважины", "пунктир условной границы",
+              "график падения давления по расстоянию"],
+  "invariants": ["карта и график — одна функция одного времени", "условная граница растёт как корень из времени"],
+  "assumptions": ["бесконечный однородный пласт, постоянный дебит с момента пуска"],
+  "exaggerations": ["значок скважины увеличен в 100 раз"],
+  "shots": [
+    {"id": "s1", "phrase_ids": ["p1"], "frame_class": "B", "label": "симуляция",
+     "shows": "начальный момент", "plaque": "не в масштабе: скважина крупнее в 100 раз"},
+    {"id": "s2", "phrase_ids": ["p2", "p3"], "frame_class": "B", "label": "симуляция",
+     "shows": "поле растёт", "plaque": "не в масштабе: скважина крупнее в 100 раз"},
+    {"id": "s3", "phrase_ids": ["p4", "p5"], "frame_class": "A", "label": "симуляция",
+     "shows": "график падения давления", "plaque": "не в масштабе: скважина крупнее в 100 раз"},
+    {"id": "s4", "phrase_ids": ["p6", "p7"], "frame_class": "B", "label": "симуляция",
+     "shows": "пауза на вопрос, затем рост условной границы", "plaque": "не в масштабе: скважина крупнее в 100 раз"},
+    {"id": "s5", "phrase_ids": ["p8"], "frame_class": "B", "label": "симуляция",
+     "shows": "финальное состояние в истинном масштабе", "plaque": null},
+    {"id": "s6", "phrase_ids": ["p9"], "frame_class": "B", "label": "симуляция",
+     "shows": "вопрос на перенос", "plaque": "не в масштабе: скважина крупнее в 100 раз"}
+  ],
+  "true_scale_shot_id": "s5",
+  "convention": "падение давления, МПа; расстояние, м",
+  "data_sources": ["расчёт по утверждениям video_spec_fixture.pressure_t1#c1 и #c2"],
+  "references": [],
+  "historical_objects": []
+}

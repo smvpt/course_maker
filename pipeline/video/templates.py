@@ -15,3 +15,32 @@ TEMPLATE_INFO = {
 # формат маршрутизации → формат ролика, кадр
 VIDEO_FORMATS = {"шортс": "short", "длинное видео": "long"}
 ASPECT = {"short": "шортс 9:16, вертикальный кадр", "long": "разбор 16:9, горизонтальный кадр"}
+
+
+def load_template_config(templates_dir, template: str) -> dict | None:
+    """domain/<домен>/templates/<шаблон>.json или None, если шаблон ещё не описан."""
+    import json
+    from pathlib import Path
+    path = Path(templates_dir) / f"{template}.json"
+    return json.loads(path.read_text(encoding="utf-8")) if path.is_file() else None
+
+
+def template_contract(template: str, cfg: dict | None) -> str:
+    """Текст для промпта спецификации: параметры шаблона, их виды и правила кадров — из конфигурации."""
+    if cfg is None:
+        return (f"Параметры шаблона {template} пока не описаны в доменном пакете: params — качественные ключи "
+                f"по смыслу сцены; param_sources — пустой объект, missing_params — пустой список.")
+    lines = [f"Шаблон {template} — {cfg['title']}. Модель: {cfg['model']}", "",
+             "params — только эти ключи:"]
+    for key, d in cfg["params"].items():
+        need = "обязательный" if d.get("required") else f"необязательный, по умолчанию {d.get('default')}"
+        unit = f"{d['unit']}; " if d.get("unit") else ""
+        lines.append(f"- {key} ({unit}{d.get('kind', 'display')}; {need}): {d['meaning']}")
+    lines += ["", "Виды параметров:"] + [f"- {k}: {v}" for k, v in cfg.get("param_kinds", {}).items()]
+    lines += ["", "Правила кадров:"] + [f"- {r}" for r in cfg.get("frame_rules", [])]
+    lines += ["", "Источники физических параметров: для каждого параметра вида physical заполни "
+              "param_sources[ключ] = {claim_ids: [id утверждений узла], numbers: [числа точно так, как они "
+              "написаны в тексте или цитате этих утверждений], derivation: как из них получено значение и "
+              "пересчёт единиц}. Если нужного числа в узле нет — не придумывай: не включай параметр в params "
+              "и перечисли его ключ в missing_params."]
+    return "\n".join(lines)
