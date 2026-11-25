@@ -32,7 +32,7 @@
 {% macro claim_para(c) -%}
 <div class="para" id="{{ c.id | replace('#', '--') }}">
   <p data-by="{{ by_of(c) }}">{{ c.text }} {{ badge(by_of(c)) }}{% if c.kind != "observation" %} <span class="kind">{{ {"inference": "вывод", "assumption": "допущение"}[c.kind] }}</span>{% endif %} {{ claim_chip(c) }}</p>
-  <blockquote class="quote" data-by="author">{{ icon("quotes") }}<span>{{ c.quote }}</span></blockquote>
+  <blockquote class="quote" data-by="author">{{ icon("quotes") }}<span>{{ c.quote }}</span><cite>Автор, стр. {{ c.page_pdf }}</cite></blockquote>
 </div><!--/para-->
 {%- endmacro %}
 
@@ -63,19 +63,18 @@
 
 <article class="step" data-node="{{ n.id }}">
 <header class="step-head">
-  <p class="crumbs">Шаг {{ idx + 1 }} из {{ steps | length }} · ≈ {{ v.minutes }} мин{% if n.threshold %} · <span class="threshold">пороговое понятие</span>{% endif %}</p>
+  <p class="kicker">Шаг {{ idx + 1 }} из {{ steps | length }} · ≈ {{ v.minutes }} мин{% if v.pages_label %} · {{ v.pages_label }}{% endif %}{% if n.threshold %} · <span class="threshold">пороговое понятие</span>{% endif %}</p>
   <h1>{{ v.title }}</h1>
-  {% if n.title_novice and n.title_novice != n.title %}<p class="book-title">В книге: «{{ n.title }}»</p>{% endif %}
-  {% if has_text(n.layers.topic) %}<p class="topic" data-by="{{ by_of(n.layers.topic) }}">{{ n.layers.topic.text }}</p>{% endif %}
+  {% if has_text(n.layers.topic) %}<p class="topic subtitle" data-by="{{ by_of(n.layers.topic) }}">{{ n.layers.topic.text }}</p>{% endif %}
   {% if v.prereqs %}
-  <p class="prereq">Опирается на: {% for p in v.prereqs %}{% if p in titles %}<a href="step-{{ p }}.html">{{ titles[p] }}</a>{% else %}{{ p }}{% endif %}{% if not loop.last %}, {% endif %}{% endfor %}</p>
+  <p class="prereq"><span class="prereq-label">Опирается на</span> {% for p in v.prereqs %}{% if p in titles %}<a class="prereq-chip" href="step-{{ p }}.html">{{ titles[p] }}</a>{% else %}<span class="prereq-chip">{{ p }}</span>{% endif %} {% endfor %}</p>
   {% endif %}
-  <div class="step-progress">
-    <div class="bar"><span id="step-bar"></span></div>
-    <p id="step-progress-text" aria-live="polite">Прогресс шага: 0 из {{ v.check_items }}</p>
-  </div>
   <div class="legend-by" aria-hidden="true">{{ badge("author") }} {{ badge("model") }} {{ badge("hypothesis") }}</div>
 </header>
+<div class="step-progress">
+  <div class="bar slim"><span id="step-bar"></span></div>
+  <p id="step-progress-text" class="sr" aria-live="polite">Прогресс шага: 0 из {{ v.check_items }}</p>
+</div>
 
 {% if v.guess %}
 {% set g = v.guess %}
@@ -97,8 +96,8 @@
 {% endif %}
 
 <div id="step-body">
-<nav class="toc" aria-label="На этой странице">
-  <details open id="toc-details"><summary>На этой странице</summary>
+<nav class="toc" aria-label="Разделы шага">
+  <details open id="toc-details"><summary>Разделы</summary>
   <ol>{% for id, t in v.toc %}<li><a href="#{{ id }}">{{ t }}</a></li>{% endfor %}</ol>
   </details>
 </nav>
@@ -108,11 +107,11 @@
 {% endif %}
 
 {% if v.show["b-why"] %}
-<section id="b-why" class="block"><h2>Зачем этот шаг</h2>{% if v.paras %}{{ gen(v.paras.get("why", [])) }}{% else %}{{ field(n.why_here) }}{% endif %}</section>
+<section id="b-why" class="block"><h2>{{ icon("lightbulb") }}Зачем этот шаг</h2>{% if v.paras %}{{ gen(v.paras.get("why", [])) }}{% else %}{{ field(n.why_here) }}{% endif %}</section>
 {% endif %}
 
 {% if v.show["b-how"] %}
-<section id="b-how" class="block"><h2>Как это работает</h2>
+<section id="b-how" class="block"><h2>{{ icon("sliders-horizontal") }}Как это работает</h2>
   {% if v.paras %}
   {{ gen(v.paras.get("how", [])) }}
   {% else %}
@@ -129,7 +128,7 @@
 {% endif %}
 
 {% if v.show["b-formulas"] %}
-<section id="b-formulas" class="block"><h2>Формулы</h2>
+<section id="b-formulas" class="block"><h2>{{ icon("cpu") }}Формулы</h2>
   {% for c in v.formulas %}
   <div class="para" id="{{ c.id | replace('#', '--') }}">
     <div class="formula"{% if v.formulas %} data-katex{% endif %}><span class="formula-label">формула</span><code class="tex" data-tex="{{ c.quote }}">{{ c.quote }}</code></div>
@@ -140,7 +139,7 @@
 {% endif %}
 
 {% if v.show["b-tables"] %}
-<section id="b-tables" class="block"><h2>Таблицы книги</h2>
+<section id="b-tables" class="block"><h2>{{ icon("list") }}Таблицы книги</h2>
   {% call fold("таблицы книги") %}
   {% for t in v.tables %}
   <div class="para" id="{{ t.claim.id | replace('#', '--') }}">
@@ -162,7 +161,7 @@
 {% endif %}
 
 {% if v.show["b-examples"] %}
-<section id="b-examples" class="block"><h2>Разбор примеров из главы</h2>
+<section id="b-examples" class="block"><h2>{{ icon("exam") }}Разбор примеров из главы</h2>
   {% for w in n.worked_examples %}
   <div class="para example">
     <p data-by="{{ by_of(w) }}"><strong>Условие.</strong> {{ w.condition }}</p>
@@ -175,7 +174,7 @@
 {% endif %}
 
 {% if v.show["b-practice"] %}
-<section id="b-practice" class="block"><h2>Как делает специалист</h2>
+<section id="b-practice" class="block"><h2>{{ icon("user") }}Как делает специалист</h2>
   {% if v.paras %}{{ gen(v.paras.get("practice", [])) }}{% else %}
   {{ field(n.layers.practice) }}
   {% if n.now_practice %}{{ field(n.now_practice, "Как сейчас: ") }}{% endif %}
@@ -184,7 +183,7 @@
 {% endif %}
 
 {% if v.show["b-nuances"] %}
-<section id="b-nuances" class="block"><h2>Нюансы</h2>
+<section id="b-nuances" class="block"><h2>{{ icon("magnifying-glass") }}Нюансы</h2>
   {% call fold("нюансы") %}{% if v.paras %}{{ gen(v.paras.get("nuances", [])) }}{% else %}{{ field(n.layers.nuances) }}{% endif %}{% endcall %}
 </section>
 {% endif %}

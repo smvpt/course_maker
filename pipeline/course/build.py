@@ -26,7 +26,7 @@ from contracts.models import FormatRu, Illustrations, Layer, Node, ReviewOutput,
 from pipeline.course import guess as guess_mod, interactive as inter_mod
 from pipeline.course.order import break_cycles, group_parts, order_nodes, part_of
 from pipeline.course.pernode import read_store
-from pipeline.course.steptext import Para, node_hash, read_step_text
+from pipeline.course.steptext import Para, node_hash, normalize_terms, read_step_text
 from pipeline.course.tasks import MISMATCH
 from pipeline.illus import gen as illus_gen
 
@@ -325,6 +325,14 @@ def node_pages(node: Node) -> list[int]:
     return sorted(pages)
 
 
+def page_range(node: Node) -> str:
+    """«стр. 38» или «стр. 38–40» по страницам PDF утверждений узла."""
+    pages = node_pages(node)
+    if not pages:
+        return ""
+    return f"стр. {pages[0]}" if pages[0] == pages[-1] else f"стр. {pages[0]}–{pages[-1]}"
+
+
 def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path, tasks: list[Task],
               paras: list[Para] | None = None, interactive: dict | None = None, guess: dict | None = None,
               style_raw: dict | None = None) -> dict:
@@ -408,6 +416,7 @@ def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path
         "node": node,
         "title": node.title_novice or node.title,
         "minutes": minutes(node),
+        "pages_label": page_range(node),
         "text_claims": text_claims,
         "formulas": formulas,
         "tables": tables,
@@ -625,9 +634,22 @@ def make_env() -> Environment:
     return env
 
 
-def chapter_title(layer: Layer) -> str:
-    """Человеческое название — layer.ext["core"]["title"] (поле поставляет П1); id главы — только запасной вариант."""
-    return layer.ext.get("core", {}).get("title") or layer.chapter
+def heading_title(ch_dir: Path | None) -> str | None:
+    """Первый заголовок главы из units.json (как в книге, напр. «1.2 Дельты»): без #, без английского перевода в скобках."""
+    units_path = ch_dir / "units.json" if ch_dir else None
+    if units_path is None or not units_path.exists():
+        return None
+    for u in json.loads(units_path.read_text(encoding="utf-8")).get("units", []):
+        if u.get("kind") == "heading":
+            text = re.sub(r"\s*\[[^\]]*\]\s*$", "", u["text"].lstrip("#").strip()).strip()
+            if text:
+                return text
+    return None
+
+
+def chapter_title(layer: Layer, ch_dir: Path | None = None) -> str:
+    """Название главы: layer.ext["core"]["title"] (поставляет П1) → первый заголовок главы из units.json → id главы."""
+    return layer.ext.get("core", {}).get("title") or heading_title(ch_dir) or layer.chapter
 
 
 def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
@@ -674,7 +696,9 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
              nodes=no_part)
 
     if not layer.ext.get("core", {}).get("title"):
-        warn("no_title", 'нет layer.ext["core"]["title"]: в заголовке курса показан id главы')
+        shown = heading_title(ch_dir)
+        warn("no_title", 'нет layer.ext["core"]["title"]: ' + (f"в заголовке курса первый заголовок главы из units.json: «{shown}»"
+                                                              if shown else "в заголовке курса показан id главы"))
 
     course = ch_dir / "course"
     (course / "assets").mkdir(parents=True, exist_ok=True)
@@ -702,7 +726,8 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
                 down_reason = down_reason or f.errors[0]
             else:
                 warn("step_text_fallback", msg, node=nid, errors=f.errors)
-    fresh = {nid: st.paragraphs for nid, st in step_text.items() if nid in orig and st.hash == node_hash(orig[nid])}
+    fresh = {nid: normalize_terms(orig[nid], st.paragraphs) for nid, st in step_text.items()
+             if nid in orig and st.hash == node_hash(orig[nid])}     # и текст, созданный до правил терминов, приводится к ним
     for nid, st in step_text.items():
         if nid in fresh:
             for msg in st.warnings:
@@ -771,7 +796,7 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
     meta = {"ch": ch, "steps": steps,
             "tasks": [{"id": t.id, "step_id": t.step_id, "claim_ids": t.claim_ids, "type": t.type, "kind": t.kind,
                        "prompt": mask_gaps(t.prompt), "explanation": t.explanation} for t in tasks]}
-    common = {"ch": ch, "chapter_title": chapter_title(layer), "has_errata": bool(errata), "steps": steps,
+    common = {"ch": ch, "chapter_title": chapter_title(layer, ch_dir), "has_errata": bool(errata), "steps": steps,
               "n_tasks": len(tasks), "meta": meta, "total_minutes": sum(s["minutes"] for s in steps)}
     titles = {n.id: n.title_novice or n.title for n in ordered}
 

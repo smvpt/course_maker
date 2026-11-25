@@ -661,6 +661,12 @@
     var n = meta.steps.filter(function (s) { return isDone(s.id); }).length;
     document.getElementById("progress-bar").style.width = Math.round(100 * n / meta.steps.length) + "%";
     document.getElementById("progress-text").textContent = "Пройдено " + n + " из " + meta.steps.length;
+    var ring = document.getElementById("ring-fg");
+    if (ring) {
+      var len = 2 * Math.PI * ring.r.baseVal.value;
+      ring.style.strokeDasharray = String(len);
+      ring.style.strokeDashoffset = String(len * (1 - n / meta.steps.length));
+    }
 
     var last = store.get(K.last, null);
     if (last && stepById[last]) {

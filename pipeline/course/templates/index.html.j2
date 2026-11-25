@@ -1,23 +1,24 @@
 {% extends "base.html.j2" %}
 {% block main %}
 {% set part_names = parts | map(attribute=0) | unique | list %}
-<section class="cover">
-  <p class="crumbs">Демо-курс по главе</p>
+<section class="cover hero">
+  <p class="kicker">Демо-курс по главе</p>
   <h1>{{ chapter_title }}</h1>
-  <p class="meta">{{ steps | length }} {{ steps | length | plural("шаг", "шага", "шагов") }} · ≈ {{ total_minutes }} мин{% if part_names | length > 1 %} · частей: {{ part_names | length }}{% endif %}</p>
+  <p class="meta">{{ steps | length }} {{ steps | length | plural("шаг", "шага", "шагов") }} · ≈ {{ total_minutes }} мин{% if n_tasks %} · {{ n_tasks }} {{ n_tasks | plural("задание", "задания", "заданий") }}{% endif %}{% if part_names | length > 1 %} · частей: {{ part_names | length }}{% endif %}</p>
 
   <a id="resume" class="resume-card" href="step-{{ steps[0].id }}.html">
+    <span class="ring" aria-hidden="true">
+      <svg viewBox="0 0 64 64" width="64" height="64"><circle class="ring-bg" cx="32" cy="32" r="28"/><circle class="ring-fg" id="ring-fg" cx="32" cy="32" r="28" transform="rotate(-90 32 32)"/></svg>
+      <span class="ring-play">{{ icon("play") }}</span>
+    </span>
     <span class="resume-text">
       <span class="resume-label" id="resume-label">Начать</span>
       <span class="resume-title" id="resume-title">{{ steps[0].title }}</span>
+      <span class="resume-sub" id="progress-text" aria-live="polite">Пройдено 0 из {{ steps | length }}</span>
     </span>
-    <span class="resume-play">{{ icon("play") }}<span class="sr">Открыть шаг</span></span>
+    <span class="sr">Открыть шаг</span>
   </a>
-
-  <div class="progress">
-    <div class="bar"><span id="progress-bar"></span></div>
-    <p id="progress-text" aria-live="polite">Пройдено 0 из {{ steps | length }}</p>
-  </div>
+  <div class="bar slim"><span id="progress-bar"></span></div>
 </section>
 
 <div class="index-controls">
@@ -38,7 +39,7 @@
 {% for part, nodes in parts %}
   <section class="part" data-part="{{ part }}">
     <h2>{{ part }}</h2>
-    <ol class="steps-list">
+    <ol class="steps-list timeline">
     {% for n in nodes %}
       {% set s = steps[ns.i] %}
       {% set ns.i = ns.i + 1 %}
@@ -47,14 +48,7 @@
           <span class="num">{{ ns.i }}</span>
           <span class="row-main">
             <span class="st-title">{{ s.title }}</span>
-            <span class="st-sub">Шаг {{ ns.i }} · ≈ {{ s.minutes }} мин</span>
-            {% if s.video or s.illus or s.tasks %}
-            <span class="row-icons">
-              {% if s.video %}<span class="ricon">{{ icon("video-camera") }}ролик</span>{% endif %}
-              {% if s.tasks %}<span class="ricon">{{ icon("exam") }}{{ s.tasks }} {{ s.tasks | plural("задание", "задания", "заданий") }}</span>{% endif %}
-              {% if s.illus %}<span class="ricon">{{ icon("image") }}{{ s.illus }} {{ s.illus | plural("иллюстрация", "иллюстрации", "иллюстраций") }}</span>{% endif %}
-            </span>
-            {% endif %}
+            <span class="st-meta">Шаг {{ ns.i }} · ≈ {{ s.minutes }} мин{% if s.tasks %} · {{ s.tasks }} {{ s.tasks | plural("задание", "задания", "заданий") }}{% endif %}{% if s.illus %} · {{ s.illus }} {{ s.illus | plural("иллюстрация", "иллюстрации", "иллюстраций") }}{% endif %}{% if s.video %} · {{ icon("video-camera") }}ролик{% endif %}</span>
           </span>
           <span class="row-end">
             {% if s.tasks %}<span class="badge" data-badge="{{ n.id }}" data-total="{{ s.tasks }}">решено 0/{{ s.tasks }}</span>{% endif %}
