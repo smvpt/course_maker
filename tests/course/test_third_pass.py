@@ -27,7 +27,7 @@ def test_progress_has_four_status_tabs_without_the_duplicate_legend(tmp_path):
     tabs = re.findall(r'<button type="button" data-tab="([a-z]+)"[^>]*>([^<]+?) <span', html)
     assert [t for t, _ in tabs] == ["new", "repeat", "reinforce", "mastered"]
     assert [l for _, l in tabs] == ["Не начато", "Повторить", "Закрепить", "Освоено"]
-    assert 'aria-label="Нужно повторить"' in html and "mastery-legend" not in html and "Нужно повторить: 0" not in html
+    assert 'title="Нужно повторить: есть неверные ответы"' in html and "mastery-legend" not in html and "Нужно повторить: 0" not in html
     assert 'id="mastery-pct">0% освоено' in html
 
 
@@ -102,7 +102,7 @@ def test_by_badges_only_with_the_switch_and_settings_in_the_menu(tmp_path):
     menu = re.search(r'<dialog id="menu".*?</dialog>', html, re.S).group(0)
     assert [m for m in re.findall(r'data-theme-set="([a-z]+)"', menu)] == ["system", "light", "dark"]
     assert "Показать, что из книги, а что пересказ" in menu and 'role="switch"' in menu and 'id="by-help"' in menu
-    assert 'aria-label="Решено заданий: 0 из' in menu and 'id="solved-count"' in menu                    # счётчик решённых — в меню
+    assert 'title="Решено заданий: 0 из' in menu and 'id="solved-count"' in menu                    # счётчик решённых — в меню
     assert re.search(r'id="toggle-by"[^>]*data-by-switch', html) and html.count("data-by-switch") == 3     # меню, карточка справа, строка под шапкой
     assert re.search(r"body:not\(\.show-by\) \.by-author, body:not\(\.show-by\) \.by-model \{ display: none; \}", CSS)
     assert "by-hypothesis" not in re.search(r"body:not\(\.show-by\)[^{]*\{", CSS).group(0)              # «гипотеза» видна всегда

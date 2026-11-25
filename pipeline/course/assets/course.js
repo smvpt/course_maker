@@ -140,7 +140,7 @@
     if (!counter) return;
     var solved = meta.tasks.filter(function (t) { return taskState(t.id) === "ok"; }).length;
     counter.textContent = String(solved);
-    document.getElementById("solved-link").setAttribute("aria-label", "Решено заданий: " + solved + " из " + meta.tasks.length);
+    document.getElementById("solved-link").title = "Решено заданий: " + solved + " из " + meta.tasks.length;      // имя ссылки — из видимого текста «Прогресс N»
   }
   updateCounter();
   document.querySelectorAll("li[data-node]").forEach(function (li) { li.classList.toggle("done", isDone(li.dataset.node)); });
@@ -408,6 +408,8 @@
       var tp = document.getElementById("tasks-progress");
       if (tp) tp.textContent = stepStats(nodeId).ok + " из " + taskList.length;
       document.getElementById("step-bar").style.width = Math.round(100 * okCount / boxes.length) + "%";
+      var inlineBar = document.querySelector(".step-bar-inline");
+      if (inlineBar) inlineBar.hidden = okCount === 0;                          // пустая серая линия под заголовком ничего не значит
       document.getElementById("step-progress-text").textContent = "Прогресс шага: " + okCount + " из " + boxes.length;
       var sideBar = document.getElementById("step-bar-side");
       if (sideBar) {
@@ -768,7 +770,9 @@
   /* ---------- путь ---------- */
   if (page === "index") {
     var n = meta.steps.filter(function (s) { return isDone(s.id); }).length;
-    document.getElementById("progress-text").textContent = "Пройдено " + n + " из " + meta.steps.length;
+    var progressText = document.getElementById("progress-text");
+    progressText.textContent = "Пройдено " + n + " из " + meta.steps.length;
+    progressText.hidden = n === 0;                                              // «Пройдено 0 из N» до начала — шум
     var ring = document.getElementById("ring-fg");
     if (ring) {
       var len = 2 * Math.PI * ring.r.baseVal.value;
@@ -1003,8 +1007,17 @@
     return found.slice(0, 12);
   }
   function snippet(text, ws, at) {
-    var from = Math.max(0, at - 50), cut = text.slice(from, from + 150), low = norm(cut), ranges = [];
-    ws.forEach(function (w) { for (var p = low.indexOf(w); p >= 0; p = low.indexOf(w, p + w.length)) ranges.push([p, p + w.length]); });
+    var from = Math.max(0, at - 50), to = Math.min(text.length, from + 150);
+    if (from > 0) { var sp = text.indexOf(" ", from); if (sp >= 0 && sp < at) from = sp + 1; }          // по границам слов: без «т множественные» и «нарушает пр…»
+    if (to < text.length) { var sp2 = text.lastIndexOf(" ", to); if (sp2 > at) to = sp2; }
+    var cut = text.slice(from, to), low = norm(cut), ranges = [];
+    ws.forEach(function (w) {
+      for (var p = low.indexOf(w); p >= 0; p = low.indexOf(w, p + w.length)) {
+        var end = p + w.length;
+        while (end < low.length && /[a-zа-я0-9]/.test(low.charAt(end))) end++;                           // подсвечиваем слово целиком, а не только основу
+        ranges.push([p, end]);
+      }
+    });
     ranges.sort(function (a, b) { return a[0] - b[0]; });
     var out = el("span", "sr-snippet"), pos = 0;
     if (from > 0) out.appendChild(document.createTextNode("… "));
@@ -1014,7 +1027,7 @@
       out.appendChild(el("mark", null, cut.slice(r[0], r[1])));
       pos = r[1];
     });
-    out.appendChild(document.createTextNode(cut.slice(pos) + (from + 150 < text.length ? " …" : "")));
+    out.appendChild(document.createTextNode(cut.slice(pos) + (to < text.length ? " …" : "")));
     return out;
   }
   function goTo(href) {
@@ -1164,6 +1177,13 @@
     if (store.get(K.hint, false)) hint.hidden = true;
     hint.querySelector("[data-hint-close]").addEventListener("click", function () { hint.hidden = true; store.set(K.hint, true); });
   }
+
+  /* ---------- субтитры ролика: реплики встроены в страницу (<track src> с file:// Chromium не загружает) ---------- */
+  document.querySelectorAll("track[data-cues]").forEach(function (t) {
+    var cues = JSON.parse(document.getElementById(t.dataset.cues).textContent), track = t.track;
+    cues.forEach(function (c) { track.addCue(new VTTCue(c.s, c.e, c.t)); });
+    track.mode = "showing";                                  // «вкл/выкл» — штатной кнопкой субтитров плеера
+  });
 
   /* ---------- возврат на то же место шага и клавиатура ---------- */
   if (page === "step" && stepData) {

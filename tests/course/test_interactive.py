@@ -381,7 +381,8 @@ def test_video_with_subtitles_beats_interactive(tmp_path, monkeypatch):
     course = build("mini_test", out_root=out, pages_dir=tmp_path / "pages", generate=True, extras=True)
     html = _html(course, RES)
     assert '<video controls' in html and 'src="media/%s/clip.mp4"' % RES in html
-    assert re.search(r'<track kind="subtitles" srclang="ru" label="[^"]+" src="media/[^"]+clip.vtt"', html)
+    assert re.search(r'<track kind="subtitles" srclang="ru" label="[^"]+" data-cues="cues-main" default>', html)         # реплики встроены: <track src> с file:// не грузится
+    assert json.loads(re.search(r'id="cues-main">(.*?)</script>', html, re.S).group(1)) == [{"s": 0.0, "e": 2.0, "t": "Привет"}]
     assert (course / f"media/{RES}/clip.vtt").exists() and (course / f"media/{RES}/clip.mp4").exists()
     assert 'id="b-interactive"' not in html and inter_calls == []
 

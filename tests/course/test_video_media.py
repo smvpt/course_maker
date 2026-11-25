@@ -1,5 +1,6 @@
 """Видео П4: out/<ch>/videos/<узел>.short|long/ с <video_id>.mp4, <video_id>.vtt и passport.json. Старый videos/<узел>/ — запасной."""
 import json
+import pytest
 import re
 from pathlib import Path
 
@@ -45,7 +46,9 @@ def test_short_video_is_the_main_player_with_subtitles_and_passport(tmp_path):
     _video(out, f"{RES}.short")
     course, html = _html(tmp_path, out)
     assert f'<video controls preload="metadata" src="media/{RES}.short/{RES}.short.mp4">' in html
-    assert re.search(rf'<track kind="subtitles" srclang="ru" label="[^"]+" src="media/{re.escape(RES)}\.short/{re.escape(RES)}\.short\.vtt"', html)
+    assert re.search(r'<track kind="subtitles" srclang="ru" label="[^"]+" data-cues="cues-main" default>', html)       # субтитры включены по умолчанию
+    assert json.loads(re.search(r'id="cues-main">(.*?)</script>', html, re.S).group(1)) == [{"s": 0.0, "e": 2.0, "t": "Привет"}]
+    assert ".vtt\"" not in html.split("<track")[1].split(">")[0]                                                       # <track src> с file:// Chromium блокирует
     assert f'href="media/{RES}.short/passport.json"' in html and html.count("<video") == 1
     for name in (f"{RES}.short.mp4", f"{RES}.short.vtt", "passport.json"):
         assert (course / f"media/{RES}.short/{name}").exists()
@@ -59,7 +62,7 @@ def test_long_video_is_a_second_player_under_more(tmp_path):
     assert html.count("<video") == 2
     main, more = html[html.index("<video"):].split("</video>")[:2]
     assert f"{RES}.short.mp4" in main and f"{RES}.long.mp4" in more
-    assert 'preload="none"' in more and f"{RES}.long.vtt" in more                 # второй плеер не грузится, пока не раскрыт
+    assert 'preload="none"' in more and 'data-cues="cues-more"' in more and 'id="cues-more"' in html     # второй плеер не грузится, пока не раскрыт
     assert "Подробнее: длинный разбор" in html and re.search(r"<details class=\"fold\">(?:(?!</details>).)*<video", html, re.S)
     assert f'href="media/{RES}.long/passport.json"' in html and f'href="media/{RES}.short/passport.json"' in html
     assert (course / f"media/{RES}.long/{RES}.long.mp4").exists()
@@ -100,7 +103,7 @@ def test_old_layout_by_node_id_still_works(tmp_path):
     _video(out, RES, mp4_name="clip.mp4")
     (out / f"mini_test/videos/{RES}/{RES}.vtt").rename(out / f"mini_test/videos/{RES}/clip.vtt")
     course, html = _html(tmp_path, out)
-    assert f'src="media/{RES}/clip.mp4"' in html and f'src="media/{RES}/clip.vtt"' in html
+    assert f'src="media/{RES}/clip.mp4"' in html and 'data-cues="cues-main"' in html and 'id="cues-main"' in html
 
 
 def test_video_dirs_order_and_index_icon(tmp_path):
@@ -121,3 +124,17 @@ def test_step_without_any_video_dir_has_no_media_block(tmp_path):
     out = _out(tmp_path)
     _, html = _html(tmp_path, out, PORO)
     assert 'id="b-media"' not in html
+
+
+def test_parse_vtt_handles_ids_settings_short_times_and_multiline_cues():
+    from pipeline.course.build import parse_vtt
+    text = "WEBVTT\n\nNOTE комментарий\n\n1\n00:00:01.500 --> 00:00:03,000 align:start\nПервая\nстрока\n\n00:03.000 --> 01:00:04.250\nВторая\n"
+    assert parse_vtt(text) == [{"s": 1.5, "e": 3.0, "t": "Первая строка"}, {"s": 3.0, "e": 3604.25, "t": "Вторая"}]
+    assert parse_vtt("WEBVTT\n") == []
+    with pytest.raises(ValueError, match="не разобрать время"):
+        parse_vtt("WEBVTT\n\nабв --> 00:02.000\nТекст\n")
+
+
+def test_subtitles_are_injected_by_js_from_the_page_not_loaded_from_a_file():
+    js = (ROOT / "pipeline/course/assets/course.js").read_text(encoding="utf-8")
+    assert 'track[data-cues]' in js and "new VTTCue(c.s, c.e, c.t)" in js and 'track.mode = "showing"' in js

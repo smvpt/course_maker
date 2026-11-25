@@ -64,7 +64,7 @@
   {% if v.prereqs %}
   <p class="prereq"><span class="prereq-label">Опирается на</span> {% for p in v.prereqs %}{% if p in titles %}<a class="prereq-chip" href="step-{{ p }}.html">{{ titles[p] }}</a>{% else %}<span class="prereq-chip">{{ p }}</span>{% endif %} {% endfor %}</p>
   {% endif %}
-  <div class="bar slim step-bar-inline" aria-hidden="true"><span id="step-bar"></span></div>
+  <div class="bar slim step-bar-inline" aria-hidden="true" hidden><span id="step-bar"></span></div>
   <p id="step-progress-text" class="sr" aria-live="polite">Прогресс шага: 0 из {{ v.check_items }}</p>
 </header>
 <div class="by-legend" role="note">
@@ -205,15 +205,17 @@
 <section id="b-media" class="block"><h3 class="block-h">{{ icon("video-camera") }}Ролик</h3>
   {% if v.media.kind == "video" %}
   <video controls preload="metadata" src="{{ v.media.src }}">
-    {% if v.media.vtt %}<track kind="subtitles" srclang="ru" label="Русские субтитры" src="{{ v.media.vtt }}" default>{% endif %}
+    {% if v.media.cues %}<track kind="subtitles" srclang="ru" label="Русские субтитры" data-cues="cues-main" default>{% endif %}
   </video>
+  {% if v.media.cues %}<script type="application/json" id="cues-main">{{ v.media.cues }}</script>{% endif %}
   {% if v.media.passport %}<p class="muted">Как сделан ролик: <a href="{{ v.media.passport }}">паспорт ролика</a>.</p>{% endif %}
   {% if v.media.more %}
   <p class="more-title"><strong>Подробнее: длинный разбор</strong></p>
   {% call fold("длинный разбор") %}
   <video controls preload="none" src="{{ v.media.more.src }}">
-    {% if v.media.more.vtt %}<track kind="subtitles" srclang="ru" label="Русские субтитры" src="{{ v.media.more.vtt }}" default>{% endif %}
+    {% if v.media.more.cues %}<track kind="subtitles" srclang="ru" label="Русские субтитры" data-cues="cues-more" default>{% endif %}
   </video>
+  {% if v.media.more.cues %}<script type="application/json" id="cues-more">{{ v.media.more.cues }}</script>{% endif %}
   {% if v.media.more.passport %}<p class="muted">Как сделан ролик: <a href="{{ v.media.more.passport }}">паспорт ролика</a>.</p>{% endif %}
   {% endcall %}
   {% endif %}

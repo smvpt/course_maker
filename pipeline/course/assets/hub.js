@@ -83,7 +83,7 @@
   requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.add("theme-ready"); }); });
   function paintTheme() {
     if (mode === "system") delete root.dataset.theme; else root.dataset.theme = mode;
-    document.getElementById("hub-theme-label").textContent = NAMES[mode];
+    document.getElementById("hub-theme-label").textContent = "Тема: " + NAMES[mode].toLowerCase();
     tbtn.title = "Тема: " + NAMES[mode].toLowerCase(); tbtn.setAttribute("aria-label", tbtn.title);
   }
   paintTheme();
@@ -111,8 +111,17 @@
     return found.slice(0, 12);
   }
   function snippet(text, ws, at) {
-    var from = Math.max(0, at - 50), cut = text.slice(from, from + 150), low = norm(cut), ranges = [];
-    ws.forEach(function (w) { for (var p = low.indexOf(w); p >= 0; p = low.indexOf(w, p + w.length)) ranges.push([p, p + w.length]); });
+    var from = Math.max(0, at - 50), to = Math.min(text.length, from + 150);
+    if (from > 0) { var sp = text.indexOf(" ", from); if (sp >= 0 && sp < at) from = sp + 1; }          // по границам слов: без «т множественные» и «нарушает пр…»
+    if (to < text.length) { var sp2 = text.lastIndexOf(" ", to); if (sp2 > at) to = sp2; }
+    var cut = text.slice(from, to), low = norm(cut), ranges = [];
+    ws.forEach(function (w) {
+      for (var p = low.indexOf(w); p >= 0; p = low.indexOf(w, p + w.length)) {
+        var end = p + w.length;
+        while (end < low.length && /[a-zа-я0-9]/.test(low.charAt(end))) end++;                           // подсвечиваем слово целиком, а не только основу
+        ranges.push([p, end]);
+      }
+    });
     ranges.sort(function (a, b) { return a[0] - b[0]; });
     var out = el("span", "sr-snippet"), pos = 0;
     if (from > 0) out.appendChild(document.createTextNode("… "));
@@ -122,7 +131,7 @@
       out.appendChild(el("mark", null, cut.slice(r[0], r[1])));
       pos = r[1];
     });
-    out.appendChild(document.createTextNode(cut.slice(pos) + (from + 150 < text.length ? " …" : "")));
+    out.appendChild(document.createTextNode(cut.slice(pos) + (to < text.length ? " …" : "")));
     return out;
   }
   function close() { box.hidden = true; input.setAttribute("aria-expanded", "false"); }

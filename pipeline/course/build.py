@@ -562,6 +562,34 @@ def _has_video(ch_dir: Path, node_id: str) -> bool:
     return any(_mp4(vid, d) for _, vid, d in video_dirs(ch_dir, node_id))
 
 
+_VTT_TIME = re.compile(r"(?:(\d+):)?(\d{1,2}):(\d{2})[.,](\d{1,3})")
+
+
+def _vtt_seconds(t: str) -> float:
+    m = _VTT_TIME.fullmatch(t.strip())
+    if not m:
+        raise ValueError(f"субтитры: не разобрать время {t!r}")
+    h, mi, s, ms = m.groups()
+    return int(h or 0) * 3600 + int(mi) * 60 + int(s) + int(ms.ljust(3, "0")) / 1000
+
+
+def parse_vtt(text: str) -> list[dict]:
+    """Реплики WebVTT → [{s, e, t}] (секунды). Субтитры встраиваются в страницу: Chromium не загружает <track src> с file://
+    («'file:' URLs are treated as unique security origins»), а курс открывается двойным кликом."""
+    cues = []
+    for block in re.split(r"\r?\n\r?\n+", text.strip().lstrip(chr(0xFEFF))):
+        lines = [l for l in block.splitlines() if l.strip()]
+        i = next((k for k, l in enumerate(lines) if "-->" in l), None)
+        if i is None:
+            continue                                        # заголовок WEBVTT, NOTE, STYLE
+        start, _, rest = lines[i].partition("-->")
+        end = rest.strip().split()[0] if rest.strip() else ""
+        body = " ".join(l.strip() for l in lines[i + 1:])
+        if body:
+            cues.append({"s": _vtt_seconds(start), "e": _vtt_seconds(end), "t": body})
+    return cues
+
+
 def _player(vid: str, d: Path, mp4: Path, course: Path) -> dict:
     dst = course / "media" / vid
     dst.mkdir(parents=True, exist_ok=True)
@@ -570,9 +598,12 @@ def _player(vid: str, d: Path, mp4: Path, course: Path) -> dict:
     if not vtt.exists():
         others = sorted(d.glob("*.vtt"))
         vtt = others[0] if others else None
+    cues = None
     if vtt is not None:
-        shutil.copy2(vtt, dst / vtt.name)
-    return {"src": f"media/{vid}/{mp4.name}", "vtt": f"media/{vid}/{vtt.name}" if vtt else None, "passport": _passport(vid, d, course)}
+        shutil.copy2(vtt, dst / vtt.name)                  # файл остаётся рядом (скачать), но плеер берёт реплики из страницы: см. parse_vtt
+        cues = parse_vtt(vtt.read_text(encoding="utf-8"))
+    return {"src": f"media/{vid}/{mp4.name}", "vtt": f"media/{vid}/{vtt.name}" if vtt else None,
+            "cues": Markup(json.dumps(cues, ensure_ascii=False).replace("</", "<\\/")) if cues else None, "passport": _passport(vid, d, course)}
 
 
 def _passport(vid: str, d: Path, course: Path) -> str | None:

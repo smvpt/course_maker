@@ -52,7 +52,7 @@ a { color: var(--ui-link); text-underline-offset: 2px; }
 .resume-card { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: 1rem 0; padding: 1rem 1.1rem;
   background: var(--ui-accent); color: var(--ui-on-accent); border-radius: var(--radius); text-decoration: none; }
 .resume-text { display: flex; flex-direction: column; min-width: 0; }
-.resume-label { opacity: .9; font-weight: 600; }
+.resume-label { font-weight: 600; }
 .resume-title { font-size: 1.2rem; font-weight: 700; line-height: 1.3; }
 .resume-play { flex: none; display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: 50%; background: rgba(255, 255, 255, .2); }
 .resume-play .ic { width: 1.5rem; height: 1.5rem; }
@@ -367,7 +367,7 @@ body.only-repeat .card:not(.mark-repeat) { display: none; }
 .ring-play .ic { width: 1.5rem; height: 1.5rem; margin: 0; vertical-align: 0; }
 .resume-text { flex: 1 1 auto; }
 .resume-title { font-size: 1.25rem; }
-.resume-sub { opacity: .9; }
+.resume-sub { color: var(--ui-on-accent); }
 
 /* список шагов — таймлайн: вертикальная линия, кружки статусов, компактные карточки */
 .timeline { position: relative; padding-left: 0; }

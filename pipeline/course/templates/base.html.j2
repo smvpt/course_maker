@@ -26,7 +26,7 @@
   <div class="search" role="search">
     <label class="sr" for="search-input">Поиск по курсу</label>
     <span class="search-ic" aria-hidden="true">{{ icon("magnifying-glass") }}</span>
-    <input id="search-input" type="search" placeholder="Найти термин или тему" autocomplete="off" spellcheck="false" aria-controls="search-results" aria-expanded="false">
+    <input id="search-input" type="search" role="combobox" aria-autocomplete="list" placeholder="Найти термин или тему" autocomplete="off" spellcheck="false" aria-controls="search-results" aria-expanded="false">
     <kbd class="search-key" aria-hidden="true">/</kbd>
     <div id="search-results" class="search-results" role="listbox" aria-label="Результаты поиска" hidden></div>
   </div>
@@ -53,7 +53,7 @@
     </ul>
     <h3 class="menu-group">Повторение</h3>
     <ul class="menu-list">
-      {% if n_tasks %}<li><a href="progress.html"{% if page == "progress" %} aria-current="page"{% endif %} id="solved-link" aria-label="Решено заданий: 0 из {{ n_tasks }}">{{ icon("chart-bar") }}<span>Прогресс</span><span class="menu-count" id="solved-count" aria-hidden="true">0</span></a></li>
+      {% if n_tasks %}<li><a href="progress.html"{% if page == "progress" %} aria-current="page"{% endif %} id="solved-link" title="Решено заданий: 0 из {{ n_tasks }}">{{ icon("chart-bar") }}<span>Прогресс</span><span class="menu-count" id="solved-count">0</span><span class="sr" id="solved-sr"> из {{ n_tasks }} заданий решено</span></a></li>
       <li><a href="mistakes.html"{% if page == "mistakes" %} aria-current="page"{% endif %}>{{ icon("arrow-counter-clockwise") }}<span>Ошибки</span></a></li>{% endif %}
       <li><a href="cards.html"{% if page == "cards" %} aria-current="page"{% endif %}>{{ icon("cards") }}<span>Карточки</span></a></li>
     </ul>

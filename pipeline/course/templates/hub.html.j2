@@ -20,12 +20,12 @@
   <div class="search" role="search">
     <label class="sr" for="search-input">Поиск по всем курсам</label>
     <span class="search-ic" aria-hidden="true">{{ icon("magnifying-glass") }}</span>
-    <input id="search-input" type="search" placeholder="Найти термин или тему во всех курсах" autocomplete="off" spellcheck="false" aria-controls="search-results" aria-expanded="false">
+    <input id="search-input" type="search" role="combobox" aria-autocomplete="list" placeholder="Найти термин или тему во всех курсах" autocomplete="off" spellcheck="false" aria-controls="search-results" aria-expanded="false">
     <kbd class="search-key" aria-hidden="true">/</kbd>
     <div id="search-results" class="search-results" role="listbox" aria-label="Результаты поиска" hidden></div>
   </div>
   <button type="button" id="open-search" class="tool search-toggle" aria-label="Поиск" title="Поиск (клавиша /)" aria-expanded="false">{{ icon("magnifying-glass") }}</button>
-  <button type="button" id="hub-theme" class="tool menu-btn" title="Тема: системная" aria-label="Тема: системная">{{ icon("desktop") }}<span class="menu-label" id="hub-theme-label">Системная</span></button>
+  <button type="button" id="hub-theme" class="tool menu-btn" title="Тема: системная" aria-label="Тема: системная">{{ icon("desktop") }}<span class="menu-label" id="hub-theme-label">Тема: системная</span></button>
 </header>
 <main id="content" tabindex="-1" class="hub">
   <section class="hub-hero">
