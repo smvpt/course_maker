@@ -1,0 +1,219 @@
+{
+  "template": "T2",
+  "title": "Каротаж: измерение → правило → вывод",
+  "covers_difficulty": [
+    "И",
+    "Пр",
+    "Н"
+  ],
+  "model": "Прибор на кабеле движется по стволу вниз; кривые из LAS раскрываются до текущей глубины прибора; правило применяется к значениям кривых на каждой глубине. Пропуски данных остаются пропусками.",
+  "state_variable": "глубина прибора: одна переменная задаёт положение прибора, раскрытие кривых и колонки решения",
+  "requires_dataset": true,
+  "params": {
+    "dataset": {
+      "required": true,
+      "kind": "dataset",
+      "meaning": "путь к описанию набора данных (dataset.json) — подставляет код из --dataset"
+    },
+    "borehole_diameter_m": {
+      "required": true,
+      "kind": "dataset",
+      "unit": "м",
+      "meaning": "диаметр ствола — подставляет код из описания набора данных"
+    },
+    "curves": {
+      "required": true,
+      "kind": "display",
+      "meaning": "кривые: список {mnemonic, kind, unit, label}; mnemonic и unit точно как в LAS; kind — ключ curves стайлгайда; label — обозначение русской школы ГИС"
+    },
+    "interval_m": {
+      "required": true,
+      "kind": "display",
+      "unit": "м",
+      "meaning": "[верх, низ] показываемого интервала в пределах данных"
+    },
+    "rule": {
+      "required": true,
+      "kind": "rule",
+      "meaning": "{status: «из узла» или «условное», conditions: [{curve: мнемоника, op: «<», «>», «<=» или «>=», value: число в единицах кривой}], conclusion, caveat}"
+    },
+    "borehole_exaggeration": {
+      "required": false,
+      "default": 1,
+      "kind": "display",
+      "meaning": "во сколько раз ствол и прибор шире истинного на кадрах с плашкой «не в масштабе»"
+    },
+    "evolve_shot_ids": {
+      "required": false,
+      "default": null,
+      "kind": "display",
+      "meaning": "кадры, на фразах которых прибор движется вниз; null — все кадры"
+    }
+  },
+  "param_kinds": {
+    "dataset": "подставляет код из описания набора данных (--dataset); модель эти значения не задаёт и не меняет",
+    "display": "выбор показа: какие кривые и какой интервал из доступных в наборе данных",
+    "rule": "правило интерпретации: status «из узла» — пороги только из утверждений узла, с источником в param_sources.rule; status «условное» — демонстрационное правило, в кадре подписывается «условное правило»"
+  },
+  "frame_rules": [
+    "все кадры — класс A с меткой набора данных: «симуляция» для синтетических данных, «реальные данные» только при подтверждённом происхождении набора",
+    "ствол и прибор — схема: код рисует их с отдельной меткой «схема», в shots это не отражается",
+    "conclusion — осторожный вывод («кандидат для испытания», «нужна проверка»); высокое сопротивление не объявляется доказательством нефти; caveat обязателен и называет ограничение правила",
+    "если borehole_exaggeration > 1: у кадров с увеличенным стволом плашка «не в масштабе: ствол шире в N раз» с N = borehole_exaggeration, то же N — в exaggerations, и есть кадр истинного масштаба (true_scale_shot_id) без плашки",
+    "если borehole_exaggeration = 1: плашек нет",
+    "evolve_shot_ids — кадры, на фразах которых прибор идёт вниз; на вопросе-предсказании и в финале прибор стоит"
+  ],
+  "curve_kinds": {
+    "GR": {
+      "units": [
+        "API",
+        "GAPI"
+      ],
+      "log": false
+    },
+    "SP": {
+      "units": [
+        "MV"
+      ],
+      "log": false
+    },
+    "RES": {
+      "units": [
+        "OHMM",
+        "OHM.M",
+        "OHM-M"
+      ],
+      "log": true
+    },
+    "RES_SHALLOW": {
+      "units": [
+        "OHMM",
+        "OHM.M",
+        "OHM-M"
+      ],
+      "log": true
+    },
+    "NEUTRON": {
+      "units": [
+        "V/V",
+        "DEC",
+        "PU",
+        "%",
+        "V/V_DECIMAL"
+      ],
+      "log": false
+    },
+    "DENSITY": {
+      "units": [
+        "G/C3",
+        "G/CM3",
+        "K/M3"
+      ],
+      "log": false
+    },
+    "SONIC": {
+      "units": [
+        "US/F",
+        "US/M"
+      ],
+      "log": false
+    },
+    "CALIPER": {
+      "units": [
+        "IN",
+        "MM",
+        "CM",
+        "M",
+        "INCHES"
+      ],
+      "log": false
+    }
+  },
+  "unit_display": {
+    "API": "API",
+    "GAPI": "API",
+    "MV": "мВ",
+    "OHMM": "Ом·м",
+    "OHM.M": "Ом·м",
+    "OHM-M": "Ом·м",
+    "V/V": "д. ед.",
+    "DEC": "д. ед.",
+    "PU": "%",
+    "%": "%",
+    "G/C3": "г/см³",
+    "G/CM3": "г/см³",
+    "K/M3": "кг/м³",
+    "US/F": "мкс/фут",
+    "US/M": "мкс/м",
+    "IN": "дюйм",
+    "MM": "мм",
+    "CM": "см",
+    "M": "м",
+    "V/V_DECIMAL": "д. ед.",
+    "INCHES": "дюйм"
+  },
+  "depth_units": {
+    "M": 1.0,
+    "FT": 0.3048,
+    "F": 0.3048
+  },
+  "forbidden_conclusion_words": [
+    "нефт",
+    "газонос",
+    "доказ"
+  ],
+  "limits": {
+    "max_curves": 3,
+    "max_label_chars": 12,
+    "min_valid_fraction": 0.5,
+    "min_interval_m": 5,
+    "max_borehole_fraction_of_panel": 0.6
+  },
+  "display": {
+    "chain": [
+      "измерение",
+      "правило",
+      "вывод"
+    ],
+    "school_label": "обозначения: русская школа ГИС",
+    "nominal_panel_height_px": 440,
+    "nominal_borehole_panel_px": 220,
+    "rule_true_color": "text",
+    "rule_unknown_color": "uncertainty.color",
+    "tool_color": "measurement.color",
+    "mud_color": "fluids.mud.color",
+    "schema_panels": {
+      "ствол и прибор": "схема"
+    }
+  },
+  "length_units": {
+    "M": 1.0,
+    "CM": 0.01,
+    "MM": 0.001,
+    "IN": 0.0254,
+    "INCHES": 0.0254
+  },
+  "physics_checklist": {
+    "not_applicable": {
+      "pc.layers_order": "T2 показывает кривые по глубине, геометрия слоёв не рисуется",
+      "pc.fault_consistent": "разломы не рисуются",
+      "pc.unconformity_event": "несогласия не рисуются",
+      "pc.fluids_in_pores": "флюиды не изображаются",
+      "pc.gas_oil_water": "флюидальные контакты не рисуются",
+      "pc.flow_high_to_low": "течение не изображается",
+      "pc.balance": "процесс с балансом массы не изображается",
+      "pc.hydrostatic": "давление в стволе не изображается",
+      "pc.gas_closed_well": "газ в стволе не изображается",
+      "pc.pit_gain": "приёмные ёмкости не показываются",
+      "pc.well_construction": "колонны и пакеры не рисуются: ствол — схема без конструкции"
+    },
+    "auto": {
+      "pc.curve_sync": "one_state_variable",
+      "pc.views_consistent": "one_state_variable",
+      "pc.depth_down": "depth_down",
+      "pc.exaggeration_named": "plaques_have_number",
+      "pc.label_matches": "label_matches_source",
+      "pc.objects_stable": "objects_fixed_geometry"
+    }
+  }
+}

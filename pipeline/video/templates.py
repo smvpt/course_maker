@@ -1,0 +1,57 @@
+"""Шаблоны сцен, которые знает видео-модуль: что каждый показывает (для промпта спецификации).
+
+Код шаблонов T1–T4 появится позже; здесь только их назначение, одинаковое с маршрутизацией ядра.
+"""
+
+TEMPLATE_INFO = {
+    "T1": "поле давления и фильтрация: давление в пласте и течение во времени, рядом график профиля "
+          "в тот же момент; одна переменная времени управляет и полем, и графиком",
+    "T2": "косвенное измерение: прибор движется по стволу мимо пластов и рисует кривые; "
+          "показания → правило интерпретации → вывод",
+    "T3": "рост тела и слоёв во времени: накопление слоёв, строение в разрезе и в плане синхронно",
+    "T4": "ствол скважины: бурение, долото, колонна, промывка, давление столба жидкости по глубине",
+}
+
+# формат маршрутизации → формат ролика, кадр
+VIDEO_FORMATS = {"шортс": "short", "длинное видео": "long"}
+ASPECT = {"short": "шортс 9:16, вертикальный кадр", "long": "разбор 16:9, горизонтальный кадр"}
+# Какие форматы собирает каждый реализованный шаблон. Общий источник для video.spec (проверка до LLM)
+# и video.build. Шаблона нет в таблице — рендер для него ещё не реализован, спецификация допустима.
+TEMPLATE_FORMATS = {"hello": {"short"}, "T1": {"short"}, "T2": {"long"}, "T3": {"short"}, "T4": {"short"}}
+
+
+def format_problem(template: str, fmt: str) -> str | None:
+    allowed = TEMPLATE_FORMATS.get(template)
+    if allowed is not None and fmt not in allowed:
+        return f"шаблон {template} собирается только в формате {sorted(allowed)}, запрошен {fmt}"
+    return None
+
+
+def load_template_config(templates_dir, template: str) -> dict | None:
+    """domain/<домен>/templates/<шаблон>.json или None, если шаблон ещё не описан."""
+    import json
+    from pathlib import Path
+    path = Path(templates_dir) / f"{template}.json"
+    return json.loads(path.read_text(encoding="utf-8")) if path.is_file() else None
+
+
+def template_contract(template: str, cfg: dict | None) -> str:
+    """Текст для промпта спецификации: параметры шаблона, их виды и правила кадров — из конфигурации."""
+    if cfg is None:
+        return (f"Параметры шаблона {template} пока не описаны в доменном пакете: params — качественные ключи "
+                f"по смыслу сцены; param_sources — пустой объект, missing_params — пустой список.")
+    lines = [f"Шаблон {template} — {cfg['title']}. Модель: {cfg['model']}", "",
+             "params — только эти ключи:"]
+    for key, d in cfg["params"].items():
+        need = "обязательный" if d.get("required") else f"необязательный, по умолчанию {d.get('default')}"
+        unit = f"{d['unit']}; " if d.get("unit") else ""
+        lines.append(f"- {key} ({unit}{d.get('kind', 'display')}; {need}): {d['meaning']}")
+    lines += ["", "Виды параметров:"] + [f"- {k}: {v}" for k, v in cfg.get("param_kinds", {}).items()]
+    lines += ["", "Правила кадров:"] + [f"- {r}" for r in cfg.get("frame_rules", [])]
+    lines += ["", "Источники физических параметров: для каждого параметра вида physical заполни "
+              "param_sources[ключ] = {claim_ids: [id утверждений узла], numbers: [числа точно так, как они "
+              "написаны в тексте или цитате этих утверждений], derivation: как из них получено значение и "
+              "пересчёт единиц, factor: множитель пересчёта единиц}. Если число одно, значение параметра обязано равняться числу × factor "
+              "(например, 215,9 мм → 0,2159 м: factor 0.001; без пересчёта factor 1). Если нужного числа в узле нет — не придумывай: не включай параметр в params "
+              "и перечисли его ключ в missing_params."]
+    return "\n".join(lines)

@@ -1,0 +1,16 @@
+# Видео (П4). Python 3.12.10 (64-bit). Проверено на Windows 11 в .venv.
+# Внешние программы (не pip): FFmpeg/ffprobe с libx264 — см. manifest/video.md.
+# pydantic, pytest, PyYAML, python-dotenv (и litellm для реальных LLM-вызовов video.spec)
+# пинит requirements/core.txt (П1); в .venv П4 проверено с pydantic==2.13.5, pytest==9.2.0,
+# PyYAML==6.0.3, python-dotenv==1.2.4 — версии ядра.
+manim==0.22.1
+edge-tts==7.3.1
+# T1: расчёт поля давления (scipy.special.exp1, brentq); обе ставятся и с manim, пины — явно
+numpy==2.5.5
+scipy==1.18.1
+# T2: чтение LAS
+lasio==0.34
+# паспорт: локальное распознавание озвучки (модель small скачивается в кэш Hugging Face пользователя)
+faster-whisper==1.2.1
+# проверка паспорта по passport.schema.json; та же версия, что в requirements/core.txt
+jsonschema==4.26.0

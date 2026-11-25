@@ -1,0 +1,35 @@
+{
+  "kind": "real",
+  "las": "159-19A_LFP.las",
+  "sha256": "92537d18afb6608818c635c77b0d1493fbdbe8ccaaf83e48d755411f23e6e7b6",
+  "source": "Открытые данные Volve (Equinor). Файл из выборки andymcdgeo/spwla_volve (папка 15_9-19A) — ссылка указана в инструкции организаторов «Открытые данные: Volve и F3» (проверены 25.11.2026)",
+  "license": "Данные Volve, Equinor ASA и бывшие партнёры по лицензии Volve. Использование — для учёбы и исследований, данные нельзя перепродавать (условия из инструкции организаторов). У репозитория andymcdgeo/spwla_volve отдельного файла лицензии нет (GitHub API: license = null)",
+  "attribution": "Volve, Equinor ASA и бывшие партнёры по лицензии Volve; скв. 15/9-19 A",
+  "download": {
+    "url": "https://raw.githubusercontent.com/andymcdgeo/spwla_volve/main/15_9-19A/159-19A_LFP.las",
+    "repository_commit": "c293edf37c1b567b8dc9c81ea88f2cf288eab423",
+    "downloaded": "2026-11-25",
+    "bytes": 8810367,
+    "line_endings": "LF; в Git хранится как есть (fixtures/video/.gitattributes: *.las -text)"
+  },
+  "well": "15/9-19",
+  "uwi": "NO 15/9-19 A",
+  "interval_m": [3790, 3875],
+  "units": {
+    "DEPTH": "M",
+    "LFP_GR": "API",
+    "LFP_RT": "OHM.M",
+    "LFP_NPHI": "V/V_DECIMAL",
+    "LFP_CALI": "INCHES",
+    "LFP_VSH": "V/V_DECIMAL"
+  },
+  "curve_types": {
+    "LFP_GR": "measured",
+    "LFP_RT": "measured",
+    "LFP_NPHI": "measured",
+    "LFP_CALI": "measured",
+    "LFP_VSH": "interpreted"
+  },
+  "borehole_diameter_from_curve": "LFP_CALI",
+  "note": "Файл — экспорт проекта Geolog LFP из OpenWorks (2018-04-30): кривые GR, RT, NPHI, CALI по инструкции организаторов — каротаж (здесь measured), но это кондиционированные кривые проекта, а не подтверждённая исходная запись прибора. LFP_VSH — результат интерпретации (глинистость), объявлен как interpreted. WELL в LAS — «15/9-19», UWI — «NO 15/9-19 A». Шаг глубины 0,1523–0,1526 м (неравномерный). Интервал 3790–3875 м выбран так: GR, RT, NPHI, CALI без пропусков; LFP_BADDATA = 0; ниже окна на 3878,9–3879,2 м — 3 отсчёта RT до 1921 Ом·м (оставлены в данных, в окно не входят, чтобы не сжимать логарифмическую шкалу). В файле есть выбросы вне окна: LFP_NPHI > 1 д. ед. (5 отсчётов), LFP_GR ≤ 0 или > 300 API (44 отсчёта) — не исправлялись."
+}
