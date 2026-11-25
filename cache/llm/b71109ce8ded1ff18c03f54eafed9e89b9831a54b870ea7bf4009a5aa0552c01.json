@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"Конус выноса промоины — пластоподобное или линзовидное тело с эрозионной подошвой и последовательностью текстур, отражающей убывание силы потока\",\"page_pdf\":35}",
+ "model": "gemini/gemini-3.5-flash",
+ "model_requested": "gemini/gemini-3.5-flash",
+ "prompt": "core/quote_fix",
+ "tokens_in": 5216,
+ "tokens_out": 1263,
+ "money_usd": 0.00864825,
+ "attempts": 1
+}

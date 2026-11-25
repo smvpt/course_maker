@@ -1,0 +1,10 @@
+{
+ "text": "{\"description\":\"На изображении представлено фото образца горной породы с поверхности напластования дельтовых фаций. На круглой или овальной поверхности породы видны многочисленные мелкие тёмные включения растительного детрита.\",\"legend\":null,\"readable\":true,\"unreadable\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash",
+ "prompt": "core/figure_describe",
+ "tokens_in": 2185,
+ "tokens_out": 68,
+ "money_usd": 0.0008255,
+ "attempts": 1
+}

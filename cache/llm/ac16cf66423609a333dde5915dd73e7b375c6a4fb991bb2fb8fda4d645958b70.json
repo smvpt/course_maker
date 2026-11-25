@@ -1,0 +1,10 @@
+{
+ "text": "{\"description\":\"На рисунке представлена трехмерная геологическая блок-диаграмма фронта дельты и нижней дельтовой равнины с набором из четырех вертикальных фациальных колонок (разрезов), обозначенных буквами (a), (b), (c) и (d).\\n\\nНа вертикальных колонках отложена глубина/мощность в футах (ft):\\n- (a) Estuarine distributary complex (отметки 0, 10, 20, 30 ft);\\n- (b) Transitional estuarine to tidally modified distributary mouth bar (отметки 0, 10, 20 ft);\\n- (c) Proximal tidal sandridge (отметки 0, 10 ft);\\n- (d) Distal tidal sandridge (отметки 0, 10 ft).\\n\\nНа самом 3D-блоке указаны горизонтальные линейные масштабы вдоль ребер основания: «0», «600 m». Кружки с буквами (a), (b), (c), (d) связывают конкретные участки трехмерного тела с соответствующими фациальными колонками فوق.\\n\\nГлавное назначение рисунка — проиллюстрировать пространственное распределение фациальных комплексов приливной дельты (эоценовая свита Мисоа, Венесуэла) и показать изменение характера отложений (от протоковых комплексов до дистальных песчаных гряд) по мере продвижения от дельтовой равнины к бассейну.\",\"legend\":\"Подписи на языке оригинала:\\n- (a) Estuarine distributary complex\\n- (b) Transitional estuarine to tidally modified distributary mouth bar\\n- (c) Proximal tidal sandridge\\n- (d) Distal tidal sandridge\\n- Interdistributary zones\\n- Tidal sandridges\",\"readable\":true,\"unreadable\":null}",
+ "model": "gemini/gemini-3.5-flash",
+ "model_requested": "gemini/gemini-3.5-flash",
+ "prompt": "core/figure_describe",
+ "tokens_in": 2177,
+ "tokens_out": 1420,
+ "money_usd": 0.00695775,
+ "attempts": 1
+}

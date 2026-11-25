@@ -1,0 +1,9 @@
+{
+ "text": "{\"found\":true,\"quote\":\"Фациальная ассоциация отмирания дельты включает те фации, которые накапливаются вследствие отмирания дельты или ее лопасти.\",\"page_pdf\":33}",
+ "model": "gemini/gemini-3.5-flash",
+ "prompt": "core/quote_fix",
+ "tokens_in": 1516,
+ "tokens_out": 1367,
+ "money_usd": 0.00626325,
+ "attempts": 1
+}

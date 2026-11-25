@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"Обычно различают следующие фации дельт:\\n\\n•протоковые;\\n•прирусловых валов;\\n•межпротоковых понижений;\\n•заливов и лагун;\\n•авандельт — бары, косы, западинные, торфяные, водорослевые и горючесланцевые.\",\"page_pdf\":32}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash",
+ "prompt": "core/quote_fix",
+ "tokens_in": 1943,
+ "tokens_out": 98,
+ "money_usd": 0.0008279000000000001,
+ "attempts": 1
+}

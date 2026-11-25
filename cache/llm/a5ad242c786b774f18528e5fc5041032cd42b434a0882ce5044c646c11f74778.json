@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"Дельты состоят из:\\n- субаэральной части конуса дельты [subaerial delta] — дельтовой равнины,\\n- авандельты [avandelta] — крутонаклонной подводной грубообломочной части конуса дельты;\\n- продельты [prodelta] — пологой тонкообломочной (алеврито-пелитовой) части конуса дельты\",\"page_pdf\":30}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash",
+ "prompt": "core/quote_fix",
+ "tokens_in": 2682,
+ "tokens_out": 120,
+ "money_usd": 0.0011045999999999999,
+ "attempts": 1
+}

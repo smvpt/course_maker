@@ -1,0 +1,10 @@
+{
+ "text": "{\"description\":\"На рисунке представлено фото керна (палеопочва, венчающая прослой угля зарастающей дельты, верхняя юра, скв. Западно-Моисеевская-30). Главная цель иллюстрации — показать внешний вид палеопочвы, венчающей прослой угля в отложениях зарастающей дельты.\",\"legend\":null,\"readable\":true,\"unreadable\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash",
+ "prompt": "core/figure_describe",
+ "tokens_in": 1737,
+ "tokens_out": 105,
+ "money_usd": 0.0007836,
+ "attempts": 1
+}

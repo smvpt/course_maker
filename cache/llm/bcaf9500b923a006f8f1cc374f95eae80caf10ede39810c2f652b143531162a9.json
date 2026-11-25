@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"Фронт дельт представлен разрезами с увеличением зернистости вверх, похожими на разрезы продвигающихся пляжевых фронтов.\",\"page_pdf\":40}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash",
+ "prompt": "core/quote_fix",
+ "tokens_in": 3504,
+ "tokens_out": 51,
+ "money_usd": 0.0011787,
+ "attempts": 1
+}

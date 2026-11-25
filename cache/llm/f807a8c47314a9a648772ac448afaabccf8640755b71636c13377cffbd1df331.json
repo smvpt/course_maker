@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"Фациальная ассоциация отмирания дельты включает те фации, которые накапливаются вследствие отмирания дельты или ее лопасти. Фации отмирания — это тонкие, латерально выдержанные маркирующие слои\",\"page_pdf\":33}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash",
+ "prompt": "core/quote_fix",
+ "tokens_in": 1932,
+ "tokens_out": 72,
+ "money_usd": 0.0007596,
+ "attempts": 1
+}

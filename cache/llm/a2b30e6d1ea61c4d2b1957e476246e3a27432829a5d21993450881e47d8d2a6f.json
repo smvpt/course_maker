@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"Разрезы фронтов дельт характеризуются существенными различиями. Как правило, они начинаются с мощного однородного интервала аргиллитов — алевролитов, осажденных из взвеси у основания фронта дельты\",\"page_pdf\":39}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash",
+ "prompt": "core/quote_fix",
+ "tokens_in": 5215,
+ "tokens_out": 70,
+ "money_usd": 0.0017395,
+ "attempts": 1
+}
