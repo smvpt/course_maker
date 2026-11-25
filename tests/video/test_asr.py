@@ -140,3 +140,32 @@ def test_deleted_word_inside_term_keeps_heard_fragment():
     r = term_report([("p1", "нейтронная пористость пласта")], ["нейтронная", "пласта"], ["нейтронная пористость"])
     o = r["occurrences"][0]
     assert o["ok"] is False and o["heard"] == ["нейтронная"]
+
+
+def test_hyphenated_tts_word_compares_only_known_boundaries():
+    # edge-tts даёт «гамма-каротаж» одной меткой; внутренняя граница неизвестна и не сравнивается
+    tts = [(1.0, 2.0, "гамма-каротаж")]
+    asr = [(1.0, 1.45, "гамма", True), (1.5, 2.0, "каротаж", False)]
+    r = sync_report(tts, asr, limit_s=0.5)
+    assert r["ok"] is True and r["uncertain_words"] == [] and r["matched_words"] == 2
+
+
+def test_hyphenated_word_shift_is_still_detected():
+    tts = [(1.0, 2.0, "гамма-каротаж")]
+    asr = [(1.8, 2.3, "гамма", True), (2.35, 2.8, "каротаж", False)]          # всё слово сдвинуто на 0,8 с
+    r = sync_report(tts, asr, limit_s=0.5)
+    assert r["ok"] is None and len(r["uncertain_words"]) == 2                  # по одной известной границе на часть
+
+
+def test_single_known_boundary_over_limit_is_not_success():
+    r = sync_report([(1.0, 2.0, "гамма-каротаж")], [(1.0, 1.45, "гамма", True), (1.5, 2.7, "каротаж", False)],
+                    limit_s=0.5)
+    assert r["ok"] is None and r["uncertain_words"][0]["word"] == "каротаж"
+
+
+def test_no_measurable_boundaries_is_unverified_without_numbers():
+    # регрессия: у совпавшего слова нет ни одной известной границы — раньше StatisticsError
+    r = sync_report([(1.0, 3.0, "альфа-бета-гамма")], [(1.6, 2.0, "бета")], limit_s=0.5)
+    assert r["ok"] is None and r["status"] == "не проверено"
+    assert r["matched_words"] == 1 and r["unmeasured_words"] == 1
+    assert r.get("max_abs_s") is None and r.get("median_abs_s") is None and r.get("p95_abs_s") is None
