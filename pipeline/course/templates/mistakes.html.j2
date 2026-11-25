@@ -1,7 +1,9 @@
 {% extends "base.html.j2" %}
+{% from "_macros.html.j2" import review_tabs %}
 {% block title %}Мои ошибки — {{ chapter_title }}{% endblock %}
 {% block main %}
 <h1>Мои ошибки</h1>
+{{ review_tabs("mistakes") }}
 {% if not n_tasks %}
 <div class="empty-state">
   <p class="empty-ic" aria-hidden="true">{{ icon("arrow-counter-clockwise") }}</p>

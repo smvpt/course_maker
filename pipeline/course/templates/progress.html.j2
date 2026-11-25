@@ -1,7 +1,9 @@
 {% extends "base.html.j2" %}
+{% from "_macros.html.j2" import review_tabs %}
 {% block title %}Мой прогресс — {{ chapter_title }}{% endblock %}
 {% block main %}
 <h1>Мой прогресс</h1>
+{{ review_tabs("progress") }}
 {% if not n_tasks %}
 <div class="empty-state">
   <p class="empty-ic" aria-hidden="true">{{ icon("chart-bar") }}</p>

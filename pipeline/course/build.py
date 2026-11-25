@@ -26,7 +26,7 @@ from contracts.models import FormatRu, Illustrations, Layer, Node, ReviewOutput,
 from pipeline.course import guess as guess_mod, interactive as inter_mod
 from pipeline.course.order import break_cycles, group_parts, order_nodes, part_of
 from pipeline.course.pernode import read_store
-from pipeline.course.steptext import Para, node_hash, normalize_terms, read_step_text
+from pipeline.course.steptext import Para, node_hash, norm, normalize_terms, read_step_text
 from pipeline.course.tasks import MISMATCH
 from pipeline.illus import gen as illus_gen
 
@@ -209,9 +209,98 @@ def paras_view(node: Node, paras: list[Para]) -> dict[str, list[dict]]:
                 raise ValueError(f"step_text.json: шаг {node.id}: абзац ссылается на несуществующее утверждение {cid}")
         html = Markup(re.sub(r"\[\[(.+?)\]\]", r"<dfn>\1</dfn>", str(Markup.escape(p.text))))   # термин при первом упоминании
         out.setdefault(p.block, []).append({
+            "id": f"p-{p.block}-{len(out.get(p.block, [])) + 1}",                       # якорь: поиск, словарь, «Перечитать»
             "html": html, "by": "hypothesis" if p.hypothesis else "model", "limit": p.limit,
             "pages": sorted({page_of[c] for c in p.claim_ids}), "claims": " ".join(p.claim_ids)})
     return out
+
+
+# ---------------------------------------------------------------- словарь, поиск, подсказки терминов
+
+MARK = re.compile(r"\[\[(.+?)\]\]")
+BLOCK_TITLES = {"main": ("b-main", "Суть"), "why": ("b-why", "Зачем этот шаг"), "how": ("b-how", "Как это работает"),
+                "practice": ("b-practice", "Как делает специалист"), "nuances": ("b-nuances", "Нюансы"),
+                "misconception": ("b-misconception", "Частая ошибка"), "decision": ("b-decision", "Решение на данных"),
+                "data": ("b-data", "Что это значит для данных"), "analogy": ("b-analogy", "Аналогия"), "deeper": ("b-deeper", "Глубже")}
+
+
+def strip_marks(text: str) -> str:
+    return MARK.sub(r"\1", text)
+
+
+def term_definition(text: str, term: str) -> str:
+    """Определение термина из текста шага: предложение, где он выделен, и следующее за ним (скобки [[ ]] сняты)."""
+    sents = re.split(r"(?<=[.!?])\s+", text.strip())
+    i = next((k for k, s in enumerate(sents) if term.casefold() in {m.casefold() for m in MARK.findall(s)}), 0)
+    return strip_marks(" ".join(sents[i:i + 2]))
+
+
+def build_glossary(ordered: list[Node], fresh: dict[str, list[Para]]) -> list[dict]:
+    """Все термины, которые вводит глава, по алфавиту: определение, страница книги и шаг, где термин вводится.
+    Определение — из текста шага (то, что модель объяснила по узлу); без текста модели — из утверждения узла."""
+    items = []
+    for n in ordered:
+        paras = fresh.get(n.id)
+        page_of = {c.id: c.page_pdf for c in n.claims}
+        for t in n.terms_introduced:
+            e = {"term": t, "key": norm(t), "node": n.id, "step_title": n.title_novice or n.title,
+                 "definition": None, "page": None, "claim": None, "anchor": "b-main"}
+            if paras:
+                seen: dict[str, int] = {}
+                for p in paras:
+                    seen[p.block] = seen.get(p.block, 0) + 1
+                    if t.casefold() in {m.casefold() for m in MARK.findall(p.text)}:
+                        known = [c for c in p.claim_ids if c in page_of]     # неизвестное утверждение громко упадёт в paras_view
+                        if not known:
+                            continue
+                        cid = min(known, key=lambda c: page_of[c])
+                        e.update(definition=term_definition(p.text, t), page=page_of[cid], claim=cid, anchor=f"p-{p.block}-{seen[p.block]}")
+                        break
+            if e["definition"] is None:
+                stem = norm(t)[:5]
+                c = next((c for c in n.claims if c.source_kind not in ("formula", "table") and stem in norm(c.text)), None)
+                if c is not None:
+                    e.update(definition=c.text, page=c.page_pdf, claim=c.id)
+            items.append(e)
+    return sorted(items, key=lambda e: e["key"])
+
+
+def search_index(ordered: list[Node], fresh: dict[str, list[Para]], glossary: list[dict]) -> list[dict]:
+    """Индекс офлайн-поиска: названия шагов, термины, текст блоков. s — шаг, a — якорь абзаца, b — название блока, x — текст."""
+    out: list[dict] = []
+    for n in ordered:
+        title = n.title_novice or n.title
+        out.append({"k": "step", "s": n.id, "t": title, "b": "Шаг", "a": "", "x": " ".join(dict.fromkeys(x for x in (title, n.title, n.layers.topic.text if has_text(n.layers.topic) else "") if x))})   # без повторов
+        paras = fresh.get(n.id)
+        if paras:
+            seen: dict[str, int] = {}
+            for p in paras:
+                seen[p.block] = seen.get(p.block, 0) + 1
+                bid, btitle = BLOCK_TITLES[p.block]
+                out.append({"k": "para", "s": n.id, "t": title, "b": btitle, "a": f"p-{p.block}-{seen[p.block]}", "x": strip_marks(p.text)})
+        else:
+            lay, dm = n.layers, n.data_meaning
+            fields = [("main", lay.main), ("why", n.why_here), ("how", lay.mechanism), ("practice", lay.practice), ("nuances", lay.nuances),
+                      ("data", dm.from_chapter), ("data", dm.breaks), ("misconception", n.misconception) if n.misconception else None]
+            for item in fields:
+                if item and has_text(item[1]):
+                    out.append({"k": "para", "s": n.id, "t": title, "b": BLOCK_TITLES[item[0]][1], "a": BLOCK_TITLES[item[0]][0], "x": item[1].text})
+            if n.it_analogy.text.strip():
+                out.append({"k": "para", "s": n.id, "t": title, "b": "Аналогия", "a": "b-analogy", "x": n.it_analogy.text})
+        d = n.decision_on_data
+        if d:
+            out.append({"k": "para", "s": n.id, "t": title, "b": "Решение на данных", "a": "b-decision", "x": " ".join([*d.features, d.rule, d.conclusion])})
+    for g in glossary:
+        if g["definition"]:
+            out.append({"k": "term", "s": g["node"], "t": g["step_title"], "b": "Термин", "a": g["anchor"], "x": f"{g['term']}. {g['definition']}"})
+    return out
+
+
+def terms_view(glossary: list[dict], node_id: str) -> dict:
+    """Подсказки терминов шага: ключ (термин без регистра, ё = е) → определение, страница, утверждение, ссылка на место, где вводится."""
+    return {g["key"]: {"term": g["term"], "def": g["definition"], "page": g["page"], "claim": g["claim"],
+                       "href": f"step-{g['node']}.html#{g['anchor']}", "step": g["step_title"]}
+            for g in glossary if g["node"] == node_id and g["definition"]}
 
 
 # ---------------------------------------------------------------- интерактив (interactive.json, задача 5)
@@ -341,7 +430,7 @@ def page_range(node: Node) -> str:
 
 def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path, tasks: list[Task],
               paras: list[Para] | None = None, interactive: dict | None = None, guess: dict | None = None,
-              style_raw: dict | None = None) -> dict:
+              style_raw: dict | None = None, terms: dict | None = None) -> dict:
     fixes = ocr_fixes(node)
     text_claims = [c for c in node.claims if c.source_kind not in ("formula", "table")]
     formulas = [c for c in node.claims if c.source_kind == "formula"]
@@ -441,6 +530,9 @@ def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path
         "route": inp["routes"].get(node.id),
         "pages": node_pages(node),
         "data_json": Markup(json.dumps(data, ensure_ascii=False).replace("</", "<\\/")),
+        "terms_json": Markup(json.dumps(terms or {}, ensure_ascii=False).replace("</", "<\\/")),
+        "has_terms": bool(terms),
+        "hint_page": (text_claims[0] if text_claims else node.claims[0]).page_pdf,
     }
 
 
@@ -659,8 +751,8 @@ def heading_title(ch_dir: Path | None) -> str | None:
 
 
 def book_label(layer: Layer, ch_dir: Path | None = None) -> str | None:
-    """«Автор — книга» для надписи на главной. Поля поставляет П1: ext["core"]["book"] / ["author"] слоя или те же поля в units.json
-    (верхний уровень или ext.core). Нет ни одного — None: курс пишет «Курс по главе книги»."""
+    """«Автор — книга» для надписи на главной. Поля поставляет П1: ext["core"]["author"] и ["book"] слоя (могут быть null) или те же поля
+    в units.json (верхний уровень или ext.core). Нужны ОБА; иначе None: курс пишет «Курс по главе книги»."""
     sources = [layer.ext.get("core", {})]
     units_path = ch_dir / "units.json" if ch_dir else None
     if units_path is not None and units_path.exists():
@@ -668,7 +760,7 @@ def book_label(layer: Layer, ch_dir: Path | None = None) -> str | None:
         sources += [u, u.get("ext", {}).get("core", {})]
     author = next((s["author"].strip() for s in sources if isinstance(s.get("author"), str) and s["author"].strip()), "")
     book = next((s["book"].strip() for s in sources if isinstance(s.get("book"), str) and s["book"].strip()), "")
-    return " — ".join(x for x in (author, book) if x) or None
+    return f"{author} — {book}" if author and book else None          # одного из полей нет: надпись «Курс по главе книги»
 
 
 def chapter_title(layer: Layer, ch_dir: Path | None = None) -> str:
@@ -825,7 +917,9 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
     meta = {"ch": ch, "steps": steps,
             "tasks": [{"id": t.id, "step_id": t.step_id, "claim_ids": t.claim_ids, "type": t.type, "kind": t.kind,
                        "prompt": mask_gaps(t.prompt), "explanation": t.explanation} for t in tasks]}
-    common = {"ch": ch, "chapter_title": chapter_title(layer, ch_dir), "book_label": book_label(layer, ch_dir), "has_errata": bool(errata), "steps": steps,
+    glossary = build_glossary(ordered, fresh)
+    search_json = Markup(json.dumps(search_index(ordered, fresh, glossary), ensure_ascii=False).replace("</", "<\\/"))   # офлайн-поиск: без fetch
+    common = {"search_json": search_json, "ch": ch, "chapter_title": chapter_title(layer, ch_dir), "book_label": book_label(layer, ch_dir), "has_errata": bool(errata), "steps": steps,
               "n_tasks": len(tasks), "meta": meta, "total_minutes": sum(s["minutes"] for s in steps)}
     titles = {n.id: n.title_novice or n.title for n in ordered}
 
@@ -839,7 +933,7 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
             continue
         render(f"step-{n.id}.html", "step.html.j2",
                v=step_view(n, inp, course, pages_src, ch_dir, tasks_by_step.get(n.id, []), fresh.get(n.id),
-                              fresh_inter.get(n.id), fresh_guess.get(n.id), style),
+                              fresh_inter.get(n.id), fresh_guess.get(n.id), style, terms_view(glossary, n.id)),
                idx=i, prev=ordered[i - 1] if i > 0 else None,
                next=ordered[i + 1] if i + 1 < len(ordered) else None, titles=titles, page="step")
 
@@ -854,6 +948,7 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
                          "illus": [{"il": il, "src": f"assets/illus/{Path(il.file).name}"}
                                for il in inp["illus"].get(n.id, []) if il.ext.get("kind") != "chain"][:2]}
                   for n in ordered}                      # конспект: формулы и иллюстрации шага (файлы копирует страница шага)
+    render("glossary.html", "glossary.html.j2", items=glossary, page="glossary")
     render("summary.html", "summary.html.j2", nodes=ordered, page="summary", extras=sum_extras,
            has_formulas=any(e["formulas"] for e in sum_extras.values()))
     render("it.html", "it.html.j2", items=it_items(ordered), page="it")

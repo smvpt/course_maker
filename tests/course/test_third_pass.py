@@ -36,7 +36,8 @@ def test_step_status_rules_and_default_tab_in_js():
     order = [body.index(x) for x in ('return "mastered"', 'return "repeat"', 'return "reinforce"', 'return "new"')]
     assert order == sorted(order)
     assert "st.ok === st.total" in body and "st.bad > 0" in body and "st.ok > 0" in body
-    assert 'var KEYS = ["new", "repeat", "reinforce", "mastered"]' in JS and "show(KEYS.filter(function (k) { return groups[k].length; })[0])" in JS
+    assert 'var KEYS = ["new", "repeat", "reinforce", "mastered"]' in JS
+    assert 'show(groups.repeat.length ? "repeat" : KEYS.filter(function (k) { return groups[k].length; })[0])' in JS      # при ошибках — «Повторить»
     assert 'if (bar) bar.style.width' in JS                                      # «не начато» — пустое место полосы
 
 
@@ -74,7 +75,11 @@ def test_index_kicker_book_label_and_single_part_heading(tmp_path):
     assert '<p class="kicker">Курс по книге: Барабошкин — Практическая седиментология</p>' in html
     assert book_label(layer, out / "mini_test") == "Барабошкин — Практическая седиментология"
     layer.ext = {"core": {"book": "Только книга"}}
-    assert book_label(layer, None) == "Только книга" and book_label(_layer(), None) is None
+    assert book_label(layer, None) is None                                       # нужны оба поля
+    layer.ext = {"core": {"author": None, "book": "Книга"}}
+    assert book_label(layer, None) is None                                       # null вместо автора — тоже «по главе книги»
+    layer.ext = {"core": {"title": None, "author": "Автор", "book": "Книга"}}
+    assert book_label(layer, None) == "Автор — Книга" and book_label(_layer(), None) is None
 
 
 def test_single_part_has_no_part_heading_but_several_parts_keep_theirs(tmp_path):
@@ -88,13 +93,17 @@ def test_single_part_has_no_part_heading_but_several_parts_keep_theirs(tmp_path)
 
 
 # 5, 6, 7, 11. подписи и понятные единицы
-def test_header_labels_and_by_badges_only_with_the_switch(tmp_path):
+def test_by_badges_only_with_the_switch_and_settings_in_the_menu(tmp_path):
     html = _page(tmp_path, f"step-{RES}.html")
-    assert 'title="Решено заданий"' in html and 'class="counter-label" aria-hidden="true">решено<' in html
-    assert re.search(r'id="toggle-by"[^>]*aria-label="Автор / модель', html) and '>Автор / модель</span>' in html
+    header = html[html.index('<header class="top">'):html.index("</header>")]
+    assert "toggle-by" not in header and "toggle-theme" not in header and "counter" not in header      # из шапки убраны ✦, автор/модель, тема
+    menu = re.search(r'<dialog id="menu".*?</dialog>', html, re.S).group(0)
+    assert [m for m in re.findall(r'data-theme-set="([a-z]+)"', menu)] == ["system", "light", "dark"]
+    assert "Показывать, что написал автор, а что модель" in menu and 'role="switch"' in menu and 'id="by-help"' in menu
+    assert 'aria-label="Решено заданий: 0 из' in menu and 'id="solved-count"' in menu                    # счётчик решённых — в меню
+    assert re.search(r'id="toggle-by"[^>]*data-by-switch', html) and html.count("data-by-switch") == 3     # меню, карточка справа, строка под шапкой
     assert re.search(r"body:not\(\.show-by\) \.by-author, body:not\(\.show-by\) \.by-model \{ display: none; \}", CSS)
-    assert "by-hypothesis" not in re.search(r"body:not\(\.show-by\)[^{]*\{", CSS).group(0)         # «гипотеза» видна всегда
-    assert re.search(r"@media \(min-width: 1100px\)\s*\{\s*\.tool-label, \.counter-label \{ display: inline", CSS)
+    assert "by-hypothesis" not in re.search(r"body:not\(\.show-by\)[^{]*\{", CSS).group(0)              # «гипотеза» видна всегда
 
 
 def test_step_labels_key_concept_and_progress_in_plain_units(tmp_path):

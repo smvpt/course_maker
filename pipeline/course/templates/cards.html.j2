@@ -1,7 +1,9 @@
 {% extends "base.html.j2" %}
+{% from "_macros.html.j2" import review_tabs %}
 {% block title %}Карточки — {{ chapter_title }}{% endblock %}
 {% block main %}
 <h1>Карточки повторения</h1>
+{{ review_tabs("cards") }}
 <p class="muted">Вспомни суть шага, открой карточку и отметь: знаю или повторить.</p>
 <p class="filter"><label><input type="checkbox" id="only-repeat"> Только «повторить»</label></p>
 <ol class="cards">

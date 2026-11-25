@@ -60,14 +60,13 @@ def test_step_header_is_a_compact_kicker_with_pages_and_prereq_chips(tmp_path):
     head = html[start:html.index("</header>", start)]
     assert re.search(r'class="kicker">Шаг \d+ из \d+ · ≈ \d+ мин · стр\. \d+', head)
     assert "В книге:" not in head and 'class="step-bar-top"' not in head
-    assert 'id="step-bar"' in html and html.index('id="step-bar"') > html.index("</header>", start)     # полоска вне шапки: прилипает к сайту
+    site = html[html.index('<header class="top">'):html.index("</header>")]
+    assert 'id="step-bar"' in site and re.search(r"Шаг \d+ из \d+</span>", site)            # «шаг N из M» и тонкая полоса — в шапке сайта
 
 
-def test_sections_nav_is_collapsed_on_mobile_and_hidden_on_desktop():
-    css = (ROOT / "pipeline/course/assets/course.css").read_text(encoding="utf-8")
-    assert re.search(r"@media \(min-width: 1024px\)[^}]*\{[^@]*\.toc\s*\{\s*display:\s*none", css, re.S)
+def test_page_toc_is_gone_in_favour_of_tiers():
     tpl = (ROOT / "pipeline/course/templates/step.html.j2").read_text(encoding="utf-8")
-    assert '<details open id="toc-details">' in tpl and "Разделы" in tpl and "На этой странице" not in tpl      # на мобильном сворачивает JS
+    assert "toc-details" not in tpl and "На этой странице" not in tpl and 'class="tier-h"' in tpl
 
 
 def test_sidebar_is_280px_16px_two_line_titles_with_status_circle():
@@ -77,13 +76,18 @@ def test_sidebar_is_280px_16px_two_line_titles_with_status_circle():
     assert re.search(r"li\.done > a \.num::after\s*\{[^}]*mask:\s*var\(--i-check\)", css)             # галочка — иконка Phosphor, не глиф
 
 
-def test_home_hero_has_meta_line_start_card_with_ring_and_timeline(tmp_path):
+def test_home_hero_has_lead_start_card_with_ring_search_tiles_and_timeline(tmp_path):
     _, html, _ = _built(tmp_path)
-    assert re.search(r'class="meta">\d+ шаг(?:а|ов)? · ≈ \d+ мин · \d+ (задание|задания|заданий)', html)
-    assert 'id="resume"' in html and 'class="ring"' in html and 'id="ring-fg"' in html
+    assert re.search(r'class="lead">Курс по главе книги для тех, кто работает с данными: \d+ коротких? шаг(?:а|ов)?, ≈ \d+ минут[аы]?, \d+ (задание|задания|заданий)\. '
+                     r'Каждое утверждение можно проверить по странице книги\.</p>', html)
+    assert 'id="resume"' in html and 'class="ring"' in html and 'id="ring-fg"' in html and 'id="hero-search-input"' in html
+    assert 'placeholder="Найти термин или тему"' in html
     assert 'class="steps-list timeline"' in html
     row = html[html.index('class="step-row"'):]
     assert row.count('class="st-meta"') >= 1 and 'class="st-sub"' not in html
+    tiles = re.findall(r'<span class="tile-t">([^<]+)</span><span class="tile-d">([^<]+)</span>', html[html.index('class="materials"'):])
+    assert [t for t, _ in tiles if t != "Лист опечаток"] == ["Словарь главы", "ИТ-задачи", "Конспект", "Карта связей", "Повторение", "Все задания"]
+    assert all(d.strip() for _, d in tiles) and html.index('class="materials"') > html.index('class="path"')       # плитки ниже пути шагов
 
 
 def test_main_block_is_a_highlighted_card_and_quotes_have_a_source(tmp_path):
@@ -155,7 +159,7 @@ def test_one_icon_set_phosphor_regular_without_glyphs_or_emoji():
 
 def test_every_step_block_has_its_own_icon_and_empty_states_have_one():
     tpl = (ROOT / "pipeline/course/templates/step.html.j2").read_text(encoding="utf-8")
-    blocks = re.findall(r'<section id="(b-[a-z]+)"[^>]*><h2>(?:\{\{ icon\("([a-z-]+)"\) \}\})?', tpl)
+    blocks = re.findall(r'<section id="(b-[a-z]+)"[^>]*><h3 class="block-h">(?:\{\{ icon\("([a-z-]+)"\) \}\})?', tpl)
     blocks = list(dict(blocks).items())                                 # b-interactive описан дважды (схема и слайдер): один блок
     assert len(blocks) >= 18
     assert [b for b, ic in blocks if not ic] == []
@@ -167,7 +171,7 @@ def test_every_step_block_has_its_own_icon_and_empty_states_have_one():
         t = (ROOT / f"pipeline/course/templates/{f}.html.j2").read_text(encoding="utf-8")
         assert 'class="empty-ic"' in t and 'aria-hidden="true"' in t[t.index('class="empty-ic"') - 10:t.index('class="empty-ic"') + 60], f
     css = (ROOT / "pipeline/course/assets/course.css").read_text(encoding="utf-8")
-    assert re.search(r"\.main-nav \.ic[^{]*\{[^}]*width: 24px", css) and re.search(r"^\.ic \{ width: 20px; height: 20px", css, re.M)
+    assert re.search(r"\.menu-list \.ic[^{]*\{[^}]*width: 24px", css) and re.search(r"^\.ic \{ width: 20px; height: 20px", css, re.M)
 
 
 # ---------------------------------------------------------------- логотип KERN
@@ -209,10 +213,10 @@ def test_summary_has_formulas_with_katex_and_is_printable(tmp_path):
     js = (ROOT / "pipeline/course/assets/course.js").read_text(encoding="utf-8")
     assert 'if (page === "summary") renderFormulas();' in js and "function renderFormulas" in js
     css = (ROOT / "pipeline/course/assets/course.css").read_text(encoding="utf-8")
-    printed = css[css.rindex("@media print"):]
+    printed = css[css.rindex("/* печать конспекта"):]
     assert ".sum-step { break-inside: auto; }" in printed and "max-height: 70mm" in printed
     prints = "".join(re.findall(r"@media print \{(.*?)\n\}", css, re.S))
-    for hidden in (".top", ".brand", ".main-nav", ".step-aside"):
+    for hidden in (".top", ".brand", ".step-aside"):
         assert hidden in prints, hidden
 
 

@@ -9,9 +9,11 @@
      answers     {id задания: ответ ученика}     single: id варианта; multiple и order: список id; gap: список слов;
                                                  calc: число. После перезагрузки показываем выбор ученика
      guess       {id шага: "true"|"false"|"skip"}  ответ на вопрос «сначала угадай»
+     scroll      {id шага: px}                   где остановился на шаге (возврат «Продолжить»)
      understood  [id задания, ...]               «Я понял» в списке ошибок; логика заданий убирает id,
                                                  если то же задание снова решено неверно
-   Тема и подсветка «автор / модель» — общие для всех глав: course:theme, course:by. */
+   Тема ("system" | "light" | "dark"), подсветка «автор / модель» и закрытая подсказка первого шага — общие для всех глав:
+   course:theme, course:by, course:hint. */
 (function () {
   "use strict";
 
@@ -29,9 +31,13 @@
     }
   };
   var K = {};
-  ["done", "last", "checks", "cards", "tasks", "answers", "understood", "guess"].forEach(function (n) { K[n] = "course:" + ch + ":" + n; });
+  ["done", "last", "checks", "cards", "tasks", "answers", "understood", "guess", "scroll"].forEach(function (n) { K[n] = "course:" + ch + ":" + n; });
   K.theme = "course:theme";
   K.by = "course:by";
+  K.hint = "course:hint";
+
+  function norm(t) { return String(t).toLowerCase().replace(/ё/g, "е"); }
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function el(tag, cls, text) {
     var e = document.createElement(tag);
@@ -97,26 +103,32 @@
     dlg.addEventListener("click", function (ev) { if (ev.target === dlg) dlg.close(); });
   });
 
-  /* ---------- тема, «автор / модель» ---------- */
+  /* ---------- меню, тема, «автор / модель» ---------- */
   var root = document.documentElement;
-  var storedTheme = store.get(K.theme, null);
-  var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-  root.dataset.theme = storedTheme || (prefersDark ? "dark" : "light");
-  var tbtn = document.getElementById("toggle-theme");
-  if (tbtn) tbtn.addEventListener("click", function () {
-    root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
-    store.set(K.theme, root.dataset.theme);
+  var menu = document.getElementById("menu");
+  document.querySelectorAll("[data-open-menu]").forEach(function (b) { b.addEventListener("click", function () { openDialog(menu, b); }); });
+
+  function applyTheme(mode) {                              // "system" — без data-theme: тему решает prefers-color-scheme
+    root.classList.add("theme-anim");
+    setTimeout(function () { root.classList.remove("theme-anim"); }, 260);
+    if (mode === "light" || mode === "dark") root.dataset.theme = mode; else delete root.dataset.theme;
+    document.querySelectorAll("[data-theme-set]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.themeSet === (mode === "light" || mode === "dark" ? mode : "system"))); });
+  }
+  var storedTheme = store.get(K.theme, "system");
+  if (storedTheme === "light" || storedTheme === "dark") root.dataset.theme = storedTheme; else delete root.dataset.theme;
+  document.querySelectorAll("[data-theme-set]").forEach(function (b) {
+    b.setAttribute("aria-pressed", String(b.dataset.themeSet === (storedTheme === "light" || storedTheme === "dark" ? storedTheme : "system")));
+    b.addEventListener("click", function () { applyTheme(b.dataset.themeSet); store.set(K.theme, b.dataset.themeSet); });
   });
 
-  var bybtn = document.getElementById("toggle-by");
+  var bySwitches = [].slice.call(document.querySelectorAll("[data-by-switch]"));
   function applyBy(on) {
     document.body.classList.toggle("show-by", on);
-    if (bybtn) bybtn.setAttribute("aria-pressed", on ? "true" : "false");
+    bySwitches.forEach(function (sw) { sw.checked = on; });
   }
   applyBy(store.get(K.by, false));
-  if (bybtn) bybtn.addEventListener("click", function () {
-    var on = !document.body.classList.contains("show-by");
-    applyBy(on); store.set(K.by, on);
+  bySwitches.forEach(function (sw) {
+    sw.addEventListener("change", function () { applyBy(sw.checked); store.set(K.by, sw.checked); });      // все переключатели синхронны
   });
 
   /* ---------- общее: счётчик решённых заданий, отметки «пройден», состояния заданий ---------- */
@@ -136,9 +148,13 @@
   });
   document.querySelectorAll("[data-task-state]").forEach(function (e) { e.textContent = STATE_RU[taskState(e.dataset.taskState)]; });
 
-  /* ---------- меню пути (мобильная шторка) ---------- */
-  var drawerBtn = document.getElementById("open-drawer");
-  if (drawerBtn) drawerBtn.addEventListener("click", function () { openDialog(document.getElementById("drawer"), drawerBtn); });
+  /* ---------- прогресс по курсу в шапке (на страницах, кроме шага) ---------- */
+  var courseBar = document.getElementById("course-bar");
+  if (courseBar) {
+    var doneN = meta.steps.filter(function (st) { return isDone(st.id); }).length;
+    courseBar.style.width = Math.round(100 * doneN / meta.steps.length) + "%";
+    document.getElementById("course-progress-text").textContent = "Пройдено " + doneN + " из " + meta.steps.length;
+  }
 
   /* ---------- страница шага ---------- */
   var stepData = readJSON("step-data");
@@ -146,9 +162,11 @@
 
   function highlightEl(target) {
     for (var p = target.parentElement; p; p = p.parentElement) if (p.tagName === "DETAILS") p.open = true;
-    target.scrollIntoView({ block: "center" });
+    target.scrollIntoView({ block: "center", behavior: reduceMotion ? "auto" : "smooth" });
+    target.classList.remove("hl");
+    void target.offsetWidth;                                // перезапуск анимации угасания (1.5 с)
     target.classList.add("hl");
-    setTimeout(function () { target.classList.remove("hl"); }, 4000);
+    setTimeout(function () { target.classList.remove("hl"); }, 1700);
   }
   /* «Перечитать»: абзац шага, который ссылается на утверждение; если такого нет — сам блок утверждения с цитатой */
   function highlightClaim(claimId) {
@@ -378,10 +396,6 @@
   function initStep(data) {
     var nodeId = data.node_id;
     store.set(K.last, nodeId);
-
-    /* оглавление страницы: на узком экране свёрнуто */
-    var toc = document.getElementById("toc-details");
-    if (toc && window.matchMedia("(max-width: 767.98px)").matches) toc.open = false;
 
     /* чек-лист → прогресс шага → «Шаг пройден» */
     var checks = store.get(K.checks, {});
@@ -748,7 +762,7 @@
       var m = /^(.+)--(c\d+)$/.exec(id);
       if (m) { highlightClaim(m[1] + "#" + m[2]); return; }
       var t = document.getElementById(id);
-      if (t && (t.classList.contains("para") || t.classList.contains("task"))) highlightEl(t);
+      if (t && (t.classList.contains("para") || t.classList.contains("task") || t.classList.contains("block"))) highlightEl(t);
     }
     /* после load: браузер сам доскролливает к якорю уже после наших скриптов и перебил бы подсветку */
     if (document.readyState === "complete") focusHash();
@@ -864,7 +878,7 @@
       empty.hidden = groups[tab].length > 0;
     }
     tabs.forEach(function (b) { b.addEventListener("click", function () { show(b.dataset.tab); }); });
-    show(KEYS.filter(function (k) { return groups[k].length; })[0]);                // открыт первый непустой
+    show(groups.repeat.length ? "repeat" : KEYS.filter(function (k) { return groups[k].length; })[0]);       // при ошибках сразу «Повторить», иначе первый непустой
   }
 
   function progressRow(s) {
@@ -888,12 +902,18 @@
     li.appendChild(segs);
     var btns = el("div", "pl-btns");
     var target = firstBad || list[0];
-    var reread = el("a", "btn-small", "Перечитать");
-    reread.href = "step-" + s.id + ".html#" + claimAnchor(target.claim_ids[0]);
-    var tasks = el("a", "btn-small", "Задания");
-    tasks.href = "step-" + s.id + ".html#b-quiz";
-    btns.appendChild(reread);
-    btns.appendChild(tasks);
+    if (mastery(s.id) === "new") {
+      var start = el("a", "btn-small", "Начать шаг");
+      start.href = "step-" + s.id + ".html";
+      btns.appendChild(start);
+    } else {
+      var reread = el("a", "btn-small", "Перечитать");
+      reread.href = "step-" + s.id + ".html#" + claimAnchor(target.claim_ids[0]);
+      var tasks = el("a", "btn-small", "Задания");
+      tasks.href = "step-" + s.id + ".html#b-quiz";
+      btns.appendChild(reread);
+      btns.appendChild(tasks);
+    }
     li.appendChild(btns);
     return li;
   }
@@ -961,4 +981,206 @@
   if (page === "map") {
     document.querySelectorAll(".map-node").forEach(function (a) { if (isDone(a.dataset.node)) a.classList.add("done"); });
   }
+
+  /* ---------- офлайн-поиск: индекс встроен в страницу (#search-index), без fetch ---------- */
+  var searchIndex = readJSON("search-index") || [];
+  var searchHost = document.querySelector(".top");
+  function stem(w) { return w.length > 4 ? w.slice(0, w.length - 2) : w; }           // простое совпадение основы: «сопротивлению» ~ «сопротивление»
+  function searchWords(q) { return norm(q).split(/[^a-zа-я0-9]+/).filter(function (w) { return w.length > 1; }).map(stem); }
+  function runSearch(q) {
+    var ws = searchWords(q), found = [];
+    if (!ws.length) return found;
+    searchIndex.forEach(function (e, i) {
+      var hay = e._n || (e._n = norm(e.x));
+      for (var k = 0; k < ws.length; k++) if (hay.indexOf(ws[k]) < 0) return;
+      var score = (e.k === "step" ? 20 : e.k === "term" ? 15 : 1) + (norm(e.x).slice(0, 60).indexOf(ws[0]) >= 0 ? 3 : 0);
+      found.push({ e: e, score: score, i: i, at: hay.indexOf(ws[0]) });
+    });
+    found.sort(function (a, b) { return b.score - a.score || a.i - b.i; });
+    return found.slice(0, 12);
+  }
+  function snippet(text, ws, at) {
+    var from = Math.max(0, at - 50), cut = text.slice(from, from + 150), low = norm(cut), ranges = [];
+    ws.forEach(function (w) { for (var p = low.indexOf(w); p >= 0; p = low.indexOf(w, p + w.length)) ranges.push([p, p + w.length]); });
+    ranges.sort(function (a, b) { return a[0] - b[0]; });
+    var out = el("span", "sr-snippet"), pos = 0;
+    if (from > 0) out.appendChild(document.createTextNode("… "));
+    ranges.forEach(function (r) {
+      if (r[0] < pos) return;
+      out.appendChild(document.createTextNode(cut.slice(pos, r[0])));
+      out.appendChild(el("mark", null, cut.slice(r[0], r[1])));
+      pos = r[1];
+    });
+    out.appendChild(document.createTextNode(cut.slice(pos) + (from + 150 < text.length ? " …" : "")));
+    return out;
+  }
+  function goTo(href) {
+    var m = /^(step-[^#]+\.html)(?:#(.+))?$/.exec(href);
+    if (m && document.body.dataset.page === "step" && location.pathname.split("/").pop() === m[1] && m[2]) {
+      history.pushState(null, "", "#" + m[2]);
+      var t = document.getElementById(m[2]);
+      if (t) highlightEl(t);
+    } else location.href = href;
+  }
+  function initSearch(input, box) {
+    function close() { box.hidden = true; input.setAttribute("aria-expanded", "false"); }
+    function render() {
+      var q = input.value, ws = searchWords(q), res = runSearch(q);
+      box.textContent = "";
+      if (!ws.length) { close(); return; }
+      if (!res.length) box.appendChild(el("p", "sr-empty", "Ничего не найдено: попробуйте другое слово."));
+      res.forEach(function (r) {
+        var e = r.e, a = el("a", "sr-item");
+        a.href = "step-" + e.s + ".html" + (e.a ? "#" + e.a : "");
+        a.setAttribute("role", "option");
+        var head = el("span", "sr-head");
+        head.appendChild(el("strong", null, e.t));
+        head.appendChild(el("span", "sr-block", " · " + e.b));
+        a.appendChild(head);
+        a.appendChild(snippet(e.x, ws, Math.max(0, r.at)));
+        a.addEventListener("click", function (ev) { ev.preventDefault(); close(); goTo(a.getAttribute("href")); });
+        box.appendChild(a);
+      });
+      box.hidden = false;
+      input.setAttribute("aria-expanded", "true");
+    }
+    input.addEventListener("input", render);
+    input.addEventListener("focus", function () { if (input.value) render(); });
+    input.addEventListener("keydown", function (ev) {
+      var items = [].slice.call(box.querySelectorAll(".sr-item"));
+      if (ev.key === "Enter") { ev.preventDefault(); if (items[0]) items[0].click(); }
+      else if (ev.key === "ArrowDown" && items[0]) { ev.preventDefault(); items[0].focus(); }
+      else if (ev.key === "Escape") { if (input.value) { input.value = ""; render(); } else input.blur(); }
+    });
+    box.addEventListener("keydown", function (ev) {
+      var items = [].slice.call(box.querySelectorAll(".sr-item")), i = items.indexOf(document.activeElement);
+      if (ev.key === "ArrowDown" && i < items.length - 1) { ev.preventDefault(); items[i + 1].focus(); }
+      else if (ev.key === "ArrowUp") { ev.preventDefault(); if (i > 0) items[i - 1].focus(); else input.focus(); }
+      else if (ev.key === "Escape") { close(); input.focus(); }
+    });
+    document.addEventListener("click", function (ev) { if (!box.contains(ev.target) && ev.target !== input) close(); });
+  }
+  var topInput = document.getElementById("search-input"), heroInput = document.getElementById("hero-search-input");
+  if (topInput) initSearch(topInput, document.getElementById("search-results"));
+  if (heroInput) initSearch(heroInput, document.getElementById("hero-search-results"));
+  var openSearch = document.getElementById("open-search");
+  function focusSearch() {
+    if (openSearch && getComputedStyle(openSearch).display !== "none") {              // мобильный: иконка → поле на всю ширину
+      searchHost.classList.add("search-open");
+      openSearch.setAttribute("aria-expanded", "true");
+    }
+    if (topInput) topInput.focus();
+  }
+  if (openSearch) openSearch.addEventListener("click", function () {
+    var on = !searchHost.classList.contains("search-open");
+    searchHost.classList.toggle("search-open", on);
+    openSearch.setAttribute("aria-expanded", String(on));
+    if (on && topInput) topInput.focus();
+  });
+  if (topInput) topInput.addEventListener("keydown", function (ev) {
+    if (ev.key === "Escape" && !topInput.value && searchHost.classList.contains("search-open")) {
+      searchHost.classList.remove("search-open");
+      openSearch.setAttribute("aria-expanded", "false");
+      openSearch.focus();
+    }
+  });
+
+  /* ---------- подсказки терминов: определение из текста шага + «стр. N» + «к шагу, где вводится» ---------- */
+  var termData = readJSON("term-data");
+  if (termData) {
+    var tip = el("div", "term-tip");
+    tip.id = "term-tip";
+    tip.setAttribute("role", "tooltip");
+    document.body.appendChild(tip);
+    var tipTimer = null, tipFor = null;
+    var hideTip = function () { tip.classList.remove("show"); tipFor = null; };
+    var cancelHide = function () { clearTimeout(tipTimer); };
+    var laterHide = function () { clearTimeout(tipTimer); tipTimer = setTimeout(hideTip, 220); };
+    var showTip = function (d) {
+      var info = d._term;
+      cancelHide();
+      tipFor = d;
+      tip.textContent = "";
+      tip.appendChild(el("strong", "term-tip-t", info.term));
+      tip.appendChild(el("p", "term-tip-d", info.def));
+      var row = el("p", "term-tip-links");
+      if (info.claim) {
+        var pg = el("button", "pg", "стр. " + info.page);
+        pg.type = "button";
+        pg.title = "Открыть страницу книги";
+        pg.dataset.claim = info.claim;
+        row.appendChild(pg);
+      }
+      var a = el("a", null, "К шагу, где вводится");
+      a.href = info.href;
+      row.appendChild(a);
+      tip.appendChild(row);
+      var r = d.getBoundingClientRect(), w = Math.min(352, window.innerWidth - 16);
+      tip.style.maxWidth = w + "px";
+      tip.style.left = Math.max(8, Math.min(r.left + window.scrollX, window.scrollX + window.innerWidth - w - 8)) + "px";
+      tip.style.top = (r.bottom + window.scrollY + 8) + "px";
+      tip.classList.add("show");
+    };
+    document.querySelectorAll("dfn").forEach(function (d) {
+      var info = termData[norm(d.textContent.trim())];
+      if (!info) return;
+      d._term = info;
+      d.classList.add("term");
+      d.tabIndex = 0;
+      d.setAttribute("aria-describedby", "term-tip");
+      d.addEventListener("mouseenter", function () { showTip(d); });
+      d.addEventListener("focus", function () { showTip(d); });
+      d.addEventListener("mouseleave", laterHide);
+      d.addEventListener("blur", laterHide);
+      d.addEventListener("click", function () { if (tipFor === d && tip.classList.contains("show") && document.activeElement !== d) hideTip(); else showTip(d); });
+    });
+    tip.addEventListener("mouseenter", cancelHide);
+    tip.addEventListener("mouseleave", laterHide);
+    tip.addEventListener("focusin", cancelHide);
+    tip.addEventListener("focusout", laterHide);
+    tip.addEventListener("click", function (ev) { if (ev.target.closest(".pg")) hideTip(); });
+    document.addEventListener("keydown", function (ev) { if (ev.key === "Escape") hideTip(); });
+    document.addEventListener("click", function (ev) { if (!ev.target.closest("dfn.term") && !tip.contains(ev.target)) hideTip(); });
+  }
+
+  /* ---------- «Словарь главы»: фильтр по терминам ---------- */
+  var glossQ = document.getElementById("glossary-q");
+  if (glossQ) glossQ.addEventListener("input", function () {
+    var q = norm(glossQ.value.trim()), shown = 0;
+    document.querySelectorAll(".gloss").forEach(function (g) {
+      var ok = !q || norm(g.textContent).indexOf(q) >= 0;
+      g.hidden = !ok;
+      if (ok) shown++;
+    });
+    document.getElementById("glossary-empty").hidden = shown !== 0;
+  });
+
+  /* ---------- подсказка первого шага (закрывается, флаг в localStorage) ---------- */
+  var hint = document.getElementById("hint-pages");
+  if (hint) {
+    if (store.get(K.hint, false)) hint.hidden = true;
+    hint.querySelector("[data-hint-close]").addEventListener("click", function () { hint.hidden = true; store.set(K.hint, true); });
+  }
+
+  /* ---------- возврат на то же место шага и клавиатура ---------- */
+  if (page === "step" && stepData) {
+    var scrolls = store.get(K.scroll, {}), saveT = null;
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    var restore = function () { if (!location.hash && scrolls[stepData.node_id]) window.scrollTo(0, scrolls[stepData.node_id]); };
+    if (document.readyState === "complete") restore(); else window.addEventListener("load", restore);
+    var saveScroll = function () { scrolls[stepData.node_id] = Math.round(window.scrollY); store.set(K.scroll, scrolls); };
+    window.addEventListener("scroll", function () { clearTimeout(saveT); saveT = setTimeout(saveScroll, 150); }, { passive: true });
+    window.addEventListener("pagehide", saveScroll);
+  }
+  document.addEventListener("keydown", function (ev) {
+    if (ev.defaultPrevented || ev.ctrlKey || ev.metaKey || ev.altKey) return;
+    var t = ev.target, tag = t && t.tagName;
+    var typing = tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || (t && t.isContentEditable);
+    if (typing || document.querySelector("dialog[open]")) return;
+    if (ev.key === "/") { ev.preventDefault(); focusSearch(); return; }
+    if (page === "step" && (ev.key === "ArrowLeft" || ev.key === "ArrowRight")) {
+      var a = document.querySelector(ev.key === "ArrowLeft" ? 'a[rel="prev"]' : 'a[rel="next"]');
+      if (a) location.href = a.href;
+    }
+  });
 })();

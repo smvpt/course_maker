@@ -4,7 +4,7 @@
 <section class="cover hero">
   <p class="kicker">{% if book_label %}Курс по книге: {{ book_label }}{% else %}Курс по главе книги{% endif %}</p>
   <h1>{{ chapter_title }}</h1>
-  <p class="meta">{{ steps | length }} {{ steps | length | plural("шаг", "шага", "шагов") }} · ≈ {{ total_minutes }} мин{% if n_tasks %} · {{ n_tasks }} {{ n_tasks | plural("задание", "задания", "заданий") }}{% endif %}{% if part_names | length > 1 %} · частей: {{ part_names | length }}{% endif %}</p>
+  <p class="lead">Курс по главе книги для тех, кто работает с данными: {{ steps | length }} {{ steps | length | plural("короткий шаг", "коротких шага", "коротких шагов") }}, ≈ {{ total_minutes }} {{ total_minutes | plural("минута", "минуты", "минут") }}{% if n_tasks %}, {{ n_tasks }} {{ n_tasks | plural("задание", "задания", "заданий") }}{% endif %}. Каждое утверждение можно проверить по странице книги.</p>
 
   <a id="resume" class="resume-card" href="step-{{ steps[0].id }}.html">
     <span class="ring" aria-hidden="true">
@@ -19,6 +19,12 @@
     <span class="sr">Открыть шаг</span>
   </a>
   <div class="bar slim"><span id="progress-bar"></span></div>
+  <div class="search search-hero" role="search">
+    <label class="sr" for="hero-search-input">Найти термин или тему</label>
+    <span class="search-ic" aria-hidden="true">{{ icon("magnifying-glass") }}</span>
+    <input id="hero-search-input" type="search" placeholder="Найти термин или тему" autocomplete="off" spellcheck="false" aria-controls="hero-search-results" aria-expanded="false">
+    <div id="hero-search-results" class="search-results" role="listbox" aria-label="Результаты поиска" hidden></div>
+  </div>
 </section>
 
 <div class="index-controls">
@@ -63,13 +69,16 @@
   <p id="steps-empty" class="empty" hidden>Здесь пока ничего нет: отметь шаги «повторить» в карточках или реши задания с ошибками.</p>
 </nav>
 
-<section class="extras">
-  <h2>После главы</h2>
-  <ul class="extras-list">
-    <li><a href="cards.html">{{ icon("cards") }}<span>Карточки «знаю / повторить»</span></a></li>
-    <li><a href="mistakes.html">{{ icon("arrow-counter-clockwise") }}<span>Мои ошибки</span></a></li>
-    <li><a href="map.html">{{ icon("tree-structure") }}<span>Карта связей шагов</span></a></li>
-    {% if has_errata %}<li><a href="errata.html">{{ icon("warning") }}<span>Лист опечаток</span></a></li>{% endif %}
+<section class="materials" aria-labelledby="materials-h">
+  <h2 id="materials-h">Материалы главы</h2>
+  <ul class="tiles">
+    <li><a href="glossary.html">{{ icon("book-bookmark") }}<span class="tile-t">Словарь главы</span><span class="tile-d">Термины с определениями и страницей книги</span></a></li>
+    <li><a href="it.html">{{ icon("cpu") }}<span class="tile-t">ИТ-задачи</span><span class="tile-d">Что это значит для данных и что в них ломается</span></a></li>
+    <li><a href="summary.html">{{ icon("article") }}<span class="tile-t">Конспект</span><span class="tile-d">Главное по шагам, печать в PDF</span></a></li>
+    <li><a href="map.html">{{ icon("tree-structure") }}<span class="tile-t">Карта связей</span><span class="tile-d">Какой шаг на каком держится</span></a></li>
+    <li><a href="progress.html">{{ icon("arrow-counter-clockwise") }}<span class="tile-t">Повторение</span><span class="tile-d">Прогресс, ошибки и карточки</span></a></li>
+    <li><a href="tasks.html">{{ icon("list-checks") }}<span class="tile-t">Все задания</span><span class="tile-d">{% if n_tasks %}{{ n_tasks }} {{ n_tasks | plural("задание", "задания", "заданий") }} по шагам с разбором{% else %}Список заданий по шагам{% endif %}</span></a></li>
+    {% if has_errata %}<li><a href="errata.html">{{ icon("warning") }}<span class="tile-t">Лист опечаток</span><span class="tile-d">Что исправлено в распознанном тексте</span></a></li>{% endif %}
   </ul>
 </section>
 {% endblock %}

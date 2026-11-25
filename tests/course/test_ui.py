@@ -86,11 +86,16 @@ def test_formula_is_labeled_monospace_without_katex(tmp_path):
     assert "katex" in html.lower() and not re.search(r'(src|href)="(https?:)?//', html)   # KaTeX есть и только локальный
 
 
-def test_toc_collapsible_and_collapsed_on_narrow_screens(tmp_path):
+def test_step_is_split_into_tiers_and_has_no_page_toc(tmp_path):
+    """Реструктуризация под ТЗ: вместо оглавления «Разделы» — ярусы с заголовками; оглавление и его JS убраны."""
     course = _course(tmp_path)
-    assert '<details open id="toc-details">' in _read(course, RES)
-    js = _read(course, "assets/course.js")
-    assert 'getElementById("toc-details")' in js and "max-width: 767.98px" in js
+    html = _read(course, RES)
+    body = html[html.index("<main"):html.index('<dialog id="menu"')]
+    assert 'id="toc-details"' not in body and "Разделы" not in body and "На этой странице" not in body
+    tiers = re.findall(r'<h2 class="tier-h" id="tier-([a-z]+)-h">(?:<svg.*?</svg>)?([^<]+)</h2>', html, re.S)
+    assert [t for t, _ in tiers] == ["understand", "data", "check", "deep"] or [t for t, _ in tiers] == ["understand", "check", "deep"]
+    assert {"understand": "Понять", "data": "В данных", "check": "Проверить себя", "deep": "Глубже"}.items() >= dict(tiers).items()
+    assert 'getElementById("toc-details")' not in _read(course, "assets/course.js")
 
 
 def test_long_blocks_are_foldable(tmp_path):
@@ -109,19 +114,24 @@ def test_step_has_progress_checklist_bottom_bar_sidebar_and_drawer(tmp_path):
     assert 'data-check="read"' in html and 'id="done-banner"' in html
     assert 'data-check="video"' not in html and 'data-check="tasks"' not in html
     assert 'class="step-bar"' in html and ">Назад<" in html and ">Далее<" in html
-    assert 'class="path-side"' in html and 'id="drawer"' in html
-    assert html.count('aria-current="step"') == 2   # сайдбар и шторка
+    assert 'class="path-side"' in html and 'id="menu"' in html and 'id="drawer"' not in html   # шторку пути заменило общее меню
+    assert html.count('aria-current="step"') == 1   # сайдбар
     # окно «проверь по книге»: закрытие кнопкой, нативный modal даёт Esc и ловушку фокуса
     assert re.search(r'<dialog id="book".*?aria-label="Закрыть"', html, re.S)
 
 
-@pytest.mark.parametrize("name", ["index.html", "cards.html", "map.html", "summary.html", RES])
-def test_main_nav_has_five_labelled_sections(tmp_path, name):
+@pytest.mark.parametrize("name", ["index.html", "cards.html", "map.html", "summary.html", "glossary.html", RES])
+def test_menu_has_three_groups_with_icons_and_labels_on_every_page(tmp_path, name):
     html = _read(_course(tmp_path), name)
-    nav = re.search(r'<nav class="main-nav" aria-label="Разделы курса">(.*?)</nav>', html, re.S).group(1)
-    assert re.findall(r"<span>([^<]+)</span>", nav) == ["Путь", "Задания", "Прогресс", "Конспект", "ИТ-задачи"]
-    for target in ("index", "tasks", "progress", "summary", "it"):
-        assert f'href="{target}.html"' in nav
+    header = html[html.index('<header class="top">'):html.index("</header>")]
+    assert 'class="main-nav"' not in html and "counter" not in header                # из шапки убраны пункты навигации и счётчик
+    menu = re.search(r'<dialog id="menu".*?</dialog>', html, re.S).group(0)
+    assert re.findall(r'<h3 class="menu-group">([^<]+)</h3>', menu) == ["Курс", "Повторение", "Настройки"]
+    labels = re.findall(r'<a href="[a-z]+\.html"[^>]*>(?:<svg.*?</svg>)<span>([^<]+)</span>', menu, re.S)
+    assert [l for l in labels if l != "Лист опечаток"] == ["Путь", "Все задания", "Словарь главы", "Конспект", "Карта связей", "ИТ-задачи", "Прогресс", "Ошибки", "Карточки"]
+    for target in ("index", "tasks", "glossary", "summary", "map", "it", "progress", "mistakes", "cards"):
+        assert f'href="{target}.html"' in menu
+    assert menu.count("<svg") >= 10 and 'aria-current="page"' in menu
 
 
 # ---------------------------------------------------------------- путь
@@ -255,10 +265,10 @@ def test_it_page_empty_state_when_layer_has_no_it_fields(tmp_path):
     assert "нет описаний" in _read(course, "it.html")
 
 
-def test_mobile_nav_uses_short_it_label_with_full_accessible_name(tmp_path):
+def test_header_has_logo_search_progress_and_menu_button_and_no_bottom_nav(tmp_path):
     html = _read(_course(tmp_path), "index.html")
-    nav = re.search(r'<nav class="main-nav" aria-label="Разделы курса">(.*?)</nav>', html, re.S).group(1)
-    assert re.search(r'<a href="it.html"[^>]*aria-label="ИТ-задачи"', nav)
-    assert '<span class="short" aria-hidden="true">ИТ</span>' in nav
+    header = html[html.index('<header class="top">'):html.index("</header>")]
+    assert header.index("brand-logo") < header.index('id="search-input"') < header.index("top-progress") < header.index('id="open-menu"')
+    assert 'aria-label="Поиск"' in header and 'title="Меню"' in header and "Меню</span>" in header
     css = (ASSETS / "course.css").read_text(encoding="utf-8")
-    assert "span:has(+ .short)" in css
+    assert "span:has(+ .short)" not in css and ".main-nav" not in css           # нижней навигации из пяти пунктов больше нет
