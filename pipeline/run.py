@@ -78,15 +78,18 @@ def core_stage(rep: Report, name: str, fn, *a, **kw) -> bool:
 
 
 def downstream(rep: Report, ch: str, video: bool) -> None:
-    external(rep, "pipeline.verify.run", "--ch", ch)          # критические ошибки → код ≠ 0, но курс собираем
+    """Иллюстрации и ролики → курс → проверка (ей нужен tasks.json курса) → курс ещё раз, уже с замечаниями.
+    Курс — последним: в него попадают ролики и статусы проверки. Повтор курса — из кэша LLM."""
     external(rep, "pipeline.illus.run", "--ch", ch)
-    external(rep, "pipeline.course.build", "--ch", ch)
     if video:
         routing = io.load(Routing, paths.routing(ch))
         for r in routing.routes:
             fmt = VIDEO_FORMATS.get(r.format) or VIDEO_FORMATS.get(r.secondary_format or "")
             if fmt:
                 external(rep, "pipeline.video.build", "--ch", ch, "--node", r.node_id, "--format", fmt)
+    external(rep, "pipeline.course.build", "--ch", ch)
+    external(rep, "pipeline.verify.run", "--ch", ch)          # критические ошибки → код ≠ 0, но курс собираем
+    external(rep, "pipeline.course.build", "--ch", ch)
 
 
 def run_all(spec: config.ChapterSpec, video: bool = False) -> int:
@@ -121,13 +124,13 @@ def rebuild(node_id: str, ch: str | None = None) -> int:
     layer = io.load(Layer, paths.layer(ch))
     if not any(n.id == node_id for n in layer.nodes):
         raise ValueError(f"в {paths.layer(ch)} нет узла {node_id}")
-    external(rep, "pipeline.course.build", "--ch", ch, "--node", node_id)
     videos = paths.out_dir(ch) / "videos"
     if videos.exists() and any(d.is_dir() and node_id in d.name for d in videos.iterdir()):
         routing = io.load(Routing, paths.routing(ch))
         r = next((x for x in routing.routes if x.node_id == node_id), None)
         fmt = VIDEO_FORMATS.get(r.format if r else "", "short")
         external(rep, "pipeline.video.build", "--ch", ch, "--node", node_id, "--format", fmt)
+    external(rep, "pipeline.course.build", "--ch", ch, "--node", node_id)       # курс — после ролика
     return rep.done(f"пересборка {node_id}")
 
 

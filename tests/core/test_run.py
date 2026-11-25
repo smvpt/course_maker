@@ -21,7 +21,21 @@ def test_smoke_offline_writes_core_outputs(out, monkeypatch):
     d = out / run.SMOKE_CH
     assert io.load(m.ChapterUnits, d / "units.json").units
     assert io.load(m.Layer, d / "layer.json").nodes
-    assert [c[0] for c in calls] == ["pipeline.verify.run", "pipeline.illus.run", "pipeline.course.build"]
+    # курс — последним (с роликами и замечаниями проверки); проверке нужен tasks.json курса
+    assert [c[0] for c in calls] == ["pipeline.illus.run", "pipeline.course.build", "pipeline.verify.run",
+                                     "pipeline.course.build"]
+
+
+def test_videos_before_course(out, monkeypatch):
+    d = out / "chx"
+    d.mkdir()
+    (d / "routing.json").write_text((run.MINI / "routing.json").read_text(encoding="utf-8"), encoding="utf-8")
+    calls = []
+    monkeypatch.setattr(run, "external", lambda rep, mod, *a: calls.append(mod) or True)
+    run.downstream(run.Report(), "chx", video=True)
+    assert "pipeline.video.build" in calls
+    assert calls.index("pipeline.video.build") < calls.index("pipeline.course.build")
+    assert calls[-1] == "pipeline.course.build"
 
 
 def test_missing_module_makes_run_fail_loudly(out):
@@ -54,7 +68,7 @@ def test_rebuild_finds_chapter_and_video(out, monkeypatch):
     calls = []
     monkeypatch.setattr(run, "external", lambda rep, mod, *a: calls.append((mod, *a)) or True)
     assert run.main(["--rebuild", node]) == 0
-    assert calls == [("pipeline.course.build", "--ch", "chx", "--node", node),
-                     ("pipeline.video.build", "--ch", "chx", "--node", node, "--format", "long")]
+    assert calls == [("pipeline.video.build", "--ch", "chx", "--node", node, "--format", "long"),
+                     ("pipeline.course.build", "--ch", "chx", "--node", node)]
     with pytest.raises(ValueError, match="CH="):
         run.find_chapter("no.such.node")

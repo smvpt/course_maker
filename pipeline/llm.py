@@ -140,6 +140,7 @@ def _call(model: str, messages: list[dict], max_tokens: int, params: dict) -> tu
 # Перегрузка и лимиты провайдера — временные (имена классов исключений litellm).
 TRANSIENT = {"RateLimitError", "ServiceUnavailableError", "InternalServerError", "BadGatewayError",
              "Timeout", "APITimeoutError", "APIConnectionError"}
+TRANSIENT_STATUS = {408, 429, 500, 502, 503, 504, 529}      # 529 — перегрузка Claude API («overloaded»)
 RETRY_DELAY_RE = re.compile(r'retryDelay\W*(\d+(?:\.\d+)?)s')
 
 
@@ -159,7 +160,8 @@ def _call_chain(models: list[str], messages: list[dict], max_tokens: int, params
                 return (model, *_call(model, messages, max_tokens, params))
             except Exception as e:
                 name, msg = type(e).__name__, str(e)
-                if name not in TRANSIENT:
+                status = getattr(e, "status_code", None) or getattr(e, "provider_status_code", None)
+                if name not in TRANSIENT and status not in TRANSIENT_STATUS:
                     raise
                 if "PerDay" in msg or "per day" in msg.lower():
                     why.append(f"{model}: дневной лимит исчерпан")

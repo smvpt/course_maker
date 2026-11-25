@@ -213,3 +213,21 @@ def test_permanent_errors_fail_at_once(env, monkeypatch):
     scripted(monkeypatch, {"anthropic/claude-opus-5-5": [AuthenticationError("bad key")]})
     with pytest.raises(AuthenticationError):
         llm.complete_text("core/t", {"x": 1, "y": 2})
+
+
+class InternalServerError(Exception):
+    pass
+
+
+class APIError(Exception):
+    def __init__(self, msg, status_code):
+        super().__init__(msg)
+        self.status_code = status_code
+
+
+def test_claude_overloaded_529_is_retried(env, monkeypatch):
+    monkeypatch.setattr(llm.time, "sleep", lambda s: None)
+    scripted(monkeypatch, {"anthropic/claude-opus-5-5": [
+        InternalServerError("AnthropicException - overloaded_error (529)"),
+        APIError("Overloaded", status_code=529), "ok"]})
+    assert llm.complete_text("core/t", {"x": 1, "y": 2}) == "ok"
