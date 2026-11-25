@@ -1,0 +1,43 @@
+{
+ "chapter": "latyshova_gl5_par17-20",
+ "source": "latyshova_gl5_par17-20.md",
+ "generated_by": "пример, написан вручную",
+ "nodes": [{
+  "id": "latyshova.mixed_section_needs_quant",
+  "order": 1,
+  "title": "Смешанный разрез требует количественной интерпретации",
+  "why_here": {"text": "Пример узла для схемы.", "by_model": false},
+  "difficulty": {"primary": "И", "secondary": "Н"},
+  "threshold": false,
+  "pages": [95],
+  "layers": {
+   "topic": {"text": "Когда качественных признаков мало", "by_model": false},
+   "main": {"text": "Если в разрезе смешаны разные породы и флюиды, по виду кривых коллектор не выделить: нужны расчёты и геологические сведения.", "by_model": false},
+   "mechanism": {"text": "Разные сочетания породы и флюида дают похожие отклики приборов.", "by_model": false},
+   "practice": {"text": "Привлекают количественную интерпретацию и геологические данные о разрезе.", "by_model": false},
+   "nuances": {"text": "В простых разрезах хватает нескольких методов.", "by_model": false},
+   "deeper": []
+  },
+  "claims": [{
+   "id": "latyshova.mixed_section_needs_quant#c1",
+   "text": "В смешанном терригенно-карбонатном разрезе коллектор выделяют только количественной интерпретацией с геологическими сведениями.",
+   "kind": "observation", "page_pdf": 95, "page_print": null,
+   "quote": "построение разреза и особенно выделение коллектора можно осуществить лишь на основании количественной интерпретации геофизических данных",
+   "source_kind": "text", "by_model": false
+  }],
+  "links": [{"type": "to_data", "target": "data.las_curve"}],
+  "misconception": {"ref": "misc.log_is_rock", "text": "Кривая — не порода.", "by_model": false},
+  "data_meaning": {
+   "from_chapter": {"text": "Одни и те же значения кривых в смешанном разрезе могут соответствовать разным породам.", "by_model": false},
+   "breaks": {"text": "Правило «по виду кривой» перестаёт работать при смене типа разреза.", "by_model": false},
+   "hypotheses": [{"text": "Классификатор, обученный на терригенном разрезе, ошибётся на карбонатном.", "by_model": false, "hypothesis": true}]
+  },
+  "it_analogy": {"text": "Сдвиг распределения (domain shift).", "breaks_where": "Сдвиг здесь физический и известен заранее по геологии.", "by_model": false},
+  "now_practice": null,
+  "inefficiency_lens": null,
+  "terms_introduced": ["количественная интерпретация"],
+  "terms_used": [],
+  "needs_scan": [],
+  "decision_on_data": null
+ }]
+}

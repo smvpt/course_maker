@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Паспорт ролика (по ТЗ, часть 4)",
+  "type": "object",
+  "required": ["video_id", "node_id", "node_card", "script", "sources", "scene_spec", "frames", "exaggerations", "prediction_question", "transfer_question", "data_it_bridge", "physics_checklist", "audio_check"],
+  "properties": {
+    "video_id": {"type": "string"},
+    "node_id": {"type": "string"},
+    "node_card": {"type": "object"},
+    "script": {"type": "array", "items": {"type": "object", "required": ["t_start", "t_end", "text", "claim_id"], "properties": {"t_start": {"type": "number"}, "t_end": {"type": "number"}, "text": {"type": "string"}, "claim_id": {"type": ["string", "null"]}, "is_analogy": {"type": "boolean"}, "on_screen": {"type": "string"}}}},
+    "sources": {"type": "array", "items": {"type": "object", "required": ["claim_id", "page_or_dataset"], "properties": {"claim_id": {"type": "string"}, "page_or_dataset": {"type": "string"}, "quote": {"type": "string"}}}},
+    "scene_spec": {"type": "string", "description": "путь к спецификации сцены: объекты, параметры, инварианты, допущения"},
+    "frames": {"type": "array", "items": {"type": "object", "required": ["t", "class", "label"], "properties": {"t": {"type": "number"}, "class": {"enum": ["A", "B", "C", "D"]}, "label": {"enum": ["реальные данные", "симуляция", "схема"]}}}},
+    "exaggerations": {"type": "array", "items": {"type": "string"}},
+    "prediction_question": {"type": "string"},
+    "transfer_question": {"type": "string"},
+    "data_it_bridge": {"type": "string"},
+    "physics_checklist": {"type": "array", "items": {"type": "object", "required": ["item", "answer"], "properties": {"item": {"type": "string"}, "answer": {"enum": ["да", "нет", "н/п"]}, "note": {"type": "string"}}}},
+    "audio_check": {"type": "object"}
+  }
+}

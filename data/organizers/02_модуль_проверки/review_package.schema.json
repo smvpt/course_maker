@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "glava-kurs/review_package.schema.json",
+  "title": "Внешний пакет для модуля проверки: черновик по главе, который модуль должен проверить",
+  "type": "object",
+  "required": ["package_id", "chapter", "chapter_file", "items", "scenes", "frames"],
+  "properties": {
+    "package_id": {"type": "string", "description": "идентификатор пакета, напр. ctrl_vendelshtein"},
+    "chapter": {"type": "string", "description": "идентификатор главы"},
+    "chapter_file": {"type": "string", "description": "имя md-файла главы, по которому сверяются страницы и цитаты"},
+    "language": {"type": "string", "description": "язык главы: ru или en"},
+    "items": {
+      "type": "array",
+      "description": "всё, что можно проверить: утверждения, аналогии, фразы закадра, факты сцены",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "text"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Z][A-Z0-9_.-]*$", "description": "устойчивый id цели для замечаний: C001, A01, L01.03, S01"},
+          "type": {"enum": ["claim", "analogy", "script_line", "scene_fact"]},
+          "node_id": {"type": ["string", "null"], "description": "узел учебного слоя"},
+          "text": {"type": "string", "description": "проверяемый текст"},
+          "kind": {"enum": ["observation", "inference", "assumption"], "description": "для claim: наблюдение, вывод, допущение"},
+          "page_pdf": {"type": ["integer", "null"], "description": "для claim: страница из метки <!-- page N --> в md"},
+          "quote": {"type": ["string", "null"], "description": "для claim: цитата автора, на которую опирается утверждение"},
+          "breaks_where": {"type": ["string", "null"], "description": "для analogy: где аналогия перестаёт работать"},
+          "video_id": {"type": ["string", "null"], "description": "для script_line и scene_fact"},
+          "t_start": {"type": ["number", "null"]},
+          "t_end": {"type": ["number", "null"]},
+          "claim_ref": {"type": ["string", "null"], "description": "для script_line: id утверждения, на которое опирается фраза"},
+          "on_screen": {"type": ["string", "null"], "description": "для script_line: подпись на экране"},
+          "spec_path": {"type": ["string", "null"], "description": "для scene_fact: где в спецификации сцены лежит этот факт"}
+        }
+      }
+    },
+    "scenes": {
+      "type": "array",
+      "description": "спецификации сцен роликов целиком — контекст для проверки фактов сцены и кадров",
+      "items": {"type": "object", "required": ["video_id", "spec"], "properties": {"video_id": {"type": "string"}, "spec": {"type": "object"}}}
+    },
+    "frames": {
+      "type": "array",
+      "description": "8–12 кадров роликов",
+      "items": {
+        "type": "object",
+        "required": ["id", "video_id", "file", "t", "frame_class", "label", "shows"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^F[0-9]+$"},
+          "video_id": {"type": "string"},
+          "file": {"type": "string", "description": "путь к PNG относительно пакета"},
+          "t": {"type": "number", "description": "секунда ролика"},
+          "frame_class": {"enum": ["A", "B", "C", "D"]},
+          "label": {"enum": ["реальные данные", "симуляция", "схема"], "description": "метка происхождения, заявленная для кадра"},
+          "shows": {"type": "string", "description": "что, по заявлению автора, показано в кадре"},
+          "plaque": {"type": ["string", "null"], "description": "плашка «не в масштабе» и что преувеличено, если есть"}
+        }
+      }
+    }
+  }
+}

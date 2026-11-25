@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "glava-kurs/coverage.schema.json",
+  "title": "Таблица покрытия главы: каждая единица главы → узел или причина, почему её нет",
+  "type": "object",
+  "required": ["chapter", "rows"],
+  "properties": {
+    "chapter": {"type": "string"},
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["unit_id", "kind", "page_pdf", "excerpt", "node_ids", "reason"],
+        "properties": {
+          "unit_id": {"type": "string", "description": "id единицы главы, устойчивый: p095.03 — третья единица на стр. 95"},
+          "kind": {"enum": ["paragraph", "figure", "formula", "table", "worked_example", "task", "heading"], "description": "абзац, рисунок, формула, таблица, разобранный пример, задача, заголовок"},
+          "page_pdf": {"type": "integer", "description": "страница из метки <!-- page N --> в md"},
+          "excerpt": {"type": "string", "description": "начало единицы, 5–15 слов, чтобы её найти"},
+          "node_ids": {"type": "array", "items": {"type": "string"}, "description": "узлы, в которые вошла единица; пусто — тогда нужна причина"},
+          "reason": {"type": ["string", "null"], "description": "почему единица не вошла ни в один узел; «непоказуемо» — не причина"}
+        }
+      }
+    }
+  }
+}

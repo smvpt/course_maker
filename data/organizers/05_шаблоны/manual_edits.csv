@@ -1,0 +1,2 @@
+time,chapter,file,what_changed,person_minutes,people,run_no,reason
+2026-12-02T10:15,latyshova_gl5_par17-20,course/step_07.json,"исправлено число в блоке «Цифры и условия»",6,1,2,"конвейер взял число с соседней страницы"

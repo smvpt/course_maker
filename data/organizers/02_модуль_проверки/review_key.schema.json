@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "glava-kurs/review_key.schema.json",
+  "title": "Ключ к пакету с закладками",
+  "type": "object",
+  "required": ["package_id", "errors", "tricky_true"],
+  "properties": {
+    "package_id": {"type": "string"},
+    "errors": {
+      "type": "array",
+      "description": "заложенные ошибки",
+      "items": {
+        "type": "object",
+        "required": ["target", "category", "severity", "correct", "pages"],
+        "properties": {
+          "target": {"type": "string"},
+          "category": {"enum": ["overgeneralization", "sign_flip", "measured_vs_inferred", "lost_condition", "missing_caveat", "wrong_scaling", "wrong_mechanism", "outdated_as_current", "analogy_without_limit", "frame_error", "other"]},
+          "severity": {"enum": ["critical", "significant", "minor"]},
+          "correct": {"type": "string", "description": "как должно быть"},
+          "pages": {"type": "array", "items": {"type": "integer"}, "description": "страницы, которые подтверждают исправление; верной считается любая из них"},
+          "quote": {"type": "string"},
+          "note": {"type": "string"}
+        }
+      }
+    },
+    "tricky_true": {
+      "type": "array",
+      "description": "верные, но неожиданные элементы; замечание к ним — ложная тревога",
+      "items": {"type": "object", "required": ["target", "why_tricky"], "properties": {"target": {"type": "string"}, "why_tricky": {"type": "string"}, "pages": {"type": "array", "items": {"type": "integer"}}}}
+    }
+  }
+}

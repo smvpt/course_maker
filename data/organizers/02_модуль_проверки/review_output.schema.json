@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "glava-kurs/review_output.schema.json",
+  "title": "Ответ модуля проверки: замечания к пакету",
+  "type": "object",
+  "required": ["package_id", "remarks"],
+  "properties": {
+    "package_id": {"type": "string"},
+    "team": {"type": "string"},
+    "remarks": {
+      "type": "array",
+      "description": "одно замечание на цель; если на одну цель несколько замечаний, засчитывается первое",
+      "items": {
+        "type": "object",
+        "required": ["target", "category", "severity", "problem", "fix", "page_pdf"],
+        "properties": {
+          "target": {"type": "string", "description": "id элемента items или кадра frames"},
+          "category": {"enum": ["overgeneralization", "sign_flip", "measured_vs_inferred", "lost_condition", "missing_caveat", "wrong_scaling", "wrong_mechanism", "outdated_as_current", "analogy_without_limit", "frame_error", "other"]},
+          "severity": {"enum": ["critical", "significant", "minor"]},
+          "problem": {"type": "string", "description": "что не так"},
+          "fix": {"type": "string", "description": "исправленная формулировка или что должно быть в кадре"},
+          "page_pdf": {"type": ["integer", "null"], "description": "страница главы, которая подтверждает исправление"},
+          "quote": {"type": ["string", "null"], "description": "цитата с этой страницы"}
+        }
+      }
+    }
+  }
+}

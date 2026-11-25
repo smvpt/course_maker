@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "glava-kurs/task.schema.json",
+  "title": "Задания демо-курса по главе",
+  "type": "object",
+  "required": ["chapter", "tasks"],
+  "properties": {
+    "chapter": {"type": "string"},
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "step_id", "claim_ids", "prompt", "answer", "explanation"],
+        "properties": {
+          "id": {"type": "string"},
+          "type": {"enum": ["single", "multiple", "order", "gap", "calc"], "description": "один ответ, несколько ответов, порядок, пропуск в тексте, расчёт"},
+          "step_id": {"type": "string", "description": "шаг курса, в тексте которого есть ответ"},
+          "claim_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}, "description": "утверждения узла, на которых держится ответ"},
+          "prompt": {"type": "string", "description": "вопрос или текст с пропусками ({{1}}, {{2}})"},
+          "options": {"type": "array", "items": {"type": "object", "required": ["id", "text"], "properties": {"id": {"type": "string"}, "text": {"type": "string"}, "misconception": {"type": ["string", "null"], "description": "id заблуждения, на котором построен неверный вариант"}}}},
+          "answer": {"description": "single: id варианта; multiple: список id; order: список id в верном порядке; gap: список слов; calc: число", "oneOf": [{"type": "string"}, {"type": "number"}, {"type": "array"}]},
+          "tolerance": {"type": ["number", "null"], "description": "для calc: допустимая погрешность"},
+          "unit": {"type": ["string", "null"], "description": "для calc: единица ответа"},
+          "explanation": {"type": "string", "description": "пояснение в одну фразу, видно после проверки"},
+          "kind": {"enum": ["recall", "understanding", "transfer", "data"], "description": "узнавание, понимание, перенос, задание на данных"}
+        }
+      }
+    }
+  }
+}

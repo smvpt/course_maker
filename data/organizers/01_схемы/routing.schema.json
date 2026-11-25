@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "glava-kurs/routing.schema.json",
+  "title": "Маршрутизация форматов: формат для каждого узла с обоснованием",
+  "type": "object",
+  "required": [
+    "chapter",
+    "routes"
+  ],
+  "properties": {
+    "chapter": {
+      "type": "string"
+    },
+    "routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "node_id",
+          "format",
+          "video_scores",
+          "why"
+        ],
+        "properties": {
+          "node_id": {
+            "type": "string"
+          },
+          "format": {
+            "enum": [
+              "шортс",
+              "длинное видео",
+              "интерактив",
+              "практикум на данных",
+              "карточки",
+              "текст"
+            ]
+          },
+          "secondary_format": {
+            "anyOf": [
+              {
+                "enum": [
+                  "шортс",
+                  "длинное видео",
+                  "интерактив",
+                  "практикум на данных",
+                  "карточки",
+                  "текст"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "video_scores": {
+            "type": "object",
+            "description": "критерии видеоёмкости, 0–2 каждый",
+            "required": [
+              "time",
+              "invisible",
+              "scale",
+              "counterintuitive",
+              "cause_effect"
+            ],
+            "properties": {
+              "time": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2,
+                "description": "изменение во времени"
+              },
+              "invisible": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2,
+                "description": "невидимое становится видимым"
+              },
+              "scale": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2,
+                "description": "скачок масштаба"
+              },
+              "counterintuitive": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2,
+                "description": "контринтуитивность"
+              },
+              "cause_effect": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2,
+                "description": "причина и следствие"
+              }
+            }
+          },
+          "hook_short": {
+            "type": "boolean",
+            "description": "шортс-крючок без своего узла (не больше 10–20% роликов)"
+          },
+          "template": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "шаблон сцены, если формат — ролик или интерактив"
+          },
+          "why": {
+            "type": "string",
+            "description": "обоснование по типу трудности и критериям видеоёмкости"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,518 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "glava-kurs/node.schema.json",
+  "title": "Учебный слой главы (граф узлов)",
+  "type": "object",
+  "required": [
+    "chapter",
+    "source",
+    "nodes"
+  ],
+  "properties": {
+    "chapter": {
+      "type": "string",
+      "description": "идентификатор главы, напр. latyshova_gl5_par17-20"
+    },
+    "source": {
+      "type": "string",
+      "description": "путь к md главы"
+    },
+    "pdf_pages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "generated_by": {
+      "type": "string",
+      "description": "бэкенд и модель"
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/node"
+      }
+    }
+  },
+  "$defs": {
+    "difficulty": {
+      "enum": [
+        "М",
+        "В",
+        "И",
+        "Ф",
+        "П",
+        "Пр",
+        "Н",
+        "Р"
+      ]
+    },
+    "field": {
+      "type": "object",
+      "description": "текстовое поле с пометкой происхождения",
+      "required": [
+        "text",
+        "by_model"
+      ],
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "by_model": {
+          "type": "boolean",
+          "description": "true — поле написано моделью"
+        },
+        "hypothesis": {
+          "type": "boolean",
+          "description": "true — не следует прямо из главы"
+        }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "required": [
+        "id",
+        "text",
+        "kind",
+        "page_pdf",
+        "quote",
+        "source_kind",
+        "by_model"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9_.-]+#c[0-9]+$"
+        },
+        "text": {
+          "type": "string",
+          "description": "утверждение своими словами"
+        },
+        "kind": {
+          "enum": [
+            "observation",
+            "inference",
+            "assumption"
+          ],
+          "description": "наблюдение / вывод / допущение"
+        },
+        "page_pdf": {
+          "type": "integer"
+        },
+        "page_print": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "quote": {
+          "type": "string",
+          "minLength": 8,
+          "description": "дословная цитата автора из md"
+        },
+        "source_kind": {
+          "enum": [
+            "text",
+            "formula",
+            "table",
+            "task",
+            "figure_caption",
+            "figure_description_model"
+          ]
+        },
+        "by_model": {
+          "type": "boolean"
+        },
+        "needs_scan": {
+          "type": "boolean"
+        }
+      }
+    },
+    "link": {
+      "type": "object",
+      "required": [
+        "type",
+        "target"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "prerequisite",
+            "example_of",
+            "refutes_misconception",
+            "to_data"
+          ]
+        },
+        "target": {
+          "type": "string",
+          "description": "id узла, id заблуждения (misc.*) или датасета (data.*)"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "node": {
+      "type": "object",
+      "required": [
+        "id",
+        "order",
+        "title",
+        "why_here",
+        "difficulty",
+        "threshold",
+        "layers",
+        "claims",
+        "links",
+        "data_meaning",
+        "it_analogy",
+        "terms_introduced",
+        "pages"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9_.-]+$",
+          "description": "устойчивый id: <префикс главы>.<slug>"
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "title": {
+          "type": "string"
+        },
+        "why_here": {
+          "$ref": "#/$defs/field"
+        },
+        "difficulty": {
+          "type": "object",
+          "required": [
+            "primary"
+          ],
+          "properties": {
+            "primary": {
+              "$ref": "#/$defs/difficulty"
+            },
+            "secondary": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/difficulty"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "threshold": {
+          "type": "boolean",
+          "description": "пороговая идея"
+        },
+        "pages": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "layers": {
+          "type": "object",
+          "required": [
+            "topic",
+            "main",
+            "mechanism",
+            "practice",
+            "nuances",
+            "deeper"
+          ],
+          "properties": {
+            "topic": {
+              "$ref": "#/$defs/field"
+            },
+            "main": {
+              "$ref": "#/$defs/field"
+            },
+            "mechanism": {
+              "$ref": "#/$defs/field"
+            },
+            "practice": {
+              "$ref": "#/$defs/field"
+            },
+            "nuances": {
+              "$ref": "#/$defs/field"
+            },
+            "deeper": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/field"
+              }
+            }
+          }
+        },
+        "claims": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/claim"
+          }
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/link"
+          }
+        },
+        "misconception": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "required": [
+                "ref",
+                "text",
+                "by_model"
+              ],
+              "properties": {
+                "ref": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "text": {
+                  "type": "string"
+                },
+                "by_model": {
+                  "type": "boolean"
+                }
+              }
+            }
+          ]
+        },
+        "data_meaning": {
+          "type": "object",
+          "required": [
+            "from_chapter",
+            "breaks",
+            "hypotheses"
+          ],
+          "properties": {
+            "from_chapter": {
+              "$ref": "#/$defs/field"
+            },
+            "breaks": {
+              "$ref": "#/$defs/field"
+            },
+            "hypotheses": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/field"
+              }
+            }
+          }
+        },
+        "it_analogy": {
+          "type": "object",
+          "required": [
+            "text",
+            "breaks_where",
+            "by_model"
+          ],
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "breaks_where": {
+              "type": "string"
+            },
+            "by_model": {
+              "type": "boolean"
+            }
+          }
+        },
+        "now_practice": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/field"
+            }
+          ]
+        },
+        "inefficiency_lens": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "required": [
+                "inputs",
+                "manual_steps",
+                "judgment_points",
+                "time",
+                "typical_errors",
+                "by_model"
+              ],
+              "properties": {
+                "inputs": {
+                  "type": "string"
+                },
+                "manual_steps": {
+                  "type": "string"
+                },
+                "judgment_points": {
+                  "type": "string"
+                },
+                "time": {
+                  "type": "string"
+                },
+                "typical_errors": {
+                  "type": "string"
+                },
+                "by_model": {
+                  "type": "boolean"
+                }
+              }
+            }
+          ]
+        },
+        "terms_introduced": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "terms_used": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "needs_scan": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "page",
+              "what"
+            ],
+            "properties": {
+              "page": {
+                "type": "integer"
+              },
+              "what": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "decision_on_data": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "required": [
+                "features",
+                "rule",
+                "conclusion"
+              ],
+              "properties": {
+                "features": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "rule": {
+                  "type": "string"
+                },
+                "conclusion": {
+                  "type": "string"
+                },
+                "counterexample": {
+                  "type": "string"
+                }
+              }
+            }
+          ]
+        },
+        "worked_examples": {
+          "type": "array",
+          "description": "разобранные примеры автора: условие, шаги решения, итог с числами автора",
+          "items": {
+            "type": "object",
+            "required": [
+              "page_pdf",
+              "condition",
+              "steps",
+              "result"
+            ],
+            "properties": {
+              "page_pdf": {
+                "type": "integer"
+              },
+              "condition": {
+                "type": "string"
+              },
+              "steps": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "result": {
+                "type": "string",
+                "description": "итог с числами автора"
+              },
+              "figure": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "рисунок, на котором держится пример: «рис. N, стр. M»"
+              }
+            }
+          }
+        },
+        "book_tasks": {
+          "type": "array",
+          "description": "задачи книги: номер, формулировка, какой рисунок нужен",
+          "items": {
+            "type": "object",
+            "required": [
+              "number",
+              "page_pdf",
+              "text"
+            ],
+            "properties": {
+              "number": {
+                "type": "string"
+              },
+              "page_pdf": {
+                "type": "integer"
+              },
+              "text": {
+                "type": "string"
+              },
+              "figure": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "какой рисунок нужен для решения"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
