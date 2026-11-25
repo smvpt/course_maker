@@ -5,7 +5,7 @@ from typing import NamedTuple, Optional
 
 from rapidfuzz import fuzz
 
-from pipeline.verify.pages import load_norm_pages, normalize
+from pipeline.verify.pages import load_norm_pages, normalize, out_root
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -56,7 +56,7 @@ def check_quote_md(md_path, page, quote):
 
 def chapter_md(chapter_id):
     """Путь к md главы — из out/<ch>/units.json (поле source, пишет ingest П1)."""
-    return md_from_units(ROOT / "out" / chapter_id / "units.json")
+    return md_from_units(out_root() / chapter_id / "units.json")
 
 
 def md_from_units(units):

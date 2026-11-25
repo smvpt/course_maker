@@ -1,7 +1,16 @@
 """Индекс «страница PDF → текст» по меткам <!-- page N --> и нормализация для сверки."""
+import os
 import re
 from functools import lru_cache
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+
+
+def out_root():
+    """Корень out/ (OUT_DIR переопределяет — как pipeline.common.paths.out_root у П1)."""
+    return Path(os.environ.get("OUT_DIR") or ROOT / "out")
+
 
 PAGE_RE = re.compile(r"<!--\s*page\s+(\d+)\s*-->")
 

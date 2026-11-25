@@ -19,7 +19,7 @@ from rapidfuzz import fuzz
 
 from contracts.models import ChecklistAnswer, ChapterUnits, Layer, Remark, ReviewOutput, SceneSpec, Script
 from pipeline.verify.numbers import extract_numbers, missing_numbers
-from pipeline.verify.pages import normalize
+from pipeline.verify.pages import normalize, out_root
 from pipeline.verify.remarks import SEV_ORDER, one_per_target
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -216,7 +216,7 @@ def main(argv=None):
     ap.add_argument("--video", required=True)
     ap.add_argument("--llm", action="store_true", help="ещё и чек-лист физики через strong-модель")
     a = ap.parse_args(argv)
-    out_dir = ROOT / "out" / a.ch
+    out_dir = out_root() / a.ch
     vdir = out_dir / "videos" / a.video
     for f in ("script.json", "scene_spec.json"):
         if not (vdir / f).exists():
@@ -234,7 +234,7 @@ def main(argv=None):
     dst.parent.mkdir(parents=True, exist_ok=True)
     dst.write_text(report.model_dump_json(by_alias=True, indent=2), encoding="utf-8")
     counts = {s: sum(r.severity == s for r in report.remarks) for s in SEV_ORDER}
-    print(f"scene {a.video}: {counts} → {dst.relative_to(ROOT)}")
+    print(f"scene {a.video}: {counts} → {dst}")
     return 1 if counts["critical"] else 0
 
 

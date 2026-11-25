@@ -10,7 +10,7 @@ from pathlib import Path
 
 from contracts.models import ChapterUnits, Layer, Remark, ReviewOutput, SceneSpec, Script, Tasks
 from pipeline.verify.numbers import missing_numbers
-from pipeline.verify.pages import load_pages
+from pipeline.verify.pages import load_pages, out_root
 from pipeline.verify.quotes import check_quote_md, md_from_units
 from pipeline.verify.remarks import SEV_ORDER, one_per_target
 from pipeline.verify.scene import check_scene, check_script, load_misconceptions
@@ -154,7 +154,7 @@ def main(argv=None):
     ap.add_argument("--ch", required=True)
     ap.add_argument("--team", default="", help="название команды в отчёте (схема требует строку)")
     a = ap.parse_args(argv)
-    report, code = run(a.ch, ROOT / "out" / a.ch, a.team)
+    report, code = run(a.ch, out_root() / a.ch, a.team)
     counts = {s: sum(r.severity == s for r in report.remarks) for s in SEV_ORDER}
     print(f"verify {a.ch}: {len(report.remarks)} замечаний {counts} → out/{a.ch}/verify/report.json")
     return code

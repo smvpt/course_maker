@@ -76,19 +76,17 @@ def test_quote_crossing_page_break_found_on_start_page():
 
 
 def test_check_quote_by_chapter_id_uses_units_json(tmp_path, monkeypatch):
-    import pipeline.verify.quotes as quotes
     out = tmp_path / "out" / "baren_test"
     out.mkdir(parents=True)
     (out / "units.json").write_text(json.dumps({"chapter": "baren_test", "source": str(BAREN)}),
                                     encoding="utf-8")
-    monkeypatch.setattr(quotes, "ROOT", tmp_path)
+    monkeypatch.setenv("OUT_DIR", str(tmp_path / "out"))
     r = check_quote("baren_test", 41, "Ряд (II.92) сходится при всех t и x")
     assert r.status == "found"
 
 
 def test_check_quote_unknown_chapter_fails_loudly(tmp_path, monkeypatch):
-    import pipeline.verify.quotes as quotes
-    monkeypatch.setattr(quotes, "ROOT", tmp_path)
+    monkeypatch.setenv("OUT_DIR", str(tmp_path / "out"))
     with pytest.raises(FileNotFoundError):
         check_quote("no_such_chapter", 1, "любая цитата длиннее")
 
