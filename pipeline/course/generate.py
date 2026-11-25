@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Optional
 
 from contracts.models import Layer
-from pipeline.course.steptext import ensure_step_text
+from pipeline.course.steptext import LlmState, ensure_step_text
 from pipeline.course.tasks import ensure_tasks
 
 
@@ -29,8 +29,11 @@ def load_misconceptions(domain: str) -> list[dict]:
     return domain_pack.load(domain).misconceptions
 
 
-def run(layer: Layer, ch_dir: Path, course_dir: Path, node: Optional[str], domain: Optional[str]) -> None:
+def run(layer: Layer, ch_dir: Path, course_dir: Path, node: Optional[str], domain: Optional[str]) -> LlmState:
+    """Генерирует текст шагов и задания. Возвращает состояние модели (для итога сборки)."""
     os.environ.setdefault("CH", layer.chapter)           # llm.py пишет главу в метрики из этой переменной
     misconceptions = load_misconceptions(resolve_domain(ch_dir, domain))   # входы проверяем до первого вызова модели
-    ensure_step_text(layer, course_dir, only=node)
-    ensure_tasks(layer, course_dir, misconceptions, only=node)
+    state = LlmState()                                   # одно состояние на текст и задания: авторизация упала — дальше не зовём
+    ensure_step_text(layer, course_dir, only=node, state=state)
+    ensure_tasks(layer, course_dir, misconceptions, only=node, state=state)
+    return state

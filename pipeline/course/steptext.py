@@ -13,6 +13,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import time
 from pathlib import Path
 from typing import Literal, Optional
 
@@ -65,7 +66,40 @@ class GenerationFailed(ValueError):
 
 
 class LlmError(RuntimeError):
-    """Модель недоступна или вернула непригодный ответ (сеть, ключ, оборванный JSON). Причина — в __cause__."""
+    """Отказ модели на одном вызове (исчерпаны повторы, оборванный JSON, нет кэша). Причина — в __cause__.
+    Деградирует только узел или слот, где это случилось."""
+
+
+class LlmAuthError(LlmError):
+    """Ошибка авторизации (401/403, нет ключа): модель недоступна для всей главы, повторять бессмысленно."""
+
+
+class LlmState:
+    """Состояние модели на время одной сборки (общее для текста шагов и заданий).
+
+    «Недоступна» — после MAX_IN_A_ROW отказов ПОДРЯД или сразу при ошибке авторизации. Ответ модели, даже не прошедший
+    проверки, считается ответом и сбрасывает счётчик."""
+    MAX_IN_A_ROW = 3
+
+    def __init__(self) -> None:
+        self.down: Optional[str] = None
+        self.in_a_row = 0
+        self.failures = 0
+        self.calls = 0
+
+    def success(self) -> None:
+        self.calls += 1
+        self.in_a_row = 0
+
+    def failure(self, e: LlmError) -> None:
+        self.calls += 1
+        self.failures += 1
+        if isinstance(e, LlmAuthError):
+            self.down = str(e)
+            return
+        self.in_a_row += 1
+        if self.in_a_row >= self.MAX_IN_A_ROW:
+            self.down = f"{self.MAX_IN_A_ROW} отказа подряд, последний: {e}"
 
 
 # ---------------------------------------------------------------- разбор текста
@@ -234,14 +268,43 @@ def validate_node(node: Node, paras: list[Para]) -> list[str]:
 
 # ---------------------------------------------------------------- вызов модели
 
+PAUSES = (2, 5, 10)                                   # секунды перед повтором временной ошибки
+TRANSIENT_STATUS = {408, 425, 429, 500, 502, 503, 504, 529}
+TRANSIENT_NAMES = {"Timeout", "APITimeoutError", "APIConnectionError", "RateLimitError", "ServiceUnavailableError",
+                   "InternalServerError", "BadGatewayError", "TimeoutError", "ConnectionError"}
+AUTH_NAMES = {"AuthenticationError", "PermissionDeniedError"}
+
+
+def _pause(seconds: float) -> None:
+    time.sleep(seconds)
+
+
+def classify(e: Exception) -> str:
+    """auth | transient | other. llm.py (зона П1) сам не повторяет запросы и типы ошибок litellm не оборачивает."""
+    names = {c.__name__ for c in type(e).__mro__}
+    status = getattr(e, "status_code", None)
+    if status in (401, 403) or names & AUTH_NAMES or "LLM_API_KEY" in str(e):
+        return "auth"
+    if status in TRANSIENT_STATUS or names & TRANSIENT_NAMES or isinstance(e, (TimeoutError, ConnectionError)):
+        return "transient"
+    return "other"
+
+
 def call_llm(**kw):
     from pipeline.llm import complete_json as impl   # точка входа в LLM — только pipeline.llm (CLAUDE.md §2)
-    try:
-        return impl(**kw)
-    except (KeyError, TypeError, FileNotFoundError):
-        raise        # нет промпта, не хватает переменной: это наша ошибка, не отказ модели — падаем громко
-    except Exception as e:
-        raise LlmError(f"{type(e).__name__}: {e}") from e
+    for attempt in range(len(PAUSES) + 1):
+        try:
+            return impl(**kw)
+        except (KeyError, TypeError, FileNotFoundError):
+            raise        # нет промпта, не хватает переменной: это наша ошибка, не отказ модели — падаем громко
+        except Exception as e:
+            kind = classify(e)
+            if kind == "auth":
+                raise LlmAuthError(f"{type(e).__name__}: {e}") from e
+            if kind == "transient" and attempt < len(PAUSES):
+                _pause(PAUSES[attempt])
+                continue
+            raise LlmError(f"{type(e).__name__}: {e}") from e
 
 
 def complete_json(**kw):
@@ -281,11 +344,13 @@ def load_step_text(path: Path, ch: str) -> dict[str, StepTextNode]:
     return st.nodes if st else {}
 
 
-def ensure_step_text(layer: Layer, course_dir: Path, only: Optional[str] = None) -> dict[str, StepTextNode]:
+def ensure_step_text(layer: Layer, course_dir: Path, only: Optional[str] = None,
+                     state: Optional[LlmState] = None) -> dict[str, StepTextNode]:
     """Дописывает step_text.json: новые, изменившиеся и ранее неудавшиеся узлы генерируются, остальные берутся из файла.
 
-    Не прошло проверки за все попытки — отказ записывается в failed, остальные шаги продолжаются. Модель недоступна —
-    отказ записывается и для текущего шага, и для остальных, не обращаясь к модели повторно."""
+    Не прошло проверки или модель отказала на этом узле — отказ записывается в failed, остальные шаги продолжаются.
+    Модель недоступна (3 отказа подряд или авторизация) — остальные шаги записываются как неудавшиеся без обращений к ней."""
+    state = state or LlmState()
     path = course_dir / "step_text.json"
     old = read_step_text(path, layer.chapter)
     ids = {n.id for n in layer.nodes}
@@ -293,7 +358,6 @@ def ensure_step_text(layer: Layer, course_dir: Path, only: Optional[str] = None)
     failed = {k: v for k, v in (old.failed if old else {}).items() if k in ids}
     viewer = (Path(__file__).resolve().parents[2] / VIEWER_FILE).read_text(encoding="utf-8")
     language = quote_language(layer)
-    down: Optional[str] = None
     for n in layer.nodes:
         if only is not None and n.id != only:
             continue
@@ -301,17 +365,20 @@ def ensure_step_text(layer: Layer, course_dir: Path, only: Optional[str] = None)
         if n.id in nodes and nodes[n.id].hash == h:
             continue
         nodes.pop(n.id, None)
-        if down is not None:
-            failed[n.id] = StepTextFailure(hash=h, errors=[f"модель недоступна: {down}"])
+        if state.down is not None:
+            failed[n.id] = StepTextFailure(hash=h, errors=[f"модель недоступна: {state.down}"])
             continue
         try:
             nodes[n.id] = StepTextNode(hash=h, paragraphs=generate_node(n, language, viewer))
             failed.pop(n.id, None)
+            state.success()
         except GenerationFailed as e:
             failed[n.id] = StepTextFailure(hash=h, errors=e.errors)
+            state.success()                                # модель ответила, просто неверно
         except LlmError as e:
-            down = str(e)
-            failed[n.id] = StepTextFailure(hash=h, errors=[f"модель недоступна: {down}"])
+            state.failure(e)
+            reason = f"модель недоступна: {state.down}" if state.down else f"отказ модели: {e}"
+            failed[n.id] = StepTextFailure(hash=h, errors=[reason])
     course_dir.mkdir(parents=True, exist_ok=True)
     path.write_text(StepText(chapter=layer.chapter, nodes=nodes, failed=failed).model_dump_json(by_alias=True, indent=2),
                     encoding="utf-8")

@@ -175,27 +175,30 @@ def test_tasks_make_counter_badges_and_hub_page(tmp_path):
     assert "заданий пока нет" not in hub
 
 
-def test_tasks_with_unknown_step_or_claim_fail_loudly(tmp_path):
+def test_stale_tasks_with_unknown_step_or_claim_are_dropped_with_warning(tmp_path, capsys):
+    # раньше сборка падала; теперь (живая пересборка после правки слоя) такое задание выбрасывается с предупреждением
     data = json.loads(TASKS.read_text(encoding="utf-8"))
     data["tasks"][0]["step_id"] = "mini.nope"
-    bad = tmp_path / "bad_step.json"
+    data["tasks"][1]["claim_ids"] = ["mini.resistivity_depends_on_fluid#c9"]
+    bad = tmp_path / "bad.json"
     bad.write_text(json.dumps(data), encoding="utf-8")
-    with pytest.raises(ValueError, match="mini.nope"):
-        build("mini_test", out_root=_setup(tmp_path / "a", True, bad), pages_dir=tmp_path / "pages")
-    data = json.loads(TASKS.read_text(encoding="utf-8"))
-    data["tasks"][0]["claim_ids"] = ["mini.resistivity_depends_on_fluid#c9"]
-    bad.write_text(json.dumps(data), encoding="utf-8")
-    with pytest.raises(ValueError, match="c9"):
-        build("mini_test", out_root=_setup(tmp_path / "b", True, bad), pages_dir=tmp_path / "pages")
+    course = build("mini_test", out_root=_setup(tmp_path / "a", True, bad), pages_dir=tmp_path / "pages")
+    rep = json.loads((course / "build_report.json").read_text(encoding="utf-8"))
+    stale = {w["task"]: w for w in rep["warnings"] if w["code"] == "task_stale"}
+    assert set(stale) == {"mini.t01", "mini.t02"}
+    assert "mini.nope" in stale["mini.t01"]["errors"][0] and "c9" in stale["mini.t02"]["errors"][0]
+    assert rep["tasks"] == 3 and "WARNING" in capsys.readouterr().err
 
 
-def test_task_answer_pointing_to_missing_option_fails_loudly(tmp_path):
+def test_task_answer_pointing_to_missing_option_is_dropped_with_warning(tmp_path):
     data = json.loads(TASKS.read_text(encoding="utf-8"))
     data["tasks"][0]["answer"] = "zzz"
     bad = tmp_path / "bad_answer.json"
     bad.write_text(json.dumps(data), encoding="utf-8")
-    with pytest.raises(ValueError, match="zzz"):
-        build("mini_test", out_root=_setup(tmp_path / "c", True, bad), pages_dir=tmp_path / "pages")
+    course = build("mini_test", out_root=_setup(tmp_path / "c", True, bad), pages_dir=tmp_path / "pages")
+    rep = json.loads((course / "build_report.json").read_text(encoding="utf-8"))
+    w = [x for x in rep["warnings"] if x["code"] == "task_stale"]
+    assert len(w) == 1 and w[0]["task"] == "mini.t01" and "zzz" in w[0]["errors"][0] and rep["tasks"] == 4
 
 
 def test_rebuild_keeps_tasks_json(tmp_path):

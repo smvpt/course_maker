@@ -9,7 +9,7 @@ import pytest
 from contracts.models import Layer, Tasks
 from pipeline.course import generate, steptext, tasks as T
 from pipeline.course.build import build
-from pipeline.course.steptext import LlmError, StepTextOut
+from pipeline.course.steptext import LlmAuthError, LlmError, StepTextOut
 from test_steptext import _paras
 from test_tasks_gen import FakeLLM, MISC, RES
 
@@ -124,12 +124,14 @@ def test_only_the_failing_step_falls_back(tmp_path, monkeypatch):
 
 
 def test_unavailable_model_degrades_without_hammering_it(tmp_path, monkeypatch):
+    # авторизация (нет ключа) — модель недоступна для всей главы сразу; общее состояние на текст и задания:
+    # к модели обращаются один раз, а не по разу на фазу. (Обычные отказы — см. test_llm_resilience.py)
     layer = _layer()
     out = _out(tmp_path, layer)
-    text_calls, task_calls = _model(monkeypatch, layer, text_error=LlmError("AuthenticationError: нет ключа"),
-                                    tasks_error=LlmError("AuthenticationError: нет ключа"))
+    text_calls, task_calls = _model(monkeypatch, layer, text_error=LlmAuthError("AuthenticationError: нет ключа"),
+                                    tasks_error=LlmAuthError("AuthenticationError: нет ключа"))
     course = build("mini_test", out_root=out, pages_dir=tmp_path / "pages", generate=True)
-    assert len(text_calls) == 1 and len(task_calls) == 1          # после первого отказа к модели больше не ходим
+    assert len(text_calls) == 1 and len(task_calls) == 0
     rep = _report(course)
     fb = _codes(rep, "step_text_fallback")
     assert len(fb) == 4 and all("модель недоступна" in w["errors"][0] and "нет ключа" in w["errors"][0] for w in fb)

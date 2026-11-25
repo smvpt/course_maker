@@ -19,7 +19,7 @@ from pathlib import Path
 from typing import Literal, Optional
 
 from contracts.models import Layer, Node, Task, TaskOption, Tasks
-from pipeline.course.steptext import (LlmError, call_llm, cyrillic_share, node_dict, node_hash, norm, numbers_in, sentences, source_text,
+from pipeline.course.steptext import (LlmError, LlmState, call_llm, cyrillic_share, node_dict, node_hash, norm, numbers_in, sentences, source_text,
                                       words, VIEWER_FILE, quote_language)
 from pydantic import BaseModel, Field
 
@@ -292,12 +292,13 @@ def complete_json(**kw):
 
 
 def generate_node_tasks(node: Node, planned: list[dict], misconceptions: list[dict], language: str, viewer: str
-                        ) -> tuple[list[Task], list[dict], list[dict]]:
-    """Задания узла. Возвращает (прошедшие проверку, выброшенные, предупреждения узла).
+                        ) -> tuple[list[Task], list[dict], list[dict], Optional[LlmError]]:
+    """Задания узла. Возвращает (прошедшие проверку, выброшенные, предупреждения узла, отказ модели или None).
 
     Проверка идёт по каждому заданию отдельно: на следующую попытку модели возвращаются только слоты, которые не
-    прошли, с их ошибками. После ATTEMPTS попыток оставшиеся слоты выбрасываются. LlmError (модель недоступна)
-    не перехватывается здесь: его обрабатывает ensure_tasks."""
+    прошли, с их ошибками. После ATTEMPTS попыток оставшиеся слоты выбрасываются. Отказ модели (LlmError) обрывает
+    попытки этого узла: уже принятые задания остаются, остальные слоты выбрасываются с причиной; сам отказ
+    возвращается четвёртым значением, чтобы ensure_tasks учёл его в состоянии модели."""
     misc_ids = {m["id"] for m in misconceptions}
     catalogue = list(misconceptions)
     if node.misconception and node.misconception.ref and node.misconception.ref not in misc_ids:
@@ -307,13 +308,20 @@ def generate_node_tasks(node: Node, planned: list[dict], misconceptions: list[di
     errors: dict[int, list[str]] = {}
     pending = list(range(len(planned)))
     feedback = "нет, это первая попытка"
+    failure: Optional[LlmError] = None
     for _ in range(ATTEMPTS):
         requested = [planned[i] for i in pending]
-        out = complete_json(prompt="course/tasks", schema=LlmTasks, tier="default",
-                            vars={"node": json.dumps(node_dict(node), ensure_ascii=False, indent=1),
-                                  "requested": json.dumps(requested, ensure_ascii=False),
-                                  "misconceptions": json.dumps(catalogue, ensure_ascii=False, indent=1),
-                                  "viewer": viewer, "language": language, "feedback": feedback})
+        try:
+            out = complete_json(prompt="course/tasks", schema=LlmTasks, tier="default",
+                                vars={"node": json.dumps(node_dict(node), ensure_ascii=False, indent=1),
+                                      "requested": json.dumps(requested, ensure_ascii=False),
+                                      "misconceptions": json.dumps(catalogue, ensure_ascii=False, indent=1),
+                                      "viewer": viewer, "language": language, "feedback": feedback})
+        except LlmError as e:
+            failure = e
+            for slot in pending:
+                errors[slot] = [f"отказ модели: {e}"]
+            break
         still: list[int] = []
         for pos, slot in enumerate(pending):
             if pos >= len(out.tasks):
@@ -339,7 +347,7 @@ def generate_node_tasks(node: Node, planned: list[dict], misconceptions: list[di
     if ref and choice and not any(o.misconception == ref for t in choice for o in t.options):
         warnings.append({"code": "misconception_unused", "node": node.id, "ref": ref,
                          "message": f"шаг {node.id}: ни один неверный вариант не построен на заблуждении {ref}"})
-    return tasks, dropped, warnings
+    return tasks, dropped, warnings, failure
 
 
 # ---------------------------------------------------------------- глава целиком
@@ -376,10 +384,12 @@ def load_tasks(path: Path, ch: str) -> Optional[Tasks]:
     return t
 
 
-def ensure_tasks(layer: Layer, course_dir: Path, misconceptions: list[dict], only: Optional[str] = None) -> Tasks:
+def ensure_tasks(layer: Layer, course_dir: Path, misconceptions: list[dict], only: Optional[str] = None,
+                 state: Optional[LlmState] = None) -> Tasks:
     """Дописывает tasks.json: узлы без заданий, изменившиеся (по хэшу) и с ранее выброшенными заданиями генерируются
-    заново, остальные берутся из файла. Модель недоступна — слоты текущего и остальных узлов выбрасываются без
-    повторных обращений к ней."""
+    заново, остальные берутся из файла. Отказ модели деградирует только слоты своего узла. Модель недоступна
+    (3 отказа подряд или авторизация) — слоты остальных узлов выбрасываются без обращений к ней."""
+    state = state or LlmState()
     path = course_dir / "tasks.json"
     old = load_tasks(path, layer.chapter)
     oc = old.ext.get("course", {}) if old else {}
@@ -393,7 +403,6 @@ def ensure_tasks(layer: Layer, course_dir: Path, misconceptions: list[dict], onl
     dropped = [d for d in oc.get("dropped", []) if d["node"] in by_node]
     node_warnings = [w for w in oc.get("node_warnings", []) if w["node"] in by_node]
     generated_all = True
-    down: Optional[str] = None
     for n in layer.nodes:
         if only is not None and n.id != only:
             generated_all = generated_all and bool(hashes.get(n.id))
@@ -403,21 +412,23 @@ def ensure_tasks(layer: Layer, course_dir: Path, misconceptions: list[dict], onl
             continue
         dropped = [d for d in dropped if d["node"] != n.id]
         node_warnings = [w for w in node_warnings if w["node"] != n.id]
-        if down is None:
-            try:
-                by_node[n.id], new_dropped, new_warnings = generate_node_tasks(n, planned[n.id], misconceptions, language, viewer)
-            except LlmError as e:
-                down = str(e)
-        if down is not None:
+        if state.down is None:
+            by_node[n.id], new_dropped, new_warnings, failure = generate_node_tasks(n, planned[n.id], misconceptions, language, viewer)
+            if failure is not None:
+                state.failure(failure)
+            else:
+                state.success()
+        else:
             by_node[n.id] = []
-            new_dropped = [{"node": n.id, "slot": i + 1, "type": s["type"], "errors": [f"модель недоступна: {down}"]}
+            new_dropped = [{"node": n.id, "slot": i + 1, "type": s["type"], "errors": [f"модель недоступна: {state.down}"]}
                            for i, s in enumerate(planned[n.id])]
             new_warnings = []
         dropped += new_dropped
         node_warnings += new_warnings
         hashes[n.id] = h
     tasks = [t for n in layer.nodes for t in by_node[n.id]]
-    warnings = check_chapter(layer, tasks, emit=False) if only is None or generated_all else []
+    # если модель недоступна, «мало заданий» и т. п. — следствие простоя: оно уже описано как model_unavailable
+    warnings = check_chapter(layer, tasks, emit=False) if (only is None or generated_all) and state.down is None else []
     result = Tasks(chapter=layer.chapter, tasks=tasks,
                    ext={"course": {"hashes": hashes, "warnings": warnings, "dropped": dropped, "node_warnings": node_warnings}})
     course_dir.mkdir(parents=True, exist_ok=True)

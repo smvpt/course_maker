@@ -59,22 +59,42 @@ def load_inputs(ch_dir: Path) -> dict:
 
 # ---------------------------------------------------------------- задания (tasks.json делает задача 3 этого же модуля)
 
-def load_tasks(ch: str, course_dir: Path, layer: Layer) -> tuple[list[Task], dict]:
-    """Задания и служебные данные генерации (ext.course: предупреждения, выброшенные задания)."""
+def task_problems(t: Task, claims: dict[str, set[str]]) -> list[str]:
+    """Что не так с заданием относительно текущего слоя (узел или утверждение удалили, ответ ссылается на несуществующий вариант)."""
+    if t.step_id not in claims:
+        return [f"нет шага {t.step_id!r} в layer.json"]
+    problems = []
+    missing = [c for c in t.claim_ids if c not in claims[t.step_id]]
+    if missing:
+        problems.append(f"нет утверждений {missing} в шаге {t.step_id}")
+    if t.type in ("single", "multiple", "order"):
+        given = [t.answer] if isinstance(t.answer, str) else list(t.answer)
+        absent = [a for a in given if a not in {o.id for o in t.options}]
+        if absent:
+            problems.append(f"в answer указаны варианты {absent}, которых нет в options")
+    return problems
+
+
+def load_tasks(ch: str, course_dir: Path, layer: Layer) -> tuple[list[Task], dict, list[dict]]:
+    """Задания, служебные данные генерации (ext.course) и устаревшие задания, которые курс не показывает.
+
+    Устаревшее задание (слой правили после генерации) выбрасывается с записью: живая пересборка не должна падать.
+    Файл tasks.json при этом не меняется, его перезапишет следующая генерация."""
     path = course_dir / "tasks.json"
     if not path.exists():
-        return [], {}
+        return [], {}, []
     tasks = _read(path, Tasks)
     if tasks.chapter != ch:
         raise ValueError(f"{path}: chapter={tasks.chapter!r}, а запрошена глава {ch!r}")
     claims = {n.id: {c.id for c in n.claims} for n in layer.nodes}
+    good, stale = [], []
     for t in tasks.tasks:
-        if t.step_id not in claims:
-            raise ValueError(f"{path}: задание {t.id}: нет шага {t.step_id!r} в layer.json")
-        missing = [c for c in t.claim_ids if c not in claims[t.step_id]]
-        if missing:
-            raise ValueError(f"{path}: задание {t.id}: нет утверждений {missing} в шаге {t.step_id}")
-    return tasks.tasks, tasks.ext.get("course", {})
+        problems = task_problems(t, claims)
+        if problems:
+            stale.append({"task": t.id, "node": t.step_id, "errors": problems})
+        else:
+            good.append(t)
+    return good, tasks.ext.get("course", {}), stale
 
 
 def answer_text(t: Task) -> str:
@@ -503,9 +523,14 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
 
     warnings: list[dict] = []
 
+    def note(code: str, message: str, **extra) -> None:
+        warnings.append({"code": code, "message": message, **extra})
+
     def warn(code: str, message: str, **extra) -> None:
         print(f"WARNING: {message}", file=sys.stderr)
-        warnings.append({"code": code, "message": message, **extra})
+        note(code, message, **extra)
+
+    DOWN = "модель недоступна"            # такие записи собираем в одно предупреждение, а не по одному на узел/слот
 
     nodes, cycles = break_cycles(layer.nodes)          # повтор id → ValueError
     for c in cycles:
@@ -536,27 +561,48 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
     style = json.loads(styleguide.read_text(encoding="utf-8"))
     (course / "assets/tokens.css").write_text(tokens_css(style), encoding="utf-8")
 
+    state = None
     if generate:                                   # текст шагов и задания: модель только через pipeline.llm
         from pipeline.course import generate as gen
-        gen.run(layer, ch_dir, course, node, domain)
+        state = gen.run(layer, ch_dir, course, node, domain)
     stored = read_step_text(course / "step_text.json", ch)
     step_text = stored.nodes if stored else {}
     orig = {n.id: n for n in layer.nodes}
+    down_steps: list[str] = []
+    down_reason = ""
     for nid, f in (stored.failed if stored else {}).items():       # текст не удался: шаг собран из полей слоя
         if nid in orig and f.hash == node_hash(orig[nid]):
-            warn("step_text_fallback", f"текст шага {nid} не прошёл проверки, шаг собран из полей слоя: {f.errors[0]}",
-                 node=nid, errors=f.errors)
+            msg = f"текст шага {nid} не прошёл проверки, шаг собран из полей слоя: {f.errors[0]}"
+            if f.errors[0].startswith(DOWN):
+                note("step_text_fallback", msg, node=nid, errors=f.errors)
+                down_steps.append(nid)
+                down_reason = down_reason or f.errors[0]
+            else:
+                warn("step_text_fallback", msg, node=nid, errors=f.errors)
     fresh = {nid: st.paragraphs for nid, st in step_text.items() if nid in orig and st.hash == node_hash(orig[nid])}
     stale = [nid for nid in step_text if nid in orig and nid not in fresh]
     if stale:
         warn("stale_step_text", f"step_text.json устарел для шагов {', '.join(stale)} (узел изменился после генерации): "
              "они собраны из полей слоя, запусти сборку без --no-llm", nodes=stale)
-    tasks, tasks_ext = load_tasks(ch, course, layer)
+    tasks, tasks_ext, stale_tasks = load_tasks(ch, course, layer)
     for w in tasks_ext.get("warnings", []) + tasks_ext.get("node_warnings", []):
         warn(w["code"], w["message"], **{k: v for k, v in w.items() if k not in ("code", "message")})
+    down_tasks = 0
     for d in tasks_ext.get("dropped", []):
-        warn("task_dropped", f"задание {d['slot']} ({d['type']}) шага {d['node']} выброшено: {d['errors'][0]}",
-             node=d["node"], slot=d["slot"], type=d["type"], errors=d["errors"])
+        msg = f"задание {d['slot']} ({d['type']}) шага {d['node']} выброшено: {d['errors'][0]}"
+        extra = dict(node=d["node"], slot=d["slot"], type=d["type"], errors=d["errors"])
+        if d["errors"][0].startswith(DOWN):
+            note("task_dropped", msg, **extra)
+            down_tasks += 1
+            down_reason = down_reason or d["errors"][0]
+        else:
+            warn("task_dropped", msg, **extra)
+    for rec in stale_tasks:
+        warn("task_stale", f"задание {rec['task']} шага {rec['node']} выброшено: слой изменился после генерации ({rec['errors'][0]})",
+             task=rec["task"], node=rec["node"], errors=rec["errors"])
+    if down_steps or down_tasks:                    # одно понятное предупреждение вместо десятков одинаковых
+        warn("model_unavailable", f"{down_reason}: без текста модели {len(down_steps)} шагов, не создано {down_tasks} заданий; "
+             "остальное собрано из слоя", steps=down_steps, tasks=down_tasks)
     tasks_by_step: dict[str, list[Task]] = {}
     for t in tasks:
         tasks_by_step.setdefault(t.step_id, []).append(t)
@@ -602,8 +648,22 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
         (course / "errata.html").unlink()
 
     all_pages = sorted({p for n in ordered for p in node_pages(n)})
-    report = {"chapter": ch, "nodes": len(ordered), "tasks": len(tasks), "step_text_nodes": len(fresh), "warnings": warnings,
-              "missing_scans": [p for p in all_pages if not (pages_src / f"p{p}.png").exists()]}
+    dropped_n = len(tasks_ext.get("dropped", []))
+    if not generate:
+        model = "не использовалась (--no-llm)"
+    elif state.calls == 0:
+        model = "не вызывалась (текст и задания взяты из step_text.json и tasks.json)"
+    elif state.down:
+        model = f"недоступна ({state.down})"
+    else:
+        model = "доступна"
+    line = (f"ИТОГ СБОРКИ: текст модели: {len(fresh)} из {len(ordered)} шагов · заданий: {len(tasks)} (выброшено {dropped_n}) · "
+            f"fallback: {len(ordered) - len(fresh)} · модель: {model}")
+    print(line, file=sys.stderr)
+    summary = {"text_model_steps": len(fresh), "steps": len(ordered), "tasks": len(tasks), "tasks_dropped": dropped_n,
+               "fallback_steps": len(ordered) - len(fresh), "model": model, "line": line}
+    report = {"chapter": ch, "nodes": len(ordered), "tasks": len(tasks), "step_text_nodes": len(fresh), "summary": summary,
+              "warnings": warnings, "missing_scans": [p for p in all_pages if not (pages_src / f"p{p}.png").exists()]}
     (course / "build_report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     return course
 
