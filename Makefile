@@ -27,10 +27,9 @@ install:
 test:
 	$(PY) -m pytest -q tests
 
-# Временно (до задачи 4 П1): проверка фикстур по схемам организаторов.
-# Затем — весь путь на fixtures/core/mini_chapter с LLM_OFFLINE=1.
+# Весь путь без ключа на fixtures/core/mini_chapter (слой — из фикстуры), < 3 мин.
 smoke:
-	LLM_OFFLINE=1 $(PY) -m pytest -q tests/core/test_schemas.py
+	LLM_OFFLINE=1 $(PY) -m pipeline.run --smoke
 
 all:
 	@test -n "$(CH)$(MD)" || { echo "нужно CH=<id из config/chapters.yaml> или MD=<путь к md главы>" >&2; exit 2; }
@@ -38,7 +37,7 @@ all:
 
 rebuild:
 	$(call need,NODE,id узла из layer.json)
-	$(PY) -m pipeline.run rebuild --node "$(NODE)" $(if $(CH),--ch "$(CH)")
+	$(PY) -m pipeline.run --rebuild "$(NODE)" $(if $(CH),--ch "$(CH)")
 
 check:
 	$(call need,PKG,путь к review_package.json)

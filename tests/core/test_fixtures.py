@@ -54,3 +54,11 @@ def test_mini_chapter_consistent():
 
     assert [r.node_id for r in routing.routes] == [n.id for n in layer.nodes]
     assert [n.order for n in layer.nodes] == list(range(1, len(layer.nodes) + 1))
+
+
+def test_mini_units_equal_ingest_output():
+    """Фикстура units.json = то, что даёт ingest на chapter.md (иначе слой фикстуры ссылается не на те единицы)."""
+    from pipeline.ingest import parse
+    cu = parse.build_units((MINI / "chapter.md").read_text(encoding="utf-8"), chapter="barenblatt_mini", source="x")
+    fx = io.load(m.ChapterUnits, MINI / "units.json")
+    assert [(u.unit_id, u.kind, u.text) for u in cu.units] == [(u.unit_id, u.kind, u.text) for u in fx.units]
