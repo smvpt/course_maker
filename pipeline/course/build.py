@@ -703,6 +703,10 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
             else:
                 warn("step_text_fallback", msg, node=nid, errors=f.errors)
     fresh = {nid: st.paragraphs for nid, st in step_text.items() if nid in orig and st.hash == node_hash(orig[nid])}
+    for nid, st in step_text.items():
+        if nid in fresh:
+            for msg in st.warnings:
+                warn("term_not_marked", f"шаг {nid}: {msg}", node=nid)
     stale = [nid for nid in step_text if nid in orig and nid not in fresh]
     if stale:
         warn("stale_step_text", f"step_text.json устарел для шагов {', '.join(stale)} (узел изменился после генерации): "

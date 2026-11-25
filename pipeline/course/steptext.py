@@ -46,6 +46,7 @@ class StepTextOut(BaseModel):
 class StepTextNode(Base):
     hash: str
     paragraphs: list[Para]
+    warnings: list[str] = Field(default_factory=list)   # не отказы: например, термин из terms_introduced не выделен
 
 
 class StepTextFailure(Base):
@@ -286,7 +287,7 @@ def validate_node(node: Node, paras: list[Para]) -> list[str]:
             errors.append(f"{tag}: limit=true допустим только в блоке analogy")
 
     for t in node.terms_introduced:
-        if term_count.get(t, 0) != 1:
+        if term_count.get(t, 0) > 1:                                  # «не выделен» (0) — не отказ, а предупреждение unmarked_terms
             errors.append(f"термин {t!r} должен быть выделен [[…]] и объяснён ровно в одном абзаце (сейчас {term_count.get(t, 0)})")
 
     main = [s for p in paras if p.block == "main" for s in sentences(p.text)]
@@ -349,15 +350,47 @@ def quote_language(layer: Layer) -> str:
     return "ru" if cyrillic_share(quotes) >= 0.5 else "en"
 
 
+def normalize_terms(node: Node, paras: list[Para]) -> list[Para]:
+    """Правила терминов выполняет код, а не отказ шага: термин выделен [[…]] один раз за шаг (остальные выделения — обычный
+    текст), в «Суть» не больше одного выделения и без жирного, в остальных блоках не больше двух на абзац, выделение
+    термина вне terms_introduced снимается. Слова текста остаются, меняются только маркеры. Вход не меняется."""
+    canon = {t.casefold(): t for t in node.terms_introduced}      # «Пористость» в начале фразы — тот же термин, что «пористость»
+    seen: set[str] = set()
+    out = []
+    for p in paras:
+        limit = 1 if p.block == "main" else 2
+        kept: list[str] = []
+
+        def sub(m):
+            term = canon.get(m.group(1).casefold())
+            if term is None or term in seen or len(kept) >= limit:
+                return m.group(1)
+            seen.add(term)
+            kept.append(term)
+            return m.group(0)
+        text = MARK_RE.sub(sub, p.text)
+        if p.block == "main":
+            text = text.replace("**", "").replace("__", "")
+        out.append(p.model_copy(update={"text": text, "terms": kept}))
+    return out
+
+
+def unmarked_terms(node: Node, paras: list[Para]) -> list[str]:
+    """Предупреждения: термины из terms_introduced, которые нигде в тексте шага не выделены."""
+    marked = {t.casefold() for p in paras for t in MARK_RE.findall(p.text)}
+    return [f"термин {t!r} не выделен [[…]] ни в одном абзаце" for t in node.terms_introduced if t.casefold() not in marked]
+
+
 def generate_node(node: Node, language: str, viewer: str) -> list[Para]:
     node_json = json.dumps(node_dict(node), ensure_ascii=False, indent=1)
     feedback = "нет, это первая попытка"
     for _ in range(ATTEMPTS):
         out = complete_json(prompt="course/step_page", schema=StepTextOut, tier="default",
                             vars={"node": node_json, "viewer": viewer, "language": language, "feedback": feedback})
-        errors = validate_node(node, out.paragraphs)
+        paragraphs = normalize_terms(node, out.paragraphs)
+        errors = validate_node(node, paragraphs)
         if not errors:
-            return out.paragraphs
+            return paragraphs
         feedback = "\n".join(f"- {e}" for e in errors)
     raise GenerationFailed(f"{node.id}: текст шага не прошёл проверку за {ATTEMPTS} попытки:\n{feedback}",
                            [e.removeprefix("- ") for e in feedback.splitlines()])
@@ -415,7 +448,7 @@ def ensure_step_text(layer: Layer, course_dir: Path, only: Optional[str] = None,
             reason = f"модель недоступна: {state.down}" if state.down else f"отказ модели: {e}"
             return None, StepTextFailure(hash=h, errors=[reason])
         state.success()
-        return StepTextNode(hash=h, paragraphs=paragraphs), None
+        return StepTextNode(hash=h, paragraphs=paragraphs, warnings=unmarked_terms(n, paragraphs)), None
 
     for (n, _), (ok, fail) in zip(todo, run_parallel(todo, job)):   # итог собирается в порядке слоя, файл пишет один поток
         if ok is not None:
