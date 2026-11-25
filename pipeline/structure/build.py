@@ -313,6 +313,31 @@ def term_order_issues(nodes: list[Node]) -> list[dict]:
             for n in nodes for t in n.terms_used if first.get(t.lower(), 0) > n.order]
 
 
+NUMBER_ONLY_HEADING = re.compile(r"^(глава|часть|раздел|chapter|part|section)\s+[\dIVXLCivxlc]+\.?$", re.I)
+
+
+def chapter_title(units) -> Optional[str]:
+    """Название главы — первый заголовок; «Глава V» без названия склеивается со следующим заголовком."""
+    heads = [re.sub(r"^#+\s*", "", u.text).strip() for u in units if u.kind == "heading"]
+    heads = [h for h in heads if h]
+    if not heads:
+        return None
+    if NUMBER_ONLY_HEADING.match(heads[0]) and len(heads) > 1:
+        return f"{heads[0].rstrip('.')}. {heads[1]}"
+    return heads[0]
+
+
+def book_meta(spec: config.ChapterSpec) -> dict:
+    """Автор и книга для шапки курса: из конфига или аргументов, иначе из имени PDF «Автор - Книга[ - год]»."""
+    if spec.author or spec.book:
+        return {"author": spec.author, "book": spec.book, "meta_source": "config"}
+    if spec.pdf:
+        parts = [x.strip() for x in spec.pdf.stem.split(" - ")]
+        if len(parts) >= 2 and all(parts[:2]):
+            return {"author": parts[0], "book": parts[1], "meta_source": "pdf_name"}
+    return {"author": None, "book": None, "meta_source": None}
+
+
 def generated_by() -> str:
     model = resolve_model("strong")[0]
     extra = [m for m in fallbacks("strong") if m != model]

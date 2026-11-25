@@ -7,7 +7,11 @@
         "auto_assigned": [],
         "empty_nodes": []
       },
-      "term_order_issues": []
+      "term_order_issues": [],
+      "title": "1.2 Дельты [Deltas]",
+      "author": "Барабошкин",
+      "book": "Практическая седиментология (терригенные коллектора)",
+      "meta_source": "config"
     }
   },
   "chapter": "baraboshkin_par1-2",
