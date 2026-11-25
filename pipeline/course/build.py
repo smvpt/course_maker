@@ -43,7 +43,7 @@ def load_inputs(ch_dir: Path) -> dict:
     layer_path = ch_dir / "layer.json"
     if not layer_path.exists():
         raise FileNotFoundError(f"нет {layer_path}: сначала make structure (П1)")
-    inp = {"layer": _read(layer_path, Layer), "routes": {}, "remarks": None, "illus": {}}
+    inp = {"layer": _read(layer_path, Layer), "routes": {}, "remarks": None, "illus": {}, "illus_warnings": []}
     if (ch_dir / "routing.json").exists():
         inp["routes"] = {r.node_id: r for r in _read(ch_dir / "routing.json", Routing).routes}
     if (ch_dir / "verify/report.json").exists():
@@ -52,8 +52,10 @@ def load_inputs(ch_dir: Path) -> dict:
             remarks[r.target] = r
         inp["remarks"] = remarks
     if (ch_dir / "illus/illustrations.json").exists():
-        for il in _read(ch_dir / "illus/illustrations.json", Illustrations).illustrations:
+        illus = _read(ch_dir / "illus/illustrations.json", Illustrations)
+        for il in illus.illustrations:
             inp["illus"].setdefault(il.step_id, []).append(il)
+        inp["illus_warnings"] = illus.ext.get("illus", {}).get("warnings", [])
     return inp
 
 
@@ -292,13 +294,13 @@ def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path
     media = video_view(node, inp, course, ch_dir)
     illus = []
     for il in inp["illus"].get(node.id, []):
-        src = ch_dir / "illus" / il.file
+        src = ch_dir / il.file                            # file — путь относительно out/<ch>/, напр. illus/<узел>.chain.svg
         if not src.exists():
             raise FileNotFoundError(f"illustrations.json ссылается на несуществующий файл {src}")
-        dst = course / "assets/illus" / il.file
+        dst = course / "assets/illus" / Path(il.file).name
         dst.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(src, dst)
-        illus.append({"il": il, "src": f"assets/illus/{il.file}"})
+        illus.append({"il": il, "src": f"assets/illus/{Path(il.file).name}"})
 
     lay = node.layers
     check_items = 1 + (1 if media is not None and media["kind"] == "video" else 0) + (1 if tasks else 0)
@@ -597,6 +599,8 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
             down_reason = down_reason or d["errors"][0]
         else:
             warn("task_dropped", msg, **extra)
+    for w in inp["illus_warnings"]:                  # предупреждения генератора иллюстраций: в отчёт, в stderr их уже печатал он сам
+        note(w["code"], w["message"], **{k: v for k, v in w.items() if k not in ("code", "message")})
     for rec in stale_tasks:
         warn("task_stale", f"задание {rec['task']} шага {rec['node']} выброшено: слой изменился после генерации ({rec['errors'][0]})",
              task=rec["task"], node=rec["node"], errors=rec["errors"])
