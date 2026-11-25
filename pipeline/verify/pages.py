@@ -55,6 +55,31 @@ def load_norm_pages(md_path):
     return _load_norm(str(Path(md_path).resolve()))
 
 
+_TAIL_JUNK = re.compile(r"^\s*(\d{1,4}|\$?\^\{?\d+\}?\$?.*|[¹²³⁴⁵⁶⁷⁸⁹*].*)\s*$")
+
+
+@lru_cache(maxsize=16)
+def _load_joins(path):
+    raw = _load(path)
+    out = {}
+    for n, text in raw.items():
+        lines = text.rstrip().split("\n")
+        while lines and (not lines[-1].strip() or _TAIL_JUNK.match(lines[-1])):
+            lines.pop()
+        body = "\n".join(lines).rstrip()
+        nxt = raw.get(n + 1, "").lstrip()
+        joined = body[:-1] + nxt if body.endswith("-") else body + "\n" + nxt
+        cut = len(normalize(body[:-1] if body.endswith("-") else body))
+        out[n] = (normalize(joined), cut)
+    return out
+
+
+def load_page_joins(md_path):
+    """{N: (нормализованные страница N + страница N+1 без хвоста N — сносок и печатного номера,
+    со склейкой переноса), длина части страницы N)} — для цитат через границу страниц."""
+    return _load_joins(str(Path(md_path).resolve()))
+
+
 def _fix_mixed(m):
     w = m.group(0)
     if _CYR.search(w) and _LAT.search(w):

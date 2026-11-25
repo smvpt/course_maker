@@ -94,3 +94,16 @@ def test_check_quote_unknown_chapter_fails_loudly(tmp_path, monkeypatch):
 def test_load_pages_has_chapter_range():
     pages = load_pages(BAREN)
     assert all(p in pages for p in range(38, 52))
+
+
+def test_quote_across_page_with_footnote_and_page_number(tmp_path):
+    from pipeline.verify.quotes import check_quote_md
+    md = tmp_path / "ch.md"
+    md.write_text("<!-- page 38 -->\n## § 4. Линейная теория$^1$\n\nПростейший случай фильтрации — движение одно-\n\n"
+                  "$^1$ См. также [47, 6, 12, 44].\n\n38\n<!-- page 39 -->\n"
+                  "родной слабосжимаемой жидкости в упруго деформируемом пласте. Дальше текст.\n", encoding="utf-8")
+    r = check_quote_md(md, 38, "Простейший случай фильтрации — движение однородной слабосжимаемой жидкости "
+                               "в упруго деформируемом пласте.")
+    assert r.status == "found" and r.page == 38
+    # начало на следующей странице — не «found» на 38
+    assert check_quote_md(md, 38, "слабосжимаемой жидкости в упруго деформируемом пласте. Дальше текст").page == 39
