@@ -4,3 +4,5 @@ python-dotenv==1.2.4
 litellm==1.111.0
 jsonschema==4.26.0
 pytest==9.2.0
+pypdfium2==5.15.2
+pillow==13.0.0
