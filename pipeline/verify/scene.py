@@ -79,6 +79,14 @@ def _check_honesty(spec):
     if spec.exaggerations and not any(s.plaque for s in spec.shots):
         out.append(_r(v, "critical", "преувеличения есть, но ни на одном кадре нет плашки «не в масштабе»",
                       "поставить плашку с тем, что и во сколько увеличено", "frame_error"))
+    elif spec.exaggerations:
+        on_plaques = {x for s in spec.shots for x in extract_numbers(s.plaque or "")}
+        unnamed = [e for e in spec.exaggerations
+                   if extract_numbers(e) and not set(extract_numbers(e)) & on_plaques]
+        if unnamed:
+            out.append(_r(v, "significant", f"на плашках не названы преувеличения: {'; '.join(unnamed)}",
+                          "дополнить плашку «не в масштабе» каждым преувеличением из exaggerations",
+                          "frame_error"))
     for s in spec.shots:
         t = f"{v}.{s.id}"
         if s.plaque and "масштаб" in s.plaque.lower() and not _has_number(s.plaque):
