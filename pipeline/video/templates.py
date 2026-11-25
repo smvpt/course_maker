@@ -17,7 +17,7 @@ VIDEO_FORMATS = {"шортс": "short", "длинное видео": "long"}
 ASPECT = {"short": "шортс 9:16, вертикальный кадр", "long": "разбор 16:9, горизонтальный кадр"}
 # Какие форматы собирает каждый реализованный шаблон. Общий источник для video.spec (проверка до LLM)
 # и video.build. Шаблона нет в таблице — рендер для него ещё не реализован, спецификация допустима.
-TEMPLATE_FORMATS = {"hello": {"short"}, "T1": {"short"}, "T2": {"long"}, "T3": {"short"}, "T4": {"short"}}
+TEMPLATE_FORMATS = {"hello": {"short"}, "T1": {"short"}, "T2": {"long"}, "T3": {"short", "long"}, "T4": {"short"}}
 
 
 def format_problem(template: str, fmt: str) -> str | None:
@@ -45,7 +45,10 @@ def template_contract(template: str, cfg: dict | None) -> str:
     for key, d in cfg["params"].items():
         need = "обязательный" if d.get("required") else f"необязательный, по умолчанию {d.get('default')}"
         unit = f"{d['unit']}; " if d.get("unit") else ""
-        lines.append(f"- {key} ({unit}{d.get('kind', 'display')}; {need}): {d['meaning']}")
+        modes = f"; только в режиме {', '.join(d['modes'])}" if d.get("modes") else ""
+        lines.append(f"- {key} ({unit}{d.get('kind', 'display')}; {need}{modes}): {d['meaning']}")
+    if cfg.get("modes"):
+        lines += ["", "Режимы (params.mode):"] + [f"- {k}: {v}" for k, v in cfg["modes"].items()]
     lines += ["", "Виды параметров:"] + [f"- {k}: {v}" for k, v in cfg.get("param_kinds", {}).items()]
     lines += ["", "Правила кадров:"] + [f"- {r}" for r in cfg.get("frame_rules", [])]
     lines += ["", "Источники физических параметров: для каждого параметра вида physical заполни "

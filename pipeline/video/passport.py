@@ -143,3 +143,43 @@ def write_passport(passport: Passport, path: Path, schema: dict) -> dict:
         raise PassportError("паспорт не проходит passport.schema.json:\n- " + "\n- ".join(problems))
     Path(path).write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     return data
+
+
+def used_claim_ids(script: Script, spec: SceneSpec) -> list[str]:
+    """Все утверждения, на которые опирается ролик: фразы, элементы схемы (params.elements),
+    источники физических параметров (ext.video.param_sources[*].claim_ids). По порядку, без повторов."""
+    ids = [p.claim_id for p in script.phrases if p.claim_id]
+    elements = spec.params.get("elements")
+    ids += [e["claim_id"] for e in elements if isinstance(e, dict) and isinstance(e.get("claim_id"), str)] \
+        if isinstance(elements, list) else []
+    srcs = (spec.ext.get("video") or {}).get("param_sources") or {}
+    for src in srcs.values() if isinstance(srcs, dict) else []:
+        if isinstance(src, dict) and isinstance(src.get("claim_ids"), list):
+            ids += [c for c in src["claim_ids"] if isinstance(c, str)]
+    return list(dict.fromkeys(ids))
+
+
+def source_problems(sources: list[dict], used: list[str], node=None) -> list[str]:
+    """Таблица источников паспорта против использованных утверждений: у каждого строка со страницей и цитатой;
+    при известном узле — страница и цитата дословно как в его claims, лишних утверждений нет."""
+    problems = []
+    rows = {r["claim_id"]: r for r in sources}
+    claims = {c.id: c for c in node.claims} if node is not None else None
+    for cid in used:
+        r = rows.get(cid)
+        if r is None:
+            problems.append(f"в таблице источников паспорта нет утверждения {cid}")
+            continue
+        if not r.get("page_or_dataset") or not r.get("quote"):
+            problems.append(f"источник {cid}: нет страницы или цитаты")
+        if claims is not None:
+            c = claims.get(cid)
+            if c is None:
+                problems.append(f"утверждения {cid} нет в узле {node.id}")
+            elif r.get("quote") != c.quote or not str(r.get("page_or_dataset", "")).startswith(f"стр. {c.page_pdf}"):
+                problems.append(f"источник {cid}: страница или цитата не совпадают с узлом (стр. {c.page_pdf})")
+    if claims is not None:
+        for cid in rows:
+            if "#c" in cid and cid not in claims:
+                problems.append(f"в таблице источников лишнее утверждение {cid} не из узла {node.id}")
+    return problems

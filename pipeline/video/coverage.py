@@ -57,7 +57,11 @@ def _pair_state(out_root: Path, ch: str, node, route, fmt: str, domain: str) -> 
         return {**pair, "checks": "не пройдены"}, [str(e)]
     except Exception as e:   # проверка этого узла упала — не скрываем и продолжаем отчёт по остальным узлам
         return {**pair, "checks": "не пройдены"}, [f"проверка упала: {type(e).__name__}: {e}"]
-    return {**pair, "checks": "пройдены"}, []
+    try:
+        mode = json.loads(cp.read_text(encoding="utf-8")).get("params", {}).get("mode")
+    except (OSError, ValueError, AttributeError):
+        mode = None
+    return {**pair, "checks": "пройдены", **({"mode": mode} if mode else {})}, []
 
 
 def build_report(ch: str, layer: Layer, routing: Routing, out_root: Path, domain: str) -> dict:
@@ -81,7 +85,8 @@ def build_report(ch: str, layer: Layer, routing: Routing, out_root: Path, domain
                "template_implemented": route.template in TEMPLATE_FORMATS,
                "format_supported": route.template in TEMPLATE_FORMATS and not format_problem(route.template, fmt),
                "model": None, "state_variable": None, "limitations": None, "assumptions": [],
-               "pair": None, "physical_applicability": APPLICABILITY, "reasons": []}
+               "modes": None, "claims_have_numbers": vspec.claims_have_numbers(node) if node else None,
+               "pair": None, "physical_applicability": APPLICABILITY, "reasons": [], "notes": []}
         reasons = row["reasons"]
         if count[route.node_id] > 1:
             reasons.append(f"у узла {count[route.node_id]} маршрута в routing.json — нужен ровно один")
@@ -94,7 +99,8 @@ def build_report(ch: str, layer: Layer, routing: Routing, out_root: Path, domain
         cfg = load_template_config(templates_dir, route.template) if route.template in TEMPLATE_INFO else None
         if cfg is not None:
             row.update(model=cfg.get("model"), state_variable=cfg.get("state_variable"),
-                       limitations=cfg.get("limitations"), assumptions=cfg.get("assumptions", []))
+                       limitations=cfg.get("limitations"), assumptions=cfg.get("assumptions", []),
+                       modes=cfg.get("modes"))
         if not route.template:
             reasons.append("в маршруте не указан шаблон сцены")
         elif route.template not in TEMPLATE_INFO:
@@ -113,6 +119,13 @@ def build_report(ch: str, layer: Layer, routing: Routing, out_root: Path, domain
             reasons += pair_reasons
             row["status"] = {"нет пары": "спецификация ещё не создана", "не пройдены": "спецификация не прошла проверку",
                              "пройдены": "поддерживается"}[row["pair"]["checks"]]
+            mode = row["pair"].get("mode")
+            if mode and isinstance(cfg.get(mode), dict) and "model" in cfg[mode]:   # модель и ограничения режима пары
+                row.update(model=cfg[mode]["model"], state_variable=cfg[mode].get("state_variable"),
+                           limitations=cfg[mode].get("limitations"), assumptions=cfg[mode].get("assumptions", []))
+        if row["modes"] and row["claims_have_numbers"] is False:
+            row["notes"] = [f"в утверждениях узла нет чисел: расчётный режим {route.template} невозможен, "
+                            f"доступен только качественный (qualitative)"]
         rows.append(row)
     summary = {s: sum(r["status"] == s for r in rows) for s in STATUSES}
     return {"chapter": ch, "domain": domain, "video_nodes": len(rows), "summary": summary, "nodes": rows,

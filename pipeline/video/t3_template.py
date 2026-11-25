@@ -1,5 +1,11 @@
 """T3 «Рост тела»: проверка параметров SceneSpec до озвучки и функции сцены из одного состояния.
 
+Два режима (params.mode):
+- quantitative (по умолчанию) — расчётная проградация лопасти LobeModel; физические параметры — из узла;
+- qualitative — схема с относительной геометрией без чисел для узлов, где чисел для расчёта нет: элементы
+  схемы (конус, зоны, депоцентр, стадии лопастей) — только из утверждений узла, с claim_id; допущения
+  расчётной проградации не используются.
+
 Описание, параметры, цвета и ограничения — domain/<домен>/templates/T3.json.
 Состояние — радиус береговой линии R(t) модели LobeModel; план (plan_field) и разрез (section_profile)
 считаются одной функцией LobeModel.surface, поэтому граница тела в обоих видах совпадает.
@@ -7,6 +13,7 @@
 from __future__ import annotations
 
 import math
+import re
 
 import numpy as np
 
@@ -16,6 +23,10 @@ from pipeline.video.t2_template import _exag_txt, _has_number
 from pipeline.video.t3_model import LobeModel
 
 ALLOWED_CLASSES = {"B"}
+MODES = ("quantitative", "qualitative")
+# единицы и величины, которые качественная схема не вводит сама (допустимы, только если есть в утверждениях узла)
+UNIT_RE = re.compile(r"\b(метр|километр|сантиметр|миллиметр|кубометр|тонн|лет|год|столети|тысячелети|"
+                     r"миллион|градус|процент|м³|км)\w*", re.IGNORECASE)
 FROZEN_BEATS = {"prediction", "final"}   # на этих фразах время модели стоит
 
 
@@ -23,13 +34,28 @@ def _num(v) -> bool:
     return not isinstance(v, bool) and isinstance(v, (int, float)) and math.isfinite(v)
 
 
+def mode_of(spec: SceneSpec) -> str:
+    return spec.params.get("mode", "quantitative")
+
+
+def mode_params(cfg: dict, mode: str) -> dict:
+    """Параметры шаблона, допустимые в режиме (у параметра без modes — во всех режимах)."""
+    return {k: d for k, d in cfg["params"].items() if mode in d.get("modes", MODES)}
+
+
 def prepare(spec: SceneSpec, script: Script, cfg: dict) -> dict:
+    mode = mode_of(spec)
+    if mode == "qualitative":
+        return prepare_qualitative(spec, script, cfg)
+    if mode != "quantitative":
+        raise _error([f"params.mode — одно из {list(MODES)}, получено {mode!r}"])
     problems: list[str] = []
     p = dict(spec.params)
-    unknown = sorted(set(p) - set(cfg["params"]))
+    allowed = mode_params(cfg, "quantitative")
+    unknown = sorted(set(p) - set(allowed))
     if unknown:
-        problems.append(f"неизвестные параметры T3: {unknown}; допустимы {sorted(cfg['params'])}")
-    for key, d in cfg["params"].items():
+        problems.append(f"параметры {unknown} не относятся к режиму quantitative; допустимы {sorted(allowed)}")
+    for key, d in allowed.items():
         if key not in p:
             if d.get("required"):
                 problems.append(f"нет обязательного параметра params.{key} ({d['meaning']})")
@@ -108,19 +134,145 @@ def prepare(spec: SceneSpec, script: Script, cfg: dict) -> dict:
                 problems.append(f"вертикаль увеличена в {kt} раз, но ни у одного кадра нет плашки")
 
     if problems:
-        err = VideoInputError("параметры T3 некорректны:\n- " + "\n- ".join(problems))
-        err.problems = problems
-        raise err
+        raise _error(problems)
 
     phrase_shot = {pid: s.id for s in spec.shots for pid in s.phrase_ids}
     beat = {ph.id: ph.beat for ph in script.phrases}
-    return {"model": model, "r_max": float(p["r_max_m"]), "t_end": float(p["t_end_yr"]), "n_layers": n,
+    return {"mode": "quantitative", "model": model, "r_max": float(p["r_max_m"]), "t_end": float(p["t_end_yr"]), "n_layers": n,
             "layer_times": model.layer_times(n, float(p["t_end_yr"])), "r_end": r_end, "exaggeration": float(k),
             "exaggerated_shots": {s.id for s in spec.shots if s.plaque}, "true_scale_shot_id": ts,
             # вопрос-предсказание (и пауза после него) и финал не двигают модель, даже если их кадр в evolve
             "evolve_phrase_ids": {pid for pid, sid in phrase_shot.items()
                                   if sid in evolve and beat.get(pid) not in FROZEN_BEATS},
             "grid": int(disp["plan_grid"]), "display": disp}
+
+
+def _error(problems: list[str]) -> VideoInputError:
+    err = VideoInputError("параметры T3 некорректны:\n- " + "\n- ".join(problems))
+    err.problems = problems
+    return err
+
+
+def _evolve_phrases(spec: SceneSpec, script: Script, evolve, problems: list[str]) -> set[str]:
+    shots = {s.id: s for s in spec.shots}
+    if evolve is None:
+        evolve = list(shots)
+    elif not isinstance(evolve, list) or not evolve or any(e not in shots for e in evolve):
+        problems.append(f"params.evolve_shot_ids — непустой список id кадров из {sorted(shots)}, получено {evolve!r}")
+        evolve = []
+    beat = {ph.id: ph.beat for ph in script.phrases}
+    return {pid for s in spec.shots if s.id in evolve for pid in s.phrase_ids if beat.get(pid) not in FROZEN_BEATS}
+
+
+def prepare_qualitative(spec: SceneSpec, script: Script, cfg: dict) -> dict:
+    """Качественная схема: без чисел, плашек и масштаба; каждый элемент — с утверждением узла, которое звучит."""
+    problems: list[str] = []
+    q = cfg["qualitative"]
+    p = dict(spec.params)
+    allowed = mode_params(cfg, "qualitative")
+    foreign = sorted(set(p) - set(allowed))
+    if foreign:
+        problems.append(f"параметры {foreign} не задаются в режиме qualitative (расчёта нет — числа не выдумываются); "
+                        f"допустимы {sorted(allowed)}")
+    for key, d in allowed.items():
+        if key not in p:
+            if d.get("required"):
+                problems.append(f"нет обязательного параметра params.{key} ({d['meaning']})")
+            else:
+                p[key] = d.get("default")
+    elements: dict[str, str] = {}
+    raw = p.get("elements")
+    if raw is not None and (not isinstance(raw, list) or not raw):
+        problems.append(f"params.elements — непустой список {{element, claim_id}}, получено {raw!r}")
+        raw = []
+    for i, e in enumerate(raw or []):
+        if not isinstance(e, dict) or not isinstance(e.get("element"), str) or not isinstance(e.get("claim_id"), str):
+            problems.append(f"params.elements[{i}] — объект {{element, claim_id}} со строками, получено {e!r}")
+            continue
+        name, cid = e["element"], e["claim_id"]
+        if name not in q["elements"]:
+            problems.append(f"params.elements[{i}]: элемент «{name}» неизвестен; допустимы {sorted(q['elements'])}")
+        elif name in elements:
+            problems.append(f"params.elements: элемент «{name}» указан дважды")
+        elif not cid.startswith(f"{spec.node_id}#"):
+            problems.append(f"params.elements[{i}]: claim_id {cid} не из узла {spec.node_id}")
+        else:
+            elements[name] = cid
+    if raw:
+        for name, d in q["elements"].items():
+            if d.get("required") and name not in elements:
+                problems.append(f"params.elements: нет обязательного элемента «{name}»")
+    first_phrase: dict[str, str] = {}
+    for ph in script.phrases:
+        first_phrase.setdefault(ph.claim_id, ph.id)
+    for name, cid in elements.items():
+        if cid not in first_phrase:
+            problems.append(f"элемент «{name}»: его утверждение {cid} не звучит ни в одной фразе сценария")
+    n = p.get("n_lobes")
+    if isinstance(n, bool) or not isinstance(n, int) or not 1 <= n <= q["max_lobes"]:
+        problems.append(f"params.n_lobes — целое от 1 до {q['max_lobes']}, получено {n!r}")
+    elif n > 1 and "lobe_cycles" not in elements:
+        problems.append(f"params.n_lobes = {n}: несколько стадий — только с элементом lobe_cycles из узла")
+    elif n == 1 and "lobe_cycles" in elements:
+        problems.append("элемент lobe_cycles показывает повторение стадий — нужно n_lobes ≥ 2")
+    for s in spec.shots:
+        if s.frame_class not in ALLOWED_CLASSES or s.label != "схема":
+            problems.append(f"кадр {s.id}: качественная схема T3 — нужен класс B с меткой «схема» (расчёта нет), "
+                            f"а не {s.frame_class}/«{s.label}»")
+        if s.plaque:
+            problems.append(f"кадр {s.id}: у схемы без масштаба нет плашки с числом преувеличения — уберите plaque")
+    if spec.exaggerations:
+        problems.append("exaggerations должен быть пустым: у схемы без масштаба нет чисел преувеличения")
+    if spec.true_scale_shot_id is not None:
+        problems.append("true_scale_shot_id — null: у схемы без масштаба нет кадра истинного масштаба")
+    evolve_ids = _evolve_phrases(spec, script, p.get("evolve_shot_ids"), problems)
+    # фазы показа: первая стадия растёт на фразах до первой фразы о стадиях, остальные стадии — после неё
+    phases = [(evolve_ids, 1.0)]
+    if "lobe_cycles" in elements and "lobe_cycles" in {k for k in elements if elements[k] in first_phrase} \
+            and isinstance(n, int) and n > 1:
+        order = [ph.id for ph in script.phrases]
+        split = order.index(first_phrase[elements["lobe_cycles"]])
+        before = {pid for pid in evolve_ids if order.index(pid) < split}
+        after = evolve_ids - before
+        if not before or not after:
+            problems.append("evolve_shot_ids: нужны кадры с ростом и до первой фразы о стадиях лопастей (рост первой "
+                            "стадии), и начиная с неё (следующие стадии)")
+        phases = [(before, 1.0 / n), (after, 1.0)]
+    if problems:
+        raise _error(problems)
+    return {"mode": "qualitative", "phases": phases, "elements": elements, "appear_at": {k: first_phrase[c] for k, c in elements.items()},
+            "n_lobes": n, "t_end": 1.0, "evolve_phrase_ids": evolve_ids, "display": q,
+            "true_scale_shot_id": None, "exaggerated_shots": set()}
+
+
+def node_problems(spec: SceneSpec, script: Script, node, cfg: dict) -> list[str]:
+    """Проверки качественного режима против узла: элемент называется своим утверждением; в тексте нет единиц
+    и величин, которых нет в утверждениях узла."""
+    if mode_of(spec) != "qualitative" or "qualitative" not in cfg:
+        return []
+    q, problems = cfg["qualitative"], []
+    claims = {c.id: c for c in node.claims}
+    raw = spec.params.get("elements")
+    for e in raw if isinstance(raw, list) else []:
+        if not isinstance(e, dict) or e.get("element") not in q["elements"] or not isinstance(e.get("claim_id"), str):
+            continue                                   # структуру проверяет prepare_qualitative
+        c = claims.get(e["claim_id"])
+        if c is None:
+            problems.append(f"T3: элемент «{e['element']}»: claim_id {e['claim_id']} не из узла {node.id}")
+            continue
+        text = f"{c.text}\n{c.quote}".casefold()
+        for group in q["elements"][e["element"]]["evidence"]:
+            if not any(w.casefold() in text for w in group):
+                problems.append(f"T3: элемент «{e['element']}»: утверждение {c.id} его не называет "
+                                f"(нет ни одного из {group}) — элемента нет в источнике")
+    source = "\n".join(f"{c.text}\n{c.quote}" for c in node.claims).casefold()
+    for ph in script.phrases:
+        for field in ("text", "on_screen"):
+            for m in UNIT_RE.finditer(getattr(ph, field) or ""):
+                if not re.search(r"(?<!\w)" + re.escape(m.group(1).casefold()), source):  # не «гео-метр-ия»
+                    problems.append(f"T3: фраза {ph.id}.{field}: «{m.group(0)}» — такой величины в узле нет, "
+                                    f"а качественная схема чисел и единиц не вводит")
+    return problems
 
 
 def check(spec: SceneSpec, script: Script, cfg: dict) -> list[str]:
@@ -187,3 +339,87 @@ def auto_checks(prep: dict) -> dict[str, tuple[bool, str]]:
                                        "слои не пересекаются, молодые лежат на старых"),
             "mass_balance": (bool(rel <= 1e-3), f"по модели: объём отложенного за t_end численно {v_num:.4g} м³ против "
                                           f"Q·t = {v_exp:.4g} м³, отн. ошибка {rel:.1e}")}
+
+
+# ---------------------------------------------------------------- качественная схема: одно состояние → два вида
+
+def stages(prep: dict, s: float) -> list[dict]:
+    """Стадии к доле показа s ∈ [0, 1]: стадия k растёт на [k/n, (k+1)/n]; growth — доля полной длины конуса
+    (первая стадия — от start_growth), active — текущая стадия, остальные отмершие и перекрытые."""
+    n, g0 = prep["n_lobes"], prep["display"]["start_growth"]
+    s = min(max(float(s), 0.0), 1.0)
+    out = []
+    for k in range(n):
+        a, b = k / n, (k + 1) / n
+        if k > 0 and s <= a:
+            break
+        g = min(max((s - a) / (b - a), 0.0), 1.0)
+        out.append({"k": k, "growth": g0 + (1 - g0) * g if k == 0 else g, "active": False, "base": float(k)})
+    out[-1]["active"] = True
+    return out
+
+
+def zone_bounds(prep: dict, growth: float) -> list[dict]:
+    """Границы зон одной стадии вдоль оси конуса (доли полной длины) — общий источник для плана и разреза."""
+    out, x0 = [], 0.0
+    for z in prep["display"]["zones"]:
+        out.append({"key": z["key"], "from": x0 * growth, "to": z["to"] * growth})
+        x0 = z["to"]
+    return out
+
+
+def stage_profile(prep: dict, growth: float, x: np.ndarray) -> np.ndarray:
+    """Кровля стадии над её подошвой в долях толщины стадии; top зоны — кровля на её внешнем краю: равнина
+    плоская, авандельта — крутой спуск, продельта — пологий клин до 0. Вне конуса — 0."""
+    zones = prep["display"]["zones"]
+    kx = [0.0] + [z["to"] * growth for z in zones]
+    ky = [zones[0]["top"]] + [z["top"] for z in zones]
+    x = np.asarray(x, dtype=float)
+    if growth <= 0:
+        return np.zeros_like(x)
+    return np.where(x <= kx[-1], np.interp(x, kx, ky), 0.0)
+
+
+def qualitative_checks(prep: dict) -> dict[str, tuple[bool, str]]:
+    """Проверка схемы для паспорта (по построению, 101 момент × 241 точка): каждая стадия лежит на кровле
+    предыдущей (моложе — выше), кровля не ниже подошвы; стадия не уменьшается и не исчезает."""
+    ss, x = np.linspace(0.0, 1.0, 101), np.linspace(0.0, 1.0, 241)
+    order = True
+    for s in ss:
+        st = stack_profiles(prep, s, x)
+        order &= all(np.all(b["top"] >= b["bottom"] - 1e-12) for b in st)
+        order &= all(np.allclose(st[k]["bottom"], st[k - 1]["top"]) for k in range(1, len(st)))
+    grow = all(len(stages(prep, s1)) >= len(stages(prep, s0)) and
+               all(a["growth"] <= b["growth"] + 1e-12 for a, b in zip(stages(prep, s0), stages(prep, s1)))
+               for s0, s1 in zip(ss, ss[1:]))
+    return {"stages_order": (bool(order and grow), "по построению схемы (101 момент): каждая стадия лежит на кровле "
+                                                   "предыдущей — моложе выше; стадия не уменьшается и не исчезает")}
+
+
+def depocenter_extent(prep: dict, s: float) -> float:
+    """Депоцентр — место, где накопленное тело толще всего: у устья, где перекрываются все стадии; его край —
+    конец авандельты самой короткой из показанных стадий (доля полной длины). Одно значение для плана и разреза."""
+    zones = prep["display"]["zones"]
+    return min(st["growth"] for st in stages(prep, s)) * zones[1]["to"]
+
+
+def stack_profiles(prep: dict, s: float, x: np.ndarray) -> list[dict]:
+    """Разрез: стадия k облекает кровлю стадий ниже — подошва = сумма кровель стадий 0…k−1 (в толщинах стадии),
+    кровля = подошва + stage_profile. Возвращает для каждой показанной стадии x, низ, верх и границы зон."""
+    out, base = [], np.zeros_like(np.asarray(x, dtype=float))
+    for st in stages(prep, s):
+        prof = stage_profile(prep, st["growth"], x)
+        out.append({**st, "x": x, "bottom": base.copy(), "top": base + prof, "zones": zone_bounds(prep, st["growth"])})
+        base = base + prof
+    return out
+
+
+def phase_knots(segments: list[tuple[str, float, float]], phases: list[tuple[set[str], float]]
+                ) -> list[tuple[float, float]]:
+    """Опорные точки доли показа по фазам: фаза — (фразы, доля к её концу); фазы идут одна за другой во времени."""
+    from pipeline.video.timeline import progress_knots
+    knots, v0 = [(0.0, 0.0)], 0.0
+    for pids, v1 in phases:
+        knots += [(t, v0 + v) for t, v in progress_knots(segments, pids, v1 - v0)[1:]]
+        v0 = v1
+    return knots

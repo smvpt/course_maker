@@ -19,7 +19,7 @@ from pydantic import BaseModel, ValidationError
 
 from contracts.models import Layer, Node, Phrase, Route, Routing, SceneSpec, Script, Shot
 from pipeline.video.inputs import ID_RE
-from pipeline.video.spec_check import (ESTIMATE_WPM, DURATION_S, check_scene, check_script, count_words,
+from pipeline.video.spec_check import (NUM_RE, ESTIMATE_WPM, DURATION_S, check_scene, check_script, count_words,
                                        estimate_duration, param_source_problems, source_language, sources_table)
 from pipeline.video.templates import (ASPECT, TEMPLATE_INFO, VIDEO_FORMATS, format_problem, load_template_config,
                                       template_contract)
@@ -147,7 +147,7 @@ def _template_problems(scene: SceneSpec, script: Script, node: Node, cfg: dict |
         problems += t2_template.check(scene, script, cfg)
     if scene.template == "T3":
         from pipeline.video import t3_template
-        problems += t3_template.check(scene, script, cfg)
+        problems += t3_template.check(scene, script, cfg) + t3_template.node_problems(scene, script, node, cfg)
     if scene.template == "T4":
         from pipeline.video import t4_template
         problems += t4_template.check(scene, script, cfg)
@@ -212,6 +212,21 @@ def _dataset_for(template: str, cfg: dict | None, dataset_path: Path | None):
     return ds, injected, summary
 
 
+def claims_have_numbers(node: Node) -> bool:
+    return any(NUM_RE.search(f"{c.text}\n{c.quote}") for c in node.claims)
+
+
+def _mode_hint(cfg: dict | None, node: Node) -> str:
+    """Подсказка режима по факту: есть ли в утверждениях узла хоть одно число (для шаблонов с режимами)."""
+    if not cfg or not cfg.get("modes"):
+        return ""
+    if claims_have_numbers(node):
+        return ("\n\nВ утверждениях узла есть числа: mode quantitative — только если среди них есть все физические "
+                "параметры расчёта с источниками; иначе mode qualitative.")
+    return ("\n\nВ утверждениях узла нет ни одного числа: расчёт невозможен — mode qualitative; физические и "
+            "расчётные параметры не задавай, перечисли физические в missing_params.")
+
+
 def generate(node: Node, route: Route, fmt: str, templates_dir: Path,
              dataset_path: Path | None = None) -> tuple[Script, SceneSpec]:
     video_id = f"{node.id}.{fmt}"
@@ -236,7 +251,8 @@ def generate(node: Node, route: Route, fmt: str, templates_dir: Path,
     phrases = [{"id": p.id, "beat": p.beat, "text": p.text, "on_screen": p.on_screen, "claim_id": p.claim_id}
                for p in script.phrases]
     def scene_from(d: SceneDraft) -> SceneSpec:
-        if d.missing_params:   # данных в узле нет — повтор не поможет, выдумывать нельзя
+        qualitative = bool(cfg and cfg.get("modes")) and d.params.get("mode") == "qualitative"
+        if d.missing_params and not qualitative:   # данных в узле нет — повтор не поможет, выдумывать нельзя
             raise SpecError(f"в узле {node.id} нет данных для параметров шаблона {route.template}: "
                             f"{sorted(d.missing_params)}. Физические параметры не выдумываются: добавьте их "
                             f"в утверждения узла или выберите другой шаблон в маршрутизации")
@@ -244,13 +260,16 @@ def generate(node: Node, route: Route, fmt: str, templates_dir: Path,
         data["params"] = {**data["params"], **injected}          # значения из набора данных — от кода
         scene = SceneSpec(video_id=video_id, node_id=node.id, template=route.template, **data)
         scene.ext["video"] = {"param_sources": {k: v.model_dump() for k, v in d.param_sources.items()}}
+        if qualitative:     # расчёта нет: каких чисел не хватило бы для расчётного режима — для отчёта
+            scene.ext["video"]["missing_params"] = sorted(d.missing_params)
         if ds is not None:
             scene.ext["video"]["dataset_provenance"] = ds.provenance
         return scene
 
     scene = _generate(
         "video/scene_spec",
-        {**base, "phrases": phrases, "template_contract": template_contract(route.template, cfg) + ds_summary},
+        {**base, "phrases": phrases,
+         "template_contract": template_contract(route.template, cfg) + _mode_hint(cfg, node) + ds_summary},
         SceneDraft, TIER_SCENE, scene_from,
         lambda s: scene_problems(s, script, node, cfg, real_data_ok=bool(ds and ds.real_verified)))
 

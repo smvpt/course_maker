@@ -240,17 +240,21 @@ def param_source_problems(spec: SceneSpec, node: Node, cfg: dict) -> list[str]:
     return problems
 
 
-def sources_table(script: Script, node: Node) -> list[dict]:
-    """Таблица «утверждение → страница + цитата» для паспорта — кодом из claims узла, в порядке фраз."""
+def source_page(c) -> str:
+    return f"стр. {c.page_pdf}" + (f" (печ. {c.page_print})" if c.page_print is not None else "")
+
+
+def sources_table(script: Script, node: Node, extra_claim_ids=()) -> list[dict]:
+    """Таблица «утверждение → страница + цитата» для паспорта — кодом из claims узла: утверждения фраз
+    в порядке фраз, затем прочие использованные (элементы схемы, источники параметров)."""
     claims = {c.id: c for c in node.claims}
     rows, seen = [], set()
-    for p in script.phrases:
-        if p.claim_id in seen or p.claim_id not in claims:
+    for cid in [p.claim_id for p in script.phrases] + list(extra_claim_ids):
+        if cid in seen or cid not in claims:
             continue
-        seen.add(p.claim_id)
-        c = claims[p.claim_id]
-        page = f"стр. {c.page_pdf}" + (f" (печ. {c.page_print})" if c.page_print is not None else "")
-        row = SourceRow(claim_id=c.id, page_or_dataset=page, quote=c.quote, claim_text=c.text,
+        seen.add(cid)
+        c = claims[cid]
+        row = SourceRow(claim_id=c.id, page_or_dataset=source_page(c), quote=c.quote, claim_text=c.text,
                         kind=c.kind, source_kind=c.source_kind, by_model=c.by_model)
         rows.append(row.model_dump(by_alias=True))
     return rows

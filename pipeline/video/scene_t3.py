@@ -1,4 +1,5 @@
-"""Шаблон T3 «Рост тела», 9:16: план лопасти и разрез А–Б из одного состояния.
+"""Шаблон T3 «Рост тела», расчётный режим: план лопасти и разрез А–Б из одного состояния.
+Кадр 9:16 — план над разрезом; 16:9 — план слева, разрез справа.
 
 Одна переменная — время ролика tau — через progress_at задаёт время симуляции t; от t зависит радиус
 береговой линии R(t) модели, а из него — и план (t3_template.plan_field), и разрез (section_profile,
@@ -84,14 +85,24 @@ class T3Scene(Scene):
 
         # ---- вертикальная разметка
         cap_h = add_captions(self, lay, segs, tau, font, c["text"])
-        sec_w = width
+        landscape = lay.ref_w > lay.ref_h
+        col_w = (width - 2 * gap) / 2 if landscape else width
+        sec_w = col_w
+        sec_x0 = left + col_w + 2 * gap if landscape else left
         px_per_m = (sec_w / u(1)) / prep["r_max"]                              # px опорного кадра на метр по горизонтали
         h_px_max = m.depth_m * prep["exaggeration"] * px_per_m
         sec_h = u(SEA_MARGIN_PX + h_px_max + FLOOR_MARGIN_PX)
         plan_label_top = plaque_top - plaque_h - gap
-        fixed = (text_h + gap / 2) * 2 + sec_h + gap + (text_h + gap / 2) * 2 + gap
-        avail = plan_label_top - (bottom + cap_h + gap) - fixed
-        plan_h = min(width / 2, avail)
+        if landscape:                                   # план слева, разрез справа — сверху на одной высоте
+            avail = plan_label_top - (bottom + cap_h + gap) - (text_h + gap / 2)
+            below_sec = (text_h + gap / 2) + sec_h + (text_h + gap / 2) * 2 + gap
+            if plan_label_top - below_sec < bottom + cap_h + gap:
+                raise LayoutError(f"разрезу T3 не хватает места: {sec_h / u(1):.0f} px опорного кадра")
+            plan_h = min(col_w / 2, avail)
+        else:
+            fixed = (text_h + gap / 2) * 2 + sec_h + gap + (text_h + gap / 2) * 2 + gap
+            avail = plan_label_top - (bottom + cap_h + gap) - fixed
+            plan_h = min(width / 2, avail)
         if plan_h < u(250):
             raise LayoutError(f"плану T3 не хватает места: {plan_h / u(1):.0f} px опорного кадра")
         plan_w = 2 * plan_h
@@ -100,7 +111,7 @@ class T3Scene(Scene):
         lbl_plan = txt("план", c["muted"])
         lbl_plan.move_to([left + lbl_plan.width / 2, plan_label_top - text_h / 2, 0])
         plan_top = plan_label_top - text_h - gap / 2
-        plan_cx = 0.0
+        plan_cx = left + col_w / 2 if landscape else 0.0
         plan_center = np.array([plan_cx, plan_top - plan_h / 2, 0])
         m_per_unit_plan = 2 * prep["r_max"] / plan_w
 
@@ -153,15 +164,15 @@ class T3Scene(Scene):
         self.add(img, frame, always_redraw(arcs), line_ab, a_lbl, b_lbl, bar, bar_lbl, lbl_plan)
 
         # ---- разрез А–Б: те же слои, та же функция поверхности
-        sec_label_top = plan_top - plan_h - gap
+        sec_label_top = plan_label_top if landscape else plan_top - plan_h - gap
         lbl_sec = txt("разрез А–Б", c["muted"])
-        lbl_sec.move_to([left + lbl_sec.width / 2, sec_label_top - text_h / 2, 0])
+        lbl_sec.move_to([sec_x0 + lbl_sec.width / 2, sec_label_top - text_h / 2, 0])
         sec_top = sec_label_top - text_h - gap / 2
         sea_y = sec_top - u(SEA_MARGIN_PX)
-        x0 = left
+        x0 = sec_x0
         x_of = lambda r: x0 + np.asarray(r) / prep["r_max"] * sec_w
         sec_frame = Rectangle(width=sec_w, height=sec_h, stroke_color=c["muted"], stroke_width=2,
-                              fill_color=c["basin"], fill_opacity=1).move_to([0, sec_top - sec_h / 2, 0])
+                              fill_color=c["basin"], fill_opacity=1).move_to([x0 + sec_w / 2, sec_top - sec_h / 2, 0])
 
         def section():
             sid = shot_now()
@@ -197,13 +208,13 @@ class T3Scene(Scene):
         km = lambda v: f"{fmt_num(v / 1000)} км" if v else "0"
         for v in ticks:
             t_ = txt(km(v), c["muted"])
-            xx = min(max(float(x_of(v)), left + t_.width / 2), right - t_.width / 2)
+            xx = min(max(float(x_of(v)), x0 + t_.width / 2), right - t_.width / 2)
             t_.move_to([xx, tick_y, 0])
             self.add(t_)
             inside(lay, "шкала разреза", t_)
         depth_lbl = txt(f"глубина бассейна {fmt_num(m.depth_m)} м", c["muted"])
         legend = txt("слои: темнее — старше", c["muted"])
-        legend.move_to([left + legend.width / 2, tick_y - text_h - gap / 2, 0])
+        legend.move_to([x0 + legend.width / 2, tick_y - text_h - gap / 2, 0])
         depth_lbl.move_to([right - depth_lbl.width / 2, tick_y - text_h - gap / 2, 0])
         if legend.get_right()[0] + gap > depth_lbl.get_left()[0]:
             depth_lbl.shift([0, -text_h - gap / 2, 0])

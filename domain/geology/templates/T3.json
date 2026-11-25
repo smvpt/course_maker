@@ -1,7 +1,11 @@
 {
   "template": "T3",
   "title": "Рост тела: накопление слоёв и проградация",
-  "covers_difficulty": ["Р", "В", "П"],
+  "covers_difficulty": [
+    "Р",
+    "В",
+    "П"
+  ],
   "model": "Радиальная проградация лопасти в плане: плоская кровля (топсет) на уровне моря до береговой линии R, фронтальный склон (форсет) с углом θ до подножия R + h/tg θ, дно бассейна на глубине h. Объём лопасти V(R) = φ·h·(R²/2 + R·L/2 + L²/6), L = h/tg θ; приток осадка Q постоянен: V(R(t)) = V(R0) + Q·t. Поверхность только наращивается — слои не пересекаются и не исчезают; объём каждого слоя равен Q·Δt.",
   "assumptions": [
     "уровень моря и глубина бассейна постоянны, погружения нет — кровля не наращивается вверх (чистая проградация)",
@@ -12,33 +16,145 @@
   "limitations": "не описывает вертикальный рост тела (риф, агградацию кровли), размыв и несогласия, изменение уровня моря, уплотнение осадка",
   "state_variable": "время симуляции t: одна переменная задаёт радиус береговой линии R(t), из которого строятся и план, и разрез",
   "params": {
-    "depth_m":               {"required": true,  "kind": "physical", "unit": "м",      "meaning": "глубина бассейна перед телом (высота фронтального склона)"},
-    "foreset_angle_deg":     {"required": true,  "kind": "physical", "unit": "°",      "meaning": "угол фронтального склона (форсета)"},
-    "supply_m3_per_yr":      {"required": true,  "kind": "physical", "unit": "м³/год", "meaning": "приток осадка в лопасть"},
-    "initial_radius_m":      {"required": true,  "kind": "display",  "unit": "м",      "meaning": "радиус береговой линии лопасти в начальный момент показа"},
-    "t_end_yr":              {"required": true,  "kind": "display",  "unit": "лет",    "meaning": "время симуляции к концу анимации"},
-    "n_layers":              {"required": true,  "kind": "display",  "meaning": "число слоёв: время делится на равные интервалы, слой — осадок одного интервала"},
-    "r_max_m":               {"required": true,  "kind": "display",  "unit": "м",      "meaning": "радиус окна плана и длина разреза"},
-    "lobe_angle_deg":        {"required": false, "default": 180,  "kind": "display", "unit": "°", "meaning": "угол раскрытия лопасти в плане"},
-    "vertical_exaggeration": {"required": false, "default": 1,    "kind": "display", "meaning": "во сколько раз увеличена вертикаль разреза на кадрах с плашкой «не в масштабе»"},
-    "evolve_shot_ids":       {"required": false, "default": null, "kind": "display", "meaning": "кадры, на фразах которых идёт время симуляции; null — все кадры"}
+    "mode": {
+      "required": false,
+      "default": "quantitative",
+      "kind": "display",
+      "meaning": "режим: quantitative — расчёт проградации, нужны физические параметры с источниками из узла; qualitative — схема с относительной геометрией без чисел, когда чисел для расчёта в узле нет"
+    },
+    "depth_m": {
+      "required": true,
+      "kind": "physical",
+      "unit": "м",
+      "meaning": "глубина бассейна перед телом (высота фронтального склона)",
+      "modes": [
+        "quantitative"
+      ]
+    },
+    "foreset_angle_deg": {
+      "required": true,
+      "kind": "physical",
+      "unit": "°",
+      "meaning": "угол фронтального склона (форсета)",
+      "modes": [
+        "quantitative"
+      ]
+    },
+    "supply_m3_per_yr": {
+      "required": true,
+      "kind": "physical",
+      "unit": "м³/год",
+      "meaning": "приток осадка в лопасть",
+      "modes": [
+        "quantitative"
+      ]
+    },
+    "initial_radius_m": {
+      "required": true,
+      "kind": "display",
+      "unit": "м",
+      "meaning": "радиус береговой линии лопасти в начальный момент показа",
+      "modes": [
+        "quantitative"
+      ]
+    },
+    "t_end_yr": {
+      "required": true,
+      "kind": "display",
+      "unit": "лет",
+      "meaning": "время симуляции к концу анимации",
+      "modes": [
+        "quantitative"
+      ]
+    },
+    "n_layers": {
+      "required": true,
+      "kind": "display",
+      "meaning": "число слоёв: время делится на равные интервалы, слой — осадок одного интервала",
+      "modes": [
+        "quantitative"
+      ]
+    },
+    "r_max_m": {
+      "required": true,
+      "kind": "display",
+      "unit": "м",
+      "meaning": "радиус окна плана и длина разреза",
+      "modes": [
+        "quantitative"
+      ]
+    },
+    "lobe_angle_deg": {
+      "required": false,
+      "default": 180,
+      "kind": "display",
+      "unit": "°",
+      "meaning": "угол раскрытия лопасти в плане",
+      "modes": [
+        "quantitative"
+      ]
+    },
+    "vertical_exaggeration": {
+      "required": false,
+      "default": 1,
+      "kind": "display",
+      "meaning": "во сколько раз увеличена вертикаль разреза на кадрах с плашкой «не в масштабе»",
+      "modes": [
+        "quantitative"
+      ]
+    },
+    "evolve_shot_ids": {
+      "required": false,
+      "default": null,
+      "kind": "display",
+      "meaning": "кадры, на фразах которых идёт время симуляции; null — все кадры"
+    },
+    "elements": {
+      "required": true,
+      "kind": "claim_ref",
+      "modes": [
+        "qualitative"
+      ],
+      "allowed": [
+        "cone",
+        "zones",
+        "depocenter",
+        "lobe_cycles"
+      ],
+      "meaning": "элементы схемы: список {element, claim_id}; element — cone (конус выноса у устья, обязателен), zones (дельтовая равнина, авандельта, продельта), depocenter (депоцентр у устья), lobe_cycles (повторяющиеся стадии продвижения и отмирания лопастей); claim_id — утверждение узла, которое называет этот элемент и звучит в сценарии; элемент появляется на схеме с первой фразы с этим claim_id"
+    },
+    "n_lobes": {
+      "required": false,
+      "default": 1,
+      "kind": "display",
+      "modes": [
+        "qualitative"
+      ],
+      "meaning": "число стадий на схеме: 1 без lobe_cycles; от 2 до 4 с lobe_cycles"
+    }
   },
   "param_kinds": {
     "physical": "физическая величина тела или бассейна: значение только из утверждений узла, с указанием источника; нет в узле — параметр не выдумывать, а перечислить в missing_params",
-    "display": "настройка показа (начальное состояние, длительность, число слоёв, окно, преувеличение): выбирается так, чтобы выполнялись ограничения шаблона"
+    "display": "настройка показа (начальное состояние, длительность, число слоёв, окно, преувеличение): выбирается так, чтобы выполнялись ограничения шаблона",
+    "claim_ref": "элемент качественной схемы: показывается, только если его называет утверждение узла; значение — список {element, claim_id}"
   },
   "frame_rules": [
-    "все кадры — класс B с меткой «симуляция»: план и разрез считаются моделью",
-    "если vertical_exaggeration > 1: у кадров с увеличенной вертикалью разреза плашка «не в масштабе: вертикаль увеличена в N раз» с N = vertical_exaggeration, то же N — в exaggerations, и есть кадр истинного масштаба (true_scale_shot_id) без плашки",
-    "если vertical_exaggeration = 1: плашек нет",
-    "evolve_shot_ids — кадры, на фразах которых идёт время; фразы prediction и final (и пауза после вопроса) модель не двигают, даже если их кадр в evolve_shot_ids",
-    "к концу анимации подножие склона (R + h/tg θ) должно быть в пределах r_max_m, а береговая линия — заметно продвинуться"
+    "mode quantitative — только если в узле есть числа для физических параметров: все кадры класса B с меткой «симуляция»",
+    "mode qualitative — если чисел для расчёта в узле нет: физические и расчётные параметры не задаются и не выдумываются; все кадры класса B с меткой «схема»; плашек нет, exaggerations пустой, true_scale_shot_id — null (масштаба у схемы нет: на кадре постоянная пометка «схема без масштаба»); missing_params — физические параметры расчёта, которых нет в узле (для отчёта)",
+    "в qualitative каждый элемент схемы (elements) ссылается на claim_id узла, который его называет, и этот claim_id есть у какой-либо фразы сценария; чего нет в утверждениях узла — того нет на схеме",
+    "в qualitative в тексте и on_screen нет единиц и количественных величин (метров, лет, расходов), если их нет в утверждениях узла",
+    "quantitative: если vertical_exaggeration > 1 — у кадров с увеличенной вертикалью разреза плашка «не в масштабе: вертикаль увеличена в N раз» с N = vertical_exaggeration, то же N — в exaggerations, и есть кадр истинного масштаба (true_scale_shot_id) без плашки; если vertical_exaggeration = 1 — плашек нет",
+    "evolve_shot_ids — кадры, на фразах которых идёт время (в qualitative — рост схемы и смена стадий); фразы prediction и final (и пауза после вопроса) состояние не двигают",
+    "quantitative: к концу анимации подножие склона (R + h/tg θ) должно быть в пределах r_max_m, а береговая линия — заметно продвинуться"
   ],
   "display": {
     "layer_color": "lithology.sand.color",
     "initial_body_color": "muted",
     "basin_color": "panel",
-    "age_shade": [0.45, 1.0],
+    "age_shade": [
+      0.45,
+      1.0
+    ],
     "plan_grid": 241,
     "nominal_section_width_px": 940,
     "max_section_height_px": 300,
@@ -74,6 +190,141 @@
       "pc.depth_down": "depth_down",
       "pc.exaggeration_named": "plaques_have_number",
       "pc.label_matches": "label_matches_source"
+    }
+  },
+  "modes": {
+    "quantitative": "расчётная проградация лопасти с балансом объёма; физические параметры (глубина, угол склона, приток) — только с источниками из узла; метка кадров «симуляция»",
+    "qualitative": "качественная схема с относительной геометрией: зоны, депоцентр, стадии лопастей — без метров, лет, расходов и количественных выводов; каждый элемент схемы — с claim_id узла; допущения расчётной проградации не переносятся; метка кадров «схема»"
+  },
+  "qualitative": {
+    "model": "качественная схема: конус выноса у устья реки в плане и продольный разрез по его оси из одного состояния (доля роста каждой стадии); зоны — доли длины конуса, толщины условные; стадии ложатся одна на другую",
+    "assumptions": [
+      "размеры, толщины, углы и длительности условные — схема без масштаба, чисел нет",
+      "положение и форма стадий в плане условны: все стадии показаны вдоль одной оси",
+      "почему следующая стадия ложится выше (погружение, изменение уровня воды), схема не показывает — в узле этого нет"
+    ],
+    "limitations": "не расчёт: не показывает скорости, объёмы, размеры, возраст и количественный баланс осадка; не различает типы дельт",
+    "state_variable": "доля показа s ∈ [0, 1]: из неё — рост текущей стадии и номер стадии; план и разрез строятся из одних стадий",
+    "elements": {
+      "cone": {
+        "required": true,
+        "evidence": [
+          [
+            "конус",
+            "cone",
+            "fan"
+          ]
+        ],
+        "label": "конус выноса"
+      },
+      "zones": {
+        "evidence": [
+          [
+            "равнин",
+            "субаэрал",
+            "plain",
+            "subaerial"
+          ],
+          [
+            "авандельт",
+            "delta front",
+            "avandelta"
+          ],
+          [
+            "продельт",
+            "prodelta"
+          ]
+        ]
+      },
+      "depocenter": {
+        "evidence": [
+          [
+            "депоцентр",
+            "depocent"
+          ]
+        ],
+        "label": "депоцентр"
+      },
+      "lobe_cycles": {
+        "evidence": [
+          [
+            "лопаст",
+            "lobe"
+          ],
+          [
+            "цикл",
+            "повтор",
+            "стади",
+            "cycl",
+            "repeat",
+            "stage"
+          ]
+        ]
+      }
+    },
+    "zones": [
+      {
+        "key": "plain",
+        "label": "дельтовая равнина",
+        "color": "muted",
+        "to": 0.45,
+        "top": 1.0,
+        "legend": "дельтовая равнина — над водой"
+      },
+      {
+        "key": "front",
+        "label": "авандельта",
+        "color": "lithology.sand.color",
+        "to": 0.62,
+        "top": 0.4,
+        "legend": "авандельта — круто, грубообломочная"
+      },
+      {
+        "key": "pro",
+        "label": "продельта",
+        "color": "lithology.shale.color",
+        "to": 1.0,
+        "top": 0.0,
+        "legend": "продельта — полого, тонкообломочная"
+      }
+    ],
+    "water_level": 0.9,
+    "lobe_half_angle_deg": 55,
+    "start_growth": 0.2,
+    "max_lobes": 4,
+    "abandoned_opacity": 0.45,
+    "water_color": "panel",
+    "river_color": "fluids.water.color",
+    "note": "схема без масштаба: размеры и толщины условные",
+    "water_label": "уровень воды",
+    "river_label": "река",
+    "physics_checklist": {
+      "not_applicable": {
+        "pc.fault_consistent": "разломов в модели нет",
+        "pc.unconformity_event": "размыва и перерывов в модели нет (допущение шаблона)",
+        "pc.fluids_in_pores": "флюиды не изображаются",
+        "pc.gas_oil_water": "флюидальные контакты не рисуются",
+        "pc.flow_high_to_low": "течение флюидов не изображается",
+        "pc.tool_mechanism": "прибора нет",
+        "pc.signal_vs_property": "измерений нет — показан расчёт",
+        "pc.curve_sync": "кривых нет",
+        "pc.objects_stable": "оборудования нет",
+        "pc.objects_plausible": "оборудования нет",
+        "pc.modern_or_historic": "оборудования нет",
+        "pc.hydrostatic": "ствол не показывается",
+        "pc.gas_closed_well": "ствол не показывается",
+        "pc.pit_gain": "приёмные ёмкости не показываются",
+        "pc.well_construction": "конструкция скважины не рисуется",
+        "pc.balance": "расчёта нет: объёмы и масса не изображаются как величины (качественная схема)",
+        "pc.plausible_numbers": "чисел на кадре нет: схема без масштаба",
+        "pc.exaggeration_named": "масштаба нет: схема без масштаба с постоянной пометкой на кадре; числа преувеличения не существует",
+        "pc.depth_down": "шкал и глубин нет: относительная геометрия без осей"
+      },
+      "auto": {
+        "pc.layers_order": "stages_order",
+        "pc.views_consistent": "one_state_variable",
+        "pc.label_matches": "label_matches_source"
+      }
     }
   }
 }

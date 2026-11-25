@@ -1,0 +1,143 @@
+{
+  "video_id": "t3_deltas_qual_16x9",
+  "node_id": "baraboshkin_par1-2.deltas_overview",
+  "template": "T3",
+  "ext": {
+    "video": {
+      "note": "проверочная пара для рендера качественного режима T3 на настоящем узле: написана вручную, НЕ ответ модели; содержание — только утверждения узла c1–c5"
+    }
+  },
+  "params": {
+    "mode": "qualitative",
+    "n_lobes": 3,
+    "evolve_shot_ids": [
+      "s1",
+      "s2",
+      "s5"
+    ],
+    "elements": [
+      {
+        "element": "cone",
+        "claim_id": "baraboshkin_par1-2.deltas_overview#c1"
+      },
+      {
+        "element": "zones",
+        "claim_id": "baraboshkin_par1-2.deltas_overview#c3"
+      },
+      {
+        "element": "depocenter",
+        "claim_id": "baraboshkin_par1-2.deltas_overview#c4"
+      },
+      {
+        "element": "lobe_cycles",
+        "claim_id": "baraboshkin_par1-2.deltas_overview#c5"
+      }
+    ]
+  },
+  "objects": [
+    "план конуса выноса у устья реки",
+    "продольный разрез по оси конуса",
+    "зоны дельты",
+    "депоцентр",
+    "стадии лопастей"
+  ],
+  "invariants": [
+    "план и разрез строятся из одних стадий и одних границ зон",
+    "стадии не меняют порядок: моложе — выше",
+    "чисел, шкал и масштаба на схеме нет"
+  ],
+  "assumptions": [
+    "схема без масштаба: размеры, толщины и углы условные",
+    "все стадии показаны вдоль одной оси; почему следующая стадия ложится выше, схема не показывает"
+  ],
+  "exaggerations": [],
+  "shots": [
+    {
+      "id": "s1",
+      "phrase_ids": [
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "frame_class": "B",
+      "label": "схема",
+      "shows": "река приносит материал к воде; у устья появляется конус выноса",
+      "plaque": null
+    },
+    {
+      "id": "s2",
+      "phrase_ids": [
+        "p4",
+        "p5"
+      ],
+      "frame_class": "B",
+      "label": "схема",
+      "shows": "конус выноса у устья растёт — это и есть дельта",
+      "plaque": null
+    },
+    {
+      "id": "s3",
+      "phrase_ids": [
+        "p6",
+        "p7",
+        "p8",
+        "p9"
+      ],
+      "frame_class": "B",
+      "label": "схема",
+      "shows": "на конусе выделяются зоны: дельтовая равнина, авандельта, продельта; легенда зон",
+      "plaque": null
+    },
+    {
+      "id": "s4",
+      "phrase_ids": [
+        "p10",
+        "p11",
+        "p12"
+      ],
+      "frame_class": "B",
+      "label": "схема",
+      "shows": "вопрос; затем у устья отмечается депоцентр в плане и в разрезе",
+      "plaque": null
+    },
+    {
+      "id": "s5",
+      "phrase_ids": [
+        "p13",
+        "p14",
+        "p15"
+      ],
+      "frame_class": "B",
+      "label": "схема",
+      "shows": "лопасть отмирает, новая стадия ложится сверху; в разрезе — повторяющиеся пачки",
+      "plaque": null
+    },
+    {
+      "id": "s6",
+      "phrase_ids": [
+        "p16",
+        "p17"
+      ],
+      "frame_class": "B",
+      "label": "схема",
+      "shows": "итоговая схема: где искать тело дельты и как читать пачки",
+      "plaque": null
+    },
+    {
+      "id": "s7",
+      "phrase_ids": [
+        "p18",
+        "p19"
+      ],
+      "frame_class": "B",
+      "label": "схема",
+      "shows": "итоговая схема держится; вопрос на перенос",
+      "plaque": null
+    }
+  ],
+  "true_scale_shot_id": null,
+  "convention": "план сверху, разрез по оси конуса: слева устье, справа — в сторону бассейна",
+  "data_sources": [],
+  "references": [],
+  "historical_objects": []
+}
