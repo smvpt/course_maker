@@ -86,6 +86,9 @@ def prepare(spec: SceneSpec, script: Script, cfg: dict) -> dict:
                 continue
             if ds.units[m] != unit:
                 problems.append(f"кривая {m}: в спецификации единица «{unit}», в LAS «{ds.units[m]}»")
+            if ds.curve_types.get(m) == "interpreted":
+                problems.append(f"кривая {m} — результат интерпретации, а не измерение: на трек «измерение» "
+                                f"ставятся только измеренные кривые")
         curves.append({"mnemonic": m, "kind": kind, "unit": unit, "label": label, "log": kcfg["log"],
                        "unit_display": cfg["unit_display"].get(unit, unit)})
     if len({c["mnemonic"] for c in curves}) != len(curves):
@@ -162,7 +165,7 @@ def prepare(spec: SceneSpec, script: Script, cfg: dict) -> dict:
     if ds is not None:
         if ds.borehole_diameter_m is None:
             problems.append("в описании набора данных нет borehole_diameter_m — ствол без размера не рисуем")
-        elif not _num(diam) or abs(float(diam) - ds.borehole_diameter_m) > 1e-9:
+        elif not _num(diam) or not math.isclose(float(diam), ds.borehole_diameter_m, rel_tol=1e-6):
             problems.append(f"borehole_diameter_m {diam!r} не совпадает с набором данных ({ds.borehole_diameter_m})")
     k = p.get("borehole_exaggeration")
     if not _num(k) or k < 1:

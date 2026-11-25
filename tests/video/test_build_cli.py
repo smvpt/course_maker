@@ -23,9 +23,10 @@ def tools_ok(monkeypatch):
     monkeypatch.delenv("TTS_OFFLINE", raising=False)
 
 
-def test_without_explicit_input_is_an_error(tmp_path, capsys):
-    assert build.main(["--ch", "video_hello", "--node", NODE]) == 2
-    assert "--script" in capsys.readouterr().err
+def test_without_pair_and_without_layer_is_a_clear_error(tmp_path, capsys):
+    assert build.main(["--ch", "video_hello", "--node", NODE, "--out-root", str(tmp_path)]) == 2
+    err = capsys.readouterr().err
+    assert "layer.json" in err and "--layer" in err
 
 
 def test_missing_ffmpeg_is_reported_before_anything_else(tmp_path, capsys, monkeypatch):

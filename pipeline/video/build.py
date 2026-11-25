@@ -1,11 +1,17 @@
-"""Сборка ролика: Script + SceneSpec → озвучка → сцена Manim → MP4 + VTT.
+"""Сборка ролика: Script + SceneSpec → озвучка → сцена Manim → MP4 + VTT → паспорт.
 
-    python -m pipeline.video.build --ch <id> --node <node_id> \
-        --script <script.json> --scene-spec <scene_spec.json> [--draft]
+    python -m pipeline.video.build --ch <id> --node <node_id> [--draft]
+        [--layer <layer.json>] [--routing <routing.json>] [--format short|long] [--dataset <dataset.json>]
+    python -m pipeline.video.build --ch <id> --node <node_id> --script <script.json> --scene-spec <scene_spec.json>
+
+Без --script/--scene-spec пара берётся из каталога video.spec (out/<ch>/videos/<node_id>.<fmt>/) после
+проверки соответствия узлу, формату, шаблону и набору данных; если пары нет — её генерирует video.spec.
 
 Выходы — out/<ch>/videos/<video_id>/: <video_id>.mp4, <video_id>.vtt, script.json,
-scene_spec.json, timeline.json, build_report.json, _work/ (промежуточные файлы).
-Генерация Script/SceneSpec из layer.json (video.spec) — задача 2, здесь не делается.
+scene_spec.json, timeline.json, build_report.json, passport.json (по passport.schema.json),
+asr_report.json (распознавание озвучки), frames/, _work/ (промежуточные файлы).
+Код выхода: 0 — собрано и проверено; 2 — ошибка входа или инструмента; 3 — ролик и паспорт записаны,
+но проверка озвучки не пройдена или не выполнена.
 """
 from __future__ import annotations
 
@@ -15,7 +21,11 @@ import re
 import sys
 from pathlib import Path
 
-from pipeline.video import media
+import numpy as np
+
+from pipeline.video import asr, media
+from pipeline.video.passport import (DEFAULT_CHECKLIST, SCHEMA_PATH, PassportError, assemble, audio_check_skipped,
+                                     checklist_answers, load_checklist, plaques_have_number, write_passport)
 from pipeline.video.inputs import ID_RE, VideoInputError, load_inputs
 from pipeline.video.layout import FRAME_H, LONG_SAFE_ZONE, REF_LONG, REF_H, REF_W, Layout, LayoutError
 from pipeline.video.media import ToolError
@@ -159,8 +169,124 @@ def _verify(mp4: Path, tl, w: int, h: int, fps: int) -> dict:
     return result
 
 
+def _rel(path: Path) -> str:
+    path = Path(path).resolve()
+    try:
+        return path.relative_to(ROOT).as_posix()
+    except ValueError:
+        return str(path)
+
+
+def _node_card(script, node_obj) -> dict:
+    if node_obj is None:
+        note = (script.ext.get("video") or {}).get("note")
+        return {"node_id": script.node_id, "status": "учебный слой не передан (--layer): карточка узла не заполнена",
+                **({"note": note} if note else {})}
+    n = node_obj
+    return {"node_id": n.id, "title": n.title, "title_novice": n.title_novice, "difficulty": n.difficulty.model_dump(),
+            "threshold": n.threshold, "main": n.layers.main.text, "pages": n.pages,
+            "terms_introduced": n.terms_introduced,
+            "claims": [{"id": c.id, "kind": c.kind, "page_pdf": c.page_pdf} for c in n.claims]}
+
+
+def _auto_checks(spec, tpl_info: dict) -> dict:
+    """Автопроверки для чек-листа: по спецификации и по инвариантам шаблона, закреплённым тестами."""
+    auto = {"plaques_have_number": plaques_have_number(spec)}
+    if spec.template == "T1":
+        auto["label_matches_source"] = (True, "t1_template.prepare: все кадры A/B с меткой «симуляция» — кадр считается моделью")
+        auto["one_state_variable"] = (True, "по построению: карта и график — одна функция PressureModel.delta_p от одного "
+                                            "времени (тест test_field_and_graph_come_from_one_function)")
+    if spec.template == "T2":
+        prov = tpl_info["dataset_provenance"]
+        auto["label_matches_source"] = (True, f"t2_template.prepare: метка кадров «{tpl_info['data_label']}» соответствует "
+                                              f"набору ({prov['kind']}; sha256 и скважина сверены); панель ствола — «схема»")
+        auto["one_state_variable"] = (True, "по построению: прибор, кривые и колонка решения — одна глубина через "
+                                            "depth_frac (тест test_tool_and_curves_share_one_depth)")
+        auto["depth_down"] = (True, "по построению: depth_frac 0 — верх, 1 — низ; шкала глубины и единицы кривых "
+                                    "подписаны (тест test_tool_and_curves_share_one_depth)")
+        auto["objects_fixed_geometry"] = (True, "по построению: ствол и прибор одной формы во всех кадрах; ширина меняется "
+                                                "только на кадрах с плашкой «не в масштабе» и в кадре истинного масштаба")
+    return auto
+
+
+def _sources(script, spec, tpl_info: dict) -> list[dict]:
+    rows = [dict(r) for r in (spec.ext.get("video") or {}).get("sources", [])]
+    if spec.template == "T2":
+        p = tpl_info["dataset_provenance"]
+        a, b = p["interval_m"]
+        uwi = f" ({p['uwi']})" if p.get("uwi") else ""
+        rows.append({"claim_id": f"{script.video_id}#data",
+                     "page_or_dataset": f"{p['attribution'] or p['source']}; файл {p['file']}; скв. {p['well']}{uwi}; "
+                                        f"{a:g}–{b:g} м; sha256 {p['sha256'][:12]}…",
+                     "provenance": p})
+    return rows
+
+
+def _audio_check(mp4: Path, script, timeline: dict, probe: dict, wpm: float, voice: str, skip_asr: bool,
+                 asr_model: str, node_obj, out: Path) -> tuple[dict, bool | None, str | None]:
+    """Измеренный звук + распознавание. Возвращает (audio_check, проверка пройдена?, причина провала)."""
+    base = {"voice": voice,
+            "tempo": {"wpm": wpm, "target": list(TARGET_WPM), "ok": TARGET_WPM[0] <= wpm <= TARGET_WPM[1],
+                      "method": "слова сценария / время от первого до последнего слова фраз по меткам TTS"},
+            "loudness": {"integrated_lufs": probe["integrated_lufs"], "true_peak_dbtp": probe["true_peak_dbtp"],
+                         "target_lufs": media.TARGET_I, "ok": probe["checks"]["lufs_within_1lu_of_-16"],
+                         "no_clipping": probe["checks"]["true_peak_le_-1dbtp"]},
+            "trailing_silence_s": probe["trailing_silence_s"], "last_phrase_inside": probe["checks"]["last_phrase_inside"]}
+    abbreviations = sorted({w for p in script.phrases for w in re.findall(r"\b[А-ЯЁA-Z]{2,}\b", p.text)})
+    tempo_fail = [] if base["tempo"]["ok"] else [f"темп {wpm} слов/мин вне {TARGET_WPM[0]}–{TARGET_WPM[1]}"]
+
+    def unchecked(reason: str) -> tuple[dict, bool | None, str]:
+        # известный провал (темп) не прячется за «не проверено»: тогда итог — False
+        return ({**base, **audio_check_skipped(reason)}, False if tempo_fail else None,
+                "; ".join(tempo_fail + [reason]))
+
+    if skip_asr:
+        return unchecked("распознавание пропущено флагом --skip-asr")
+    pcm = np.frombuffer(media.decode_pcm(mp4, 16000), dtype=np.int16).astype(np.float32) / 32768.0
+    try:
+        tr = asr.transcribe(pcm, asr_model)
+    except asr.AsrError as e:
+        return unchecked(f"распознавание не выполнено: {e}")
+    wer = asr.wer_report([(p.id, p.text) for p in script.phrases], [w["word"] for w in tr["words"]])
+    tts_words = [(w["start_s"], w["text"]) for ph in timeline["phrases"] if ph["timing"] == "word" for w in ph["words"]]
+    sync = asr.sync_report(tts_words, [(w["start"], w["word"]) for w in tr["words"]])
+    (out / "asr_report.json").write_text(json.dumps({"transcription": tr, "wer": wer, "sync": sync},
+                                                    ensure_ascii=False, indent=2), encoding="utf-8")
+    if node_obj is None:
+        terms = {"status": "не проверено", "reason": "нет списка терминов узла: учебный слой не передан (--layer)"}
+    else:
+        terms = {"status": "проверено автоматически",
+                 "method": "каждое употребление термина в сценарии — по выравниванию сценария и распознавания",
+                 **asr.term_report([(p.id, p.text) for p in script.phrases], [w["word"] for w in tr["words"]],
+                                   node_obj.terms_introduced + node_obj.terms_used)}
+    disputed = sorted({e["expected"] for e in wer["errors"] if e["expected"]} | set(abbreviations))
+    audio = {**base,
+             "asr": {"status": "проверено автоматически", "engine": tr["engine"], "version": tr["version"],
+                     "model": tr["model"], "language": tr["language"], "wer": round(wer["wer"], 4),
+                     "limit": asr.WER_LIMIT, "ok": wer["wer"] <= asr.WER_LIMIT, "n_ref_words": wer["n_ref"],
+                     "substitutions": wer["substitutions"], "deletions": wer["deletions"],
+                     "insertions": wer["insertions"], "errors": wer["errors"][:60], "per_phrase": wer["per_phrase"],
+                     "report": "asr_report.json"},
+             "sync": {"status": "проверено автоматически",
+                      "method": "начала слов: распознавание готового MP4 против меток слов TTS в таймлайне ролика",
+                      **sync,
+                      "frame_vs_voice": {"status": "не проверено",
+                                         "reason": "смысловое соответствие кадра фразе проверяет человек; подписи и "
+                                                   "анимация привязаны к тому же звуковому таймлайну по построению"}},
+             "terms": terms,
+             "stress": {"status": "не проверено",
+                        "reason": "распознавание ударения не проверяет; словаря ударений домена в пакете нет",
+                        "to_listen": disputed},
+             "listened_by_human": False}
+    failed = tempo_fail + [k for k, ok in (("WER", audio["asr"]["ok"]), ("рассинхрон", sync["ok"]),
+                                           ("термины", terms.get("ok", True))) if not ok]
+    return audio, not failed, ("; ".join(failed) or None)
+
+
 def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, fmt: str | None,
-          voice: str, styleguide: Path, out_root: Path, cache_dir: Path, domain: str = "geology") -> dict:
+          voice: str, styleguide: Path, out_root: Path, cache_dir: Path, domain: str = "geology",
+          skip_asr: bool = False, asr_model: str = asr.DEFAULT_MODEL, layer_path: Path | None = None,
+          checklist_path: Path = DEFAULT_CHECKLIST) -> dict:
     if not ID_RE.match(ch):
         raise VideoInputError(f"--ch «{ch}» — допустимы только [a-z0-9_.-]")
     if not ID_RE.match(domain):
@@ -176,6 +302,19 @@ def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, f
         raise VideoInputError(format_problem(spec.template, fmt))
     sg = _styleguide(styleguide)
     tpl_plan, tpl_colors, tpl_info = _prepare_template(spec, script, sg, ROOT / "domain" / domain / "templates")
+    try:
+        checklist_items = load_checklist(checklist_path)
+    except PassportError as e:
+        raise VideoInputError(str(e)) from e
+    node_obj = None
+    if layer_path is not None:
+        from contracts.models import Layer
+        if not Path(layer_path).is_file():
+            raise VideoInputError(f"--layer: файл не найден: {layer_path}")
+        layer = Layer.model_validate_json(Path(layer_path).read_text(encoding="utf-8"))
+        node_obj = next((n for n in layer.nodes if n.id == script.node_id), None)
+        if node_obj is None:
+            raise VideoInputError(f"--layer: узла {script.node_id} нет в {layer_path}")
     _check_font(sg["font"])
     layout = (Layout(sg["safe_zone"], sg["min_caption_px"], ref=(REF_W, REF_H)) if fmt == "short"
               else Layout(LONG_SAFE_ZONE, sg["min_caption_px"], ref=REF_LONG))
@@ -273,11 +412,96 @@ def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, f
     media.extract_frame(mp4, max(tl.total - 1.5 / fps, 0.0), last)
     report["frames"].append({"shot_id": report["shots"][-1]["shot_id"], "t_s": round(tl.total - 1.5 / fps, 3),
                              "file": str(last)})
+    # 6. проверка озвучки и паспорт ролика
+    audio, audio_ok, audio_problem = _audio_check(mp4, script, timeline, check, wpm, voice, skip_asr, asr_model,
+                                                  node_obj, out)
+    from pipeline.video.templates import load_template_config
+    tcfg = load_template_config(ROOT / "domain" / domain / "templates", spec.template)
+    checklist = checklist_answers(checklist_items, (tcfg or {}).get("physics_checklist"), _auto_checks(spec, tpl_info))
+    passport = assemble(script=script, spec=spec,
+                        segments=[{"phrase_id": s.phrase_id, "start": s.start, "end": s.end} for s in tl.segments],
+                        frames=[{"t": f["t_s"], "shot_id": f["shot_id"], "file": _rel(f["file"])} for f in report["frames"]],
+                        node_card=_node_card(script, node_obj), sources=_sources(script, spec, tpl_info),
+                        checklist=checklist, audio_check=audio, scene_spec_path=_rel(out / "scene_spec.json"),
+                        panels=((tcfg or {}).get("display") or {}).get("schema_panels"))
+    schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
+    try:
+        write_passport(passport, out / "passport.json", schema)
+    except PassportError as e:
+        raise BuildCheckError(str(e)) from e
+    report.update({"passport": str(out / "passport.json"), "audio_ok": audio_ok, "audio_problem": audio_problem,
+                   "checklist_status": {s: sum(1 for c in checklist if c.status == s)
+                                        for s in dict.fromkeys(c.status for c in checklist)}})
     (out / "timeline.json").write_text(json.dumps(timeline, ensure_ascii=False, indent=2), encoding="utf-8")
     (out / "build_report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     (out / "script.json").write_text(script.model_dump_json(by_alias=True, indent=2), encoding="utf-8")
     (out / "scene_spec.json").write_text(spec.model_dump_json(by_alias=True, indent=2), encoding="utf-8")
     return report
+
+
+def _same_file(a: Path, b: Path) -> bool:
+    return Path(a).resolve() == Path(b).resolve()
+
+
+def _check_ready_pair(script_path: Path, spec_path: Path, node, route, fmt: str, dataset: Path | None,
+                      domain: str) -> None:
+    """Готовая пара из каталога video.spec: тот же узел, формат, шаблон и набор данных, плюс все проверки
+    генератора относительно текущего узла (spec.pair_problems, без LLM). Битые файлы — ошибка, не перегенерация."""
+    from pipeline.video import spec as vspec
+    from pipeline.video.t2_template import resolve_dataset_path
+    script, spec = load_inputs(script_path, spec_path, node_id=node.id)
+    problems = []
+    if script.video_id != f"{node.id}.{fmt}":
+        problems.append(f"video_id «{script.video_id}», а для узла и формата нужен «{node.id}.{fmt}»")
+    if script.format != fmt:
+        problems.append(f"формат сценария {script.format}, а маршрут даёт {fmt}")
+    if spec.template != route.template:
+        problems.append(f"шаблон спецификации {spec.template}, а в маршруте {route.template}")
+    ds = spec.params.get("dataset")
+    if dataset is not None and (not isinstance(ds, str) or not _same_file(resolve_dataset_path(ds), dataset)):
+        problems.append(f"спецификация собрана с набором данных {ds!r}, а передан --dataset {dataset}")
+    if not problems:   # содержательные проверки — только для пары, которая вообще относится к этому маршруту
+        problems += vspec.pair_problems(script, spec, node, fmt, ROOT / "domain" / domain / "templates")
+    if problems:
+        raise VideoInputError(f"готовая пара в {script_path.parent} не подходит:\n- " + "\n- ".join(problems)
+                              + "\nУдалите её, чтобы сгенерировать заново, или передайте --script и --scene-spec")
+
+
+def resolve_inputs(ch: str, node: str, script: Path | None, scene_spec: Path | None, layer: Path | None,
+                   routing: Path | None, out_root: Path, domain: str, fmt: str | None, dataset: Path | None
+                   ) -> tuple[Path, Path, Path | None, str | None]:
+    """(script.json, scene_spec.json, layer.json для паспорта, формат) для сборки.
+
+    Явная пара — как есть. Без пары: узел и маршрут из layer.json/routing.json; готовая пара из каталога
+    video.spec проверяется и используется; если пары нет — вызывается video.spec (генерация через LLM)."""
+    if (script is None) != (scene_spec is None):
+        raise VideoInputError("нужны оба файла --script и --scene-spec или ни одного (тогда пара берётся из "
+                              "каталога video.spec или генерируется)")
+    if script is not None:
+        if routing is not None or dataset is not None:
+            raise VideoInputError("--routing и --dataset нужны только без --script/--scene-spec (для video.spec)")
+        return script, scene_spec, layer, fmt
+    from pipeline.video import spec as vspec
+    layer, routing = vspec.default_paths(ch, out_root, layer, routing)
+    try:
+        node_obj, route, route_fmt = vspec.load_route(ch, node, layer, routing, out_root)
+    except vspec.SpecError as e:
+        raise VideoInputError(str(e)) from e
+    if fmt is not None and fmt != route_fmt:
+        raise VideoInputError(f"--format {fmt}, а маршрут узла {node} даёт {route_fmt} (шаблон {route.template})")
+    out = vspec.output_dir(out_root, ch, node_obj.id, route_fmt)
+    sp, cp = out / "script.json", out / "scene_spec.json"
+    if sp.exists() and cp.exists():
+        _check_ready_pair(sp, cp, node_obj, route, route_fmt, dataset, domain)
+    elif sp.exists() or cp.exists():
+        raise VideoInputError(f"в {out} только один файл из пары script.json/scene_spec.json — пара неполная; "
+                              f"удалите его, чтобы сгенерировать заново")
+    else:
+        try:
+            vspec.run(ch, node, layer, routing, out_root, domain, dataset)
+        except vspec.SpecError as e:
+            raise VideoInputError(f"генерация сценария и спецификации (video.spec) не удалась: {e}") from e
+    return sp, cp, layer, route_fmt
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -294,13 +518,19 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--domain", default="geology", help="доменный пакет: настройки шаблонов в domain/<домен>/templates/")
     ap.add_argument("--out-root", type=Path, default=ROOT / "out")
     ap.add_argument("--cache-dir", type=Path, default=ROOT / "cache" / "tts")
+    ap.add_argument("--skip-asr", action="store_true", help="не распознавать озвучку (в паспорте — «не проверено»)")
+    ap.add_argument("--asr-model", default=asr.DEFAULT_MODEL, help="модель faster-whisper (локально)")
+    ap.add_argument("--layer", type=Path, help="layer.json (по умолчанию out/<ch>/layer.json без явной пары); "
+                                               "карточка узла и термины в паспорте")
+    ap.add_argument("--routing", type=Path, help="routing.json (по умолчанию out/<ch>/routing.json; без явной пары)")
+    ap.add_argument("--dataset", type=Path, help="описание набора данных для шаблонов с данными (T2), без явной пары")
+    ap.add_argument("--checklist", type=Path, default=DEFAULT_CHECKLIST, help="physics_checklist.json")
     a = ap.parse_args(argv)
     try:
-        if a.script is None or a.scene_spec is None:
-            raise VideoInputError("нужны --script и --scene-spec: генерация их из layer.json (video.spec) "
-                                  "ещё не реализована")
-        r = build(a.ch, a.node, a.script, a.scene_spec, a.draft, a.format, a.voice,
-                  a.styleguide, a.out_root, a.cache_dir, a.domain)
+        script_path, spec_path, layer_path, fmt = resolve_inputs(
+            a.ch, a.node, a.script, a.scene_spec, a.layer, a.routing, a.out_root, a.domain, a.format, a.dataset)
+        r = build(a.ch, a.node, script_path, spec_path, a.draft, fmt, a.voice,
+                  a.styleguide, a.out_root, a.cache_dir, a.domain, a.skip_asr, a.asr_model, layer_path, a.checklist)
     except (VideoInputError, TtsError, ToolError, LayoutError, BuildCheckError) as e:
         print(f"ОШИБКА video.build: {e}", file=sys.stderr)
         return 2
@@ -311,6 +541,11 @@ def main(argv: list[str] | None = None) -> int:
           f"пик {p['true_peak_dbtp']} dBTP, темп {r['wpm']} сл/мин, субтитры: {', '.join(r['subtitle_timing'])}")
     for wmsg in r["warnings"]:
         print(f"ПРЕДУПРЕЖДЕНИЕ: {wmsg}")
+    print(f"паспорт: {r['passport']} (чек-лист: {r['checklist_status']})")
+    if r["audio_ok"] is not True:
+        print(f"ОШИБКА проверки озвучки: {r['audio_problem']} — ролик и паспорт записаны, подробности в паспорте "
+              f"(audio_check) и asr_report.json", file=sys.stderr)
+        return 3
     return 0
 
 

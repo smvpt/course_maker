@@ -80,5 +80,26 @@
     "evolve_shot_ids — кадры, на фразах которых идёт время симуляции; на вопросе-предсказании и в финале состояние стоит",
     "условная граница (порог threshold_mpa) к концу анимации должна быть в пределах окна r_max_m и не меньше 0,1 его",
     "r_well_m меньше 0,01·r_max_m; к концу r_well_m²/(4·kappa_m2_s·t_end_s) ≤ 0,01; значок скважины r_well_m·well_exaggeration ≤ 0,05·r_max_m"
-  ]
+  ],
+  "physics_checklist": {
+    "not_applicable": {
+      "pc.layers_order": "T1 показывает однородный пласт в плане, слои не рисуются",
+      "pc.fault_consistent": "разломы не рисуются",
+      "pc.unconformity_event": "несогласия не рисуются",
+      "pc.gas_oil_water": "флюидальные контакты не рисуются",
+      "pc.tool_mechanism": "прибор не показывается",
+      "pc.signal_vs_property": "измерений прибором нет — показан расчёт",
+      "pc.depth_down": "план пласта: оси глубины нет",
+      "pc.hydrostatic": "ствол и раствор не показываются",
+      "pc.gas_closed_well": "ствол не показывается",
+      "pc.pit_gain": "приёмные ёмкости не показываются",
+      "pc.well_construction": "конструкция скважины не рисуется"
+    },
+    "auto": {
+      "pc.views_consistent": "one_state_variable",
+      "pc.curve_sync": "one_state_variable",
+      "pc.exaggeration_named": "plaques_have_number",
+      "pc.label_matches": "label_matches_source"
+    }
+  }
 }

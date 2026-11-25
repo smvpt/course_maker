@@ -1,0 +1,154 @@
+{
+  "video_id": "t2_volve_16x9",
+  "node_id": "video_t2_volve.log_reading",
+  "template": "T2",
+  "ext": {
+    "video": {
+      "note": "технический пример T2 на реальных данных Volve: fixtures/video/t2_volve/dataset.json; правило условное, пороги для примера; источников книги нет"
+    }
+  },
+  "params": {
+    "dataset": "fixtures/video/t2_volve/dataset.json",
+    "borehole_diameter_m": 0.2120138,
+    "curves": [
+      {
+        "mnemonic": "LFP_GR",
+        "kind": "GR",
+        "unit": "API",
+        "label": "ГК"
+      },
+      {
+        "mnemonic": "LFP_RT",
+        "kind": "RES",
+        "unit": "OHM.M",
+        "label": "УЭС"
+      },
+      {
+        "mnemonic": "LFP_NPHI",
+        "kind": "NEUTRON",
+        "unit": "V/V_DECIMAL",
+        "label": "ННК"
+      }
+    ],
+    "interval_m": [
+      3790,
+      3875
+    ],
+    "rule": {
+      "status": "условное",
+      "conditions": [
+        {
+          "curve": "LFP_GR",
+          "op": "<",
+          "value": 60
+        },
+        {
+          "curve": "LFP_RT",
+          "op": ">",
+          "value": 20
+        },
+        {
+          "curve": "LFP_NPHI",
+          "op": ">",
+          "value": 0.15
+        }
+      ],
+      "conclusion": "кандидат для проверки",
+      "caveat": "пороги условные; высокое УЭС — не доказательство нефти"
+    },
+    "borehole_exaggeration": 20,
+    "evolve_shot_ids": [
+      "s2",
+      "s3"
+    ]
+  },
+  "objects": [
+    "ствол с прибором на кабеле (схема, ширина по кавернограмме)",
+    "треки кривых ГК, УЭС, ННК (Volve)",
+    "колонка решения по условному правилу",
+    "шкала глубины"
+  ],
+  "invariants": [
+    "глубина растёт вниз",
+    "прибор и раскрытые кривые на одной глубине",
+    "кривые — значения LAS без исправлений; пропуски остаются пропусками"
+  ],
+  "assumptions": [
+    "правило условное, пороги выбраны для демонстрации, не из книги",
+    "ширина ствола — медиана кавернограммы LFP_CALI на интервале, ствол нарисован схемой"
+  ],
+  "exaggerations": [
+    "ствол и прибор шире в 20 раз"
+  ],
+  "shots": [
+    {
+      "id": "s1",
+      "phrase_ids": [
+        "p1"
+      ],
+      "frame_class": "A",
+      "label": "реальные данные",
+      "shows": "прибор у верха интервала",
+      "plaque": "не в масштабе: ствол шире в 20 раз"
+    },
+    {
+      "id": "s2",
+      "phrase_ids": [
+        "p2",
+        "p3",
+        "p4"
+      ],
+      "frame_class": "A",
+      "label": "реальные данные",
+      "shows": "прибор идёт вниз, кривые Volve раскрываются на его глубине",
+      "plaque": "не в масштабе: ствол шире в 20 раз"
+    },
+    {
+      "id": "s3",
+      "phrase_ids": [
+        "p5",
+        "p6",
+        "p7"
+      ],
+      "frame_class": "A",
+      "label": "реальные данные",
+      "shows": "условное правило, пауза на вопрос, прибор доходит до низа окна",
+      "plaque": "не в масштабе: ствол шире в 20 раз"
+    },
+    {
+      "id": "s4",
+      "phrase_ids": [
+        "p8"
+      ],
+      "frame_class": "A",
+      "label": "реальные данные",
+      "shows": "вся запись окна и колонка решения",
+      "plaque": "не в масштабе: ствол шире в 20 раз"
+    },
+    {
+      "id": "s5",
+      "phrase_ids": [
+        "p9"
+      ],
+      "frame_class": "A",
+      "label": "реальные данные",
+      "shows": "та же запись, ствол в истинном масштабе",
+      "plaque": null
+    },
+    {
+      "id": "s6",
+      "phrase_ids": [
+        "p10"
+      ],
+      "frame_class": "A",
+      "label": "реальные данные",
+      "shows": "финальное состояние, вопрос на перенос",
+      "plaque": "не в масштабе: ствол шире в 20 раз"
+    }
+  ],
+  "true_scale_shot_id": "s5",
+  "convention": "русская школа ГИС",
+  "data_sources": [
+    "fixtures/video/t2_volve/dataset.json — Volve, скв. 15/9-19 A, 159-19A_LFP.las, 3790–3875 м"
+  ]
+}

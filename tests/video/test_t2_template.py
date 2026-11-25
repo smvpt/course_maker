@@ -177,3 +177,46 @@ def test_decision_rows_of_demo_match_rule_state_at_sample_depths():
     for d, s in zip(prep["depth"][1:-1], prep["rule_state"][1:-1]):
         i = int((d - prep["top"]) / (prep["bottom"] - prep["top"]) * 1000)
         assert rows[min(i, 999)] == s
+
+
+# ---------------------------------------------------------------- реальные данные Volve
+
+VOLVE = ROOT / "fixtures" / "video" / "t2_volve"
+VOLVE_SPEC = json.loads((VOLVE / "scene_spec.json").read_text(encoding="utf-8"))
+VOLVE_SCRIPT = Script.model_validate_json((VOLVE / "script.json").read_text(encoding="utf-8"))
+
+
+def _volve(mut=None):
+    d = copy.deepcopy(VOLVE_SPEC)
+    if mut:
+        mut(d)
+    return prepare(SceneSpec.model_validate(d), VOLVE_SCRIPT, CFG)
+
+
+def test_volve_fragment_is_real_and_confirmed():
+    prep = _volve()
+    ds = prep["dataset"]
+    assert ds.label == "реальные данные" and ds.real_verified
+    assert ds.well == "15/9-19" and ds.provenance["uwi"] == "NO 15/9-19 A"
+    assert ds.provenance["sha256"] == "92537d18afb6608818c635c77b0d1493fbdbe8ccaaf83e48d755411f23e6e7b6"
+    assert ds.borehole_diameter_m == pytest.approx(8.347 * 0.0254, rel=1e-4)      # медиана LFP_CALI, не выдумано
+    assert "LFP_CALI" in ds.provenance["borehole_diameter_source"]
+    assert all(np.isfinite(v).all() for v in prep["values"].values())              # окно без пропусков
+    st = prep["rule_state"]
+    assert (st == 1).sum() == 147 and (st == -1).sum() == 0                         # условное правило на окне
+
+
+def test_interpreted_curve_cannot_be_a_measurement_track():
+    with pytest.raises(VideoInputError, match="результат интерпретации"):
+        _volve(lambda d: d["params"]["curves"].__setitem__(
+            2, {"mnemonic": "LFP_VSH", "kind": "NEUTRON", "unit": "V/V_DECIMAL", "label": "Кгл"}))
+
+
+def test_real_data_shots_must_be_labelled_real():
+    with pytest.raises(VideoInputError, match="реальные данные"):
+        _volve(lambda d: d["shots"][0].update(label="симуляция"))
+
+
+def test_borehole_diameter_must_match_caliper_median():
+    with pytest.raises(VideoInputError, match="borehole_diameter_m"):
+        _volve(lambda d: d["params"].update(borehole_diameter_m=0.25))

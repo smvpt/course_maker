@@ -10,3 +10,7 @@ numpy==2.5.5
 scipy==1.18.1
 # T2: чтение LAS
 lasio==0.34
+# паспорт: локальное распознавание озвучки (модель small скачивается в кэш Hugging Face пользователя)
+faster-whisper==1.2.1
+# проверка паспорта по passport.schema.json; та же версия, что в requirements/core.txt
+jsonschema==4.26.0

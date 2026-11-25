@@ -92,12 +92,65 @@ def test_interval_outside_data(tmp_path):
         load_dataset(_make(tmp_path, interval_m=[900, 1100]), CFG)
 
 
+REAL = dict(kind="real", license="условная лицензия для теста", attribution="тестовая атрибуция",
+            curve_types={"GR": "measured", "RT": "measured", "NPHI": "interpreted"})
+
+
 def test_real_label_needs_confirmed_origin(tmp_path):
-    with pytest.raises(VideoInputError, match="license"):
-        load_dataset(_make(tmp_path, kind="real", license=None), CFG)
-    ds = load_dataset(_make(tmp_path, kind="real", license="условная лицензия для теста"), CFG)
+    for missing, needle in (("license", "license"), ("attribution", "attribution"), ("curve_types", "curve_types")):
+        with pytest.raises(VideoInputError, match=needle):
+            load_dataset(_make(tmp_path, **{**REAL, missing: None}), CFG)
+    ds = load_dataset(_make(tmp_path, **REAL), CFG)
     assert ds.label == "реальные данные" and ds.real_verified
-    assert {"source", "file", "well", "interval_m", "units", "sha256"} <= set(ds.provenance)
+    assert {"source", "file", "well", "interval_m", "units", "sha256", "attribution", "curve_types"} <= set(ds.provenance)
+    assert ds.curve_types == {"GR": "measured", "RT": "measured", "NPHI": "interpreted"}
+
+
+def test_uwi_is_checked_when_given(tmp_path):
+    with pytest.raises(VideoInputError, match="UWI"):
+        load_dataset(_make(tmp_path, uwi="NO 15/9-19 A"), CFG)       # в синтетическом LAS UWI нет
+
+
+def _with_caliper(unit="IN", values=None):
+    """Синтетический LAS + кривая кавернограммы CALI (для тестов диаметра из кривой)."""
+    lines = LAS_TEXT.splitlines()
+    a = next(i for i, l in enumerate(lines) if l.startswith("~A"))
+    c = next(i for i, l in enumerate(lines) if l.startswith(" NPHI."))
+    head = lines[:c + 1] + [f" CALI.{unit:<7s}: CALIPER"] + lines[c + 1:a] + [lines[a] + "      CALI"]
+    rows = []
+    for k, l in enumerate(lines[a + 1:]):
+        v = values[k] if values is not None else 8.0 + (k % 3) * 0.25
+        rows.append(f"{l} {v:9.3f}")
+    return "\n".join(head + rows) + "\n"
+
+
+def test_borehole_diameter_from_caliper_curve(tmp_path):
+    desc = dict(units={**DESC["units"], "CALI": "IN"}, borehole_diameter_from_curve="CALI")
+    desc.pop("borehole_diameter_m", None)
+    p = _make(tmp_path, _with_caliper(), **desc, borehole_diameter_m=None, borehole_diameter_source=None)
+    ds = load_dataset(p, CFG)
+    assert ds.borehole_diameter_m == pytest.approx(8.25 * 0.0254)      # медиана 8,25 дюйма → м
+    assert "медиана кривой CALI" in ds.provenance["borehole_diameter_source"]
+
+
+@pytest.mark.parametrize("change,needle", [
+    (dict(borehole_diameter_m=0.2), "один источник"),
+    (dict(borehole_diameter_from_curve="NOPE"), "NOPE"),
+    (dict(borehole_diameter_from_curve="GR"), "кавернограммы"),
+])
+def test_borehole_diameter_from_curve_errors(tmp_path, change, needle):
+    desc = dict(units={**DESC["units"], "CALI": "IN"}, borehole_diameter_from_curve="CALI",
+                borehole_diameter_m=None, borehole_diameter_source=None)
+    desc.update(change)
+    with pytest.raises(VideoInputError, match=needle):
+        load_dataset(_make(tmp_path, _with_caliper(), **desc), CFG)
+
+
+def test_caliper_with_unknown_length_unit_is_not_guessed(tmp_path):
+    desc = dict(units={**DESC["units"], "CALI": "FURLONG"}, borehole_diameter_from_curve="CALI",
+                borehole_diameter_m=None, borehole_diameter_source=None)
+    with pytest.raises(VideoInputError, match="FURLONG"):
+        load_dataset(_make(tmp_path, _with_caliper("FURLONG"), **desc), CFG)
 
 
 def test_bad_description(tmp_path):

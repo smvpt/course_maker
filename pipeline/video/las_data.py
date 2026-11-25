@@ -1,8 +1,11 @@
 """Набор данных для T2: описание (dataset.json) + LAS через lasio.
 
 Описание набора данных — JSON рядом с LAS или где угодно (путь к LAS — относительно описания):
-    kind: "synthetic" | "real"; las; sha256; source; license (обязательна для real); well;
-    interval_m: [верх, низ]; units: {мнемоника: единица как в LAS}; borehole_diameter_m (+ источник); note.
+    kind: "synthetic" | "real"; las; sha256; source; license и attribution (обязательны для real); well;
+    uwi (если задан — сверяется с UWI в LAS); interval_m: [верх, низ]; units: {мнемоника: единица как в LAS};
+    curve_types: {мнемоника: "measured" | "interpreted"} (обязательно для real);
+    диаметр ствола — borehole_diameter_m (+ borehole_diameter_source) ИЛИ borehole_diameter_from_curve
+    (мнемоника кавернограммы: медиана на interval_m с переводом единиц длины); note.
 Подключить реальный фрагмент (например, Volve) — положить LAS и написать к нему такое описание; код не меняется.
 
 Проверки: хэш файла, скважина, единица и монотонность глубины, единицы кривых по описанию и по
@@ -33,6 +36,8 @@ class Dataset:
     depth: np.ndarray              # м, строго возрастает
     curves: dict[str, np.ndarray]  # мнемоника → значения (NaN = пропуск)
     units: dict[str, str]          # мнемоника → единица как в LAS (верхний регистр)
+    curve_types: dict[str, str]    # мнемоника → measured | interpreted | synthetic
+    attribution: str               # как ссылаться на данные (в кадре)
     interval: tuple[float, float]
     borehole_diameter_m: float | None
     provenance: dict = field(default_factory=dict)
@@ -57,8 +62,10 @@ def load_dataset(desc_path: Path, cfg: dict) -> Dataset:
         problems.append(f"kind должен быть synthetic или real, получено {d.get('kind')!r}")
     if problems:
         _fail(problems, desc_path)
-    if d["kind"] == "real" and not (d.get("license") or "").strip():
-        problems.append("для реальных данных нужна license — без неё происхождение не подтверждено")
+    if d["kind"] == "real":
+        for key in ("license", "attribution"):
+            if not str(d.get(key) or "").strip():
+                problems.append(f"для реальных данных нужно поле {key} — без него происхождение не подтверждено")
     if not str(d["source"]).strip():
         problems.append("пустой source")
 
@@ -77,6 +84,9 @@ def load_dataset(desc_path: Path, cfg: dict) -> Dataset:
     well = str(las.well["WELL"].value).strip() if "WELL" in las.well else ""
     if well != str(d["well"]).strip():
         problems.append(f"скважина в LAS (WELL) «{well}», а в описании «{d['well']}»")
+    uwi = str(las.well["UWI"].value).strip() if "UWI" in las.well else ""
+    if d.get("uwi") is not None and uwi != str(d["uwi"]).strip():
+        problems.append(f"UWI в LAS «{uwi}», а в описании «{d['uwi']}»")
 
     declared = {k.upper(): str(v).upper() for k, v in d["units"].items()}
     idx = las.curves[0]
@@ -107,24 +117,60 @@ def load_dataset(desc_path: Path, cfg: dict) -> Dataset:
         if m != idx.mnemonic.upper() and m not in curves and not any(m in p for p in problems):
             problems.append(f"кривой {m} из описания нет в LAS")
 
+    types = {k.upper(): v for k, v in (d.get("curve_types") or {}).items()}
+    if d["kind"] == "real":
+        for m in declared:
+            if m != idx.mnemonic.upper() and types.get(m) not in ("measured", "interpreted"):
+                problems.append(f"кривая {m}: для реальных данных укажите curve_types — measured или interpreted")
+    curve_types = {m: (types.get(m) if d["kind"] == "real" else "synthetic") for m in curves}
+
     top, bottom = (float(x) for x in d["interval_m"])
     if not top < bottom:
         problems.append(f"интервал {d['interval_m']}: верх должен быть меньше низа")
     elif depth.size and (top < depth.min() - 1e-9 or bottom > depth.max() + 1e-9):
         problems.append(f"интервал {d['interval_m']} выходит за глубины LAS {depth.min():g}–{depth.max():g} м")
     diam = d.get("borehole_diameter_m")
+    diam_source = d.get("borehole_diameter_source")
+    from_curve = d.get("borehole_diameter_from_curve")
+    if diam is not None and from_curve is not None:
+        problems.append("заданы и borehole_diameter_m, и borehole_diameter_from_curve — нужен один источник")
+    elif from_curve is not None:
+        cm = str(from_curve).upper()
+        factor = cfg.get("length_units", {}).get(units.get(cm, ""))
+        if cm not in curves:
+            problems.append(f"borehole_diameter_from_curve: кривой {cm} нет среди кривых с подтверждённой единицей")
+        elif units[cm] not in cfg["curve_kinds"].get("CALIPER", {}).get("units", []):
+            problems.append(f"borehole_diameter_from_curve: единица {units[cm]} — не единица кавернограммы")
+        elif factor is None:
+            problems.append(f"borehole_diameter_from_curve: единица длины {units[cm]} неизвестна — не угадываем")
+        elif curve_types.get(cm) == "interpreted":
+            problems.append(f"borehole_diameter_from_curve: {cm} — результат интерпретации, нужна измеренная кривая")
+        elif top < bottom:
+            sel = (depth >= top) & (depth <= bottom)
+            v = curves[cm][sel]
+            v = v[np.isfinite(v)]
+            if v.size == 0:
+                problems.append(f"borehole_diameter_from_curve: у {cm} нет значений на интервале")
+            else:
+                diam = float(np.median(v)) * factor
+                diam_source = (f"медиана кривой {cm} на {top:g}–{bottom:g} м: {np.median(v):.4g} {units[cm]} "
+                               f"({v.size} отсчётов, от {v.min():.4g} до {v.max():.4g})")
     if diam is not None and (isinstance(diam, bool) or not isinstance(diam, (int, float)) or diam <= 0):
         problems.append(f"borehole_diameter_m должен быть числом > 0, получено {diam!r}")
     if problems:
         _fail(problems, desc_path)
 
     real = d["kind"] == "real"
+    attribution = str(d.get("attribution") or ("данные синтетические, условные" if not real else "")).strip()
     return Dataset(
         kind=d["kind"], label="реальные данные" if real else "симуляция", real_verified=real, well=well,
-        depth=depth, curves=curves, units=units, interval=(top, bottom),
+        depth=depth, curves=curves, units=units, curve_types=curve_types, attribution=attribution,
+        interval=(top, bottom),
         borehole_diameter_m=float(diam) if diam is not None else None,
-        provenance={"kind": d["kind"], "source": d["source"], "license": d.get("license"), "file": las_path.name,
-                    "sha256": sha, "well": well, "interval_m": [top, bottom],
-                    "units": {idx.mnemonic.upper(): depth_unit, **units},
-                    "borehole_diameter_source": d.get("borehole_diameter_source"), "note": d.get("note"),
-                    "description": str(desc_path)})
+        provenance={"kind": d["kind"], "source": d["source"], "license": d.get("license"),
+                    "attribution": attribution, "file": las_path.name, "sha256": sha, "well": well,
+                    "uwi": uwi or None, "interval_m": [top, bottom],
+                    "units": {idx.mnemonic.upper(): depth_unit, **units}, "curve_types": curve_types,
+                    "borehole_diameter_m": float(diam) if diam is not None else None,
+                    "borehole_diameter_source": diam_source, "note": d.get("note"),
+                    "download": d.get("download"), "description": str(desc_path)})

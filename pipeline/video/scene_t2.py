@@ -59,7 +59,8 @@ class T2Scene(Scene):
         badge_bottom = add_badges(self, lay, segs, tau, font)
         row1_y = (top + badge_bottom) / 2
         chain = txt(" → ".join(p["chain"]))
-        chain.move_to([left + u(300) + chain.width / 2, row1_y, 0])         # сразу после метки, слева от глубины
+        badge_w = max(txt(lbl).width for lbl in {x["label"] for x in segs}) + 2 * u(14)   # как в add_badges
+        chain.move_to([left + badge_w + gap + chain.width / 2, row1_y, 0])   # сразу после самой длинной метки
         self.add(chain)
         dcache: dict[str, Text] = {}
 
@@ -89,7 +90,8 @@ class T2Scene(Scene):
                            for k in rule["conditions"])
         rule_lines = [wrap(f"{rule['status_label']}: {conds}", font, fs, width, c["text"]),
                       wrap(f"вывод: {rule['conclusion']}", font, fs, width, c["text"]),
-                      wrap(f"ограничение: {rule['caveat']}", font, fs, width, c["muted"])]
+                      wrap(f"ограничение: {rule['caveat']}", font, fs, width, c["muted"]),
+                      wrap(f"данные: {prep['dataset'].attribution}", font, fs, width, c["muted"])]
         block_h = sum(g.height for g in rule_lines) + gap / 2 * (len(rule_lines) - 1)
         block_bottom = bottom + cap_h + gap
         y = block_bottom + block_h

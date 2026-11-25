@@ -147,6 +147,27 @@ def _template_problems(scene: SceneSpec, script: Script, node: Node, cfg: dict |
     return problems
 
 
+def scene_problems(scene: SceneSpec, script: Script, node: Node, cfg: dict | None, real_data_ok: bool) -> list[str]:
+    """Все проверки спецификации сцены относительно сценария и узла — одни для генерации и готовой пары."""
+    return check_scene(scene, script, real_data_ok=real_data_ok) + _template_problems(scene, script, node, cfg)
+
+
+def pair_problems(script: Script, scene: SceneSpec, node: Node, fmt: str, templates_dir: Path) -> list[str]:
+    """Готовая пара против текущего узла — те же проверки, что при генерации (без LLM): claim_id узла,
+    правила сценария, связи кадров, источники параметров, требования шаблона и набора данных."""
+    cfg = load_template_config(templates_dir, scene.template)
+    real_ok = False
+    if cfg is not None and cfg.get("requires_dataset") and isinstance(scene.params.get("dataset"), str):
+        from pipeline.video.inputs import VideoInputError
+        from pipeline.video.las_data import load_dataset
+        from pipeline.video.t2_template import resolve_dataset_path
+        try:
+            real_ok = load_dataset(resolve_dataset_path(scene.params["dataset"]), cfg).real_verified
+        except VideoInputError:
+            pass                                  # сам набор данных проверит и отклонит t2_template.check
+    return check_script(script, node, fmt) + scene_problems(scene, script, node, cfg, real_ok)
+
+
 def _dataset_for(template: str, cfg: dict | None, dataset_path: Path | None):
     """Набор данных для шаблона, которому он нужен: (Dataset, параметры, которые подставляет код, сводка)."""
     if cfg is None or not cfg.get("requires_dataset"):
@@ -224,8 +245,7 @@ def generate(node: Node, route: Route, fmt: str, templates_dir: Path,
         "video/scene_spec",
         {**base, "phrases": phrases, "template_contract": template_contract(route.template, cfg) + ds_summary},
         SceneDraft, TIER_SCENE, scene_from,
-        lambda s: check_scene(s, script, real_data_ok=bool(ds and ds.real_verified))
-        + _template_problems(s, script, node, cfg))
+        lambda s: scene_problems(s, script, node, cfg, real_data_ok=bool(ds and ds.real_verified)))
 
     est = estimate_duration(script)
     words = sum(count_words(p.text) for p in script.phrases)
@@ -241,19 +261,33 @@ def generate(node: Node, route: Route, fmt: str, templates_dir: Path,
     return script, scene
 
 
-def run(ch: str, node_id: str, layer_path: Path | None, routing_path: Path | None, out_root: Path,
-        domain: str = "geology", dataset: Path | None = None) -> Path:
+def default_paths(ch: str, out_root: Path, layer_path: Path | None, routing_path: Path | None) -> tuple[Path, Path]:
+    return layer_path or out_root / ch / "layer.json", routing_path or out_root / ch / "routing.json"
+
+
+def output_dir(out_root: Path, ch: str, node_id: str, fmt: str) -> Path:
+    """Стандартный каталог пары script.json + scene_spec.json (video_id = <node_id>.<fmt>)."""
+    return out_root / ch / "videos" / f"{node_id}.{fmt}"
+
+
+def load_route(ch: str, node_id: str, layer_path: Path | None, routing_path: Path | None,
+               out_root: Path) -> tuple[Node, Route, str]:
+    """Узел, маршрут и формат из layer.json и routing.json — общая точка для video.spec и video.build."""
     if not ID_RE.match(ch):
         raise SpecError(f"--ch «{ch}» — допустимы только [a-z0-9_.-]")
-    if not ID_RE.match(domain):
-        raise SpecError(f"--domain «{domain}» — допустимы только [a-z0-9_.-]")
-    layer_path = layer_path or out_root / ch / "layer.json"
-    routing_path = routing_path or out_root / ch / "routing.json"
+    layer_path, routing_path = default_paths(ch, out_root, layer_path, routing_path)
     layer = _load(layer_path, Layer, "учебный слой; путь можно задать --layer")
     routing = _load(routing_path, Routing, "маршрутизация; путь можно задать --routing")
-    node, route, fmt = select(layer, routing, ch, node_id)
+    return select(layer, routing, ch, node_id)
+
+
+def run(ch: str, node_id: str, layer_path: Path | None, routing_path: Path | None, out_root: Path,
+        domain: str = "geology", dataset: Path | None = None) -> Path:
+    if not ID_RE.match(domain):
+        raise SpecError(f"--domain «{domain}» — допустимы только [a-z0-9_.-]")
+    node, route, fmt = load_route(ch, node_id, layer_path, routing_path, out_root)
     script, scene = generate(node, route, fmt, ROOT / "domain" / domain / "templates", dataset)
-    out = out_root / ch / "videos" / script.video_id
+    out = output_dir(out_root, ch, node.id, fmt)
     out.mkdir(parents=True, exist_ok=True)
     (out / "script.json").write_text(script.model_dump_json(by_alias=True, indent=2), encoding="utf-8")
     (out / "scene_spec.json").write_text(scene.model_dump_json(by_alias=True, indent=2), encoding="utf-8")
