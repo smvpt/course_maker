@@ -131,3 +131,12 @@ def test_prompt_vars_match_code():
         assert set(rx.findall(text)) == code_vars, name
     text = (ROOT / "prompts/verify/scene_physics.md").read_text(encoding="utf-8")
     assert set(rx.findall(text)) == {"checklist", "scene_spec", "script"}
+
+
+def test_verdict_keeps_part_checks():
+    from pipeline.verify.critic import Verdict
+    v = Verdict.model_validate({"checks": [{"part": "во всех коллекторах", "author": "эти коллекторы", "match": False}],
+                                "verdict": "contradicted", "category": "overgeneralization", "severity": "significant",
+                                "problem": "шире главы", "fix": "в чистых коллекторах"})
+    assert v.checks[0].match is False
+    assert Verdict.model_validate({"verdict": "supported"}).checks == []

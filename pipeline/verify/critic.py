@@ -15,8 +15,16 @@ from pipeline.verify.quotes import check_quote_md
 NEEDS_QUOTE = {"claim", "script_line"}
 
 
+class PartCheck(BaseModel):
+    """Сверка одной части элемента с главой (модель пишет до вердикта — так слабые модели внимательнее)."""
+    part: str
+    author: str
+    match: bool
+
+
 class Verdict(BaseModel):
     """Ответ LLM по одной цели."""
+    checks: list[PartCheck] = []
     verdict: Literal["supported", "contradicted", "not_in_source"]
     category: Optional[Category] = None
     severity: Optional[Severity] = None
