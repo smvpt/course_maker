@@ -1,7 +1,7 @@
 # Цели модуля «Видео» (П4). Подключается корневым Makefile через include mk/*.mk.
 PYTHON ?= python
 
-.PHONY: video-node video-coverage video-test video-hello video-hello-final
+.PHONY: video-specs video-node video-coverage video-test video-hello video-hello-final
 
 # Цель `make video CH=… NODE=… [FORMAT=…]` — в корневом Makefile (П1); она вызывает тот же pipeline.video.build.
 # Здесь — то же с черновиком и набором данных для T2:
@@ -12,6 +12,12 @@ video-node:
 	$(if $(NODE),,$(error нужен NODE=<id узла>))
 	$(PYTHON) -m pipeline.video.build --ch $(CH) --node $(NODE) $(if $(DRAFT),--draft) \
 		$(if $(DATASET),--dataset $(DATASET)) $(if $(FORMAT),--format $(FORMAT))
+
+# Спецификации (script.json + scene_spec.json) всех видеоузлов главы, без рендера: out/<CH>/videos/spec_report.json
+#   make video-specs CH=<id главы> [DATASET=<dataset.json>] [DOMAIN=geology]
+video-specs:
+	$(if $(CH),,$(error нужен CH=<id главы>))
+	$(PYTHON) -m pipeline.video.spec --ch $(CH) --all $(if $(DATASET),--dataset $(DATASET)) $(if $(DOMAIN),--domain $(DOMAIN))
 
 # Отчёт покрытия видеоузлов шаблонами (без LLM и рендера): out/<CH>/videos/coverage.json
 #   make video-coverage CH=<id главы> [DOMAIN=geology]
