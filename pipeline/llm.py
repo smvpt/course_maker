@@ -130,26 +130,6 @@ def _call(model: str, messages: list[dict], max_tokens: int, params: dict) -> tu
     return text, usage.prompt_tokens, usage.completion_tokens, cost
 
 
-# Перегрузка и лимиты провайдера (429, 503, таймауты, обрыв связи) — временные: ждём и повторяем.
-TRANSIENT = {"RateLimitError", "ServiceUnavailableError", "InternalServerError", "BadGatewayError",
-             "Timeout", "APITimeoutError", "APIConnectionError"}
-
-
-def _call_retry(model: str, messages: list[dict], max_tokens: int, params: dict):
-    cfg = config.llm()
-    retries, base = cfg.get("transient_retries", 6), cfg.get("transient_backoff_s", 5)
-    for attempt in range(retries + 1):
-        try:
-            return _call(model, messages, max_tokens, params)
-        except Exception as e:
-            if type(e).__name__ not in TRANSIENT or attempt == retries:
-                raise
-            wait = min(base * 2 ** attempt, 300)
-            print(f"[llm] {model}: {type(e).__name__} — повтор {attempt + 1}/{retries} через {wait} с",
-                  file=sys.stderr)
-            time.sleep(wait)
-
-
 # ---------------------------------------------------------------- кэш и лог
 
 def _image_part(path: Path) -> tuple[dict, str]:
@@ -215,7 +195,7 @@ def _run(prompt: str, vars: dict, tier: str, images: Optional[Sequence[Path]],
     last_err = ""
     while attempts <= retries:
         attempts += 1
-        reply, i, o, c = _call_retry(model, messages, t["max_tokens"], t.get("params") or {})
+        reply, i, o, c = _call(model, messages, t["max_tokens"], t.get("params") or {})
         tin, tout = tin + i, tout + o
         price = _price(model, i, o, c)
         money = None if (money is None or price is None) else money + price
