@@ -161,3 +161,13 @@ def test_quote_search():
     assert quotes.find(pages, "ТЕКСТ страницы с переносом", 39) == 39
     assert quotes.find(pages, "другая", 39) == 40          # соседняя страница
     assert quotes.find(pages, "нет", 39) is None
+    # разметка md — не текст: **термин** цитируют без звёздочек
+    assert quotes.find({30: "Фациальная ассоциация** включает _те_ фации"}, "Фациальная ассоциация включает те фации", 30) == 30
+    # цитата через границу страниц: начинается на 40, кончается на 41
+    split = {40: "представляющим фацию", 41: "пляжа. Дальше"}
+    assert quotes.find(split, "представляющим фацию пляжа.", 40) == 40
+    assert quotes.find(split, "фацию пляжа. Дальше", 41) == 40      # начало — на 40
+    # склейка единиц ingest: колонтитул между страницами уже убран
+    pages_from_units = quotes.unit_pages([m.Unit(unit_id="p040.01", kind="paragraph", page_pdf=40,
+                                                 text="фацию пляжа")])
+    assert quotes.find(pages_from_units, "фацию пляжа", 40) == 40

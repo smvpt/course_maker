@@ -191,10 +191,16 @@ def node_stage(pn: PlanNode, idx: int, nodes: list[PlanNode], units_by_id: dict[
     dropped = []
     pages = sorted({u.page_pdf for u in nunits} | {p for u in nunits for p in u.ext.get("core", {}).get("pages", [])})
     near = {p: md_pages[p] for p in range(pages[0] - 1, pages[-1] + 2) if p in md_pages}
+    near_units = quotes.unit_pages([u for u in units_by_id.values() if pages[0] - 1 <= u.page_pdf <= pages[-1] + 1])
+
+    def locate(quote: str, page: int) -> Optional[int]:
+        """Сырой md, затем текст единиц (там колонтитул между страницами уже убран)."""
+        found = quotes.find(near, quote, page)
+        return found if found is not None else quotes.find(near_units, quote, page)
 
     claims = []
     for c in d.claims:
-        page = quotes.find(near, c.quote, c.page_pdf)
+        page = locate(c.quote, c.page_pdf)
         quote = c.quote
         if page is None:
             fix = complete_json("core/quote_fix", {
@@ -202,7 +208,7 @@ def node_stage(pn: PlanNode, idx: int, nodes: list[PlanNode], units_by_id: dict[
                 "pages": "\n\n".join(f"<!-- page {p} -->\n{t}" for p, t in near.items()),
             }, schema=QuoteFix, tier="default")
             if fix.found and fix.quote:
-                page = quotes.find(near, fix.quote, fix.page_pdf or c.page_pdf)
+                page = locate(fix.quote, fix.page_pdf or c.page_pdf)
                 if page is not None:
                     quote = fix.quote
         if page is None and len(quote.strip()) < 8:
