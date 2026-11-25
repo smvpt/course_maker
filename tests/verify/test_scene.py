@@ -167,3 +167,11 @@ def test_physics_llm_must_answer_every_item(monkeypatch):
     monkeypatch.setitem(sys.modules, "pipeline.llm", types.SimpleNamespace(complete_json=fake))
     with pytest.raises(ValueError):
         scene.check_physics(_spec(), _script(), domain="geology")
+
+
+def test_every_exaggeration_named_on_plaque():
+    spec = _spec(exaggerations=["поры увеличены в 10 000 раз", "ствол шире в 5 раз"])
+    by = _targets(scene.check_scene(spec, _script(), CLAIMS, SOURCES))
+    assert by["v1"].severity == "significant" and "ствол шире в 5 раз" in by["v1"].problem
+    spec.shots[0].plaque = "не в масштабе: поры увеличены в 10 000 раз, ствол шире в 5 раз"
+    assert scene.check_scene(spec, _script(), CLAIMS, SOURCES) == []
