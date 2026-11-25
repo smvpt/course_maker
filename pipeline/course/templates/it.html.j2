@@ -1,0 +1,25 @@
+{% extends "base.html.j2" %}
+{% from "_macros.html.j2" import badge %}
+{% block title %}ИТ-задачи — {{ chapter_title }}{% endblock %}
+{% block main %}
+<h1>Где здесь ИТ-задачи</h1>
+{% if not items %}
+<div class="empty-state">
+  <p><strong>Для шагов этой главы нет описаний «что это значит для данных».</strong></p>
+  <p class="muted">Здесь собираются ручные шаги, точки суждения, места, где ломаются данные, и ИТ-аналогии с границами. Сейчас в слое главы эти поля пусты.</p>
+</div>
+{% else %}
+<p class="muted">Что в каждом шаге значит для данных и ИТ: ручные шаги, точки суждения, где ломается, аналогии с названной границей. Гипотезы помечены.</p>
+{% for it in items %}
+<section class="it-step">
+  <h2><a href="step-{{ it.id }}.html">{{ it.index }}. {{ it.title }}</a></h2>
+  <dl class="it-fields">
+  {% for label, text, by in it.sections %}
+    <div class="it-field" data-by="{{ by }}"><dt>{{ label }}</dt><dd>{{ text }} {{ badge(by) }}</dd></div>
+  {% endfor %}
+  </dl>
+  <p><a href="step-{{ it.id }}.html">К шагу{{ icon("arrow-right") }}</a></p>
+</section>
+{% endfor %}
+{% endif %}
+{% endblock %}

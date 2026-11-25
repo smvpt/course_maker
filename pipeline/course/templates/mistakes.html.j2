@@ -1,0 +1,21 @@
+{% extends "base.html.j2" %}
+{% block title %}Мои ошибки — {{ chapter_title }}{% endblock %}
+{% block main %}
+<h1>Мои ошибки</h1>
+{% if not n_tasks %}
+<div class="empty-state">
+  <p><strong>В этой главе заданий пока нет, поэтому и ошибок нет.</strong></p>
+  <p class="muted">Здесь соберутся задания, которые решены неверно: их можно перечитать и отметить «Я понял».</p>
+  <p><a class="btn" href="index.html">{{ icon("house") }}<span>К пути по главе</span></a></p>
+</div>
+{% else %}
+<p class="muted">Неверно решённые задания. Это колода «повторить»: перечитай абзац и отметь «Я понял» — задание уйдёт из списка.</p>
+<div class="task-row" id="mistake-nums" role="group" aria-label="Ошибки по номерам" hidden></div>
+<ul id="mistakes-list" class="mistakes-list"></ul>
+<div id="mistakes-empty" class="empty-state" hidden>
+  <p><strong>Ошибок сейчас нет.</strong></p>
+  <p class="muted">Неверно решённые задания появятся здесь.</p>
+</div>
+<p id="mistakes-understood" class="muted" hidden><span id="understood-n">0</span> отмечено «Я понял». <button type="button" class="btn-small" id="restore-understood">{{ icon("arrow-counter-clockwise") }}<span>Вернуть в список</span></button></p>
+{% endif %}
+{% endblock %}

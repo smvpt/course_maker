@@ -79,3 +79,41 @@ def group_parts(ordered: list[Node]) -> list[tuple[str, list[Node]]]:
         else:
             groups.append((p, [n]))
     return groups
+
+
+def break_cycles(nodes: list[Node]) -> tuple[list[Node], list[dict]]:
+    """Мягко рвёт циклы в links.prerequisite, чтобы курс собрался.
+
+    Обход в глубину идёт по порядку узлов в layer.json (и по порядку целей среди опор узла);
+    ребро, замыкающее цикл на текущем пути, отбрасывается. Результат зависит только от layer.json.
+    Возвращает копии узлов в исходном порядке (входные узлы не меняются) и список разрывов
+    [{"cycle": [id, ...], "dropped": [узел, опора]}]. Повтор id — по-прежнему ValueError.
+    """
+    pre = _prereqs(nodes)
+    index = {n.id: i for i, n in enumerate(nodes)}
+    state: dict[str, int] = {}   # 1 — на текущем пути, 2 — обработан
+    dropped: set[tuple[str, str]] = set()
+    breaks: list[dict] = []
+
+    def visit(nid: str, path: list[str]) -> None:
+        state[nid] = 1
+        path.append(nid)
+        for target in sorted(pre[nid], key=index.__getitem__):
+            if state.get(target) == 1:
+                dropped.add((nid, target))
+                breaks.append({"cycle": path[path.index(target):], "dropped": [nid, target]})
+            elif target not in state:
+                visit(target, path)
+        path.pop()
+        state[nid] = 2
+
+    for n in nodes:
+        if n.id not in state:
+            visit(n.id, [])
+
+    if not dropped:
+        return list(nodes), []
+    fixed = [n.model_copy(update={"links": [l for l in n.links
+                                            if not (l.type == "prerequisite" and (n.id, l.target) in dropped)]})
+             for n in nodes]
+    return fixed, breaks

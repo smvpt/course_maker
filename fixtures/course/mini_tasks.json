@@ -1,0 +1,51 @@
+{
+  "chapter": "mini_test",
+  "tasks": [
+    {
+      "id": "mini.t01", "type": "single", "step_id": "mini.resistivity_depends_on_fluid",
+      "claim_ids": ["mini.resistivity_depends_on_fluid#c1"],
+      "prompt": "Пласт показывает высокое сопротивление. Что можно уверенно сказать?",
+      "options": [
+        {"id": "a", "text": "В нём точно нефть", "misconception": "misc.high_res_is_oil"},
+        {"id": "b", "text": "Нужны ещё признаки: плотная порода тоже даёт высокое сопротивление", "misconception": null},
+        {"id": "c", "text": "Он насыщен водой", "misconception": null}
+      ],
+      "answer": "b", "explanation": "Высокое сопротивление даёт не только нефть, но и плотная порода.", "kind": "understanding"
+    },
+    {
+      "id": "mini.t02", "type": "multiple", "step_id": "mini.resistivity_depends_on_fluid",
+      "claim_ids": ["mini.resistivity_depends_on_fluid#c1"],
+      "prompt": "Какие признаки вместе указывают на проницаемый нефтенасыщенный пласт?",
+      "options": [
+        {"id": "a", "text": "Высокое сопротивление"},
+        {"id": "b", "text": "Отрицательная аномалия ПС"},
+        {"id": "c", "text": "Высокая плотность породы", "misconception": "misc.high_res_is_oil"}
+      ],
+      "answer": ["a", "b"], "explanation": "Нужны оба признака сразу, одного сопротивления мало.", "kind": "data"
+    },
+    {
+      "id": "mini.t03", "type": "order", "step_id": "mini.reservoir_decision",
+      "claim_ids": ["mini.reservoir_decision#c1"],
+      "prompt": "Расставь шаги решения по порядку.",
+      "options": [
+        {"id": "o1", "text": "Оценить пористость"},
+        {"id": "o2", "text": "Сравнить сопротивление с водоносным пластом"},
+        {"id": "o3", "text": "Сделать вывод о насыщении"}
+      ],
+      "answer": ["o1", "o2", "o3"], "explanation": "Вывод делают после того, как собраны признаки.", "kind": "understanding"
+    },
+    {
+      "id": "mini.t04", "type": "gap", "step_id": "mini.porosity_basics",
+      "claim_ids": ["mini.porosity_basics#c1"],
+      "prompt": "Пористость — это отношение объёма {{1}} к объёму {{2}}.",
+      "answer": ["пор", "породы"], "explanation": "Пористость показывает долю пустот в породе.", "kind": "recall"
+    },
+    {
+      "id": "mini.t05", "type": "calc", "step_id": "mini.resistivity_depends_on_fluid",
+      "claim_ids": ["mini.resistivity_depends_on_fluid#c2"],
+      "prompt": "Сопротивление пласта 40 Ом·м, водоносного — 5 Ом·м. Чему равен параметр насыщения?",
+      "answer": 8, "tolerance": 0.1, "unit": "безразмерная величина",
+      "explanation": "Параметр насыщения — отношение сопротивлений: 40 / 5.", "kind": "transfer"
+    }
+  ]
+}

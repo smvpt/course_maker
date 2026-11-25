@@ -1,43 +1,81 @@
 {% extends "base.html.j2" %}
 {% block main %}
+{% set part_names = parts | map(attribute=0) | unique | list %}
 <section class="cover">
   <p class="crumbs">Демо-курс по главе</p>
   <h1>{{ chapter_title }}</h1>
-  <p class="meta">{{ steps | length }} шагов · ≈ {{ total_minutes }} мин · частей: {{ parts | map(attribute=0) | unique | list | length }}</p>
-  <div class="progress" aria-label="Прогресс"><div class="bar"><span id="progress-bar"></span></div><p id="progress-text" aria-live="polite">Пройдено 0 из {{ steps | length }}</p></div>
-  <p><a id="resume" class="btn" href="step-{{ steps[0].id }}.html">{{ icon("play") }}<span>Начать</span></a></p>
+  <p class="meta">{{ steps | length }} {{ steps | length | plural("шаг", "шага", "шагов") }} · ≈ {{ total_minutes }} мин{% if part_names | length > 1 %} · частей: {{ part_names | length }}{% endif %}</p>
+
+  <a id="resume" class="resume-card" href="step-{{ steps[0].id }}.html">
+    <span class="resume-text">
+      <span class="resume-label" id="resume-label">Начать</span>
+      <span class="resume-title" id="resume-title">{{ steps[0].title }}</span>
+    </span>
+    <span class="resume-play">{{ icon("play") }}<span class="sr">Открыть шаг</span></span>
+  </a>
+
+  <div class="progress">
+    <div class="bar"><span id="progress-bar"></span></div>
+    <p id="progress-text" aria-live="polite">Пройдено 0 из {{ steps | length }}</p>
+  </div>
 </section>
+
+<div class="index-controls">
+  {% if part_names | length > 1 %}
+  <div class="part-tabs" role="group" aria-label="Части главы">
+    <button type="button" data-part="" aria-pressed="true">Все части</button>
+    {% for pn in part_names %}<button type="button" data-part="{{ pn }}" aria-pressed="false">{{ pn }}</button>{% endfor %}
+  </div>
+  {% endif %}
+  <div class="segment" role="group" aria-label="Какие шаги показывать">
+    <button type="button" data-seg="all" aria-pressed="true">Все</button>
+    <button type="button" data-seg="repeat" aria-pressed="false">Повторить</button>
+  </div>
+</div>
 
 <nav class="path" aria-label="Путь по главе">
 {% set ns = namespace(i=0) %}
 {% for part, nodes in parts %}
-  <section class="part">
+  <section class="part" data-part="{{ part }}">
     <h2>{{ part }}</h2>
     <ol class="steps-list">
     {% for n in nodes %}
+      {% set s = steps[ns.i] %}
       {% set ns.i = ns.i + 1 %}
       <li data-node="{{ n.id }}">
-        <a href="step-{{ n.id }}.html">
+        <a href="step-{{ n.id }}.html" class="step-row">
           <span class="num">{{ ns.i }}</span>
-          <span class="st-title">{{ n.title_novice or n.title }}</span>
-          <span class="st-meta">≈ {{ steps[ns.i - 1].minutes }} мин</span>
-          <span class="done-mark" aria-hidden="true">{{ icon("check-circle") }}</span>
+          <span class="row-main">
+            <span class="st-title">{{ s.title }}</span>
+            <span class="st-sub">Шаг {{ ns.i }} · ≈ {{ s.minutes }} мин</span>
+            {% if s.video or s.illus or s.tasks %}
+            <span class="row-icons">
+              {% if s.video %}<span class="ricon">{{ icon("video-camera") }}ролик</span>{% endif %}
+              {% if s.tasks %}<span class="ricon">{{ icon("exam") }}{{ s.tasks }} {{ s.tasks | plural("задание", "задания", "заданий") }}</span>{% endif %}
+              {% if s.illus %}<span class="ricon">{{ icon("image") }}{{ s.illus }} {{ s.illus | plural("иллюстрация", "иллюстрации", "иллюстраций") }}</span>{% endif %}
+            </span>
+            {% endif %}
+          </span>
+          <span class="row-end">
+            {% if s.tasks %}<span class="badge" data-badge="{{ n.id }}" data-total="{{ s.tasks }}">решено 0/{{ s.tasks }}</span>{% endif %}
+            <span class="done-mark">{{ icon("check-circle") }}<span class="sr">пройден</span></span>
+          </span>
         </a>
       </li>
     {% endfor %}
     </ol>
   </section>
 {% endfor %}
+  <p id="steps-empty" class="empty" hidden>Здесь пока ничего нет: отметь шаги «повторить» в карточках или реши задания с ошибками.</p>
 </nav>
 
 <section class="extras">
   <h2>После главы</h2>
   <ul class="extras-list">
     <li><a href="cards.html">{{ icon("cards") }}<span>Карточки «знаю / повторить»</span></a></li>
-    <li><a href="summary.html">{{ icon("article") }}<span>Конспект для печати</span></a></li>
+    <li><a href="mistakes.html">{{ icon("arrow-counter-clockwise") }}<span>Мои ошибки</span></a></li>
     <li><a href="map.html">{{ icon("tree-structure") }}<span>Карта связей шагов</span></a></li>
     {% if has_errata %}<li><a href="errata.html">{{ icon("warning") }}<span>Лист опечаток</span></a></li>{% endif %}
   </ul>
 </section>
-<script type="application/json" id="steps-data">{{ steps | tojson }}</script>
 {% endblock %}

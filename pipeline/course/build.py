@@ -12,14 +12,15 @@ import json
 import math
 import re
 import shutil
+import sys
 from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoescape
 from markupsafe import Markup
 from PIL import Image
 
-from contracts.models import Field_, Illustrations, Layer, Node, ReviewOutput, Routing
-from pipeline.course.order import group_parts, order_nodes
+from contracts.models import Illustrations, Layer, Node, ReviewOutput, Routing, Task, Tasks
+from pipeline.course.order import break_cycles, group_parts, order_nodes, part_of
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
@@ -52,6 +53,69 @@ def load_inputs(ch_dir: Path) -> dict:
         for il in _read(ch_dir / "illus/illustrations.json", Illustrations).illustrations:
             inp["illus"].setdefault(il.step_id, []).append(il)
     return inp
+
+
+# ---------------------------------------------------------------- задания (tasks.json делает задача 3 этого же модуля)
+
+def load_tasks(ch: str, course_dir: Path, layer: Layer) -> list[Task]:
+    path = course_dir / "tasks.json"
+    if not path.exists():
+        return []
+    tasks = _read(path, Tasks)
+    if tasks.chapter != ch:
+        raise ValueError(f"{path}: chapter={tasks.chapter!r}, а запрошена глава {ch!r}")
+    claims = {n.id: {c.id for c in n.claims} for n in layer.nodes}
+    for t in tasks.tasks:
+        if t.step_id not in claims:
+            raise ValueError(f"{path}: задание {t.id}: нет шага {t.step_id!r} в layer.json")
+        missing = [c for c in t.claim_ids if c not in claims[t.step_id]]
+        if missing:
+            raise ValueError(f"{path}: задание {t.id}: нет утверждений {missing} в шаге {t.step_id}")
+    return tasks.tasks
+
+
+def answer_text(t: Task) -> str:
+    opts = {o.id: o.text for o in t.options}
+
+    def opt(i) -> str:
+        if i not in opts:
+            raise ValueError(f"задание {t.id}: в answer указан вариант {i!r}, которого нет в options")
+        return opts[i]
+
+    if t.type == "single":
+        return opt(t.answer)
+    if t.type == "multiple":
+        return "; ".join(opt(i) for i in t.answer)
+    if t.type == "order":
+        return " → ".join(opt(i) for i in t.answer)
+    if t.type == "gap":
+        return ", ".join(str(w) for w in t.answer)
+    num = str(t.answer).replace(".", ",")
+    tol = f" (±{str(t.tolerance).replace('.', ',')})" if t.tolerance else ""
+    return f"{num}{(' ' + t.unit) if t.unit else ''}{tol}"
+
+
+def gap_parts(prompt: str) -> list[tuple[str, str | int]]:
+    """Текст с пропусками {{1}} → [("text", ...), ("gap", 1), ...]."""
+    out: list[tuple[str, str | int]] = []
+    pos = 0
+    for m in re.finditer(r"\{\{(\d+)\}\}", prompt):
+        out.append(("text", prompt[pos:m.start()]))
+        out.append(("gap", int(m.group(1))))
+        pos = m.end()
+    out.append(("text", prompt[pos:]))
+    return out
+
+
+def mask_gaps(prompt: str) -> str:
+    return re.sub(r"\{\{\d+\}\}", "…", prompt)
+
+
+def task_view(t: Task, i: int) -> dict:
+    short = mask_gaps(t.prompt)
+    return {"t": t, "i": i, "answer": answer_text(t),
+            "parts": gap_parts(t.prompt) if t.type == "gap" else None,
+            "short": short if len(short) <= 140 else short[:139] + "…"}
 
 
 # ---------------------------------------------------------------- вид шага
@@ -152,7 +216,7 @@ def node_pages(node: Node) -> list[int]:
     return sorted(pages)
 
 
-def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path) -> dict:
+def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path, tasks: list[Task]) -> dict:
     fixes = ocr_fixes(node)
     text_claims = [c for c in node.claims if c.source_kind not in ("formula", "table")]
     formulas = [c for c in node.claims if c.source_kind == "formula"]
@@ -196,6 +260,7 @@ def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path
         illus.append({"il": il, "src": f"assets/illus/{il.file}"})
 
     lay = node.layers
+    check_items = 1 + (1 if media is not None and media["kind"] == "video" else 0) + (1 if tasks else 0)
     show_data = (has_text(node.data_meaning.from_chapter) or has_text(node.data_meaning.breaks)
                  or any(has_text(h) for h in node.data_meaning.hypotheses))
     # (id, заголовок, показывать ли) — порядок блоков на странице и в её оглавлении
@@ -217,7 +282,9 @@ def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path
         ("b-tasks", "Задачи из книги", bool(node.book_tasks)),
         ("b-illus", "Иллюстрации", bool(illus)),
         ("b-media", "Ролик", media is not None),
+        ("b-quiz", "Задания", bool(tasks)),
         ("b-source", "Источник", True),
+        ("b-check", "Чек-лист шага", True),
     ]
     return {
         "show": {b: on for b, _, on in blocks},
@@ -233,6 +300,8 @@ def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path
         "prereqs": [l.target for l in node.links if l.type == "prerequisite"],
         "illus": illus,
         "media": media,
+        "tasks": [task_view(t, i + 1) for i, t in enumerate(tasks)],
+        "check_items": check_items,
         "route": inp["routes"].get(node.id),
         "pages": node_pages(node),
         "data_json": Markup(json.dumps(data, ensure_ascii=False).replace("</", "<\\/")),
@@ -264,6 +333,39 @@ def video_view(node: Node, inp: dict, course: Path, ch_dir: Path) -> dict | None
         shutil.copy2(passport, dst)
         return {"kind": "pending", "passport": f"media/{node.id}/passport.json"}
     return {"kind": "pending", "passport": None}
+
+
+# ---------------------------------------------------------------- «Где здесь ИТ-задачи»
+
+def it_items(ordered: list[Node]) -> list[dict]:
+    """По шагам: линза неэффективности, что значит для данных (гипотезы помечены), аналогия с границей."""
+    items = []
+    for i, n in enumerate(ordered):
+        sections: list[tuple[str, str, str]] = []
+        lens = n.inefficiency_lens
+        if lens is not None:
+            by = "model" if lens.by_model else "author"
+            for label, text in (("Входные данные", lens.inputs), ("Ручные шаги", lens.manual_steps),
+                                ("Точки суждения", lens.judgment_points), ("Время", lens.time),
+                                ("Типичные ошибки", lens.typical_errors)):
+                if text.strip():
+                    sections.append((label, text, by))
+        dm = n.data_meaning
+        if has_text(dm.from_chapter):
+            sections.append(("Что это значит для данных", dm.from_chapter.text, by_of(dm.from_chapter)))
+        if has_text(dm.breaks):
+            sections.append(("Где ломается в данных", dm.breaks.text, by_of(dm.breaks)))
+        for h in dm.hypotheses:
+            if has_text(h):
+                sections.append(("Гипотеза", h.text, by_of(h)))
+        if n.it_analogy.text.strip():
+            by = "model" if n.it_analogy.by_model else "author"
+            sections.append(("Аналогия", n.it_analogy.text, by))
+            if n.it_analogy.breaks_where.strip():
+                sections.append(("Где аналогия перестаёт работать", n.it_analogy.breaks_where, by))
+        if sections:
+            items.append({"id": n.id, "index": i + 1, "title": n.title_novice or n.title, "sections": sections})
+    return items
 
 
 # ---------------------------------------------------------------- карта связей
@@ -308,24 +410,36 @@ def tokens_css(style: dict) -> str:
     legend.append(f"  --uncertainty: {style['uncertainty']['color']};")
     for i, (k, v) in enumerate(style["provenance"].items()):
         legend.append(f"  --prov-{i}: {v}; /* {k} */")
+    # UI-палитра (синий акцент и статусы) — только для интерфейса, никогда для контента и картинок:
+    # в контенте эти оттенки заняты легендой (вода, газ, нефть, кривые ГИС).
     dark = (f"  --bg: {style['background']};\n  --panel: {style['panel']};\n"
             f"  --text: {style['text']};\n  --muted: {style['muted']};\n"
-            "  --line: #2A3440;\n  --accent: #F1C40F;\n  --link: #7FB3D5;\n"
-            "  --hl-author: rgba(241,196,15,.18);\n  --hl-model: rgba(127,179,213,.16);\n  color-scheme: dark;")
+            "  --border: rgba(255, 255, 255, .08);\n"
+            "  --ui-accent: #2F6BDB;\n  --ui-on-accent: #FFFFFF;\n  --ui-link: #7FA8FF;\n"
+            "  --ui-ok: #46C28A;\n  --ui-warn: #E3B341;\n  --ui-bad: #FF7B72;\n  color-scheme: dark;")
     light = ("  --bg: #FBFAF7;\n  --panel: #FFFFFF;\n  --text: #1B1F24;\n  --muted: #5B6672;\n"
-             "  --line: #DDE1E6;\n  --accent: #9A6B00;\n  --link: #1F5F99;\n"
-             "  --hl-author: rgba(241,196,15,.30);\n  --hl-model: rgba(41,128,185,.14);\n  color-scheme: light;")
-    font = style["fonts"]["ui"]
+             "  --border: rgba(0, 0, 0, .08);\n"
+             "  --ui-accent: #1F5FD1;\n  --ui-on-accent: #FFFFFF;\n  --ui-link: #1F5FD1;\n"
+             "  --ui-ok: #1E7F52;\n  --ui-warn: #8A6100;\n  --ui-bad: #C0392B;\n  color-scheme: light;")
     return ("/* Сгенерировано из styleguide.json организаторов. Не править руками. */\n"
-            "/* legend: одинаковая в обеих темах */\n:root {\n" + "\n".join(legend) +
-            f"\n  --font-ui: \"{font}\", system-ui, -apple-system, Roboto, sans-serif;\n}}\n"
+            "/* legend: одинаковая в обеих темах */\n:root {\n" + "\n".join(legend) + "\n}\n"
             "/* theme */\n"
+            ":root {\n  --radius: 12px;\n  --font-ui: system-ui, \"Segoe UI\", sans-serif;\n}\n"
             f":root {{\n{light}\n}}\n"
             f"@media (prefers-color-scheme: dark) {{\n  :root:not([data-theme=\"light\"]) {{\n{dark}\n  }}\n}}\n"
             f":root[data-theme=\"dark\"] {{\n{dark}\n}}\n")
 
 
 # ---------------------------------------------------------------- сборка
+
+def plural(n: int, one: str, few: str, many: str) -> str:
+    n10, n100 = n % 10, n % 100
+    if n10 == 1 and n100 != 11:
+        return one
+    if 2 <= n10 <= 4 and not 12 <= n100 <= 14:
+        return few
+    return many
+
 
 def make_env() -> Environment:
     env = Environment(loader=FileSystemLoader(HERE / "templates"), autoescape=select_autoescape(["html", "j2"]),
@@ -339,11 +453,18 @@ def make_env() -> Environment:
         return Markup(svg)
 
     env.globals.update(icon=icon, by_of=by_of, has_text=has_text)
+    env.filters["plural"] = plural
     return env
 
 
 def chapter_title(layer: Layer) -> str:
-    return layer.ext.get("core", {}).get("title") or Path(layer.source).stem
+    """Человеческое название — layer.ext["core"]["title"] (поле поставляет П1); id главы — только запасной вариант."""
+    return layer.ext.get("core", {}).get("title") or layer.chapter
+
+
+def _has_video(ch_dir: Path, node_id: str) -> bool:
+    vdir = ch_dir / "videos" / node_id
+    return vdir.exists() and any(vdir.glob("*.mp4"))
 
 
 def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
@@ -353,9 +474,30 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
     layer: Layer = inp["layer"]
     if layer.chapter != ch:
         raise ValueError(f"{ch_dir / 'layer.json'}: chapter={layer.chapter!r}, а запрошена глава {ch!r}")
-    ordered = order_nodes(layer.nodes)
+
+    warnings: list[dict] = []
+
+    def warn(code: str, message: str, **extra) -> None:
+        print(f"WARNING: {message}", file=sys.stderr)
+        warnings.append({"code": code, "message": message, **extra})
+
+    nodes, cycles = break_cycles(layer.nodes)          # повтор id → ValueError
+    for c in cycles:
+        loop = " → ".join(c["cycle"] + [c["cycle"][0]])
+        warn("prerequisite_cycle",
+             f"цикл в links.prerequisite (стрелка = «опирается на»): {loop}; "
+             f"отброшена опора {c['dropped'][0]} → {c['dropped'][1]}",
+             nodes=c["cycle"], dropped=c["dropped"])
+    ordered = order_nodes(nodes)
     if node is not None and node not in {n.id for n in ordered}:
         raise ValueError(f"узла {node!r} нет в {ch_dir / 'layer.json'}")
+
+    no_part = [n.id for n in layer.nodes if not n.ext.get("core", {}).get("part")]
+    if len(no_part) == len(layer.nodes):
+        warn("no_parts", 'ни у одного узла нет ext["core"]["part"]: вся глава собрана одной частью «Глава»')
+    elif no_part:
+        warn("partial_parts", f'у узлов нет ext["core"]["part"], они попали в часть «Глава»: {", ".join(no_part)}',
+             nodes=no_part)
 
     course = ch_dir / "course"
     (course / "assets").mkdir(parents=True, exist_ok=True)
@@ -364,13 +506,21 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
     style = json.loads(styleguide.read_text(encoding="utf-8"))
     (course / "assets/tokens.css").write_text(tokens_css(style), encoding="utf-8")
 
+    tasks = load_tasks(ch, course, layer)
+    tasks_by_step: dict[str, list[Task]] = {}
+    for t in tasks:
+        tasks_by_step.setdefault(t.step_id, []).append(t)
+
     env = make_env()
     errata = [{"node": n, **f} for n in ordered for f in ocr_fixes(n)]
-    common = {
-        "ch": ch, "chapter_title": chapter_title(layer), "has_errata": bool(errata),
-        "steps": [{"id": n.id, "title": n.title_novice or n.title, "minutes": minutes(n)} for n in ordered],
-    }
-    common["total_minutes"] = sum(s["minutes"] for s in common["steps"])
+    steps = [{"id": n.id, "title": n.title_novice or n.title, "minutes": minutes(n), "part": part_of(n),
+              "video": _has_video(ch_dir, n.id), "illus": len(inp["illus"].get(n.id, [])),
+              "tasks": len(tasks_by_step.get(n.id, []))} for n in ordered]
+    meta = {"ch": ch, "steps": steps,
+            "tasks": [{"id": t.id, "step_id": t.step_id, "claim_ids": t.claim_ids, "type": t.type, "kind": t.kind,
+                       "prompt": mask_gaps(t.prompt), "explanation": t.explanation} for t in tasks]}
+    common = {"ch": ch, "chapter_title": chapter_title(layer), "has_errata": bool(errata), "steps": steps,
+              "n_tasks": len(tasks), "meta": meta, "total_minutes": sum(s["minutes"] for s in steps)}
     titles = {n.id: n.title_novice or n.title for n in ordered}
 
     def render(name: str, tpl: str, **ctx) -> None:
@@ -381,18 +531,30 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
     for i, n in enumerate(ordered):
         if node is not None and n.id != node:
             continue
-        render(f"step-{n.id}.html", "step.html.j2", v=step_view(n, inp, course, pages_src, ch_dir),
+        render(f"step-{n.id}.html", "step.html.j2",
+               v=step_view(n, inp, course, pages_src, ch_dir, tasks_by_step.get(n.id, [])),
                idx=i, prev=ordered[i - 1] if i > 0 else None,
                next=ordered[i + 1] if i + 1 < len(ordered) else None, titles=titles, page="step")
 
+    groups = [(s, [task_view(t, i + 1) for i, t in enumerate(tasks_by_step[s["id"]])])
+              for s in steps if s["id"] in tasks_by_step]
     render("index.html", "index.html.j2", parts=group_parts(ordered), page="index")
+    render("tasks.html", "tasks.html.j2", groups=groups, page="tasks")
+    render("progress.html", "progress.html.j2", page="progress")
+    render("mistakes.html", "mistakes.html.j2", page="mistakes")
     render("cards.html", "cards.html.j2", nodes=ordered, page="cards")
     render("summary.html", "summary.html.j2", nodes=ordered, page="summary")
+    render("it.html", "it.html.j2", items=it_items(ordered), page="it")
     render("map.html", "map.html.j2", m=map_view(ordered), nodes=ordered, titles=titles, page="map")
     if errata:
         render("errata.html", "errata.html.j2", errata=errata, page="errata")
     elif (course / "errata.html").exists():
         (course / "errata.html").unlink()
+
+    all_pages = sorted({p for n in ordered for p in node_pages(n)})
+    report = {"chapter": ch, "nodes": len(ordered), "tasks": len(tasks), "warnings": warnings,
+              "missing_scans": [p for p in all_pages if not (pages_src / f"p{p}.png").exists()]}
+    (course / "build_report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     return course
 
 
