@@ -36,8 +36,8 @@ def test_empty_hypothesis_is_total_error():
 
 
 def test_sync_offsets_from_matched_words():
-    tts = [(1.00, "Прибор"), (1.40, "идёт"), (1.80, "вниз")]
-    asr = [(1.05, "прибор"), (1.50, "идет"), (2.60, "вверх")]
+    tts = [(1.00, 1.30, "Прибор"), (1.40, 1.70, "идёт"), (1.80, 2.10, "вниз")]
+    asr = [(1.05, 1.35, "прибор"), (1.50, 1.80, "идет"), (2.60, 2.90, "вверх")]
     r = sync_report(tts, asr, limit_s=0.5)
     assert r["matched_words"] == 2
     assert r["max_abs_s"] == pytest.approx(0.10) and r["median_abs_s"] == pytest.approx(0.075)
@@ -45,10 +45,45 @@ def test_sync_offsets_from_matched_words():
 
 
 def test_sync_fails_over_limit_and_without_matches():
-    r = sync_report([(1.0, "раз")], [(1.7, "раз")], limit_s=0.5)
+    r = sync_report([(1.0, 1.3, "раз")], [(1.7, 2.0, "раз")], limit_s=0.5)     # сдвинуты обе границы
     assert r["ok"] is False and r["max_abs_s"] == pytest.approx(0.7)
-    r = sync_report([(1.0, "раз")], [(1.0, "два")], limit_s=0.5)
-    assert r["ok"] is False and r["matched_words"] == 0
+    r = sync_report([(1.0, 1.3, "раз")], [(1.0, 1.3, "два")], limit_s=0.5)
+    assert r["ok"] is None and r["matched_words"] == 0 and r["status"] == "не проверено"
+
+
+def test_one_boundary_off_is_not_a_confirmed_success():
+    # регрессия: начало сдвинуто на 0,8 с, конец совпал — это не «успех», а неопределённость меток
+    r = sync_report([(1.0, 2.0, "раз")], [(1.8, 2.1, "раз")], limit_s=0.5)
+    assert r["ok"] is None and r["status"] == "не проверено"
+    assert r["uncertain_words"] == [{"word": "раз", "tts_start": 1.0, "start_diff": 0.8, "end_diff": 0.1}]
+    assert r["boundary_exceptions"] == []
+
+
+def test_start_snapped_into_preceding_silence_is_a_justified_exception():
+    # первое слово сегмента: начало распознано в тишине после предыдущего слова (29,0), конец совпал
+    tts = [(28.6, 29.0, "одинаковая"), (30.35, 30.55, "как")]
+    asr = [(28.62, 29.02, "одинаковая", True), (29.04, 30.50, "как", True)]
+    r = sync_report(tts, asr, limit_s=0.5)
+    assert r["ok"] is True and r["status"] == "проверено автоматически"
+    exc = r["boundary_exceptions"]
+    assert len(exc) == 1 and exc[0]["word"] == "как" and "тишин" in exc[0]["reason"]
+    assert r["uncertain_words"] == []
+
+
+@pytest.mark.parametrize("asr_word", [
+    (29.04, 30.50, "как", False),        # не первое слово сегмента — исключение не применяется
+    (28.30, 30.50, "как", True),         # начало легло на предыдущее слово, а не в тишину
+    (30.95, 30.55, "как", True),         # начало позже, а не раньше
+])
+def test_exception_conditions_are_strict(asr_word):
+    tts = [(28.6, 29.0, "одинаковая"), (30.35, 30.55, "как")]
+    r = sync_report(tts, [(28.62, 29.02, "одинаковая", True), asr_word], limit_s=0.5)
+    assert r["ok"] is None and r["boundary_exceptions"] == []
+
+
+def test_both_boundaries_shifted_is_a_desync():
+    r = sync_report([(1.0, 2.0, "раз")], [(1.8, 2.8, "раз", True)], limit_s=0.5)
+    assert r["ok"] is False and r["status"] == "проверено автоматически" and r["desynced_words"]
 
 
 # ---------------------------------------------------------------- термины: каждое употребление

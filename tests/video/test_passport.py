@@ -224,3 +224,25 @@ def test_terms_checked_per_occurrence_in_build(tmp_path, monkeypatch):
     assert audio["terms"]["not_recognized"] == ["сопротивление"]
     assert [o["ok"] for o in audio["terms"]["occurrences"]].count(False) == 1
     assert ok is False and "термины" in problem
+
+
+def test_partial_auto_check_is_not_marked_verified():
+    cfg = {"auto": {"pc.hydrostatic": "hydrostatic"}, "not_applicable": {}}
+    ans = {a.item: a for a in checklist_answers(ITEMS, cfg, {"hydrostatic": (None, "гидростатика проверена, циркуляция не показана")})}
+    a = ans["pc.hydrostatic"]
+    assert a.status == STATUS_UNCHECKED and a.answer == "нет" and "циркуляция не показана" in a.note
+
+
+def test_uncertain_sync_makes_audio_unverified_not_ok(tmp_path, monkeypatch):
+    script, _ = _inputs()
+    tl = _timeline(script)
+    words = [{"start": w["start_s"], "end": w["end_s"], "word": w["text"], "probability": 0.9, "segment_start": False}
+             for ph in tl["phrases"] for w in ph["words"]]
+    words[5]["start"] += 0.8                                                 # одна граница одного слова
+    monkeypatch.setattr(media, "decode_pcm", lambda src, sr: b"\x00\x00" * 160)
+    monkeypatch.setattr(asr, "transcribe", lambda audio, model: {
+        "engine": "faster-whisper", "version": "тест", "model": model, "language": "ru", "text": "", "words": words})
+    audio, ok, problem = build._audio_check(tmp_path / "x.mp4", script, tl, PROBE, 140.0, "v", False, "small",
+                                            None, tmp_path)
+    assert ok is None and "рассинхрон не проверен" in problem
+    assert audio["sync"]["status"] == STATUS_UNCHECKED and audio["asr"]["ok"] is True

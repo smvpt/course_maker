@@ -49,6 +49,10 @@ def checklist_answers(items: list[dict], pc_cfg: dict | None, auto: dict[str, tu
         pid = it["id"]
         if pid in na:
             out.append(ChecklistAnswer(item=pid, answer="н/п", note=na[pid], status=STATUS_NA, text=it["item"]))
+        elif pid in checks and checks[pid] in auto and auto[checks[pid]][0] is None:
+            # автопроверка покрыла пункт лишь частично — пункт целиком не подтверждён
+            out.append(ChecklistAnswer(item=pid, answer="нет", status=STATUS_UNCHECKED, check=checks[pid],
+                                       note=f"{auto[checks[pid]][1]}. " + UNCHECKED_NOTE, text=it["item"]))
         elif pid in checks and checks[pid] in auto:
             ok, note = auto[checks[pid]]
             out.append(ChecklistAnswer(item=pid, answer="да" if ok else "нет", note=note, status=STATUS_AUTO,

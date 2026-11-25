@@ -75,9 +75,13 @@ def builds(monkeypatch):
     return calls
 
 
+GENERIC_NODES = {NODE, CH + ".en_quote", CH + ".text_only"}   # общие проверки — домен без описаний шаблонов
+
+
 def _auto(tmp_path, node=NODE, routing=FIX / "routing.json", *extra):
+    domain = "no_templates_fixture" if (node in GENERIC_NODES and routing == FIX / "routing.json") else "geology"
     return build.main(["--ch", CH, "--node", node, "--layer", str(FIX / "layer.json"), "--routing", str(routing),
-                       "--out-root", str(tmp_path), "--draft", *extra])
+                       "--out-root", str(tmp_path), "--draft", "--domain", domain, *extra])
 
 
 def _pair_dir(tmp_path, node=NODE, fmt="short"):
@@ -289,3 +293,19 @@ def test_ready_t3_pair_is_reused_and_rechecked(tmp_path, builds, llm, capsys, mo
     (d / "scene_spec.json").write_text(json.dumps(spec, ensure_ascii=False), encoding="utf-8")
     assert _auto(tmp_path, node) == 2 and len(builds) == 2
     assert "T3" in capsys.readouterr().err
+
+
+def test_ready_t4_pair_is_reused_and_rechecked(tmp_path, builds, llm, capsys, monkeypatch):
+    node = CH + ".well_t4"
+    claim = node + "#c1"
+    llm([_answer("llm_script.json", lambda d: [p.update(claim_id=claim) for p in d["phrases"]])],
+        [_answer("llm_scene_t4.json")])
+    assert _auto(tmp_path, node) == 0
+    monkeypatch.setitem(sys.modules, "pipeline.llm", None)
+    assert _auto(tmp_path, node) == 0 and len(builds) == 2                   # повтор без LLM
+    d = _pair_dir(tmp_path, node)
+    spec = json.loads((d / "scene_spec.json").read_text(encoding="utf-8"))
+    spec["params"]["depth_m"] = 3000                                         # источник говорит 1500 м
+    (d / "scene_spec.json").write_text(json.dumps(spec, ensure_ascii=False), encoding="utf-8")
+    assert _auto(tmp_path, node) == 2 and len(builds) == 2
+    assert "depth_m" in capsys.readouterr().err

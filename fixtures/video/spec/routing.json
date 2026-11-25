@@ -14,7 +14,7 @@
       },
       "hook_short": false,
       "template": "T4",
-      "why": "фикстура: шаблон без конфигурации (T4 ещё не описан) — общие проверки video.spec"
+      "why": "фикстура: общие проверки video.spec; тесты запускают с доменом без описаний шаблонов"
     },
     {
       "node_id": "video_spec_fixture.en_quote",
@@ -29,7 +29,7 @@
       },
       "hook_short": false,
       "template": "T4",
-      "why": "фикстура: шаблон без конфигурации (T4 ещё не описан) — общие проверки video.spec"
+      "why": "фикстура: общие проверки video.spec; тесты запускают с доменом без описаний шаблонов"
     },
     {
       "node_id": "video_spec_fixture.text_only",
@@ -75,6 +75,21 @@
       "hook_short": false,
       "template": "T3",
       "why": "фикстура: синтетический узел для стыковки video.spec с T3"
+    },
+    {
+      "node_id": "video_spec_fixture.well_t4",
+      "format": "шортс",
+      "secondary_format": null,
+      "video_scores": {
+        "time": 2,
+        "invisible": 2,
+        "scale": 1,
+        "counterintuitive": 2,
+        "cause_effect": 2
+      },
+      "hook_short": false,
+      "template": "T4",
+      "why": "фикстура: синтетический узел для стыковки video.spec с T4"
     }
   ]
 }

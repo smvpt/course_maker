@@ -88,6 +88,8 @@ def _prepare_template(spec, script, sg: dict, templates_dir: Path) -> tuple[dict
         return _prepare_t2(spec, script, sg, templates_dir)
     if spec.template == "T3":
         return _prepare_t3(spec, script, sg, templates_dir)
+    if spec.template == "T4":
+        return _prepare_t4(spec, script, sg, templates_dir)
     from pipeline.video import t1_template
     cfg = t1_template.load_config(templates_dir)
     prep = t1_template.prepare(spec, script, cfg)
@@ -140,6 +142,31 @@ def _prepare_t3(spec, script, sg: dict, templates_dir: Path) -> tuple[dict, dict
             "layer_times_yr": [float(x) for x in prep["layer_times"]],
             "auto_checks": t3_template.auto_checks(prep)}
     return {"t3": prep}, colors, info
+
+
+def _prepare_t4(spec, script, sg: dict, templates_dir: Path) -> tuple[dict, dict, dict]:
+    from pipeline.video import t4_template
+    from pipeline.video.templates import load_template_config
+    cfg = load_template_config(templates_dir, "T4")
+    if cfg is None:
+        raise VideoInputError(f"нет описания шаблона T4: {Path(templates_dir) / 'T4.json'}")
+    prep = t4_template.prepare(spec, script, cfg)
+    disp = cfg["display"]
+    svg = ROOT / disp["equipment_svg"]
+    if not svg.is_file():
+        raise VideoInputError(f"нет схемы оборудования T4: {svg}")
+    colors = {"mud": _sg_color(sg, disp["mud_color"]), "gas": _sg_color(sg, disp["gas_color"]),
+              "pressure": _sg_color(sg, disp["pressure_color"]), "casing": _sg_color(sg, disp["casing_color"])}
+    m = prep["model"]
+    o, c = t4_template.states(prep, prep["top_stop"])
+    info = {"model": cfg["model"], "assumptions": cfg["assumptions"], "limitations": cfg["limitations"],
+            "config": str(Path(templates_dir) / "T4.json"), "equipment_svg": disp["equipment_svg"],
+            "params": {k: spec.params.get(k, d.get("default")) for k, d in cfg["params"].items()},
+            "gas_length_start_m": round(m.start_length, 3), "gas_top_start_m": round(prep["top_start"], 3),
+            "end_open": {k: o[k] for k in ("volume", "pit_gain", "p_surface", "p_bottom")},
+            "end_closed": {k: c[k] for k in ("volume", "pit_gain", "p_surface", "p_bottom")},
+            "auto_checks": t4_template.auto_checks(prep)}
+    return {"t4": prep, "equipment_svg": str(svg)}, colors, info
 
 
 def _render(scene_cls, plan: dict, work: Path, w: int, h: int, fps: int, background: str) -> Path:
@@ -218,6 +245,17 @@ def _auto_checks(spec, tpl_info: dict) -> dict:
         auto["label_matches_source"] = (True, "t1_template.prepare: все кадры A/B с меткой «симуляция» — кадр считается моделью")
         auto["one_state_variable"] = (True, "по построению: карта и график — одна функция PressureModel.delta_p от одного "
                                             "времени (тест test_field_and_graph_come_from_one_function)")
+    if spec.template == "T4":
+        auto.update(tpl_info["auto_checks"])
+        auto["label_matches_source"] = (True, "t4_template.prepare: все кадры класса B с меткой «симуляция» — пачка и "
+                                              "давления считаются моделью; превентор — схема")
+        auto["one_state_variable"] = (True, "по построению: обе скважины, объём газа и график — одна модель WellModel от "
+                                            "одной глубины кровли пачки (тест test_wells_volume_and_graph_come_from_one_state)")
+        auto["depth_down"] = (True, "по построению: глубина от устья вниз общая для скважин и графика; давление "
+                                    "подписано как избыточное, МПа")
+        auto["construction_fixed"] = (True, "по построению: обе скважины рисуются одной функцией из одних параметров "
+                                            "(ствол, колонна до башмака, превентор из одного SVG) во всех кадрах; "
+                                            "меняется только ширина на кадрах с плашкой и состояние плашек превентора")
     if spec.template == "T3":
         auto.update(tpl_info["auto_checks"])
         auto["label_matches_source"] = (True, "t3_template.prepare: все кадры класса B с меткой «симуляция» — план и "
@@ -278,8 +316,10 @@ def _audio_check(mp4: Path, script, timeline: dict, probe: dict, wpm: float, voi
     except asr.AsrError as e:
         return unchecked(f"распознавание не выполнено: {e}")
     wer = asr.wer_report([(p.id, p.text) for p in script.phrases], [w["word"] for w in tr["words"]])
-    tts_words = [(w["start_s"], w["text"]) for ph in timeline["phrases"] if ph["timing"] == "word" for w in ph["words"]]
-    sync = asr.sync_report(tts_words, [(w["start"], w["word"]) for w in tr["words"]])
+    tts_words = [(w["start_s"], w["end_s"], w["text"])
+                 for ph in timeline["phrases"] if ph["timing"] == "word" for w in ph["words"]]
+    sync = asr.sync_report(tts_words, [(w["start"], w["end"], w["word"], w.get("segment_start", False))
+                                       for w in tr["words"]])
     (out / "asr_report.json").write_text(json.dumps({"transcription": tr, "wer": wer, "sync": sync},
                                                     ensure_ascii=False, indent=2), encoding="utf-8")
     if node_obj is None:
@@ -297,8 +337,9 @@ def _audio_check(mp4: Path, script, timeline: dict, probe: dict, wpm: float, voi
                      "substitutions": wer["substitutions"], "deletions": wer["deletions"],
                      "insertions": wer["insertions"], "errors": wer["errors"][:60], "per_phrase": wer["per_phrase"],
                      "report": "asr_report.json"},
-             "sync": {"status": "проверено автоматически",
-                      "method": "начала слов: распознавание готового MP4 против меток слов TTS в таймлайне ролика",
+             "sync": {"method": "слова: распознавание готового MP4 против меток слов TTS в таймлайне ролика; "
+                                "по слову проверяются обе границы; одна за порогом — «не проверено», кроме обоснованных исключений "
+                                "(boundary_exceptions)",
                       **sync,
                       "frame_vs_voice": {"status": "не проверено",
                                          "reason": "смысловое соответствие кадра фразе проверяет человек; подписи и "
@@ -309,8 +350,13 @@ def _audio_check(mp4: Path, script, timeline: dict, probe: dict, wpm: float, voi
                         "to_listen": disputed},
              "listened_by_human": False}
     failed = tempo_fail + [k for k, ok in (("WER", audio["asr"]["ok"]), ("рассинхрон", sync["ok"]),
-                                           ("термины", terms.get("ok", True))) if not ok]
-    return audio, not failed, ("; ".join(failed) or None)
+                                           ("термины", terms.get("ok", True))) if ok is False]
+    if failed:
+        return audio, False, "; ".join(failed)
+    if sync["ok"] is None:          # метки неоднозначны — подтверждённого успеха нет
+        n = len(sync.get("uncertain_words", []))
+        return audio, None, f"рассинхрон не проверен: у {n} слов расходится одна граница метки" if n else             f"рассинхрон не проверен: {sync.get('note', 'нет совпавших слов')}"
+    return audio, True, None
 
 
 def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, fmt: str | None,
@@ -387,6 +433,8 @@ def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, f
         from pipeline.video.scene_t2 import T2Scene as scene_cls
     elif spec.template == "T3":
         from pipeline.video.scene_t3 import T3Scene as scene_cls
+    elif spec.template == "T4":
+        from pipeline.video.scene_t4 import T4Scene as scene_cls
     elif spec.template == "T1":
         from pipeline.video.scene_t1 import T1Scene as scene_cls
     else:

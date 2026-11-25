@@ -52,9 +52,16 @@ def llm(monkeypatch):
     return install
 
 
+# Узлы общих проверок video.spec идут с доменным пакетом без описаний шаблонов (как новый домен до их
+# появления): генератор получает общий контракт, проверки шаблона не применяются.
+GENERIC_NODES = {CH + ".mixed_section", CH + ".en_quote", CH + ".text_only"}
+NO_TEMPLATES_DOMAIN = "no_templates_fixture"
+
+
 def _run(tmp_path, *extra, ch=CH, node=NODE):
+    domain = NO_TEMPLATES_DOMAIN if node in GENERIC_NODES else "geology"
     return spec.main(["--ch", ch, "--node", node, "--layer", str(FIX / "layer.json"),
-                      "--routing", str(FIX / "routing.json"), "--out-root", str(tmp_path), *extra])
+                      "--routing", str(FIX / "routing.json"), "--out-root", str(tmp_path), "--domain", domain, *extra])
 
 
 def _out(tmp_path, video_id=NODE + ".short"):
@@ -252,7 +259,7 @@ def test_t1_missing_physical_params_are_a_clear_error_not_invented(tmp_path, llm
 
 def test_template_without_config_gets_generic_contract(tmp_path, llm):
     fake = llm()
-    assert _run(tmp_path) == 0                                 # узел с T4: конфигурации T4 нет
+    assert _run(tmp_path) == 0                                 # домен без описаний шаблонов
     assert "не описаны" in fake.calls[1]["vars"]["template_contract"]
 
 
@@ -407,3 +414,66 @@ def test_t3_missing_physical_params_are_a_clear_error(tmp_path, llm, capsys):
     fake = llm([_t3_script()], [_answer("llm_scene_t3.json", missing)])
     assert _run(tmp_path, node=T3_NODE) == 2
     assert "supply_m3_per_yr" in capsys.readouterr().err and len(fake.calls) == 2
+
+
+# ---------------------------------------------------------------- стыковка с T4
+
+T4_NODE = CH + ".well_t4"
+
+
+def _t4_script():
+    claim = T4_NODE + "#c1"
+    return _answer("llm_script.json", lambda d: [p.update(claim_id=claim) for p in d["phrases"]])
+
+
+def test_t4_spec_is_saved_and_passes_t4_checks(tmp_path, llm):
+    from pipeline.video.t4_template import prepare
+    from pipeline.video.templates import load_template_config
+    fake = llm([_t4_script()], [_answer("llm_scene_t4.json")])
+    assert _run(tmp_path, node=T4_NODE) == 0
+    assert "mud_density_kg_m3" in fake.calls[1]["vars"]["template_contract"]
+    out = _out(tmp_path, T4_NODE + ".short")
+    script = Script.model_validate_json((out / "script.json").read_text(encoding="utf-8"))
+    scene = SceneSpec.model_validate_json((out / "scene_spec.json").read_text(encoding="utf-8"))
+    prep = prepare(scene, script, load_template_config(ROOT / "domain" / "geology" / "templates", "T4"))
+    assert scene.template == "T4" and prep["exaggeration"] == 400
+    assert "p6" not in prep["evolve_phrase_ids"]                       # p6 в этом сценарии — вопрос: газ стоит
+    assert "casing_shoe_m" in scene.ext["video"]["param_sources"]
+
+
+@pytest.mark.parametrize("mutate,needle", [
+    (lambda d: d["shots"][1].update(label="реальные данные"), "симуляция"),
+    (lambda d: d["params"].update(mud_density_kg_m3=1.2), "единицы"),
+    (lambda d: d["params"].update(top_stop_m=20), "не помещается"),
+    (lambda d: d["param_sources"].pop("hole_diameter_m"), "hole_diameter_m"),
+    (lambda d: d["param_sources"]["casing_shoe_m"].update(numbers=["700"]), "700"),
+])
+def test_t4_incompatible_scene_fails_after_repair(tmp_path, llm, capsys, mutate, needle):
+    bad = _answer("llm_scene_t4.json", mutate)
+    fake = llm([_t4_script()], [bad, bad])
+    assert _run(tmp_path, node=T4_NODE) == 2
+    assert needle in capsys.readouterr().err and needle in fake.calls[2]["vars"]["feedback"]
+    assert not _out(tmp_path, T4_NODE + ".short").exists()
+
+
+def test_t4_missing_physical_params_are_a_clear_error(tmp_path, llm, capsys):
+    def missing(d):
+        d["params"].pop("gas_volume_m3")
+        d["param_sources"].pop("gas_volume_m3")
+        d["missing_params"] = ["gas_volume_m3"]
+    fake = llm([_t4_script()], [_answer("llm_scene_t4.json", missing)])
+    assert _run(tmp_path, node=T4_NODE) == 2
+    assert "gas_volume_m3" in capsys.readouterr().err and len(fake.calls) == 2
+
+
+# ---------------------------------------------------------------- значение параметра = число источника × factor
+
+@pytest.mark.parametrize("mutate,needle", [
+    (lambda d: d["params"].update(depth_m=3000), "depth_m"),                              # источник: 1500 м
+    (lambda d: d["param_sources"]["hole_diameter_m"].update(factor=0.0254), "factor"),     # 0,2159 × 0,0254 ≠ 0,2159
+])
+def test_param_value_must_follow_from_its_source_number(tmp_path, llm, capsys, mutate, needle):
+    bad = _answer("llm_scene_t4.json", mutate)
+    llm([_t4_script()], [bad, bad])
+    assert _run(tmp_path, node=T4_NODE) == 2
+    assert needle in capsys.readouterr().err

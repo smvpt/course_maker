@@ -1,0 +1,74 @@
+{
+  "template": "T4",
+  "title": "Ствол скважины: гидростатика и газ в открытой и закрытой скважине",
+  "covers_difficulty": [],
+  "model": "Вертикальный ствол постоянного сечения, несжимаемый раствор плотности ρ, одна газовая пачка во всё сечение, газ изотермический по Бойлю (p·V = const), вес газа не учитывается, циркуляции нет. Состояние — глубина кровли пачки z_t. Открытая скважина: на устье атмосферное давление, p_газ = p_атм + ρ·g·z_t, объём V = p_g0·V0/p_газ, вытесненный раствор уходит в ёмкость. Закрытая: V = V0, p_газ = p_g0, давление на устье p_газ − ρ·g·z_t — растёт по всему стволу. Давления в кадре избыточные (абсолютное = избыточное + атмосферное).",
+  "assumptions": [
+    "раствор несжимаем, плотность постоянна; ствол и колонна жёсткие",
+    "газ идеальный, изотермический (закон Бойля), не растворяется; вес газа не учитывается",
+    "статика: циркуляции и трения нет",
+    "в начальный момент пачка у забоя, уравновешена столбом раствора над ней"
+  ],
+  "limitations": "не описывает циркуляцию (давление на забой при циркуляции выше статического), скорость всплытия газа, выброс раствора из открытой скважины, растворение газа в растворе, температурный профиль",
+  "state_variable": "глубина кровли газовой пачки: одна переменная задаёт пачку в обеих скважинах, объём газа, вытесненный раствор и профили давления",
+  "params": {
+    "depth_m":                  {"required": true,  "kind": "physical", "unit": "м",     "meaning": "глубина ствола"},
+    "mud_density_kg_m3":        {"required": true,  "kind": "physical", "unit": "кг/м³", "meaning": "плотность бурового раствора"},
+    "gas_volume_m3":            {"required": true,  "kind": "physical", "unit": "м³",    "meaning": "объём газовой пачки у забоя в начальный момент"},
+    "hole_diameter_m":          {"required": true,  "kind": "physical", "unit": "м",     "meaning": "диаметр ствола"},
+    "casing_shoe_m":            {"required": false, "default": null, "kind": "physical", "unit": "м", "meaning": "глубина башмака обсадной колонны; нет данных — колонна не рисуется"},
+    "top_stop_m":               {"required": true,  "kind": "display",  "unit": "м",     "meaning": "глубина кровли пачки к концу анимации (до какой глубины газ поднимается)"},
+    "horizontal_exaggeration":  {"required": false, "default": 1,    "kind": "display", "meaning": "во сколько раз ствол шире истинного на кадрах с плашкой «не в масштабе»"},
+    "evolve_shot_ids":          {"required": false, "default": null, "kind": "display", "meaning": "кадры, на фразах которых газ поднимается; null — все кадры"}
+  },
+  "param_kinds": {
+    "physical": "физическая величина скважины или раствора: значение только из утверждений узла, с указанием источника; нет в узле — параметр не выдумывать, а перечислить в missing_params",
+    "display": "настройка показа (до какой глубины поднимается газ, увеличение ширины ствола, кадры движения)"
+  },
+  "frame_rules": [
+    "все кадры — класс B с меткой «симуляция»: пачка, объём и давления считаются моделью; оборудование — схема",
+    "если horizontal_exaggeration > 1: у кадров с увеличенной шириной ствола плашка «не в масштабе: ствол шире в N раз» с N = horizontal_exaggeration, то же N — в exaggerations, и есть кадр истинного масштаба (true_scale_shot_id) без плашки",
+    "если horizontal_exaggeration = 1: плашек нет",
+    "газ поднимается только на фразах кадров evolve_shot_ids; на вопросе-предсказании (и паузе после него) и в финале состояние стоит",
+    "к концу пачка в открытой скважине должна помещаться в ствол: выброс раствора не моделируется"
+  ],
+  "display": {
+    "mud_color": "fluids.mud.color",
+    "gas_color": "fluids.gas.color",
+    "pressure_color": "curves.PRESSURE.color",
+    "casing_color": "muted",
+    "equipment_svg": "assets/video/t4_bop.svg",
+    "nominal_column_height_px": 820,
+    "column_width_px": 170,
+    "max_well_fraction_of_column": 0.7
+  },
+  "limits": {
+    "mud_density_kg_m3": [500, 3000],
+    "hole_diameter_m": [0.05, 1.0],
+    "min_rise_fraction": 0.3,
+    "max_gas_fraction_of_depth": 0.1
+  },
+  "physics_checklist": {
+    "not_applicable": {
+      "pc.layers_order": "слои пород не рисуются",
+      "pc.fault_consistent": "разломов нет",
+      "pc.unconformity_event": "несогласий нет",
+      "pc.fluids_in_pores": "газ показан в стволе, а не в пласте",
+      "pc.gas_oil_water": "пластовые флюидальные контакты не рисуются",
+      "pc.tool_mechanism": "каротажного прибора нет",
+      "pc.signal_vs_property": "измерений прибором нет — показан расчёт"
+    },
+    "auto": {
+      "pc.hydrostatic": "hydrostatic",
+      "pc.gas_closed_well": "gas_open_closed",
+      "pc.balance": "mass_balance",
+      "pc.views_consistent": "one_state_variable",
+      "pc.curve_sync": "one_state_variable",
+      "pc.depth_down": "depth_down",
+      "pc.well_construction": "construction_fixed",
+      "pc.objects_stable": "construction_fixed",
+      "pc.exaggeration_named": "plaques_have_number",
+      "pc.label_matches": "label_matches_source"
+    }
+  }
+}

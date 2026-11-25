@@ -5,6 +5,7 @@
 """
 from __future__ import annotations
 
+import math
 import re
 
 from contracts.models import Node, SceneSpec, Script, SourceRow
@@ -192,9 +193,25 @@ def param_source_problems(spec: SceneSpec, node: Node, cfg: dict) -> list[str]:
             continue
         text = "\n".join(f"{claims[c].text}\n{claims[c].quote}" for c in own)
         found = {n.replace(",", ".") for n in NUM_RE.findall(text)}
-        for n in src["numbers"]:
-            if n.replace(",", ".") not in found:
-                problems.append(f"params.{key}: число {n} не найдено в тексте и цитате {own}")
+        missing = [n for n in src["numbers"] if n.replace(",", ".") not in found]
+        for n in missing:
+            problems.append(f"params.{key}: число {n} не найдено в тексте и цитате {own}")
+        value = spec.params[key]
+        if len(src["numbers"]) == 1 and not missing:
+            # одно число источника: значение = число × factor (пересчёт единиц), иначе источник не подтверждает значение
+            factor = src.get("factor", 1.0)
+            try:
+                expected = float(src["numbers"][0].replace(",", ".")) * float(factor)
+            except (TypeError, ValueError):
+                problems.append(f"params.{key}: factor {factor!r} — не число")
+                continue
+            if isinstance(value, bool) or not isinstance(value, (int, float)) or \
+                    not math.isclose(float(value), expected, rel_tol=1e-6):
+                problems.append(f"params.{key} = {value!r}, а источник даёт {src['numbers'][0]} × factor {factor:g} "
+                                f"= {expected:g}; укажите factor пересчёта единиц или исправьте значение")
+            src["arithmetic_checked"] = True
+        elif len(src["numbers"]) > 1:
+            src["arithmetic_checked"] = False      # производная величина: арифметику код не проверяет — помечено
     return problems
 
 

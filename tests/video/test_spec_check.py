@@ -150,3 +150,39 @@ def test_source_language(layer):
     by_id = {n.id: n for n in layer.nodes}
     assert source_language(by_id[NODE_ID]) == "ru"
     assert source_language(by_id["video_spec_fixture.en_quote"]) == "en"
+
+
+# ---------------------------------------------------------------- значение параметра и число источника
+
+from pipeline.video.spec_check import param_source_problems  # noqa: E402
+
+CFG_D = {"params": {"hole_diameter_m": {"kind": "physical"}, "scale": {"kind": "physical"}}}
+
+
+def _with_claim(node, text):
+    claim = node.claims[0].model_copy(update={"text": text})
+    return node.model_copy(update={"claims": [claim]})
+
+
+def _spec_with(params, sources):
+    s = _scene()
+    s.params = params
+    s.ext = {"video": {"param_sources": sources}}
+    return s
+
+
+def test_unit_conversion_with_factor(node):
+    n = _with_claim(node, "Диаметр ствола 215,9 мм.")
+    src = {"claim_ids": [CLAIM], "numbers": ["215,9"], "derivation": "мм → м"}
+    assert param_source_problems(_spec_with({"hole_diameter_m": 0.2159}, {"hole_diameter_m": {**src, "factor": 0.001}}),
+                                 n, CFG_D) == []
+    probs = param_source_problems(_spec_with({"hole_diameter_m": 0.2159}, {"hole_diameter_m": src}), n, CFG_D)
+    assert any("factor" in p for p in probs)                       # без множителя 215,9 ≠ 0,2159
+
+
+def test_derived_from_several_numbers_is_marked_unchecked(node):
+    n = _with_claim(node, "Дебит 100, вязкость 2, проницаемость 50.")
+    spec = _spec_with({"scale": 0.3}, {"scale": {"claim_ids": [CLAIM], "numbers": ["100", "2", "50"],
+                                                 "derivation": "A = q·μ/(4π·k·h)"}})
+    assert param_source_problems(spec, n, CFG_D) == []
+    assert spec.ext["video"]["param_sources"]["scale"]["arithmetic_checked"] is False

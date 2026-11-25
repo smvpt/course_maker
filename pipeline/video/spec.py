@@ -47,6 +47,7 @@ class ParamSource(BaseModel):
     claim_ids: list[str]
     numbers: list[str]
     derivation: str
+    factor: float = 1.0          # при одном числе: значение = число × factor (пересчёт единиц)
 
 
 class SceneDraft(BaseModel):
@@ -147,6 +148,9 @@ def _template_problems(scene: SceneSpec, script: Script, node: Node, cfg: dict |
     if scene.template == "T3":
         from pipeline.video import t3_template
         problems += t3_template.check(scene, script, cfg)
+    if scene.template == "T4":
+        from pipeline.video import t4_template
+        problems += t4_template.check(scene, script, cfg)
     return problems
 
 

@@ -113,23 +113,64 @@ def term_report(phrases: list[tuple[str, str]], hyp: list[str], terms: list[str]
     return {"terms_in_script": used, "occurrences": occurrences, "not_recognized": bad, "ok": not bad}
 
 
-def sync_report(tts: list[tuple[float, str]], asr: list[tuple[float, str]], limit_s: float = SYNC_LIMIT_S) -> dict:
-    """Рассинхрон: для совпавших слов — начало по распознаванию минус начало по меткам TTS (в ролике)."""
-    def flat(words):
+SNAP_REASON = ("начало первого слова сегмента распознавание поставило в тишину перед ним (после конца "
+               "предыдущего слова по меткам TTS) — звука там нет; конец слова совпал")
+
+
+def sync_report(tts: list[tuple], asr: list[tuple], limit_s: float = SYNC_LIMIT_S) -> dict:
+    """Рассинхрон слов: распознавание готового ролика против меток TTS в таймлайне.
+
+    tts — (начало, конец, слово); asr — (начало, конец, слово[, первое_в_сегменте]).
+    По каждому совпавшему слову проверяются обе границы:
+      обе в пределах порога — синхронно; обе за порогом — рассинхрон (ok = False);
+      одна за порогом — метки неоднозначны: «не проверено» (ok = None), кроме одного обоснованного исключения —
+      первое слово сегмента, начало распознано раньше, внутри тишины после предыдущего слова, конец совпал
+      (известная особенность меток Whisper). Каждое исключение записывается с обоснованием.
+    ok = True — только если все слова синхронны или подпадают под исключение.
+    """
+    def flat_tts(words):
         out = []
-        for t, w in words:
-            out += [(t, x) for x in normalize_words(w)]
+        for t0, t1, w in words:
+            out += [(t0, t1, x) for x in normalize_words(w)]
         return out
-    a, b = flat(tts), flat(asr)
-    ops = _align([w for _, w in a], [w for _, w in b])
-    diffs = [b[j][0] - a[i][0] for kind, i, j in ops if kind == "ok"]
-    absd = [abs(x) for x in diffs]
-    if not absd:
-        return {"matched_words": 0, "ok": False, "limit_s": limit_s,
-                "note": "ни одно слово распознавания не совпало со словами сценария"}
-    return {"matched_words": len(absd), "median_abs_s": round(statistics.median(absd), 3),
-            "p95_abs_s": round(float(np.percentile(absd, 95)), 3), "max_abs_s": round(max(absd), 3),
-            "mean_signed_s": round(statistics.mean(diffs), 3), "limit_s": limit_s, "ok": max(absd) <= limit_s}
+
+    def flat_asr(words):
+        out = []
+        for item in words:
+            t0, t1, w = item[:3]
+            first = bool(item[3]) if len(item) > 3 else False
+            for k, x in enumerate(normalize_words(w)):
+                out.append((t0, t1, x, first and k == 0))
+        return out
+
+    a, b = flat_tts(tts), flat_asr(asr)
+    ops = _align([w for _, _, w in a], [w[2] for w in b])
+    pairs = [(i, j) for kind, i, j in ops if kind == "ok"]
+    if not pairs:
+        return {"matched_words": 0, "ok": None, "status": "не проверено", "limit_s": limit_s,
+                "note": "ни одно слово распознавания не совпало со словами сценария — синхрон не измерен"}
+    desync, uncertain, exceptions, worst = [], [], [], []
+    for i, j in pairs:
+        ds, de = b[j][0] - a[i][0], b[j][1] - a[i][1]
+        rec = {"word": a[i][2], "tts_start": round(a[i][0], 3), "start_diff": round(ds, 3), "end_diff": round(de, 3)}
+        s_bad, e_bad = abs(ds) > limit_s, abs(de) > limit_s
+        if s_bad and e_bad:
+            desync.append(rec)
+        elif s_bad or e_bad:
+            prev_end = a[i - 1][1] if i > 0 else 0.0
+            snapped = (b[j][3] and not e_bad and ds < -limit_s and b[j][0] >= prev_end - limit_s)
+            if snapped:
+                exceptions.append({**rec, "reason": SNAP_REASON})
+                worst.append(abs(de))
+                continue
+            uncertain.append(rec)
+        worst.append(max(abs(ds), abs(de)))
+    ok = False if desync else (None if uncertain else True)
+    return {"matched_words": len(pairs), "measure": "по слову — обе границы (начало и конец)",
+            "median_abs_s": round(statistics.median(worst), 3), "p95_abs_s": round(float(np.percentile(worst, 95)), 3),
+            "max_abs_s": round(max(worst), 3), "desynced_words": desync, "uncertain_words": uncertain,
+            "boundary_exceptions": exceptions, "limit_s": limit_s, "ok": ok,
+            "status": "не проверено" if ok is None else "проверено автоматически"}
 
 
 def transcribe(audio_16k: np.ndarray, model_name: str = DEFAULT_MODEL, language: str = "ru") -> dict:
@@ -148,9 +189,9 @@ def transcribe(audio_16k: np.ndarray, model_name: str = DEFAULT_MODEL, language:
     words, text = [], []
     for seg in segments:
         text.append(seg.text)
-        for w in seg.words or []:
+        for k, w in enumerate(seg.words or []):
             words.append({"start": round(float(w.start), 3), "end": round(float(w.end), 3), "word": w.word.strip(),
-                          "probability": round(float(w.probability), 3)})
+                          "probability": round(float(w.probability), 3), "segment_start": k == 0})
     return {"engine": "faster-whisper", "version": faster_whisper.__version__, "model": model_name,
             "language": info.language, "language_probability": round(float(info.language_probability), 3),
             "text": " ".join(t.strip() for t in text), "words": words}
