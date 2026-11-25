@@ -35,6 +35,8 @@ def test_extract_numbers(text, expected):
     ("полтора метра", [1.5]),
     ("сто суток и тридцать лет", [100, 30]),
     ("десять миллионов", [10_000_000]),
+    ("одна из причин и двадцать один метр", [21]),
+    ("одна тысяча", [1000]),
 ])
 def test_words_to_numbers(text, expected):
     assert words_to_numbers(text) == pytest.approx(expected)

@@ -56,14 +56,17 @@ def check_quote_md(md_path, page, quote):
 
 def chapter_md(chapter_id):
     """Путь к md главы — из out/<ch>/units.json (поле source, пишет ingest П1)."""
-    units = ROOT / "out" / chapter_id / "units.json"
+    return md_from_units(ROOT / "out" / chapter_id / "units.json")
+
+
+def md_from_units(units):
     if not units.exists():
-        raise FileNotFoundError(f"{units} не найден: сначала ingest --ch {chapter_id}")
+        raise FileNotFoundError(f"{units} не найден: сначала ingest этой главы")
     src = Path(json.loads(units.read_text(encoding="utf-8"))["source"])
     if not src.is_absolute():
         src = ROOT / src
     if not src.exists():
-        raise FileNotFoundError(f"md главы {chapter_id} не найден: {src}")
+        raise FileNotFoundError(f"md главы из {units} не найден: {src}")
     return src
 
 

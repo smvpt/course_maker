@@ -101,19 +101,22 @@ def words_to_numbers(text):
     total = cur = 0.0
     active = False
     int_part = None
+    lone_one = False   # «одна из причин» — не число; «один метр» тоже пропускаем
 
     def flush():
-        nonlocal total, cur, active, int_part
+        nonlocal total, cur, active, int_part, lone_one
         if int_part is not None:
             out.append(int_part)       # «целых» без дробной части
-        elif active:
+        elif active and not lone_one:
             out.append(total + cur)
         total = cur = 0.0
         active = False
         int_part = None
+        lone_one = False
 
     for w in _TOKEN.findall(text.lower().replace("ё", "е")):
         if w in _W:
+            lone_one = (not active) and _W[w] == 1
             cur += _W[w]
             active = True
         elif w in _HALF:
@@ -122,6 +125,7 @@ def words_to_numbers(text):
         elif active and _mult(w):
             total += (cur or 1) * _mult(w)
             cur = 0.0
+            lone_one = False
         elif not active and _mult(w) and int_part is None:
             total, active = _mult(w), True
         elif active and w in _INT_MARK:
