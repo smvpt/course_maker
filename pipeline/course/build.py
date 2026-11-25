@@ -428,30 +428,77 @@ def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path
     }
 
 
+def video_dirs(ch_dir: Path, node_id: str) -> list[tuple[str, str, Path]]:
+    """[(формат, video_id, каталог)] роликов узла: videos/<узел>.short, videos/<узел>.long (так пишет П4),
+    затем старый videos/<узел>/ как запасной."""
+    found = []
+    for fmt in ("short", "long"):
+        d = ch_dir / "videos" / f"{node_id}.{fmt}"
+        if d.is_dir():
+            found.append((fmt, f"{node_id}.{fmt}", d))
+    legacy = ch_dir / "videos" / node_id
+    if legacy.is_dir():
+        found.append(("legacy", node_id, legacy))
+    return found
+
+
+def _mp4(vid: str, d: Path) -> Path | None:
+    exact = d / f"{vid}.mp4"
+    if exact.exists():
+        return exact
+    others = sorted(d.glob("*.mp4"))
+    return others[0] if others else None
+
+
+def _has_video(ch_dir: Path, node_id: str) -> bool:
+    return any(_mp4(vid, d) for _, vid, d in video_dirs(ch_dir, node_id))
+
+
+def _player(vid: str, d: Path, mp4: Path, course: Path) -> dict:
+    dst = course / "media" / vid
+    dst.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(mp4, dst / mp4.name)
+    vtt = d / f"{vid}.vtt"
+    if not vtt.exists():
+        others = sorted(d.glob("*.vtt"))
+        vtt = others[0] if others else None
+    if vtt is not None:
+        shutil.copy2(vtt, dst / vtt.name)
+    return {"src": f"media/{vid}/{mp4.name}", "vtt": f"media/{vid}/{vtt.name}" if vtt else None, "passport": _passport(vid, d, course)}
+
+
+def _passport(vid: str, d: Path, course: Path) -> str | None:
+    src = d / "passport.json"
+    if not src.exists():
+        return None
+    dst = course / "media" / vid / "passport.json"
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(src, dst)
+    return f"media/{vid}/passport.json"
+
+
 def video_view(node: Node, inp: dict, course: Path, ch_dir: Path) -> dict | None:
+    """Ролик узла. short — основной плеер, long — второй плеер «подробнее»; только long — он основной.
+    Каталог без mp4 (одна спецификация) — не ролик: ссылка на паспорт, если маршрутизация просила видео."""
+    dirs = video_dirs(ch_dir, node.id)
+    players = {}
+    for fmt, vid, d in dirs:
+        mp4 = _mp4(vid, d)
+        if mp4:
+            players[fmt] = _player(vid, d, mp4, course)
+    if players:
+        main_fmt = next(f for f in ("short", "long", "legacy") if f in players)
+        main = players[main_fmt]
+        more = players["long"] if main_fmt == "short" and "long" in players else None
+        return {"kind": "video", **main, "more": more}
     route = inp["routes"].get(node.id)
-    vdir = ch_dir / "videos" / node.id
-    mp4s = sorted(vdir.glob("*.mp4")) if vdir.exists() else []
-    if mp4s:
-        dst = course / "media" / node.id
-        dst.mkdir(parents=True, exist_ok=True)
-        files = []
-        for f in mp4s + sorted(vdir.glob("*.vtt")):
-            shutil.copy2(f, dst / f.name)
-            files.append(f.name)
-        mp4 = mp4s[0].name
-        vtt = next((f for f in files if f.endswith(".vtt")), None)
-        return {"kind": "video", "src": f"media/{node.id}/{mp4}",
-                "vtt": f"media/{node.id}/{vtt}" if vtt else None}
     wants_video = route is not None and (route.format in VIDEO_FORMATS or route.secondary_format in VIDEO_FORMATS)
     if not wants_video:
         return None
-    passport = vdir / "passport.json"
-    if passport.exists():
-        dst = course / "media" / node.id / "passport.json"
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(passport, dst)
-        return {"kind": "pending", "passport": f"media/{node.id}/passport.json"}
+    for _, vid, d in dirs:
+        link = _passport(vid, d, course)
+        if link:
+            return {"kind": "pending", "passport": link}
     return None                                    # нет ни ролика, ни паспорта: блок не показываем
 
 
@@ -580,11 +627,6 @@ def make_env() -> Environment:
 def chapter_title(layer: Layer) -> str:
     """Человеческое название — layer.ext["core"]["title"] (поле поставляет П1); id главы — только запасной вариант."""
     return layer.ext.get("core", {}).get("title") or layer.chapter
-
-
-def _has_video(ch_dir: Path, node_id: str) -> bool:
-    vdir = ch_dir / "videos" / node_id
-    return vdir.exists() and any(vdir.glob("*.mp4"))
 
 
 def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,

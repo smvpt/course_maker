@@ -192,7 +192,7 @@
   function initInteractive(d) {
     var P = d.palette, S = d.slider, Y = d.y, X = d.x, T = d.template;
     var svg = document.getElementById("inter-chart"), slider = document.getElementById("inter-slider"), out = document.getElementById("inter-readout");
-    var W = 400, FS = 18, LH = 25, pl = 74, pr = T === "growth" ? 296 : 384, n = S.values.length;
+    var W = 400, FS = 18, LH = 25, pl = 74, pr = T === "growth" ? 296 : 372, n = S.values.length;      // правый край с запасом: подпись последней отметки (напр. «1940») не должна уходить за рисунок
     function lab(o) { return o.unit ? o.label + ", " + o.unit : o.label; }
     var hlo, hhi, vlo, vhi, hlab, vlab, depth = T === "profile";
     if (T === "profile") {

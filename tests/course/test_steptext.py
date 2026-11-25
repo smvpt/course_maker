@@ -194,3 +194,30 @@ def test_quote_language_detects_english_and_russian():
         for c in n.claims:
             c.quote = "the resistivity of the oil bearing formation exceeds that of the water saturated one"
     assert steptext.quote_language(layer) == "en"
+
+
+def _walk(obj):
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            yield k, v
+            yield from _walk(v)
+    elif isinstance(obj, list):
+        for v in obj:
+            yield from _walk(v)
+
+
+def test_node_hash_and_prompt_json_do_not_depend_on_none_valued_fields():
+    """П1 меняет контракт (поля, которые при None не пишутся): хэш и JSON узла не должны от этого плыть, иначе всё пересоздаётся."""
+    node = _node(_layer(), PORO)
+    d = steptext.node_dict(node)
+    assert not [k for k, v in _walk(d) if v is None] and "ext" not in {k for k, _ in _walk(d)}
+    h = node_hash(node)
+    import pipeline.course.steptext as st
+    orig = st.Node.model_dump
+    try:                                              # контракт «вырос»: в дамп попал лишний ключ со значением None
+        st.Node.model_dump = lambda self, **kw: {**orig(self, **kw), "new_optional_field": None}
+        assert node_hash(node) == h
+    finally:
+        st.Node.model_dump = orig
+    node.layers.main.text += " Ещё одно слово."
+    assert node_hash(node) != h                       # а настоящее изменение узла хэш меняет

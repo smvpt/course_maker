@@ -473,3 +473,72 @@ def test_script_has_slider_guess_and_stepper_logic():
         assert needle in js, needle
     assert 'createElementNS("http://www.w3.org/2000/svg", tag)' in js and "SVGNS" not in js     # var ниже вызова initStep был бы undefined
     assert "eval(" not in js and "new Function" not in js                             # JS ничего не вычисляет по формулам
+
+
+# ---------------------------------------------------------------- общий шаблон «один слайдер → значение и кривая»
+
+def _dep_spec(**kw):
+    base = dict(x_name="", x_label="", expression="rho_oil / rho_water", slider_label="Сопротивление нефтенасыщенного пласта", slider_unit="Ом·м")
+    base.update(kw)
+    return _spec(**base)
+
+
+def test_dependence_template_for_a_one_variable_formula():
+    errors, d = _compute(_dep_spec(), "dependence")
+    assert errors == [] and d["template"] == "dependence" and d["x"] is None
+    assert len(d["slider"]["values"]) == 121 and d["series"] == [pytest.approx(v / 5, rel=1e-5) for v in d["slider"]["values"]]
+    assert d["slider"]["label"] == "Сопротивление нефтенасыщенного пласта" and d["slider"]["unit"] == "Ом·м"
+    assert "dependence" in I.TEMPLATE_HINT and "любая переменная" in I.TEMPLATE_HINT["dependence"]
+
+
+def test_dependence_needs_no_second_variable_but_still_checks_everything_else():
+    errors, _ = _compute(_dep_spec(constants={"rho_water": 41}), "dependence")
+    assert any("rho_water=41" in e for e in errors)
+    errors, _ = _compute(_dep_spec(expression="rho_water * rho_oil ** rho_oil ** rho_oil"), "dependence")
+    assert any("не вычисляется" in e for e in errors)
+    errors, _ = _compute(_dep_spec(expression="rho_water * rho_oil / rho_oil"), "dependence")
+    assert any("горизонтальная линия" in e for e in errors)
+
+
+def test_primary_template_not_feasible_falls_back_to_dependence_once(monkeypatch):
+    calls = []
+
+    def fake(**kw):
+        calls.append(kw["vars"]["template"])
+        return I.InteractiveSpec(feasible=False) if len(calls) == 1 else _dep_spec()
+    monkeypatch.setattr(I, "complete_json", fake)
+    out = I.make_interactive(_node(_layer()), "distribution", CURVES, "ru")
+    assert out["data"]["template"] == "dependence" and len(calls) == 2
+    assert calls[0].startswith("distribution") and calls[1].startswith("dependence")
+
+
+def test_not_feasible_for_both_templates_stays_not_feasible(monkeypatch):
+    calls = []
+    monkeypatch.setattr(I, "complete_json", lambda **kw: calls.append(1) or I.InteractiveSpec(feasible=False))
+    with pytest.raises(NotFeasible, match="distribution.*dependence|dependence"):
+        I.make_interactive(_node(_layer()), "profile", CURVES, "ru")
+    assert len(calls) == 2
+    calls.clear()
+    with pytest.raises(NotFeasible):
+        I.make_interactive(_node(_layer()), "dependence", CURVES, "ru")
+    assert len(calls) == 1                                          # у самого общего шаблона запасного нет
+
+
+def test_invalid_spec_does_not_trigger_the_fallback_template(monkeypatch):
+    calls = []
+    monkeypatch.setattr(I, "complete_json", lambda **kw: calls.append(kw["vars"]["template"]) or _spec(constants={"rho_water": 41}))
+    with pytest.raises(GenerationFailed):
+        I.make_interactive(_node(_layer()), "distribution", CURVES, "ru")
+    assert len(calls) == 3 and all(c.startswith("distribution") for c in calls)
+
+
+def test_course_page_uses_the_dependence_template_after_fallback(tmp_path, monkeypatch):
+    layer = _layer()
+    out = _out(tmp_path, layer)
+    _models(monkeypatch, layer)
+    seq = []
+    monkeypatch.setattr(I, "complete_json", lambda **kw: seq.append(1) or (I.InteractiveSpec(feasible=False) if len(seq) == 1 else _dep_spec()))
+    course = build("mini_test", out_root=out, pages_dir=tmp_path / "pages", generate=True, extras=True)
+    html = _html(course, RES)
+    assert 'data-template="dependence"' in html and 'id="b-interactive"' in html and 'min="0" max="120"' in html
+    assert [w for w in _report(course)["warnings"] if w["code"].startswith("interactive")] == []

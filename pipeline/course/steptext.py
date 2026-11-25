@@ -13,7 +13,6 @@ from __future__ import annotations
 import hashlib
 import json
 import re
-import time
 from pathlib import Path
 from typing import Literal, Optional
 
@@ -167,15 +166,16 @@ def source_text(node: Node) -> str:
 
 
 def _no_ext(obj):
+    """Без служебных ext и без None: отсутствие поля и поле со значением None — одно и то же (П1 меняет контракт)."""
     if isinstance(obj, dict):
-        return {k: _no_ext(v) for k, v in obj.items() if k != "ext"}
+        return {k: _no_ext(v) for k, v in obj.items() if k != "ext" and v is not None}
     if isinstance(obj, list):
         return [_no_ext(v) for v in obj]
     return obj
 
 
 def node_dict(node: Node) -> dict:
-    """Узел без служебных ext (в том числе вложенных): то, что видит модель и что попадает в хэш."""
+    """Узел без служебных ext (в том числе вложенных) и без None: то, что видит модель и что попадает в хэш."""
     return _no_ext(node.model_dump(mode="json", by_alias=True))
 
 
@@ -268,19 +268,15 @@ def validate_node(node: Node, paras: list[Para]) -> list[str]:
 
 # ---------------------------------------------------------------- вызов модели
 
-PAUSES = (2, 5, 10)                                   # секунды перед повтором временной ошибки
 TRANSIENT_STATUS = {408, 425, 429, 500, 502, 503, 504, 529}
 TRANSIENT_NAMES = {"Timeout", "APITimeoutError", "APIConnectionError", "RateLimitError", "ServiceUnavailableError",
                    "InternalServerError", "BadGatewayError", "TimeoutError", "ConnectionError"}
 AUTH_NAMES = {"AuthenticationError", "PermissionDeniedError"}
 
 
-def _pause(seconds: float) -> None:
-    time.sleep(seconds)
-
-
 def classify(e: Exception) -> str:
-    """auth | transient | other. llm.py (зона П1) сам не повторяет запросы и типы ошибок litellm не оборачивает."""
+    """auth | transient | other. Повторы временных ошибок делает llm.py (зона П1: паузы, запасные модели); сюда временная
+    ошибка доходит только когда они исчерпаны (llm.py оборачивает это в ProviderUnavailable), поэтому здесь это отказ узла."""
     names = {c.__name__ for c in type(e).__mro__}
     status = getattr(e, "status_code", None)
     if status in (401, 403) or names & AUTH_NAMES or "LLM_API_KEY" in str(e):
@@ -298,19 +294,15 @@ def brief(e: Exception, limit: int = 300) -> str:
 
 def call_llm(**kw):
     from pipeline.llm import complete_json as impl   # точка входа в LLM — только pipeline.llm (CLAUDE.md §2)
-    for attempt in range(len(PAUSES) + 1):
-        try:
-            return impl(**kw)
-        except (KeyError, TypeError, FileNotFoundError):
-            raise        # нет промпта, не хватает переменной: это наша ошибка, не отказ модели — падаем громко
-        except Exception as e:
-            kind = classify(e)
-            if kind == "auth":
-                raise LlmAuthError(brief(e)) from e
-            if kind == "transient" and attempt < len(PAUSES):
-                _pause(PAUSES[attempt])
-                continue
-            raise LlmError(brief(e)) from e
+    try:
+        return impl(**kw)
+    except (KeyError, TypeError, FileNotFoundError):
+        raise        # нет промпта, не хватает переменной: это наша ошибка, не отказ модели — падаем громко
+    except Exception as e:
+        # Своих повторов нет: llm.py уже повторял запрос и пробовал запасные модели. Что дошло сюда — отказ узла или слота.
+        if classify(e) == "auth":
+            raise LlmAuthError(brief(e)) from e
+        raise LlmError(brief(e)) from e
 
 
 def complete_json(**kw):

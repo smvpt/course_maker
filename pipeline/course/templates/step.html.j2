@@ -302,6 +302,16 @@
   <video controls preload="metadata" src="{{ v.media.src }}">
     {% if v.media.vtt %}<track kind="subtitles" srclang="ru" label="Русские субтитры" src="{{ v.media.vtt }}" default>{% endif %}
   </video>
+  {% if v.media.passport %}<p class="muted">Как сделан ролик: <a href="{{ v.media.passport }}">паспорт ролика</a>.</p>{% endif %}
+  {% if v.media.more %}
+  <p class="more-title"><strong>Подробнее: длинный разбор</strong></p>
+  {% call fold("длинный разбор") %}
+  <video controls preload="none" src="{{ v.media.more.src }}">
+    {% if v.media.more.vtt %}<track kind="subtitles" srclang="ru" label="Русские субтитры" src="{{ v.media.more.vtt }}" default>{% endif %}
+  </video>
+  {% if v.media.more.passport %}<p class="muted">Как сделан ролик: <a href="{{ v.media.more.passport }}">паспорт ролика</a>.</p>{% endif %}
+  {% endcall %}
+  {% endif %}
   {% else %}
   <p class="muted">Ролик по этому шагу не собран{% if v.media.passport %}; спецификация сцены — в <a href="{{ v.media.passport }}">паспорте ролика</a>{% endif %}.</p>
   {% endif %}
