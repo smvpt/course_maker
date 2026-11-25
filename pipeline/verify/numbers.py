@@ -152,9 +152,18 @@ def _same(a, b):
     return math.isclose(a, b, rel_tol=1e-6, abs_tol=1e-12)
 
 
+_EN_THOUSANDS = re.compile(r"(?<![\w.,])\d{1,3}(?:,\d{3})+(?![\d,]|\.\d)")
+
+
+def source_numbers(text):
+    """Числа источника: как extract_numbers, плюс английская группировка «1,200» = 1200
+    (глава может быть на английском, а курс пишет числа по-русски)."""
+    return extract_numbers(text) + [float(m.group(0).replace(",", "")) for m in _EN_THOUSANDS.finditer(text)]
+
+
 def missing_numbers(text, source_texts):
     """Числа из text, которых нет ни в одном из source_texts (исходные единицы узла)."""
-    src = [v for s in source_texts for v in extract_numbers(s)]
+    src = [v for s in source_texts for v in source_numbers(s)]
     missing = []
     for v in extract_numbers(text):
         if not any(_same(v, s) for s in src) and not any(_same(v, m) for m in missing):
