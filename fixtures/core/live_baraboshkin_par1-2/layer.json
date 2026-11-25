@@ -80,7 +80,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.deltas_overview#c1",
@@ -95,7 +96,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.deltas_overview#c2",
@@ -110,7 +112,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.deltas_overview#c3",
@@ -125,7 +128,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.deltas_overview#c4",
@@ -140,7 +144,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.deltas_overview#c5",
@@ -274,7 +279,9 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "Обычно различают следующие фации дельт: протоковые; прирусловых валов; межпротоковых понижений; заливов и лагун; авандельт — бары, косы, западинные, торфяные, водорослевые и горючесланцевые."
             }
           },
           "id": "baraboshkin_par1-2.delta_facies_general#c1",
@@ -289,7 +296,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.delta_facies_general#c2",
@@ -304,7 +312,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.delta_facies_general#c3",
@@ -319,7 +328,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.delta_facies_general#c4",
@@ -445,7 +455,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.delta_classification#c1",
@@ -460,7 +471,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.delta_classification#c2",
@@ -475,7 +487,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.delta_classification#c3",
@@ -490,7 +503,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.delta_classification#c4",
@@ -505,7 +519,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.delta_classification#c5",
@@ -644,7 +659,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.fluvial_deltas_overview#c1",
@@ -659,7 +675,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.fluvial_deltas_overview#c2",
@@ -674,7 +691,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.fluvial_deltas_overview#c3",
@@ -689,7 +707,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.fluvial_deltas_overview#c4",
@@ -840,7 +859,9 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "Ассоциации дельтовой равнины волновых дельт включают песчаники флювиальных русловых каналов и отложения внутридельтовых заливов, близкие равнинам флювиальных дельт, поскольку преимущественно волновые дельты характеризуются пляжево-баровыми побережьями, защищающими дельтовую равнину от сильных штормов."
             }
           },
           "id": "baraboshkin_par1-2.wave_dominated_deltas#c1",
@@ -848,14 +869,15 @@
           "kind": "observation",
           "page_pdf": 40,
           "page_print": null,
-          "quote": "Ассоциации дельтовой равнины волновых дельт (Рис. 1.23) включают песчаники флювиальных русловых каналов и отложения внутридельтовых заливов, близкие равнинам флювиальных дельт, поскольку преимущественно волновые дельты характеризуются пляжево-баровыми побережьями, защищающими дельтовую равнину от сильных штормов.",
+          "quote": "Ассоциации дельтовой равнины волновых дельт** (Рис. 1.23) включают песчаники флювиальных русловых каналов и отложения внутридельтовых заливов, близкие равнинам флювиальных дельт, поскольку преимущественно волновые дельты характеризуются пляжево-баровыми побережьями, защищающими дельтовую равнину от сильных штормов.",
           "source_kind": "text",
           "by_model": false
         },
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.wave_dominated_deltas#c2",
@@ -870,7 +892,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.wave_dominated_deltas#c3",
@@ -885,7 +908,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.wave_dominated_deltas#c4",
@@ -900,7 +924,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.wave_dominated_deltas#c5",
@@ -915,7 +940,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.wave_dominated_deltas#c6",
@@ -930,7 +956,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.wave_dominated_deltas#c7",
@@ -945,7 +972,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.wave_dominated_deltas#c8",
@@ -960,7 +988,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.wave_dominated_deltas#c9",
@@ -975,7 +1004,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.wave_dominated_deltas#c10",
@@ -1122,7 +1152,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.tide_dominated_deltas#c1",
@@ -1137,7 +1168,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.tide_dominated_deltas#c2",
@@ -1152,7 +1184,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.tide_dominated_deltas#c3",
@@ -1167,7 +1200,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.tide_dominated_deltas#c4",
@@ -1182,7 +1216,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.tide_dominated_deltas#c5",
@@ -1197,7 +1232,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.tide_dominated_deltas#c6",
@@ -1212,7 +1248,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.tide_dominated_deltas#c7",
@@ -1227,7 +1264,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.tide_dominated_deltas#c8",
@@ -1242,7 +1280,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.tide_dominated_deltas#c9",
@@ -1257,7 +1296,8 @@
         {
           "ext": {
             "core": {
-              "quote_verified": true
+              "quote_verified": true,
+              "quote_match": "exact"
             }
           },
           "id": "baraboshkin_par1-2.tide_dominated_deltas#c10",

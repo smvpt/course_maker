@@ -171,3 +171,45 @@ def test_quote_search():
     pages_from_units = quotes.unit_pages([m.Unit(unit_id="p040.01", kind="paragraph", page_pdf=40,
                                                  text="фацию пляжа")])
     assert quotes.find(pages_from_units, "фацию пляжа", 40) == 40
+
+
+def test_hyphenated_line_break_is_a_line_break():
+    """«переносы» из правила организаторов: пере-\nнос слова — тот же текст."""
+    assert quotes.find({5: "давление в пла-\nсте падает"}, "давление в пласте падает", 5) == 5
+
+
+def test_recover_exact_text_from_md():
+    """Модель записала формулу словами — из md берётся дословный отрывок между якорями."""
+    page = "Здесь коэффициент пьезопроводности $\\varkappa$ равен отношению проницаемости к вязкости и сжимаемости."
+    q = "коэффициент пьезопроводности каппа равен отношению проницаемости к вязкости"
+    exact = quotes.recover(page, q)
+    assert exact == "коэффициент пьезопроводности $\\varkappa$ равен отношению проницаемости к вязкости"
+    assert quotes.find({1: page}, exact, 1) == 1
+    assert quotes.recover(page, "совсем другой текст про бурение скважин долотом") is None
+
+
+def test_claim_quote_fixed_without_llm_via_verify(fake_llm, monkeypatch):
+    """Строгая сверка не нашла, сверка П2 нашла → цитата заменена дословным текстом md, quote_fix не зовётся."""
+    import pipeline.verify.quotes as vq
+    calls = []
+    monkeypatch.setattr(vq, "check_quote_md", lambda md, page, quote: calls.append(quote) or
+                        vq.QuoteResult("found", page, 95.0))
+    md = "<!-- page 7 -->\nЗдесь коэффициент $\\varkappa$ равен отношению проницаемости к вязкости и сжимаемости.\n"
+    near = {7: md.split("-->")[1]}
+    got = build.check_claim_quote(near, {}, md_path="x.md", quote="коэффициент каппа равен отношению проницаемости к вязкости",
+                                  page=7)
+    assert got == (7, "коэффициент $\\varkappa$ равен отношению проницаемости к вязкости", "recovered")
+    assert calls
+
+
+def test_fuzzy_match_still_asks_for_exact_quote(monkeypatch):
+    """Сверка П2 нашла лишь похожее — дозапрос quote_fix; дословная цитата от него заменяет похожую."""
+    near = {3: "Пласт сложен песчаниками с прослоями глин мощностью до двух метров."}
+    seq = [(3, "песчаники с глинами до 2 м", "fuzzy"), (3, "песчаниками с прослоями глин", "exact")]
+    monkeypatch.setattr(build, "check_claim_quote", lambda *a: seq.pop(0))
+    asked = []
+    monkeypatch.setattr(build, "complete_json", lambda prompt, vars, schema, tier="default", images=None:
+                        asked.append(prompt) or s.QuoteFix(found=True, quote="песчаниками с прослоями глин", page_pdf=3))
+    claim = build.resolve_claim(s.ClaimDraft(text="т", kind="observation", page_pdf=3, quote="песчаники с глинами до 2 м",
+                                             source_kind="text"), near, {}, "x.md")
+    assert asked == ["core/quote_fix"] and claim == (3, "песчаниками с прослоями глин", "exact")
