@@ -8,6 +8,9 @@
 - prompt — путь в prompts/ без .md; переменные в файле — {{name}} (имя с буквы: {{1}} не трогается).
   Не хватает переменной или передана лишняя — KeyError.
 - Модель — config/llm.yaml по tier; переопределение: LLM_MODEL_<TIER> > LLM_MODEL (.env или окружение).
+- Запасные модели (необязательно): LLM_MODEL_FALLBACK_<TIER> > LLM_MODEL_FALLBACK, через запятую.
+  Лимит в минуту / перегрузка / таймаут — пауза (сколько просит провайдер) и повтор; дневной лимит или
+  повторы кончились — следующая модель списка; кончились все — ProviderUnavailable. Кэш — по основной модели.
 - Кэш cache/llm/<sha256>.json по (модель + итоговый текст промпта + картинки). LLM_OFFLINE=1: промах — OfflineCacheMiss.
 - Каждый вызов (и попадание в кэш) — строка в out/_metrics/llm_calls.jsonl; глава — из переменной CH.
 - complete_json: ответ проверяется pydantic-схемой; при ошибке до json_retries повторов с текстом ошибки, потом LLMJSONError.
@@ -52,6 +55,10 @@ class OfflineCacheMiss(RuntimeError):
 
 
 class LLMJSONError(RuntimeError):
+    pass
+
+
+class ProviderUnavailable(RuntimeError):
     pass
 
 
@@ -130,6 +137,47 @@ def _call(model: str, messages: list[dict], max_tokens: int, params: dict) -> tu
     return text, usage.prompt_tokens, usage.completion_tokens, cost
 
 
+# Перегрузка и лимиты провайдера — временные (имена классов исключений litellm).
+TRANSIENT = {"RateLimitError", "ServiceUnavailableError", "InternalServerError", "BadGatewayError",
+             "Timeout", "APITimeoutError", "APIConnectionError"}
+RETRY_DELAY_RE = re.compile(r'retryDelay\W*(\d+(?:\.\d+)?)s')
+
+
+def fallbacks(tier: str) -> list[str]:
+    raw = os.environ.get(f"LLM_MODEL_FALLBACK_{tier.upper()}") or os.environ.get("LLM_MODEL_FALLBACK") or ""
+    return [m.strip() for m in raw.split(",") if m.strip()]
+
+
+def _call_chain(models: list[str], messages: list[dict], max_tokens: int, params: dict):
+    """Первая модель, которая ответила: (модель, текст, токены входа, выхода, цена litellm)."""
+    cfg = config.llm()
+    retries, base = cfg.get("transient_retries", 4), cfg.get("transient_backoff_s", 5)
+    why = []
+    for model in models:
+        for attempt in range(retries + 1):
+            try:
+                return (model, *_call(model, messages, max_tokens, params))
+            except Exception as e:
+                name, msg = type(e).__name__, str(e)
+                if name not in TRANSIENT:
+                    raise
+                if "PerDay" in msg or "per day" in msg.lower():
+                    why.append(f"{model}: дневной лимит исчерпан")
+                    print(f"[llm] {model}: дневной лимит исчерпан", file=sys.stderr)
+                    break
+                if attempt == retries:
+                    why.append(f"{model}: {name} после {retries} повторов")
+                    break
+                m = RETRY_DELAY_RE.search(msg)
+                wait = min(float(m.group(1)) + 1 if m else base * 2 ** attempt, 300)
+                print(f"[llm] {model}: {name} — повтор {attempt + 1}/{retries} через {wait:.0f} с", file=sys.stderr)
+                time.sleep(wait)
+        if model != models[-1]:
+            print(f"[llm] переход на запасную модель {models[models.index(model) + 1]}", file=sys.stderr)
+    raise ProviderUnavailable("ни одна модель не ответила: " + "; ".join(why) +
+                              ". Подожди, добавь LLM_MODEL_FALLBACK или смени LLM_MODEL (docs/run.md)")
+
+
 # ---------------------------------------------------------------- кэш и лог
 
 def _image_part(path: Path) -> tuple[dict, str]:
@@ -180,7 +228,7 @@ def _run(prompt: str, vars: dict, tier: str, images: Optional[Sequence[Path]],
     cp = _cache_path(key)
     if cp.exists():
         cached = json.loads(cp.read_text(encoding="utf-8"))
-        _log({**row, "cache_hit": True, "tokens_in": cached["tokens_in"], "tokens_out": cached["tokens_out"],
+        _log({**row, "model": cached.get("model", model), "model_requested": model, "cache_hit": True, "tokens_in": cached["tokens_in"], "tokens_out": cached["tokens_out"],
               "money_usd": cached["money_usd"], "attempts": cached["attempts"], "seconds": 0})
         return cached["text"]
     if os.environ.get("LLM_OFFLINE") == "1":
@@ -191,13 +239,15 @@ def _run(prompt: str, vars: dict, tier: str, images: Optional[Sequence[Path]],
     tin = tout = 0
     money: Optional[float] = 0.0
     attempts = 0
+    used = model
+    chain = [model, *[m for m in fallbacks(tier) if m != model]]
     retries = config.llm().get("json_retries", 2) if schema is not None else 0
     last_err = ""
     while attempts <= retries:
         attempts += 1
-        reply, i, o, c = _call(model, messages, t["max_tokens"], t.get("params") or {})
+        used, reply, i, o, c = _call_chain(chain, messages, t["max_tokens"], t.get("params") or {})
         tin, tout = tin + i, tout + o
-        price = _price(model, i, o, c)
+        price = _price(used, i, o, c)
         money = None if (money is None or price is None) else money + price
         if schema is None:
             break
@@ -209,18 +259,19 @@ def _run(prompt: str, vars: dict, tier: str, images: Optional[Sequence[Path]],
             messages = messages + [{"role": "assistant", "content": reply},
                                    {"role": "user", "content": render("core/_json_retry", {"error": last_err})}]
     else:
-        _log({**row, "cache_hit": False, "tokens_in": tin, "tokens_out": tout, "money_usd": money,
-              "attempts": attempts, "seconds": round(time.monotonic() - t0, 1), "error": last_err[:500]})
+        _log({**row, "model": used, "model_requested": model, "cache_hit": False, "tokens_in": tin,
+              "tokens_out": tout, "money_usd": money, "attempts": attempts,
+              "seconds": round(time.monotonic() - t0, 1), "error": last_err[:500]})
         raise LLMJSONError(f"промпт {prompt}: невалидный JSON после {attempts} попыток: {last_err[:1000]}")
 
-    entry = {"text": reply, "model": model, "prompt": prompt, "tokens_in": tin, "tokens_out": tout,
+    entry = {"text": reply, "model": used, "model_requested": model, "prompt": prompt, "tokens_in": tin, "tokens_out": tout,
              "money_usd": money, "attempts": attempts}
     cp.parent.mkdir(parents=True, exist_ok=True)
     tmp = cp.with_suffix(".tmp")
     tmp.write_text(json.dumps(entry, ensure_ascii=False, indent=1), encoding="utf-8")
     tmp.replace(cp)
-    _log({**row, "cache_hit": False, "tokens_in": tin, "tokens_out": tout, "money_usd": money,
-          "attempts": attempts, "seconds": round(time.monotonic() - t0, 1)})
+    _log({**row, "model": used, "model_requested": model, "cache_hit": False, "tokens_in": tin,
+          "tokens_out": tout, "money_usd": money, "attempts": attempts, "seconds": round(time.monotonic() - t0, 1)})
     return reply
 
 

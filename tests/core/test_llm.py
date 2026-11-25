@@ -26,6 +26,8 @@ def env(tmp_path, monkeypatch):
     monkeypatch.delenv("LLM_OFFLINE", raising=False)
     monkeypatch.delenv("LLM_MODEL", raising=False)
     monkeypatch.delenv("LLM_MODEL_DEFAULT", raising=False)
+    monkeypatch.delenv("LLM_MODEL_FALLBACK", raising=False)
+    monkeypatch.delenv("LLM_MODEL_FALLBACK_DEFAULT", raising=False)
     monkeypatch.setenv("CH", "test_ch")
     calls = []
 
@@ -132,3 +134,82 @@ def test_images_go_as_content_parts(env, tmp_path):
     assert parts[1]["image_url"]["url"].startswith("data:image/png;base64,")
     with pytest.raises(FileNotFoundError):
         llm.complete_text("core/t", {"x": 1, "y": 2}, images=[tmp_path / "nope.png"])
+
+
+# --- перегрузка и лимиты провайдера: имена классов как у litellm
+class RateLimitError(Exception):
+    pass
+
+
+class ServiceUnavailableError(Exception):
+    pass
+
+
+class AuthenticationError(Exception):
+    pass
+
+
+DAILY = 'quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier" "retryDelay": "68357s"'
+MINUTE = 'quotaId": "GenerateRequestsPerMinutePerProjectPerModel-FreeTier" "retryDelay": "41s"'
+
+
+def scripted(monkeypatch, script):
+    """script: модель → список (исключение или текст ответа) по очереди."""
+    seen = []
+
+    def fake(model, messages, max_tokens, params):
+        seen.append(model)
+        x = script[model].pop(0)
+        if isinstance(x, Exception):
+            raise x
+        return x, 10, 5, None
+    monkeypatch.setattr(llm, "_call", fake)
+    return seen
+
+
+def test_minute_limit_waits_as_provider_asks(env, monkeypatch):
+    sleeps = []
+    monkeypatch.setattr(llm.time, "sleep", sleeps.append)
+    scripted(monkeypatch, {"anthropic/claude-opus-5-5": [RateLimitError(MINUTE), ServiceUnavailableError("503"), "ok"]})
+    assert llm.complete_text("core/t", {"x": 1, "y": 2}) == "ok"
+    assert sleeps[0] == 42 and len(sleeps) == 2            # retryDelay провайдера + 1 с, потом своя пауза
+
+
+def test_daily_limit_switches_to_fallback_model(env, monkeypatch):
+    tmp, _, _ = env
+    monkeypatch.setenv("LLM_MODEL", "gemini/a")
+    monkeypatch.setenv("LLM_MODEL_FALLBACK", "gemini/b, gemini/c")
+    monkeypatch.setattr(llm.time, "sleep", lambda s: pytest.fail("дневной лимит не ждём"))
+    seen = scripted(monkeypatch, {"gemini/a": [RateLimitError(DAILY)], "gemini/b": [RateLimitError(DAILY)],
+                                  "gemini/c": ["ok"]})
+    assert llm.complete_text("core/t", {"x": 1, "y": 2}) == "ok"
+    assert seen == ["gemini/a", "gemini/b", "gemini/c"]
+    row = log_rows(tmp)[-1]
+    assert row["model"] == "gemini/c" and row["model_requested"] == "gemini/a"
+    # повторный вызов — из кэша, без запроса к провайдеру
+    monkeypatch.setattr(llm, "_call", lambda *a: pytest.fail("должно быть из кэша"))
+    assert llm.complete_text("core/t", {"x": 1, "y": 2}) == "ok"
+
+
+def test_overloaded_model_falls_through_after_retries(env, monkeypatch):
+    monkeypatch.setenv("LLM_MODEL", "gemini/a")
+    monkeypatch.setenv("LLM_MODEL_FALLBACK", "gemini/b")
+    monkeypatch.setattr(llm.time, "sleep", lambda s: None)
+    seen = scripted(monkeypatch, {"gemini/a": [ServiceUnavailableError("503")] * 10, "gemini/b": ["ok"]})
+    assert llm.complete_text("core/t", {"x": 1, "y": 2}) == "ok"
+    assert seen.count("gemini/a") == llm.config.llm()["transient_retries"] + 1
+
+
+def test_all_models_exhausted_is_loud(env, monkeypatch):
+    monkeypatch.setattr(llm.time, "sleep", lambda s: None)
+    scripted(monkeypatch, {"anthropic/claude-opus-5-5": [RateLimitError(DAILY)]})
+    with pytest.raises(llm.ProviderUnavailable, match="дневной лимит"):
+        llm.complete_text("core/t", {"x": 1, "y": 2})
+
+
+def test_permanent_errors_fail_at_once(env, monkeypatch):
+    monkeypatch.setenv("LLM_MODEL_FALLBACK", "gemini/b")
+    monkeypatch.setattr(llm.time, "sleep", lambda s: pytest.fail("не должно ждать"))
+    scripted(monkeypatch, {"anthropic/claude-opus-5-5": [AuthenticationError("bad key")]})
+    with pytest.raises(AuthenticationError):
+        llm.complete_text("core/t", {"x": 1, "y": 2})

@@ -17,7 +17,7 @@ from contracts.models import (ChapterUnits, Claim, Coverage, CoverageRow, Diffic
                               NeedsScan, Node, Unit)
 from pipeline.common import config
 from pipeline.ingest.parse import split_pages
-from pipeline.llm import complete_json, resolve_model
+from pipeline.llm import complete_json, fallbacks, resolve_model
 from pipeline.structure import quotes
 from pipeline.structure.schemas import Assignments, NodeDraft, Plan, PlanNode, QuoteFix
 
@@ -280,6 +280,14 @@ def term_order_issues(nodes: list[Node]) -> list[dict]:
             for n in nodes for t in n.terms_used if first.get(t.lower(), 0) > n.order]
 
 
+def generated_by() -> str:
+    model = resolve_model("strong")[0]
+    extra = [m for m in fallbacks("strong") if m != model]
+    return (f"конвейер «глава → курс», structure, модель {model}"
+            + (f" (запасные при лимитах: {', '.join(extra)}; какая ответила — out/_metrics/llm_calls.jsonl)"
+               if extra else ""))
+
+
 def build(cu: ChapterUnits, md: str, ctx: Context) -> tuple[Layer, Coverage]:
     nodes_plan, reasons, log = plan_stage(cu, ctx)
     units_by_id = {u.unit_id: u for u in cu.units}
@@ -290,7 +298,7 @@ def build(cu: ChapterUnits, md: str, ctx: Context) -> tuple[Layer, Coverage]:
                             enumerate(nodes_plan)))
 
     layer = Layer(chapter=cu.chapter, source=cu.source, pdf_pages=[str(p) for p in cu.pdf_pages],
-                  generated_by=f"конвейер «глава → курс», structure, модель {resolve_model('strong')[0]}",
+                  generated_by=generated_by(),
                   nodes=nodes)
     layer.ext["core"] = {"plan": log, "term_order_issues": term_order_issues(nodes)}
 
