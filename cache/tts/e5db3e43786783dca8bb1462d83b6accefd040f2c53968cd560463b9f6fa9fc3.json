@@ -1,0 +1,86 @@
+{
+  "key": "e5db3e43786783dca8bb1462d83b6accefd040f2c53968cd560463b9f6fa9fc3",
+  "text": "Пунктир — условный порог падения, не край возмущения. Специалист учитывает время после пуска.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 4400000,
+      "text": "Пунктир"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 6500000,
+      "duration": 3800000,
+      "text": "условный"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 10300000,
+      "duration": 2600000,
+      "text": "порог"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 12900000,
+      "duration": 5100000,
+      "text": "падения"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 20200000,
+      "duration": 1000000,
+      "text": "не"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 21200000,
+      "duration": 1900000,
+      "text": "край"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 23100000,
+      "duration": 8000000,
+      "text": "возмущения"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 38000000,
+      "duration": 6000000,
+      "text": "Специалист"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 44000000,
+      "duration": 4200000,
+      "text": "учитывает"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 48200000,
+      "duration": 2800000,
+      "text": "время"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 51000000,
+      "duration": 2900000,
+      "text": "после"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 53900000,
+      "duration": 4200000,
+      "text": "пуска"
+    }
+  ]
+}

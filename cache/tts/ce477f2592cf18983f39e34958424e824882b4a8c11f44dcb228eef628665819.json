@@ -1,0 +1,92 @@
+{
+  "key": "ce477f2592cf18983f39e34958424e824882b4a8c11f44dcb228eef628665819",
+  "text": "Важно: нейтронная кривая сама по себе ещё не даёт окончательного заключения о насыщении.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 4400000,
+      "text": "Важно"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 6500000,
+      "duration": 4800000,
+      "text": "нейтронная"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 11300000,
+      "duration": 2800000,
+      "text": "кривая"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 14100000,
+      "duration": 2900000,
+      "text": "сама"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 17000000,
+      "duration": 800000,
+      "text": "по"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 17800000,
+      "duration": 2400000,
+      "text": "себе"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 20200000,
+      "duration": 1800000,
+      "text": "ещё"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 22000000,
+      "duration": 700000,
+      "text": "не"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 22700000,
+      "duration": 2800000,
+      "text": "даёт"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 25500000,
+      "duration": 5700000,
+      "text": "окончательного"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 31200000,
+      "duration": 5600000,
+      "text": "заключения"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 36800000,
+      "duration": 900000,
+      "text": "о"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 37700000,
+      "duration": 6500000,
+      "text": "насыщении"
+    }
+  ]
+}

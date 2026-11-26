@@ -1,0 +1,50 @@
+{
+  "key": "0c3f1a678b34b52b4b67da7a5367e25fa80da49f575dc5afd73d5876c5125975",
+  "text": "Скважину пустили. Давление меняется везде сразу?",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 5800000,
+      "text": "Скважину"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 6800000,
+      "duration": 6000000,
+      "text": "пустили"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 20100000,
+      "duration": 5200000,
+      "text": "Давление"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 25300000,
+      "duration": 4000000,
+      "text": "меняется"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 29300000,
+      "duration": 2200000,
+      "text": "везде"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 31500000,
+      "duration": 4400000,
+      "text": "сразу"
+    }
+  ]
+}

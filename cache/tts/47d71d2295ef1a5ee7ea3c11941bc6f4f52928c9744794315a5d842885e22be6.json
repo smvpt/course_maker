@@ -1,0 +1,110 @@
+{
+  "key": "47d71d2295ef1a5ee7ea3c11941bc6f4f52928c9744794315a5d842885e22be6",
+  "text": "Каких данных о пластовой воде и пористости не хватает, чтобы перейти от кандидата к оценке насыщения?",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 3700000,
+      "text": "Каких"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 4700000,
+      "duration": 3600000,
+      "text": "данных"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8300000,
+      "duration": 500000,
+      "text": "о"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8800000,
+      "duration": 3600000,
+      "text": "пластовой"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 12400000,
+      "duration": 2500000,
+      "text": "воде"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 14900000,
+      "duration": 500000,
+      "text": "и"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 15400000,
+      "duration": 4500000,
+      "text": "пористости"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 19900000,
+      "duration": 600000,
+      "text": "не"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 20500000,
+      "duration": 4300000,
+      "text": "хватает"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 27200000,
+      "duration": 2300000,
+      "text": "чтобы"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 29500000,
+      "duration": 3600000,
+      "text": "перейти"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 33100000,
+      "duration": 1500000,
+      "text": "от"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 34600000,
+      "duration": 4300000,
+      "text": "кандидата"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 38900000,
+      "duration": 500000,
+      "text": "к"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 39400000,
+      "duration": 3400000,
+      "text": "оценке"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 42800000,
+      "duration": 7400000,
+      "text": "насыщения"
+    }
+  ]
+}

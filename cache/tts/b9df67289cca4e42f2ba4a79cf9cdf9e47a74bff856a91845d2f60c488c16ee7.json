@@ -1,0 +1,92 @@
+{
+  "key": "b9df67289cca4e42f2ba4a79cf9cdf9e47a74bff856a91845d2f60c488c16ee7",
+  "text": "Как при том же времени изменится зона влияния, если пьезопроводность пласта станет больше?",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 2100000,
+      "text": "Как"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 3100000,
+      "duration": 1200000,
+      "text": "при"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 4300000,
+      "duration": 1400000,
+      "text": "том"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 5700000,
+      "duration": 800000,
+      "text": "же"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 6500000,
+      "duration": 3400000,
+      "text": "времени"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 9900000,
+      "duration": 3900000,
+      "text": "изменится"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 13800000,
+      "duration": 2000000,
+      "text": "зона"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 15800000,
+      "duration": 5000000,
+      "text": "влияния"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 22900000,
+      "duration": 2100000,
+      "text": "если"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 25000000,
+      "duration": 6500000,
+      "text": "пьезопроводность"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 31500000,
+      "duration": 3400000,
+      "text": "пласта"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 34900000,
+      "duration": 3100000,
+      "text": "станет"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 38000000,
+      "duration": 4200000,
+      "text": "больше"
+    }
+  ]
+}

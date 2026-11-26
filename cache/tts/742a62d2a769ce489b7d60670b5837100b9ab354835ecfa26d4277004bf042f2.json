@@ -1,0 +1,86 @@
+{
+  "key": "742a62d2a769ce489b7d60670b5837100b9ab354835ecfa26d4277004bf042f2",
+  "text": "Нет. При выбранном постоянном пороге её радиус растёт как корень из времени.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 4900000,
+      "text": "Нет"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 13100000,
+      "duration": 1700000,
+      "text": "При"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 14800000,
+      "duration": 3500000,
+      "text": "выбранном"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 18300000,
+      "duration": 4600000,
+      "text": "постоянном"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 22900000,
+      "duration": 3500000,
+      "text": "пороге"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 26400000,
+      "duration": 1700000,
+      "text": "её"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 28100000,
+      "duration": 3600000,
+      "text": "радиус"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 31700000,
+      "duration": 3600000,
+      "text": "растёт"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 35300000,
+      "duration": 1700000,
+      "text": "как"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 37000000,
+      "duration": 3100000,
+      "text": "корень"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 40100000,
+      "duration": 1400000,
+      "text": "из"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 41500000,
+      "duration": 4600000,
+      "text": "времени"
+    }
+  ]
+}

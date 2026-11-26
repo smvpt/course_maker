@@ -1,0 +1,913 @@
+{
+  "transcription": {
+    "engine": "faster-whisper",
+    "version": "1.2.1",
+    "model": "small",
+    "language": "ru",
+    "language_probability": 1.0,
+    "text": "Скважину пустили. Давление меняется везде сразу. После пуска перераспределяется давление. Но это не резкий фронт, движущийся с постоянной скоростью. Посмотрим на карту пласта и профиль вдоль линии, они рассчитаны для одного момента. Этот процесс описывает пизопроводность. В основе расчета — решение из книги Босниева. Радиус скважины и пизопроводность взяты из примера книги. Падение показано в относительных единицах. Как думаете, пунктирная граница будет удаляться от скважины с постоянной скоростью? Нет. При выбранном постоянном пороге ее радиус растет как корень из времени. Пунктир – условный порог падения, не край возмущения. Специалист учитывает время после пуска. Теперь истинный масштаб скважина меньше точки. Модель предполагает однородный пласт без внешней границы. Как при том же времени изменится зона влияния, если пизопроводность пласта станет больше?",
+    "words": [
+      {
+        "start": 0.0,
+        "end": 0.96,
+        "word": "Скважину",
+        "probability": 0.589,
+        "segment_start": true
+      },
+      {
+        "start": 0.96,
+        "end": 1.46,
+        "word": "пустили.",
+        "probability": 0.831,
+        "segment_start": false
+      },
+      {
+        "start": 2.18,
+        "end": 2.78,
+        "word": "Давление",
+        "probability": 0.942,
+        "segment_start": true
+      },
+      {
+        "start": 2.78,
+        "end": 3.24,
+        "word": "меняется",
+        "probability": 0.994,
+        "segment_start": false
+      },
+      {
+        "start": 3.24,
+        "end": 3.48,
+        "word": "везде",
+        "probability": 0.956,
+        "segment_start": false
+      },
+      {
+        "start": 3.48,
+        "end": 3.76,
+        "word": "сразу.",
+        "probability": 0.991,
+        "segment_start": false
+      },
+      {
+        "start": 4.68,
+        "end": 5.02,
+        "word": "После",
+        "probability": 0.97,
+        "segment_start": true
+      },
+      {
+        "start": 5.02,
+        "end": 5.34,
+        "word": "пуска",
+        "probability": 0.951,
+        "segment_start": false
+      },
+      {
+        "start": 5.34,
+        "end": 6.08,
+        "word": "перераспределяется",
+        "probability": 0.971,
+        "segment_start": false
+      },
+      {
+        "start": 6.08,
+        "end": 6.46,
+        "word": "давление.",
+        "probability": 0.994,
+        "segment_start": false
+      },
+      {
+        "start": 7.42,
+        "end": 7.7,
+        "word": "Но",
+        "probability": 0.984,
+        "segment_start": true
+      },
+      {
+        "start": 7.7,
+        "end": 7.86,
+        "word": "это",
+        "probability": 0.986,
+        "segment_start": false
+      },
+      {
+        "start": 7.86,
+        "end": 7.96,
+        "word": "не",
+        "probability": 0.873,
+        "segment_start": false
+      },
+      {
+        "start": 7.96,
+        "end": 8.24,
+        "word": "резкий",
+        "probability": 0.979,
+        "segment_start": false
+      },
+      {
+        "start": 8.24,
+        "end": 8.64,
+        "word": "фронт,",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 8.76,
+        "end": 9.38,
+        "word": "движущийся",
+        "probability": 0.957,
+        "segment_start": false
+      },
+      {
+        "start": 9.38,
+        "end": 9.46,
+        "word": "с",
+        "probability": 0.991,
+        "segment_start": false
+      },
+      {
+        "start": 9.46,
+        "end": 9.92,
+        "word": "постоянной",
+        "probability": 0.998,
+        "segment_start": false
+      },
+      {
+        "start": 9.92,
+        "end": 10.42,
+        "word": "скоростью.",
+        "probability": 0.998,
+        "segment_start": false
+      },
+      {
+        "start": 11.26,
+        "end": 11.76,
+        "word": "Посмотрим",
+        "probability": 0.996,
+        "segment_start": true
+      },
+      {
+        "start": 11.76,
+        "end": 11.88,
+        "word": "на",
+        "probability": 0.995,
+        "segment_start": false
+      },
+      {
+        "start": 11.88,
+        "end": 12.1,
+        "word": "карту",
+        "probability": 0.981,
+        "segment_start": false
+      },
+      {
+        "start": 12.1,
+        "end": 12.4,
+        "word": "пласта",
+        "probability": 0.904,
+        "segment_start": false
+      },
+      {
+        "start": 12.4,
+        "end": 12.62,
+        "word": "и",
+        "probability": 0.994,
+        "segment_start": false
+      },
+      {
+        "start": 12.62,
+        "end": 12.92,
+        "word": "профиль",
+        "probability": 0.996,
+        "segment_start": false
+      },
+      {
+        "start": 12.92,
+        "end": 13.08,
+        "word": "вдоль",
+        "probability": 0.869,
+        "segment_start": false
+      },
+      {
+        "start": 13.08,
+        "end": 13.46,
+        "word": "линии,",
+        "probability": 0.989,
+        "segment_start": false
+      },
+      {
+        "start": 13.64,
+        "end": 13.82,
+        "word": "они",
+        "probability": 0.581,
+        "segment_start": false
+      },
+      {
+        "start": 13.82,
+        "end": 14.24,
+        "word": "рассчитаны",
+        "probability": 0.983,
+        "segment_start": false
+      },
+      {
+        "start": 14.24,
+        "end": 14.38,
+        "word": "для",
+        "probability": 0.995,
+        "segment_start": false
+      },
+      {
+        "start": 14.38,
+        "end": 14.6,
+        "word": "одного",
+        "probability": 0.995,
+        "segment_start": false
+      },
+      {
+        "start": 14.6,
+        "end": 15.06,
+        "word": "момента.",
+        "probability": 0.998,
+        "segment_start": false
+      },
+      {
+        "start": 15.98,
+        "end": 16.18,
+        "word": "Этот",
+        "probability": 0.983,
+        "segment_start": true
+      },
+      {
+        "start": 16.18,
+        "end": 16.52,
+        "word": "процесс",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 16.52,
+        "end": 17.14,
+        "word": "описывает",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 17.14,
+        "end": 17.92,
+        "word": "пизопроводность.",
+        "probability": 0.951,
+        "segment_start": false
+      },
+      {
+        "start": 18.8,
+        "end": 18.9,
+        "word": "В",
+        "probability": 0.971,
+        "segment_start": true
+      },
+      {
+        "start": 18.9,
+        "end": 19.18,
+        "word": "основе",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 19.18,
+        "end": 19.56,
+        "word": "расчета",
+        "probability": 0.908,
+        "segment_start": false
+      },
+      {
+        "start": 19.56,
+        "end": 19.88,
+        "word": "—",
+        "probability": 0.337,
+        "segment_start": false
+      },
+      {
+        "start": 19.88,
+        "end": 20.22,
+        "word": "решение",
+        "probability": 0.924,
+        "segment_start": false
+      },
+      {
+        "start": 20.22,
+        "end": 20.48,
+        "word": "из",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 20.48,
+        "end": 20.76,
+        "word": "книги",
+        "probability": 0.99,
+        "segment_start": false
+      },
+      {
+        "start": 20.76,
+        "end": 21.18,
+        "word": "Босниева.",
+        "probability": 0.869,
+        "segment_start": false
+      },
+      {
+        "start": 22.14,
+        "end": 22.54,
+        "word": "Радиус",
+        "probability": 0.961,
+        "segment_start": true
+      },
+      {
+        "start": 22.54,
+        "end": 22.98,
+        "word": "скважины",
+        "probability": 0.929,
+        "segment_start": false
+      },
+      {
+        "start": 22.98,
+        "end": 23.12,
+        "word": "и",
+        "probability": 0.987,
+        "segment_start": false
+      },
+      {
+        "start": 23.12,
+        "end": 23.76,
+        "word": "пизопроводность",
+        "probability": 0.993,
+        "segment_start": false
+      },
+      {
+        "start": 23.76,
+        "end": 24.18,
+        "word": "взяты",
+        "probability": 0.976,
+        "segment_start": false
+      },
+      {
+        "start": 24.18,
+        "end": 24.34,
+        "word": "из",
+        "probability": 0.901,
+        "segment_start": false
+      },
+      {
+        "start": 24.34,
+        "end": 24.68,
+        "word": "примера",
+        "probability": 0.989,
+        "segment_start": false
+      },
+      {
+        "start": 24.68,
+        "end": 24.98,
+        "word": "книги.",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 25.84,
+        "end": 26.16,
+        "word": "Падение",
+        "probability": 0.919,
+        "segment_start": true
+      },
+      {
+        "start": 26.16,
+        "end": 26.62,
+        "word": "показано",
+        "probability": 0.965,
+        "segment_start": false
+      },
+      {
+        "start": 26.62,
+        "end": 26.7,
+        "word": "в",
+        "probability": 0.998,
+        "segment_start": false
+      },
+      {
+        "start": 26.7,
+        "end": 27.24,
+        "word": "относительных",
+        "probability": 0.995,
+        "segment_start": false
+      },
+      {
+        "start": 27.24,
+        "end": 27.82,
+        "word": "единицах.",
+        "probability": 0.992,
+        "segment_start": false
+      },
+      {
+        "start": 27.82,
+        "end": 28.9,
+        "word": "Как",
+        "probability": 0.816,
+        "segment_start": true
+      },
+      {
+        "start": 28.9,
+        "end": 29.32,
+        "word": "думаете,",
+        "probability": 0.994,
+        "segment_start": false
+      },
+      {
+        "start": 29.62,
+        "end": 30.0,
+        "word": "пунктирная",
+        "probability": 0.98,
+        "segment_start": false
+      },
+      {
+        "start": 30.0,
+        "end": 30.38,
+        "word": "граница",
+        "probability": 0.989,
+        "segment_start": false
+      },
+      {
+        "start": 30.38,
+        "end": 30.54,
+        "word": "будет",
+        "probability": 0.995,
+        "segment_start": false
+      },
+      {
+        "start": 30.54,
+        "end": 30.9,
+        "word": "удаляться",
+        "probability": 0.985,
+        "segment_start": false
+      },
+      {
+        "start": 30.9,
+        "end": 31.08,
+        "word": "от",
+        "probability": 0.991,
+        "segment_start": false
+      },
+      {
+        "start": 31.08,
+        "end": 31.4,
+        "word": "скважины",
+        "probability": 0.9,
+        "segment_start": false
+      },
+      {
+        "start": 31.4,
+        "end": 31.48,
+        "word": "с",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 31.48,
+        "end": 31.92,
+        "word": "постоянной",
+        "probability": 0.998,
+        "segment_start": false
+      },
+      {
+        "start": 31.92,
+        "end": 32.4,
+        "word": "скоростью?",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 33.98,
+        "end": 34.7,
+        "word": "Нет.",
+        "probability": 0.917,
+        "segment_start": true
+      },
+      {
+        "start": 35.62,
+        "end": 35.8,
+        "word": "При",
+        "probability": 0.812,
+        "segment_start": false
+      },
+      {
+        "start": 35.8,
+        "end": 36.14,
+        "word": "выбранном",
+        "probability": 0.992,
+        "segment_start": false
+      },
+      {
+        "start": 36.14,
+        "end": 36.6,
+        "word": "постоянном",
+        "probability": 0.993,
+        "segment_start": false
+      },
+      {
+        "start": 36.6,
+        "end": 36.96,
+        "word": "пороге",
+        "probability": 0.976,
+        "segment_start": false
+      },
+      {
+        "start": 36.96,
+        "end": 37.12,
+        "word": "ее",
+        "probability": 0.517,
+        "segment_start": false
+      },
+      {
+        "start": 37.12,
+        "end": 37.48,
+        "word": "радиус",
+        "probability": 0.993,
+        "segment_start": false
+      },
+      {
+        "start": 37.48,
+        "end": 37.8,
+        "word": "растет",
+        "probability": 0.984,
+        "segment_start": false
+      },
+      {
+        "start": 37.8,
+        "end": 38.0,
+        "word": "как",
+        "probability": 0.797,
+        "segment_start": false
+      },
+      {
+        "start": 38.0,
+        "end": 38.32,
+        "word": "корень",
+        "probability": 0.994,
+        "segment_start": false
+      },
+      {
+        "start": 38.32,
+        "end": 38.48,
+        "word": "из",
+        "probability": 0.976,
+        "segment_start": false
+      },
+      {
+        "start": 38.48,
+        "end": 38.72,
+        "word": "времени.",
+        "probability": 0.994,
+        "segment_start": false
+      },
+      {
+        "start": 39.6,
+        "end": 40.22,
+        "word": "Пунктир",
+        "probability": 0.993,
+        "segment_start": true
+      },
+      {
+        "start": 40.22,
+        "end": 40.3,
+        "word": "–",
+        "probability": 0.376,
+        "segment_start": false
+      },
+      {
+        "start": 40.3,
+        "end": 40.66,
+        "word": "условный",
+        "probability": 0.987,
+        "segment_start": false
+      },
+      {
+        "start": 40.66,
+        "end": 40.92,
+        "word": "порог",
+        "probability": 0.986,
+        "segment_start": false
+      },
+      {
+        "start": 40.92,
+        "end": 41.32,
+        "word": "падения,",
+        "probability": 0.995,
+        "segment_start": false
+      },
+      {
+        "start": 41.68,
+        "end": 41.78,
+        "word": "не",
+        "probability": 0.799,
+        "segment_start": false
+      },
+      {
+        "start": 41.78,
+        "end": 41.9,
+        "word": "край",
+        "probability": 0.975,
+        "segment_start": false
+      },
+      {
+        "start": 41.9,
+        "end": 42.44,
+        "word": "возмущения.",
+        "probability": 0.966,
+        "segment_start": false
+      },
+      {
+        "start": 43.42,
+        "end": 44.0,
+        "word": "Специалист",
+        "probability": 0.989,
+        "segment_start": true
+      },
+      {
+        "start": 44.0,
+        "end": 44.4,
+        "word": "учитывает",
+        "probability": 0.978,
+        "segment_start": false
+      },
+      {
+        "start": 44.4,
+        "end": 44.7,
+        "word": "время",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 44.7,
+        "end": 45.0,
+        "word": "после",
+        "probability": 0.989,
+        "segment_start": false
+      },
+      {
+        "start": 45.0,
+        "end": 45.3,
+        "word": "пуска.",
+        "probability": 0.951,
+        "segment_start": false
+      },
+      {
+        "start": 46.18,
+        "end": 46.54,
+        "word": "Теперь",
+        "probability": 0.991,
+        "segment_start": false
+      },
+      {
+        "start": 46.54,
+        "end": 47.0,
+        "word": "истинный",
+        "probability": 0.979,
+        "segment_start": false
+      },
+      {
+        "start": 47.0,
+        "end": 47.34,
+        "word": "масштаб",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 47.34,
+        "end": 47.88,
+        "word": "скважина",
+        "probability": 0.801,
+        "segment_start": false
+      },
+      {
+        "start": 47.88,
+        "end": 48.08,
+        "word": "меньше",
+        "probability": 0.937,
+        "segment_start": false
+      },
+      {
+        "start": 48.08,
+        "end": 48.46,
+        "word": "точки.",
+        "probability": 0.941,
+        "segment_start": false
+      },
+      {
+        "start": 49.34,
+        "end": 49.7,
+        "word": "Модель",
+        "probability": 0.988,
+        "segment_start": true
+      },
+      {
+        "start": 49.7,
+        "end": 50.2,
+        "word": "предполагает",
+        "probability": 0.995,
+        "segment_start": false
+      },
+      {
+        "start": 50.2,
+        "end": 50.68,
+        "word": "однородный",
+        "probability": 0.976,
+        "segment_start": false
+      },
+      {
+        "start": 50.68,
+        "end": 50.92,
+        "word": "пласт",
+        "probability": 0.994,
+        "segment_start": false
+      },
+      {
+        "start": 50.92,
+        "end": 51.12,
+        "word": "без",
+        "probability": 0.995,
+        "segment_start": false
+      },
+      {
+        "start": 51.12,
+        "end": 51.48,
+        "word": "внешней",
+        "probability": 0.992,
+        "segment_start": false
+      },
+      {
+        "start": 51.48,
+        "end": 51.9,
+        "word": "границы.",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 52.86,
+        "end": 53.0,
+        "word": "Как",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 53.0,
+        "end": 53.16,
+        "word": "при",
+        "probability": 0.967,
+        "segment_start": false
+      },
+      {
+        "start": 53.16,
+        "end": 53.28,
+        "word": "том",
+        "probability": 0.974,
+        "segment_start": false
+      },
+      {
+        "start": 53.28,
+        "end": 53.38,
+        "word": "же",
+        "probability": 0.998,
+        "segment_start": false
+      },
+      {
+        "start": 53.38,
+        "end": 53.62,
+        "word": "времени",
+        "probability": 0.847,
+        "segment_start": false
+      },
+      {
+        "start": 53.62,
+        "end": 54.1,
+        "word": "изменится",
+        "probability": 0.984,
+        "segment_start": true
+      },
+      {
+        "start": 54.1,
+        "end": 54.28,
+        "word": "зона",
+        "probability": 0.928,
+        "segment_start": false
+      },
+      {
+        "start": 54.28,
+        "end": 54.78,
+        "word": "влияния,",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 55.04,
+        "end": 55.2,
+        "word": "если",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 55.2,
+        "end": 55.84,
+        "word": "пизопроводность",
+        "probability": 0.962,
+        "segment_start": false
+      },
+      {
+        "start": 55.84,
+        "end": 56.18,
+        "word": "пласта",
+        "probability": 0.93,
+        "segment_start": false
+      },
+      {
+        "start": 56.18,
+        "end": 56.52,
+        "word": "станет",
+        "probability": 0.998,
+        "segment_start": false
+      },
+      {
+        "start": 56.52,
+        "end": 56.74,
+        "word": "больше?",
+        "probability": 0.997,
+        "segment_start": false
+      }
+    ]
+  },
+  "wer": {
+    "wer": 0.03418803418803419,
+    "n_ref": 117,
+    "n_hyp": 117,
+    "substitutions": 4,
+    "deletions": 0,
+    "insertions": 0,
+    "errors": [
+      {
+        "type": "sub",
+        "phrase_id": "p4",
+        "expected": "пьезопроводность",
+        "heard": "пизопроводность"
+      },
+      {
+        "type": "sub",
+        "phrase_id": "p4",
+        "expected": "басниева",
+        "heard": "босниева"
+      },
+      {
+        "type": "sub",
+        "phrase_id": "p5",
+        "expected": "пьезопроводность",
+        "heard": "пизопроводность"
+      },
+      {
+        "type": "sub",
+        "phrase_id": "p10",
+        "expected": "пьезопроводность",
+        "heard": "пизопроводность"
+      }
+    ],
+    "per_phrase": {
+      "p1": 0,
+      "p2": 0,
+      "p3": 0,
+      "p4": 2,
+      "p5": 1,
+      "p6": 0,
+      "p7": 0,
+      "p8": 0,
+      "p9": 0,
+      "p10": 1
+    }
+  },
+  "sync": {
+    "matched_words": 113,
+    "measure": "по слову — обе границы (начало и конец)",
+    "median_abs_s": 0.044,
+    "p95_abs_s": 0.186,
+    "max_abs_s": 0.428,
+    "desynced_words": [],
+    "uncertain_words": [],
+    "boundary_exceptions": [
+      {
+        "word": "как",
+        "tts_start": 28.72,
+        "start_diff": -0.9,
+        "end_diff": -0.05,
+        "reason": "начало первого слова сегмента распознавание поставило в тишину перед ним (после конца предыдущего слова по меткам TTS) — звука там нет; конец слова совпал"
+      }
+    ],
+    "unmeasured_words": 0,
+    "limit_s": 0.5,
+    "ok": true,
+    "status": "проверено автоматически"
+  }
+}

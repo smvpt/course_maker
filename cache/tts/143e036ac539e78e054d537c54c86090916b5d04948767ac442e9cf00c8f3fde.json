@@ -1,0 +1,92 @@
+{
+  "key": "143e036ac539e78e054d537c54c86090916b5d04948767ac442e9cf00c8f3fde",
+  "text": "Отметит ли показанный фильтр каждый участок высокого сопротивления, если остальные признаки не совпадут?",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 4500000,
+      "text": "Отметит"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 5500000,
+      "duration": 800000,
+      "text": "ли"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 6300000,
+      "duration": 4100000,
+      "text": "показанный"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 10400000,
+      "duration": 3500000,
+      "text": "фильтр"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 13900000,
+      "duration": 2900000,
+      "text": "каждый"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 16800000,
+      "duration": 3600000,
+      "text": "участок"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 20400000,
+      "duration": 3400000,
+      "text": "высокого"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 23800000,
+      "duration": 6700000,
+      "text": "сопротивления"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 33000000,
+      "duration": 2100000,
+      "text": "если"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 35100000,
+      "duration": 3600000,
+      "text": "остальные"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 38700000,
+      "duration": 3800000,
+      "text": "признаки"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 42500000,
+      "duration": 700000,
+      "text": "не"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 43200000,
+      "duration": 6100000,
+      "text": "совпадут"
+    }
+  ]
+}

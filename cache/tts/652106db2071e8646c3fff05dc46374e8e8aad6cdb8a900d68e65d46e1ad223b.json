@@ -1,0 +1,92 @@
+{
+  "key": "652106db2071e8646c3fff05dc46374e8e8aad6cdb8a900d68e65d46e1ad223b",
+  "text": "Отмеченный интервал — кандидат для дальнейшей проверки. Мы не называем его доказанной нефтенасыщенной толщей.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 5600000,
+      "text": "Отмеченный"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 6600000,
+      "duration": 4500000,
+      "text": "интервал"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 13200000,
+      "duration": 4600000,
+      "text": "кандидат"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 17800000,
+      "duration": 1700000,
+      "text": "для"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 19500000,
+      "duration": 4200000,
+      "text": "дальнейшей"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 23700000,
+      "duration": 5100000,
+      "text": "проверки"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 35500000,
+      "duration": 2000000,
+      "text": "Мы"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 37500000,
+      "duration": 700000,
+      "text": "не"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 38200000,
+      "duration": 4000000,
+      "text": "называем"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 42200000,
+      "duration": 1800000,
+      "text": "его"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 44000000,
+      "duration": 4700000,
+      "text": "доказанной"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 48700000,
+      "duration": 6800000,
+      "text": "нефтенасыщенной"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 55500000,
+      "duration": 5500000,
+      "text": "толщей"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "key": "d20b0260ac0c719db6e167546b876937a390f6f54e901d9df919e87befc412d0",
+  "text": "Простая оценка по сопротивлению возможна лишь при дополнительных условиях. Нельзя переносить её на любой разрез.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 4300000,
+      "text": "Простая"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 5300000,
+      "duration": 3300000,
+      "text": "оценка"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8600000,
+      "duration": 700000,
+      "text": "по"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 9300000,
+      "duration": 5600000,
+      "text": "сопротивлению"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 14900000,
+      "duration": 4000000,
+      "text": "возможна"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 18900000,
+      "duration": 1800000,
+      "text": "лишь"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 20700000,
+      "duration": 1200000,
+      "text": "при"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 21900000,
+      "duration": 5800000,
+      "text": "дополнительных"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 27700000,
+      "duration": 5500000,
+      "text": "условиях"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 39900000,
+      "duration": 4200000,
+      "text": "Нельзя"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 44100000,
+      "duration": 4700000,
+      "text": "переносить"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 48800000,
+      "duration": 1700000,
+      "text": "её"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 50500000,
+      "duration": 800000,
+      "text": "на"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 51300000,
+      "duration": 2200000,
+      "text": "любой"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 53500000,
+      "duration": 4600000,
+      "text": "разрез"
+    }
+  ]
+}

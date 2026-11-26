@@ -1,0 +1,98 @@
+{
+  "key": "fc225181ff93559d9e88eadf038c4b70b800c8c0e2f1291721e6f37deb702015",
+  "text": "Ствол теперь в истинном масштабе. Размеры прибора на поясняющей схеме условные; кривые остаются данными.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 3800000,
+      "text": "Ствол"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 4800000,
+      "duration": 3000000,
+      "text": "теперь"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 7800000,
+      "duration": 800000,
+      "text": "в"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8600000,
+      "duration": 3300000,
+      "text": "истинном"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 11900000,
+      "duration": 5400000,
+      "text": "масштабе"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 24600000,
+      "duration": 4400000,
+      "text": "Размеры"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 29000000,
+      "duration": 3300000,
+      "text": "прибора"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 32300000,
+      "duration": 700000,
+      "text": "на"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 33000000,
+      "duration": 5100000,
+      "text": "поясняющей"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 38100000,
+      "duration": 2700000,
+      "text": "схеме"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 40800000,
+      "duration": 4800000,
+      "text": "условные"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 48000000,
+      "duration": 3300000,
+      "text": "кривые"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 51300000,
+      "duration": 4500000,
+      "text": "остаются"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 55800000,
+      "duration": 5600000,
+      "text": "данными"
+    }
+  ]
+}

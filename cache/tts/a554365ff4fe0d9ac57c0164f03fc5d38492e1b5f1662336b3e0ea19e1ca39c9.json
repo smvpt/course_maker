@@ -1,0 +1,92 @@
+{
+  "key": "a554365ff4fe0d9ac57c0164f03fc5d38492e1b5f1662336b3e0ea19e1ca39c9",
+  "text": "Радиус скважины и пьезопроводность взяты из примера книги. Падение показано в относительных единицах.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 4600000,
+      "text": "Радиус"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 5600000,
+      "duration": 4600000,
+      "text": "скважины"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 10200000,
+      "duration": 1100000,
+      "text": "и"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 11300000,
+      "duration": 6400000,
+      "text": "пьезопроводность"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 17700000,
+      "duration": 4100000,
+      "text": "взяты"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 21800000,
+      "duration": 1700000,
+      "text": "из"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 23500000,
+      "duration": 3000000,
+      "text": "примера"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 26500000,
+      "duration": 3900000,
+      "text": "книги"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 37600000,
+      "duration": 4600000,
+      "text": "Падение"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 42200000,
+      "duration": 4100000,
+      "text": "показано"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 46300000,
+      "duration": 300000,
+      "text": "в"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 46600000,
+      "duration": 6000000,
+      "text": "относительных"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 52600000,
+      "duration": 6700000,
+      "text": "единицах"
+    }
+  ]
+}
