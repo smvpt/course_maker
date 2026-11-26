@@ -99,7 +99,7 @@ def _prepare_template(spec, script, sg: dict, templates_dir: Path) -> tuple[dict
             "r_influence_end_m": round(prep["r_influence_end"], 3),
             "well_argument_end": prep["well_argument_end"], "color_max_mpa": prep["color_max"],
             "graph_max_mpa": prep["graph_max"], "config": str(Path(templates_dir) / "T1.json")}
-    return {"t1": prep}, {"field": _sg_color(sg, prep["field_color_key"])}, info
+    return {"t1": prep}, {"field": _sg_color(sg, prep["field_color_key"]), "background": sg["background"]}, info
 
 
 def _prepare_t2(spec, script, sg: dict, templates_dir: Path) -> tuple[dict, dict, dict]:
@@ -113,7 +113,8 @@ def _prepare_t2(spec, script, sg: dict, templates_dir: Path) -> tuple[dict, dict
     colors = {"curve_colors": {cv["mnemonic"]: _sg_color(sg, f"curves.{cv['kind']}") for cv in prep["curves"]},
               "tool": _sg_color(sg, disp["tool_color"]), "mud": _sg_color(sg, disp["mud_color"]),
               "uncertainty": _sg_color(sg, disp["rule_unknown_color"]),
-              "rule_true": sg[disp["rule_true_color"]], "schema": sg["provenance"]["схема"]}
+              "rule_true": sg[disp["rule_true_color"]], "schema": sg["provenance"]["схема"],
+              "background": sg["background"]}
     ds = prep["dataset"]
     info = {"model": cfg["model"], "config": str(Path(templates_dir) / "T2.json"),
             "dataset_provenance": ds.provenance, "data_label": ds.label,
@@ -122,7 +123,8 @@ def _prepare_t2(spec, script, sg: dict, templates_dir: Path) -> tuple[dict, dict
             "rule_counts": {"выполнено": int((prep["rule_state"] == 1).sum()), "не выполнено": int((prep["rule_state"] == 0).sum()),
                             "нет данных": int((prep["rule_state"] == -1).sum())},
             "borehole_exaggeration": prep["exaggeration"]}
-    return {"t2": prep, "chain": disp["chain"], "school_label": disp["school_label"]}, colors, info
+    return {"t2": prep, "chain": disp["chain"], "school_label": disp["school_label"],
+            "band_opacity": float(disp["candidate_band_opacity"])}, colors, info
 
 
 def _prepare_t3(spec, script, sg: dict, templates_dir: Path) -> tuple[dict, dict, dict]:
@@ -172,7 +174,8 @@ def _prepare_t4(spec, script, sg: dict, templates_dir: Path) -> tuple[dict, dict
     if not svg.is_file():
         raise VideoInputError(f"нет схемы оборудования T4: {svg}")
     colors = {"mud": _sg_color(sg, disp["mud_color"]), "gas": _sg_color(sg, disp["gas_color"]),
-              "pressure": _sg_color(sg, disp["pressure_color"]), "casing": _sg_color(sg, disp["casing_color"])}
+              "pressure": _sg_color(sg, disp["pressure_color"]), "casing": _sg_color(sg, disp["casing_color"]),
+              "background": sg["background"]}
     m = prep["model"]
     o, c = t4_template.states(prep, prep["top_stop"])
     info = {"model": cfg["model"], "assumptions": cfg["assumptions"], "limitations": cfg["limitations"],
@@ -461,7 +464,7 @@ def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, f
         raise VideoInputError(f"в стайлгайде нет цвета метки происхождения для {missing}")
     segs =[{"phrase_id": s.phrase_id, "start": s.start, "end": s.end, "hold_end": s.hold_end,
              "on_screen": p.on_screen, "shot_id": shot_of[p.id].id, "plaque": shot_of[p.id].plaque,
-             "label": shot_of[p.id].label, "label_color": sg["provenance"][shot_of[p.id].label]}
+             "label": shot_of[p.id].label, "label_color": sg["provenance"][shot_of[p.id].label], "beat": p.beat}
             for s, p in zip(tl.segments, script.phrases)]
     plan = {"layout": layout, "font": sg["font"], "fps": fps, "segments": segs, "total": tl.total,
             "speech_total": tl.speech_total, **tpl_plan,

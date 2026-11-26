@@ -215,7 +215,24 @@ def prepare(spec: SceneSpec, script: Script, cfg: dict) -> dict:
         "borehole_diameter_m": float(diam), "exaggeration": float(k),
         "exaggerated_shots": {s.id for s in spec.shots if s.plaque}, "true_scale_shot_id": ts,
         "evolve_phrase_ids": {pid for pid, sid in phrase_shot.items() if sid in evolve},
+        "step_starts": step_starts(script, cfg),
     }
+
+
+def step_starts(script: Script, cfg: dict) -> list[dict]:
+    """Шаги показа «признаки → правило → вывод»: шаг открывается с первой фразы, бит которой в from_beats
+    (пустой список — с начала ролика); шаг не открывается раньше предыдущего. Без фразы — шаг не показывается."""
+    out, prev = [], 0
+    order = [ph.id for ph in script.phrases]
+    for st in cfg["display"].get("steps", []):
+        if not st["from_beats"]:
+            k = 0
+        else:
+            k = next((i for i, ph in enumerate(script.phrases) if ph.beat in st["from_beats"] and i >= prev), None)
+        out.append({"key": st["key"], "label": st["label"], "phrase_id": None if k is None else order[k]})
+        if k is not None:
+            prev = k
+    return out
 
 
 def check(spec: SceneSpec, script: Script, cfg: dict) -> list[str]:

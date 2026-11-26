@@ -166,6 +166,7 @@ def prepare(spec: SceneSpec, script: Script, cfg: dict) -> dict:
     color_max = nice_ceil(float(model.delta_p([r_max * disp["color_r_fraction"]], t_end)[0]))  # ближе — насыщение
     return {
         "model": model, "r_well": r_w, "r_max": r_max, "r_min": r_min, "t_end": t_end, "threshold": thr,
+        "display": disp,
         "exaggeration": float(k), "exaggerated_shots": {s.id for s in spec.shots if s.plaque},
         "true_scale_shot_id": ts, "evolve_phrase_ids": {pid for pid, sid in phrase_shot.items() if sid in evolve},
         "color_max": color_max, "graph_max": graph_max, "grid": int(disp["field_grid"]), "field_color_key": disp["field_color"],

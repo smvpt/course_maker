@@ -6,15 +6,21 @@
 layer_bands): одна функция LobeModel.surface. Слой k — осадок интервала [t_k, t_{k+1}]; в плане цвет
 показывает, какой слой выходит на поверхность, в разрезе — сами слои; темнее — старше.
 Вертикаль разреза увеличена в vertical_exaggeration раз только на кадрах с плашкой.
+
+Общий стиль (style.py): служебный слой (метка, часы, плашка, подпись фразы) стоит на месте; на вопросе и данных
+камера приближается к фронту лопасти в разрезе и ведёт его (возврат к общему виду — до кадра истинного масштаба);
+выноска «береговая линия» едет за R(t); время модели — с плавным разгоном и торможением.
 """
 from __future__ import annotations
 
 import numpy as np
-from manim import (DashedLine, ImageMobject, Line, Polygon, Rectangle, Scene, Text, ValueTracker, VGroup, VMobject,
+from manim import (DashedLine, Line, MovingCameraScene, Polygon, Rectangle, Text, ValueTracker, VGroup, VMobject,
                    always_redraw)
 from manim.utils.color import ManimColor
 
-from pipeline.video.layout import Layout, LayoutError
+from pipeline.video import style
+from pipeline.video.layout import FRAME_H, Layout, LayoutError
+from pipeline.video.style import DataImage, Focus, Kit, check_no_overlap
 from pipeline.video.scene_parts import add_badges, add_captions, add_plaques, inside, play_timeline, shot_windows, wrap
 from pipeline.video.t1_template import fmt_num, nice_ceil
 from pipeline.video.t3_template import layer_bands, plan_field, shoreline_radii
@@ -29,7 +35,7 @@ def _rgb(hex_color: str) -> np.ndarray:
     return np.array(ManimColor(hex_color).to_rgb(), dtype=float)
 
 
-class T3Scene(Scene):
+class T3Scene(MovingCameraScene):
     plan: dict  # задаётся build.py перед render()
 
     def construct(self) -> None:
@@ -48,7 +54,9 @@ class T3Scene(Scene):
         tau = ValueTracker(0.0)
         knots = progress_knots([(s["phrase_id"], s["start"], s["end"]) for s in segs], prep["evolve_phrase_ids"],
                                prep["t_end"])
-        sim_t = lambda: progress_at(tau.get_value(), knots)
+        sim_t = lambda: style.smooth_progress(progress_at(tau.get_value(), knots), prep["t_end"])
+        kit = Kit(self, lay, c, font, tau)
+        t_evolve = min((s["start"] for s in segs if s["phrase_id"] in prep["evolve_phrase_ids"]), default=0.0)
         windows = shot_windows(segs)
 
         def shot_now() -> str:
@@ -64,7 +72,7 @@ class T3Scene(Scene):
         initial, basin = _rgb(c["initial"]), _rgb(c["basin"])
 
         # ---- верх: метка, часы, плашка
-        badge_bottom = add_badges(self, lay, segs, tau, font)
+        badge_bottom = add_badges(self, lay, segs, tau, font, add=kit.hud, fill=c["background"])
         cache: dict[str, Text] = {}
 
         def clock():
@@ -74,17 +82,18 @@ class T3Scene(Scene):
             mm = cache[s].copy()
             return mm.move_to([right - mm.width / 2, (top + badge_bottom) / 2, 0])
 
-        self.add(always_redraw(clock))
+        kit.hud_redraw(clock)
         plaque_texts = {sid: next(s["plaque"] for s in segs if s["shot_id"] == sid) for sid, _, _ in windows}
         ts = prep["true_scale_shot_id"]
         if ts is not None:
             plaque_texts[ts] = "истинный масштаб: вертикаль не увеличена"
         plaque_top = badge_bottom - gap / 2
-        plaque_h = max([wrap(t_, font, fs, width, c["text"]).height for t_ in plaque_texts.values() if t_] + [0.0])
-        add_plaques(self, lay, segs, tau, font, c["text"], plaque_top, plaque_texts)
+        plaque_h = max([wrap(t_, font, fs, width - 2 * kit.pad, c["text"]).height + 1.4 * kit.pad
+                        for t_ in plaque_texts.values() if t_] + [0.0])
+        add_plaques(self, lay, segs, tau, font, c["text"], plaque_top, plaque_texts, add=kit.hud, pill=c["panel"])
 
         # ---- вертикальная разметка
-        cap_h = add_captions(self, lay, segs, tau, font, c["text"])
+        cap_h = add_captions(self, lay, segs, tau, font, c["text"], pill=c["panel"], add=kit.hud)
         landscape = lay.ref_w > lay.ref_h
         col_w = (width - 2 * gap) / 2 if landscape else width
         sec_w = col_w
@@ -134,9 +143,8 @@ class T3Scene(Scene):
             out[..., 3] = 255
             return out
 
-        img = ImageMobject(plan_rgba(0.0))
+        img = DataImage(lambda: plan_rgba(sim_t()))
         img.stretch_to_fit_width(plan_w).stretch_to_fit_height(plan_h).move_to(plan_center)
-        img.add_updater(lambda mob: mob.pixel_array.__setitem__(slice(None), plan_rgba(sim_t())))
         frame = Rectangle(width=plan_w, height=plan_h, stroke_color=c["muted"], stroke_width=2).move_to(plan_center)
         src = np.array([plan_cx, plan_top, 0])                         # точка питания — середина верхнего края
 
@@ -161,7 +169,7 @@ class T3Scene(Scene):
         bar.move_to([plan_center[0] - plan_w / 2 + gap + bar.width / 2, plan_top - plan_h + gap + bar.height / 2, 0])
         bar_lbl = txt(f"{fmt_num(bar_m / 1000)} км" if bar_m >= 1000 else f"{fmt_num(bar_m)} м")
         bar_lbl.next_to(bar, direction=np.array([0, 1, 0]), buff=u(8)).align_to(bar, np.array([-1, 0, 0]))
-        self.add(img, frame, always_redraw(arcs), line_ab, a_lbl, b_lbl, bar, bar_lbl, lbl_plan)
+        self.add(img, frame, style.redraw(arcs), line_ab, a_lbl, b_lbl, bar, bar_lbl, lbl_plan)
 
         # ---- разрез А–Б: те же слои, та же функция поверхности
         sec_label_top = plan_label_top if landscape else plan_top - plan_h - gap
@@ -187,6 +195,8 @@ class T3Scene(Scene):
                                             np.zeros(2 * r.size)]),
                           stroke_width=0, fill_color=c["initial"], fill_opacity=1))
             for b in layer_bands(prep, t):
+                if float(np.max(b["z_top"] - b["z_bottom"])) < 1e-6:   # слой только начался: нулевая толщина
+                    continue                                          # (вырожденный полигон) — не рисуется
                 pts = np.column_stack([x_of(np.r_[b["r"], b["r"][::-1]]), y_of(np.r_[b["z_top"], b["z_bottom"][::-1]]),
                                        np.zeros(2 * b["r"].size)])
                 g.add(Polygon(*pts, stroke_color=c["background"], stroke_width=1, fill_color=hex_of(shade[b["k"]]),
@@ -200,7 +210,7 @@ class T3Scene(Scene):
         sea_lbl.move_to([x0 + sec_w - sea_lbl.width / 2 - u(8), sea_y + sea_lbl.height / 2 + u(6), 0])
         if sea_lbl.get_top()[1] > sec_top:
             sea_lbl.shift([0, sec_top - sea_lbl.get_top()[1] - u(4), 0])
-        self.add(sec_frame, always_redraw(section), sea_lbl, lbl_sec)
+        self.add(sec_frame, style.redraw(section), sea_lbl, lbl_sec)
 
         # шкала расстояний и подпись глубины
         tick_y = sec_top - sec_h - gap / 2 - text_h / 2
@@ -222,4 +232,31 @@ class T3Scene(Scene):
         for name, mob in (("план", frame), ("подпись плана", lbl_plan), ("разрез", sec_frame), ("подпись разреза", lbl_sec),
                           ("легенда", legend), ("глубина", depth_lbl), ("уровень моря", sea_lbl), ("масштаб", bar_lbl)):
             inside(lay, name, mob)
+        check_no_overlap([("легенда", legend), ("глубина", depth_lbl), ("уровень моря", sea_lbl), ("масштаб", bar_lbl),
+                          ("подпись плана", lbl_plan), ("подпись разреза", lbl_sec), ("А", a_lbl), ("Б", b_lbl)])
+
+        # ---- выноска «береговая линия» в разрезе — едет за R(t) (та же модель)
+        self.add(kit.follow_callout("береговая линия", lambda: np.array([float(x_of(m.radius(sim_t()))), sea_y, 0]),
+                                    [u(150), -u(90), 0], a=t_evolve,
+                                    bounds=(x0, x0 + sec_w, sec_top - sec_h, sec_top + text_h)))
+
+        # ---- камера: вопрос и данные — приближение к фронту лопасти в разрезе (камера ведёт фронт)
+        def front_box(t: float):
+            R = m.radius(sim_t())
+            L = m.foreset_length
+            xa = float(x_of(max(R - 1.5 * L, 0.0)))
+            xb = float(x_of(min(R + 2.5 * L, prep["r_max"])))
+            return xa - kit.pad, xb + kit.pad, sec_top - sec_h - kit.pad, sec_top + text_h + kit.pad
+
+        area = (left, right, bottom + cap_h + gap, plan_label_top)
+        w_focus = style.beat_window(segs, {"prediction", "data"})
+        cands = [Focus(w_focus[0], w_focus[1], front_box, "фронт лопасти в разрезе", max_zoom=2.0)] if w_focus else []
+        ts_win = style.shot_window(segs, ts)
+        rig = style.plan_camera(area, cands, [ts_win] if ts_win else [])
+        kit.use_camera(rig)
+        if rig.focuses:
+            self.add(kit.highlight(lambda: front_box(0.0), rig.focuses[0].a + style.TRANS_S))
+        kit.set_zoom_tag_top(plan_label_top - kit.pad)
+        kit.finish(scrim_bands=[(plan_label_top, FRAME_H / 2), (-FRAME_H / 2, bottom + cap_h + gap)])
+        self.t3_camera = rig
         play_timeline(self, tau, p["total"], fps)

@@ -5,14 +5,21 @@ t3_template.stages даёт стадии (рост текущей, отмерш�
 план и разрез рисуются из этих же стадий и границ. Чисел, шкал и плашек нет: на кадре постоянная пометка
 «схема без масштаба». Элемент схемы (зоны, депоцентр, стадии) появляется с первой фразы своего утверждения.
 Кадр 9:16 — план над разрезом; 16:9 — план слева, разрез справа.
+
+Общий стиль (style.py): служебный слой (метка, номер стадии, пометка «схема без масштаба», подпись фразы) стоит
+на месте; на кадре, где появляется депоцентр, камера приближается к нему в разрезе и рамкой выделяет его; на кадре
+стадий — к стопке стадий в разрезе; дальше — общий вид. Приближение равномерное, но у схемы нет масштаба —
+поэтому кратность на бирке относится к экрану, а не к метрам.
 """
 from __future__ import annotations
 
 import numpy as np
-from manim import (AnnularSector, DashedLine, DashedVMobject, Line, Polygon, Rectangle, Scene, Square, Text,
+from manim import (MovingCameraScene, AnnularSector, DashedLine, DashedVMobject, Line, Polygon, Rectangle, Scene, Square, Text,
                    ValueTracker, VGroup, VMobject, always_redraw)
 
-from pipeline.video.layout import Layout, LayoutError
+from pipeline.video import style
+from pipeline.video.layout import FRAME_H, Layout, LayoutError
+from pipeline.video.style import Focus, Kit, check_no_overlap
 from pipeline.video.scene_parts import FADE_S, add_badges, add_captions, inside, play_timeline, visibility, wrap
 from pipeline.video.t3_template import depocenter_extent, phase_knots, stack_profiles, stages, zone_bounds
 from pipeline.video.timeline import progress_at
@@ -23,7 +30,7 @@ MOUTH_FRAC = 0.12          # устье — на этой доле высоты 
 STAGE_GAP = 0.6            # запас по высоте разреза над верхней стадией, в толщинах стадии
 
 
-class T3SchemeScene(Scene):
+class T3SchemeScene(MovingCameraScene):
     plan: dict  # задаётся build.py перед render()
 
     def construct(self) -> None:
@@ -42,13 +49,14 @@ class T3SchemeScene(Scene):
         tau = ValueTracker(0.0)
         knots = phase_knots([(s["phrase_id"], s["start"], s["end"]) for s in segs], prep["phases"])
         share = lambda: progress_at(tau.get_value(), knots)
+        kit = Kit(self, lay, c, font, tau)
         start_of = {s["phrase_id"]: s["start"] for s in segs}
         shown = {k: visibility(start_of[pid], float("inf"), FADE_S) for k, pid in prep["appear_at"].items()}
         vis = lambda k: shown[k](tau.get_value()) if k in shown else 0.0
         zones = q["zones"]
 
         # ---- верх: метка происхождения, номер стадии, пометка «схема без масштаба»
-        badge_bottom = add_badges(self, lay, segs, tau, font)
+        badge_bottom = add_badges(self, lay, segs, tau, font, add=kit.hud, fill=c["background"])
         if "lobe_cycles" in prep["elements"]:
             cache: dict[str, Text] = {}
 
@@ -59,13 +67,14 @@ class T3SchemeScene(Scene):
                     cache[s_] = txt(s_)
                 m = cache[s_].copy().set_opacity(vis("lobe_cycles"))
                 return m.move_to([right - m.width / 2, (top + badge_bottom) / 2, 0])
-            self.add(always_redraw(stage_lbl))
-        note = wrap(q["note"], font, fs, right - left, c["muted"])
-        for line in note:
-            line.align_to([left, 0, 0], direction=[-1, 0, 0])
-        note.move_to([note.get_center()[0], badge_bottom - gap / 2 - note.height / 2, 0])
-        self.add(note)
-        cap_h = add_captions(self, lay, segs, tau, font, c["text"])
+            kit.hud_redraw(stage_lbl)
+        note_t = wrap(q["note"], font, fs, right - left - 2 * kit.pad, c["muted"])
+        for line in note_t:
+            line.align_to([left + kit.pad, 0, 0], direction=[-1, 0, 0])
+        note = kit.pill(note_t, stroke=False, opacity=0.9)
+        note.move_to([left + note.width / 2, badge_bottom - gap / 2 - note.height / 2, 0])
+        kit.hud(note)
+        cap_h = add_captions(self, lay, segs, tau, font, c["text"], pill=c["panel"], add=kit.hud)
         area_top = note.get_bottom()[1] - gap
         area_bottom = bottom + cap_h + gap
 
@@ -231,4 +240,28 @@ class T3SchemeScene(Scene):
         for name, mob in (("план", plan_box), ("подпись плана", lbl_plan), ("разрез", sec_box),
                           ("подпись разреза", lbl_sec), ("пометка «схема без масштаба»", note), ("река", river_lbl)):
             inside(lay, name, mob)
+        # ---- камера: элемент схемы — приближение на кадре, где он появляется (депоцентр, стадии)
+        shot_of = {s["phrase_id"]: s["shot_id"] for s in segs}
+        stack_top = lambda: y_floor + (len(stages(prep, share())) + 0.6) * H   # кровля стопки стадий и уровень воды
+        boxes = {"depocenter": lambda t: (bx0 - kit.pad, bx0 + 0.6 * x_full, y_floor - kit.pad, stack_top() + kit.pad),
+                 "lobe_cycles": lambda t: (sec_x0 - kit.pad, bx0 + bw + kit.pad, y_floor - kit.pad,
+                                           stack_top() + kit.pad)}
+        names = {"depocenter": "депоцентр в разрезе", "lobe_cycles": "стадии в разрезе"}
+        cands = []
+        for key in ("depocenter", "lobe_cycles"):
+            if key in prep["appear_at"]:
+                w = style.shot_window(segs, shot_of[prep["appear_at"][key]])
+                if w:
+                    cands.append(Focus(w[0], w[1], boxes[key], names[key], max_zoom=2.0))
+        area = (left, right, area_bottom, area_top)
+        rig = style.plan_camera(area, cands, [])
+        kit.use_camera(rig)
+        if "depocenter" in prep["appear_at"]:
+            def depo_box():
+                xd = depocenter_extent(prep, share())
+                return bx0, bx0 + xd * x_full, y_floor, s_top - u(10)
+            self.add(kit.highlight(depo_box, start_of[prep["appear_at"]["depocenter"]] + style.TRANS_S))
+        kit.set_zoom_tag_top(area_top - kit.pad)
+        kit.finish(scrim_bands=[(area_top, FRAME_H / 2), (-FRAME_H / 2, area_bottom)])
+        self.t3q_camera = rig
         play_timeline(self, tau, p["total"], fps)
