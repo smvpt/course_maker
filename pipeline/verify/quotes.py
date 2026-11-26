@@ -5,7 +5,7 @@ from typing import NamedTuple, Optional
 
 from rapidfuzz import fuzz
 
-from pipeline.verify.pages import load_norm_pages, normalize, out_root
+from pipeline.verify.pages import load_norm_pages, load_page_joins, normalize, out_root
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -20,25 +20,34 @@ class QuoteResult(NamedTuple):
     score: float           # лучшее сходство 0–100
 
 
-def _score(q, pages, n):
-    """Сходство цитаты со страницей n. Окно — страница + начало следующей (цитата может
-    переходить через границу), но совпадение обязано начинаться на странице n."""
-    if n not in pages:
-        return 0.0
-    body = pages[n]
-    window = body + " " + pages.get(n + 1, "")[: len(q) + 40]
+def _aligned(q, window, body_len):
     al = fuzz.partial_ratio_alignment(q, window)
-    if al is None or al.dest_start >= len(body):
+    if al is None or al.dest_start >= body_len:
         return 0.0
     return al.score
 
 
+def _score(q, pages, n, joins=None):
+    """Сходство цитаты со страницей n. Окно — страница + начало следующей (цитата может
+    переходить через границу), но совпадение обязано начинаться на странице n.
+    Второе окно (joins) — без сносок и печатного номера в конце страницы, перенос склеен."""
+    if n not in pages:
+        return 0.0
+    body = pages[n]
+    s = _aligned(q, body + " " + pages.get(n + 1, "")[: len(q) + 40], len(body))
+    if joins and n in joins and s < 100:
+        text, cut = joins[n]
+        s = max(s, _aligned(q, text[: cut + len(q) + 40], cut))
+    return s
+
+
 def check_quote_md(md_path, page, quote):
     pages = load_norm_pages(md_path)
+    joins = load_page_joins(md_path)
     q = normalize(quote)
     if not q:
         raise ValueError(f"пустая цитата после нормализации: {quote!r}")
-    s = _score(q, pages, page)
+    s = _score(q, pages, page, joins)
     if s >= THRESHOLD:
         return QuoteResult("found", page, s)
     # ищем по всей главе, при равенстве — ближайшая к заявленной странице
@@ -46,7 +55,7 @@ def check_quote_md(md_path, page, quote):
     for n in sorted(pages, key=lambda x: (abs(x - page), x)):
         if n == page:
             continue
-        sn = _score(q, pages, n)
+        sn = _score(q, pages, n, joins)
         if sn > best_s:
             best_n, best_s = n, sn
     if best_n is not None and best_s >= THRESHOLD:

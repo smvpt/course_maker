@@ -56,3 +56,11 @@ def test_number_from_thin_air():
     src = [load_pages(BAREN)[42]]
     course = "При L = 300 м время установления около 7,5 ч."
     assert missing_numbers(course, src) == pytest.approx([7.5])
+
+
+def test_english_thousands_in_source():
+    from pipeline.verify.numbers import missing_numbers
+    src = ["The well reached 1,200 ft; gradient 0.465 psi/ft; 12,345,678 bbl in place."]
+    assert missing_numbers("Скважина дошла до 1200 футов, запасы 12 345 678 баррелей", src) == []
+    assert missing_numbers("градиент 0,465", src) == []
+    assert missing_numbers("1,2 фута", src) == []          # русское прочтение «1,200» тоже допустимо
