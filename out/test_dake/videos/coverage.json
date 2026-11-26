@@ -1,0 +1,19 @@
+{
+  "chapter": "test_dake",
+  "domain": "geology",
+  "video_nodes": 0,
+  "summary": {
+    "поддерживается": 0,
+    "нужен новый шаблон": 0,
+    "формат не поддерживается": 0,
+    "спецификация ещё не создана": 0,
+    "спецификация не прошла проверку": 0,
+    "ошибка маршрута": 0
+  },
+  "nodes": [],
+  "note": "отчёт не генерирует сценарии и не рендерит; физическая применимость шаблонов не подтверждается",
+  "inputs": {
+    "layer": "C:\\Users\\azizs\\Documents\\GitHub\\course_maker\\out\\test_dake\\layer.json",
+    "routing": "C:\\Users\\azizs\\Documents\\GitHub\\course_maker\\out\\test_dake\\routing.json"
+  }
+}
