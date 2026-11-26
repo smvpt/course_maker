@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"The four quick-look methods discussed here are:\\n\\n- $R_{xo}/R_t$\\n- apparent water resistivity ($R_{wa}$)\\n- conductivity-derived porosity\\n- Wet resistivity ($R_o$)\",\"page_pdf\":128}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 7075,
+ "tokens_out": 70,
+ "money_usd": 0.0022975,
+ "attempts": 1
+}

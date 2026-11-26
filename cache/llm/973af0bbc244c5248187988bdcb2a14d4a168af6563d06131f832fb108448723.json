@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"- ($R_{wa\\\\ zone}/R_{wa\\\\ minimum}$) = 3 yields $S_w = 0.58$;\",\"page_pdf\":130}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 7052,
+ "tokens_out": 48,
+ "money_usd": 0.0022356,
+ "attempts": 1
+}

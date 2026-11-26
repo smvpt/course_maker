@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"order\",\"kind\":\"data\",\"claim_ids\":[\"test_asquith.quick_look_methods#c3\",\"test_asquith.quick_look_methods#c4\",\"test_asquith.quick_look_methods#c5\",\"test_asquith.quick_look_methods#c6\"],\"prompt\":\"Расположите поведение кривой отношения Rxo/Rt в разных литологических интервалах и зонах сверху вниз, от глин к нефтегазоносным зонам:\",\"options\":[{\"text\":\"В глинах отношение относительно константно и близко к 1\",\"correct\":false,\"misconception\":null},{\"text\":\"В водоносной зоне отношение Rxo/Rt повторяет ход кривой SP\",\"correct\":false,\"misconception\":null},{\"text\":\"В нефтегазоносной зоне отношение Rxo/Rt отклоняется от кривой SP вправо при нормальной отрицательной аномалии ПС\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Поведение кривой Rxo/Rt последовательно меняется при переходе от глинистых интервалов к водоносным и нефтегазоносным зонам пласта.\"},{\"type\":\"calc\",\"kind\":\"understanding\",\"claim_ids\":[\"test_asquith.quick_look_methods#c13\",\"test_asquith.quick_look_methods#c14\"],\"prompt\":\"Рассчитайте кажущееся удельное сопротивление воды (Rwa), если истинное удельное сопротивление пласта Rt равно 20 Ом*м, пористость phi равна 0.20, цементационный показатель m равен 2.0, а параметр a равен 1.0.\",\"options\":[],\"gap_answers\":[],\"calc\":{\"variables\":{\"Rt\":20.0,\"phi\":0.2,\"m\":2.0,\"a\":1.0},\"expression\":\"Rt * (phi ** m) / a\",\"unit\":\"Ом*м\"},\"explanation\":\"Расчет Rwa выполняется по формуле Арчи через Rt, пористость и параметры цементации.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 8213,
+ "tokens_out": 513,
+ "money_usd": 0.0037463999999999996,
+ "attempts": 1
+}

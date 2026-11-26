@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"gap\",\"kind\":\"transfer\",\"claim_ids\":[\"test_asquith.reconnaissance_scanning#c3\"],\"prompt\":\"В терригенных отложениях кривая {{1}} является основным инструментом экспресс-анализа из-за вмещающих пород с относительно постоянными свойствами.\",\"options\":[],\"gap_answers\":[\"сопротивления\"],\"calc\":null,\"explanation\":\"Для терригенных пород основным инструментом сканирования выступает сопротивление благодаря фону вмещающих глинистых пород.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 5541,
+ "tokens_out": 117,
+ "money_usd": 0.0019548,
+ "attempts": 1
+}

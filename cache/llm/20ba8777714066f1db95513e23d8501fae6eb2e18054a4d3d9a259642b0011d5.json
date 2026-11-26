@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"claim_id\":\"test_asquith.quick_look_methods#c13\",\"title\":\"Кажущееся удельное сопротивление воды от пористости\",\"x_name\":\"phi\",\"x_label\":\"Пористость\",\"x_unit\":\"доли ед.\",\"y_label\":\"Кажущееся удельное сопротивление воды Rwa\",\"y_unit\":\"ом·м\",\"x_min\":0.05,\"x_max\":0.4,\"constants\":{\"Rt\":20.0,\"a\":1.0,\"m\":2.0},\"expression\":\"(Rt * (phi ** m)) / a\",\"depth_axis\":\"none\",\"curve_key\":null,\"note\":\"График показывает зависимость кажущегося сопротивления воды от пористости при заданном сопротивлении пласта.\"}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/illus_curve",
+ "tokens_in": 6737,
+ "tokens_out": 233,
+ "money_usd": 0.0026036,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Блок-схема экспресс-анализа разреза скважин\",\"note\":\"Нажми на элемент схемы, чтобы узнать его особенности.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"Сканирование разреза\",\"description\":\"Помогает быстро отделить коллектор от неколлектора и выделить потенциальные продуктивные и водяные зоны.\",\"claim_id\":\"test_asquith.reconnaissance_scanning#c1\",\"rock\":null},{\"label\":\"Терригенные отложения\",\"description\":\"Кривая сопротивления является основным инструментом из-за вмещающих пород с относительно постоянным сопротивлением.\",\"claim_id\":\"test_asquith.reconnaissance_scanning#c3\",\"rock\":null},{\"label\":\"Карбонатные породы\",\"description\":\"Сопротивление сильно меняется при смене литологии, поэтому основным инструментом служит кривая пористости.\",\"claim_id\":\"test_asquith.reconnaissance_scanning#c4\",\"rock\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 3620,
+ "tokens_out": 240,
+ "money_usd": 0.001686,
+ "attempts": 1
+}

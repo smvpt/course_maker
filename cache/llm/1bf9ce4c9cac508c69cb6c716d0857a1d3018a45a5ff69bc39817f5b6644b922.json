@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"A first step in the Coates and Dumanoir permeability formula is calculation of values for two constants: C and W.\",\"page_pdf\":136}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 14255,
+ "tokens_out": 43,
+ "money_usd": 0.004384,
+ "attempts": 1
+}

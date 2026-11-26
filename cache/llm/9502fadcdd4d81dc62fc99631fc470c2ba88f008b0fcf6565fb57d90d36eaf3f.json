@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"In the flushed zone of formations with moderate invasion and average residual hydrocarbon saturation, the following relationship normally works well:\\n\\n$$S_{xo} = (S_w)^{\\frac{1}{2}} \\\\tag{7.5}$$\",\"page_pdf\":128}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 4553,
+ "tokens_out": 69,
+ "money_usd": 0.0015384,
+ "attempts": 1
+}

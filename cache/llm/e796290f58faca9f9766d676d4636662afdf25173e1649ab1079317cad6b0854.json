@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"resistivity log\",\"porosity log\"],\"claim_id\":\"test_asquith.reconnaissance_scanning#c3\",\"evidence\":\"resistivity log is the primary reconnaissance measurement\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 874,
+ "tokens_out": 56,
+ "money_usd": 0.0004022,
+ "attempts": 1
+}

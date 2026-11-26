@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"Water-bearing points of different porosities plot along a straight line with a slope of (-1/m) and an intercept (at porosity = 1.0) of (a * Rw).\",\"page_pdf\":132}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 16638,
+ "tokens_out": 60,
+ "money_usd": 0.0051414,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"single\",\"kind\":\"recall\",\"claim_ids\":[\"test_asquith.log_interpretation_overview#c1\"],\"prompt\":\"Какой параметр зоны является самым первым шагом при переводе сырых данных каротажа в оценки количества нефти, газа и воды?\",\"options\":[{\"text\":\"Пористость и истинное сопротивление\",\"correct\":true,\"misconception\":null},{\"text\":\"Проницаемость и объемная глина\",\"correct\":false,\"misconception\":null},{\"text\":\"Прямое пластовое давление\",\"correct\":false,\"misconception\":null},{\"text\":\"Начальное насыщение газом\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Первым шагом перевода сырых данных каротажа является определение пористости и истинного сопротивления пласта.\"},{\"type\":\"multiple\",\"kind\":\"understanding\",\"claim_ids\":[\"test_asquith.log_interpretation_overview#c5\",\"test_asquith.log_interpretation_overview#c6\"],\"prompt\":\"Почему полученные по каротажу оценки нельзя применять изолированно и требуется учитывать другие данные?\",\"options\":[{\"text\":\"Геолог обязан рассмотреть все релевантные данные перед спуском обсадных труб\",\"correct\":true,\"misconception\":null},{\"text\":\"Информация по каротажу критически важна, но требует проверки дополнительными источниками\",\"correct\":true,\"misconception\":null},{\"text\":\"Каротажная кривая полностью заменяет керн и шлам на любых типах скважин\",\"correct\":false,\"misconception\":\"misc.log_is_rock\"},{\"text\":\"Математическая модель пласта точно знает состав флюида под землей\",\"correct\":false,\"misconception\":\"misc.model_knows\"}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Оценки каротажа не применяются изолированно, так как перед спуском труб геолог должен проанализировать все данные.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 4939,
+ "tokens_out": 619,
+ "money_usd": 0.0030292,
+ "attempts": 1
+}

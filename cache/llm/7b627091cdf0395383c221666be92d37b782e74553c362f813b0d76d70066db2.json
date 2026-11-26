@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":false,\"quote\":null,\"page_pdf\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 19471,
+ "tokens_out": 17,
+ "money_usd": 0.0058838,
+ "attempts": 1
+}

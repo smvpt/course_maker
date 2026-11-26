@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Блок-схема экспресс-анализа разреза скважин\",\"note\":\"Нажми на этап сканирования, чтобы узнать его особенности и критерии разделения пород.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"Сканирование разреза\",\"description\":\"Помогает быстро отделить коллектор от неколлектора и выделить потенциальные продуктивные и водяные зоны.\",\"claim_id\":\"test_asquith.reconnaissance_scanning#c1\",\"rock\":null},{\"label\":\"Терригенные отложения\",\"description\":\"Кривая сопротивления служит основным инструментом измерения из-за вмещающих пород с относительно постоянным сопротивлением.\",\"claim_id\":\"test_asquith.reconnaissance_scanning#c3\",\"rock\":\"sand\"},{\"label\":\"Карбонатные породы\",\"description\":\"Сопротивление сильно меняется при смене литологии, поэтому основным инструментом измерения служит кривая пористости.\",\"claim_id\":\"test_asquith.reconnaissance_scanning#c4\",\"rock\":\"limestone\"},{\"label\":\"Водяные зоны\",\"description\":\"Идентификация так же важна, как и поиск углеводородов, для оценки их присутствия и объема путем сравнения.\",\"claim_id\":\"test_asquith.reconnaissance_scanning#c2\",\"rock\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 3572,
+ "tokens_out": 383,
+ "money_usd": 0.0020291000000000003,
+ "attempts": 1
+}

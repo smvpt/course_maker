@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"claim_id\":\"test_asquith.quick_look_methods#c13\",\"title\":\"Кажущееся сопротивление воды от пористости и сопротивления\",\"slider_name\":\"depth\",\"slider_label\":\"Глубина\",\"slider_unit\":\"м\",\"slider_min\":1000.0,\"slider_max\":1100.0,\"x_name\":\"\",\"x_label\":\"\",\"x_unit\":\"\",\"x_min\":0.0,\"x_max\":0.0,\"y_label\":\"Rwa\",\"y_unit\":\"Ohm.m\",\"constants\":{\"Rt\":20.0,\"phi\":0.2,\"m\":2.0,\"a\":1.0},\"expression\":\"(Rt * (phi ** m)) / a\",\"curve_key\":\"RES\",\"note\":\"Изменение глубины и параметров пласта показывает вариации кажущегося сопротивления воды.\"}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/interactive",
+ "tokens_in": 6873,
+ "tokens_out": 238,
+ "money_usd": 0.0026569,
+ "attempts": 1
+}

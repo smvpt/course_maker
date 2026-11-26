@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"gap\",\"kind\":\"data\",\"claim_ids\":[\"test_asquith.saturation_crossplots#c5\"],\"prompt\":\"На кроссплоте Пикетта нефтеносные точки смещаются вправо от линии водоносного пласта из-за повышенного {{1}}, а на кроссплоте Хингла они лежат {{2}} линии 100% водонасыщенности.\",\"options\":[],\"gap_answers\":[\"сопротивления\",\"ниже\"],\"calc\":null,\"explanation\":\"Точки с углеводородами сдвигаются на графиках из-за роста сопротивления.\"},{\"type\":\"order\",\"kind\":\"understanding\",\"claim_ids\":[\"test_asquith.saturation_crossplots#c3\",\"test_asquith.saturation_crossplots#c4\",\"test_asquith.saturation_crossplots#c5\"],\"prompt\":\"Расположите шаги анализа данных в методе Пикетта в правильной последовательности:\",\"options\":[{\"text\":\"Построить истинное сопротивление и пористость в логарифмических масштабах\",\"correct\":false,\"misconception\":null},{\"text\":\"Провести прямую линию водоносного пласта (Ro) с наклоном -1/m\",\"correct\":false,\"misconception\":null},{\"text\":\"Определить сдвиг аномальных точек вправо для оценки водонасыщенности\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Сначала строят график, затем проводят линию Ro и анализируют сдвиг точек.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 7676,
+ "tokens_out": 374,
+ "money_usd": 0.0032378,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"a\"],\"claim_id\":\"test_asquith.bulk_volume_water#c15\",\"evidence\":\"The formation is very close to, or at, irreducible water saturation.\"},{\"n\":2,\"answer\":[\"c\",\"d\"],\"claim_id\":\"test_asquith.bulk_volume_water#c14\",\"evidence\":\"the bulk volume water values become scattered from the hyperbolic curves and the formation has more water\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1431,
+ "tokens_out": 115,
+ "money_usd": 0.0007168000000000001,
+ "attempts": 1
+}

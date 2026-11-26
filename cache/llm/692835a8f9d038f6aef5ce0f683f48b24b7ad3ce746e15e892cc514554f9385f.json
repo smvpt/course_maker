@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"claim_id\":\"test_asquith.bulk_volume_water#c2\",\"title\":\"Зависимость объемной водонасыщенности от пористости\",\"slider_name\":\"phi\",\"slider_label\":\"Пористость\",\"slider_unit\":\"доли\",\"slider_min\":0.05,\"slider_max\":0.4,\"x_name\":\"\",\"x_label\":\"\",\"x_unit\":\"\",\"x_min\":0.0,\"x_max\":0.0,\"y_label\":\"Объемная водонасыщенность (BVW)\",\"y_unit\":\"доли\",\"constants\":{\"Sw\":0.2},\"expression\":\"Sw * phi\",\"curve_key\":null,\"note\":\"При изменении пористости объемная водонасыщенность линейно меняется при постоянной водонасыщенности.\"}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/interactive",
+ "tokens_in": 5572,
+ "tokens_out": 215,
+ "money_usd": 0.0022091,
+ "attempts": 1
+}

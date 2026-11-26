@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"gap\",\"kind\":\"transfer\",\"claim_ids\":[\"test_asquith.reconnaissance_scanning#c3\",\"test_asquith.reconnaissance_scanning#c4\"],\"prompt\":\"При экспресс-анализе разреза для терригенных пород основным инструментом сканирования служит кривая {{1}}, а для карбонатных пород — кривая {{2}}.\",\"options\":[],\"gap_answers\":[\"сопротивления\",\"пористости\"],\"calc\":null,\"explanation\":\"В терригенных породах основной метод — анализ сопротивления, а в карбонатных — анализ пористости.\"},{\"type\":\"order\",\"kind\":\"data\",\"claim_ids\":[\"test_asquith.reconnaissance_scanning#c1\",\"test_asquith.reconnaissance_scanning#c3\",\"test_asquith.reconnaissance_scanning#c4\"],\"prompt\":\"Расположите этапы экспресс-анализа разреза скважины в правильной последовательности для быстрого выделения потенциальных зон.\",\"options\":[{\"text\":\"Провести сканирование разреза перед детальной обработкой для отделения коллекторов от неколлекторов\",\"correct\":false,\"misconception\":null},{\"text\":\"Выбрать тип разреза — терригенный или карбонатный\",\"correct\":false,\"misconception\":null},{\"text\":\"Применить кривую сопротивления для терригенных отложений или кривую пористости для карбонатов\",\"correct\":false,\"misconception\":null},{\"text\":\"Наметить зоны с потенциальными углеводородами и водяные зоны\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Экспресс-анализ начинается со сканирования, выбора пути по литологии, применения базовой кривой и выделения зон.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 5481,
+ "tokens_out": 435,
+ "money_usd": 0.0027318000000000004,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"multiple\",\"kind\":\"recall\",\"claim_ids\":[\"test_asquith.shaly_sand_analysis#c4\",\"test_asquith.shaly_sand_analysis#c6\"],\"prompt\":\"Какие специализированные модели и методы разработаны для учёта электрических свойств глин при расчёте водонасыщенности в глинистых коллекторах?\",\"options\":[{\"text\":\"Модель двойной воды\",\"correct\":true,\"misconception\":null},{\"text\":\"Метод Waxman-Smits\",\"correct\":true,\"misconception\":null},{\"text\":\"Уравнение Арчи без поправок\",\"correct\":false,\"misconception\":null},{\"text\":\"Прибор сопротивления\",\"correct\":false,\"misconception\":\"misc.resistivity_is_saturation\"}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Для точного расчёта водонасыщенности в глинистых коллекторах используют метод Waxman-Smits и модель двойной воды.\"},{\"type\":\"gap\",\"kind\":\"understanding\",\"claim_ids\":[\"test_asquith.shaly_sand_analysis#c6\"],\"prompt\":\"Модель двойной воды разделяет воду на связанную неподвижную воду у поверхности глины и свободную {{1}} воду.\",\"options\":[],\"gap_answers\":[\"подвижную\"],\"calc\":null,\"explanation\":\"Модель выделяет неподвижную связанную воду у поверхности глины и свободную подвижную воду.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 5780,
+ "tokens_out": 341,
+ "money_usd": 0.0025865,
+ "attempts": 1
+}

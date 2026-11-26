@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"This condition is only applicable for a relatively short period after some pressure disturbance has been created in the reservoir.\",\"page_pdf\":77}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 19495,
+ "tokens_out": 39,
+ "money_usd": 0.005946,
+ "attempts": 1
+}

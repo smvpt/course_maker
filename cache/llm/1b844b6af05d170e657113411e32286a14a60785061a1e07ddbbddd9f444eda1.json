@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"Water saturation of a formation's flushed zone ($S_{xo}$) is also based on the Archie equation, but two variables are changed: mud filtrate resistivity ($R_{mf}$) in place of formation water resistivity ($R_w$) and flushed zone resistivity ($R_{xo}$) in place of uninvaded zone resistivity ($R_t$).\",\"page_pdf\":127}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 3437,
+ "tokens_out": 89,
+ "money_usd": 0.0012536,
+ "attempts": 1
+}

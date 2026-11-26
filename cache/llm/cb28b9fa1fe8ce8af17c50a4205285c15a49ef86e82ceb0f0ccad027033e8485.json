@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"calc\",\"kind\":\"understanding\",\"claim_ids\":[\"test_asquith.quick_look_methods#c13\"],\"prompt\":\"Рассчитайте кажущееся удельное сопротивление воды (Rwa) для пласта с глубоким сопротивлением Rt = 10.0 Ом·м, пористостью phi = 0.2, цементационным показателем m = 2.0 и параметром a = 1.0.\",\"options\":[],\"gap_answers\":[],\"calc\":{\"variables\":{\"Rt\":10.0,\"phi\":0.2,\"m\":2.0,\"a\":1.0},\"expression\":\"(Rt * (phi ** m)) / a\",\"unit\":\"Ом·м\"},\"explanation\":\"Значение Rwa рассчитывается по формуле делением произведения сопротивления и пористости в степени m на параметр a.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 8249,
+ "tokens_out": 209,
+ "money_usd": 0.0029971999999999998,
+ "attempts": 1
+}

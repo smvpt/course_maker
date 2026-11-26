@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"The Pickett plot (Pickett, 1966, 1973) is one of the simplest and most effective crossplot methods in use. This technique estimates water saturation and can also help determine:\",\"page_pdf\":132}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 33407,
+ "tokens_out": 170,
+ "money_usd": 0.006585830000000001,
+ "attempts": 2
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"In practice, especially when calculated and displayed as a curve during a logging job, the following values are used for simplicity: a = 1.0, m = 2.0.\",\"page_pdf\":130}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 7064,
+ "tokens_out": 57,
+ "money_usd": 0.0022616999999999997,
+ "attempts": 1
+}

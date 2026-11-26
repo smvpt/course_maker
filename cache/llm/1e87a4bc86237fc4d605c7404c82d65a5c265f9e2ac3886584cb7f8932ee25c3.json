@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"In low-porosity zones (less than about 10% porosity), the Rwa value is lower than the actual Rw value.\",\"page_pdf\":129}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 7051,
+ "tokens_out": 47,
+ "money_usd": 0.0022328,
+ "attempts": 1
+}

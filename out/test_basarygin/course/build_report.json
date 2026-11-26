@@ -2,17 +2,17 @@
   "chapter": "test_basarygin",
   "nodes": 13,
   "tasks": 24,
-  "step_text_nodes": 10,
+  "step_text_nodes": 9,
   "interactive_steps": 7,
-  "guess_steps": 10,
+  "guess_steps": 9,
   "summary": {
-    "text_model_steps": 10,
+    "text_model_steps": 9,
     "steps": 13,
     "tasks": 24,
     "tasks_dropped": 2,
-    "fallback_steps": 3,
-    "model": "доступна",
-    "line": "ИТОГ СБОРКИ: текст модели: 10 из 13 шагов · заданий: 24 (выброшено 2) · fallback: 3 · модель: доступна"
+    "fallback_steps": 4,
+    "model": "не использовалась (--no-llm)",
+    "line": "ИТОГ СБОРКИ: текст модели: 9 из 13 шагов · заданий: 24 (выброшено 2) · fallback: 4 · модель: не использовалась (--no-llm)"
   },
   "warnings": [
     {
@@ -62,11 +62,6 @@
       "code": "term_not_marked",
       "message": "шаг test_basarygin.rop_increase_as_sign: термин 'механическая скорость бурения' не выделен [[…]] ни в одном абзаце",
       "node": "test_basarygin.rop_increase_as_sign"
-    },
-    {
-      "code": "term_not_marked",
-      "message": "шаг test_basarygin.mud_tank_level_control: термин 'уровнемер' не выделен [[…]] ни в одном абзаце",
-      "node": "test_basarygin.mud_tank_level_control"
     },
     {
       "code": "term_not_marked",
@@ -129,6 +124,13 @@
       "node": "test_basarygin.blowout_preventer_stack"
     },
     {
+      "code": "stale_step_text",
+      "message": "step_text.json устарел для шагов test_basarygin.mud_tank_level_control (узел изменился после генерации): они собраны из полей слоя, запусти сборку без --no-llm",
+      "nodes": [
+        "test_basarygin.mud_tank_level_control"
+      ]
+    },
+    {
       "code": "missing_task_type",
       "message": "нет заданий типов: calc",
       "types": [
@@ -156,14 +158,6 @@
         "задание 1: значения rho_0=1.25 нет в узле",
         "задание 1: значения rho_gr=1.18 нет в узле",
         "задание 1: числа ['1.18', '1.25', '3', '45'] из условия нет в узле"
-      ]
-    },
-    {
-      "code": "interactive_no_data",
-      "message": "интерактив шага test_basarygin.mud_tank_level_control не показан: модель ответила, что по формулам и числам узла шаблон profile построить нельзя; модель ответила, что по формулам и числам узла шаблон dependence построить нельзя",
-      "node": "test_basarygin.mud_tank_level_control",
-      "errors": [
-        "модель ответила, что по формулам и числам узла шаблон profile построить нельзя; модель ответила, что по формулам и числам узла шаблон dependence построить нельзя"
       ]
     },
     {

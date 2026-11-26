@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"claim_id\":\"test_asquith.permeability_from_logs#c6\",\"title\":\"Зависимость проницаемости от пористости для нефти\",\"x_name\":\"phi\",\"x_label\":\"Пористость\",\"x_unit\":\"доли ед.\",\"y_label\":\"Проницаемость\",\"y_unit\":\"мД\",\"x_min\":0.1,\"x_max\":0.3,\"constants\":{\"S_wirr\":0.4},\"expression\":\"(250 * phi**3 / S_wirr)**2\",\"depth_axis\":\"none\",\"curve_key\":null,\"note\":\"График показывает рост проницаемости при увеличении пористости по формуле Вилли-Роуза.\"}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/illus_curve",
+ "tokens_in": 6219,
+ "tokens_out": 190,
+ "money_usd": 0.0023407,
+ "attempts": 1
+}

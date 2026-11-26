@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"calc\",\"kind\":\"transfer\",\"claim_ids\":[\"test_asquith.permeability_from_logs#c6\"],\"prompt\":\"Рассчитайте проницаемость по формуле Вилли-Роуза для нефти средней плотности. Заданы пористость phi = 0.25 и неснижаемая водонасыщенность S_wirr = 0.4.\",\"options\":[],\"gap_answers\":[],\"calc\":{\"variables\":{\"phi\":0.25,\"S_wirr\":0.4},\"expression\":\"(250 * (phi ** 3) / S_wirr) ** 2\",\"unit\":\"md\"},\"explanation\":\"Расчет выполнен по формуле Вилли-Роуза для нефти средней плотности с использованием заданных пористости и неснижаемой водонасыщенности.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 7255,
+ "tokens_out": 194,
+ "money_usd": 0.0026615000000000002,
+ "attempts": 1
+}

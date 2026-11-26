@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"gap\",\"kind\":\"transfer\",\"claim_ids\":[\"test_dake.radial_flow_eq_derivation#c3\"],\"prompt\":\"Аналитические решения уравнения радиального течения используются для описания гидродинамических исследований скважин и {{1}} в промысловой инженерии.\",\"options\":[],\"gap_answers\":[\"притока к скважине\"],\"calc\":null,\"explanation\":\"Решения уравнения применяются для анализа работы скважин и притока флюидов.\"},{\"type\":\"multiple\",\"kind\":\"transfer\",\"claim_ids\":[\"test_dake.radial_flow_eq_derivation#c12\"],\"prompt\":\"Какие основные режимы решений выделяются при анализе уравнения радиального течения?\",\"options\":[{\"text\":\"Переходный режим\",\"correct\":true,\"misconception\":null},{\"text\":\"Полустационарный режим\",\"correct\":true,\"misconception\":null},{\"text\":\"Стационарный режим\",\"correct\":true,\"misconception\":null},{\"text\":\"Режим мгновенного истощения\",\"correct\":false,\"misconception\":\"misc.pressure_sound_speed\"}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Выделяют переходный, полустационарный и стационарный режимы для разных условий и времени.\"},{\"type\":\"gap\",\"kind\":\"data\",\"claim_ids\":[\"test_dake.radial_flow_eq_derivation#c19\"],\"prompt\":\"В линеаризованном уравнении радиальной диффузии коэффициент k/(phi mu c) называется константой {{1}}.\",\"options\":[],\"gap_answers\":[\"диффузии\"],\"calc\":null,\"explanation\":\"Коэффициент в уравнении диффузионного типа носит название константы диффузии.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 9301,
+ "tokens_out": 423,
+ "money_usd": 0.0038478,
+ "attempts": 1
+}

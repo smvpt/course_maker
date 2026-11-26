@@ -1,6 +1,6 @@
 {
   "chapter": "test_dake",
-  "generated": "2026-11-26T13:11",
+  "generated": "2026-11-26T13:17",
   "nodes": 1,
   "coverage": {
     "units": 203,
@@ -11,10 +11,10 @@
   },
   "quotes": {
     "claims": 19,
-    "found": 18,
+    "found": 19,
     "other_page": 0,
-    "not_found": 1,
-    "pct": 94.7
+    "not_found": 0,
+    "pct": 100.0
   },
   "numbers": {
     "total": 2,
@@ -22,7 +22,7 @@
     "pct": 100.0
   },
   "remarks": {
-    "critical": 1,
+    "critical": 0,
     "significant": 0,
     "minor": 0
   },
@@ -32,8 +32,8 @@
     "edits": 0
   },
   "cost": {
-    "llm_calls": 14,
-    "cached": 0,
+    "llm_calls": 20,
+    "cached": 6,
     "money_usd": 0.0953,
     "unpriced_calls": 0,
     "tokens_in": 146554,

@@ -11,8 +11,8 @@
     "tasks": 6,
     "tasks_dropped": 2,
     "fallback_steps": 0,
-    "model": "доступна",
-    "line": "ИТОГ СБОРКИ: текст модели: 1 из 1 шагов · заданий: 6 (выброшено 2) · fallback: 0 · модель: доступна"
+    "model": "не использовалась (--no-llm)",
+    "line": "ИТОГ СБОРКИ: текст модели: 1 из 1 шагов · заданий: 6 (выброшено 2) · fallback: 0 · модель: не использовалась (--no-llm)"
   },
   "warnings": [
     {
@@ -21,7 +21,32 @@
     },
     {
       "code": "term_not_marked",
+      "message": "шаг test_dake.radial_flow_eq_derivation: термин 'изотермическая сжимаемость' не выделен [[…]] ни в одном абзаце",
+      "node": "test_dake.radial_flow_eq_derivation"
+    },
+    {
+      "code": "term_not_marked",
       "message": "шаг test_dake.radial_flow_eq_derivation: термин 'основное дифференциальное уравнение радиального течения' не выделен [[…]] ни в одном абзаце",
+      "node": "test_dake.radial_flow_eq_derivation"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_dake.radial_flow_eq_derivation: термин 'основное уравнение радиального течения' не выделен [[…]] ни в одном абзаце",
+      "node": "test_dake.radial_flow_eq_derivation"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_dake.radial_flow_eq_derivation: термин 'переходный режим' не выделен [[…]] ни в одном абзаце",
+      "node": "test_dake.radial_flow_eq_derivation"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_dake.radial_flow_eq_derivation: термин 'полустационарный режим' не выделен [[…]] ни в одном абзаце",
+      "node": "test_dake.radial_flow_eq_derivation"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_dake.radial_flow_eq_derivation: термин 'стационарный режим' не выделен [[…]] ни в одном абзаце",
       "node": "test_dake.radial_flow_eq_derivation"
     },
     {
@@ -52,22 +77,22 @@
     },
     {
       "code": "task_dropped",
-      "message": "задание 3 (gap) шага test_dake.radial_flow_eq_derivation выброшено: задание 3: слово пропуска 'притока к скважине' не найдено в тексте узла в такой форме (ответ должен быть в тексте шага; не больше 2 слов)",
+      "message": "задание 3 (gap) шага test_dake.radial_flow_eq_derivation выброшено: задание 3: слово пропуска 'cp << 1' не найдено в тексте узла в такой форме (ответ должен быть в тексте шага; не больше 2 слов)",
       "node": "test_dake.radial_flow_eq_derivation",
       "slot": 3,
       "type": "gap",
       "errors": [
-        "задание 3: слово пропуска 'притока к скважине' не найдено в тексте узла в такой форме (ответ должен быть в тексте шага; не больше 2 слов)"
+        "задание 3: слово пропуска 'cp << 1' не найдено в тексте узла в такой форме (ответ должен быть в тексте шага; не больше 2 слов)"
       ]
     },
     {
       "code": "task_answer_mismatch",
-      "message": "задание 7 (gap) шага test_dake.radial_flow_eq_derivation выброшено: помеченный ответ противоречит цитате книги (слепая проверка): ответ слепой проверки не совпал с помеченным: по цитате test_dake.radial_flow_eq_derivation#c19 («is called the diffusivity constant.») модель выбрала diffusivity, помечено диффузии. Перепроверь по цитате, какой ответ верен, и перепиши задание",
+      "message": "задание 7 (gap) шага test_dake.radial_flow_eq_derivation выброшено: помеченный ответ противоречит цитате книги (слепая проверка): ответ слепой проверки не совпал с помеченным: по цитате test_dake.radial_flow_eq_derivation#c18 («compressibility of the entire reservoir-liquid system») модель выбрала reservoir-liquid system, помечено пласт-жидкость. Перепроверь по цитате, какой ответ верен, и перепиши задание",
       "node": "test_dake.radial_flow_eq_derivation",
       "slot": 7,
       "type": "gap",
       "errors": [
-        "ответ слепой проверки не совпал с помеченным: по цитате test_dake.radial_flow_eq_derivation#c19 («is called the diffusivity constant.») модель выбрала diffusivity, помечено диффузии. Перепроверь по цитате, какой ответ верен, и перепиши задание"
+        "ответ слепой проверки не совпал с помеченным: по цитате test_dake.radial_flow_eq_derivation#c18 («compressibility of the entire reservoir-liquid system») модель выбрала reservoir-liquid system, помечено пласт-жидкость. Перепроверь по цитате, какой ответ верен, и перепиши задание"
       ]
     }
   ],

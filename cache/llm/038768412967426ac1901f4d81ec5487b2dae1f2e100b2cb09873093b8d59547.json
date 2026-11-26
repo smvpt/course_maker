@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"calc\",\"kind\":\"transfer\",\"claim_ids\":[\"test_asquith.permeability_from_logs#c6\"],\"prompt\":\"Рассчитайте проницаемость по формуле Вилли-Роуза для нефти средней плотности. Заданы пористость phi = 0.25 и неснижаемая водонасыщенность S_wirr = 0.40.\",\"options\":[],\"gap_answers\":[],\"calc\":{\"variables\":{\"phi\":0.25,\"S_wirr\":0.4},\"expression\":\"(250 * (phi ** 3) / S_wirr) ** 2\",\"unit\":\"мД\"},\"explanation\":\"Проницаемость рассчитывается подстановкой значений пористости и связанной воды в эмпирическую формулу.\"},{\"type\":\"single\",\"kind\":\"data\",\"claim_ids\":[\"test_asquith.permeability_from_logs#c4\"],\"prompt\":\"Почему расчет проницаемости по формулам ГИС может оказаться неверным в интервале, где объемная водонасыщенность (BVW) непостоянна?\",\"options\":[{\"text\":\"Зона не находится в состоянии неснижаемой водонасыщенности\",\"correct\":true,\"misconception\":null},{\"text\":\"Прибор сопротивления прямо измеряет нефтенасыщенность пласта\",\"correct\":false,\"misconception\":\"misc.resistivity_is_saturation\"},{\"text\":\"Пористость и проницаемость в этом интервале становятся равны\",\"correct\":false,\"misconception\":\"misc.porosity_eq_perm\"},{\"text\":\"Модель пласта автоматически исправляет ошибку изменения воды\",\"correct\":false,\"misconception\":\"misc.model_knows\"}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Формулы ГИС применимы только в зонах с неснижаемой водой, а переменная BVW делает оценки сомнительными.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 7237,
+ "tokens_out": 464,
+ "money_usd": 0.0033311,
+ "attempts": 1
+}

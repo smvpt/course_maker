@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"The Rxo curve usually used for the ratio is derived from a shallow-reading measurement, such as a microspherically focused log or a microlaterolog. The Rt curve is derived from a deep-reading measurement such as the deep induction log or deep laterolog.\",\"page_pdf\":129}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 7092,
+ "tokens_out": 73,
+ "money_usd": 0.0023101,
+ "attempts": 1
+}

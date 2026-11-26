@@ -8,16 +8,5 @@
   },
   "package_id": "test_dake",
   "team": "",
-  "remarks": [
-    {
-      "ext": {},
-      "target": "test_dake.radial_flow_eq_derivation#c8",
-      "category": "other",
-      "severity": "critical",
-      "problem": "цитата не найдена в главе (лучшее сходство 81): «Mass flow rate IN - Mass flow rate OUT = Rate of change of mass in the volume element»",
-      "fix": "заменить цитату дословным фрагментом md со стр. 76 или убрать утверждение",
-      "page_pdf": 76,
-      "quote": null
-    }
-  ]
+  "remarks": []
 }

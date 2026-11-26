@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Влияние глины на расчет водонасыщенности\",\"note\":\"Нажми на элемент схемы, чтобы узнать его характеристики.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"Сланец\",\"description\":\"Обладает проводимостью и снижает сопротивление породы, а также контраст между сопротивлением нефтеносной и водяной зон.\",\"claim_id\":\"test_asquith.shaly_sand_analysis#c8\",\"rock\":\"shale\"},{\"label\":\"Глина\",\"description\":\"Её присутствие искажает значения пористости и водонасыщенности в песчаниках, известняках и доломитах.\",\"claim_id\":\"test_asquith.shaly_sand_analysis#c7\",\"rock\":\"shale\"},{\"label\":\"Связанная вода\",\"description\":\"Представляет собой недвижимый слой воды, находящийся непосредственно у поверхности глины.\",\"claim_id\":\"test_asquith.shaly_sand_analysis#c6\",\"rock\":null},{\"label\":\"Свободная вода\",\"description\":\"Подвижная вода в коллекторе, которая может вытесняться углеводородами.\",\"claim_id\":\"test_asquith.shaly_sand_analysis#c6\",\"rock\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 3871,
+ "tokens_out": 396,
+ "money_usd": 0.0021513,
+ "attempts": 1
+}

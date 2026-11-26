@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"calc\",\"kind\":\"data\",\"claim_ids\":[\"test_asquith.archie_water_saturation#c2\",\"test_asquith.archie_water_saturation#c3\",\"test_asquith.archie_water_saturation#c4\"],\"prompt\":\"Рассчитайте водонасыщенность неизмененной зоны Sw, используя формулу Арчи (7.1). Параметры: a = 1.0, m = 2.0, n = 2.0, Rw = 0.04 Ом·м, Rt = 16.0 Ом·м, пористость phi = 0.2.\",\"options\":[],\"gap_answers\":[],\"calc\":{\"variables\":{\"a\":1.0,\"m\":2.0,\"n\":2.0,\"Rw\":0.04,\"Rt\":16.0,\"phi\":0.2},\"expression\":\"((a * Rw) / (Rt * (phi ** m))) ** (1 / n)\",\"unit\":\"\"},\"explanation\":\"Водонасыщенность рассчитывается подстановкой значений сопротивлений и пористости в формулу Арчи.\"},{\"type\":\"single\",\"kind\":\"understanding\",\"claim_ids\":[\"test_asquith.archie_water_saturation#c10\",\"test_asquith.archie_water_saturation#c14\",\"test_asquith.archie_water_saturation#c15\"],\"prompt\":\"О чем говорит превышение водонасыщенности промытой зоны (Sxo) над водонасыщенностью неизмененной зоны (Sw)?\",\"options\":[{\"text\":\"Углеводороды в прискважинной зоне были вытеснены фильтратом раствора.\",\"correct\":true,\"misconception\":null},{\"text\":\"Прибор сопротивления прямо измеряет нефтенасыщенность пласта.\",\"correct\":false,\"misconception\":\"misc.resistivity_is_saturation\"},{\"text\":\"Водонефтяной контакт находится выше интервала исследования.\",\"correct\":false,\"misconception\":\"misc.owc_sharp\"},{\"text\":\"Пористость и проницаемость в промытой зоне полностью равны.\",\"correct\":false,\"misconception\":\"misc.porosity_eq_perm\"}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Превышение Sxo над Sw указывает на вытеснение углеводородов фильтратом и подвижность флюидов.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 6355,
+ "tokens_out": 578,
+ "money_usd": 0.0033515000000000003,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"claim_id\":\"test_asquith.permeability_from_logs#c12\",\"title\":\"Зависимость константы C от плотности углеводородов\",\"x_name\":\"rho_h\",\"x_label\":\"Плотность углеводородов\",\"x_unit\":\"г/см3\",\"y_label\":\"Константа C\",\"y_unit\":\"\",\"x_min\":0.1,\"x_max\":0.8,\"constants\":{},\"expression\":\"23 + 465 * rho_h - 188 * rho_h**2\",\"depth_axis\":\"none\",\"curve_key\":null,\"note\":\"График показывает изменение константы C в зависимости от плотности углеводородов в формуле Коутса-Думануара.\"}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/illus_curve",
+ "tokens_in": 6237,
+ "tokens_out": 199,
+ "money_usd": 0.0023686,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"free\"],\"claim_id\":\"test_asquith.shaly_sand_analysis#c6\",\"evidence\":\"movable water that can be displaced by hydrocarbons (free water)\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 810,
+ "tokens_out": 55,
+ "money_usd": 0.0003805,
+ "attempts": 1
+}

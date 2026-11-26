@@ -1,6 +1,6 @@
 {
   "chapter": "test_basarygin",
-  "generated": "2026-11-26T12:49",
+  "generated": "2026-11-26T13:17",
   "nodes": 13,
   "coverage": {
     "units": 110,
@@ -11,10 +11,10 @@
   },
   "quotes": {
     "claims": 125,
-    "found": 124,
+    "found": 125,
     "other_page": 0,
-    "not_found": 1,
-    "pct": 99.2
+    "not_found": 0,
+    "pct": 100.0
   },
   "numbers": {
     "total": 36,
@@ -22,7 +22,7 @@
     "pct": 100.0
   },
   "remarks": {
-    "critical": 1,
+    "critical": 0,
     "significant": 8,
     "minor": 0
   },
@@ -32,11 +32,11 @@
     "edits": 0
   },
   "cost": {
-    "llm_calls": 118,
+    "llm_calls": 0,
     "cached": 0,
-    "money_usd": 0.3723,
+    "money_usd": 0.0,
     "unpriced_calls": 0,
-    "tokens_in": 598426,
-    "tokens_out": 78206
+    "tokens_in": 0,
+    "tokens_out": 0
   }
 }

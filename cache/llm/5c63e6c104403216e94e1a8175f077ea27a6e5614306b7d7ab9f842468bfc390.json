@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"b\",\"c\"],\"claim_id\":\"test_asquith.ratio_method#c8\",\"evidence\":\"the assumption of a step-contact invasion profile is indicated to be correct\"},{\"n\":2,\"answer\":[\"1.0\"],\"claim_id\":\"test_asquith.ratio_method#c5\",\"evidence\":\"equal to or greater than 1.0\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1393,
+ "tokens_out": 104,
+ "money_usd": 0.0006778999999999999,
+ "attempts": 1
+}

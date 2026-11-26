@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"claim_id\":\"test_asquith.bulk_volume_water#c2\",\"title\":\"Зависимость объемной водонасыщенности от пористости\",\"x_name\":\"phi\",\"x_label\":\"Пористость\",\"x_unit\":\"д.ед.\",\"y_label\":\"Объемная водонасыщенность\",\"y_unit\":\"д.ед.\",\"x_min\":0.05,\"x_max\":0.35,\"constants\":{\"Sw\":0.5},\"expression\":\"Sw * phi\",\"depth_axis\":\"none\",\"curve_key\":null,\"note\":\"График показывает изменение объемной водонасыщенности при постоянной водной насыщенности и различной пористости.\"}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/illus_curve",
+ "tokens_in": 5428,
+ "tokens_out": 184,
+ "money_usd": 0.0020884,
+ "attempts": 1
+}

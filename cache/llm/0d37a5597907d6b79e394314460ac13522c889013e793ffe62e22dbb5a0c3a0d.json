@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"a\",\"b\",\"d\"],\"claim_id\":\"test_dake.radial_flow_eq_derivation#c12\",\"evidence\":\"These conditions are called transient, semi steady state and steady state\"},{\"n\":2,\"answer\":[\"diffusivity\"],\"claim_id\":\"test_dake.radial_flow_eq_derivation#c19\",\"evidence\":\"is called the diffusivity constant.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1010,
+ "tokens_out": 111,
+ "money_usd": 0.0005805000000000001,
+ "attempts": 1
+}

@@ -11,16 +11,6 @@
   "remarks": [
     {
       "ext": {},
-      "target": "test_basarygin.mud_tank_level_control#c3",
-      "category": "other",
-      "severity": "critical",
-      "problem": "цитата не найдена в главе (лучшее сходство 69): «Наиболее совершенные измерительные системы контролируют объем (уровень) в приемных емкостях насосов и общий объем бурово»",
-      "fix": "заменить цитату дословным фрагментом md со стр. 233 или убрать утверждение",
-      "page_pdf": 233,
-      "quote": null
-    },
-    {
-      "ext": {},
       "target": "test_basarygin.manifestation_signs_overview",
       "category": "other",
       "severity": "significant",

@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"calc\",\"kind\":\"understanding\",\"claim_ids\":[\"test_asquith.quick_look_methods#c13\"],\"prompt\":\"Рассчитайте кажущееся удельное сопротивление воды (Rwa) для пласта, если истинное сопротивление Rt равно 20 Ом*м, пористость составляющая часть phi равна 0.15, цементационный показатель m равен 2.0, а параметр a равен 1.0.\",\"options\":[],\"gap_answers\":[],\"calc\":{\"variables\":{\"Rt\":20.0,\"phi\":0.15,\"m\":2.0,\"a\":1.0},\"expression\":\"(Rt * (phi ** m)) / a\",\"unit\":\"Ом*м\"},\"explanation\":\"Значение рассчитывается по формуле Rwa через сопротивление, пористость и параметры цементации.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 8228,
+ "tokens_out": 199,
+ "money_usd": 0.0029659,
+ "attempts": 1
+}

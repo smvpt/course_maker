@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"Hilchie (1978) suggests that for shale to significantly affect log-derived water saturations, shale content must be greater than 10 to 15%.\",\"page_pdf\":136}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 3601,
+ "tokens_out": 56,
+ "money_usd": 0.0012203,
+ "attempts": 1
+}

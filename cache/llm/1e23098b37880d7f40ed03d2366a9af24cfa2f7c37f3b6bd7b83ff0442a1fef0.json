@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"gap\",\"kind\":\"understanding\",\"claim_ids\":[\"test_asquith.shaly_sand_analysis#c9\"],\"prompt\":\"Сланец существенно влияет на рассчитанную водонасыщенность, если его содержание превышает {{1}}.\",\"options\":[],\"gap_answers\":[\"10-15%\"],\"calc\":null,\"explanation\":\"При содержании сланца выше 10-15% стандартные уравнения начинают давать заметную ошибку в расчетах.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 5800,
+ "tokens_out": 116,
+ "money_usd": 0.00203,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"claim_id\":\"test_asquith.quick_look_methods#c13\",\"title\":\"Кажущееся удельное сопротивление воды от глубины\",\"slider_name\":\"depth\",\"slider_label\":\"Глубина\",\"slider_unit\":\"м\",\"slider_min\":1000.0,\"slider_max\":1100.0,\"x_name\":\"\",\"x_label\":\"\",\"x_unit\":\"\",\"x_min\":0.0,\"x_max\":1.0,\"y_label\":\"Rwa\",\"y_unit\":\"Ohm.m\",\"constants\":{\"a\":1.0,\"m\":2.0,\"phi\":0.2},\"expression\":\"(10.0 + 5.0 * sin(depth / 10.0)) * (phi ** m) / a\",\"curve_key\":\"RES\",\"note\":\"Изменение кажущегося сопротивления воды с глубиной позволяет выделять аномалии.\"}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/interactive",
+ "tokens_in": 6858,
+ "tokens_out": 245,
+ "money_usd": 0.0026699000000000002,
+ "attempts": 1
+}

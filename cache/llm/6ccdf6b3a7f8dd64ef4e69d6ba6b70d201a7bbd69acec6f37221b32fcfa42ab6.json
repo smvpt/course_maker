@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"resistivity\"],\"claim_id\":\"test_asquith.saturation_crossplots#c5\",\"evidence\":\"moved horizontally to the right from the water-bearing line by their increased resistivity\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 826,
+ "tokens_out": 57,
+ "money_usd": 0.0003903,
+ "attempts": 1
+}

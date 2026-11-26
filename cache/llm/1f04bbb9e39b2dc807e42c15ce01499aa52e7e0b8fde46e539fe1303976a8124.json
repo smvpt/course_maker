@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"b\"],\"claim_id\":\"test_asquith.log_interpretation_overview#c1\",\"evidence\":\"determining the porosity and true resistivity of a zone is the first step\"},{\"n\":2,\"answer\":[\"b\",\"c\"],\"claim_id\":\"test_asquith.log_interpretation_overview#c5\",\"evidence\":\"it should not be applied without the inclusion of other data\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1235,
+ "tokens_out": 107,
+ "money_usd": 0.000638,
+ "attempts": 1
+}

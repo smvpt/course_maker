@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"calc\",\"kind\":\"data\",\"claim_ids\":[\"test_asquith.archie_water_saturation#c11\"],\"prompt\":\"Рассчитайте водонасыщенность промытой зоны Sxo по формуле Арчи, если a = 1, Rmf = 1, Rxo = 1, phi = 1, m = 2, n = 2.\",\"options\":[],\"gap_answers\":[],\"calc\":{\"variables\":{\"a\":1.0,\"Rmf\":1.0,\"Rxo\":1.0,\"phi\":1.0,\"m\":2.0,\"n\":2.0},\"expression\":\"((a * Rmf) / (Rxo * (phi ** m))) ** (1 / n)\",\"unit\":\"\"},\"explanation\":\"Расчет водонасыщенности промытой зоны выполняется по формуле Арчи для Sxo с использованием параметров сопротивления фильтра и промытой зоны.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 6427,
+ "tokens_out": 205,
+ "money_usd": 0.0024406,
+ "attempts": 1
+}

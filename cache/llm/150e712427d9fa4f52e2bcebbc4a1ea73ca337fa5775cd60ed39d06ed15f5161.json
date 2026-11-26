@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"10 to 15%\"],\"claim_id\":\"test_asquith.shaly_sand_analysis#c9\",\"evidence\":\"greater than 10 to 15%\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 800,
+ "tokens_out": 58,
+ "money_usd": 0.000385,
+ "attempts": 1
+}

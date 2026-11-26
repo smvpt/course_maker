@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"This form of the equation (y = b + mx) indicates that by plotting Rt on the y-axis (on a logarithmic scale) against porosity (phi) on the x-axis (on a logarithmic scale), one can determine the product (a * Rw) from intercept of the line (b), and the cementation exponent (m) from the slope of the line (m).\",\"page_pdf\":132}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 16617,
+ "tokens_out": 99,
+ "money_usd": 0.0052326000000000004,
+ "attempts": 1
+}

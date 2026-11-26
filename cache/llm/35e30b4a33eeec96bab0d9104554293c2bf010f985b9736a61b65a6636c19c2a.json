@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"claim_id\":\"test_asquith.quick_look_methods#c13\",\"title\":\"Кажущееся сопротивление воды от пористости\",\"slider_name\":\"phi\",\"slider_label\":\"Пористость\",\"slider_unit\":\"доли\",\"slider_min\":0.05,\"slider_max\":0.35,\"x_name\":\"\",\"x_label\":\"\",\"x_unit\":\"\",\"x_min\":0.0,\"x_max\":0.0,\"y_label\":\"Rwa\",\"y_unit\":\"Ohm.m\",\"constants\":{\"a\":1.0,\"m\":2.0,\"Rt\":10.0},\"expression\":\"Rt * (phi ** m) / a\",\"curve_key\":\"RES\",\"note\":\"Изменение пористости влияет на расчетное значение кажущегося сопротивления воды Rwa.\"}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/interactive",
+ "tokens_in": 6896,
+ "tokens_out": 224,
+ "money_usd": 0.0026288,
+ "attempts": 1
+}

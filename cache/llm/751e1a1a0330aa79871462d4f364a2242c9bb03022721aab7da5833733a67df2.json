@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"multiple\",\"kind\":\"recall\",\"claim_ids\":[\"test_asquith.shaly_sand_analysis#c6\"],\"prompt\":\"Какие два типа воды выделяет модель dual water в глинистой формации?\",\"options\":[{\"text\":\"связанная неподвижная вода у поверхности глины\",\"correct\":true,\"misconception\":null},{\"text\":\"свободная подвижная вода, вытесняемая углеводородами\",\"correct\":true,\"misconception\":null},{\"text\":\"кристаллическая вода внутри минеральной решетки\",\"correct\":false,\"misconception\":null},{\"text\":\"минерализованная пластовая вода на контакте\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Модель разделяет воду на связанную неподвижную у поверхности глины и свободную подвижную.\"},{\"type\":\"gap\",\"kind\":\"understanding\",\"claim_ids\":[\"test_asquith.shaly_sand_analysis#c8\"],\"prompt\":\"Главный эффект сланца в пласте — снизить контраст сопротивлений между нефтью или газом и водой, из-за чего при высоком содержании сланца становится трудно или невозможно определить {{1}} пласта.\",\"options\":[],\"gap_answers\":[\"продуктивность\"],\"calc\":null,\"explanation\":\"Снижение контраста сопротивлений при наличии сланца делает определение продуктивности зоны крайне сложным.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 5866,
+ "tokens_out": 329,
+ "money_usd": 0.0025823,
+ "attempts": 1
+}

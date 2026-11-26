@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"For example, if the value of Sxo is much larger than Sw, then hydrocarbons in the flushed zone have probably been moved or flushed out of the zone nearest the borehole by the invading drilling fluids (Rmf).\",\"page_pdf\":127}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 3418,
+ "tokens_out": 63,
+ "money_usd": 0.0011829,
+ "attempts": 1
+}

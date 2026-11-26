@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"The ratio method identifies hydrocarbons from the difference between water saturations in the flushed zone (Sxo) and the uninvaded zone (Sw).\",\"page_pdf\":127}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 4553,
+ "tokens_out": 49,
+ "money_usd": 0.0014884,
+ "attempts": 1
+}

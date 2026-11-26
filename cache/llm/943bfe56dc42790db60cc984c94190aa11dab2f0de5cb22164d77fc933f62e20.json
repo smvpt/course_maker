@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Режимы решения уравнения радиального течения\",\"note\":\"Нажми на часть, чтобы узнать условия применения.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"переходный режим\",\"description\":\"Применим в течение относительно короткого периода после создания возмущения, когда пласт кажется бесконечным.\",\"claim_id\":\"test_dake.radial_flow_eq_derivation#c13\",\"rock\":null},{\"label\":\"полустационарный режим\",\"description\":\"Применим, когда пласт производит достаточно долго и ощущается влияние внешней границы с постоянной скоростью изменения давления.\",\"claim_id\":\"test_dake.radial_flow_eq_derivation#c14\",\"rock\":null},{\"label\":\"стационарный режим\",\"description\":\"Применяется после переходного периода для скважины с полностью открытой внешней границей, при которой давление на границе постоянно.\",\"claim_id\":\"test_dake.radial_flow_eq_derivation#c15\",\"rock\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 7178,
+ "tokens_out": 2855,
+ "money_usd": 0.009290900000000001,
+ "attempts": 1
+}

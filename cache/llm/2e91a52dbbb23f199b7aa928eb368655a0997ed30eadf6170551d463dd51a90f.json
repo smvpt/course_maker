@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"o1\",\"o2\",\"o3\"],\"claim_id\":\"test_asquith.quick_look_methods#c4\",\"evidence\":\"In a shale, the ratio is relatively constant\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1091,
+ "tokens_out": 60,
+ "money_usd": 0.0004773,
+ "attempts": 1
+}

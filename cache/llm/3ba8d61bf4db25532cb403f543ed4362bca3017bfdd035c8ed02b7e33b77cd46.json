@@ -1,0 +1,10 @@
+{
+ "text": "{\"routes\":[{\"node_id\":\"test_dake.radial_flow_eq_derivation\",\"format\":\"интерактив\",\"secondary_format\":\"карточки\",\"video_scores\":{\"ext\":{},\"time\":1,\"invisible\":1,\"scale\":0,\"counterintuitive\":1,\"cause_effect\":2},\"hook_short\":false,\"template\":\"T1\",\"why\":\"Тип трудности Ф (Формализм и модель): вывод формулы не идет в видео, смысл параметров и их влияние исследуется через интерактив с ползунками, а математический вывод оформлен в карточках.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/route",
+ "tokens_in": 2313,
+ "tokens_out": 147,
+ "money_usd": 0.0010614,
+ "attempts": 1
+}

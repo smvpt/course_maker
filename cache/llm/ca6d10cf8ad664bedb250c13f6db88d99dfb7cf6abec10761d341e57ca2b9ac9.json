@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"If BVW is plotted using data from a formation at irreducible water saturation, the points fall along a single hyperbolic curve\",\"page_pdf\":131}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 13806,
+ "tokens_out": 43,
+ "money_usd": 0.0042493,
+ "attempts": 1
+}
