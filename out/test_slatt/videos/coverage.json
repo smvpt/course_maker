@@ -6,8 +6,8 @@
     "поддерживается": 0,
     "нужен новый шаблон": 0,
     "формат не поддерживается": 0,
-    "спецификация ещё не создана": 4,
-    "спецификация не прошла проверку": 0,
+    "спецификация ещё не создана": 3,
+    "спецификация не прошла проверку": 1,
     "ошибка маршрута": 0
   },
   "nodes": [
@@ -119,19 +119,19 @@
       },
       "claims_have_numbers": true,
       "pair": {
-        "script": false,
-        "scene_spec": false,
-        "checks": "нет пары"
+        "script": true,
+        "scene_spec": true,
+        "checks": "не пройдены"
       },
       "physical_applicability": {
         "status": "не проверено",
         "reason": "шаблон назначен маршрутизацией; соответствие физики узла модели шаблона не подтверждено — его проверяют спецификация (источники параметров из узла) и ментор"
       },
       "reasons": [
-        "нет test_slatt/videos/test_slatt.river_dominated_delta_deposits.long/script.json и scene_spec.json — запустите video.spec или video.build без явной пары"
+        "готовая пара в C:\\Users\\dania\\Documents\\ChatGPT\\хакатон кмг дигитал\\course_maker_p4_run\\out\\test_slatt\\videos\\test_slatt.river_dominated_delta_deposits.long не подходит:\n- T3: элемент «cone»: утверждение test_slatt.river_dominated_delta_deposits#c1 его не называет (нет ни одного из ['конус', 'cone', 'fan']) — элемента нет в источнике\nУдалите её, чтобы сгенерировать заново, или передайте --script и --scene-spec"
       ],
       "notes": [],
-      "status": "спецификация ещё не создана"
+      "status": "спецификация не прошла проверку"
     },
     {
       "node_id": "test_slatt.wave_dominated_deltas",
@@ -176,7 +176,7 @@
   ],
   "note": "отчёт не генерирует сценарии и не рендерит; физическая применимость шаблонов не подтверждается",
   "inputs": {
-    "layer": "C:\\Users\\azizs\\Documents\\GitHub\\course_maker\\out\\test_slatt\\layer.json",
-    "routing": "C:\\Users\\azizs\\Documents\\GitHub\\course_maker\\out\\test_slatt\\routing.json"
+    "layer": "C:\\Users\\dania\\Documents\\ChatGPT\\хакатон кмг дигитал\\course_maker_p4_run\\out\\test_slatt\\layer.json",
+    "routing": "C:\\Users\\dania\\Documents\\ChatGPT\\хакатон кмг дигитал\\course_maker_p4_run\\out\\test_slatt\\routing.json"
   }
 }

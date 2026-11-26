@@ -1,0 +1,217 @@
+{
+  "ext": {
+    "video": {
+      "route": {
+        "format": "длинное видео",
+        "secondary_format": "интерактив",
+        "template": "T3",
+        "hook_short": false,
+        "why": "Тип трудности М; наглядно показано движение потоков, формирование баров и пространственная структура во времени."
+      },
+      "source_language": "en",
+      "duration_estimate": {
+        "seconds": 102.1,
+        "words": 218,
+        "method": "Оценка по тексту при 130 словах в минуту с учётом пауз, до синтеза."
+      }
+    }
+  },
+  "video_id": "test_slatt.river_dominated_delta_deposits.long",
+  "node_id": "test_slatt.river_dominated_delta_deposits",
+  "format": "long",
+  "phrases": [
+    {
+      "ext": {},
+      "id": "p1",
+      "text": "Почему одинаковые на первый взгляд пласты ведут себя совершенно по-разному?",
+      "on_screen": "Загадка песчаных пластов",
+      "beat": "hook",
+      "claim_id": "test_slatt.river_dominated_delta_deposits#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p2",
+      "text": "Без понимания внутренней структуры дельт геологи не могут точно оценить распространение коллекторов.",
+      "on_screen": "Сложность оценки резервуаров",
+      "beat": "problem",
+      "claim_id": "test_slatt.river_dominated_delta_deposits#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p3",
+      "text": "Чтобы решить эту проблему, специалисты изучают пространственное распределение фаций и зоны их разделения.",
+      "on_screen": "Анализ фаций и барьеров",
+      "beat": "solution",
+      "claim_id": "test_slatt.river_dominated_delta_deposits#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p41",
+      "text": "Такие геологические объекты называются речно-доминированными дельтами.",
+      "on_screen": "Речно-доминированные дельты",
+      "beat": "naming",
+      "claim_id": "test_slatt.river_dominated_delta_deposits#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p42",
+      "text": "Главными фациями здесь выступают русла и устьевые бары, разделенные межрусловыми бухтами и болотами.",
+      "on_screen": "Русла и устьевые бары",
+      "beat": "naming",
+      "claim_id": "test_slatt.river_dominated_delta_deposits#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p5",
+      "text": "Как вы думаете, какая из литофаций устьевого бара обладает максимальной средней проницаемостью?",
+      "on_screen": "Какая фация самая проницаемая?",
+      "beat": "prediction",
+      "claim_id": "test_slatt.river_dominated_delta_deposits#c3",
+      "is_analogy": false,
+      "pause_after_s": 1.5
+    },
+    {
+      "ext": {},
+      "id": "p61",
+      "text": "В керне устьевого бара Прудо-Бей выделено семь песчаных литофаций.",
+      "on_screen": "Семь литофаций в керне",
+      "beat": "data",
+      "claim_id": "test_slatt.river_dominated_delta_deposits#c3",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p62",
+      "text": "Шесть из них показывают среднюю проницаемость от двенадцати до сорока миллидарси.",
+      "on_screen": "Проницаемость от двенадцати до сорока миллидарси",
+      "beat": "data",
+      "claim_id": "test_slatt.river_dominated_delta_deposits#c3",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p63",
+      "text": "Седьмая, наиболее отсортированная литофация, имеет среднюю проницаемость сто двадцать девять миллидарси — значит, именно она образует лучшие коллекторы.",
+      "on_screen": "Максимальная проницаемость сто двадцать девять миллидарси",
+      "beat": "data",
+      "claim_id": "test_slatt.river_dominated_delta_deposits#c3",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "observe0",
+      "text": "Проверим, как геологи узнают эти фации по керну и каротажным диаграммам соседних скважин.",
+      "on_screen": "Керн и каротаж",
+      "beat": "data",
+      "claim_id": "test_slatt.river_dominated_delta_deposits#c2",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "observe1",
+      "text": "При движении вверх по разрезу обратите внимание на последовательное укрупнение зёрен.",
+      "on_screen": "Размер зёрен",
+      "beat": "data",
+      "claim_id": "test_slatt.river_dominated_delta_deposits#c2",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "observe2",
+      "text": "В стороне от оси русла песчаное тело становится тоньше, а осадок мельче.",
+      "on_screen": "В стороне от русла",
+      "beat": "data",
+      "claim_id": "test_slatt.river_dominated_delta_deposits#c2",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p71",
+      "text": "Геологи предполагают, что наиболее проницаемые пески отлагались осадочными шлейфами в период паводков.",
+      "on_screen": "Шлейфы паводковых вод",
+      "beat": "decision",
+      "claim_id": "test_slatt.river_dominated_delta_deposits#c4",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p72",
+      "text": "Эти шлейфы формировались в апексе устьевых баров и вдоль их проксимального края.",
+      "on_screen": "Апекс устьевых баров",
+      "beat": "decision",
+      "claim_id": "test_slatt.river_dominated_delta_deposits#c4",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p81",
+      "text": "Многократное разветвление каналов при проградации приводит к созданию широкого пластового шлейфа.",
+      "on_screen": "Програгация и разветвление каналов",
+      "beat": "decision",
+      "claim_id": "test_slatt.river_dominated_delta_deposits#c5",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p82",
+      "text": "Однако помните, что внутри отдельного бара всегда существуют локальные прерывистости фаций и проницаемости.",
+      "on_screen": "Прерывистость фаций внутри бара",
+      "beat": "decision",
+      "claim_id": "test_slatt.river_dominated_delta_deposits#c5",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p9",
+      "text": "Как учесть внутренние прерывистости фаций при построении трехмерной геологической модели?",
+      "on_screen": "Вопрос для переноса",
+      "beat": "transfer",
+      "claim_id": "test_slatt.river_dominated_delta_deposits#c5",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p101",
+      "text": "В итоге мы получаем сложную систему песчаных резервуаров и глинистых барьеров.",
+      "on_screen": "Итоговая система резервуаров",
+      "beat": "final",
+      "claim_id": "test_slatt.river_dominated_delta_deposits#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p102",
+      "text": "Анализ керна и каротажа позволяет успешно прогнозировать эти литологические особенности.",
+      "on_screen": "Прогноз по керну и каротажу",
+      "beat": "final",
+      "claim_id": "test_slatt.river_dominated_delta_deposits#c2",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    }
+  ],
+  "prediction_question": "Как вы думаете, какая из литофаций устьевого бара обладает максимальной средней проницаемостью?",
+  "transfer_question": "Как учесть внутренние прерывистости фаций при построении трехмерной геологической модели?",
+  "data_it_bridge": "Подобно иерархической структуре данных, где корневые элементы дают сильный сигнал, а периферийные ветви зашумлены, каротажные кривые отражают латеральное утончение фаций, однако сложная литология может нарушать эту связь без учета пространственного тренда."
+}
