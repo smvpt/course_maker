@@ -1,0 +1,76 @@
+{
+  "chapter": "test_basarygin",
+  "domain": "drilling",
+  "video_nodes": 2,
+  "summary": {
+    "поддерживается": 0,
+    "нужен новый шаблон": 2,
+    "формат не поддерживается": 0,
+    "спецификация ещё не создана": 0,
+    "спецификация не прошла проверку": 0,
+    "ошибка маршрута": 0
+  },
+  "nodes": [
+    {
+      "node_id": "test_basarygin.pump_pressure_changes",
+      "title": "Изменения давления на буровых насосах",
+      "title_novice": "Как меняется давление насосов при поступлении легкого флюида",
+      "format_ru": "шортс",
+      "format_source": "format",
+      "format": "short",
+      "template": "T1",
+      "route_why": "Тип трудности М (механизм процесса). Критерии: time=2, invisible=2, counterintuitive=1, cause_effect=2. Анимация изменения давления и движения флюида.",
+      "template_implemented": true,
+      "format_supported": true,
+      "model": null,
+      "state_variable": null,
+      "limitations": null,
+      "assumptions": [],
+      "modes": null,
+      "claims_have_numbers": false,
+      "pair": null,
+      "physical_applicability": {
+        "status": "не проверено",
+        "reason": "шаблон назначен маршрутизацией; соответствие физики узла модели шаблона не подтверждено — его проверяют спецификация (источники параметров из узла) и ментор"
+      },
+      "reasons": [
+        "в доменном пакете нет описания шаблона: C:\\Users\\dania\\Documents\\ChatGPT\\хакатон кмг дигитал\\course_maker_p4_run\\domain\\drilling\\templates\\T1.json"
+      ],
+      "notes": [],
+      "status": "нужен новый шаблон"
+    },
+    {
+      "node_id": "test_basarygin.gnvp_causes_overview",
+      "title": "Причины поступления пластовых флюидов в скважину при бурении",
+      "title_novice": "Систематизация причин притока флюидов при проводке скважины",
+      "format_ru": "шортс",
+      "format_source": "format",
+      "format": "short",
+      "template": "T1",
+      "route_why": "Тип трудности М (механизм процесса). Критерии: time=2, invisible=1, counterintuitive=1, cause_effect=2. Показ причин поступления флюидов.",
+      "template_implemented": true,
+      "format_supported": true,
+      "model": null,
+      "state_variable": null,
+      "limitations": null,
+      "assumptions": [],
+      "modes": null,
+      "claims_have_numbers": true,
+      "pair": null,
+      "physical_applicability": {
+        "status": "не проверено",
+        "reason": "шаблон назначен маршрутизацией; соответствие физики узла модели шаблона не подтверждено — его проверяют спецификация (источники параметров из узла) и ментор"
+      },
+      "reasons": [
+        "в доменном пакете нет описания шаблона: C:\\Users\\dania\\Documents\\ChatGPT\\хакатон кмг дигитал\\course_maker_p4_run\\domain\\drilling\\templates\\T1.json"
+      ],
+      "notes": [],
+      "status": "нужен новый шаблон"
+    }
+  ],
+  "note": "отчёт не генерирует сценарии и не рендерит; физическая применимость шаблонов не подтверждается",
+  "inputs": {
+    "layer": "C:\\Users\\dania\\Documents\\ChatGPT\\хакатон кмг дигитал\\course_maker_p4_run\\out\\test_basarygin\\layer.json",
+    "routing": "C:\\Users\\dania\\Documents\\ChatGPT\\хакатон кмг дигитал\\course_maker_p4_run\\out\\test_basarygin\\routing.json"
+  }
+}
