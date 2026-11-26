@@ -4,18 +4,18 @@
 
 ## 1. Установка
 
-Нужны Python 3.12 и, для роликов, FFmpeg/ffprobe с libx264 в `PATH` (`winget install Gyan.FFmpeg` или `apt install ffmpeg`). Без FFmpeg собираются слой, маршрут, проверка и курс, но не ролики.
+Нужны Python 3.12 и, для роликов, FFmpeg/ffprobe с libx264 в `PATH` (`winget install Gyan.FFmpeg` или `apt install ffmpeg`). Без FFmpeg собираются слой, маршрут, проверка и курс, но не ролики, а в `make test` падает 1 тест видео (остальные проходят).
 
 ```
 git clone <репозиторий> && cd course_maker
 python -m venv .venv
 source .venv/bin/activate      # Windows: .venv\Scripts\activate
 make install                   # = python -m pip install -r requirements.txt
-make test                      # все тесты, без сети
+make test                      # все тесты, без сети (нужен FFmpeg в PATH, см. выше)
 make smoke                     # весь путь без ключа на маленькой главе, несколько секунд
 ```
 
-Без `make` (обычный Windows) каждая цель — одна команда Python, см. раздел 6.
+Без `make` (обычный Windows) каждая цель — одна команда Python, см. раздел 6. Переменная окружения перед командой (`LLM_OFFLINE=1 python …`) — синтаксис bash; в PowerShell: `$env:LLM_OFFLINE="1"; python …` (значение остаётся до конца сессии, убрать — `Remove-Item Env:LLM_OFFLINE`).
 
 ## 2. Ключ и модель — только `.env`
 
@@ -33,7 +33,7 @@ LLM_MODEL=anthropic/claude-opus-5-5            # для всех этапов с
 - Без `LLM_MODEL` берутся модели из `config/llm.yaml` (по умолчанию `anthropic/claude-opus-5-5` на всех уровнях).
 - Отдельно по уровню: `LLM_MODEL_DEFAULT`, `LLM_MODEL_STRONG`, `LLM_MODEL_VISION` (сильнее `LLM_MODEL`).
 - Запасные модели: `LLM_MODEL_FALLBACK=<м1>,<м2>`. При дневном лимите или перегрузке основной (429/503/529) запрос уходит следующей. Лимит в минуту и перегрузку код сначала пережидает (до 5 повторов с паузой).
-- Несколько ключей одного провайдера: `LLM_API_KEYS=<к1>,<к2>,…` (сильнее `LLM_API_KEY`). Дневной лимит ключа — следующий ключ; исчерпанные пары ключ × модель до конца запуска больше не спрашиваются. В журнал вызовов пишется номер ключа (`api_key_no`), сам ключ — никогда.
+- Несколько ключей одного провайдера: `LLM_API_KEYS=<к1>,<к2>,…` (сильнее `LLM_API_KEY`). Дневной лимит ключа — следующий ключ; исчерпанные пары ключ × модель до конца процесса больше не спрашиваются (иллюстрации, курс и проверка — отдельные процессы: в каждом исчерпанная пара спросится один раз и сразу пропустится). В журнал вызовов пишется номер ключа (`api_key_no`), сам ключ — никогда.
 - Свой адрес API (прокси): `LLM_API_BASE`.
 - Цены для учёта денег — `config/llm.yaml → prices`. Для модели не из списка — расчёт litellm.
 
@@ -63,7 +63,7 @@ make all MD=<путь к главе.md> [PDF=<путь к PDF>] [PAGES=a-b[,c-d]
 ```
 # 1. в out/<ch>/layer.json поменять число в тексте утверждения (claims[].text) нужного узла
 make rebuild NODE=<id узла>                     # без make: python -m pipeline.run --rebuild <id узла>
-# 2. открыть out/<ch>/course/step-<узел>.html — новое число на странице; цитата автора рядом — как в книге
+# 2. открыть out/<ch>/course/step-<id узла>.html — новое число на странице; цитата автора рядом — как в книге
 ```
 
 Проверено на Барабошкине (`tide_dominated_deltas#c4`, «10–20» → «15–25»): пересборка шага без ключа — 1 с. С ключом шаг пишет модель заново — дольше; с `LLM_OFFLINE=1` текст шага собирается из полей слоя.
@@ -71,8 +71,15 @@ make rebuild NODE=<id узла>                     # без make: python -m pip
 ## 4. Без ключа — из кэша
 
 ```
-LLM_OFFLINE=1 make all CH=baraboshkin_par1-2
+LLM_OFFLINE=1 LLM_MODEL=gemini/gemini-3.5-flash make all CH=baraboshkin_par1-2
 ```
+
+PowerShell, без make:
+```
+$env:LLM_OFFLINE="1"; $env:LLM_MODEL="gemini/gemini-3.5-flash"; python -m pipeline.run --ch baraboshkin_par1-2
+```
+
+Закоммиченный кэш получен моделью `gemini/gemini-3.5-flash` (запасные ответы — Flash-Lite, но ключ кэша — по основной модели), поэтому `LLM_MODEL` обязателен: без него берётся модель из `config/llm.yaml` и первый же запрос — промах кэша. В кэше только ответы ядра (рисунки, слой, маршрут): тексты шагов курса без ключа собираются из полей слоя.
 
 С `LLM_OFFLINE=1` модель не вызывается: ответы берутся из `cache/llm/` (ключ кэша — модель + промпт + переменные). Промах кэша — ошибка с именем промпта, а не заглушка. Кэш в git — только для глав, прогнанных до заморозки, и только для той модели, которой они прогнаны. Новая глава без ключа не соберётся.
 
@@ -86,11 +93,12 @@ out/<ch>/layer.json        учебный слой — единственный 
 out/<ch>/coverage.json     каждая единица → узел или причина, почему без узла
 out/<ch>/routing.json      формат каждого узла (текст / карточки / интерактив / шортс / ролик) и шаблон сцены
 out/<ch>/illus/            иллюстрации и illustrations.json
-out/<ch>/videos/<узел>/    script.json, scene_spec.json, mp4, vtt, passport.json
+out/<ch>/videos/<id узла>.<short|long>/  script.json, scene_spec.json, mp4, vtt, passport.json
 out/<ch>/verify/report.json  отчёт проверки (код выхода ≠ 0 при критических ошибках)
 out/<ch>/course/index.html   курс главы — открывается двойным кликом, без сервера
 out/index.html               главная всех собранных курсов
-out/_metrics/llm_calls.jsonl каждый вызов модели: этап, модель, токены, деньги
+out/<ch>/metrics.csv          метрики главы по шаблону организаторов (строка на этап)
+out/_metrics/llm_calls.jsonl каждый вызов модели: промпт, модель, токены, деньги, № ключа
 ```
 
 ## 6. Пересборка и отдельные этапы
@@ -101,8 +109,8 @@ out/_metrics/llm_calls.jsonl каждый вызов модели: этап, м�
 | после правки `layer.json` руками | `make rebuild NODE=<id узла> [CH=<id>]` | `python -m pipeline.run --rebuild <id узла> [--ch <id>]` |
 | проверка чужого пакета | `make check PKG=<review_package.json> [OUT=…]` | `python -m pipeline.verify.external --pkg <…> --out <…>` |
 | один ролик | `make video CH=<id> NODE=<id> [FORMAT=short\|long]` | `python -m pipeline.video.build --ch <id> --node <id>` |
-| быстрый прогон | `make smoke` | `LLM_OFFLINE=1 python -m pipeline.run --smoke` |
+| быстрый прогон | `make smoke` | bash: `LLM_OFFLINE=1 python -m pipeline.run --smoke`; PowerShell: `$env:LLM_OFFLINE="1"; python -m pipeline.run --smoke` |
 
 `make rebuild` пересобирает ролик узла (если он есть) и затем шаг курса. Ролик и текст шага, изменившиеся по слою, требуют ключа: новых ответов модели в кэше нет. Id главы берётся из `layer.json` по id узла, `CH` нужен, только если узел есть в нескольких главах.
 
-Отдельные этапы ядра: `python -m pipeline.ingest.run`, `pipeline.structure.run`, `pipeline.route.run` с теми же `--ch`/`--md`. Этапы других модулей — `docs/check.md`, `docs/course.md`, `docs/video.md`.
+Отдельные этапы ядра: `python -m pipeline.ingest.run`, `pipeline.structure.run`, `pipeline.route.run` с теми же `--ch`/`--md`. Этапы других модулей — `docs/check.md`, `docs/course.md`, `docs/video.md`. Порядок работы на новой главе, проверки и ручные правки через журнал — `docs/playbook.md`.
