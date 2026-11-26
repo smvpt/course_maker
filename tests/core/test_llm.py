@@ -27,6 +27,8 @@ def env(tmp_path, monkeypatch):
     monkeypatch.delenv("LLM_MODEL", raising=False)
     monkeypatch.delenv("LLM_MODEL_DEFAULT", raising=False)
     monkeypatch.delenv("LLM_MODEL_FALLBACK", raising=False)
+    monkeypatch.delenv("LLM_API_KEYS", raising=False)
+    llm.EXHAUSTED.clear()
     monkeypatch.delenv("LLM_MODEL_FALLBACK_DEFAULT", raising=False)
     monkeypatch.setenv("CH", "test_ch")
     calls = []
@@ -189,6 +191,30 @@ def test_daily_limit_switches_to_fallback_model(env, monkeypatch):
     # повторный вызов — из кэша, без запроса к провайдеру
     monkeypatch.setattr(llm, "_call", lambda *a: pytest.fail("должно быть из кэша"))
     assert llm.complete_text("core/t", {"x": 1, "y": 2}) == "ok"
+
+
+def test_daily_limit_switches_key_then_skips_exhausted(env, monkeypatch):
+    monkeypatch.setenv("LLM_MODEL", "gemini/a")
+    monkeypatch.setenv("LLM_MODEL_FALLBACK", "gemini/b")
+    monkeypatch.setenv("LLM_API_KEYS", "k1, k2")
+    monkeypatch.setattr(llm.time, "sleep", lambda s: pytest.fail("дневной лимит не ждём"))
+    seen = []
+    script = {("gemini/a", "k1"): [RateLimitError(DAILY)], ("gemini/b", "k1"): [RateLimitError(DAILY)],
+              ("gemini/a", "k2"): ["ok1", "ok2"]}
+
+    def fake(model, messages, max_tokens, params):
+        seen.append((model, params["api_key"]))
+        x = script[(model, params["api_key"])].pop(0)
+        if isinstance(x, Exception):
+            raise x
+        return x, 10, 5, None
+    monkeypatch.setattr(llm, "_call", fake)
+    assert llm.complete_text("core/t", {"x": 1, "y": 2}) == "ok1"
+    assert seen == [("gemini/a", "k1"), ("gemini/b", "k1"), ("gemini/a", "k2")]
+    row = log_rows(env[0])[-1]
+    assert "k2" not in json.dumps(row) and row["api_key_no"] == 2          # сам ключ в журнал не пишется
+    assert llm.complete_text("core/t", {"x": 3, "y": 4}) == "ok2"          # исчерпанные пары больше не спрашиваем
+    assert seen[3:] == [("gemini/a", "k2")]
 
 
 def test_overloaded_model_falls_through_after_retries(env, monkeypatch):

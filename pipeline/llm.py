@@ -113,7 +113,9 @@ def _call(model: str, messages: list[dict], max_tokens: int, params: dict) -> tu
     import litellm  # тяжёлый импорт — только при реальном вызове
 
     extra = {}
-    if os.environ.get("LLM_API_KEY"):        # общий ключ; иначе litellm берёт ANTHROPIC_API_KEY / OPENAI_API_KEY / …
+    if "api_key" in params:                  # ключ из LLM_API_KEYS (ротация) — сильнее LLM_API_KEY
+        pass
+    elif os.environ.get("LLM_API_KEY"):        # общий ключ; иначе litellm берёт ANTHROPIC_API_KEY / OPENAI_API_KEY / …
         key = os.environ["LLM_API_KEY"].strip()
         if not key.isascii():
             raise RuntimeError("LLM_API_KEY содержит не-ASCII символы — похоже, в .env заглушка вместо ключа")
@@ -149,35 +151,55 @@ def fallbacks(tier: str) -> list[str]:
     return [m.strip() for m in raw.split(",") if m.strip()]
 
 
+def api_keys() -> list[Optional[str]]:
+    """LLM_API_KEYS=k1,k2,… — несколько ключей одного провайдера: дневной лимит ключа — следующий ключ.
+    Нет — [None]: ключ из LLM_API_KEY или стандартной переменной провайдера."""
+    keys = [k.strip() for k in os.environ.get("LLM_API_KEYS", "").split(",") if k.strip()]
+    for k in keys:
+        if not k.isascii():
+            raise RuntimeError("LLM_API_KEYS содержит не-ASCII символы — похоже, в .env заглушка вместо ключа")
+    return keys or [None]
+
+
+EXHAUSTED: set[tuple[str, int]] = set()     # (модель, № ключа) с исчерпанным дневным лимитом — до конца процесса
+
+
 def _call_chain(models: list[str], messages: list[dict], max_tokens: int, params: dict):
-    """Первая модель, которая ответила: (модель, текст, токены входа, выхода, цена litellm)."""
+    """Первая пара ключ × модель, которая ответила: (модель, № ключа, текст, токены входа, выхода, цена litellm).
+    Порядок: все модели на ключе 1, потом на ключе 2, …"""
     cfg = config.llm()
     retries, base = cfg.get("transient_retries", 4), cfg.get("transient_backoff_s", 5)
     why = []
-    for model in models:
+    keys = api_keys()
+    pairs = [(m, n, k) for n, k in enumerate(keys, 1) for m in models if (m, n) not in EXHAUSTED]
+    for model, key_no, key in pairs:
+        tag = model if len(keys) == 1 else f"{model} (ключ {key_no})"
+        call_params = params if key is None else {**params, "api_key": key}
         for attempt in range(retries + 1):
             try:
-                return (model, *_call(model, messages, max_tokens, params))
+                return (model, key_no, *_call(model, messages, max_tokens, call_params))
             except Exception as e:
                 name, msg = type(e).__name__, str(e)
                 status = getattr(e, "status_code", None) or getattr(e, "provider_status_code", None)
                 if name not in TRANSIENT and status not in TRANSIENT_STATUS:
                     raise
+                if key is not None and key in msg:
+                    msg = msg.replace(key, "***")
                 if "PerDay" in msg or "per day" in msg.lower():
-                    why.append(f"{model}: дневной лимит исчерпан")
-                    print(f"[llm] {model}: дневной лимит исчерпан", file=sys.stderr)
+                    EXHAUSTED.add((model, key_no))
+                    why.append(f"{tag}: дневной лимит исчерпан")
+                    print(f"[llm] {tag}: дневной лимит исчерпан", file=sys.stderr)
                     break
                 if attempt == retries:
-                    why.append(f"{model}: {name} после {retries} повторов")
+                    why.append(f"{tag}: {name} после {retries} повторов")
                     break
                 m = RETRY_DELAY_RE.search(msg)
                 wait = min(float(m.group(1)) + 1 if m else base * 2 ** attempt, 300)
-                print(f"[llm] {model}: {name} — повтор {attempt + 1}/{retries} через {wait:.0f} с", file=sys.stderr)
+                print(f"[llm] {tag}: {name} — повтор {attempt + 1}/{retries} через {wait:.0f} с", file=sys.stderr)
                 time.sleep(wait)
-        if model != models[-1]:
-            print(f"[llm] переход на запасную модель {models[models.index(model) + 1]}", file=sys.stderr)
-    raise ProviderUnavailable("ни одна модель не ответила: " + "; ".join(why) +
-                              ". Подожди, добавь LLM_MODEL_FALLBACK или смени LLM_MODEL (docs/run.md)")
+        print(f"[llm] {tag} не ответила — следующая модель или ключ", file=sys.stderr)
+    raise ProviderUnavailable("ни одна модель не ответила: " + ("; ".join(why) or "все пары ключ × модель исчерпаны") +
+                              ". Подожди, добавь LLM_MODEL_FALLBACK / LLM_API_KEYS или смени LLM_MODEL (docs/run.md)")
 
 
 # ---------------------------------------------------------------- кэш и лог
@@ -247,7 +269,7 @@ def _run(prompt: str, vars: dict, tier: str, images: Optional[Sequence[Path]],
     last_err = ""
     while attempts <= retries:
         attempts += 1
-        used, reply, i, o, c = _call_chain(chain, messages, t["max_tokens"], t.get("params") or {})
+        used, key_no, reply, i, o, c = _call_chain(chain, messages, t["max_tokens"], t.get("params") or {})
         tin, tout = tin + i, tout + o
         price = _price(used, i, o, c)
         money = None if (money is None or price is None) else money + price
@@ -273,7 +295,8 @@ def _run(prompt: str, vars: dict, tier: str, images: Optional[Sequence[Path]],
     tmp.write_text(json.dumps(entry, ensure_ascii=False, indent=1), encoding="utf-8")
     tmp.replace(cp)
     _log({**row, "model": used, "model_requested": model, "cache_hit": False, "tokens_in": tin,
-          "tokens_out": tout, "money_usd": money, "attempts": attempts, "seconds": round(time.monotonic() - t0, 1)})
+          "tokens_out": tout, "money_usd": money, "attempts": attempts, "seconds": round(time.monotonic() - t0, 1),
+          "api_key_no": key_no})
     return reply
 
 
