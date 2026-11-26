@@ -1,0 +1,148 @@
+{
+  "prepared_on": "2026-11-26",
+  "source_code_commit": "3830251e1fdf3259d0a3f28c1ebdd5593402cc30",
+  "tests": {
+    "passed": 931,
+    "smoke": "passed",
+    "pip_check": "passed"
+  },
+  "note": "Готовые MP4 для передачи лиду. Автоматические замечания терминов сохранены. Пользователь подтвердил отдельные фразы; весь ролик и физику ментор ещё не одобрил. Входы подготовлены вручную, полного слоя P1 и API-прогона нет.",
+  "videos": [
+    {
+      "chapter": "basniev_gl23-24",
+      "node_id": "basniev_gl23-24.pressure_diffusion",
+      "video_id": "basniev_gl23-24.pressure_diffusion.short",
+      "folder": "out/basniev_gl23-24/videos/basniev_gl23-24.pressure_diffusion.short",
+      "manual_layer_fragment": true,
+      "llm_api_run": false,
+      "mentor_approved": false,
+      "duration_s": 58.633333,
+      "resolution": [
+        1080,
+        1920
+      ],
+      "fps": 30,
+      "sources": 6,
+      "book_quotes_verified_exact": true,
+      "passport_schema_valid": true,
+      "deterministic_scene_remarks": [],
+      "media_checks": {
+        "video_h264": true,
+        "pix_fmt_yuv420p": true,
+        "size": true,
+        "audio_aac": true,
+        "video_covers_timeline": true,
+        "audio_covers_timeline": true,
+        "last_phrase_inside": true,
+        "trailing_silence_ge_0.3s": true,
+        "lufs_within_1lu_of_-16": true,
+        "true_peak_le_-1dbtp": true
+      },
+      "voice": "ru-RU-SvetlanaNeural",
+      "tts_rate": "+25%",
+      "wpm": 146.0,
+      "lufs": -16.0,
+      "true_peak_dbtp": -1.5,
+      "wer": 0.0342,
+      "sync_max_abs_s": 0.428,
+      "sync_ok": true,
+      "automatic_audio_ok": false,
+      "automatic_audio_problem": "термины",
+      "automatic_terms_not_recognized": [
+        "пьезопроводность"
+      ],
+      "human_phrase_reviews": [
+        {
+          "reviewer": "user in Codex conversation",
+          "reviewed_on": "2026-11-26",
+          "scope": "Только фраза p4 и произношение термина в ней; не просмотр всего ролика и не одобрение ментора.",
+          "phrase_id": "p4",
+          "term": "пьезопроводность",
+          "tts_key": "e5a659b391f25866d0375060ffcefc0d2450139f3abb21acb2e505e01c5ee9a1",
+          "audio_sha256": "6bb0b8a4af47fc8e01678ba03854f9b65213981310d99e6abf6664d38bef3485",
+          "question": "В короткой фразе выше слово «пьезопроводность» звучит правильно и понятно?",
+          "answer": "Звучит правильно и понятно",
+          "accepted": true,
+          "asr_findings_preserved": true,
+          "coverage": "только указанная фраза и термин",
+          "automatic_results_overridden": false
+        }
+      ],
+      "listened_to_full_video_by_human": false,
+      "physics_checklist_status": {
+        "не применимо": 11,
+        "не проверено": 9,
+        "проверено автоматически": 4
+      },
+      "mp4_sha256": "e0211177c6d942958f52bf59d811cd254fa5b6946bdc8d6df35a645c7c2f5730"
+    },
+    {
+      "chapter": "latyshova_gl5_par17-20",
+      "node_id": "latyshova_gl5_par17-20.resistivity_porosity",
+      "video_id": "latyshova_gl5_par17-20.resistivity_porosity.long",
+      "folder": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long",
+      "manual_layer_fragment": true,
+      "llm_api_run": false,
+      "mentor_approved": false,
+      "duration_s": 141.933333,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "fps": 30,
+      "sources": 7,
+      "book_quotes_verified_exact": true,
+      "passport_schema_valid": true,
+      "deterministic_scene_remarks": [],
+      "media_checks": {
+        "video_h264": true,
+        "pix_fmt_yuv420p": true,
+        "size": true,
+        "audio_aac": true,
+        "video_covers_timeline": true,
+        "audio_covers_timeline": true,
+        "last_phrase_inside": true,
+        "trailing_silence_ge_0.3s": true,
+        "lufs_within_1lu_of_-16": true,
+        "true_peak_le_-1dbtp": true
+      },
+      "voice": "ru-RU-SvetlanaNeural",
+      "tts_rate": "+25%",
+      "wpm": 144.3,
+      "lufs": -16.0,
+      "true_peak_dbtp": -1.5,
+      "wer": 0.0375,
+      "sync_max_abs_s": 0.412,
+      "sync_ok": true,
+      "automatic_audio_ok": false,
+      "automatic_audio_problem": "термины",
+      "automatic_terms_not_recognized": [
+        "сопротивление"
+      ],
+      "human_phrase_reviews": [
+        {
+          "reviewer": "user in Codex conversation",
+          "reviewed_on": "2026-11-26",
+          "scope": "Только фраза p9 и произношение термина в ней; не просмотр всего ролика и не одобрение ментора.",
+          "phrase_id": "p9",
+          "term": "сопротивление",
+          "tts_key": "78cafad93fdb10570b488dbc611428ce59c5f8ee50e6be7fcc2ae09296daaf95",
+          "audio_sha256": "8cd68763d6d48644fb84854fc6eedd150e4da1dc8ed9cacdaef532770d5d0d64",
+          "question": "Во второй короткой фразе выше слово «сопротивление» произнесено понятно, без искажения?",
+          "answer": "Да, звучит понятно и правильно",
+          "accepted": true,
+          "asr_findings_preserved": true,
+          "coverage": "только указанная фраза и термин",
+          "automatic_results_overridden": false
+        }
+      ],
+      "listened_to_full_video_by_human": false,
+      "physics_checklist_status": {
+        "не применимо": 11,
+        "не проверено": 7,
+        "проверено автоматически": 6
+      },
+      "mp4_sha256": "5519384a7a02f1b4f97c74479ffab76ed07e0d436ad8daecfb440e87b115131a"
+    }
+  ]
+}

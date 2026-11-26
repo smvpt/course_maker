@@ -1,0 +1,2177 @@
+{
+  "transcription": {
+    "engine": "faster-whisper",
+    "version": "1.2.1",
+    "model": "small",
+    "language": "ru",
+    "language_probability": 1.0,
+    "text": "Высокое сопротивление. Значит, нашли нефть. По одной кривой легко сделать поспешный вывод. Латышова предлагает рассматривать данные в комплексе. Сопоставим сопротивление с пористостью на одной глубине. Затем отделим наблюдение от решения специалиста. Это комплексная интерпретация каротажа. Показания приборов помогают оценивать свойства коллектора, но требуют проверки условий. Перед нами открытые данные месторождения Волви. Это дополнительный пример, а не диаграммы из учебника. Прибор на схеме движется вниз. На той же глубине раскрываются соответствующие участки кривых. Слева гамма каротаж, рядом сопротивление и нейтронная пористость. Схема прибора показывает назначение измерений. Важно, нейтронная кривая сама по себе еще не дает окончательного заключения о насыщении. В книге сопротивления неизмененной части пласта сопоставляют с оценкой того же пласта в водонасыщенном состоянии. Для такой оценки нужны сведения о пористости и пластовой воде. Эти условия нельзя пропускать. Отметят ли показанный фильтр каждый участок высокого сопротивления, если остальные признаки не совпадут? Нет. В этой демонстрации отметка появляется только там, где выполнены все условия показанного правила. Пороги здесь условные, выбраны для объяснения работы фильтра. Это не нормативы лотешевой и не диагноз. Посмотрите, высокое сопротивление встречается и без отметки. Значит, остальные условия этого фильтра не выполнены. Отмеченный интервал – кандидат для дальнейшей проверки. Мы не называем его доказанный нефтенасыщенный толщий. Полотышовый, изменчивая пористость, может приводить к перекрытию диапазонов сопротивлений. Поэтому одного сигнала недостаточно. Отсутствие градиента сопротивления тоже не исключает коллектор. Отрицательный признак требует аккуратного толкования. Проверим условия бурения и свойства промывочной жидкости, они влияют на информацию, которую регистрируя приборы. Простая оценка по сопротивлению возможно лишь при дополнительных условиях. Нельзя переносить ее на любой разрез. Запомним порядок, совмещаем глубину, сравниваем признаки, проверяем условия, затем формулируем ограниченный вывод. Ствол теперь в истинном масштабе. Размеры прибора на поясняющей схеме условные, кривые остаются данными. Каких данных о пластовой воде и пористости не хватает, чтобы перейти от кандидата к оценке насыщения?",
+    "words": [
+      {
+        "start": 0.0,
+        "end": 0.94,
+        "word": "Высокое",
+        "probability": 0.936,
+        "segment_start": true
+      },
+      {
+        "start": 0.94,
+        "end": 1.6,
+        "word": "сопротивление.",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 2.52,
+        "end": 3.02,
+        "word": "Значит,",
+        "probability": 0.988,
+        "segment_start": true
+      },
+      {
+        "start": 3.38,
+        "end": 3.68,
+        "word": "нашли",
+        "probability": 0.994,
+        "segment_start": false
+      },
+      {
+        "start": 3.68,
+        "end": 4.02,
+        "word": "нефть.",
+        "probability": 0.985,
+        "segment_start": false
+      },
+      {
+        "start": 4.8,
+        "end": 5.06,
+        "word": "По",
+        "probability": 0.994,
+        "segment_start": true
+      },
+      {
+        "start": 5.06,
+        "end": 5.22,
+        "word": "одной",
+        "probability": 0.985,
+        "segment_start": false
+      },
+      {
+        "start": 5.22,
+        "end": 5.52,
+        "word": "кривой",
+        "probability": 0.971,
+        "segment_start": false
+      },
+      {
+        "start": 5.52,
+        "end": 5.74,
+        "word": "легко",
+        "probability": 0.982,
+        "segment_start": false
+      },
+      {
+        "start": 5.74,
+        "end": 6.06,
+        "word": "сделать",
+        "probability": 0.996,
+        "segment_start": false
+      },
+      {
+        "start": 6.06,
+        "end": 6.58,
+        "word": "поспешный",
+        "probability": 0.99,
+        "segment_start": false
+      },
+      {
+        "start": 6.58,
+        "end": 6.82,
+        "word": "вывод.",
+        "probability": 0.984,
+        "segment_start": false
+      },
+      {
+        "start": 7.58,
+        "end": 8.18,
+        "word": "Латышова",
+        "probability": 0.802,
+        "segment_start": true
+      },
+      {
+        "start": 8.18,
+        "end": 8.6,
+        "word": "предлагает",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 8.6,
+        "end": 9.1,
+        "word": "рассматривать",
+        "probability": 0.998,
+        "segment_start": false
+      },
+      {
+        "start": 9.1,
+        "end": 9.44,
+        "word": "данные",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 9.44,
+        "end": 9.56,
+        "word": "в",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 9.56,
+        "end": 10.02,
+        "word": "комплексе.",
+        "probability": 0.986,
+        "segment_start": false
+      },
+      {
+        "start": 10.9,
+        "end": 11.4,
+        "word": "Сопоставим",
+        "probability": 0.956,
+        "segment_start": true
+      },
+      {
+        "start": 11.4,
+        "end": 11.94,
+        "word": "сопротивление",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 11.94,
+        "end": 12.1,
+        "word": "с",
+        "probability": 0.788,
+        "segment_start": false
+      },
+      {
+        "start": 12.1,
+        "end": 12.56,
+        "word": "пористостью",
+        "probability": 0.774,
+        "segment_start": false
+      },
+      {
+        "start": 12.56,
+        "end": 12.68,
+        "word": "на",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 12.68,
+        "end": 12.88,
+        "word": "одной",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 12.88,
+        "end": 13.22,
+        "word": "глубине.",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 14.04,
+        "end": 14.48,
+        "word": "Затем",
+        "probability": 0.993,
+        "segment_start": true
+      },
+      {
+        "start": 14.48,
+        "end": 14.78,
+        "word": "отделим",
+        "probability": 0.728,
+        "segment_start": false
+      },
+      {
+        "start": 14.78,
+        "end": 15.28,
+        "word": "наблюдение",
+        "probability": 0.981,
+        "segment_start": false
+      },
+      {
+        "start": 15.28,
+        "end": 15.52,
+        "word": "от",
+        "probability": 0.814,
+        "segment_start": false
+      },
+      {
+        "start": 15.52,
+        "end": 15.82,
+        "word": "решения",
+        "probability": 0.996,
+        "segment_start": false
+      },
+      {
+        "start": 15.82,
+        "end": 16.42,
+        "word": "специалиста.",
+        "probability": 0.985,
+        "segment_start": false
+      },
+      {
+        "start": 17.36,
+        "end": 17.56,
+        "word": "Это",
+        "probability": 0.667,
+        "segment_start": true
+      },
+      {
+        "start": 17.56,
+        "end": 18.1,
+        "word": "комплексная",
+        "probability": 0.989,
+        "segment_start": false
+      },
+      {
+        "start": 18.1,
+        "end": 18.74,
+        "word": "интерпретация",
+        "probability": 0.98,
+        "segment_start": false
+      },
+      {
+        "start": 18.74,
+        "end": 19.24,
+        "word": "каротажа.",
+        "probability": 0.885,
+        "segment_start": false
+      },
+      {
+        "start": 19.4,
+        "end": 19.74,
+        "word": "Показания",
+        "probability": 0.953,
+        "segment_start": true
+      },
+      {
+        "start": 19.74,
+        "end": 20.1,
+        "word": "приборов",
+        "probability": 0.99,
+        "segment_start": false
+      },
+      {
+        "start": 20.1,
+        "end": 20.5,
+        "word": "помогают",
+        "probability": 0.971,
+        "segment_start": false
+      },
+      {
+        "start": 20.5,
+        "end": 20.84,
+        "word": "оценивать",
+        "probability": 0.994,
+        "segment_start": false
+      },
+      {
+        "start": 20.84,
+        "end": 21.18,
+        "word": "свойства",
+        "probability": 0.813,
+        "segment_start": false
+      },
+      {
+        "start": 21.18,
+        "end": 21.6,
+        "word": "коллектора,",
+        "probability": 0.983,
+        "segment_start": false
+      },
+      {
+        "start": 21.86,
+        "end": 21.96,
+        "word": "но",
+        "probability": 0.994,
+        "segment_start": false
+      },
+      {
+        "start": 21.96,
+        "end": 22.3,
+        "word": "требуют",
+        "probability": 0.911,
+        "segment_start": false
+      },
+      {
+        "start": 22.3,
+        "end": 22.72,
+        "word": "проверки",
+        "probability": 0.991,
+        "segment_start": false
+      },
+      {
+        "start": 22.72,
+        "end": 23.12,
+        "word": "условий.",
+        "probability": 0.988,
+        "segment_start": false
+      },
+      {
+        "start": 23.96,
+        "end": 24.3,
+        "word": "Перед",
+        "probability": 0.982,
+        "segment_start": true
+      },
+      {
+        "start": 24.3,
+        "end": 24.5,
+        "word": "нами",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 24.5,
+        "end": 25.04,
+        "word": "открытые",
+        "probability": 0.806,
+        "segment_start": false
+      },
+      {
+        "start": 25.04,
+        "end": 25.36,
+        "word": "данные",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 25.36,
+        "end": 25.88,
+        "word": "месторождения",
+        "probability": 0.782,
+        "segment_start": false
+      },
+      {
+        "start": 25.88,
+        "end": 26.24,
+        "word": "Волви.",
+        "probability": 0.649,
+        "segment_start": false
+      },
+      {
+        "start": 26.98,
+        "end": 27.24,
+        "word": "Это",
+        "probability": 0.992,
+        "segment_start": true
+      },
+      {
+        "start": 27.24,
+        "end": 27.82,
+        "word": "дополнительный",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 27.82,
+        "end": 28.12,
+        "word": "пример,",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 28.4,
+        "end": 28.48,
+        "word": "а",
+        "probability": 0.902,
+        "segment_start": false
+      },
+      {
+        "start": 28.48,
+        "end": 28.54,
+        "word": "не",
+        "probability": 0.99,
+        "segment_start": false
+      },
+      {
+        "start": 28.54,
+        "end": 29.02,
+        "word": "диаграммы",
+        "probability": 0.976,
+        "segment_start": false
+      },
+      {
+        "start": 29.02,
+        "end": 29.22,
+        "word": "из",
+        "probability": 0.902,
+        "segment_start": false
+      },
+      {
+        "start": 29.22,
+        "end": 29.58,
+        "word": "учебника.",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 30.26,
+        "end": 30.9,
+        "word": "Прибор",
+        "probability": 0.616,
+        "segment_start": true
+      },
+      {
+        "start": 30.9,
+        "end": 31.0,
+        "word": "на",
+        "probability": 0.938,
+        "segment_start": false
+      },
+      {
+        "start": 31.0,
+        "end": 31.32,
+        "word": "схеме",
+        "probability": 0.998,
+        "segment_start": false
+      },
+      {
+        "start": 31.32,
+        "end": 31.64,
+        "word": "движется",
+        "probability": 0.976,
+        "segment_start": false
+      },
+      {
+        "start": 31.64,
+        "end": 31.86,
+        "word": "вниз.",
+        "probability": 0.995,
+        "segment_start": false
+      },
+      {
+        "start": 32.72,
+        "end": 32.98,
+        "word": "На",
+        "probability": 0.978,
+        "segment_start": false
+      },
+      {
+        "start": 32.98,
+        "end": 33.1,
+        "word": "той",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 33.1,
+        "end": 33.18,
+        "word": "же",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 33.18,
+        "end": 33.46,
+        "word": "глубине",
+        "probability": 0.993,
+        "segment_start": false
+      },
+      {
+        "start": 33.46,
+        "end": 34.0,
+        "word": "раскрываются",
+        "probability": 0.996,
+        "segment_start": false
+      },
+      {
+        "start": 34.0,
+        "end": 34.8,
+        "word": "соответствующие",
+        "probability": 0.995,
+        "segment_start": false
+      },
+      {
+        "start": 34.8,
+        "end": 35.26,
+        "word": "участки",
+        "probability": 0.994,
+        "segment_start": false
+      },
+      {
+        "start": 35.26,
+        "end": 35.58,
+        "word": "кривых.",
+        "probability": 0.955,
+        "segment_start": false
+      },
+      {
+        "start": 36.54,
+        "end": 36.88,
+        "word": "Слева",
+        "probability": 0.961,
+        "segment_start": true
+      },
+      {
+        "start": 36.88,
+        "end": 37.18,
+        "word": "гамма",
+        "probability": 0.929,
+        "segment_start": false
+      },
+      {
+        "start": 37.18,
+        "end": 37.6,
+        "word": "каротаж,",
+        "probability": 0.753,
+        "segment_start": false
+      },
+      {
+        "start": 37.86,
+        "end": 38.08,
+        "word": "рядом",
+        "probability": 0.994,
+        "segment_start": false
+      },
+      {
+        "start": 38.08,
+        "end": 38.72,
+        "word": "сопротивление",
+        "probability": 0.946,
+        "segment_start": false
+      },
+      {
+        "start": 38.72,
+        "end": 38.94,
+        "word": "и",
+        "probability": 0.91,
+        "segment_start": false
+      },
+      {
+        "start": 38.94,
+        "end": 39.38,
+        "word": "нейтронная",
+        "probability": 0.811,
+        "segment_start": false
+      },
+      {
+        "start": 39.38,
+        "end": 39.9,
+        "word": "пористость.",
+        "probability": 0.834,
+        "segment_start": false
+      },
+      {
+        "start": 40.72,
+        "end": 41.12,
+        "word": "Схема",
+        "probability": 0.978,
+        "segment_start": false
+      },
+      {
+        "start": 41.12,
+        "end": 41.44,
+        "word": "прибора",
+        "probability": 0.995,
+        "segment_start": false
+      },
+      {
+        "start": 41.44,
+        "end": 41.98,
+        "word": "показывает",
+        "probability": 0.994,
+        "segment_start": false
+      },
+      {
+        "start": 41.98,
+        "end": 42.48,
+        "word": "назначение",
+        "probability": 0.977,
+        "segment_start": true
+      },
+      {
+        "start": 42.48,
+        "end": 43.08,
+        "word": "измерений.",
+        "probability": 0.988,
+        "segment_start": false
+      },
+      {
+        "start": 43.94,
+        "end": 44.52,
+        "word": "Важно,",
+        "probability": 0.992,
+        "segment_start": false
+      },
+      {
+        "start": 44.62,
+        "end": 45.1,
+        "word": "нейтронная",
+        "probability": 0.992,
+        "segment_start": false
+      },
+      {
+        "start": 45.1,
+        "end": 45.38,
+        "word": "кривая",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 45.38,
+        "end": 45.62,
+        "word": "сама",
+        "probability": 0.995,
+        "segment_start": false
+      },
+      {
+        "start": 45.62,
+        "end": 45.82,
+        "word": "по",
+        "probability": 0.979,
+        "segment_start": false
+      },
+      {
+        "start": 45.82,
+        "end": 45.94,
+        "word": "себе",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 45.94,
+        "end": 46.18,
+        "word": "еще",
+        "probability": 0.795,
+        "segment_start": false
+      },
+      {
+        "start": 46.18,
+        "end": 46.28,
+        "word": "не",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 46.28,
+        "end": 46.48,
+        "word": "дает",
+        "probability": 0.739,
+        "segment_start": false
+      },
+      {
+        "start": 46.48,
+        "end": 47.1,
+        "word": "окончательного",
+        "probability": 0.995,
+        "segment_start": false
+      },
+      {
+        "start": 47.1,
+        "end": 47.56,
+        "word": "заключения",
+        "probability": 0.987,
+        "segment_start": false
+      },
+      {
+        "start": 47.56,
+        "end": 47.8,
+        "word": "о",
+        "probability": 0.818,
+        "segment_start": false
+      },
+      {
+        "start": 47.8,
+        "end": 48.22,
+        "word": "насыщении.",
+        "probability": 0.984,
+        "segment_start": true
+      },
+      {
+        "start": 49.08,
+        "end": 49.34,
+        "word": "В",
+        "probability": 0.99,
+        "segment_start": false
+      },
+      {
+        "start": 49.34,
+        "end": 49.56,
+        "word": "книге",
+        "probability": 0.961,
+        "segment_start": false
+      },
+      {
+        "start": 49.56,
+        "end": 50.08,
+        "word": "сопротивления",
+        "probability": 0.862,
+        "segment_start": false
+      },
+      {
+        "start": 50.08,
+        "end": 50.6,
+        "word": "неизмененной",
+        "probability": 0.926,
+        "segment_start": false
+      },
+      {
+        "start": 50.6,
+        "end": 50.86,
+        "word": "части",
+        "probability": 0.99,
+        "segment_start": false
+      },
+      {
+        "start": 50.86,
+        "end": 51.24,
+        "word": "пласта",
+        "probability": 0.879,
+        "segment_start": false
+      },
+      {
+        "start": 51.24,
+        "end": 51.78,
+        "word": "сопоставляют",
+        "probability": 0.953,
+        "segment_start": false
+      },
+      {
+        "start": 51.78,
+        "end": 51.88,
+        "word": "с",
+        "probability": 0.823,
+        "segment_start": false
+      },
+      {
+        "start": 51.88,
+        "end": 52.18,
+        "word": "оценкой",
+        "probability": 0.946,
+        "segment_start": false
+      },
+      {
+        "start": 52.18,
+        "end": 52.32,
+        "word": "того",
+        "probability": 0.998,
+        "segment_start": false
+      },
+      {
+        "start": 52.32,
+        "end": 52.46,
+        "word": "же",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 52.46,
+        "end": 52.76,
+        "word": "пласта",
+        "probability": 0.984,
+        "segment_start": true
+      },
+      {
+        "start": 52.76,
+        "end": 52.86,
+        "word": "в",
+        "probability": 0.944,
+        "segment_start": false
+      },
+      {
+        "start": 52.86,
+        "end": 53.46,
+        "word": "водонасыщенном",
+        "probability": 0.965,
+        "segment_start": false
+      },
+      {
+        "start": 53.46,
+        "end": 54.04,
+        "word": "состоянии.",
+        "probability": 0.965,
+        "segment_start": false
+      },
+      {
+        "start": 54.86,
+        "end": 55.1,
+        "word": "Для",
+        "probability": 0.989,
+        "segment_start": false
+      },
+      {
+        "start": 55.1,
+        "end": 55.3,
+        "word": "такой",
+        "probability": 0.993,
+        "segment_start": false
+      },
+      {
+        "start": 55.3,
+        "end": 55.7,
+        "word": "оценки",
+        "probability": 0.988,
+        "segment_start": false
+      },
+      {
+        "start": 55.7,
+        "end": 55.92,
+        "word": "нужны",
+        "probability": 0.92,
+        "segment_start": false
+      },
+      {
+        "start": 55.92,
+        "end": 56.28,
+        "word": "сведения",
+        "probability": 0.904,
+        "segment_start": false
+      },
+      {
+        "start": 56.28,
+        "end": 56.52,
+        "word": "о",
+        "probability": 0.993,
+        "segment_start": false
+      },
+      {
+        "start": 56.52,
+        "end": 56.94,
+        "word": "пористости",
+        "probability": 0.994,
+        "segment_start": false
+      },
+      {
+        "start": 56.94,
+        "end": 57.14,
+        "word": "и",
+        "probability": 0.996,
+        "segment_start": false
+      },
+      {
+        "start": 57.14,
+        "end": 57.52,
+        "word": "пластовой",
+        "probability": 0.906,
+        "segment_start": false
+      },
+      {
+        "start": 57.52,
+        "end": 57.8,
+        "word": "воде.",
+        "probability": 0.552,
+        "segment_start": true
+      },
+      {
+        "start": 58.6,
+        "end": 58.76,
+        "word": "Эти",
+        "probability": 0.987,
+        "segment_start": false
+      },
+      {
+        "start": 58.76,
+        "end": 59.16,
+        "word": "условия",
+        "probability": 0.996,
+        "segment_start": false
+      },
+      {
+        "start": 59.16,
+        "end": 59.3,
+        "word": "нельзя",
+        "probability": 0.982,
+        "segment_start": false
+      },
+      {
+        "start": 59.3,
+        "end": 59.96,
+        "word": "пропускать.",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 60.82,
+        "end": 61.3,
+        "word": "Отметят",
+        "probability": 0.672,
+        "segment_start": false
+      },
+      {
+        "start": 61.3,
+        "end": 61.38,
+        "word": "ли",
+        "probability": 1.0,
+        "segment_start": false
+      },
+      {
+        "start": 61.38,
+        "end": 61.8,
+        "word": "показанный",
+        "probability": 0.989,
+        "segment_start": false
+      },
+      {
+        "start": 61.8,
+        "end": 62.1,
+        "word": "фильтр",
+        "probability": 0.991,
+        "segment_start": true
+      },
+      {
+        "start": 62.1,
+        "end": 62.34,
+        "word": "каждый",
+        "probability": 0.736,
+        "segment_start": false
+      },
+      {
+        "start": 62.34,
+        "end": 62.8,
+        "word": "участок",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 62.8,
+        "end": 63.14,
+        "word": "высокого",
+        "probability": 0.992,
+        "segment_start": false
+      },
+      {
+        "start": 63.14,
+        "end": 63.7,
+        "word": "сопротивления,",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 64.04,
+        "end": 64.26,
+        "word": "если",
+        "probability": 0.996,
+        "segment_start": false
+      },
+      {
+        "start": 64.26,
+        "end": 64.58,
+        "word": "остальные",
+        "probability": 0.852,
+        "segment_start": false
+      },
+      {
+        "start": 64.58,
+        "end": 65.0,
+        "word": "признаки",
+        "probability": 0.995,
+        "segment_start": true
+      },
+      {
+        "start": 65.0,
+        "end": 65.1,
+        "word": "не",
+        "probability": 0.998,
+        "segment_start": false
+      },
+      {
+        "start": 65.1,
+        "end": 65.5,
+        "word": "совпадут?",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 67.26,
+        "end": 67.94,
+        "word": "Нет.",
+        "probability": 0.956,
+        "segment_start": false
+      },
+      {
+        "start": 68.84,
+        "end": 69.08,
+        "word": "В",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 69.08,
+        "end": 69.2,
+        "word": "этой",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 69.2,
+        "end": 69.82,
+        "word": "демонстрации",
+        "probability": 0.996,
+        "segment_start": false
+      },
+      {
+        "start": 69.82,
+        "end": 70.32,
+        "word": "отметка",
+        "probability": 0.989,
+        "segment_start": true
+      },
+      {
+        "start": 70.32,
+        "end": 70.68,
+        "word": "появляется",
+        "probability": 0.995,
+        "segment_start": false
+      },
+      {
+        "start": 70.68,
+        "end": 70.94,
+        "word": "только",
+        "probability": 0.994,
+        "segment_start": false
+      },
+      {
+        "start": 70.94,
+        "end": 71.22,
+        "word": "там,",
+        "probability": 0.996,
+        "segment_start": false
+      },
+      {
+        "start": 71.42,
+        "end": 71.62,
+        "word": "где",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 71.62,
+        "end": 72.02,
+        "word": "выполнены",
+        "probability": 0.936,
+        "segment_start": false
+      },
+      {
+        "start": 72.02,
+        "end": 72.18,
+        "word": "все",
+        "probability": 0.998,
+        "segment_start": false
+      },
+      {
+        "start": 72.18,
+        "end": 72.56,
+        "word": "условия",
+        "probability": 0.998,
+        "segment_start": false
+      },
+      {
+        "start": 72.56,
+        "end": 73.04,
+        "word": "показанного",
+        "probability": 0.986,
+        "segment_start": true
+      },
+      {
+        "start": 73.04,
+        "end": 73.36,
+        "word": "правила.",
+        "probability": 0.991,
+        "segment_start": false
+      },
+      {
+        "start": 74.22,
+        "end": 74.64,
+        "word": "Пороги",
+        "probability": 0.993,
+        "segment_start": false
+      },
+      {
+        "start": 74.64,
+        "end": 74.78,
+        "word": "здесь",
+        "probability": 0.986,
+        "segment_start": false
+      },
+      {
+        "start": 74.78,
+        "end": 75.26,
+        "word": "условные,",
+        "probability": 0.988,
+        "segment_start": false
+      },
+      {
+        "start": 75.48,
+        "end": 75.78,
+        "word": "выбраны",
+        "probability": 0.971,
+        "segment_start": false
+      },
+      {
+        "start": 75.78,
+        "end": 75.9,
+        "word": "для",
+        "probability": 0.999,
+        "segment_start": true
+      },
+      {
+        "start": 75.9,
+        "end": 76.22,
+        "word": "объяснения",
+        "probability": 0.993,
+        "segment_start": false
+      },
+      {
+        "start": 76.22,
+        "end": 76.56,
+        "word": "работы",
+        "probability": 0.987,
+        "segment_start": false
+      },
+      {
+        "start": 76.56,
+        "end": 76.96,
+        "word": "фильтра.",
+        "probability": 0.966,
+        "segment_start": false
+      },
+      {
+        "start": 77.88,
+        "end": 78.08,
+        "word": "Это",
+        "probability": 0.968,
+        "segment_start": false
+      },
+      {
+        "start": 78.08,
+        "end": 78.16,
+        "word": "не",
+        "probability": 0.679,
+        "segment_start": false
+      },
+      {
+        "start": 78.16,
+        "end": 78.56,
+        "word": "нормативы",
+        "probability": 0.876,
+        "segment_start": false
+      },
+      {
+        "start": 78.56,
+        "end": 79.0,
+        "word": "лотешевой",
+        "probability": 0.535,
+        "segment_start": true
+      },
+      {
+        "start": 79.0,
+        "end": 79.22,
+        "word": "и",
+        "probability": 0.961,
+        "segment_start": false
+      },
+      {
+        "start": 79.22,
+        "end": 79.3,
+        "word": "не",
+        "probability": 0.803,
+        "segment_start": false
+      },
+      {
+        "start": 79.3,
+        "end": 79.64,
+        "word": "диагноз.",
+        "probability": 0.982,
+        "segment_start": false
+      },
+      {
+        "start": 80.58,
+        "end": 81.08,
+        "word": "Посмотрите,",
+        "probability": 0.995,
+        "segment_start": false
+      },
+      {
+        "start": 81.4,
+        "end": 81.7,
+        "word": "высокое",
+        "probability": 0.989,
+        "segment_start": false
+      },
+      {
+        "start": 81.7,
+        "end": 82.24,
+        "word": "сопротивление",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 82.24,
+        "end": 82.8,
+        "word": "встречается",
+        "probability": 0.984,
+        "segment_start": true
+      },
+      {
+        "start": 82.8,
+        "end": 83.0,
+        "word": "и",
+        "probability": 0.99,
+        "segment_start": false
+      },
+      {
+        "start": 83.0,
+        "end": 83.14,
+        "word": "без",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 83.14,
+        "end": 83.54,
+        "word": "отметки.",
+        "probability": 0.979,
+        "segment_start": false
+      },
+      {
+        "start": 84.34,
+        "end": 84.68,
+        "word": "Значит,",
+        "probability": 0.985,
+        "segment_start": false
+      },
+      {
+        "start": 85.0,
+        "end": 85.32,
+        "word": "остальные",
+        "probability": 0.998,
+        "segment_start": false
+      },
+      {
+        "start": 85.32,
+        "end": 85.74,
+        "word": "условия",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 85.74,
+        "end": 86.0,
+        "word": "этого",
+        "probability": 0.225,
+        "segment_start": true
+      },
+      {
+        "start": 86.0,
+        "end": 86.38,
+        "word": "фильтра",
+        "probability": 0.974,
+        "segment_start": false
+      },
+      {
+        "start": 86.38,
+        "end": 86.52,
+        "word": "не",
+        "probability": 0.875,
+        "segment_start": false
+      },
+      {
+        "start": 86.52,
+        "end": 86.96,
+        "word": "выполнены.",
+        "probability": 0.982,
+        "segment_start": false
+      },
+      {
+        "start": 87.84,
+        "end": 88.42,
+        "word": "Отмеченный",
+        "probability": 0.987,
+        "segment_start": false
+      },
+      {
+        "start": 88.42,
+        "end": 88.86,
+        "word": "интервал",
+        "probability": 0.977,
+        "segment_start": false
+      },
+      {
+        "start": 88.86,
+        "end": 89.14,
+        "word": "–",
+        "probability": 0.323,
+        "segment_start": false
+      },
+      {
+        "start": 89.14,
+        "end": 89.52,
+        "word": "кандидат",
+        "probability": 0.935,
+        "segment_start": false
+      },
+      {
+        "start": 89.52,
+        "end": 89.74,
+        "word": "для",
+        "probability": 0.96,
+        "segment_start": true
+      },
+      {
+        "start": 89.74,
+        "end": 90.16,
+        "word": "дальнейшей",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 90.16,
+        "end": 90.58,
+        "word": "проверки.",
+        "probability": 0.996,
+        "segment_start": false
+      },
+      {
+        "start": 91.46,
+        "end": 91.54,
+        "word": "Мы",
+        "probability": 0.974,
+        "segment_start": false
+      },
+      {
+        "start": 91.54,
+        "end": 91.64,
+        "word": "не",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 91.64,
+        "end": 91.98,
+        "word": "называем",
+        "probability": 0.998,
+        "segment_start": false
+      },
+      {
+        "start": 91.98,
+        "end": 92.18,
+        "word": "его",
+        "probability": 0.994,
+        "segment_start": false
+      },
+      {
+        "start": 92.18,
+        "end": 92.66,
+        "word": "доказанный",
+        "probability": 0.926,
+        "segment_start": false
+      },
+      {
+        "start": 92.66,
+        "end": 93.32,
+        "word": "нефтенасыщенный",
+        "probability": 0.942,
+        "segment_start": true
+      },
+      {
+        "start": 93.32,
+        "end": 93.78,
+        "word": "толщий.",
+        "probability": 0.93,
+        "segment_start": false
+      },
+      {
+        "start": 94.66,
+        "end": 95.34,
+        "word": "Полотышовый,",
+        "probability": 0.731,
+        "segment_start": false
+      },
+      {
+        "start": 95.54,
+        "end": 96.0,
+        "word": "изменчивая",
+        "probability": 0.936,
+        "segment_start": false
+      },
+      {
+        "start": 96.0,
+        "end": 96.4,
+        "word": "пористость,",
+        "probability": 0.72,
+        "segment_start": true
+      },
+      {
+        "start": 96.5,
+        "end": 96.62,
+        "word": "может",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 96.62,
+        "end": 97.04,
+        "word": "приводить",
+        "probability": 0.996,
+        "segment_start": false
+      },
+      {
+        "start": 97.04,
+        "end": 97.14,
+        "word": "к",
+        "probability": 0.948,
+        "segment_start": false
+      },
+      {
+        "start": 97.14,
+        "end": 97.58,
+        "word": "перекрытию",
+        "probability": 0.991,
+        "segment_start": false
+      },
+      {
+        "start": 97.58,
+        "end": 98.04,
+        "word": "диапазонов",
+        "probability": 0.981,
+        "segment_start": false
+      },
+      {
+        "start": 98.04,
+        "end": 98.62,
+        "word": "сопротивлений.",
+        "probability": 0.995,
+        "segment_start": true
+      },
+      {
+        "start": 99.46,
+        "end": 99.86,
+        "word": "Поэтому",
+        "probability": 0.975,
+        "segment_start": false
+      },
+      {
+        "start": 99.86,
+        "end": 100.2,
+        "word": "одного",
+        "probability": 0.952,
+        "segment_start": false
+      },
+      {
+        "start": 100.2,
+        "end": 100.66,
+        "word": "сигнала",
+        "probability": 0.995,
+        "segment_start": false
+      },
+      {
+        "start": 100.66,
+        "end": 101.3,
+        "word": "недостаточно.",
+        "probability": 0.951,
+        "segment_start": false
+      },
+      {
+        "start": 102.36,
+        "end": 102.84,
+        "word": "Отсутствие",
+        "probability": 0.979,
+        "segment_start": true
+      },
+      {
+        "start": 102.84,
+        "end": 103.24,
+        "word": "градиента",
+        "probability": 0.947,
+        "segment_start": false
+      },
+      {
+        "start": 103.24,
+        "end": 103.8,
+        "word": "сопротивления",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 103.8,
+        "end": 104.06,
+        "word": "тоже",
+        "probability": 0.967,
+        "segment_start": false
+      },
+      {
+        "start": 104.06,
+        "end": 104.24,
+        "word": "не",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 104.24,
+        "end": 104.66,
+        "word": "исключает",
+        "probability": 0.992,
+        "segment_start": false
+      },
+      {
+        "start": 104.66,
+        "end": 105.06,
+        "word": "коллектор.",
+        "probability": 0.975,
+        "segment_start": false
+      },
+      {
+        "start": 105.88,
+        "end": 106.48,
+        "word": "Отрицательный",
+        "probability": 0.952,
+        "segment_start": true
+      },
+      {
+        "start": 106.48,
+        "end": 106.8,
+        "word": "признак",
+        "probability": 0.991,
+        "segment_start": false
+      },
+      {
+        "start": 106.8,
+        "end": 107.16,
+        "word": "требует",
+        "probability": 0.993,
+        "segment_start": false
+      },
+      {
+        "start": 107.16,
+        "end": 107.66,
+        "word": "аккуратного",
+        "probability": 0.996,
+        "segment_start": false
+      },
+      {
+        "start": 107.66,
+        "end": 108.16,
+        "word": "толкования.",
+        "probability": 0.977,
+        "segment_start": false
+      },
+      {
+        "start": 109.2,
+        "end": 109.66,
+        "word": "Проверим",
+        "probability": 0.986,
+        "segment_start": true
+      },
+      {
+        "start": 109.66,
+        "end": 110.0,
+        "word": "условия",
+        "probability": 0.983,
+        "segment_start": false
+      },
+      {
+        "start": 110.0,
+        "end": 110.34,
+        "word": "бурения",
+        "probability": 0.94,
+        "segment_start": false
+      },
+      {
+        "start": 110.34,
+        "end": 110.54,
+        "word": "и",
+        "probability": 0.996,
+        "segment_start": false
+      },
+      {
+        "start": 110.54,
+        "end": 110.88,
+        "word": "свойства",
+        "probability": 0.977,
+        "segment_start": false
+      },
+      {
+        "start": 110.88,
+        "end": 111.34,
+        "word": "промывочной",
+        "probability": 0.99,
+        "segment_start": false
+      },
+      {
+        "start": 111.34,
+        "end": 111.74,
+        "word": "жидкости,",
+        "probability": 0.999,
+        "segment_start": true
+      },
+      {
+        "start": 111.94,
+        "end": 112.08,
+        "word": "они",
+        "probability": 0.673,
+        "segment_start": false
+      },
+      {
+        "start": 112.08,
+        "end": 112.4,
+        "word": "влияют",
+        "probability": 0.995,
+        "segment_start": false
+      },
+      {
+        "start": 112.4,
+        "end": 112.52,
+        "word": "на",
+        "probability": 0.998,
+        "segment_start": false
+      },
+      {
+        "start": 112.52,
+        "end": 113.04,
+        "word": "информацию,",
+        "probability": 0.998,
+        "segment_start": false
+      },
+      {
+        "start": 113.32,
+        "end": 113.56,
+        "word": "которую",
+        "probability": 0.991,
+        "segment_start": false
+      },
+      {
+        "start": 113.56,
+        "end": 114.14,
+        "word": "регистрируя",
+        "probability": 0.723,
+        "segment_start": true
+      },
+      {
+        "start": 114.14,
+        "end": 114.52,
+        "word": "приборы.",
+        "probability": 0.959,
+        "segment_start": false
+      },
+      {
+        "start": 115.36,
+        "end": 115.86,
+        "word": "Простая",
+        "probability": 0.89,
+        "segment_start": true
+      },
+      {
+        "start": 115.86,
+        "end": 116.2,
+        "word": "оценка",
+        "probability": 0.998,
+        "segment_start": false
+      },
+      {
+        "start": 116.2,
+        "end": 116.3,
+        "word": "по",
+        "probability": 0.982,
+        "segment_start": false
+      },
+      {
+        "start": 116.3,
+        "end": 116.8,
+        "word": "сопротивлению",
+        "probability": 0.988,
+        "segment_start": false
+      },
+      {
+        "start": 116.8,
+        "end": 117.06,
+        "word": "возможно",
+        "probability": 0.413,
+        "segment_start": false
+      },
+      {
+        "start": 117.06,
+        "end": 117.38,
+        "word": "лишь",
+        "probability": 0.991,
+        "segment_start": false
+      },
+      {
+        "start": 117.38,
+        "end": 117.52,
+        "word": "при",
+        "probability": 0.946,
+        "segment_start": false
+      },
+      {
+        "start": 117.52,
+        "end": 118.08,
+        "word": "дополнительных",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 118.08,
+        "end": 118.48,
+        "word": "условиях.",
+        "probability": 0.997,
+        "segment_start": true
+      },
+      {
+        "start": 119.24,
+        "end": 119.7,
+        "word": "Нельзя",
+        "probability": 0.985,
+        "segment_start": true
+      },
+      {
+        "start": 119.7,
+        "end": 120.18,
+        "word": "переносить",
+        "probability": 0.993,
+        "segment_start": false
+      },
+      {
+        "start": 120.18,
+        "end": 120.38,
+        "word": "ее",
+        "probability": 0.573,
+        "segment_start": false
+      },
+      {
+        "start": 120.38,
+        "end": 120.5,
+        "word": "на",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 120.5,
+        "end": 120.62,
+        "word": "любой",
+        "probability": 0.996,
+        "segment_start": false
+      },
+      {
+        "start": 120.62,
+        "end": 120.98,
+        "word": "разрез.",
+        "probability": 0.979,
+        "segment_start": false
+      },
+      {
+        "start": 121.78,
+        "end": 122.44,
+        "word": "Запомним",
+        "probability": 0.994,
+        "segment_start": true
+      },
+      {
+        "start": 122.44,
+        "end": 122.9,
+        "word": "порядок,",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 123.06,
+        "end": 123.46,
+        "word": "совмещаем",
+        "probability": 0.992,
+        "segment_start": false
+      },
+      {
+        "start": 123.46,
+        "end": 123.82,
+        "word": "глубину,",
+        "probability": 0.998,
+        "segment_start": false
+      },
+      {
+        "start": 124.04,
+        "end": 124.38,
+        "word": "сравниваем",
+        "probability": 0.992,
+        "segment_start": false
+      },
+      {
+        "start": 124.38,
+        "end": 124.82,
+        "word": "признаки,",
+        "probability": 0.998,
+        "segment_start": false
+      },
+      {
+        "start": 125.08,
+        "end": 125.36,
+        "word": "проверяем",
+        "probability": 0.993,
+        "segment_start": true
+      },
+      {
+        "start": 125.36,
+        "end": 125.74,
+        "word": "условия,",
+        "probability": 0.969,
+        "segment_start": false
+      },
+      {
+        "start": 125.96,
+        "end": 126.14,
+        "word": "затем",
+        "probability": 0.989,
+        "segment_start": false
+      },
+      {
+        "start": 126.14,
+        "end": 126.68,
+        "word": "формулируем",
+        "probability": 0.938,
+        "segment_start": false
+      },
+      {
+        "start": 126.68,
+        "end": 127.22,
+        "word": "ограниченный",
+        "probability": 0.997,
+        "segment_start": false
+      },
+      {
+        "start": 127.22,
+        "end": 127.46,
+        "word": "вывод.",
+        "probability": 0.987,
+        "segment_start": true
+      },
+      {
+        "start": 128.4,
+        "end": 128.76,
+        "word": "Ствол",
+        "probability": 0.92,
+        "segment_start": true
+      },
+      {
+        "start": 128.76,
+        "end": 129.02,
+        "word": "теперь",
+        "probability": 0.979,
+        "segment_start": false
+      },
+      {
+        "start": 129.02,
+        "end": 129.22,
+        "word": "в",
+        "probability": 0.994,
+        "segment_start": false
+      },
+      {
+        "start": 129.22,
+        "end": 129.52,
+        "word": "истинном",
+        "probability": 0.915,
+        "segment_start": false
+      },
+      {
+        "start": 129.52,
+        "end": 129.96,
+        "word": "масштабе.",
+        "probability": 0.999,
+        "segment_start": false
+      },
+      {
+        "start": 130.88,
+        "end": 131.26,
+        "word": "Размеры",
+        "probability": 0.972,
+        "segment_start": true
+      },
+      {
+        "start": 131.26,
+        "end": 131.54,
+        "word": "прибора",
+        "probability": 0.986,
+        "segment_start": false
+      },
+      {
+        "start": 131.54,
+        "end": 131.64,
+        "word": "на",
+        "probability": 0.893,
+        "segment_start": false
+      },
+      {
+        "start": 131.64,
+        "end": 132.12,
+        "word": "поясняющей",
+        "probability": 0.958,
+        "segment_start": false
+      },
+      {
+        "start": 132.12,
+        "end": 132.38,
+        "word": "схеме",
+        "probability": 0.995,
+        "segment_start": false
+      },
+      {
+        "start": 132.38,
+        "end": 132.8,
+        "word": "условные,",
+        "probability": 0.894,
+        "segment_start": false
+      },
+      {
+        "start": 133.1,
+        "end": 133.4,
+        "word": "кривые",
+        "probability": 0.965,
+        "segment_start": false
+      },
+      {
+        "start": 133.4,
+        "end": 133.82,
+        "word": "остаются",
+        "probability": 0.788,
+        "segment_start": true
+      },
+      {
+        "start": 133.82,
+        "end": 134.28,
+        "word": "данными.",
+        "probability": 0.995,
+        "segment_start": false
+      },
+      {
+        "start": 135.3,
+        "end": 135.64,
+        "word": "Каких",
+        "probability": 0.982,
+        "segment_start": true
+      },
+      {
+        "start": 135.64,
+        "end": 135.98,
+        "word": "данных",
+        "probability": 0.99,
+        "segment_start": false
+      },
+      {
+        "start": 135.98,
+        "end": 136.12,
+        "word": "о",
+        "probability": 0.519,
+        "segment_start": false
+      },
+      {
+        "start": 136.12,
+        "end": 136.44,
+        "word": "пластовой",
+        "probability": 0.979,
+        "segment_start": false
+      },
+      {
+        "start": 136.44,
+        "end": 136.66,
+        "word": "воде",
+        "probability": 0.988,
+        "segment_start": false
+      },
+      {
+        "start": 136.66,
+        "end": 136.74,
+        "word": "и",
+        "probability": 0.972,
+        "segment_start": false
+      },
+      {
+        "start": 136.74,
+        "end": 137.14,
+        "word": "пористости",
+        "probability": 0.834,
+        "segment_start": false
+      },
+      {
+        "start": 137.14,
+        "end": 137.28,
+        "word": "не",
+        "probability": 0.986,
+        "segment_start": false
+      },
+      {
+        "start": 137.28,
+        "end": 137.64,
+        "word": "хватает,",
+        "probability": 0.997,
+        "segment_start": true
+      },
+      {
+        "start": 137.92,
+        "end": 138.1,
+        "word": "чтобы",
+        "probability": 0.979,
+        "segment_start": false
+      },
+      {
+        "start": 138.1,
+        "end": 138.44,
+        "word": "перейти",
+        "probability": 0.992,
+        "segment_start": false
+      },
+      {
+        "start": 138.44,
+        "end": 138.64,
+        "word": "от",
+        "probability": 0.994,
+        "segment_start": false
+      },
+      {
+        "start": 138.64,
+        "end": 139.04,
+        "word": "кандидата",
+        "probability": 0.956,
+        "segment_start": false
+      },
+      {
+        "start": 139.04,
+        "end": 139.18,
+        "word": "к",
+        "probability": 0.844,
+        "segment_start": false
+      },
+      {
+        "start": 139.18,
+        "end": 139.46,
+        "word": "оценке",
+        "probability": 0.972,
+        "segment_start": false
+      },
+      {
+        "start": 139.46,
+        "end": 139.9,
+        "word": "насыщения?",
+        "probability": 0.989,
+        "segment_start": true
+      }
+    ]
+  },
+  "wer": {
+    "wer": 0.03754266211604096,
+    "n_ref": 293,
+    "n_hyp": 292,
+    "substitutions": 10,
+    "deletions": 1,
+    "insertions": 0,
+    "errors": [
+      {
+        "type": "sub",
+        "phrase_id": "p5",
+        "expected": "волве",
+        "heard": "волви"
+      },
+      {
+        "type": "sub",
+        "phrase_id": "p9",
+        "expected": "сопротивление",
+        "heard": "сопротивления"
+      },
+      {
+        "type": "sub",
+        "phrase_id": "p11",
+        "expected": "отметит",
+        "heard": "отметят"
+      },
+      {
+        "type": "sub",
+        "phrase_id": "p13",
+        "expected": "латышовой",
+        "heard": "лотешевой"
+      },
+      {
+        "type": "del",
+        "phrase_id": "p15",
+        "expected": "доказанной",
+        "heard": null
+      },
+      {
+        "type": "sub",
+        "phrase_id": "p15",
+        "expected": "нефтенасыщенной",
+        "heard": "доказанный"
+      },
+      {
+        "type": "sub",
+        "phrase_id": "p15",
+        "expected": "толщей",
+        "heard": "нефтенасыщенный"
+      },
+      {
+        "type": "sub",
+        "phrase_id": "p16",
+        "expected": "по",
+        "heard": "толщий"
+      },
+      {
+        "type": "sub",
+        "phrase_id": "p16",
+        "expected": "латышовой",
+        "heard": "полотышовый"
+      },
+      {
+        "type": "sub",
+        "phrase_id": "p18",
+        "expected": "регистрируют",
+        "heard": "регистрируя"
+      },
+      {
+        "type": "sub",
+        "phrase_id": "p19",
+        "expected": "возможна",
+        "heard": "возможно"
+      }
+    ],
+    "per_phrase": {
+      "p1": 0,
+      "p2": 0,
+      "p3": 0,
+      "p4": 0,
+      "p5": 1,
+      "p6": 0,
+      "p7": 0,
+      "p8": 0,
+      "p9": 1,
+      "p10": 0,
+      "p11": 1,
+      "p12": 0,
+      "p13": 1,
+      "p14": 0,
+      "p15": 3,
+      "p16": 2,
+      "p17": 0,
+      "p18": 1,
+      "p19": 1,
+      "p20": 0,
+      "p21": 0,
+      "p22": 0
+    }
+  },
+  "sync": {
+    "matched_words": 282,
+    "measure": "по слову — обе границы (начало и конец)",
+    "median_abs_s": 0.049,
+    "p95_abs_s": 0.168,
+    "max_abs_s": 0.412,
+    "desynced_words": [],
+    "uncertain_words": [],
+    "boundary_exceptions": [],
+    "unmeasured_words": 0,
+    "limit_s": 0.5,
+    "ok": true,
+    "status": "проверено автоматически"
+  }
+}

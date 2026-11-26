@@ -1,0 +1,1177 @@
+{
+  "ext": {},
+  "video_id": "latyshova_gl5_par17-20.resistivity_porosity.long",
+  "node_id": "latyshova_gl5_par17-20.resistivity_porosity",
+  "node_card": {
+    "node_id": "latyshova_gl5_par17-20.resistivity_porosity",
+    "title": "Почему одного сопротивления недостаточно",
+    "title_novice": null,
+    "difficulty": {
+      "ext": {},
+      "primary": "И",
+      "secondary": null
+    },
+    "threshold": true,
+    "main": "Комплекс ГИС используют для выделения коллекторов и оценки их свойств.",
+    "pages": [
+      90,
+      96,
+      97
+    ],
+    "terms_introduced": [
+      "сопротивление",
+      "пористость",
+      "каротаж"
+    ],
+    "claims": [
+      {
+        "id": "latyshova_gl5_par17-20.resistivity_porosity#c1",
+        "kind": "inference",
+        "page_pdf": 90
+      },
+      {
+        "id": "latyshova_gl5_par17-20.resistivity_porosity#c2",
+        "kind": "inference",
+        "page_pdf": 97
+      },
+      {
+        "id": "latyshova_gl5_par17-20.resistivity_porosity#c3",
+        "kind": "inference",
+        "page_pdf": 97
+      },
+      {
+        "id": "latyshova_gl5_par17-20.resistivity_porosity#c4",
+        "kind": "inference",
+        "page_pdf": 96
+      },
+      {
+        "id": "latyshova_gl5_par17-20.resistivity_porosity#c5",
+        "kind": "inference",
+        "page_pdf": 90
+      },
+      {
+        "id": "latyshova_gl5_par17-20.resistivity_porosity#c6",
+        "kind": "inference",
+        "page_pdf": 97
+      }
+    ]
+  },
+  "script": [
+    {
+      "ext": {},
+      "t_start": 0.3,
+      "t_end": 4.788,
+      "text": "Высокое сопротивление. Значит, нашли нефть?",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c3",
+      "is_analogy": false,
+      "on_screen": "Высокое сопротивление — это нефть?",
+      "phrase_id": "p1",
+      "beat": "hook",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 4.788,
+      "t_end": 10.74,
+      "text": "По одной кривой легко сделать поспешный вывод. Латышова предлагает рассматривать данные в комплексе.",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c2",
+      "is_analogy": false,
+      "on_screen": "Одна кривая может обмануть",
+      "phrase_id": "p2",
+      "beat": "problem",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 10.74,
+      "t_end": 17.22,
+      "text": "Сопоставим сопротивление с пористостью на одной глубине. Затем отделим наблюдение от решения специалиста.",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c2",
+      "is_analogy": false,
+      "on_screen": "Сначала сопоставить, потом решать",
+      "phrase_id": "p3",
+      "beat": "solution",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 17.22,
+      "t_end": 23.94,
+      "text": "Это комплексная интерпретация каротажа: показания приборов помогают оценивать свойства коллектора, но требуют проверки условий.",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c1",
+      "is_analogy": false,
+      "on_screen": "Комплексная интерпретация каротажа",
+      "phrase_id": "p4",
+      "beat": "naming",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 23.94,
+      "t_end": 30.468,
+      "text": "Перед нами открытые данные месторождения Волве. Это дополнительный пример, а не диаграммы из учебника.",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c1",
+      "is_analogy": false,
+      "on_screen": "Реальные данные Volve",
+      "phrase_id": "p5",
+      "beat": "data",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 30.468,
+      "t_end": 36.396,
+      "text": "Прибор на схеме движется вниз. На той же глубине раскрываются соответствующие участки кривых.",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c1",
+      "is_analogy": false,
+      "on_screen": "Прибор и кривые на одной глубине",
+      "phrase_id": "p6",
+      "beat": "data",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 36.396,
+      "t_end": 43.98,
+      "text": "Слева гамма-каротаж, рядом сопротивление и нейтронная пористость. Схема прибора показывает назначение измерений.",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c1",
+      "is_analogy": false,
+      "on_screen": "Сопоставляем разные измерения",
+      "phrase_id": "p7",
+      "beat": "data",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 43.98,
+      "t_end": 49.068,
+      "text": "Важно: нейтронная кривая сама по себе ещё не даёт окончательного заключения о насыщении.",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c2",
+      "is_analogy": false,
+      "on_screen": "Показание ещё не заключение",
+      "phrase_id": "p8",
+      "beat": "problem",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 49.068,
+      "t_end": 54.756,
+      "text": "В книге сопротивление неизменённой части пласта сопоставляют с оценкой того же пласта в водонасыщенном состоянии.",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c2",
+      "is_analogy": false,
+      "on_screen": "Нужна водонасыщенная опора",
+      "phrase_id": "p9",
+      "beat": "solution",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 54.756,
+      "t_end": 60.756,
+      "text": "Для такой оценки нужны сведения о пористости и пластовой воде. Эти условия нельзя пропускать.",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c2",
+      "is_analogy": false,
+      "on_screen": "Пористость и свойства воды важны",
+      "phrase_id": "p10",
+      "beat": "solution",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 60.756,
+      "t_end": 66.372,
+      "text": "Отметит ли показанный фильтр каждый участок высокого сопротивления, если остальные признаки не совпадут?",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c3",
+      "is_analogy": false,
+      "on_screen": "Одного высокого сопротивления хватит?",
+      "phrase_id": "p11",
+      "beat": "prediction",
+      "pause_after_s": 1.2
+    },
+    {
+      "ext": {},
+      "t_start": 67.572,
+      "t_end": 74.148,
+      "text": "Нет. В этой демонстрации отметка появляется только там, где выполнены все условия показанного правила.",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c3",
+      "is_analogy": false,
+      "on_screen": "Отметка только при совместных условиях",
+      "phrase_id": "p12",
+      "beat": "data",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 74.148,
+      "t_end": 80.532,
+      "text": "Пороги здесь условные, выбраны для объяснения работы фильтра. Это не нормативы Латышовой и не диагноз.",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c3",
+      "is_analogy": false,
+      "on_screen": "Пороги условные, не из учебника",
+      "phrase_id": "p13",
+      "beat": "data",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 80.532,
+      "t_end": 87.78,
+      "text": "Посмотрите: высокое сопротивление встречается и без отметки. Значит, остальные условия этого фильтра не выполнены.",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c3",
+      "is_analogy": false,
+      "on_screen": "Контрпример: высокий сигнал без отметки",
+      "phrase_id": "p14",
+      "beat": "data",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 87.78,
+      "t_end": 94.596,
+      "text": "Отмеченный интервал — кандидат для дальнейшей проверки. Мы не называем его доказанной нефтенасыщенной толщей.",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c2",
+      "is_analogy": false,
+      "on_screen": "Сигнал → кандидат для проверки",
+      "phrase_id": "p15",
+      "beat": "decision",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 94.596,
+      "t_end": 102.204,
+      "text": "По Латышовой, изменчивая пористость может приводить к перекрытию диапазонов сопротивлений. Поэтому одного сигнала недостаточно.",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c3",
+      "is_analogy": false,
+      "on_screen": "Разные свойства дают похожий сигнал",
+      "phrase_id": "p16",
+      "beat": "decision",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 102.204,
+      "t_end": 109.164,
+      "text": "Отсутствие градиента сопротивления тоже не исключает коллектор. Отрицательный признак требует аккуратного толкования.",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c4",
+      "is_analogy": false,
+      "on_screen": "Нет градиента — не значит нет коллектора",
+      "phrase_id": "p17",
+      "beat": "decision",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 109.164,
+      "t_end": 115.332,
+      "text": "Проверим условия бурения и свойства промывочной жидкости: они влияют на информацию, которую регистрируют приборы.",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c5",
+      "is_analogy": false,
+      "on_screen": "Условия измерения влияют на вывод",
+      "phrase_id": "p18",
+      "beat": "decision",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 115.332,
+      "t_end": 121.836,
+      "text": "Простая оценка по сопротивлению возможна лишь при дополнительных условиях. Нельзя переносить её на любой разрез.",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c6",
+      "is_analogy": false,
+      "on_screen": "Проверьте условия применимости",
+      "phrase_id": "p19",
+      "beat": "decision",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 121.836,
+      "t_end": 128.316,
+      "text": "Запомним порядок: совмещаем глубину, сравниваем признаки, проверяем условия, затем формулируем ограниченный вывод.",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c2",
+      "is_analogy": false,
+      "on_screen": "Глубина → признаки → проверка → вывод",
+      "phrase_id": "p20",
+      "beat": "final",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 128.316,
+      "t_end": 135.18,
+      "text": "Ствол теперь в истинном масштабе. Размеры прибора на поясняющей схеме условные; кривые остаются данными.",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c1",
+      "is_analogy": false,
+      "on_screen": "Истинный масштаб ствола",
+      "phrase_id": "p21",
+      "beat": "final",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 135.18,
+      "t_end": 140.94,
+      "text": "Каких данных о пластовой воде и пористости не хватает, чтобы перейти от кандидата к оценке насыщения?",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c2",
+      "is_analogy": false,
+      "on_screen": "Что нужно проверить перед оценкой насыщения?",
+      "phrase_id": "p22",
+      "beat": "transfer",
+      "pause_after_s": 0.0
+    }
+  ],
+  "sources": [
+    {
+      "ext": {},
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c3",
+      "page_or_dataset": "стр. 97",
+      "quote": "В межзерновых коллекторах при больших изменениях пористости, а следовательно, и значений ρвн при невысоких или сильно колеблющихся значениях коэффициента нефте-, газонасыщения диапазоны изменения ρвн и ρвн могут в значительной степени перекрываться. В связи с этим для оценки характера насыщения таких коллекторов требуется использовать величину параметра насыщения. В этом случае процедура определения характера насыщения базируется на сопоставлении диаграмм методов сопротивления и пористости, которое проводят разными способами: 1) сопоставлением значений ρн и kн в координатах ρн = f (kн); 2) либо значений ρв и показаний методов пористости в координатах ρн = f (ΔJнт) (ΔТ, δн, ρвн); 3) совмещением диаграмм ρв ≈ ρн с диаграммами методов пористости. Последняя методика носит название нормализации, или наложения диаграмм, для чего требуется предварительная их трансформация с целью приведения к единому масштабу.",
+      "claim_text": "При изменчивой пористости диапазоны сопротивлений могут перекрываться; сравнивают методы сопротивления и пористости.",
+      "kind": "inference",
+      "source_kind": "text",
+      "by_model": true
+    },
+    {
+      "ext": {},
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c2",
+      "page_or_dataset": "стр. 97",
+      "quote": "Определение характера насыщения коллектора. При определении характера насыщения коллектора используют параметр насыщения Pн, связанный с коэффициентом водонасыщения пор, или показания геофизического метода, дающего представление об изменении в коллекторах его величины. Из формул (10) и (11) следует, что Pн = ρн/ρвн = ρн/Pнρв, где в числителе стоит значение удельного сопротивления неизмененной части пласта, в знаменателе — удельное сопротивление того же пласта в водонасыщенном состоянии. Последнее получают косвенным путем по известной пористости, переведенной в соответствии с выражением (3) в параметр пористости и затем - в ρвн = Pнρв. Таким образом, в общем случае для оценки характера насыщения требуется комплекс, включающий метод сопротивления, который дает информацию об удельном сопротивлении неизмененной части пласта ρн, метод пористости, позволяющий оценивать величину Pн, и метод, который давал бы информацию о качестве воды, насыщающей пласт. Соотношение (10) связывает все методы геофизического комплекса в единое уравнение, разрешаемое количественно для получения коэффициента водонасыщения коллектора, либо качественно для установления характера насыщения коллекторов в разрезе скважины.",
+      "claim_text": "Для оценки насыщения нужны сопротивление неизменённой части пласта, пористость и свойства пластовой воды.",
+      "kind": "inference",
+      "source_kind": "text",
+      "by_model": true
+    },
+    {
+      "ext": {},
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c1",
+      "page_or_dataset": "стр. 90",
+      "quote": "Данные геофизических исследований поисковых, разведочных и эксплуатационных скважин на нефть и газ используются для составления литологического разреза скважины, выделения и оценки характера насыщения коллекторов в разрезе, определения эффективной толщины, коэффициентов пористости и нефтегазонасыщения, а также оценки коэффициентов проницаемости и глинистости продуктивных коллекторов.",
+      "claim_text": "Комплекс ГИС используют для выделения коллекторов и оценки их свойств.",
+      "kind": "inference",
+      "source_kind": "text",
+      "by_model": true
+    },
+    {
+      "ext": {},
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c4",
+      "page_or_dataset": "стр. 96",
+      "quote": "Отсутствие заметного градиента сопротивления не является признаком, отрицающим коллектор. Этот случай может соответствовать такому сочетанию коэффициентов насыщения в зоне проникновения и неизменной части пласта с отношением ρф/ρₙ, при котором по формуле(12) ρ₁₀/ρₙₙ = Pₙ₁₀ρф/Pₙρₙ.",
+      "claim_text": "Отсутствие заметного градиента сопротивления не исключает коллектор.",
+      "kind": "inference",
+      "source_kind": "text",
+      "by_model": true
+    },
+    {
+      "ext": {},
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c5",
+      "page_or_dataset": "стр. 90",
+      "quote": "Состав методов оптимального комплекса зависит от особенностей разреза (терригенный, карбонатный, гидрохимический и др.). На комплекс применяемых методов и способы их интерпретации также существенно влияют условия бурения скважин и в первую очередь тип и параметры промывочной жидкости, которые в значительной степени определяют достоверность и качество получаемой по геофизическим данным информации. Промывочными жидкостями являются глинистые растворы, техническая вода и нефильтрующиеся растворы.",
+      "claim_text": "Условия бурения и промывочная жидкость влияют на качество данных и выбор комплекса.",
+      "kind": "inference",
+      "source_kind": "text",
+      "by_model": true
+    },
+    {
+      "ext": {},
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c6",
+      "page_or_dataset": "стр. 97",
+      "quote": "Чистые, высокопористые межзерновые коллекторы характеризуются высокими значениями коэффициентов нефте-, газонасыщения. В этом случае из соотношения (11) следует, что характер насыщения можно оценить по величине удельного сопротивления неизмененной части пласта и даже значениям кажущегося сопротивления, зарегистрированным оптимальными зондами, если коэффициент пористости, а следовательно, и Pн изменяются в нешироких пределах, а пластовые воды одинаковы для всего изучаемого разреза (ρн = const). При этом ρвн = Pнρв имеет малый диапазон изменения, а ρвн = PнPнρв из-за высокого коэффициента нефте- или газонасыщения значительно отличается от ρвн водонасыщенных коллекторов. При условии ρвн > ρвн оценка характера насыщения коллекторов возможна в соответствии с табл. 21 просто по величине кажущегося сопротивления.",
+      "claim_text": "Упрощённая оценка по сопротивлению допустима при дополнительных условиях, включая близкую пористость и одинаковую воду.",
+      "kind": "inference",
+      "source_kind": "text",
+      "by_model": true
+    },
+    {
+      "ext": {},
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity.long#data",
+      "page_or_dataset": "Volve, Equinor ASA и бывшие партнёры по лицензии Volve; скв. 15/9-19 A; файл 159-19A_LFP.las; скв. 15/9-19 (NO 15/9-19 A); 3790–3875 м; sha256 92537d18afb6…",
+      "provenance": {
+        "kind": "real",
+        "source": "Открытые данные Volve (Equinor). Файл из выборки andymcdgeo/spwla_volve (папка 15_9-19A) — ссылка указана в инструкции организаторов «Открытые данные: Volve и F3» (проверены 25.11.2026)",
+        "license": "Данные Volve, Equinor ASA и бывшие партнёры по лицензии Volve. Использование — для учёбы и исследований, данные нельзя перепродавать (условия из инструкции организаторов). У репозитория andymcdgeo/spwla_volve отдельного файла лицензии нет (GitHub API: license = null)",
+        "attribution": "Volve, Equinor ASA и бывшие партнёры по лицензии Volve; скв. 15/9-19 A",
+        "file": "159-19A_LFP.las",
+        "sha256": "92537d18afb6608818c635c77b0d1493fbdbe8ccaaf83e48d755411f23e6e7b6",
+        "well": "15/9-19",
+        "uwi": "NO 15/9-19 A",
+        "interval_m": [
+          3790.0,
+          3875.0
+        ],
+        "units": {
+          "DEPTH": "M",
+          "LFP_CALI": "INCHES",
+          "LFP_GR": "API",
+          "LFP_NPHI": "V/V_DECIMAL",
+          "LFP_RT": "OHM.M",
+          "LFP_VSH": "V/V_DECIMAL"
+        },
+        "curve_types": {
+          "LFP_CALI": "measured",
+          "LFP_GR": "measured",
+          "LFP_NPHI": "measured",
+          "LFP_RT": "measured",
+          "LFP_VSH": "interpreted"
+        },
+        "borehole_diameter_m": 0.21201379999999997,
+        "borehole_diameter_source": "медиана кривой LFP_CALI на 3790–3875 м: 8.347 INCHES (558 отсчётов, от 7.887 до 10.15)",
+        "note": "Файл — экспорт проекта Geolog LFP из OpenWorks (2018-04-30): кривые GR, RT, NPHI, CALI по инструкции организаторов — каротаж (здесь measured), но это кондиционированные кривые проекта, а не подтверждённая исходная запись прибора. LFP_VSH — результат интерпретации (глинистость), объявлен как interpreted. WELL в LAS — «15/9-19», UWI — «NO 15/9-19 A». Шаг глубины 0,1523–0,1526 м (неравномерный). Интервал 3790–3875 м выбран так: GR, RT, NPHI, CALI без пропусков; LFP_BADDATA = 0; ниже окна на 3878,9–3879,2 м — 3 отсчёта RT до 1921 Ом·м (оставлены в данных, в окно не входят, чтобы не сжимать логарифмическую шкалу). В файле есть выбросы вне окна: LFP_NPHI > 1 д. ед. (5 отсчётов), LFP_GR ≤ 0 или > 300 API (44 отсчёта) — не исправлялись.",
+        "download": {
+          "url": "https://raw.githubusercontent.com/andymcdgeo/spwla_volve/main/15_9-19A/159-19A_LFP.las",
+          "repository_commit": "c293edf37c1b567b8dc9c81ea88f2cf288eab423",
+          "downloaded": "2026-11-25",
+          "bytes": 8810367,
+          "line_endings": "LF; в Git хранится как есть (fixtures/video/.gitattributes: *.las -text)"
+        },
+        "description": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\fixtures\\video\\t2_volve\\dataset.json"
+      }
+    }
+  ],
+  "scene_spec": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/scene_spec.json",
+  "frames": [
+    {
+      "ext": {
+        "shot_id": "s1",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s1.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 2.544,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s2",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s2.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 7.764,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s3",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s3.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 13.98,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s4",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s4.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 20.58,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s5",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s5.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 27.204,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s6",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s6.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 33.432,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s7",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s7.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 40.188,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s8",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s8.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 46.524,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s9",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s9.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 51.912,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s10",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s10.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 57.756,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s11",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s11.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 64.164,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s12",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s12.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 70.86,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s13",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s13.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 77.34,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s14",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s14.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 84.156,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s15",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s15.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 91.188,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s16",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s16.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 98.4,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s17",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s17.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 105.684,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s18",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s18.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 112.248,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s19",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s19.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 118.584,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s20",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s20.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 125.076,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s21",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s21.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 131.748,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s22",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/s22.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 138.06,
+      "class": "A",
+      "label": "реальные данные"
+    },
+    {
+      "ext": {
+        "shot_id": "s22",
+        "file": "out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/frames/final.png",
+        "panels": {
+          "ствол и прибор": "схема"
+        }
+      },
+      "t": 141.89,
+      "class": "A",
+      "label": "реальные данные"
+    }
+  ],
+  "exaggerations": [
+    "ствол и прибор шире в 20 раз"
+  ],
+  "prediction_question": "Отметит ли показанный фильтр каждый участок высокого сопротивления, если остальные признаки не совпадут?",
+  "transfer_question": "Каких данных о пластовой воде и пористости не хватает, чтобы перейти от кандидата к оценке насыщения?",
+  "data_it_bridge": "Одно состояние управляет изображением и данными; наблюдение отделено от решения.",
+  "physics_checklist": [
+    {
+      "ext": {},
+      "item": "pc.layers_order",
+      "answer": "н/п",
+      "note": "T2 показывает кривые по глубине, геометрия слоёв не рисуется",
+      "status": "не применимо",
+      "text": "Порядок слоёв сохраняется во всех кадрах; молодые лежат на старых, если не показан надвиг или опрокидывание."
+    },
+    {
+      "ext": {},
+      "item": "pc.fault_consistent",
+      "answer": "н/п",
+      "note": "разломы не рисуются",
+      "status": "не применимо",
+      "text": "Разлом смещает слои согласованно по обе стороны; смещение не исчезает и не меняет знак между кадрами."
+    },
+    {
+      "ext": {},
+      "item": "pc.unconformity_event",
+      "answer": "н/п",
+      "note": "несогласия не рисуются",
+      "status": "не применимо",
+      "text": "Несогласие показано как событие: размыв, перерыв, новое накопление."
+    },
+    {
+      "ext": {},
+      "item": "pc.fluids_in_pores",
+      "answer": "н/п",
+      "note": "флюиды не изображаются",
+      "status": "не применимо",
+      "text": "Нефть и газ находятся в порах породы, а не в полостях и озёрах."
+    },
+    {
+      "ext": {},
+      "item": "pc.gas_oil_water",
+      "answer": "н/п",
+      "note": "флюидальные контакты не рисуются",
+      "status": "не применимо",
+      "text": "Газ над нефтью, нефть над водой; контакт горизонтален или оговорено иное."
+    },
+    {
+      "ext": {},
+      "item": "pc.flow_high_to_low",
+      "answer": "н/п",
+      "note": "течение не изображается",
+      "status": "не применимо",
+      "text": "Флюид движется от высокого давления к низкому; ловушка имеет покрышку."
+    },
+    {
+      "ext": {},
+      "item": "pc.causality",
+      "answer": "нет",
+      "note": "не проверено: нужен просмотр ментором. «нет» стоит потому, что схема не допускает значения «не проверено»; это не найденная ошибка",
+      "status": "не проверено",
+      "text": "Порядок операций и событий верный: причина раньше следствия."
+    },
+    {
+      "ext": {},
+      "item": "pc.balance",
+      "answer": "н/п",
+      "note": "процесс с балансом массы не изображается",
+      "status": "не применимо",
+      "text": "Соблюдается баланс (масса, объём)."
+    },
+    {
+      "ext": {},
+      "item": "pc.views_consistent",
+      "answer": "да",
+      "note": "по построению: прибор, кривые и колонка решения — одна глубина через depth_frac (тест test_tool_and_curves_share_one_depth)",
+      "status": "проверено автоматически",
+      "check": "one_state_variable",
+      "text": "Разрез, план и поверхность показывают одно и то же состояние."
+    },
+    {
+      "ext": {},
+      "item": "pc.tool_mechanism",
+      "answer": "нет",
+      "note": "не проверено: нужен просмотр ментором. «нет» стоит потому, что схема не допускает значения «не проверено»; это не найденная ошибка",
+      "status": "не проверено",
+      "text": "Механизм прибора верный (ГК — собственное излучение, не «отражение»)."
+    },
+    {
+      "ext": {},
+      "item": "pc.signal_vs_property",
+      "answer": "нет",
+      "note": "не проверено: нужен просмотр ментором. «нет» стоит потому, что схема не допускает значения «не проверено»; это не найденная ошибка",
+      "status": "не проверено",
+      "text": "Сигнал отделён от свойства: прибор измеряет отклик, свойство получают интерпретацией."
+    },
+    {
+      "ext": {},
+      "item": "pc.applicability",
+      "answer": "нет",
+      "note": "не проверено: нужен просмотр ментором. «нет» стоит потому, что схема не допускает значения «не проверено»; это не найденная ошибка",
+      "status": "не проверено",
+      "text": "Названы условия применимости правила (напр., знак ПС зависит от соотношения минерализаций)."
+    },
+    {
+      "ext": {},
+      "item": "pc.curve_sync",
+      "answer": "да",
+      "note": "по построению: прибор, кривые и колонка решения — одна глубина через depth_frac (тест test_tool_and_curves_share_one_depth)",
+      "status": "проверено автоматически",
+      "check": "one_state_variable",
+      "text": "Кривая синхронна с прибором и вычислена из той же модели."
+    },
+    {
+      "ext": {},
+      "item": "pc.plausible_numbers",
+      "answer": "нет",
+      "note": "не проверено: нужен просмотр ментором. «нет» стоит потому, что схема не допускает значения «не проверено»; это не найденная ошибка",
+      "status": "не проверено",
+      "text": "Глубины, температуры, давления и размеры правдоподобны."
+    },
+    {
+      "ext": {},
+      "item": "pc.exaggeration_named",
+      "answer": "да",
+      "note": "все плашки и преувеличения с числом; кадр истинного масштаба — s21",
+      "status": "проверено автоматически",
+      "check": "plaques_have_number",
+      "text": "Преувеличения названы числом, а не только общей плашкой."
+    },
+    {
+      "ext": {},
+      "item": "pc.objects_stable",
+      "answer": "да",
+      "note": "по построению: ствол и прибор одной формы во всех кадрах; ширина меняется только на кадрах с плашкой «не в масштабе» и в кадре истинного масштаба",
+      "status": "проверено автоматически",
+      "check": "objects_fixed_geometry",
+      "text": "Оборудование и прибор не меняют конструкцию между кадрами."
+    },
+    {
+      "ext": {},
+      "item": "pc.objects_plausible",
+      "answer": "нет",
+      "note": "не проверено: нужен просмотр ментором. «нет» стоит потому, что схема не допускает значения «не проверено»; это не найденная ошибка",
+      "status": "не проверено",
+      "text": "Объекты не совмещены неправдоподобно."
+    },
+    {
+      "ext": {},
+      "item": "pc.depth_down",
+      "answer": "да",
+      "note": "по построению: depth_frac 0 — верх, 1 — низ; шкала глубины и единицы кривых подписаны (тест test_tool_and_curves_share_one_depth)",
+      "status": "проверено автоматически",
+      "check": "depth_down",
+      "text": "Глубина растёт вниз; шкалы, единицы и полярность подписаны."
+    },
+    {
+      "ext": {},
+      "item": "pc.label_matches",
+      "answer": "да",
+      "note": "t2_template.prepare: метка кадров «реальные данные» соответствует набору (real; sha256 и скважина сверены); панель ствола — «схема»",
+      "status": "проверено автоматически",
+      "check": "label_matches_source",
+      "text": "Вертикальное преувеличение подписано числом; метка происхождения соответствует тому, как сделан кадр."
+    },
+    {
+      "ext": {},
+      "item": "pc.modern_or_historic",
+      "answer": "нет",
+      "note": "не проверено: нужен просмотр ментором. «нет» стоит потому, что схема не допускает значения «не проверено»; это не найденная ошибка",
+      "status": "не проверено",
+      "text": "Оборудование современное или помечено как историческое."
+    },
+    {
+      "ext": {},
+      "item": "pc.hydrostatic",
+      "answer": "н/п",
+      "note": "давление в стволе не изображается",
+      "status": "не применимо",
+      "text": "Гидростатическое давление растёт с глубиной и плотностью раствора; при циркуляции давление на забой выше статического."
+    },
+    {
+      "ext": {},
+      "item": "pc.gas_closed_well",
+      "answer": "н/п",
+      "note": "газ в стволе не изображается",
+      "status": "не применимо",
+      "text": "Газ в закрытой скважине почти не может расшириться и, всплывая, поднимает давление по всему стволу; в открытой скважине газ расширяется, сильнее всего у устья."
+    },
+    {
+      "ext": {},
+      "item": "pc.pit_gain",
+      "answer": "н/п",
+      "note": "приёмные ёмкости не показываются",
+      "status": "не применимо",
+      "text": "Рост объёма раствора в приёмной ёмкости — признак притока из пласта, уменьшение — признак поглощения."
+    },
+    {
+      "ext": {},
+      "item": "pc.well_construction",
+      "answer": "н/п",
+      "note": "колонны и пакеры не рисуются: ствол — схема без конструкции",
+      "status": "не применимо",
+      "text": "Колонны, пакеры и оборудование на своих местах во всех кадрах; конструкция скважины не меняется между видами."
+    }
+  ],
+  "audio_check": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "tempo": {
+      "wpm": 144.3,
+      "target": [
+        110,
+        150
+      ],
+      "ok": true,
+      "method": "слова сценария / время от первого до последнего слова фраз по меткам TTS"
+    },
+    "loudness": {
+      "integrated_lufs": -16.0,
+      "true_peak_dbtp": -1.5,
+      "target_lufs": -16.0,
+      "ok": true,
+      "no_clipping": true
+    },
+    "trailing_silence_s": 1.658,
+    "last_phrase_inside": true,
+    "asr": {
+      "status": "проверено автоматически",
+      "engine": "faster-whisper",
+      "version": "1.2.1",
+      "model": "small",
+      "language": "ru",
+      "wer": 0.0375,
+      "limit": 0.1,
+      "ok": true,
+      "n_ref_words": 293,
+      "substitutions": 10,
+      "deletions": 1,
+      "insertions": 0,
+      "errors": [
+        {
+          "type": "sub",
+          "phrase_id": "p5",
+          "expected": "волве",
+          "heard": "волви"
+        },
+        {
+          "type": "sub",
+          "phrase_id": "p9",
+          "expected": "сопротивление",
+          "heard": "сопротивления"
+        },
+        {
+          "type": "sub",
+          "phrase_id": "p11",
+          "expected": "отметит",
+          "heard": "отметят"
+        },
+        {
+          "type": "sub",
+          "phrase_id": "p13",
+          "expected": "латышовой",
+          "heard": "лотешевой"
+        },
+        {
+          "type": "del",
+          "phrase_id": "p15",
+          "expected": "доказанной",
+          "heard": null
+        },
+        {
+          "type": "sub",
+          "phrase_id": "p15",
+          "expected": "нефтенасыщенной",
+          "heard": "доказанный"
+        },
+        {
+          "type": "sub",
+          "phrase_id": "p15",
+          "expected": "толщей",
+          "heard": "нефтенасыщенный"
+        },
+        {
+          "type": "sub",
+          "phrase_id": "p16",
+          "expected": "по",
+          "heard": "толщий"
+        },
+        {
+          "type": "sub",
+          "phrase_id": "p16",
+          "expected": "латышовой",
+          "heard": "полотышовый"
+        },
+        {
+          "type": "sub",
+          "phrase_id": "p18",
+          "expected": "регистрируют",
+          "heard": "регистрируя"
+        },
+        {
+          "type": "sub",
+          "phrase_id": "p19",
+          "expected": "возможна",
+          "heard": "возможно"
+        }
+      ],
+      "per_phrase": {
+        "p1": 0,
+        "p2": 0,
+        "p3": 0,
+        "p4": 0,
+        "p5": 1,
+        "p6": 0,
+        "p7": 0,
+        "p8": 0,
+        "p9": 1,
+        "p10": 0,
+        "p11": 1,
+        "p12": 0,
+        "p13": 1,
+        "p14": 0,
+        "p15": 3,
+        "p16": 2,
+        "p17": 0,
+        "p18": 1,
+        "p19": 1,
+        "p20": 0,
+        "p21": 0,
+        "p22": 0
+      },
+      "report": "asr_report.json"
+    },
+    "sync": {
+      "method": "слова: распознавание готового MP4 против меток слов TTS в таймлайне ролика; по слову проверяются обе границы; одна за порогом — «не проверено», кроме обоснованных исключений (boundary_exceptions)",
+      "matched_words": 282,
+      "measure": "по слову — обе границы (начало и конец)",
+      "median_abs_s": 0.049,
+      "p95_abs_s": 0.168,
+      "max_abs_s": 0.412,
+      "desynced_words": [],
+      "uncertain_words": [],
+      "boundary_exceptions": [],
+      "unmeasured_words": 0,
+      "limit_s": 0.5,
+      "ok": true,
+      "status": "проверено автоматически",
+      "frame_vs_voice": {
+        "status": "не проверено",
+        "reason": "смысловое соответствие кадра фразе проверяет человек; подписи и анимация привязаны к тому же звуковому таймлайну по построению"
+      }
+    },
+    "terms": {
+      "status": "проверено автоматически",
+      "method": "каждое употребление термина в сценарии — по выравниванию сценария и распознавания",
+      "terms_in_script": [
+        "сопротивление",
+        "пористость",
+        "каротаж"
+      ],
+      "occurrences": [
+        {
+          "term": "сопротивление",
+          "phrase_id": "p1",
+          "ok": true,
+          "heard": [
+            "сопротивление"
+          ]
+        },
+        {
+          "term": "сопротивление",
+          "phrase_id": "p3",
+          "ok": true,
+          "heard": [
+            "сопротивление"
+          ]
+        },
+        {
+          "term": "сопротивление",
+          "phrase_id": "p7",
+          "ok": true,
+          "heard": [
+            "сопротивление"
+          ]
+        },
+        {
+          "term": "сопротивление",
+          "phrase_id": "p9",
+          "ok": false,
+          "heard": [
+            "сопротивления"
+          ]
+        },
+        {
+          "term": "сопротивление",
+          "phrase_id": "p14",
+          "ok": true,
+          "heard": [
+            "сопротивление"
+          ]
+        },
+        {
+          "term": "пористость",
+          "phrase_id": "p7",
+          "ok": true,
+          "heard": [
+            "пористость"
+          ]
+        },
+        {
+          "term": "пористость",
+          "phrase_id": "p16",
+          "ok": true,
+          "heard": [
+            "пористость"
+          ]
+        },
+        {
+          "term": "каротаж",
+          "phrase_id": "p7",
+          "ok": true,
+          "heard": [
+            "каротаж"
+          ]
+        }
+      ],
+      "not_recognized": [
+        "сопротивление"
+      ],
+      "ok": false
+    },
+    "stress": {
+      "status": "не проверено",
+      "reason": "распознавание ударения не проверяет; словаря ударений домена в пакете нет",
+      "to_listen": [
+        "возможна",
+        "волве",
+        "доказанной",
+        "латышовой",
+        "нефтенасыщенной",
+        "отметит",
+        "по",
+        "регистрируют",
+        "сопротивление",
+        "толщей"
+      ]
+    },
+    "listened_by_human": false,
+    "human_phrase_reviews": [
+      {
+        "reviewer": "user in Codex conversation",
+        "reviewed_on": "2026-11-26",
+        "scope": "Только фраза p9 и произношение термина в ней; не просмотр всего ролика и не одобрение ментора.",
+        "phrase_id": "p9",
+        "term": "сопротивление",
+        "tts_key": "78cafad93fdb10570b488dbc611428ce59c5f8ee50e6be7fcc2ae09296daaf95",
+        "audio_sha256": "8cd68763d6d48644fb84854fc6eedd150e4da1dc8ed9cacdaef532770d5d0d64",
+        "question": "Во второй короткой фразе выше слово «сопротивление» произнесено понятно, без искажения?",
+        "answer": "Да, звучит понятно и правильно",
+        "accepted": true,
+        "asr_findings_preserved": true,
+        "coverage": "только указанная фраза и термин",
+        "automatic_results_overridden": false
+      }
+    ]
+  }
+}

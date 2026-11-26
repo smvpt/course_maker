@@ -1,0 +1,484 @@
+{
+  "video_id": "latyshova_gl5_par17-20.resistivity_porosity.long",
+  "node_id": "latyshova_gl5_par17-20.resistivity_porosity",
+  "format": "long",
+  "draft": false,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "fps": 30,
+  "inputs": {
+    "script": "fixtures\\video\\mandatory_latyshova\\script.json",
+    "scene_spec": "fixtures\\video\\mandatory_latyshova\\scene_spec.json",
+    "styleguide": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\data\\organizers\\03_стайлгайд\\styleguide.json"
+  },
+  "tts": {
+    "engine": "edge-tts",
+    "version": "7.3.1",
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "manim": "0.22.1",
+  "ffmpeg": "ffmpeg version N-127043-g5a54fcf75e-20260930 Copyright (c) 2000-2026 the FFmpeg developers",
+  "loudnorm_input": {
+    "input_i": "-20.57",
+    "input_tp": "-3.75",
+    "input_lra": "2.50",
+    "input_thresh": "-31.12",
+    "output_i": "-16.19",
+    "output_tp": "-1.50",
+    "output_lra": "2.20",
+    "output_thresh": "-26.75",
+    "normalization_type": "dynamic",
+    "target_offset": "0.19"
+  },
+  "words": 293,
+  "wpm": 144.3,
+  "warnings": [],
+  "template": "T2",
+  "template_info": {
+    "model": "Прибор на кабеле движется по стволу вниз; кривые из LAS раскрываются до текущей глубины прибора; правило применяется к значениям кривых на каждой глубине. Пропуски данных остаются пропусками.",
+    "config": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\domain\\geology\\templates\\T2.json",
+    "dataset_provenance": {
+      "kind": "real",
+      "source": "Открытые данные Volve (Equinor). Файл из выборки andymcdgeo/spwla_volve (папка 15_9-19A) — ссылка указана в инструкции организаторов «Открытые данные: Volve и F3» (проверены 25.11.2026)",
+      "license": "Данные Volve, Equinor ASA и бывшие партнёры по лицензии Volve. Использование — для учёбы и исследований, данные нельзя перепродавать (условия из инструкции организаторов). У репозитория andymcdgeo/spwla_volve отдельного файла лицензии нет (GitHub API: license = null)",
+      "attribution": "Volve, Equinor ASA и бывшие партнёры по лицензии Volve; скв. 15/9-19 A",
+      "file": "159-19A_LFP.las",
+      "sha256": "92537d18afb6608818c635c77b0d1493fbdbe8ccaaf83e48d755411f23e6e7b6",
+      "well": "15/9-19",
+      "uwi": "NO 15/9-19 A",
+      "interval_m": [
+        3790.0,
+        3875.0
+      ],
+      "units": {
+        "DEPTH": "M",
+        "LFP_CALI": "INCHES",
+        "LFP_GR": "API",
+        "LFP_NPHI": "V/V_DECIMAL",
+        "LFP_RT": "OHM.M",
+        "LFP_VSH": "V/V_DECIMAL"
+      },
+      "curve_types": {
+        "LFP_CALI": "measured",
+        "LFP_GR": "measured",
+        "LFP_NPHI": "measured",
+        "LFP_RT": "measured",
+        "LFP_VSH": "interpreted"
+      },
+      "borehole_diameter_m": 0.21201379999999997,
+      "borehole_diameter_source": "медиана кривой LFP_CALI на 3790–3875 м: 8.347 INCHES (558 отсчётов, от 7.887 до 10.15)",
+      "note": "Файл — экспорт проекта Geolog LFP из OpenWorks (2018-04-30): кривые GR, RT, NPHI, CALI по инструкции организаторов — каротаж (здесь measured), но это кондиционированные кривые проекта, а не подтверждённая исходная запись прибора. LFP_VSH — результат интерпретации (глинистость), объявлен как interpreted. WELL в LAS — «15/9-19», UWI — «NO 15/9-19 A». Шаг глубины 0,1523–0,1526 м (неравномерный). Интервал 3790–3875 м выбран так: GR, RT, NPHI, CALI без пропусков; LFP_BADDATA = 0; ниже окна на 3878,9–3879,2 м — 3 отсчёта RT до 1921 Ом·м (оставлены в данных, в окно не входят, чтобы не сжимать логарифмическую шкалу). В файле есть выбросы вне окна: LFP_NPHI > 1 д. ед. (5 отсчётов), LFP_GR ≤ 0 или > 300 API (44 отсчёта) — не исправлялись.",
+      "download": {
+        "url": "https://raw.githubusercontent.com/andymcdgeo/spwla_volve/main/15_9-19A/159-19A_LFP.las",
+        "repository_commit": "c293edf37c1b567b8dc9c81ea88f2cf288eab423",
+        "downloaded": "2026-11-25",
+        "bytes": 8810367,
+        "line_endings": "LF; в Git хранится как есть (fixtures/video/.gitattributes: *.las -text)"
+      },
+      "description": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\fixtures\\video\\t2_volve\\dataset.json"
+    },
+    "data_label": "реальные данные",
+    "curves": [
+      {
+        "mnemonic": "LFP_GR",
+        "kind": "GR",
+        "unit": "API",
+        "label": "ГК",
+        "log": false,
+        "range": [
+          11.994,
+          93.611
+        ]
+      },
+      {
+        "mnemonic": "LFP_RT",
+        "kind": "RES",
+        "unit": "OHM.M",
+        "label": "УЭС",
+        "log": true,
+        "range": [
+          0.927,
+          152.738
+        ]
+      },
+      {
+        "mnemonic": "LFP_NPHI",
+        "kind": "NEUTRON",
+        "unit": "V/V_DECIMAL",
+        "label": "ННК",
+        "log": false,
+        "range": [
+          0.0642,
+          0.4346
+        ]
+      }
+    ],
+    "interval_m": [
+      3790.0,
+      3875.0
+    ],
+    "rule": {
+      "status": "условное",
+      "conditions": [
+        {
+          "curve": "LFP_GR",
+          "op": "<",
+          "value": 60.0
+        },
+        {
+          "curve": "LFP_RT",
+          "op": ">",
+          "value": 20.0
+        },
+        {
+          "curve": "LFP_NPHI",
+          "op": ">",
+          "value": 0.15
+        }
+      ],
+      "conclusion": "кандидат для проверки",
+      "caveat": "пороги условные; высокое УЭС — не доказательство нефти",
+      "status_label": "условное правило"
+    },
+    "rule_counts": {
+      "выполнено": 147,
+      "не выполнено": 411,
+      "нет данных": 0
+    },
+    "borehole_exaggeration": 20.0
+  },
+  "shots": [
+    {
+      "shot_id": "s1",
+      "start_s": 0.3,
+      "end_s": 4.788,
+      "plaque": "не в масштабе: ствол шире в 20 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s2",
+      "start_s": 4.788,
+      "end_s": 10.74,
+      "plaque": "не в масштабе: ствол шире в 20 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s3",
+      "start_s": 10.74,
+      "end_s": 17.22,
+      "plaque": "не в масштабе: ствол шире в 20 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s4",
+      "start_s": 17.22,
+      "end_s": 23.94,
+      "plaque": "не в масштабе: ствол шире в 20 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s5",
+      "start_s": 23.94,
+      "end_s": 30.468,
+      "plaque": "не в масштабе: ствол шире в 20 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s6",
+      "start_s": 30.468,
+      "end_s": 36.396,
+      "plaque": "не в масштабе: ствол шире в 20 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s7",
+      "start_s": 36.396,
+      "end_s": 43.98,
+      "plaque": "не в масштабе: ствол шире в 20 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s8",
+      "start_s": 43.98,
+      "end_s": 49.068,
+      "plaque": "не в масштабе: ствол шире в 20 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s9",
+      "start_s": 49.068,
+      "end_s": 54.756,
+      "plaque": "не в масштабе: ствол шире в 20 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s10",
+      "start_s": 54.756,
+      "end_s": 60.756,
+      "plaque": "не в масштабе: ствол шире в 20 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s11",
+      "start_s": 60.756,
+      "end_s": 67.572,
+      "plaque": "не в масштабе: ствол шире в 20 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s12",
+      "start_s": 67.572,
+      "end_s": 74.148,
+      "plaque": "не в масштабе: ствол шире в 20 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s13",
+      "start_s": 74.148,
+      "end_s": 80.532,
+      "plaque": "не в масштабе: ствол шире в 20 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s14",
+      "start_s": 80.532,
+      "end_s": 87.78,
+      "plaque": "не в масштабе: ствол шире в 20 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s15",
+      "start_s": 87.78,
+      "end_s": 94.596,
+      "plaque": "не в масштабе: ствол шире в 20 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s16",
+      "start_s": 94.596,
+      "end_s": 102.204,
+      "plaque": "не в масштабе: ствол шире в 20 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s17",
+      "start_s": 102.204,
+      "end_s": 109.164,
+      "plaque": "не в масштабе: ствол шире в 20 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s18",
+      "start_s": 109.164,
+      "end_s": 115.332,
+      "plaque": "не в масштабе: ствол шире в 20 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s19",
+      "start_s": 115.332,
+      "end_s": 121.836,
+      "plaque": "не в масштабе: ствол шире в 20 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s20",
+      "start_s": 121.836,
+      "end_s": 128.316,
+      "plaque": "не в масштабе: ствол шире в 20 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s21",
+      "start_s": 128.316,
+      "end_s": 135.18,
+      "plaque": null,
+      "true_scale": true
+    },
+    {
+      "shot_id": "s22",
+      "start_s": 135.18,
+      "end_s": 140.94,
+      "plaque": "не в масштабе: ствол шире в 20 раз",
+      "true_scale": false
+    }
+  ],
+  "subtitle_timing": [
+    "word"
+  ],
+  "cues": 68,
+  "mp4": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\latyshova_gl5_par17-20.resistivity_porosity.long.mp4",
+  "vtt": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\latyshova_gl5_par17-20.resistivity_porosity.long.vtt",
+  "probe": {
+    "width": 1920,
+    "height": 1080,
+    "video_codec": "h264",
+    "pix_fmt": "yuv420p",
+    "video_frames": 4258,
+    "video_duration_s": 141.933333,
+    "audio_codec": "aac",
+    "audio_sample_rate": 48000,
+    "audio_duration_s": 141.94,
+    "timeline_total_s": 141.94,
+    "last_phrase_end_s": 140.94,
+    "trailing_silence_s": 1.658,
+    "integrated_lufs": -16.0,
+    "true_peak_dbtp": -1.5,
+    "checks": {
+      "video_h264": true,
+      "pix_fmt_yuv420p": true,
+      "size": true,
+      "audio_aac": true,
+      "video_covers_timeline": true,
+      "audio_covers_timeline": true,
+      "last_phrase_inside": true,
+      "trailing_silence_ge_0.3s": true,
+      "lufs_within_1lu_of_-16": true,
+      "true_peak_le_-1dbtp": true
+    }
+  },
+  "frames": [
+    {
+      "shot_id": "s1",
+      "t_s": 2.544,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s1.png"
+    },
+    {
+      "shot_id": "s2",
+      "t_s": 7.764,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s2.png"
+    },
+    {
+      "shot_id": "s3",
+      "t_s": 13.98,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s3.png"
+    },
+    {
+      "shot_id": "s4",
+      "t_s": 20.58,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s4.png"
+    },
+    {
+      "shot_id": "s5",
+      "t_s": 27.204,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s5.png"
+    },
+    {
+      "shot_id": "s6",
+      "t_s": 33.432,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s6.png"
+    },
+    {
+      "shot_id": "s7",
+      "t_s": 40.188,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s7.png"
+    },
+    {
+      "shot_id": "s8",
+      "t_s": 46.524,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s8.png"
+    },
+    {
+      "shot_id": "s9",
+      "t_s": 51.912,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s9.png"
+    },
+    {
+      "shot_id": "s10",
+      "t_s": 57.756,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s10.png"
+    },
+    {
+      "shot_id": "s11",
+      "t_s": 64.164,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s11.png"
+    },
+    {
+      "shot_id": "s12",
+      "t_s": 70.86,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s12.png"
+    },
+    {
+      "shot_id": "s13",
+      "t_s": 77.34,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s13.png"
+    },
+    {
+      "shot_id": "s14",
+      "t_s": 84.156,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s14.png"
+    },
+    {
+      "shot_id": "s15",
+      "t_s": 91.188,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s15.png"
+    },
+    {
+      "shot_id": "s16",
+      "t_s": 98.4,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s16.png"
+    },
+    {
+      "shot_id": "s17",
+      "t_s": 105.684,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s17.png"
+    },
+    {
+      "shot_id": "s18",
+      "t_s": 112.248,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s18.png"
+    },
+    {
+      "shot_id": "s19",
+      "t_s": 118.584,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s19.png"
+    },
+    {
+      "shot_id": "s20",
+      "t_s": 125.076,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s20.png"
+    },
+    {
+      "shot_id": "s21",
+      "t_s": 131.748,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s21.png"
+    },
+    {
+      "shot_id": "s22",
+      "t_s": 138.06,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\s22.png"
+    },
+    {
+      "shot_id": "s22",
+      "t_s": 141.89,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\frames\\final.png"
+    }
+  ],
+  "sources_check": {
+    "used_claims": [
+      "latyshova_gl5_par17-20.resistivity_porosity#c3",
+      "latyshova_gl5_par17-20.resistivity_porosity#c2",
+      "latyshova_gl5_par17-20.resistivity_porosity#c1",
+      "latyshova_gl5_par17-20.resistivity_porosity#c4",
+      "latyshova_gl5_par17-20.resistivity_porosity#c5",
+      "latyshova_gl5_par17-20.resistivity_porosity#c6"
+    ],
+    "rows": 7,
+    "ok": true,
+    "against": "claims узла (--layer)"
+  },
+  "passport": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\latyshova_gl5_par17-20\\videos\\latyshova_gl5_par17-20.resistivity_porosity.long\\passport.json",
+  "audio_ok": false,
+  "audio_problem": "термины",
+  "checklist_status": {
+    "не применимо": 11,
+    "не проверено": 7,
+    "проверено автоматически": 6
+  }
+}
