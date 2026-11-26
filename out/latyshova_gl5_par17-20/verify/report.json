@@ -1,0 +1,53 @@
+{
+  "ext": {
+    "verify": {
+      "claims": 34,
+      "tasks_checked": true,
+      "scripts_checked": []
+    }
+  },
+  "package_id": "latyshova_gl5_par17-20",
+  "team": "IzMoroz",
+  "remarks": [
+    {
+      "ext": {},
+      "target": "latyshova_gl5_par17-20.gis_tasks_and_sections#c7",
+      "category": "other",
+      "severity": "critical",
+      "problem": "цитата не найдена в главе (лучшее сходство 85): «При высокой водоотдаче (20 см³/ч) условия изучения разреза и прежде всего коллекторов геофизическими методами становятся»",
+      "fix": "заменить цитату дословным фрагментом md со стр. 90 или убрать утверждение",
+      "page_pdf": 90,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "latyshova_gl5_par17-20.reservoir_types_and_methods",
+      "category": "other",
+      "severity": "significant",
+      "problem": "термин «литологический разрез» используется раньше узла latyshova_gl5_par17-20.lithological_column_building, где он объяснён; термин «эффективная толщина» используется раньше узла latyshova_gl5_par17-20.lithological_column_building, где он объяснён",
+      "fix": "объяснить «литологический разрез» здесь или перенести узел latyshova_gl5_par17-20.lithological_column_building раньше; объяснить «эффективная толщина» здесь или перенести узел latyshova_gl5_par17-20.lithological_column_building раньше",
+      "page_pdf": 92,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "latyshova_gl5_par17-20.gis_tasks_and_sections.t1",
+      "category": "other",
+      "severity": "significant",
+      "problem": "задание: чисел 1e+06 нет в исходных единицах узла",
+      "fix": "заменить числами из исходных единиц главы или убрать",
+      "page_pdf": 90,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "latyshova_gl5_par17-20.lithological_column_building.t4",
+      "category": "other",
+      "severity": "significant",
+      "problem": "задание: чисел 15.8 нет в исходных единицах узла",
+      "fix": "заменить числами из исходных единиц главы или убрать",
+      "page_pdf": 92,
+      "quote": null
+    }
+  ]
+}

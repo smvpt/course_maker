@@ -1,0 +1,42 @@
+{
+  "chapter": "latyshova_gl5_par17-20",
+  "generated": "2026-11-26T14:14",
+  "nodes": 3,
+  "coverage": {
+    "units": 181,
+    "in_nodes": 176,
+    "with_reason": 5,
+    "pct_in_nodes": 97.2,
+    "pct_accounted": 100.0
+  },
+  "quotes": {
+    "claims": 34,
+    "found": 33,
+    "other_page": 0,
+    "not_found": 1,
+    "pct": 97.1
+  },
+  "numbers": {
+    "total": 22,
+    "found": 22,
+    "pct": 100.0
+  },
+  "remarks": {
+    "critical": 1,
+    "significant": 3,
+    "minor": 0
+  },
+  "manual": {
+    "person_minutes": 0,
+    "mentor_minutes": 0,
+    "edits": 0
+  },
+  "cost": {
+    "llm_calls": 44,
+    "cached": 11,
+    "money_usd": 0.1601,
+    "unpriced_calls": 0,
+    "tokens_in": 288300,
+    "tokens_out": 29449
+  }
+}
