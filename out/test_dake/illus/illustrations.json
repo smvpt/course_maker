@@ -1,0 +1,34 @@
+{
+  "ext": {
+    "illus": {
+      "warnings": []
+    }
+  },
+  "chapter": "test_dake",
+  "illustrations": [
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_dake.radial_flow_eq_derivation.il1",
+      "step_id": "test_dake.radial_flow_eq_derivation",
+      "node_id": "test_dake.radial_flow_eq_derivation",
+      "file": "illus/test_dake.radial_flow_eq_derivation.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Как записать закон сохранения массы для притока к скважине». наблюдение: Основное уравнение радиального течения жидкости в гомогенной пористой среде выводится в виде дифференциального уравнения.; наблюдение: Аналитические решения уравнения используются для описания гидродинамических исследований скважин и притока к скважине в промысловой инженерии.; наблюдение: В численном моделировании пластов чаще…",
+      "source": "утверждения шага, стр. 75, 76",
+      "claim_ids": [
+        "test_dake.radial_flow_eq_derivation#c1",
+        "test_dake.radial_flow_eq_derivation#c3",
+        "test_dake.radial_flow_eq_derivation#c4",
+        "test_dake.radial_flow_eq_derivation#c5",
+        "test_dake.radial_flow_eq_derivation#c2",
+        "test_dake.radial_flow_eq_derivation#c8"
+      ],
+      "prompt": null
+    }
+  ]
+}

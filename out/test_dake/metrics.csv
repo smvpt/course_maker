@@ -1,0 +1,6 @@
+chapter,stage,nodes,llm_tokens_in,llm_tokens_out,money_usd,person_minutes,mentor_minutes,video_seconds,manual_share
+test_dake,layer,1,81163,8571,0.045776,0,0,0.0,0.0
+test_dake,routing,1,2313,147,0.001061,0,0,0.0,0.0
+test_dake,course,1,63078,12684,0.048427,0,0,0.0,0.0
+test_dake,video,1,0,0,0.0,0,0,0.0,0.0
+test_dake,review,1,0,0,0.0,0,0,0.0,0.0

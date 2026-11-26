@@ -1,0 +1,42 @@
+{
+  "chapter": "test_dake",
+  "generated": "2026-11-26T13:11",
+  "nodes": 1,
+  "coverage": {
+    "units": 203,
+    "in_nodes": 188,
+    "with_reason": 15,
+    "pct_in_nodes": 92.6,
+    "pct_accounted": 100.0
+  },
+  "quotes": {
+    "claims": 19,
+    "found": 18,
+    "other_page": 0,
+    "not_found": 1,
+    "pct": 94.7
+  },
+  "numbers": {
+    "total": 2,
+    "found": 2,
+    "pct": 100.0
+  },
+  "remarks": {
+    "critical": 1,
+    "significant": 0,
+    "minor": 0
+  },
+  "manual": {
+    "person_minutes": 0,
+    "mentor_minutes": 0,
+    "edits": 0
+  },
+  "cost": {
+    "llm_calls": 14,
+    "cached": 0,
+    "money_usd": 0.0953,
+    "unpriced_calls": 0,
+    "tokens_in": 146554,
+    "tokens_out": 21402
+  }
+}

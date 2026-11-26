@@ -1,0 +1,665 @@
+{
+  "ext": {
+    "core": {
+      "plan": {
+        "dropped_unit_ids": [],
+        "bad_reasons": [],
+        "auto_assigned": [],
+        "empty_nodes": []
+      },
+      "term_order_issues": [],
+      "title": "CHAPTER 5. THE BASIC DIFFERENTIAL EQUATION FOR RADIAL FLOW IN A POROUS MEDIUM",
+      "author": null,
+      "book": null,
+      "meta_source": null
+    }
+  },
+  "chapter": "test_dake",
+  "source": "data/test/test_dake.md",
+  "pdf_pages": [
+    "75",
+    "76",
+    "77",
+    "78",
+    "79",
+    "87",
+    "88",
+    "89"
+  ],
+  "generated_by": "конвейер «глава → курс», structure, модель gemini/gemini-3.5-flash-lite (запасные при лимитах: gemini/gemini-3.1-flash-lite; какая ответила — out/_metrics/llm_calls.jsonl)",
+  "nodes": [
+    {
+      "ext": {},
+      "id": "test_dake.radial_flow_eq_derivation",
+      "order": 1,
+      "title": "Вывод основного уравнения радиального течения",
+      "why_here": {
+        "ext": {},
+        "text": "Вводит физическую основу процесса движения жидкости в пласте к скважине через закон сохранения массы и закон Дарси в радиальной геометрии.",
+        "by_model": true
+      },
+      "difficulty": {
+        "ext": {},
+        "primary": "М",
+        "secondary": "Ф"
+      },
+      "threshold": true,
+      "layers": {
+        "ext": {},
+        "topic": {
+          "ext": {},
+          "text": "Физическая основа радиального течения жидкости в пласте через закон сохранения массы и закон Дарси.",
+          "by_model": true
+        },
+        "main": {
+          "ext": {},
+          "text": "Основное уравнение радиального течения выводится через баланс массы в элементарном объеме цилиндрической ячейки, закон Дарси и изотермическую сжимаемость. Полученное уравнение является нелинейным, но для жидкостей с малой и постоянной сжимаемостью оно линеаризуется к уравнению пьезопроводности.",
+          "by_model": true
+        },
+        "mechanism": {
+          "ext": {},
+          "text": "Движение жидкости к скважине в радиальной геометрии описывается уравнением сохранения массы (приток минус отток равен изменении массы в элементе). Подстановка закона Дарси для радиального горизонтального течения связывает расход с градиентом давления. Замена плотности на давление через изотермическую сжимаемость приводит к дифференциальному уравнению в частных производных.",
+          "by_model": true
+        },
+        "practice": {
+          "ext": {},
+          "text": "Инженеры используют различные режимы решения дифференциального уравнения в зависимости от времени и граничных условий: переходный (transient), полустационарный (semi steady state) и стационарный (steady state) для анализа скважинных тестов и разработки месторождений.",
+          "by_model": true
+        },
+        "nuances": {
+          "ext": {},
+          "text": "Уравнение в общей форме нелинейно из-за зависимости плотности, вязкости и сжимаемости от давления. Простая линеаризация путем удаления нелинейных членов применима только при выполнении условия cp << 1.",
+          "by_model": true
+        },
+        "deeper": []
+      },
+      "claims": [
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_dake.radial_flow_eq_derivation#c1",
+          "text": "Основное уравнение радиального течения жидкости в гомогенной пористой среде выводится в виде дифференциального уравнения.",
+          "kind": "observation",
+          "page_pdf": 75,
+          "page_print": null,
+          "quote": "In this chapter the basic equation for the radial flow of a fluid in a homogeneous porous medium is derived as",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_dake.radial_flow_eq_derivation#c2",
+          "text": "Дифференциальное уравнение выводится в радиальной форме для имитации течения флюидов вблизи скважины.",
+          "kind": "inference",
+          "page_pdf": 75,
+          "page_print": null,
+          "quote": "The basic differential equation will be derived in radial form thus simulating the flow of fluids in the vicinity of a well.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_dake.radial_flow_eq_derivation#c3",
+          "text": "Аналитические решения уравнения используются для описания гидродинамических исследований скважин и притока к скважине в промысловой инженерии.",
+          "kind": "observation",
+          "page_pdf": 75,
+          "page_print": null,
+          "quote": "Analytical solutions of the equation can then be obtained under various boundary and initial conditions for use in the description of well testing and well inflow, which have considerable practical application in reservoir engineering.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_dake.radial_flow_eq_derivation#c4",
+          "text": "В численном моделировании пластов чаще используется декартова геометрия, но приток и отток из скважины контролируются уравнениями в радиальной форме.",
+          "kind": "observation",
+          "page_pdf": 75,
+          "page_print": null,
+          "quote": "In numerical reservoir simulation, however, cartesian geometry is more commonly used but even in this case the flow into or out of a well is controlled by equations expressed in radial form",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_dake.radial_flow_eq_derivation#c5",
+          "text": "При выводе уравнения принимаются следующие упрощающие допущения: пласт гомогенен по свойствам породы и изотропен по проницаемости.",
+          "kind": "assumption",
+          "page_pdf": 75,
+          "page_print": null,
+          "quote": "The reservoir is considered homogeneous in all rock properties and isotropic with respect to permeability.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_dake.radial_flow_eq_derivation#c6",
+          "text": "Добывающая скважина вскрывает всю толщину пласта, обеспечивая полностью радиальное течение.",
+          "kind": "assumption",
+          "page_pdf": 75,
+          "page_print": null,
+          "quote": "The producing well is completed across the entire formation thickness thus ensuring fully radial flow.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_dake.radial_flow_eq_derivation#c7",
+          "text": "Формация полностью насыщена единичным флюидом.",
+          "kind": "assumption",
+          "page_pdf": 76,
+          "page_print": null,
+          "quote": "The formation is completely saturated with a single fluid.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": false,
+              "quote_match": null
+            }
+          },
+          "id": "test_dake.radial_flow_eq_derivation#c8",
+          "text": "Принцип сохранения массы для объема элемента толщиной dr формулируется как разность массовых расходов на входе и выходе, равная скорости изменения массы в элементе.",
+          "kind": "inference",
+          "page_pdf": 76,
+          "page_print": null,
+          "quote": "Mass flow rate IN - Mass flow rate OUT = Rate of change of mass in the volume element",
+          "source_kind": "text",
+          "by_model": true
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_dake.radial_flow_eq_derivation#c9",
+          "text": "Для подстановки расхода q в уравнение массы применяется закон Дарси для радиального горизонтального течения.",
+          "kind": "inference",
+          "page_pdf": 76,
+          "page_print": null,
+          "quote": "By applying Darcy's Law for radial, horizontal flow it is possible to substitute for the flow rate q",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_dake.radial_flow_eq_derivation#c10",
+          "text": "Временная производная плотности выражается через временную производную давления с использованием базового термодинамического определения изотермической сжимаемости.",
+          "kind": "inference",
+          "page_pdf": 76,
+          "page_print": null,
+          "quote": "The time derivative of the density appearing on the right hand side of equ. (5.3) can be expressed in terms of a time derivative of the pressure by using the basic thermodynamic definition of isothermal compressibility",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_dake.radial_flow_eq_derivation#c11",
+          "text": "Полученное базовое уравнение радиального течения однофазного флюида называется нелинейным из-за неявной зависимости плотности, сжимаемости и вязкости от давления.",
+          "kind": "inference",
+          "page_pdf": 76,
+          "page_print": null,
+          "quote": "This is the basic, partial differential equation for the radial flow of any single phase fluid in a porous medium. The equation is referred to as non-linear because of the implicit pressure dependence of the density, compressibility and viscosity",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_dake.radial_flow_eq_derivation#c12",
+          "text": "Выделяются три основных режима решений уравнения: переходный, полустационарный и стационарный.",
+          "kind": "observation",
+          "page_pdf": 76,
+          "page_print": null,
+          "quote": "These conditions are called transient, semi steady state and steady state and are each applicable at different times after the start of production and for different, assumed boundary conditions.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_dake.radial_flow_eq_derivation#c13",
+          "text": "Переходный режим применим в течение относительно короткого периода после создания возмущения давления, когда пласт кажется бесконечным по простиранию.",
+          "kind": "observation",
+          "page_pdf": 77,
+          "page_print": null,
+          "quote": "This condition is only applicable for a relatively short period after some pressure disturbance has been created in the reservoir.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_dake.radial_flow_eq_derivation#c14",
+          "text": "Полустационарный режим применим, когда пласт производит достаточно долго и ощущается влияние внешней границы, на которой скорость изменения давления по времени постоянна.",
+          "kind": "observation",
+          "page_pdf": 77,
+          "page_print": null,
+          "quote": "This condition is applicable to a reservoir which has been producing for a sufficient period of time so that the effect of the outer boundary has been felt.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_dake.radial_flow_eq_derivation#c15",
+          "text": "Стационарный режим применяется после переходного периода для скважины с полностью открытой внешней границей, при которой давление на границе постоянно, а производная давления по времени равна нулю.",
+          "kind": "observation",
+          "page_pdf": 78,
+          "page_print": null,
+          "quote": "The steady state condition applies, after the transient period, to a well draining a cell which has a completely open outer boundary.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "For liquid flow, the following assumptions are conventionally made - the viscosity mu is practically independent of pressure and may be regarded as a constant - the pressure gradient dp/dr is small and therefore, terms of the order (dp/dr)^2 can be neglected."
+            }
+          },
+          "id": "test_dake.radial_flow_eq_derivation#c16",
+          "text": "Простая линеаризация уравнения достигается пренебрежением производной вязкости и квадратичным членом градиента давления при допущении о постоянстве вязкости и малости градиента давления.",
+          "kind": "assumption",
+          "page_pdf": 79,
+          "page_print": null,
+          "quote": "For liquid flow, the following assumptions are conventionally made\n\n- the viscosity $\\mu$ is practically independent of pressure and may be regarded as a constant\n- the pressure gradient $\\partial p/\\partial r$ is small and therefore, terms of the order $(\\partial p/\\partial r)^2$ can be neglected.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "Dranchuk and Quon, however, have shown that this simple linearization by deletion must be treated with caution and can only be applied when the product cp << 1"
+            }
+          },
+          "id": "test_dake.radial_flow_eq_derivation#c17",
+          "text": "Простая линеаризация путем удаления членов должна применяться с осторожностью и валидна только тогда, когда произведение cp намного меньше единицы.",
+          "kind": "inference",
+          "page_pdf": 79,
+          "page_print": null,
+          "quote": "Dranchuk and Quon$^3$, however, have shown that this simple linearization by deletion must be treated with caution and can only be applied when the product\n\n$$cp \\ll 1",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_dake.radial_flow_eq_derivation#c18",
+          "text": "Сжимаемость, входящая в уравнение диффузионного типа, является общей или насыщенно-взвешенной сжимаемостью всей системы пласт-жидкость.",
+          "kind": "inference",
+          "page_pdf": 79,
+          "page_print": null,
+          "quote": "The compressibility appearing in equ. (5.20) is the total, or saturation weighted, compressibility of the entire reservoir-liquid system",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "Equation (5.20) is the radial diffusivity equation in which the coefficient k/(phi mu c) is called the diffusivity constant."
+            }
+          },
+          "id": "test_dake.radial_flow_eq_derivation#c19",
+          "text": "Коэффициент k/(phi mu c) в линеаризованном уравнении радиальной диффузии называется константой диффузии.",
+          "kind": "observation",
+          "page_pdf": 79,
+          "page_print": null,
+          "quote": "Equation (5.20) is the radial diffusivity equation in which the coefficient $k/\\phi \\mu c$ is called the diffusivity constant.",
+          "source_kind": "text",
+          "by_model": false
+        }
+      ],
+      "links": [],
+      "misconception": null,
+      "data_meaning": {
+        "ext": {},
+        "from_chapter": {
+          "ext": {},
+          "text": "Уравнение радиального течения связывает изменения давления во времени и пространстве с физическими свойствами флюида и породы (проницаемость, пористость, сжимаемость, вязкость).",
+          "by_model": true
+        },
+        "breaks": {
+          "ext": {},
+          "text": "Модель не учитывает многофазность потока и реальные сложные границы пласта без дополнительных допущений.",
+          "by_model": true
+        },
+        "hypotheses": [
+          {
+            "ext": {},
+            "text": "Поведение реального давления на скважине всегда строго подчиняется идеализированному решению уравнения пьезопроводности для гомогенного пласта.",
+            "by_model": true,
+            "hypothesis": true
+          }
+        ]
+      },
+      "it_analogy": {
+        "ext": {},
+        "text": "Распространение тепла в проводнике или диффузия сигнала в линии связи с распределенными параметрами.",
+        "breaks_where": "В отличие от идеального проводника, пористая среда неоднородна, а свойства флюидов зависят от давления нелинейно.",
+        "by_model": true
+      },
+      "now_practice": null,
+      "inefficiency_lens": null,
+      "terms_introduced": [
+        "изотермическая сжимаемость",
+        "основное дифференциальное уравнение радиального течения",
+        "основное уравнение радиального течения",
+        "переходный режим",
+        "полустационарный режим",
+        "стационарный режим",
+        "уравнение радиальной диффузии",
+        "константа диффузии"
+      ],
+      "terms_used": [
+        "закон Дарси",
+        "пористость",
+        "проницаемость",
+        "вязкость"
+      ],
+      "needs_scan": [
+        {
+          "ext": {},
+          "page": 76,
+          "what": "Схема радиального течения единичного флюида вблизи добывающей скважины (Fig. 5.1)"
+        },
+        {
+          "ext": {},
+          "page": 77,
+          "what": "Схема радиального течения в полустационарных условиях (Fig. 5.2)"
+        },
+        {
+          "ext": {},
+          "page": 78,
+          "what": "Схема истощения пласта в полустационарных условиях (Fig. 5.3)"
+        },
+        {
+          "ext": {},
+          "page": 78,
+          "what": "Схема радиального течения в стационарных условиях (Fig. 5.4)"
+        },
+        {
+          "ext": {},
+          "page": 89,
+          "what": "Fig. 7.2: нет описания рисунка"
+        }
+      ],
+      "decision_on_data": null,
+      "worked_examples": [],
+      "book_tasks": [],
+      "pages": [
+        75,
+        76,
+        77,
+        78,
+        79,
+        87,
+        88,
+        89
+      ],
+      "title_novice": "Как записать закон сохранения массы для притока к скважине",
+      "unit_ids": [
+        "p075.03",
+        "p075.04",
+        "p075.05",
+        "p075.06",
+        "p075.07",
+        "p075.09",
+        "p075.10",
+        "p075.11",
+        "p076.01",
+        "p076.02",
+        "p076.03",
+        "p076.04",
+        "p076.05",
+        "p076.06",
+        "p076.07",
+        "p076.08",
+        "p076.09",
+        "p076.10",
+        "p076.11",
+        "p076.12",
+        "p076.13",
+        "p076.14",
+        "p076.15",
+        "p076.16",
+        "p076.17",
+        "p076.18",
+        "p076.19",
+        "p076.20",
+        "p076.21",
+        "p076.22",
+        "p076.23",
+        "p076.24",
+        "p076.25",
+        "p076.26",
+        "p076.27",
+        "p076.28",
+        "p077.02",
+        "p077.03",
+        "p077.04",
+        "p077.05",
+        "p077.06",
+        "p077.07",
+        "p077.08",
+        "p077.09",
+        "p077.10",
+        "p077.11",
+        "p077.12",
+        "p077.13",
+        "p077.14",
+        "p077.15",
+        "p077.16",
+        "p077.17",
+        "p077.18",
+        "p077.19",
+        "p077.20",
+        "p077.21",
+        "p077.22",
+        "p077.24",
+        "p077.25",
+        "p077.26",
+        "p078.02",
+        "p078.03",
+        "p078.04",
+        "p078.05",
+        "p078.06",
+        "p078.07",
+        "p078.08",
+        "p078.09",
+        "p078.10",
+        "p078.11",
+        "p078.12",
+        "p078.13",
+        "p078.14",
+        "p078.15",
+        "p078.16",
+        "p078.17",
+        "p078.18",
+        "p078.19",
+        "p078.20",
+        "p079.02",
+        "p079.03",
+        "p079.04",
+        "p079.05",
+        "p079.06",
+        "p079.07",
+        "p079.08",
+        "p079.09",
+        "p079.10",
+        "p079.11",
+        "p079.12",
+        "p079.13",
+        "p079.14",
+        "p079.15",
+        "p079.16",
+        "p079.17",
+        "p079.18",
+        "p079.19",
+        "p079.20",
+        "p079.21",
+        "p079.22",
+        "p079.23",
+        "p079.24",
+        "p087.02",
+        "p087.03",
+        "p087.04",
+        "p087.05",
+        "p087.06",
+        "p087.07",
+        "p087.08",
+        "p087.09",
+        "p087.10",
+        "p087.11",
+        "p087.12",
+        "p087.13",
+        "p087.14",
+        "p087.15",
+        "p087.16",
+        "p087.17",
+        "p087.18",
+        "p087.19",
+        "p087.20",
+        "p087.21",
+        "p087.22",
+        "p087.23",
+        "p087.24",
+        "p087.25",
+        "p088.02",
+        "p088.03",
+        "p088.04",
+        "p088.05",
+        "p088.06",
+        "p088.07",
+        "p088.08",
+        "p088.09",
+        "p088.10",
+        "p088.11",
+        "p088.12",
+        "p088.13",
+        "p088.14",
+        "p088.15",
+        "p088.16",
+        "p088.17",
+        "p088.18",
+        "p088.19",
+        "p088.20",
+        "p088.21",
+        "p088.22",
+        "p088.23",
+        "p088.24",
+        "p088.25",
+        "p088.26",
+        "p088.27",
+        "p088.28",
+        "p088.29",
+        "p088.30",
+        "p088.31",
+        "p088.32",
+        "p088.33",
+        "p088.34",
+        "p088.35",
+        "p088.36",
+        "p089.02",
+        "p089.03",
+        "p089.04",
+        "p089.05",
+        "p089.06",
+        "p089.07",
+        "p089.08",
+        "p089.09",
+        "p089.10",
+        "p089.11",
+        "p089.12",
+        "p089.14",
+        "p089.15",
+        "p089.16",
+        "p089.17",
+        "p089.18",
+        "p089.19",
+        "p089.20",
+        "p089.21",
+        "p089.22",
+        "p089.23",
+        "p089.24",
+        "p089.25",
+        "p089.26",
+        "p089.27",
+        "p089.28",
+        "p089.29"
+      ]
+    }
+  ]
+}

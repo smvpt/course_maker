@@ -1,0 +1,2014 @@
+{
+  "ext": {
+    "core": {
+      "page_printed": {
+        "75": 130,
+        "76": 132,
+        "77": 134,
+        "78": 136,
+        "79": 138,
+        "87": 154,
+        "88": 156,
+        "89": 158
+      },
+      "dropped_colontitles": [
+        {
+          "page": 75,
+          "text": "130"
+        },
+        {
+          "page": 75,
+          "text": "DARCY'S LAW AND APPLICATIONS"
+        },
+        {
+          "page": 76,
+          "text": "132"
+        },
+        {
+          "page": 76,
+          "text": "RADIAL DIFFERENTIAL EQUATION FOR FLUID FLOW"
+        },
+        {
+          "page": 76,
+          "text": "RADIAL DIFFERENTIAL EQUATION FOR FLUID FLOW"
+        },
+        {
+          "page": 77,
+          "text": "134"
+        },
+        {
+          "page": 77,
+          "text": "RADIAL DIFFERENTIAL EQUATION FOR FLUID FLOW"
+        },
+        {
+          "page": 77,
+          "text": "RADIAL DIFFERENTIAL EQUATION FOR FLUID FLOW"
+        },
+        {
+          "page": 78,
+          "text": "136"
+        },
+        {
+          "page": 78,
+          "text": "RADIAL DIFFERENTIAL EQUATION FOR FLUID FLOW"
+        },
+        {
+          "page": 78,
+          "text": "RADIAL DIFFERENTIAL EQUATION FOR FLUID FLOW"
+        },
+        {
+          "page": 79,
+          "text": "138"
+        },
+        {
+          "page": 79,
+          "text": "RADIAL DIFFERENTIAL EQUATION FOR FLUID FLOW"
+        },
+        {
+          "page": 79,
+          "text": "RADIAL DIFFERENTIAL EQUATION FOR FLUID FLOW"
+        },
+        {
+          "page": 87,
+          "text": "154"
+        },
+        {
+          "page": 87,
+          "text": "OILWELL TESTING"
+        },
+        {
+          "page": 87,
+          "text": "OILWELL TESTING"
+        },
+        {
+          "page": 88,
+          "text": "156"
+        },
+        {
+          "page": 88,
+          "text": "OILWELL TESTING"
+        },
+        {
+          "page": 88,
+          "text": "OILWELL TESTING"
+        },
+        {
+          "page": 89,
+          "text": "158"
+        },
+        {
+          "page": 89,
+          "text": "OILWELL TESTING"
+        },
+        {
+          "page": 89,
+          "text": "OILWELL TESTING"
+        }
+      ],
+      "outside_chapter": {
+        "before": [],
+        "after": []
+      },
+      "errata_unapplied": []
+    }
+  },
+  "chapter": "test_dake",
+  "source": "data/test/test_dake.md",
+  "language": "en",
+  "domain": "geology",
+  "pdf_pages": [
+    75,
+    76,
+    77,
+    78,
+    79,
+    87,
+    88,
+    89
+  ],
+  "units": [
+    {
+      "ext": {},
+      "unit_id": "p075.01",
+      "kind": "paragraph",
+      "page_pdf": 75,
+      "text": "9) Amyx, J.W., Bass, D.M. and Whiting, R.L., 1960. Petroleum Reservoir Engineering — Physical Properties. McGraw-Hill: 86-96.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p075.02",
+      "kind": "paragraph",
+      "page_pdf": 75,
+      "text": "10) Herbeck, E.F., Heintz, R.C. and Hastings, J.R., 1976. Fundamentals of Tertiary Oil Recovery. Series of articles appearing in the \"Petroleum Engineer\", January — September.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p075.03",
+      "kind": "heading",
+      "page_pdf": 75,
+      "text": "# CHAPTER 5",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p075.04",
+      "kind": "heading",
+      "page_pdf": 75,
+      "text": "# THE BASIC DIFFERENTIAL EQUATION FOR RADIAL FLOW IN A POROUS MEDIUM",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p075.05",
+      "kind": "heading",
+      "page_pdf": 75,
+      "text": "# 5.1 INTRODUCTION",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p075.06",
+      "kind": "paragraph",
+      "page_pdf": 75,
+      "text": "In this chapter the basic equation for the radial flow of a fluid in a homogeneous porous medium is derived as",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p075.07",
+      "kind": "formula",
+      "page_pdf": 75,
+      "text": "$$\\frac{1}{r} \\frac{\\partial}{\\partial r} \\left( \\frac{k \\rho}{\\mu} r \\frac{\\partial p}{\\partial r} \\right) = \\phi c \\rho \\frac{\\partial p}{\\partial t} \\tag{5.1}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p075.08",
+      "kind": "paragraph",
+      "page_pdf": 75,
+      "text": "This equation is non-linear since the coefficients on both sides are themselves functions of the dependent variable, the pressure. In order to obtain analytical solutions, it is first necessary to linearize the equation by expressing it in a form in which the coefficients have a negligible dependence upon the pressure and can be considered as constants. An approximate form of linearization applicable to liquid flow is presented at the end of the chapter in which equ. (5.1) is reduced to the form of the radial diffusivity equation. Solutions of this equation and their applications for the flow of oil are presented in detail in Chapters 6 and 7. For the flow of a real gas, however, a more complex linearization by integral transformation is required which will be presented separately in Chapter 8.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p075.09",
+      "kind": "heading",
+      "page_pdf": 75,
+      "text": "# 5.2 DERIVATION OF THE BASIC RADIAL DIFFERENTIAL EQUATION",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p075.10",
+      "kind": "paragraph",
+      "page_pdf": 75,
+      "text": "The basic differential equation will be derived in radial form thus simulating the flow of fluids in the vicinity of a well. Analytical solutions of the equation can then be obtained under various boundary and initial conditions for use in the description of well testing and well inflow, which have considerable practical application in reservoir engineering. This is considered of greater importance than deriving the basic equation in cartesian coordinates since analytical solutions of the latter are seldom used in practice by field engineers. In numerical reservoir simulation, however, cartesian geometry is more commonly used but even in this case the flow into or out of a well is controlled by equations expressed in radial form such as those presented in the next four chapters. The radial cell geometry is shown in fig. 5.1 and initially the following simplifying assumptions will be made.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p075.11",
+      "kind": "paragraph",
+      "page_pdf": 75,
+      "text": "a) The reservoir is considered homogeneous in all rock properties and isotropic with respect to permeability.\nb) The producing well is completed across the entire formation thickness thus ensuring fully radial flow.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {
+        "core": {
+          "fragment": true,
+          "note": "обрывок надписи с рисунка (короткая строка без предложения)"
+        }
+      },
+      "unit_id": "p076.01",
+      "kind": "figure",
+      "page_pdf": 76,
+      "text": "133",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.02",
+      "kind": "paragraph",
+      "page_pdf": 76,
+      "text": "c) The formation is completely saturated with a single fluid.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.03",
+      "kind": "figure",
+      "page_pdf": 76,
+      "text": "Fig. 5.1 Radial flow of a single phase fluid in the vicinity of a producing well.",
+      "figure_ref": "Fig. 5.1",
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.04",
+      "kind": "paragraph",
+      "page_pdf": 76,
+      "text": "Consider the flow through a volume element of thickness dr situated at a distance r from the centre of the radial cell. Then applying the principle of mass conservation",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.05",
+      "kind": "formula",
+      "page_pdf": 76,
+      "text": "$$\\begin{array}{l} \\text { Mass flow rate } \\\\ \\text { IN } \\end{array} - \\begin{array}{l} \\text { Mass flow rate } \\\\ \\text { OUT } \\end{array} = \\begin{array}{l} \\text { Rate of change of mass in } \\\\ \\text { the volume element } \\end{array}$$\n$$q \\rho | _ {r + d r} - q \\rho | _ {r} = 2 \\pi r h \\phi d r \\frac {\\partial \\rho}{\\partial t}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.06",
+      "kind": "paragraph",
+      "page_pdf": 76,
+      "text": "where $2\\pi rh\\phi dr$ is the volume of the small element of thickness dr. The left hand side of this equation can be expanded as",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.07",
+      "kind": "formula",
+      "page_pdf": 76,
+      "text": "$$\\left(q \\rho | _ {r} + \\frac {\\partial (q \\rho)}{\\partial r} d r - q \\rho | _ {r}\\right) = 2 \\pi r h \\phi d r \\frac {\\partial \\rho}{\\partial t}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.08",
+      "kind": "paragraph",
+      "page_pdf": 76,
+      "text": "which simplifies to",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.09",
+      "kind": "formula",
+      "page_pdf": 76,
+      "text": "$$\\frac {\\partial (q \\rho)}{\\partial r} = 2 \\pi r h \\phi \\frac {\\partial \\rho}{\\partial t} \\tag {5.2}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.10",
+      "kind": "paragraph",
+      "page_pdf": 76,
+      "text": "By applying Darcy's Law for radial, horizontal flow it is possible to substitute for the flow rate q in equ. (5.2) since",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.11",
+      "kind": "formula",
+      "page_pdf": 76,
+      "text": "$$q = \\frac {2 \\pi k h r}{\\mu} \\frac {\\partial p}{\\partial r}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.12",
+      "kind": "paragraph",
+      "page_pdf": 76,
+      "text": "giving",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.13",
+      "kind": "formula",
+      "page_pdf": 76,
+      "text": "$$\\frac {\\partial}{\\partial r} \\left(\\frac {2 \\pi k h r}{\\mu} \\rho \\frac {\\partial p}{\\partial r}\\right) = 2 \\pi r h \\phi \\frac {\\partial \\rho}{\\partial t}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.14",
+      "kind": "paragraph",
+      "page_pdf": 76,
+      "text": "or",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.15",
+      "kind": "formula",
+      "page_pdf": 76,
+      "text": "$$\\frac {1}{r} \\frac {\\partial}{\\partial r} \\left(\\frac {k \\rho}{\\mu} r \\frac {\\partial p}{\\partial r}\\right) = \\phi \\frac {\\partial \\rho}{\\partial t} \\tag {5.3}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.16",
+      "kind": "paragraph",
+      "page_pdf": 76,
+      "text": "The time derivative of the density appearing on the right hand side of equ. (5.3) can be expressed in terms of a time derivative of the pressure by using the basic thermodynamic definition of isothermal compressibility",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.17",
+      "kind": "formula",
+      "page_pdf": 76,
+      "text": "$$c = - \\frac {1}{V} \\frac {\\partial V}{\\partial p}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.18",
+      "kind": "paragraph",
+      "page_pdf": 76,
+      "text": "and since",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.19",
+      "kind": "formula",
+      "page_pdf": 76,
+      "text": "$$\\rho = \\frac {m}{V}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.20",
+      "kind": "paragraph",
+      "page_pdf": 76,
+      "text": "then the compressibility can be alternatively expressed as",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.21",
+      "kind": "formula",
+      "page_pdf": 76,
+      "text": "$$c = - \\frac {\\rho}{m} \\frac {\\partial \\left(\\frac {m}{\\rho}\\right)}{\\partial p} = \\frac {1}{\\rho} \\frac {\\partial \\rho}{\\partial p} \\tag {5.4}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.22",
+      "kind": "paragraph",
+      "page_pdf": 76,
+      "text": "and differentiating with respect to time gives",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.23",
+      "kind": "formula",
+      "page_pdf": 76,
+      "text": "$$c \\rho \\frac {\\partial p}{\\partial t} = \\frac {\\partial \\rho}{\\partial t} \\tag {5.5}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.24",
+      "kind": "paragraph",
+      "page_pdf": 76,
+      "text": "Finally, substituting equ. (5.5) in equ. (5.3) reduces the latter to",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.25",
+      "kind": "formula",
+      "page_pdf": 76,
+      "text": "$$\\frac {1}{r} \\frac {\\partial}{\\partial r} \\left(\\frac {k \\rho}{\\mu} r \\frac {\\partial p}{\\partial r}\\right) = \\phi c \\rho \\frac {\\partial p}{\\partial t} \\tag {5.1}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.26",
+      "kind": "paragraph",
+      "page_pdf": 76,
+      "text": "This is the basic, partial differential equation for the radial flow of any single phase fluid in a porous medium. The equation is referred to as non-linear because of the implicit pressure dependence of the density, compressibility and viscosity appearing in the coefficients $k\\rho/\\mu$ and $\\phi c\\rho$. Because of this, it is not possible to find simple analytical solutions of the equation without first linearizing it so that the coefficients somehow lose their pressure dependence. A simple form of linearization applicable to the flow of liquids of small and constant compressibility (under-saturated oil) will be considered in sec. 5.4, while a more rigorous method, using the Kirchhoff integral transformation, will be presented in Chapter 8 for the more complex case of linearization for the flow of a real gas.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.27",
+      "kind": "heading",
+      "page_pdf": 76,
+      "text": "### 5.3 CONDITIONS OF SOLUTION",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p076.28",
+      "kind": "paragraph",
+      "page_pdf": 76,
+      "text": "In principle, an infinite number of solutions of equ. (5.1) can be obtained depending on the initial and boundary conditions imposed. The most common and useful of these is called the constant terminal rate solution for which the initial condition is that at some fixed time, at which the reservoir is at equilibrium pressure $p_i$, the well is produced at a constant rate q at the wellbore, $r=r_w$. This type of solution will be examined in detail in Chapters 7 and 8 but it is appropriate, at this stage, to describe the three most common, although not exclusive, conditions for which the constant terminal rate solution is sought. These conditions are called transient, semi steady state and steady state and are each applicable at different times after the start of production and for different, assumed boundary conditions.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {
+        "core": {
+          "fragment": true,
+          "note": "обрывок надписи с рисунка (короткая строка без предложения)"
+        }
+      },
+      "unit_id": "p077.01",
+      "kind": "figure",
+      "page_pdf": 77,
+      "text": "135",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.02",
+      "kind": "heading",
+      "page_pdf": 77,
+      "text": "# a) Transient condition",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.03",
+      "kind": "paragraph",
+      "page_pdf": 77,
+      "text": "This condition is only applicable for a relatively short period after some pressure disturbance has been created in the reservoir. In terms of the radial flow model this disturbance would be typically caused by altering the well's production rate at $r=r_w$. In the time for which the transient condition is applicable it is assumed that the pressure response in the reservoir is not affected by the presence of the outer boundary, thus the reservoir appears infinite in extent. The condition is mainly applied to the analysis of well tests in which the well's production rate is deliberately changed and the resulting pressure response in the wellbore is measured and analysed during a brief period of a few hours after the rate change has occurred. Then, unless the reservoir is extremely small, the boundary effects will not be felt and the reservoir is, mathematically, infinite.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.04",
+      "kind": "paragraph",
+      "page_pdf": 77,
+      "text": "This gives rise to a complex solution of equ. (5.1) in which both the pressure and pressure derivative, with respect to time, are themselves functions of both position and time, thus",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.05",
+      "kind": "formula",
+      "page_pdf": 77,
+      "text": "$$p = g(r,t)$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.06",
+      "kind": "paragraph",
+      "page_pdf": 77,
+      "text": "and $$\\frac{\\partial p}{\\partial t} = f(r,t)$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.07",
+      "kind": "paragraph",
+      "page_pdf": 77,
+      "text": "Transient analysis techniques and their application to oil and gas well testing will be described in Chapters 7 and 8, respectively.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.08",
+      "kind": "heading",
+      "page_pdf": 77,
+      "text": "# b) Semi Steady State condition",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.09",
+      "kind": "figure",
+      "page_pdf": 77,
+      "text": "Fig. 5.2 Radial flow under semi steady state conditions.",
+      "figure_ref": "Fig. 5.2",
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.10",
+      "kind": "paragraph",
+      "page_pdf": 77,
+      "text": "This condition is applicable to a reservoir which has been producing for a sufficient period of time so that the effect of the outer boundary has been felt. In terms of the radial flow model, the situation is depicted in fig. 5.2. It is considered that the well is surrounded, at its outer boundary, by a solid \"brick wall\" which prevents the flow of fluids into the radial cell. Thus at the outer boundary, in accordance with Darcy's law",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.11",
+      "kind": "formula",
+      "page_pdf": 77,
+      "text": "$$\\frac{\\partial p}{\\partial r} = 0 \\quad \\text{at} \\quad r = r_e \\tag{5.6}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.12",
+      "kind": "paragraph",
+      "page_pdf": 77,
+      "text": "Furthermore, if the well is producing at a constant flow rate then the cell pressure will decline in such a way that",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.13",
+      "kind": "formula",
+      "page_pdf": 77,
+      "text": "$$\\frac{\\partial p}{\\partial t} \\approx \\text{constant, for all } r \\text{ and } t. \\tag{5.7}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.14",
+      "kind": "paragraph",
+      "page_pdf": 77,
+      "text": "The constant referred to in equ. (5.7) can be obtained from a simple material balance using the compressibility definition, thus",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.15",
+      "kind": "formula",
+      "page_pdf": 77,
+      "text": "$$cV \\frac{dp}{dt} = - \\frac{dV}{dt} = - q \\tag{5.8}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.16",
+      "kind": "formula",
+      "page_pdf": 77,
+      "text": "$$\\text{or} \\quad \\frac{dp}{dt} = - \\frac{q}{cV} \\tag{5.9}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.17",
+      "kind": "paragraph",
+      "page_pdf": 77,
+      "text": "which for the drainage of a radial cell can be expressed as",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.18",
+      "kind": "formula",
+      "page_pdf": 77,
+      "text": "$$\\frac{dp}{dt} = - \\frac{q}{c \\pi r_e^2 h \\phi} \\tag{5.10}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.19",
+      "kind": "paragraph",
+      "page_pdf": 77,
+      "text": "This is a condition which will be applied in Chapter 6, for oil flow, and in Chapter 8, for gas flow, to derive the well inflow equations under semi steady state conditions, even though in the latter case the gas compressibility is not constant.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.20",
+      "kind": "paragraph",
+      "page_pdf": 77,
+      "text": "One important feature of this stabilized type of solution, when applied to a depletion type reservoir, has been pointed out by Matthews, Brons and Hazebroek¹ and is illustrated in fig. 5.3. This is the fact that, once the reservoir is producing under the semi steady state condition, each well will drain from within its own no-flow boundary quite independently of the other wells.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.21",
+      "kind": "paragraph",
+      "page_pdf": 77,
+      "text": "For this condition dp/dt must be approximately constant throughout the entire reservoir otherwise flow would occur across the boundaries causing a re-adjustment in their positions until stability was eventually achieved. In this case a simple technique can be applied to determine the volume averaged reservoir pressure",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.22",
+      "kind": "formula",
+      "page_pdf": 77,
+      "text": "$$\\bar{p}_{res} = \\frac{\\sum \\bar{p}_i V_i}{\\sum V_i} \\tag{5.11}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {
+        "core": {
+          "fragment": true,
+          "note": "обрывок надписи с рисунка (короткая строка без предложения)"
+        }
+      },
+      "unit_id": "p077.23",
+      "kind": "figure",
+      "page_pdf": 77,
+      "text": "in which",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.24",
+      "kind": "paragraph",
+      "page_pdf": 77,
+      "text": "$V_i$ = the pore volume of the iᵗʰ drainage volume",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.25",
+      "kind": "paragraph",
+      "page_pdf": 77,
+      "text": "and $\\bar{p}_i$ = the average pressure within the iᵗʰ drainage volume.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p077.26",
+      "kind": "paragraph",
+      "page_pdf": 77,
+      "text": "Equation (5.9) implies that since dp/dt is constant for the reservoir then, if the variation in the compressibility is small",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {
+        "core": {
+          "fragment": true,
+          "note": "обрывок надписи с рисунка (короткая строка без предложения)"
+        }
+      },
+      "unit_id": "p078.01",
+      "kind": "figure",
+      "page_pdf": 78,
+      "text": "137",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p078.02",
+      "kind": "figure",
+      "page_pdf": 78,
+      "text": "Fig. 5.3 Reservoir depletion under semi steady state conditions.",
+      "figure_ref": "Fig. 5.3",
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p078.03",
+      "kind": "formula",
+      "page_pdf": 78,
+      "text": "$$q_i \\propto V_i \\tag{5.12}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p078.04",
+      "kind": "paragraph",
+      "page_pdf": 78,
+      "text": "and hence the volume average in equ. (5.11) can be replaced by a rate average, as follows",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p078.05",
+      "kind": "formula",
+      "page_pdf": 78,
+      "text": "$$\\overline{p}_{res} = \\frac{\\sum_i \\overline{p}_i q_i}{\\sum_i q_i} \\tag{5.13}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p078.06",
+      "kind": "paragraph",
+      "page_pdf": 78,
+      "text": "and, whereas the $V_i$'s are difficult to determine in practice, the $q_i$'s are measured on a routine basis throughout the lifetime of the field thus facilitating the calculation of $\\overline{p}_{res}$, which is the pressure at which the reservoir material balance is evaluated. The method by which the individual $\\overline{p}_i$'s can be determined will be detailed in Chapter 7, sec. 7.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {
+        "core": {
+          "fragment": true,
+          "note": "обрывок надписи с рисунка (короткая строка без предложения)"
+        }
+      },
+      "unit_id": "p078.07",
+      "kind": "figure",
+      "page_pdf": 78,
+      "text": "Steady State condition",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p078.08",
+      "kind": "figure",
+      "page_pdf": 78,
+      "text": "Fig. 5.4 Radial flow under steady state conditions.",
+      "figure_ref": "Fig. 5.4",
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p078.09",
+      "kind": "paragraph",
+      "page_pdf": 78,
+      "text": "The steady state condition applies, after the transient period, to a well draining a cell which has a completely open outer boundary. It is assumed that, for a constant rate of production, fluid withdrawal from the cell will be exactly balanced by fluid entry across the open boundary and therefore,",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p078.10",
+      "kind": "formula",
+      "page_pdf": 78,
+      "text": "$$p = p_e = \\text{constant, at } r = r_e \\tag{5.14}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p078.11",
+      "kind": "formula",
+      "page_pdf": 78,
+      "text": "$$\\text{and } \\frac{\\partial p}{\\partial t} = 0 \\text{ for all } r \\text{ and } t \\tag{5.15}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p078.12",
+      "kind": "paragraph",
+      "page_pdf": 78,
+      "text": "This condition is appropriate when pressure is being maintained in the reservoir due to either natural water influx or the injection of some displacing fluid (refer Chapter 10).",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p078.13",
+      "kind": "paragraph",
+      "page_pdf": 78,
+      "text": "It should be noted that the semi steady state and steady state conditions may never be fully realised in the reservoir. For instance, semi steady state flow equations are frequently applied when the rate, and consequently the position of the no-flow boundary surrounding a well, are slowly varying functions of time. Nevertheless, the defining conditions specified by equ. (5.7) and (5.15) are frequently approximated in the field since both production and injection facilities are usually designed to operate at constant rates and it makes little sense to unnecessarily alter these. If the production rate of an individual well is changed, for instance, due to closure for repair or increasing the rate to obtain a more even fluid withdrawal pattern throughout the reservoir, there will be a brief period when transient flow conditions prevail followed by stabilized flow for the new distribution of individual well rates.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p078.14",
+      "kind": "heading",
+      "page_pdf": 78,
+      "text": "### 5.4 THE LINEARIZATION OF EQUATION 5.1 FOR FLUIDS OF SMALL AND CONSTANT COMPRESSIBILITY",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p078.15",
+      "kind": "paragraph",
+      "page_pdf": 78,
+      "text": "A simple linearization of equ. (5.1) can be obtained by deletion of some of the terms, dependent upon making various assumptions concerning the nature of fluid for which solutions are being sought. In this section the fluid considered will be a liquid which, in a practical sense, will apply to the flow of undersaturated oil. Expanding the left hand side of equ. (5.1), using the chain rule for differentiation gives",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p078.16",
+      "kind": "formula",
+      "page_pdf": 78,
+      "text": "$$\\frac{1}{r} \\left[ \\frac{\\partial}{\\partial r} \\left( \\frac{k}{\\mu} \\right) \\rho r \\frac{\\partial p}{\\partial r} + \\frac{k}{\\mu} \\frac{\\partial p}{\\partial r} r \\frac{\\partial p}{\\partial r} + \\frac{k \\rho}{\\mu} \\frac{\\partial p}{\\partial r} + \\frac{k \\rho}{\\mu} r \\frac{\\partial^2 p}{\\partial r^2} \\right] = \\phi c \\rho \\frac{\\partial p}{\\partial t} \\tag{5.16}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p078.17",
+      "kind": "paragraph",
+      "page_pdf": 78,
+      "text": "and differentiating equ. (5.4) with respect to r gives",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p078.18",
+      "kind": "formula",
+      "page_pdf": 78,
+      "text": "$$c \\rho \\frac{\\partial p}{\\partial r} = \\frac{\\partial p}{\\partial r} \\tag{5.17}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p078.19",
+      "kind": "paragraph",
+      "page_pdf": 78,
+      "text": "which when substituted into equ. (5.16) changes the latter to",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p078.20",
+      "kind": "formula",
+      "page_pdf": 78,
+      "text": "$$\\frac{1}{r} \\left[ \\frac{\\partial}{\\partial r} \\left( \\frac{k}{\\mu} \\right) \\rho r \\frac{\\partial p}{\\partial r} + \\frac{k}{\\mu} c \\rho r \\left( \\frac{\\partial p}{\\partial r} \\right)^2 + \\frac{k \\rho}{\\mu} \\frac{\\partial p}{\\partial r} + \\frac{k \\rho}{\\mu} r \\frac{\\partial^2 p}{\\partial r^2} \\right] = \\phi c \\rho \\frac{\\partial p}{\\partial t} \\tag{5.18}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {
+        "core": {
+          "fragment": true,
+          "note": "обрывок надписи с рисунка (короткая строка без предложения)"
+        }
+      },
+      "unit_id": "p079.01",
+      "kind": "figure",
+      "page_pdf": 79,
+      "text": "139",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.02",
+      "kind": "paragraph",
+      "page_pdf": 79,
+      "text": "For liquid flow, the following assumptions are conventionally made",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.03",
+      "kind": "paragraph",
+      "page_pdf": 79,
+      "text": "- the viscosity $\\mu$ is practically independent of pressure and may be regarded as a constant\n- the pressure gradient $\\partial p/\\partial r$ is small and therefore, terms of the order $(\\partial p/\\partial r)^2$ can be neglected.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.04",
+      "kind": "paragraph",
+      "page_pdf": 79,
+      "text": "These two assumptions eliminate the first two terms in the left hand side of equ. (5.18), reducing the latter to",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.05",
+      "kind": "formula",
+      "page_pdf": 79,
+      "text": "$$\\frac{\\partial^2 p}{\\partial r^2} + \\frac{1}{r} \\frac{\\partial p}{\\partial r} = \\frac{\\phi \\mu c}{k} \\frac{\\partial p}{\\partial t} \\tag{5.19}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.06",
+      "kind": "paragraph",
+      "page_pdf": 79,
+      "text": "which can be more conveniently expressed as",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.07",
+      "kind": "formula",
+      "page_pdf": 79,
+      "text": "$$\\frac{1}{r} \\frac{\\partial}{\\partial r} \\left( r \\frac{\\partial p}{\\partial r} \\right) = \\frac{\\phi \\mu c}{k} \\frac{\\partial p}{\\partial t} \\tag{5.20}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.08",
+      "kind": "paragraph",
+      "page_pdf": 79,
+      "text": "Making one final assumption, that the compressibility is constant, means that the coefficient $\\phi \\mu c/k$ is also constant and therefore, the basic equation has been effectively linearized.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.09",
+      "kind": "paragraph",
+      "page_pdf": 79,
+      "text": "For the flow of liquids the above assumptions are quite reasonable and have been frequently applied in the past. Dranchuk and Quon$^3$, however, have shown that this simple linearization by deletion must be treated with caution and can only be applied when the product",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.10",
+      "kind": "formula",
+      "page_pdf": 79,
+      "text": "$$cp \\ll 1 \\tag{5.21}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.11",
+      "kind": "paragraph",
+      "page_pdf": 79,
+      "text": "This condition makes it necessary to modify the final assumption so that the compressibility is not just constant but both small and constant. The compressibility appearing in equ. (5.20) is the total, or saturation weighted, compressibility of the entire reservoir-liquid system",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.12",
+      "kind": "formula",
+      "page_pdf": 79,
+      "text": "$$c_t = c_o S_o + c_w S_{wc} + c_f \\tag{5.22}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.13",
+      "kind": "paragraph",
+      "page_pdf": 79,
+      "text": "in which the saturations are expressed as fractions of the pore volume. Using typical figures for the components of equ. (5.22)",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.14",
+      "kind": "formula",
+      "page_pdf": 79,
+      "text": "$$\\begin{array}{ll} c_o = 10 \\times 10^{-6} / \\text{psi} & S_{wc} = 0.2 \\\\ c_w = 3 \\times 10^{-6} / \\text{psi} & p = 3000 \\text{ psi} \\\\ c_f = 6 \\times 10^{-6} / \\text{psi} & \\end{array}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.15",
+      "kind": "paragraph",
+      "page_pdf": 79,
+      "text": "then $c_t$ in equ. (5.22) has the value $14.6 \\times 10^{-6} / \\text{psi}$ and the product expressed by equ. (5.21) has the value 0.04, which satisfies the necessary condition for this simple linearization to be valid. However, when dealing with reservoir systems which have a higher total compressibility it will be necessary to linearize equ. (5.1) using some form of integral transformation as detailed by Dranchuk and Quon. Such an approach will be required when describing the flow of a real gas since, in this case,",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.16",
+      "kind": "paragraph",
+      "page_pdf": 79,
+      "text": "the compressibility of the gas alone may, to a first approximation, be expressed as the reciprocal of the pressure and the cp product, equ. (5.21), will itself be unity. The linearization of equ. (5.1) under these circumstances will be described in Chapter 8, secs. 2-4.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.17",
+      "kind": "paragraph",
+      "page_pdf": 79,
+      "text": "Before leaving the subject of compressibility, it should be noted that the product of $\\phi$ and c in all the equations, in this and the following chapters, is conventionally expressed as",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.18",
+      "kind": "formula",
+      "page_pdf": 79,
+      "text": "$$\\phi_{\\text{absolute}} \\times (c_o S_o + c_w S_{wc} + c_f) \\tag{5.23}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.19",
+      "kind": "paragraph",
+      "page_pdf": 79,
+      "text": "since it was assumed in deriving equ. (5.1) that the porous medium was completely saturated with a single fluid thus implying the use of the absolute porosity. Alternatively, allowing for the presence of a connate water saturation, the $\\phi c$ product can be interpreted as",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.20",
+      "kind": "formula",
+      "page_pdf": 79,
+      "text": "$$\\phi_{\\text{absolute}} (1 - S_{wc}) \\times \\frac{(c_o S_o + c_w S_{wc} + c_f)}{(1 - S_{wc})} \\tag{5.24}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.21",
+      "kind": "paragraph",
+      "page_pdf": 79,
+      "text": "in which $\\phi_{\\text{absolute}} (1 - S_{wc})$ is the effective, hydrocarbon porosity, and the compressibility is equivalent to that derived in Chapter 3, equ. (3.19), which is used in conjunction with the hydrocarbon pore volume. In either event, the products expressed in equ. (5.23) and (5.24) have the same value, the reader must only be careful not to mix the individual terms appearing in the separate equations.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.22",
+      "kind": "paragraph",
+      "page_pdf": 79,
+      "text": "Equation (5.20) is the radial diffusivity equation in which the coefficient $k/\\phi \\mu c$ is called the diffusivity constant. This is an equation which is frequently applied in physics, for instance, the temperature distribution due to the conduction of heat in radial symmetry would be described by the equation",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.23",
+      "kind": "formula",
+      "page_pdf": 79,
+      "text": "$$\\frac{1}{r} \\frac{\\partial}{\\partial r} \\left( r \\frac{\\partial T}{\\partial r} \\right) = \\frac{1}{K} \\frac{\\partial T}{\\partial t}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.24",
+      "kind": "paragraph",
+      "page_pdf": 79,
+      "text": "in which T is the absolute temperature and K the thermal diffusivity constant. Because of the general nature of equ. (5.20) it is not surprising that many reservoir engineering papers, when dealing with complex solutions of the diffusivity equation, make reference to a text book entitled \"Conduction of Heat in Solids\", by Carslaw and Jaeger$^3$, which gives the solutions of the equation for a large variety of boundary and initial conditions and is regarded as a standard text in reservoir engineering.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.25",
+      "kind": "heading",
+      "page_pdf": 79,
+      "text": "# REFERENCES",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.26",
+      "kind": "paragraph",
+      "page_pdf": 79,
+      "text": "1) Matthews, C.S., Brons, F. and Hazebroek, P., 1954. A Method for Determination of Average Pressure in a Bounded Reservoir. Trans. AIME. 201: 182-191.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.27",
+      "kind": "paragraph",
+      "page_pdf": 79,
+      "text": "2) Dranchuk, P.M. and Quon, D., 1967. Analysis of the Darcy Continuity Equation. Producers Monthly, October: 25-28.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p079.28",
+      "kind": "paragraph",
+      "page_pdf": 79,
+      "text": "3) Carslaw, H.S. and Jaeger, J.C., 1959. Conduction of Heat in Solids. Oxford at the Clarendon Press, (2nd edition).",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {
+        "core": {
+          "fragment": true,
+          "note": "обрывок надписи с рисунка (короткая строка без предложения)"
+        }
+      },
+      "unit_id": "p087.01",
+      "kind": "figure",
+      "page_pdf": 87,
+      "text": "155",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.02",
+      "kind": "paragraph",
+      "page_pdf": 87,
+      "text": "The constant terminal rate solution is therefore the equation of $p_{\\text{ref}}$ versus t for constant rate production for any value of the flowing time. The pressure decline, fig. 7.1(b), can normally be divided into three sections depending on the value of the flowing time and the geometry of the reservoir or part of the reservoir being drained by the well.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.03",
+      "kind": "paragraph",
+      "page_pdf": 87,
+      "text": "Initially, the pressure response can be described using a transient solution of the diffusivity equation. It is assumed during this period that the pressure response at the wellbore is not affected by the drainage boundary of the well and vice versa. This is frequently referred to as the infinite reservoir case since, during the transient flow period, the reservoir appears to be infinite in extent.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.04",
+      "kind": "paragraph",
+      "page_pdf": 87,
+      "text": "The transient phase is followed by the so-called late transient period during which the influence of the drainage boundary begins to be felt. For a well producing from within a no-flow boundary both the shape of the area drained and position of the well with respect to the boundary are of major importance in determining the appropriate late transient constant terminal rate solution.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.05",
+      "kind": "paragraph",
+      "page_pdf": 87,
+      "text": "Eventually, stabilised flow conditions will prevail which means that for the no-flow boundary case the rate of change of wellbore pressure with respect to time is constant. This corresponds to the semi steady state condition described in Chapter 5, sec 3(b).",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.06",
+      "kind": "paragraph",
+      "page_pdf": 87,
+      "text": "The constant terminal rate solution, for all values of the flowing time, was first presented to the Industry by Hurst and Van Everdingen in 1949. In their classic paper on the subject¹, the authors solved the radial diffusivity equation using the Laplace transform for both the constant terminal rate and constant terminal pressure cases. The latter, which is relevant to water influx calculations, will be described in Chapter 9.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.07",
+      "kind": "paragraph",
+      "page_pdf": 87,
+      "text": "The full Hurst and Van Everdingen solution, equ. 7.34, is a most intimidating mathematical equation which contains as one of its components an infinite summation of Bessel functions. The complexity is due to the wellbore pressure response during the late transient period, since for transient and semi steady state flow relatively simple solutions can be obtained which will be described in sec. 7.3. The fact that the full solution is so complex is rather unfortunate since the constant terminal rate solution of the radial diffusivity equation can be regarded as the basic equation in wellbore pressure analysis techniques. By superposition of such solutions, as will be shown in sec. 7.5, the pressure response at the wellbore can be theoretically described for any sequence of different rates acting for different periods of time, and this is the general method employed in the analysis of any form of oil or gas well test.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.08",
+      "kind": "heading",
+      "page_pdf": 87,
+      "text": "### 7.3 THE CONSTANT TERMINAL RATE SOLUTION FOR TRANSIENT AND SEMI STEADY STATE FLOW CONDITIONS",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.09",
+      "kind": "paragraph",
+      "page_pdf": 87,
+      "text": "During the initial transient flow period, it has been found that the constant terminal rate solution of the radial diffusivity equation, determined using the Laplace transform, can be approximated by the so-called line source solution which assumes that in comparison to the apparently infinite reservoir the wellbore radius is negligible",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.10",
+      "kind": "paragraph",
+      "page_pdf": 87,
+      "text": "and the wellbore itself can be treated as a line. This leads to a considerable simplification in the mathematics and for this solution the boundary and initial conditions may be stated as follows",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.11",
+      "kind": "paragraph",
+      "page_pdf": 87,
+      "text": "a) $p = p_i$ at $t = 0$, for all $r$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.12",
+      "kind": "paragraph",
+      "page_pdf": 87,
+      "text": "b) $p = p_i$ at $r = \\infty$, for all $t$ (7.1)",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.13",
+      "kind": "paragraph",
+      "page_pdf": 87,
+      "text": "c) $\\lim_{r \\to 0} r \\frac{\\partial p}{\\partial r} = \\frac{q\\mu}{2\\pi kh}$, for $t > 0$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.14",
+      "kind": "paragraph",
+      "page_pdf": 87,
+      "text": "Condition (a) is merely the initial condition that, before producing, the pressure everywhere within the drainage volume is equal to the initial equilibrium pressure $p_i$. Condition (b) ensures the condition of transience, namely that the pressure at the outer, infinite boundary is not affected by the pressure disturbance at the wellbore and vice versa.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.15",
+      "kind": "paragraph",
+      "page_pdf": 87,
+      "text": "Condition (c) is the line source inner boundary condition.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.16",
+      "kind": "paragraph",
+      "page_pdf": 87,
+      "text": "In addition, the assumptions made in deriving the radial diffusivity equation in Chapter 5 are retained. That is, that the formation is homogeneous and isotropic, and drained by a fully penetrating well to ensure radial flow; the fluid itself must have a constant viscosity and a small and constant compressibility. The solution obtained will, therefore, be applicable to the flow of undersaturated oil. Having developed the simple theory of pressure analysis based on these assumptions, many of the restrictions will be removed by considering, for instance, the effects of partial well completion, the flow of highly compressible fluids, etc. These modifications to the basic theory will be gradually introduced in this and the following chapter.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.17",
+      "kind": "paragraph",
+      "page_pdf": 87,
+      "text": "Under the above conditions the diffusivity equation",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.18",
+      "kind": "formula",
+      "page_pdf": 87,
+      "text": "$$\\frac{1}{r} \\frac{\\partial}{\\partial r} \\left( r \\frac{\\partial p}{\\partial r} \\right) = \\frac{\\phi \\mu c}{k} \\frac{\\partial p}{\\partial t} \\tag{5.20}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.19",
+      "kind": "paragraph",
+      "page_pdf": 87,
+      "text": "can be solved by making use of Boltzmann's transformation",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.20",
+      "kind": "formula",
+      "page_pdf": 87,
+      "text": "$$s = \\frac{r^2}{4(\\text{Diffusivity constant})t} = \\frac{\\phi \\mu c r^2}{4kt}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.21",
+      "kind": "paragraph",
+      "page_pdf": 87,
+      "text": "so that",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.22",
+      "kind": "formula",
+      "page_pdf": 87,
+      "text": "$$\\frac{\\partial s}{\\partial r} = \\frac{\\phi \\mu c r}{2kt} \\tag{7.2}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.23",
+      "kind": "paragraph",
+      "page_pdf": 87,
+      "text": "and",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.24",
+      "kind": "formula",
+      "page_pdf": 87,
+      "text": "$$\\frac{\\partial s}{\\partial t} = - \\frac{\\phi \\mu c r^2}{4kt^2} \\tag{7.3}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p087.25",
+      "kind": "paragraph",
+      "page_pdf": 87,
+      "text": "Equation (5.20) can be expressed with respect to this new variable as",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.01",
+      "kind": "paragraph",
+      "page_pdf": 88,
+      "text": "157",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.02",
+      "kind": "formula",
+      "page_pdf": 88,
+      "text": "$$\\frac{1}{r} \\frac{d}{ds} \\left( r \\frac{dp}{ds} \\frac{\\partial s}{\\partial r} \\right) \\frac{\\partial s}{\\partial r} = \\frac{\\phi \\mu c}{k} \\frac{dp}{ds} \\frac{\\partial s}{\\partial t}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.03",
+      "kind": "paragraph",
+      "page_pdf": 88,
+      "text": "and using equs. (7.2) and (7.3), this becomes",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.04",
+      "kind": "formula",
+      "page_pdf": 88,
+      "text": "$$\\frac{1}{r} \\frac{\\phi \\mu c r}{2kt} \\frac{d}{ds} \\left( \\frac{\\phi \\mu c r^2}{2kt} \\frac{dp}{ds} \\right) = - \\left( \\frac{\\phi \\mu c r}{2kt} \\right)^2 \\frac{dp}{ds}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.05",
+      "kind": "paragraph",
+      "page_pdf": 88,
+      "text": "which can be simplified as",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.06",
+      "kind": "formula",
+      "page_pdf": 88,
+      "text": "$$\\frac{d}{ds} \\left( s \\frac{dp}{ds} \\right) = -s \\frac{dp}{ds}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.07",
+      "kind": "paragraph",
+      "page_pdf": 88,
+      "text": "or",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.08",
+      "kind": "formula",
+      "page_pdf": 88,
+      "text": "$$\\frac{dp}{ds} + s \\frac{d}{ds} \\left( \\frac{dp}{ds} \\right) = -s \\frac{dp}{ds}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.09",
+      "kind": "paragraph",
+      "page_pdf": 88,
+      "text": "This is an ordinary differential equation which can be solved by letting",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.10",
+      "kind": "formula",
+      "page_pdf": 88,
+      "text": "$$\\frac{dp}{ds} = p'$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.11",
+      "kind": "paragraph",
+      "page_pdf": 88,
+      "text": "Then",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.12",
+      "kind": "formula",
+      "page_pdf": 88,
+      "text": "$$p' + s \\frac{dp'}{ds} = -sp'$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.13",
+      "kind": "formula",
+      "page_pdf": 88,
+      "text": "$$\\frac{dp'}{p'} = - \\frac{(s+1)}{s} ds \\tag{7.4}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.14",
+      "kind": "paragraph",
+      "page_pdf": 88,
+      "text": "Integrating equ. (7.4) gives",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.15",
+      "kind": "formula",
+      "page_pdf": 88,
+      "text": "$$\\ln p' = - \\ln s - s + C_1$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.16",
+      "kind": "paragraph",
+      "page_pdf": 88,
+      "text": "or",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.17",
+      "kind": "formula",
+      "page_pdf": 88,
+      "text": "$$p' = C_2 \\frac{e^{-s}}{s} \\tag{7.5}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.18",
+      "kind": "paragraph",
+      "page_pdf": 88,
+      "text": "where $C_1$ and $C_2$ are constants of integration and $C_2$ can be evaluated using the line source boundary condition",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.19",
+      "kind": "formula",
+      "page_pdf": 88,
+      "text": "$$\\lim_{r \\to 0} r \\frac{\\partial p}{\\partial r} = \\frac{q\\mu}{2\\pi kh} = r \\frac{dp}{ds} \\frac{\\partial s}{\\partial r} = 2s \\frac{dp}{ds}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.20",
+      "kind": "paragraph",
+      "page_pdf": 88,
+      "text": "therefore,",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.21",
+      "kind": "formula",
+      "page_pdf": 88,
+      "text": "$$\\frac{q\\mu}{4\\pi kh} = C_2 e^{-s}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.22",
+      "kind": "paragraph",
+      "page_pdf": 88,
+      "text": "which yields, as r (and therefore s) tends to zero",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.23",
+      "kind": "formula",
+      "page_pdf": 88,
+      "text": "$$C_2 = \\frac{q\\mu}{4\\pi kh}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.24",
+      "kind": "paragraph",
+      "page_pdf": 88,
+      "text": "Equation (7.5) can now be integrated between the limits $t = 0$ ($s \\to \\infty$) and the current value of t, for which $s = x$; and $p_i$ (initial pressure) and the current pressure p.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.25",
+      "kind": "paragraph",
+      "page_pdf": 88,
+      "text": "i.e.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.26",
+      "kind": "formula",
+      "page_pdf": 88,
+      "text": "$$\\int_{p_i}^{p} dp = \\frac{q\\mu}{4\\pi kh} \\int_{\\infty}^{x} \\frac{e^{-s}}{s} ds$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.27",
+      "kind": "paragraph",
+      "page_pdf": 88,
+      "text": "which gives",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.28",
+      "kind": "formula",
+      "page_pdf": 88,
+      "text": "$$\\begin{array}{l} p_{r,t} = p_i - \\frac{q\\mu}{4\\pi kh} \\int_{\\infty}^{\\infty} \\frac{e^{-s}}{s} ds \\tag{7.6} \\\\ x = \\frac{\\phi \\mu c r^2}{4kt} \\end{array}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.29",
+      "kind": "paragraph",
+      "page_pdf": 88,
+      "text": "Equation (7.6) is the line source solution of the diffusivity equation giving the pressure $p_{r,t}$ as a function of position and time.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {
+        "core": {
+          "fragment": true,
+          "note": "обрывок надписи с рисунка (короткая строка без предложения)"
+        }
+      },
+      "unit_id": "p088.30",
+      "kind": "figure",
+      "page_pdf": 88,
+      "text": "The integral",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.31",
+      "kind": "formula",
+      "page_pdf": 88,
+      "text": "(7.7)",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.32",
+      "kind": "formula",
+      "page_pdf": 88,
+      "text": "$$\\int_{x}^{\\infty} \\frac{e^{-s}}{s} ds = \\int_{x}^{\\infty} \\frac{e^{-s}}{s} ds \\quad x = \\frac{\\phi \\mu c r^2}{4kt}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.33",
+      "kind": "paragraph",
+      "page_pdf": 88,
+      "text": "is a standard integral, called the exponential integral, and is denoted by ei(x).",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.34",
+      "kind": "paragraph",
+      "page_pdf": 88,
+      "text": "Qualitatively, the nature of this integral can be understood by considering the component parts, fig. 7.2.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.35",
+      "kind": "paragraph",
+      "page_pdf": 88,
+      "text": "The integral of curve (c) between x and $\\infty$ will have the shape shown in fig. 7.2 (d). Thus ei (x) is large for small values of x, since the ei-function is the area under the graph from the particular value of x out to infinity (i.e. the shaded area in curve (c) of fig. 7.2) and, conversely, small for large values of x. The ei-function is normally plotted on a log-log scale and such a version is included as fig. 7.3. From this curve it can be seen that if x < 0.01, ei (x) can be approximated as",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p088.36",
+      "kind": "formula",
+      "page_pdf": 88,
+      "text": "$$ei(x) \\approx - \\ln x - 0.5772 \\tag{7.8}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {
+        "core": {
+          "fragment": true,
+          "note": "обрывок надписи с рисунка (короткая строка без предложения)"
+        }
+      },
+      "unit_id": "p089.01",
+      "kind": "figure",
+      "page_pdf": 89,
+      "text": "159",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {
+        "core": {
+          "figure_description": "----\n━━━ FORMAT 6: XY PLOT / CHART WITH DATA ━━━\n(a)\n\nVertical axis: $e^{-s}$; scale and units not shown.  \nHorizontal axis: $s$; linear scale; range not labelled.\n\nCurve: $e^{-s}$ decreases monotonically with increasing $s$.\n\n> Тренд: $e^{-s}$ убывает при увеличении $s$.",
+          "figure_description_by_model": true,
+          "note": "описание рисунка, сделанное конвертером md (моделью), подписи рядом нет"
+        }
+      },
+      "unit_id": "p089.02",
+      "kind": "figure",
+      "page_pdf": 89,
+      "text": "----\n━━━ FORMAT 6: XY PLOT / CHART WITH DATA ━━━\n(a)\n\nVertical axis: $e^{-s}$; scale and units not shown.  \nHorizontal axis: $s$; linear scale; range not labelled.\n\nCurve: $e^{-s}$ decreases monotonically with increasing $s$.\n\n> Тренд: $e^{-s}$ убывает при увеличении $s$.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.03",
+      "kind": "paragraph",
+      "page_pdf": 89,
+      "text": "━━━ FORMAT 6: XY PLOT / CHART WITH DATA ━━━\n(b)",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.04",
+      "kind": "paragraph",
+      "page_pdf": 89,
+      "text": "Vertical axis: $\\dfrac{1}{s}$; scale and units not shown.\nHorizontal axis: $s$; linear scale; range not labelled.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.05",
+      "kind": "paragraph",
+      "page_pdf": 89,
+      "text": "Curve: $\\dfrac{1}{s}$ decreases steeply at low $s$ and flattens with increasing $s$.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.06",
+      "kind": "paragraph",
+      "page_pdf": 89,
+      "text": "> Тренд: $\\dfrac{1}{s}$ убывает при увеличении $s$.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.07",
+      "kind": "paragraph",
+      "page_pdf": 89,
+      "text": "━━━ FORMAT 6: XY PLOT / CHART WITH DATA ━━━\n(c)",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.08",
+      "kind": "paragraph",
+      "page_pdf": 89,
+      "text": "Vertical axis: $\\dfrac{e^{-s}}{s}$; scale and units not shown.\nHorizontal axis: $s$; linear scale; range not labelled.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.09",
+      "kind": "paragraph",
+      "page_pdf": 89,
+      "text": "Relation shown:",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.10",
+      "kind": "formula",
+      "page_pdf": 89,
+      "text": "$$\ne^{-s}\\times\\frac{1}{s}=\\frac{e^{-s}}{s}.\n$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.11",
+      "kind": "paragraph",
+      "page_pdf": 89,
+      "text": "Curve: $\\dfrac{e^{-s}}{s}$ decreases sharply with increasing $s$. The area below the curve is hatched.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.12",
+      "kind": "paragraph",
+      "page_pdf": 89,
+      "text": "> Тренд: произведение $e^{-s}$ и $\\dfrac{1}{s}$ образует убывающую функцию $\\dfrac{e^{-s}}{s}$.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.13",
+      "kind": "paragraph",
+      "page_pdf": 89,
+      "text": "KEYWORDS: $e^{-s}$, $\\frac{1}{s}$, $\\frac{e^{-s}}{s}$, график, функция, произведение\n----",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.14",
+      "kind": "figure",
+      "page_pdf": 89,
+      "text": "Fig. 7.2 The exponential integral function ei(x).",
+      "figure_ref": "Fig. 7.2",
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.15",
+      "kind": "paragraph",
+      "page_pdf": 89,
+      "text": "where the number 0.5772 is Euler's constant, the exponential of which is denoted by",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.16",
+      "kind": "formula",
+      "page_pdf": 89,
+      "text": "$$\\gamma = e^{0.5772} = 1.781$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.17",
+      "kind": "paragraph",
+      "page_pdf": 89,
+      "text": "and therefore equ. (7.8) can be expressed as",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.18",
+      "kind": "formula",
+      "page_pdf": 89,
+      "text": "$$ei(x) \\approx - \\ln (\\gamma x)$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.19",
+      "kind": "formula",
+      "page_pdf": 89,
+      "text": "$$\\text{for } x < 0.01$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.20",
+      "kind": "formula",
+      "page_pdf": 89,
+      "text": "(7.9)",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.21",
+      "kind": "paragraph",
+      "page_pdf": 89,
+      "text": "The separate plots of ei(x) and -ln(γx), in Fig. 7.3, demonstrate the range of validity of equ. (7.9). The significance of this approximation is that reservoir engineers are frequently concerned with the analysis of pressures measured in the wellbore, at r=r_w. Since in this case x=dμcr_w^2/4kt, it is usually found that for measurements in the wellbore, x will be less than 0.01 even for small values of t. Equation (7.6) can then be approximated as",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.22",
+      "kind": "formula",
+      "page_pdf": 89,
+      "text": "$$p_{rw^2} = p_{wf} = p_i - \\frac{q\\mu}{4\\pi kh} \\ln \\frac{4kt}{\\gamma \\phi \\mu c r_w^2}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.23",
+      "kind": "paragraph",
+      "page_pdf": 89,
+      "text": "Or, if the van Everdingen mechanical skin factor is included as a time independent perturbation (ref. Chapter 4, sec. 7), then",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.24",
+      "kind": "formula",
+      "page_pdf": 89,
+      "text": "$$p_{wf} = p_i - \\frac{q\\mu}{4\\pi kh} \\left( \\ln \\frac{4kt}{\\gamma \\phi \\mu c r_w^2} + 2S \\right) \\tag{7.10}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.25",
+      "kind": "paragraph",
+      "page_pdf": 89,
+      "text": "As expected for this transient solution there is no dependence at all upon the area drained or well position with respect to the boundary since for the short time when equ.(7.10) is applicable the reservoir appears to be infinite in extent.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {
+        "core": {
+          "figure_description": "----\n━━━ FORMAT 6: XY PLOT / CHART WITH DATA ━━━\n\nОсь абсцисс: $x$, логарифмическая шкала; диапазон от $10^{-3}$ до $10^{0}$.\n\nОсь ординат слева: $e_i(x)$, логарифмическая шкала; видимые отметки: $10^{1}$, 8, 6, 4, 2, $10^{-2}$, 8, 6, 4, 2, $10^{-3}$.\n\nОсь ординат справа: $e_i(x)$ / $\\ln \\gamma x$; видимые отметки: $10^{0}$, 8, 6, 4, 2, $10^{-1}$, 8, 6, 4, 2, $10^{-2}$.\n\nКривые:\n- $e_i(x)$ — кривая в левой части графика, резко убывающая с увеличением $x$.\n- $e_i(x)$ — плавная кривая, проходящая через центральную и правую части графика.\n- $\\ln \\gamma x$ — прямая линия в правой части графика.\n- [нрзб] — кривая в правой нижней части графика.\n\nПодпись на графике:\n$$e_i(x)=\\ln \\gamma x+x+\\frac{x^2}{4}+\\ldots;\\quad 0.5772$$\n\n> Тренд: график сопоставляет функцию $e_i(x)$ с её логарифмическим приближением $\\ln \\gamma x$ при малых значениях $x$.\n\nKEYWORDS: экспоненциальный интеграл, $e_i(x)$, логарифмическая шкала, $\\ln \\gamma x$, функция, график",
+          "figure_description_by_model": true
+        }
+      },
+      "unit_id": "p089.26",
+      "kind": "figure",
+      "page_pdf": 89,
+      "text": "Fig. 7.3 Graph of the ei-function for 0.001 ≤ x ≤ 5.0.",
+      "figure_ref": "Fig. 7.3",
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.27",
+      "kind": "paragraph",
+      "page_pdf": 89,
+      "text": "Sometimes pressure tests are conducted in order to determine the degree of communication between wells, for example, pulse testing. In such cases pressure transients caused in one well are recorded in a distant well and, under these circumstances, r is large and the approximation of equ. (7.9) is no longer valid. Equation (7.6) must then be used in its full form, i.e.",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.28",
+      "kind": "formula",
+      "page_pdf": 89,
+      "text": "$$p_{r,t} = p_i - \\frac{q\\mu}{4\\pi kh} e^i \\left( \\frac{\\phi \\mu c r^2}{4kt} \\right) \\tag{7.11}$$",
+      "figure_ref": null,
+      "image_path": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p089.29",
+      "kind": "paragraph",
+      "page_pdf": 89,
+      "text": "in which the values of the exponential integral can be obtained from fig. 7.3.",
+      "figure_ref": null,
+      "image_path": null
+    }
+  ]
+}

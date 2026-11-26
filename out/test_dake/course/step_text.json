@@ -1,0 +1,151 @@
+{
+  "ext": {},
+  "chapter": "test_dake",
+  "nodes": {
+    "test_dake.radial_flow_eq_derivation": {
+      "ext": {},
+      "hash": "506ba85b5897a7b5",
+      "paragraphs": [
+        {
+          "block": "main",
+          "text": "Основное [[основное уравнение радиального течения]], описывающее радиальное течение жидкости, выводится через баланс массы, закон Дарси и сжимаемость. Для жидкостей с малой сжимаемостью оно линеаризуется.",
+          "claim_ids": [
+            "test_dake.radial_flow_eq_derivation#c1",
+            "test_dake.radial_flow_eq_derivation#c11"
+          ],
+          "terms": [
+            "основное уравнение радиального течения"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "why",
+          "text": "Мы изучаем это, чтобы понять физическую основу движения жидкости к скважине через закон сохранения массы и закон Дарси.",
+          "claim_ids": [
+            "test_dake.radial_flow_eq_derivation#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Движение описывается через баланс массы в элементе и закон Дарси. Плотность заменяется через [[изотермическая сжимаемость]], определяемую термодинамически.",
+          "claim_ids": [
+            "test_dake.radial_flow_eq_derivation#c8",
+            "test_dake.radial_flow_eq_derivation#c10"
+          ],
+          "terms": [
+            "изотермическая сжимаемость"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "Инженеры выделяют [[переходный режим]], который применим в течение короткого периода после возмущения.",
+          "claim_ids": [
+            "test_dake.radial_flow_eq_derivation#c13"
+          ],
+          "terms": [
+            "переходный режим"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "Для долгой работы используют [[полустационарный режим]], когда ощущается влияние границы.",
+          "claim_ids": [
+            "test_dake.radial_flow_eq_derivation#c14"
+          ],
+          "terms": [
+            "полустационарный режим"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "[[стационарный режим]], при котором давление на границе постоянно, применяется после переходного периода.",
+          "claim_ids": [
+            "test_dake.radial_flow_eq_derivation#c15"
+          ],
+          "terms": [
+            "стационарный режим"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "Уравнение является нелинейным из-за зависимости свойств от давления. Простая линеаризация возможна только при малом произведении cp.",
+          "claim_ids": [
+            "test_dake.radial_flow_eq_derivation#c17"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Уравнение связывает изменения давления со свойствами флюида и породы.",
+          "claim_ids": [
+            "test_dake.radial_flow_eq_derivation#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Модель не учитывает многофазность потока и сложные границы.",
+          "claim_ids": [
+            "test_dake.radial_flow_eq_derivation#c5"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Поведение давления на скважине всегда строго подчиняется решению уравнения пьезопроводности.",
+          "claim_ids": [
+            "test_dake.radial_flow_eq_derivation#c3"
+          ],
+          "terms": [],
+          "hypothesis": true,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Процесс похож на распространение тепла в проводнике или диффузию сигнала в линии связи.",
+          "claim_ids": [
+            "test_dake.radial_flow_eq_derivation#c19"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "В отличие от идеального проводника, пористая среда неоднородна, а свойства зависят от давления.",
+          "claim_ids": [
+            "test_dake.radial_flow_eq_derivation#c5",
+            "test_dake.radial_flow_eq_derivation#c11"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": true
+        }
+      ],
+      "warnings": [
+        "термин 'основное дифференциальное уравнение радиального течения' не выделен [[…]] ни в одном абзаце",
+        "термин 'уравнение радиальной диффузии' не выделен [[…]] ни в одном абзаце",
+        "термин 'константа диффузии' не выделен [[…]] ни в одном абзаце"
+      ]
+    }
+  },
+  "failed": {}
+}

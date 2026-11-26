@@ -1,0 +1,84 @@
+{
+  "chapter": "test_dake",
+  "nodes": 1,
+  "tasks": 6,
+  "step_text_nodes": 1,
+  "interactive_steps": 1,
+  "guess_steps": 0,
+  "summary": {
+    "text_model_steps": 1,
+    "steps": 1,
+    "tasks": 6,
+    "tasks_dropped": 2,
+    "fallback_steps": 0,
+    "model": "доступна",
+    "line": "ИТОГ СБОРКИ: текст модели: 1 из 1 шагов · заданий: 6 (выброшено 2) · fallback: 0 · модель: доступна"
+  },
+  "warnings": [
+    {
+      "code": "no_parts",
+      "message": "ни у одного узла нет ext[\"core\"][\"part\"]: вся глава собрана одной частью «Глава»"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_dake.radial_flow_eq_derivation: термин 'основное дифференциальное уравнение радиального течения' не выделен [[…]] ни в одном абзаце",
+      "node": "test_dake.radial_flow_eq_derivation"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_dake.radial_flow_eq_derivation: термин 'уравнение радиальной диффузии' не выделен [[…]] ни в одном абзаце",
+      "node": "test_dake.radial_flow_eq_derivation"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_dake.radial_flow_eq_derivation: термин 'константа диффузии' не выделен [[…]] ни в одном абзаце",
+      "node": "test_dake.radial_flow_eq_derivation"
+    },
+    {
+      "code": "few_tasks",
+      "message": "заданий 6, нужно не меньше 15",
+      "count": 6
+    },
+    {
+      "code": "calc_not_possible",
+      "message": "в главе нет формул и чисел для расчёта: заданий calc нет"
+    },
+    {
+      "code": "missing_task_type",
+      "message": "нет заданий типов: gap",
+      "types": [
+        "gap"
+      ]
+    },
+    {
+      "code": "task_dropped",
+      "message": "задание 3 (gap) шага test_dake.radial_flow_eq_derivation выброшено: задание 3: слово пропуска 'притока к скважине' не найдено в тексте узла в такой форме (ответ должен быть в тексте шага; не больше 2 слов)",
+      "node": "test_dake.radial_flow_eq_derivation",
+      "slot": 3,
+      "type": "gap",
+      "errors": [
+        "задание 3: слово пропуска 'притока к скважине' не найдено в тексте узла в такой форме (ответ должен быть в тексте шага; не больше 2 слов)"
+      ]
+    },
+    {
+      "code": "task_answer_mismatch",
+      "message": "задание 7 (gap) шага test_dake.radial_flow_eq_derivation выброшено: помеченный ответ противоречит цитате книги (слепая проверка): ответ слепой проверки не совпал с помеченным: по цитате test_dake.radial_flow_eq_derivation#c19 («is called the diffusivity constant.») модель выбрала diffusivity, помечено диффузии. Перепроверь по цитате, какой ответ верен, и перепиши задание",
+      "node": "test_dake.radial_flow_eq_derivation",
+      "slot": 7,
+      "type": "gap",
+      "errors": [
+        "ответ слепой проверки не совпал с помеченным: по цитате test_dake.radial_flow_eq_derivation#c19 («is called the diffusivity constant.») модель выбрала diffusivity, помечено диффузии. Перепроверь по цитате, какой ответ верен, и перепиши задание"
+      ]
+    }
+  ],
+  "missing_scans": [
+    75,
+    76,
+    77,
+    78,
+    79,
+    87,
+    88,
+    89
+  ]
+}

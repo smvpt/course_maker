@@ -1,0 +1,305 @@
+{
+  "ext": {
+    "course": {
+      "hashes": {
+        "test_dake.radial_flow_eq_derivation": "506ba85b5897a7b5"
+      },
+      "warnings": [
+        {
+          "code": "few_tasks",
+          "message": "заданий 6, нужно не меньше 15",
+          "count": 6
+        },
+        {
+          "code": "calc_not_possible",
+          "message": "в главе нет формул и чисел для расчёта: заданий calc нет"
+        },
+        {
+          "code": "missing_task_type",
+          "message": "нет заданий типов: gap",
+          "types": [
+            "gap"
+          ]
+        }
+      ],
+      "dropped": [
+        {
+          "node": "test_dake.radial_flow_eq_derivation",
+          "slot": 3,
+          "type": "gap",
+          "errors": [
+            "задание 3: слово пропуска 'притока к скважине' не найдено в тексте узла в такой форме (ответ должен быть в тексте шага; не больше 2 слов)"
+          ]
+        },
+        {
+          "node": "test_dake.radial_flow_eq_derivation",
+          "slot": 7,
+          "type": "gap",
+          "errors": [
+            "ответ слепой проверки не совпал с помеченным: по цитате test_dake.radial_flow_eq_derivation#c19 («is called the diffusivity constant.») модель выбрала diffusivity, помечено диффузии. Перепроверь по цитате, какой ответ верен, и перепиши задание"
+          ]
+        }
+      ],
+      "node_warnings": []
+    }
+  },
+  "chapter": "test_dake",
+  "tasks": [
+    {
+      "ext": {},
+      "id": "test_dake.radial_flow_eq_derivation.t1",
+      "type": "single",
+      "step_id": "test_dake.radial_flow_eq_derivation",
+      "claim_ids": [
+        "test_dake.radial_flow_eq_derivation#c5"
+      ],
+      "prompt": "Какое допущение принимается о проницаемости пласта при выводе основного уравнения радиального течения?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Пласт изотропен по проницаемости.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Проницаемость пласта равна нулю вдали от скважины.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Пласт анизотропен по проницаемости.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Проницаемость пласта меняется по радиусу.",
+          "misconception": null
+        }
+      ],
+      "answer": "a",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "При выводе уравнения пласт считается изотропным по проницаемости.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "test_dake.radial_flow_eq_derivation.t2",
+      "type": "multiple",
+      "step_id": "test_dake.radial_flow_eq_derivation",
+      "claim_ids": [
+        "test_dake.radial_flow_eq_derivation#c11"
+      ],
+      "prompt": "Почему базовое уравнение радиального течения однофазного флюида называется нелинейным?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Из-за постоянства вязкости при любых условиях.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Из-за строгой линейности закона Дарси в радиальной геометрии.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Из-за неявной зависимости вязкости от давления.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Из-за неявной зависимости плотности от давления.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "e",
+          "text": "Из-за неявной зависимости сжимаемости от давления.",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "c",
+        "d",
+        "e"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Нелинейность вызвана неявной зависимостью от давления плотности, сжимаемости и вязкости.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "test_dake.radial_flow_eq_derivation.t4",
+      "type": "order",
+      "step_id": "test_dake.radial_flow_eq_derivation",
+      "claim_ids": [
+        "test_dake.radial_flow_eq_derivation#c12"
+      ],
+      "prompt": "Расположите основные режимы решений уравнения радиального течения в порядке их типичной смены при разработке скважины:",
+      "options": [
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "Полустационарный режим",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "Стационарный режим",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "Переходный режим",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Режимы сменяют друг друга: сначала переходный, затем полустационарный и стационарный.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "test_dake.radial_flow_eq_derivation.t5",
+      "type": "single",
+      "step_id": "test_dake.radial_flow_eq_derivation",
+      "claim_ids": [
+        "test_dake.radial_flow_eq_derivation#c13"
+      ],
+      "prompt": "В течение какого периода времени применим переходный режим течения в пласте?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "В течение всего срока разработки месторождения с постоянной добычей.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Для относительно короткого периода после создания возмущения давления.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Только после того, как будет полностью выработан весь объем запасов.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "После полной стабилизации давления на внешней границе пласта.",
+          "misconception": null
+        }
+      ],
+      "answer": "b",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Переходный режим применим короткое время после возмущения давления, пока пласт кажется бесконечным.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "test_dake.radial_flow_eq_derivation.t6",
+      "type": "multiple",
+      "step_id": "test_dake.radial_flow_eq_derivation",
+      "claim_ids": [
+        "test_dake.radial_flow_eq_derivation#c12"
+      ],
+      "prompt": "Какие основные режимы решений выделяются при анализе уравнения радиального течения?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Стационарный режим",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Переходный режим",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Режим мгновенного истощения",
+          "misconception": "misc.pressure_sound_speed"
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Полустационарный режим",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "d"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Выделяют переходный, полустационарный и стационарный режимы для разных условий и времени.",
+      "kind": "transfer"
+    },
+    {
+      "ext": {},
+      "id": "test_dake.radial_flow_eq_derivation.t8",
+      "type": "order",
+      "step_id": "test_dake.radial_flow_eq_derivation",
+      "claim_ids": [
+        "test_dake.radial_flow_eq_derivation#c8"
+      ],
+      "prompt": "Расположите элементы формулировки принципа сохранения массы для объема элемента толщиной dr в правильной последовательности:",
+      "options": [
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "Равно скорости изменения массы в элементе",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "Минус массовый расход на выходе элемента",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "Массовый расход на входе элемента",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Баланс массы: приток минус отток равен скорости изменения массы в элементе.",
+      "kind": "recall"
+    }
+  ]
+}
