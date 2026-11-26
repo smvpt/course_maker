@@ -93,6 +93,29 @@ def test_schema_violation_is_an_error(tmp_path):
     assert not (tmp_path / "passport.json").exists()
 
 
+def test_phrase_review_is_bound_to_actual_audio_and_does_not_override_automatic_results(tmp_path):
+    import hashlib
+    from pipeline.video.review import attach
+    audio = b'test audio'
+    (tmp_path/'key.mp3').write_bytes(audio)
+    timeline = {'phrases': [{'phrase_id': 'p1', 'tts_key': 'key'}]}
+    review = dict(phrase_id='p1', tts_key='key', audio_sha256=hashlib.sha256(audio).hexdigest(),
+                  reviewer='user', reviewed_on='2026-11-26', scope='one phrase', term='термин',
+                  question='Понятно?', answer='Да', accepted=True)
+    original = _passport()
+    original.audio_check['terms'] = {'ok': False, 'not_recognized': ['термин']}
+    changed = attach(original, timeline, review, tmp_path)
+    assert changed.audio_check['terms'] == original.audio_check['terms']
+    assert changed.audio_check['listened_by_human'] is False
+    assert 'human_phrase_reviews' not in original.audio_check
+    assert len(attach(changed, timeline, review, tmp_path).audio_check['human_phrase_reviews']) == 1
+    write_passport(changed, tmp_path/'passport.json', SCHEMA)
+    with pytest.raises(ValueError, match='ключом TTS'):
+        attach(original, timeline, {**review, 'tts_key': 'different'}, tmp_path)
+    with pytest.raises(ValueError, match='Хэш'):
+        attach(original, timeline, {**review, 'audio_sha256': 'different'}, tmp_path)
+
+
 def test_skipped_audio_check_marks_everything_unverified():
     a = audio_check_skipped("флаг --skip-asr")
     assert a["asr"]["status"] == STATUS_UNCHECKED and "--skip-asr" in a["asr"]["reason"]
