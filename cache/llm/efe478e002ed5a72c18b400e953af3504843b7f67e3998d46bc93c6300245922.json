@@ -1,0 +1,10 @@
+{
+ "text": "{\"false_statement\":\"Уровень в емкостях не требует изоляции и учета внешних факторов, так как на практике это не влияет на достоверность контроля.\",\"true_statement\":\"Для своевременного обнаружения притока изолируют рабочую приемную емкость от других и корректируют положение исходного уровня с учетом внешних факторов.\",\"explain_false\":\"На практике для достоверности контроля емкости изолируют и корректируют уровень с учетом добавок, испарения и осадков.\",\"explain_true\":\"Изоляция емкости и учет внешних факторов позволяют вовремя заметить избыток жидкости от пластового притока.\",\"claim_ids\":[\"test_basarygin.early_detection_procedures#c1\",\"test_basarygin.early_detection_procedures#c4\",\"test_basarygin.early_detection_procedures#c5\",\"test_basarygin.early_detection_procedures#c6\"]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/guess",
+ "tokens_in": 2948,
+ "tokens_out": 209,
+ "money_usd": 0.0014069,
+ "attempts": 1
+}

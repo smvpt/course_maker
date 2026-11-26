@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"S\"],\"claim_id\":\"test_basarygin.mud_tank_level_control#c6\",\"evidence\":\"\\\\Delta V_{\\\\min} = \\\\varepsilon S,\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 780,
+ "tokens_out": 54,
+ "money_usd": 0.00036899999999999997,
+ "attempts": 1
+}

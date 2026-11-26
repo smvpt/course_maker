@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"order\",\"kind\":\"recall\",\"claim_ids\":[\"test_basarygin.blowout_preventer_stack#c4\"],\"prompt\":\"Расположите элементы устьевого оборудования в порядке их перечисления в описании компоновки для контроля скважины.\",\"options\":[{\"text\":\"нагнетательный манифольд\",\"correct\":false,\"misconception\":null},{\"text\":\"штуцерный манифольд\",\"correct\":false,\"misconception\":null},{\"text\":\"кольцевой превентор\",\"correct\":false,\"misconception\":null},{\"text\":\"трубные превенторы\",\"correct\":false,\"misconception\":null},{\"text\":\"превентор с глухими плашками\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Порядок элементов соответствует списку оборудования в тексте схемы обвязки.\"},{\"type\":\"single\",\"kind\":\"transfer\",\"claim_ids\":[\"test_basarygin.blowout_preventer_stack#c3\"],\"prompt\":\"ML-инженер автоматизирует контроль параметров бурения для оперативного обнаружения осложнений. Какая главная задача устьевой компоновки превенторов и манифольдов при высоких пластовых давлениях?\",\"options\":[{\"text\":\"Контроль бурящейся скважины и ликвидация возникающих нефте- и газопроявлений или выбросов\",\"correct\":true,\"misconception\":null},{\"text\":\"Автоматическое утяжеление бурового раствора до стабилизации давления на насосах\",\"correct\":false,\"misconception\":\"misc.kill_mud_density_arbitrary\"},{\"text\":\"Мгновенная полная остановка притока без закрытия превенторов за счет штуцерных линий\",\"correct\":false,\"misconception\":\"misc.shut_in_instant_stabilization\"},{\"text\":\"Снижение забойного давления ниже пластового для безопасного вскрытия пластов\",\"correct\":false,\"misconception\":\"misc.overbalance_prevents_all_influx\"}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Компоновка предназначена для контроля скважины при высоких давлениях и ликвидации проявлений.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 4786,
+ "tokens_out": 524,
+ "money_usd": 0.0027458,
+ "attempts": 1
+}

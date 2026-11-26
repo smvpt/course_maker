@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"b\"],\"claim_id\":\"test_basarygin.gnvp_safety_measures#c2\",\"evidence\":\"прогнозирование пластового (порового) давления на всех стадиях\"},{\"n\":2,\"answer\":[\"b\",\"c\"],\"claim_id\":\"test_basarygin.gnvp_safety_measures#c4\",\"evidence\":\"превенторов, дросселей, сепараторов, дегазаторов\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1250,
+ "tokens_out": 118,
+ "money_usd": 0.00067,
+ "attempts": 1
+}

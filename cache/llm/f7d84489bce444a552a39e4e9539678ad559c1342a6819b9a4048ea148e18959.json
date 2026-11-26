@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"В процессе проводки скважины пластовые флюиды постоянно поступают в скважину, в том числе при превышении забойным давлением $p_{заб}$ пластового $p_{пл}$.\",\"page_pdf\":239}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 46426,
+ "tokens_out": 70,
+ "money_usd": 0.014102799999999999,
+ "attempts": 1
+}

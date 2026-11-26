@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"c\"],\"claim_id\":\"test_basarygin.rop_increase_as_sign#c7\",\"evidence\":\"Подобное явление характерно при разбуривании известковых отложений и ведет чаще не к проявлениям, а к поглощению бурового раствора\"},{\"n\":2,\"answer\":[\"a\",\"c\",\"d\"],\"claim_id\":\"test_basarygin.rop_increase_as_sign#c2\",\"evidence\":\"Резкое увеличение механической скорости, так называемый \\\"скачок проходки\\\", в переходной зоне свидетельствует\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1310,
+ "tokens_out": 148,
+ "money_usd": 0.000763,
+ "attempts": 1
+}

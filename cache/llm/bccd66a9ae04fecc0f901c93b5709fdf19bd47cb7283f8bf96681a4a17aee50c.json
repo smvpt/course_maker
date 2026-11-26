@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Компоновка устьевого противовыбросового оборудования\",\"note\":\"Нажми на элемент схемы, чтобы узнать его назначение в системе.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"нагнетательный манифольд\",\"description\":\"Первый элемент рассматриваемой компоновки оборудования на устье.\",\"claim_id\":\"test_basarygin.blowout_preventer_stack#c4\",\"rock\":null},{\"label\":\"штуцерный манифольд\",\"description\":\"Второй элемент компоновки, связанный со штуцерными линиями устьевой обвязки.\",\"claim_id\":\"test_basarygin.blowout_preventer_stack#c4\",\"rock\":null},{\"label\":\"кольцевой превентор\",\"description\":\"Элемент под номером 3, входящий в состав сложной компоновки оборудования.\",\"claim_id\":\"test_basarygin.blowout_preventer_stack#c4\",\"rock\":null},{\"label\":\"трубные превенторы\",\"description\":\"Элементы под номерами 6 и 14 в составе наземного оборудования.\",\"claim_id\":\"test_basarygin.blowout_preventer_stack#c4\",\"rock\":null},{\"label\":\"превентор с глухими плашками\",\"description\":\"Превентор под номером 8, входящий в рассматриваемую компоновку.\",\"claim_id\":\"test_basarygin.blowout_preventer_stack#c4\",\"rock\":null},{\"label\":\"устьевая головка\",\"description\":\"Завершающий элемент под номером 16 в составе наземного оборудования.\",\"claim_id\":\"test_basarygin.blowout_preventer_stack#c4\",\"rock\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 3230,
+ "tokens_out": 508,
+ "money_usd": 0.002239,
+ "attempts": 1
+}

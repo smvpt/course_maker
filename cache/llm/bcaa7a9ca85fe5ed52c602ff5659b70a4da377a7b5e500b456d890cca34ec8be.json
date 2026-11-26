@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"потока\",\"раствора\"],\"claim_id\":\"test_basarygin.manifestation_signs_overview#c1\",\"evidence\":\"гидравлических характеристиках циркуляционного потока и свойствах бурового раствора\"},{\"n\":2,\"answer\":[\"o1\",\"o2\",\"o3\",\"o4\"],\"claim_id\":\"test_basarygin.manifestation_signs_overview#c3\",\"evidence\":\"- увеличение объема (уровня) бурового раствора в емкостях циркуляционной системы;\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1230,
+ "tokens_out": 141,
+ "money_usd": 0.0007214999999999999,
+ "attempts": 1
+}

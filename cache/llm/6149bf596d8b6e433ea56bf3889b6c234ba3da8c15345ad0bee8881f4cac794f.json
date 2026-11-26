@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"claim_id\":\"test_basarygin.flow_rate_monitoring#c5\",\"title\":\"Зависимость минимального приращения расхода от максимального расхода\",\"slider_name\":\"Q_max\",\"slider_label\":\"Максимальный расход раствора\",\"slider_unit\":\"л/с\",\"slider_min\":10.0,\"slider_max\":100.0,\"x_name\":\"\",\"x_label\":\"\",\"x_unit\":\"\",\"x_min\":0.0,\"x_max\":0.0,\"y_label\":\"Минимальное приращение расхода\",\"y_unit\":\"л/с\",\"constants\":{},\"expression\":\"Q_max / 100\",\"curve_key\":null,\"note\":\"При увеличении максимального расхода прибора растет минимальное приращение расхода, необходимое для обнаружения проявления.\"}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/interactive",
+ "tokens_in": 3946,
+ "tokens_out": 221,
+ "money_usd": 0.0017363,
+ "attempts": 1
+}

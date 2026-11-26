@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="KERN">
+  <title>KERN</title>
+  <style>:root{--kern-ink:#0F1419}@media (prefers-color-scheme:dark){:root{--kern-ink:#ECEFF4}}</style>
+  <path d="M4,6 A12,4 0 0 0 28,6 L28,11 A12,4 0 0 1 4,11 Z" fill="#C9A66B" stroke="var(--kern-ink)" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M4,11 A12,4 0 0 0 28,11 L28,16 A12,4 0 0 1 4,16 Z" fill="#7F8C8D" stroke="var(--kern-ink)" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M4,16 A12,4 0 0 0 28,16 L28,21 A12,4 0 0 1 4,21 Z" fill="#3B82F6" stroke="var(--kern-ink)" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M4,21 A12,4 0 0 0 28,21 L28,26 A12,4 0 0 1 4,26 Z" fill="#5D6D7E" stroke="var(--kern-ink)" stroke-width="1.6" stroke-linejoin="round"/>
+    <ellipse cx="16" cy="6" rx="12" ry="4" fill="#C9A66B" stroke="var(--kern-ink)" stroke-width="1.6"/>
+</svg>

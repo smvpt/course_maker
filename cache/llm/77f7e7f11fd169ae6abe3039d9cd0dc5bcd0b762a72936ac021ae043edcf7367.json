@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"o1\",\"o2\",\"o3\",\"o4\",\"o5\"],\"claim_id\":\"test_basarygin.blowout_preventer_stack#c4\",\"evidence\":\"нагнетательный манифольд 1, штуцерный манифольд 2, кольцевой превентор 3, трубные превенторы 6 и 14, превентор 8 с глухими плашками\"},{\"n\":2,\"answer\":[\"a\"],\"claim_id\":\"test_basarygin.blowout_preventer_stack#c3\",\"evidence\":\"контролировать бурящуюся скважину при высоких пластовых давлениях и ликвидировать возникающие нефте- и газопроявления\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1376,
+ "tokens_out": 181,
+ "money_usd": 0.0008653,
+ "attempts": 1
+}

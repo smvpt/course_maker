@@ -1,0 +1,6 @@
+chapter,stage,nodes,llm_tokens_in,llm_tokens_out,money_usd,person_minutes,mentor_minutes,video_seconds,manual_share
+test_basarygin,layer,13,164154,30066,0.124411,0,0,0.0,0.0
+test_basarygin,routing,13,4393,1786,0.005783,0,0,0.0,0.0
+test_basarygin,course,13,429879,46354,0.242096,0,0,0.0,0.0
+test_basarygin,video,13,0,0,0.0,0,0,0.0,0.0
+test_basarygin,review,13,0,0,0.0,0,0,0.0,0.0

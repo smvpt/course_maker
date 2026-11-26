@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"грифонообразования\"],\"claim_id\":\"test_basarygin.wellhead_equipment_gas_wells#c2\",\"evidence\":\"межколонные проявления и в наиболее тяжелых случаях грифонообразования\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 848,
+ "tokens_out": 66,
+ "money_usd": 0.0004194,
+ "attempts": 1
+}

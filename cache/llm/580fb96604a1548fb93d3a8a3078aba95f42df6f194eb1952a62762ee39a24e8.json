@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"single\",\"kind\":\"data\",\"claim_ids\":[\"test_basarygin.rop_increase_as_sign#c6\",\"test_basarygin.rop_increase_as_sign#c7\"],\"prompt\":\"ML-инженер обучает модель раннего предупреждения проявлений по данным механического каротажа. Резкий скачок механической скорости зафиксирован при разбуривании известняков. Как интерпретировать этот признак в данных?\",\"options\":[{\"text\":\"Это признак возможного выброса газа и нефти\",\"correct\":false,\"misconception\":\"misc.drilling_rate_always_kick\"},{\"text\":\"Это признак поглощения раствора из-за провала в каверны\",\"correct\":true,\"misconception\":null},{\"text\":\"Это технологическая остановка бурения\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"В известняках скачок скорости часто связан с провалами в каверны и поглощением раствора.\"},{\"type\":\"multiple\",\"kind\":\"transfer\",\"claim_ids\":[\"test_basarygin.rop_increase_as_sign#c2\",\"test_basarygin.rop_increase_as_sign#c5\",\"test_basarygin.rop_increase_as_sign#c6\"],\"prompt\":\"Аналитик проверяет правила срабатывания дашборда для буровых бригад. Какие варианты поведения механической скорости бурения требуют особого внимания?\",\"options\":[{\"text\":\"Резкое увеличение скорости в переходной зоне\",\"correct\":true,\"misconception\":null},{\"text\":\"Повышение скорости бурения более чем в 2 раза\",\"correct\":true,\"misconception\":null},{\"text\":\"Провалы инструмента при вскрытии крупных трещин в известняках\",\"correct\":true,\"misconception\":null},{\"text\":\"Любое увеличение механической скорости бурения\",\"correct\":false,\"misconception\":\"misc.drilling_rate_always_kick\"}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Скачки скорости и рост более чем в 2 раза указывают на риски, но в известняках это может быть поглощение.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 5423,
+ "tokens_out": 506,
+ "money_usd": 0.0028919,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"gap\",\"kind\":\"data\",\"claim_ids\":[\"test_basarygin.mud_tank_level_control#c1\",\"test_basarygin.mud_tank_level_control#c6\"],\"prompt\":\"В анализе временного ряда датчиков бурения рост объема раствора в {{1}} и повышение его уровня служат прямым признаком притока. Минимальный объем регистрируемого притока рассчитывается как произведение погрешности уровнемера на {{2}} жидкости.\",\"options\":[],\"gap_answers\":[\"приемных емкостях\",\"площадь поверхности\"],\"calc\":null,\"explanation\":\"Приток фиксируется по росту объема в емкостях, а порог срабатывания зависит от площади зеркала жидкости.\"},{\"type\":\"order\",\"kind\":\"recall\",\"claim_ids\":[\"test_basarygin.mud_tank_level_control#c2\",\"test_basarygin.mud_tank_level_control#c3\",\"test_basarygin.mud_tank_level_control#c4\"],\"prompt\":\"Расположите элементы контроля уровня бурового раствора в порядке усложнения их функций в циркуляционной системе от простых датчиков до аварийных систем:\",\"options\":[{\"text\":\"Уровнемеры различных конструкций для контроля уровня раствора\",\"correct\":false,\"misconception\":null},{\"text\":\"Системы с контролем объема в емкостях насосов и регистрацией\",\"correct\":false,\"misconception\":null},{\"text\":\"Системы с дополнительной звуковой и световой сигнализацией в аварийных ситуациях\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Сначала идет базовый уровнемер, затем измерительная система с регистрацией, а в аварийных ситуациях добавляется сигнализация.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 5819,
+ "tokens_out": 417,
+ "money_usd": 0.0027882000000000002,
+ "attempts": 1
+}

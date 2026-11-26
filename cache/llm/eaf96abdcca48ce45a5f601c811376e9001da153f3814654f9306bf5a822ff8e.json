@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Признаки изменения механической скорости бурения\",\"note\":\"Нажми на часть, чтобы узнать её характерные особенности.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"устойчивое самопроизвольное увеличение\",\"description\":\"Указывает на углубление в зону АВПД с постоянным нарастанием порового давления в глинах.\",\"claim_id\":\"test_basarygin.rop_increase_as_sign#c1\",\"rock\":\"shale\"},{\"label\":\"скачок проходки\",\"description\":\"Свидетельствует о быстром возрастании аномальности давления на забое при небольшой мощности переходной зоны.\",\"claim_id\":\"test_basarygin.rop_increase_as_sign#c2\",\"rock\":null},{\"label\":\"провалы инструмента\",\"description\":\"Следствие вскрытия крупных трещин или карстовых каверн в известковых отложениях, ведущее чаще к поглощению раствора.\",\"claim_id\":\"test_basarygin.rop_increase_as_sign#c6\",\"rock\":\"limestone\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 3867,
+ "tokens_out": 259,
+ "money_usd": 0.0018076,
+ "attempts": 1
+}

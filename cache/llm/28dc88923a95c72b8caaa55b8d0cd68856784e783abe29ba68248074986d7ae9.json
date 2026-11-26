@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"calc\",\"kind\":\"transfer\",\"claim_ids\":[\"test_basarygin.mud_gassing_analysis#c20\",\"test_basarygin.mud_gassing_analysis#c21\"],\"prompt\":\"Рассчитайте дебит газа в атмосферных условиях g1, если подача насосов Q равна 45 л/с, плотность негазированного раствора ро0 равна 1.25 г/см3, а газированного раствора ро гр равна 1.18 г/см3.\",\"options\":[],\"gap_answers\":[],\"calc\":{\"variables\":{\"Q\":45.0,\"rho_0\":1.25,\"rho_gr\":1.18},\"expression\":\"Q * (rho_0 / rho_gr - 1)\",\"unit\":\"л/с\"},\"explanation\":\"Дебит газа в атмосферных условиях вычисляется по формуле произведения подачи насосов на отношение плотностей негазированного и газированного растворов минус единица.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 8515,
+ "tokens_out": 225,
+ "money_usd": 0.003117,
+ "attempts": 1
+}

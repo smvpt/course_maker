@@ -1,0 +1,103 @@
+{
+  "ext": {
+    "verify": {
+      "claims": 125,
+      "tasks_checked": true,
+      "scripts_checked": []
+    }
+  },
+  "package_id": "test_basarygin",
+  "team": "",
+  "remarks": [
+    {
+      "ext": {},
+      "target": "test_basarygin.mud_tank_level_control#c3",
+      "category": "other",
+      "severity": "critical",
+      "problem": "цитата не найдена в главе (лучшее сходство 69): «Наиболее совершенные измерительные системы контролируют объем (уровень) в приемных емкостях насосов и общий объем бурово»",
+      "fix": "заменить цитату дословным фрагментом md со стр. 233 или убрать утверждение",
+      "page_pdf": 233,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "test_basarygin.manifestation_signs_overview",
+      "category": "other",
+      "severity": "significant",
+      "problem": "термин «механическая скорость бурения» используется раньше узла test_basarygin.rop_increase_as_sign, где он объяснён; термин «приемные емкости» используется раньше узла test_basarygin.mud_tank_level_control, где он объяснён; термин «приемная емкость» используется раньше узла test_basarygin.early_detection_procedures, где он объяснён",
+      "fix": "объяснить «механическая скорость бурения» здесь или перенести узел test_basarygin.rop_increase_as_sign раньше; объяснить «приемные емкости» здесь или перенести узел test_basarygin.mud_tank_level_control раньше; объяснить «приемная емкость» здесь или перенести узел test_basarygin.early_detection_procedures раньше",
+      "page_pdf": 232,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "test_basarygin.mud_tank_level_control",
+      "category": "other",
+      "severity": "significant",
+      "problem": "термин «приемная емкость» используется раньше узла test_basarygin.early_detection_procedures, где он объяснён",
+      "fix": "объяснить «приемная емкость» здесь или перенести узел test_basarygin.early_detection_procedures раньше",
+      "page_pdf": 234,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "test_basarygin.pump_pressure_changes",
+      "category": "other",
+      "severity": "significant",
+      "problem": "термин «свабирование» используется раньше узла test_basarygin.tripping_volume_control, где он объяснён",
+      "fix": "объяснить «свабирование» здесь или перенести узел test_basarygin.tripping_volume_control раньше",
+      "page_pdf": 238,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "test_basarygin.manifestation_signs_overview.t1",
+      "category": "other",
+      "severity": "significant",
+      "problem": "задание: чисел 1, 2 нет в исходных единицах узла",
+      "fix": "заменить числами из исходных единиц главы или убрать",
+      "page_pdf": 231,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "test_basarygin.flow_rate_monitoring.t1",
+      "category": "other",
+      "severity": "significant",
+      "problem": "задание: чисел 1, 2 нет в исходных единицах узла",
+      "fix": "заменить числами из исходных единиц главы или убрать",
+      "page_pdf": 234,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "test_basarygin.pump_pressure_changes.t2",
+      "category": "other",
+      "severity": "significant",
+      "problem": "задание: чисел 1, 2 нет в исходных единицах узла",
+      "fix": "заменить числами из исходных единиц главы или убрать",
+      "page_pdf": 237,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "test_basarygin.mud_properties_changes.t2",
+      "category": "other",
+      "severity": "significant",
+      "problem": "задание: чисел 1, 2 нет в исходных единицах узла",
+      "fix": "заменить числами из исходных единиц главы или убрать",
+      "page_pdf": 239,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "test_basarygin.wellhead_equipment_gas_wells.t2",
+      "category": "other",
+      "severity": "significant",
+      "problem": "задание: чисел 1 нет в исходных единицах узла",
+      "fix": "заменить числами из исходных единиц главы или убрать",
+      "page_pdf": 312,
+      "quote": null
+    }
+  ]
+}

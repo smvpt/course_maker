@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"single\",\"kind\":\"recall\",\"claim_ids\":[\"test_basarygin.gnvp_safety_measures#c2\"],\"prompt\":\"Какая первая мера безопасности должна приниматься при бурении с уменьшением противодействия на пласты на всех стадиях проектирования и строительства скважин?\",\"options\":[{\"text\":\"Прогнозирование пластового (порового) давления\",\"correct\":true,\"misconception\":null},{\"text\":\"Разработка надежных методов проектирования конструкций скважин\",\"correct\":false,\"misconception\":null},{\"text\":\"Создание технических систем для обнаружения флюидопроявлений\",\"correct\":false,\"misconception\":null},{\"text\":\"Разработка и внедрение способов ликвидации проявлений\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Первой мерой безопасности является прогнозирование пластового давления на всех стадиях.\"},{\"type\":\"multiple\",\"kind\":\"understanding\",\"claim_ids\":[\"test_basarygin.gnvp_safety_measures#c4\",\"test_basarygin.gnvp_safety_measures#c5\"],\"prompt\":\"Какие технические средства и системы относятся к мерам безопасности при бурении с уменьшением противодействия на пласты?\",\"options\":[{\"text\":\"Превенторы, дроссели, сепараторы и дегазаторы\",\"correct\":true,\"misconception\":null},{\"text\":\"Системы для обнаружения флюидопроявлений на ранней стадии\",\"correct\":true,\"misconception\":null},{\"text\":\"Автоматические комплексы мгновенной остановки притока без поднятия давления\",\"correct\":false,\"misconception\":\"misc.shut_in_instant_stabilization\"},{\"text\":\"Универсальные датчики мгновенной фиксации притока по всем параметрам\",\"correct\":false,\"misconception\":\"misc.kick_notice_delay\"}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"В число мер входят разработка устьевого оборудования (превенторов, дросселей) и создание систем обнаружения флюидопроявлений.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 4747,
+ "tokens_out": 494,
+ "money_usd": 0.0026591,
+ "attempts": 1
+}

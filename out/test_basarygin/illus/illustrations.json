@@ -1,0 +1,389 @@
+{
+  "ext": {
+    "illus": {
+      "warnings": [
+        {
+          "code": "illus_curve_failed",
+          "message": "график по формуле шага test_basarygin.mud_tank_level_control не построен: значения epsilon=0.1 нет в узле: константы берутся только из узла",
+          "node": "test_basarygin.mud_tank_level_control",
+          "errors": [
+            "значения epsilon=0.1 нет в узле: константы берутся только из узла"
+          ]
+        }
+      ]
+    }
+  },
+  "chapter": "test_basarygin",
+  "illustrations": [
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_basarygin.gnvp_safety_measures.il1",
+      "step_id": "test_basarygin.gnvp_safety_measures",
+      "node_id": "test_basarygin.gnvp_safety_measures",
+      "file": "illus/test_basarygin.gnvp_safety_measures.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Как обеспечивают безопасность при снижении давления в скважине». наблюдение: При бурении с уменьшением противодействия на пласты должны приниматься определенные меры безопасности.; наблюдение: Первая мера безопасности — прогнозирование пластового давления на всех стадиях проектирования и строительства.; наблюдение: Вторая мера безопасности — разработка надежных методов проектирования конструкций скважин.",
+      "source": "утверждения шага, стр. 231",
+      "claim_ids": [
+        "test_basarygin.gnvp_safety_measures#c1",
+        "test_basarygin.gnvp_safety_measures#c2",
+        "test_basarygin.gnvp_safety_measures#c3"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_basarygin.manifestation_signs_overview.il1",
+      "step_id": "test_basarygin.manifestation_signs_overview",
+      "node_id": "test_basarygin.manifestation_signs_overview",
+      "file": "illus/test_basarygin.manifestation_signs_overview.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «По каким внешним признакам можно заметить приток флюида». наблюдение: Поступление пластовых флюидов отражается на гидравлических характеристиках циркуляционного потока и свойствах бурового раствора.; наблюдение: Сигналы и признаки проявлений различаются по информативности, времени поступления и интенсивности притока флюида.; наблюдение: Установлен признак газонефтводопроявлений в виде увеличения объема…",
+      "source": "утверждения шага, стр. 231, 232",
+      "claim_ids": [
+        "test_basarygin.manifestation_signs_overview#c1",
+        "test_basarygin.manifestation_signs_overview#c2",
+        "test_basarygin.manifestation_signs_overview#c3",
+        "test_basarygin.manifestation_signs_overview#c11"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_basarygin.rop_increase_as_sign.il1",
+      "step_id": "test_basarygin.rop_increase_as_sign",
+      "node_id": "test_basarygin.rop_increase_as_sign",
+      "file": "illus/test_basarygin.rop_increase_as_sign.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Как резкий рост скорости бурения предупреждает об опасности». наблюдение: Устойчивое самопроизвольное увеличение механической скорости указывает на углубление скважины в зону АВПД с постоянным нарастанием порового давления в глинах.; наблюдение: В зарубежной практике быстрое повышение механической скорости бурения более чем в 2 раза считается признаком вскрытия пласта высокого давления и возможности…",
+      "source": "утверждения шага, стр. 232",
+      "claim_ids": [
+        "test_basarygin.rop_increase_as_sign#c1",
+        "test_basarygin.rop_increase_as_sign#c5",
+        "test_basarygin.rop_increase_as_sign#c6",
+        "test_basarygin.rop_increase_as_sign#c3",
+        "test_basarygin.rop_increase_as_sign#c2",
+        "test_basarygin.rop_increase_as_sign#c4"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "column"
+      },
+      "id": "test_basarygin.rop_increase_as_sign.il2",
+      "step_id": "test_basarygin.rop_increase_as_sign",
+      "node_id": "test_basarygin.rop_increase_as_sign",
+      "file": "illus/test_basarygin.rop_increase_as_sign.column.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Условная колонка: какие породы упоминает шаг. Цвета по единой легенде курса. Порядок и толщины слоёв условные, колонка не показывает реальный разрез.",
+      "alt": "Условная колонка слоёв «Как резкий рост скорости бурения предупреждает об опасности», не в масштабе. глина, известняк",
+      "source": "утверждения шага, стр. 232",
+      "claim_ids": [
+        "test_basarygin.rop_increase_as_sign#c1",
+        "test_basarygin.rop_increase_as_sign#c6",
+        "test_basarygin.rop_increase_as_sign#c7"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_basarygin.mud_tank_level_control.il1",
+      "step_id": "test_basarygin.mud_tank_level_control",
+      "node_id": "test_basarygin.mud_tank_level_control",
+      "file": "illus/test_basarygin.mud_tank_level_control.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Контроль уровня раствора в емкостях для поиска притока». наблюдение: Увеличение объема раствора в приемных емкостях и повышение его уровня служат прямым признаком поступления пластового флюида в скважину.; наблюдение: Для контроля уровня бурового раствора применяются уровнемеры различных конструкций.; наблюдение: Совершенные измерительные системы контролируют объем и уровень в емкостях насосов и…",
+      "source": "утверждения шага, стр. 232, 233",
+      "claim_ids": [
+        "test_basarygin.mud_tank_level_control#c1",
+        "test_basarygin.mud_tank_level_control#c2",
+        "test_basarygin.mud_tank_level_control#c3",
+        "test_basarygin.mud_tank_level_control#c6",
+        "test_basarygin.mud_tank_level_control#c5",
+        "test_basarygin.mud_tank_level_control#c8"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_basarygin.early_detection_procedures.il1",
+      "step_id": "test_basarygin.early_detection_procedures",
+      "node_id": "test_basarygin.early_detection_procedures",
+      "file": "illus/test_basarygin.early_detection_procedures.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Порядок действий буровиков при подготовке к раннему обнаружению». наблюдение: Для своевременного обнаружения притока пластового флюида изолируют рабочую приемную емкость от других.; наблюдение: Уменьшают поверхность приемной емкости путем установки перегородки.; наблюдение: Устанавливают исходный уровень бурового раствора после возобновления круговой циркуляции.",
+      "source": "утверждения шага, стр. 234",
+      "claim_ids": [
+        "test_basarygin.early_detection_procedures#c1",
+        "test_basarygin.early_detection_procedures#c2",
+        "test_basarygin.early_detection_procedures#c3"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_basarygin.flow_rate_monitoring.il1",
+      "step_id": "test_basarygin.flow_rate_monitoring",
+      "node_id": "test_basarygin.flow_rate_monitoring",
+      "file": "illus/test_basarygin.flow_rate_monitoring.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Изменение расхода выходящего раствора как индикатор притока». наблюдение: Разность объемных скоростей на входе и выходе из скважины измеряется дифференциальными расходомерами.; наблюдение: Индикатор потока позволяет обнаружить начавшееся проявление при превышении расхода на выходе на 10 % и более.; наблюдение: Максимальный расход раствора измеряется прибором в литрах в секунду.; допущение: Условие…",
+      "source": "утверждения шага, стр. 234, 235",
+      "claim_ids": [
+        "test_basarygin.flow_rate_monitoring#c2",
+        "test_basarygin.flow_rate_monitoring#c3",
+        "test_basarygin.flow_rate_monitoring#c6",
+        "test_basarygin.flow_rate_monitoring#c5",
+        "test_basarygin.flow_rate_monitoring#c1",
+        "test_basarygin.flow_rate_monitoring#c4"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "curve",
+        "spec": {
+          "feasible": true,
+          "claim_id": "test_basarygin.flow_rate_monitoring#c5",
+          "title": "Зависимость минимального приращения расхода от максимального",
+          "x_name": "delta_Q_max",
+          "x_label": "Максимальный расход",
+          "x_unit": "л/с",
+          "y_label": "Минимальное приращение расхода",
+          "y_unit": "л/с",
+          "x_min": 10.0,
+          "x_max": 100.0,
+          "constants": {},
+          "expression": "delta_Q_max / 100",
+          "depth_axis": "none",
+          "curve_key": null,
+          "note": "График показывает минимальное приращение расхода для обнаружения проявления в зависимости от максимального расхода прибора."
+        }
+      },
+      "id": "test_basarygin.flow_rate_monitoring.il2",
+      "step_id": "test_basarygin.flow_rate_monitoring",
+      "node_id": "test_basarygin.flow_rate_monitoring",
+      "file": "illus/test_basarygin.flow_rate_monitoring.curve.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "симуляция",
+      "caption": "График показывает минимальное приращение расхода для обнаружения проявления в зависимости от максимального расхода прибора. Значения рассчитаны кодом по формуле главы, а не измерены.",
+      "alt": "Зависимость минимального приращения расхода от максимального. График показывает минимальное приращение расхода для обнаружения проявления в зависимости от максимального расхода прибора.; по горизонтали: Максимальный расход; по вертикали: Минимальное приращение расхода",
+      "source": "формула главы, стр. 234",
+      "claim_ids": [
+        "test_basarygin.flow_rate_monitoring#c5"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_basarygin.mud_gassing_analysis.il1",
+      "step_id": "test_basarygin.mud_gassing_analysis",
+      "node_id": "test_basarygin.mud_gassing_analysis",
+      "file": "illus/test_basarygin.mud_gassing_analysis.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Оценка появления газа в циркулирующем растворе». наблюдение: Относительная приведенная погрешность прибора обозначается через греческую букву дельта и измеряется в процентах.; наблюдение: Насыщение бурового раствора газом происходит по причинам, как связанным, так и не связанным с недоуравновешенностью пластового давления.; наблюдение: Глины переходной зоны часто загазованы, и их разбуривание добавляет…",
+      "source": "утверждения шага, стр. 234, 235, 236",
+      "claim_ids": [
+        "test_basarygin.mud_gassing_analysis#c1",
+        "test_basarygin.mud_gassing_analysis#c2",
+        "test_basarygin.mud_gassing_analysis#c4",
+        "test_basarygin.mud_gassing_analysis#c12",
+        "test_basarygin.mud_gassing_analysis#c3",
+        "test_basarygin.mud_gassing_analysis#c7"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "column"
+      },
+      "id": "test_basarygin.mud_gassing_analysis.il2",
+      "step_id": "test_basarygin.mud_gassing_analysis",
+      "node_id": "test_basarygin.mud_gassing_analysis",
+      "file": "illus/test_basarygin.mud_gassing_analysis.column.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Условная колонка: какие породы упоминает шаг. Цвета по единой легенде курса. Порядок и толщины слоёв условные, колонка не показывает реальный разрез.",
+      "alt": "Условная колонка слоёв «Оценка появления газа в циркулирующем растворе», не в масштабе. глина, песчаник",
+      "source": "утверждения шага, стр. 235",
+      "claim_ids": [
+        "test_basarygin.mud_gassing_analysis#c4"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_basarygin.pump_pressure_changes.il1",
+      "step_id": "test_basarygin.pump_pressure_changes",
+      "node_id": "test_basarygin.pump_pressure_changes",
+      "file": "illus/test_basarygin.pump_pressure_changes.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Как меняется давление насосов при поступлении легкого флюида». наблюдение: Плотность поступающих пластовых флюидов ниже плотности бурового раствора, что нарушает баланс давлений в системе.; наблюдение: Изменение давлений особенно характерно для газопроявлений.; наблюдение: Уменьшение давления в нагнетательной линии описывается формулой падения давления.; допущение: Кольцевое пространство и бурильные…",
+      "source": "утверждения шага, стр. 237",
+      "claim_ids": [
+        "test_basarygin.pump_pressure_changes#c1",
+        "test_basarygin.pump_pressure_changes#c2",
+        "test_basarygin.pump_pressure_changes#c5",
+        "test_basarygin.pump_pressure_changes#c3",
+        "test_basarygin.pump_pressure_changes#c4",
+        "test_basarygin.pump_pressure_changes#c8"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_basarygin.tripping_volume_control.il1",
+      "step_id": "test_basarygin.tripping_volume_control",
+      "node_id": "test_basarygin.tripping_volume_control",
+      "file": "illus/test_basarygin.tripping_volume_control.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Контроль объемов жидкости при спуске и подъеме труб». наблюдение: Большинство газонефтеводопроявлений и выбросов связано со спускоподъемными операциями из-за снижения забойного давления и поступления пластовых флюидов.; наблюдение: При подъеме бурильной колонны забойное давление уменьшается из-за снижения уровня раствора и колебаний гидродинамического давления от движения труб.; наблюдение: Поступление…",
+      "source": "утверждения шага, стр. 238, 239",
+      "claim_ids": [
+        "test_basarygin.tripping_volume_control#c1",
+        "test_basarygin.tripping_volume_control#c2",
+        "test_basarygin.tripping_volume_control#c3",
+        "test_basarygin.tripping_volume_control#c5",
+        "test_basarygin.tripping_volume_control#c11"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_basarygin.mud_properties_changes.il1",
+      "step_id": "test_basarygin.mud_properties_changes",
+      "node_id": "test_basarygin.mud_properties_changes",
+      "file": "illus/test_basarygin.mud_properties_changes.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Диагностика притока по изменению параметров бурового раствора». наблюдение: При поступлении пластового флюида в ствол скважины меняются свойства раствора: плотность, водоотдача, вязкость, напряжения сдвига, сопротивление, хлориды.; наблюдение: Признаки изменения свойств важны при слабых проявлениях с длительным притоком ниже разрешающей способности средств распознавания или при их отсутствии.;…",
+      "source": "утверждения шага, стр. 239",
+      "claim_ids": [
+        "test_basarygin.mud_properties_changes#c1",
+        "test_basarygin.mud_properties_changes#c2",
+        "test_basarygin.mud_properties_changes#c5",
+        "test_basarygin.mud_properties_changes#c3",
+        "test_basarygin.mud_properties_changes#c4"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_basarygin.gnvp_causes_overview.il1",
+      "step_id": "test_basarygin.gnvp_causes_overview",
+      "node_id": "test_basarygin.gnvp_causes_overview",
+      "file": "illus/test_basarygin.gnvp_causes_overview.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Систематизация причин притока флюидов при проводке скважины». наблюдение: В процессе проводки скважины пластовые флюиды постоянно поступают в скважину, в том числе при превышении забойным давлением пластового.; наблюдение: Систематизация причин газонефтеводопроявлений представлена на рисунке 4.3.; вывод: Поступление флюидов из пласта в скважину при превышении забойным давлением пластового практически не…",
+      "source": "утверждения шага, стр. 239",
+      "claim_ids": [
+        "test_basarygin.gnvp_causes_overview#c1",
+        "test_basarygin.gnvp_causes_overview#c2",
+        "test_basarygin.gnvp_causes_overview#c3"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_basarygin.wellhead_equipment_gas_wells.il1",
+      "step_id": "test_basarygin.wellhead_equipment_gas_wells",
+      "node_id": "test_basarygin.wellhead_equipment_gas_wells",
+      "file": "illus/test_basarygin.wellhead_equipment_gas_wells.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Особенности конструкции устья для предотвращения межколонных проявлений». наблюдение: В ряде нефтепромысловых районов при обосновании конструкций газовых скважин наблюдается стремление укрепить их устьевую часть.; наблюдение: Устьевая часть конструкции усиливается за счет дополнительной обсадной колонны перед спуском эксплуатационной.; вывод: Недостаточная герметичность резьбовых соединений стандартных…",
+      "source": "утверждения шага, стр. 312",
+      "claim_ids": [
+        "test_basarygin.wellhead_equipment_gas_wells#c1",
+        "test_basarygin.wellhead_equipment_gas_wells#c3",
+        "test_basarygin.wellhead_equipment_gas_wells#c2"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_basarygin.blowout_preventer_stack.il1",
+      "step_id": "test_basarygin.blowout_preventer_stack",
+      "node_id": "test_basarygin.blowout_preventer_stack",
+      "file": "illus/test_basarygin.blowout_preventer_stack.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Устройство устьевой арматуры и превенторов для контроля скважины». наблюдение: В сложных геологических условиях при опасности нефтегазопроявлений на устье монтируют сложную компоновку оборудования из нескольких превенторов.; наблюдение: Схема устьевого оборудования применяется при вскрытии и испытании пластов в глубоких скважинах на суше и на море.; наблюдение: В компоновку входит манифольд…",
+      "source": "утверждения шага, стр. 312",
+      "claim_ids": [
+        "test_basarygin.blowout_preventer_stack#c1",
+        "test_basarygin.blowout_preventer_stack#c2",
+        "test_basarygin.blowout_preventer_stack#c4",
+        "test_basarygin.blowout_preventer_stack#c3"
+      ],
+      "prompt": null
+    }
+  ]
+}

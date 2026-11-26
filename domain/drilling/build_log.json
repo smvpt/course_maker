@@ -1,0 +1,35 @@
+{
+  "domain": "drilling",
+  "chapter_md": "C:\\Users\\admin\\Documents\\GitHub\\course_maker\\data\\test\\test_basarygin.md",
+  "pages": [
+    231,
+    232,
+    233,
+    234,
+    235,
+    236,
+    237,
+    238,
+    239,
+    312,
+    313,
+    314,
+    315,
+    316,
+    317,
+    318
+  ],
+  "base": "geology",
+  "started": "2026-11-26T12:40:19",
+  "seconds": 21.2,
+  "llm_calls": 4,
+  "counts": {
+    "glossary": 30,
+    "pronunciation": 13,
+    "stress": 40,
+    "misconceptions": 13,
+    "physics_checklist": 21,
+    "it_bridges": 9
+  },
+  "templates": "параметры шаблонов сцен — domain/<домен>/templates/ (П4), отчёт: pipeline.video.coverage"
+}

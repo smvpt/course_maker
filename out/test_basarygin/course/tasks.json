@@ -1,0 +1,969 @@
+{
+  "ext": {
+    "course": {
+      "hashes": {
+        "test_basarygin.gnvp_safety_measures": "c2b76827ee35d264",
+        "test_basarygin.manifestation_signs_overview": "3e0c782c95ebf525",
+        "test_basarygin.rop_increase_as_sign": "b9c6111c9355940e",
+        "test_basarygin.mud_tank_level_control": "04aa549c21480ffe",
+        "test_basarygin.early_detection_procedures": "d1048be33a50d88e",
+        "test_basarygin.flow_rate_monitoring": "d14348028b90ee24",
+        "test_basarygin.mud_gassing_analysis": "85028259cb37a186",
+        "test_basarygin.pump_pressure_changes": "1cfa26bf0a22983f",
+        "test_basarygin.tripping_volume_control": "2ddcad33785bb8b0",
+        "test_basarygin.mud_properties_changes": "2153ec25a245864e",
+        "test_basarygin.gnvp_causes_overview": "64961581ef4b66d0",
+        "test_basarygin.wellhead_equipment_gas_wells": "72285145aaad9856",
+        "test_basarygin.blowout_preventer_stack": "b30001a96efef095"
+      },
+      "warnings": [
+        {
+          "code": "missing_task_type",
+          "message": "нет заданий типов: calc",
+          "types": [
+            "calc"
+          ]
+        }
+      ],
+      "dropped": [
+        {
+          "node": "test_basarygin.mud_tank_level_control",
+          "slot": 1,
+          "type": "gap",
+          "errors": [
+            "ответ слепой проверки не совпал с помеченным: по цитате test_basarygin.mud_tank_level_control#c6 («\\Delta V_{\\min} = \\varepsilon S,») модель выбрала S, помечено площадь. Перепроверь по цитате, какой ответ верен, и перепиши задание"
+          ]
+        },
+        {
+          "node": "test_basarygin.mud_gassing_analysis",
+          "slot": 1,
+          "type": "calc",
+          "errors": [
+            "задание 1: значения Q=45.0 нет в узле",
+            "задание 1: значения rho_0=1.25 нет в узле",
+            "задание 1: значения rho_gr=1.18 нет в узле",
+            "задание 1: числа ['1.18', '1.25', '3', '45'] из условия нет в узле"
+          ]
+        }
+      ],
+      "node_warnings": []
+    }
+  },
+  "chapter": "test_basarygin",
+  "tasks": [
+    {
+      "ext": {},
+      "id": "test_basarygin.gnvp_safety_measures.t1",
+      "type": "single",
+      "step_id": "test_basarygin.gnvp_safety_measures",
+      "claim_ids": [
+        "test_basarygin.gnvp_safety_measures#c2"
+      ],
+      "prompt": "Какая первая мера безопасности должна приниматься при бурении с уменьшением противодействия на пласты на всех стадиях проектирования и строительства скважин?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Разработка и внедрение способов ликвидации проявлений",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Прогнозирование пластового (порового) давления",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Разработка надежных методов проектирования конструкций скважин",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Создание технических систем для обнаружения флюидопроявлений",
+          "misconception": null
+        }
+      ],
+      "answer": "b",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Первой мерой безопасности является прогнозирование пластового давления на всех стадиях.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.gnvp_safety_measures.t2",
+      "type": "multiple",
+      "step_id": "test_basarygin.gnvp_safety_measures",
+      "claim_ids": [
+        "test_basarygin.gnvp_safety_measures#c4",
+        "test_basarygin.gnvp_safety_measures#c5"
+      ],
+      "prompt": "Какие технические средства и системы относятся к мерам безопасности при бурении с уменьшением противодействия на пласты?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Автоматические комплексы мгновенной остановки притока без поднятия давления",
+          "misconception": "misc.shut_in_instant_stabilization"
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Превенторы, дроссели, сепараторы и дегазаторы",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Системы для обнаружения флюидопроявлений на ранней стадии",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Универсальные датчики мгновенной фиксации притока по всем параметрам",
+          "misconception": "misc.kick_notice_delay"
+        }
+      ],
+      "answer": [
+        "b",
+        "c"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "В число мер входят разработка устьевого оборудования (превенторов, дросселей) и создание систем обнаружения флюидопроявлений.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.manifestation_signs_overview.t1",
+      "type": "gap",
+      "step_id": "test_basarygin.manifestation_signs_overview",
+      "claim_ids": [
+        "test_basarygin.manifestation_signs_overview#c1"
+      ],
+      "prompt": "Поступление пластовых флюидов в ствол бурящейся скважины определенным образом отражается на гидравлических характеристиках циркуляционного {{1}} и свойствах бурового {{2}}.",
+      "options": [],
+      "answer": [
+        "потока",
+        "раствора"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Поступление флюида меняет гидравлику потока и свойства раствора, что фиксируют датчики.",
+      "kind": "transfer"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.manifestation_signs_overview.t2",
+      "type": "order",
+      "step_id": "test_basarygin.manifestation_signs_overview",
+      "claim_ids": [
+        "test_basarygin.manifestation_signs_overview#c3",
+        "test_basarygin.manifestation_signs_overview#c4",
+        "test_basarygin.manifestation_signs_overview#c7",
+        "test_basarygin.manifestation_signs_overview#c8"
+      ],
+      "prompt": "Расположите поверхностные признаки проявлений в порядке их перечисления в источнике, начиная с объема раствора в емкостях:",
+      "options": [
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "повышение расхода (скорости) выходящего потока бурового раствора из скважины при неизменной подаче буровых насосов",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "повышение газосодержания в буровом растворе",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "увеличение объема (уровня) бурового раствора в емкостях циркуляционной системы",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o4",
+          "text": "возрастание механической скорости бурения",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3",
+        "o4"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Признаки фиксируются по комплексу параметров циркуляционной системы и режима бурения.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.rop_increase_as_sign.t1",
+      "type": "single",
+      "step_id": "test_basarygin.rop_increase_as_sign",
+      "claim_ids": [
+        "test_basarygin.rop_increase_as_sign#c6",
+        "test_basarygin.rop_increase_as_sign#c7"
+      ],
+      "prompt": "ML-инженер обучает модель раннего предупреждения проявлений по данным механического каротажа. Резкий скачок механической скорости зафиксирован при разбуривании известняков. Как интерпретировать этот признак в данных?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Это признак возможного выброса газа и нефти",
+          "misconception": "misc.drilling_rate_always_kick"
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Это технологическая остановка бурения",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Это признак поглощения раствора из-за провала в каверны",
+          "misconception": null
+        }
+      ],
+      "answer": "c",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "В известняках скачок скорости часто связан с провалами в каверны и поглощением раствора.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.rop_increase_as_sign.t2",
+      "type": "multiple",
+      "step_id": "test_basarygin.rop_increase_as_sign",
+      "claim_ids": [
+        "test_basarygin.rop_increase_as_sign#c2",
+        "test_basarygin.rop_increase_as_sign#c5",
+        "test_basarygin.rop_increase_as_sign#c6"
+      ],
+      "prompt": "Аналитик проверяет правила срабатывания дашборда для буровых бригад. Какие варианты поведения механической скорости бурения требуют особого внимания?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Резкое увеличение скорости в переходной зоне",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Любое увеличение механической скорости бурения",
+          "misconception": "misc.drilling_rate_always_kick"
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Провалы инструмента при вскрытии крупных трещин в известняках",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Повышение скорости бурения более чем в 2 раза",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "a",
+        "c",
+        "d"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Скачки скорости и рост более чем в 2 раза указывают на риски, но в известняках это может быть поглощение.",
+      "kind": "transfer"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.mud_tank_level_control.t2",
+      "type": "order",
+      "step_id": "test_basarygin.mud_tank_level_control",
+      "claim_ids": [
+        "test_basarygin.mud_tank_level_control#c2",
+        "test_basarygin.mud_tank_level_control#c3",
+        "test_basarygin.mud_tank_level_control#c4"
+      ],
+      "prompt": "Расположите элементы контроля уровня бурового раствора в порядке усложнения их функций в циркуляционной системе от простых датчиков до аварийных систем:",
+      "options": [
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "Системы с контролем объема в емкостях насосов и регистрацией",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "Уровнемеры различных конструкций для контроля уровня раствора",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "Системы с дополнительной звуковой и световой сигнализацией в аварийных ситуациях",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Сначала идет базовый уровнемер, затем измерительная система с регистрацией, а в аварийных ситуациях добавляется сигнализация.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.early_detection_procedures.t1",
+      "type": "single",
+      "step_id": "test_basarygin.early_detection_procedures",
+      "claim_ids": [
+        "test_basarygin.early_detection_procedures#c2"
+      ],
+      "prompt": "Для чего на буровой устанавливают специальную перегородку в приемной емкости?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Для ускорения перемешивания технологических добавок раствора.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Для разделения потоков бурового раствора при бурении с сероводородом.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Для уменьшения ее поверхности и повышения точности фиксации объема.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Для изоляции системы очистки от блока приготовления утяжелителя.",
+          "misconception": null
+        }
+      ],
+      "answer": "c",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Установка перегородки уменьшает площадь поверхности емкости, что позволяет точнее замечать изменения объема при притоке.",
+      "kind": "transfer"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.early_detection_procedures.t2",
+      "type": "multiple",
+      "step_id": "test_basarygin.early_detection_procedures",
+      "claim_ids": [
+        "test_basarygin.early_detection_procedures#c4",
+        "test_basarygin.early_detection_procedures#c5",
+        "test_basarygin.early_detection_procedures#c6",
+        "test_basarygin.early_detection_procedures#c7"
+      ],
+      "prompt": "Какие факторы обязательно учитываются или требуют согласования при контроле уровня раствора в емкостях и могут повлиять на данные датчиков?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Переключение насосов и емкостей строго с ведома бурильщика.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Уровень в емкостях полностью стабилен и не зависит от геометрии или внешних факторов.",
+          "misconception": "misc.pit_level_direct"
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Интенсивное выпадение осадков на открытой буровой площадке.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Объем введенных добавок при обработке и утяжелении раствора.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "e",
+          "text": "Потери бурового раствора при его очистке и испарении.",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "a",
+        "c",
+        "d",
+        "e"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Датчики уровня реагируют на любые внешние факторы и переключения, которые нужно фильтровать, иначе алгоритмы дадут сбой.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.flow_rate_monitoring.t1",
+      "type": "gap",
+      "step_id": "test_basarygin.flow_rate_monitoring",
+      "claim_ids": [
+        "test_basarygin.flow_rate_monitoring#c2",
+        "test_basarygin.flow_rate_monitoring#c3"
+      ],
+      "prompt": "Разность объемных скоростей на входе и выходе из скважины измеряется специальными приборами, а обнаружение начавшегося проявления контролируют с помощью {{1}}, который фиксирует превышение расхода на выходе на {{2}} и более.",
+      "options": [],
+      "answer": [
+        "индикатора потока",
+        "10 %"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Для контроля начавшегося проявления используется индикатор потока, фиксирующий превышение расхода на 10% и более.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.flow_rate_monitoring.t2",
+      "type": "order",
+      "step_id": "test_basarygin.flow_rate_monitoring",
+      "claim_ids": [
+        "test_basarygin.flow_rate_monitoring#c1",
+        "test_basarygin.flow_rate_monitoring#c4",
+        "test_basarygin.flow_rate_monitoring#c7"
+      ],
+      "prompt": "Расположите этапы контроля и развития ситуации при притоке пластового флюида в правильной последовательности:",
+      "options": [
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "Поступление пластового флюида ускоряет поток бурового раствора из-за ограничения стенок скважины.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "Эффективность обнаружения проявления оценивается с учетом текущей подачи насосов.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "Изменение расхода фиксируется расходомерами и сопоставляется с уровнем в приемных емкостях.",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Сначала флюид ускоряет поток, затем расход фиксируется приборами и сопоставляется с емкостями, а эффективность оценивается по подаче насосов.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.mud_gassing_analysis.t2",
+      "type": "single",
+      "step_id": "test_basarygin.mud_gassing_analysis",
+      "claim_ids": [
+        "test_basarygin.mud_gassing_analysis#c2",
+        "test_basarygin.mud_gassing_analysis#c24"
+      ],
+      "prompt": "Модель на основе датчиков газа зафиксировала насыщение раствора на интервале разбуривания глинистой переходной зоны. Как ML-инженеру интерпретировать этот сигнал?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Это штатный индикатор условий поступления газа из породы, который не является причиной выброса сам по себе.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Это признак аварийного выброса, требующий немедленного утяжеления бурового раствора.",
+          "misconception": "misc.gas_cut_mud_is_kick"
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Это однозначная ошибка датчиков, так как в глинах газ содержаться не может.",
+          "misconception": null
+        }
+      ],
+      "answer": "a",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Газирование раствора служит признаком условий поступления газа, а не причиной выброса.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.pump_pressure_changes.t1",
+      "type": "multiple",
+      "step_id": "test_basarygin.pump_pressure_changes",
+      "claim_ids": [
+        "test_basarygin.pump_pressure_changes#c12",
+        "test_basarygin.pump_pressure_changes#c13"
+      ],
+      "prompt": "ML-инженеру и аналитику нужно настроить алерт на телеметрию давления на буровых насосах. Какие паттерны в данных требуют внимания и не позволяют сделать однозначный вывод?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Снижение давления на насосах может быть вызвано движением газовой пачки из-за свабирования при подъеме колонны.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Наблюдаемое снижение давления на насосах само по себе не говорит о слабой интенсивности проявлений.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Падение давления на насосах однозначно подтверждает слабый газовый выброс.",
+          "misconception": "misc.pump_pressure_always_drops"
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Падение давления всегда означает, что в скважину поступила вода, а не газ.",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Падение давления может быть вызвано свабированием и не доказывает малую интенсивность притока.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.pump_pressure_changes.t2",
+      "type": "gap",
+      "step_id": "test_basarygin.pump_pressure_changes",
+      "claim_ids": [
+        "test_basarygin.pump_pressure_changes#c3",
+        "test_basarygin.pump_pressure_changes#c7"
+      ],
+      "prompt": "Кольцевое пространство и бурильные трубы представляют собой систему сообщающихся сосудов, поэтому при поступлении легкого флюида происходит перераспределение давлений за счет снижения давления на буровых {{1}}. При этом поднявшийся газ расширяется, увеличивая высоту столба флюида и постоянно снижая давление на {{2}}.",
+      "options": [],
+      "answer": [
+        "насосах",
+        "насосах"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Система сообщающихся сосудов приводит к изменению давления на насосах по мере подъема газа.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.tripping_volume_control.t1",
+      "type": "order",
+      "step_id": "test_basarygin.tripping_volume_control",
+      "claim_ids": [
+        "test_basarygin.tripping_volume_control#c12",
+        "test_basarygin.tripping_volume_control#c14"
+      ],
+      "prompt": "Расположите шаги контроля объема вытесняемого раствора в правильной последовательности при спуске труб.",
+      "options": [
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "Сверять объем вытесняемой жидкости с контрольным после спуска каждых 10 свечей",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "Отключить остальные приемные емкости от желобной системы",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "Контролировать объем вытесняемой жидкости по одной приемной емкости",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Контроль ведется по одной изолированной емкости со сверкой объема после спуска каждых 10 свечей.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.tripping_volume_control.t2",
+      "type": "single",
+      "step_id": "test_basarygin.tripping_volume_control",
+      "claim_ids": [
+        "test_basarygin.tripping_volume_control#c6",
+        "test_basarygin.tripping_volume_control#c13"
+      ],
+      "prompt": "Какое пороговое отклонение фактического объема долива или вытеснения от расчетного указывает на начало газонефтеводопроявления?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Любое случайное отклонение уровня в пределах погрешности датчиков",
+          "misconception": "misc.pit_level_direct"
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Уменьшение или увеличение объема на 1 кубический метр",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Отклонение объема строго на величину чистого объема извлеченного металла",
+          "misconception": "misc.tripping_fill_exact"
+        }
+      ],
+      "answer": "b",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Критическим отклонением для фиксации начала проявления является разница в 1 кубический метр.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.mud_properties_changes.t1",
+      "type": "multiple",
+      "step_id": "test_basarygin.mud_properties_changes",
+      "claim_ids": [
+        "test_basarygin.mud_properties_changes#c1",
+        "test_basarygin.mud_properties_changes#c3",
+        "test_basarygin.mud_properties_changes#c5"
+      ],
+      "prompt": "Какие особенности характерны для признаков проявления пластового флюида по физико-химическим свойствам бурового раствора в данных?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Причиной отклонения свойств растворов от заданных значений могут быть иные факторы.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Для достоверной оценки анализируют изменение нескольких показателей одновременно.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Изменения свойств бурового раствора на устье показывают забойные параметры без задержки по времени.",
+          "misconception": "misc.mud_properties_fast_response"
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Информация поступает на поверхность с запаздыванием на время продвижения забойных пачек к устью.",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "d"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Свойства раствора меняются с задержкой на подъем пачки, а отклонения могут быть вызваны другими факторами.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.mud_properties_changes.t2",
+      "type": "gap",
+      "step_id": "test_basarygin.mud_properties_changes",
+      "claim_ids": [
+        "test_basarygin.mud_properties_changes#c1",
+        "test_basarygin.mud_properties_changes#c3"
+      ],
+      "prompt": "При поступлении пластового флюида в ствол скважины изменяются показатели свойств раствора: плотность, водоотдача, вязкость, напряжения сдвига, удельное сопротивление и концентрация {{1}}. Более достоверно судить о проявлении можно по изменению нескольких показателей {{2}}, так как отклонения могут быть вызваны и другими факторами.",
+      "options": [],
+      "answer": [
+        "хлоридов",
+        "одновременно"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Концентрация хлоридов и оценка нескольких показателей одновременно позволяют достоверно диагностировать проявление.",
+      "kind": "transfer"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.gnvp_causes_overview.t1",
+      "type": "order",
+      "step_id": "test_basarygin.gnvp_causes_overview",
+      "claim_ids": [
+        "test_basarygin.gnvp_causes_overview#c1",
+        "test_basarygin.gnvp_causes_overview#c2",
+        "test_basarygin.gnvp_causes_overview#c3"
+      ],
+      "prompt": "Расположите этапы и факты анализа причин поступления пластовых флюидов в логической последовательности проводки скважины:",
+      "options": [
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "Систематизация причин газонефтеводопроявлений для анализа ситуации",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "Оценка факта, что при превышении забойным давлением пластового ситуация не ведет к выбросу",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "Постоянное поступление флюидов в скважину в процессе ее проводки",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Сначала флюиды поступают при проводке, затем причины систематизируются, после чего оценивается отсутствие угрозы при нормальном перепаде давления.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.gnvp_causes_overview.t2",
+      "type": "single",
+      "step_id": "test_basarygin.gnvp_causes_overview",
+      "claim_ids": [
+        "test_basarygin.gnvp_causes_overview#c1",
+        "test_basarygin.gnvp_causes_overview#c3"
+      ],
+      "prompt": "Как влияет превышение забойного давления над пластовым на поступление флюидов из пласта в процессе проводки скважины?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Создается критическая предвыбросовая ситуация, требующая немедленной остановки бурения.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Флюиды полностью блокируются и вообще никогда не попадают в ствол скважины.",
+          "misconception": "misc.overbalance_prevents_all_influx"
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Флюиды могут постоянно поступать в скважину, но предвыбросовой ситуации не возникает.",
+          "misconception": null
+        }
+      ],
+      "answer": "c",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Флюиды поступают постоянно даже при превышении давления, но это не создает угрозы выброса.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.wellhead_equipment_gas_wells.t1",
+      "type": "multiple",
+      "step_id": "test_basarygin.wellhead_equipment_gas_wells",
+      "claim_ids": [
+        "test_basarygin.wellhead_equipment_gas_wells#c1",
+        "test_basarygin.wellhead_equipment_gas_wells#c2",
+        "test_basarygin.wellhead_equipment_gas_wells#c3"
+      ],
+      "prompt": "Выберите ситуации, в которых при проектировании газовой скважины может применяться дополнительное укрепление устья обсадной колонной:",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "исключительно для мгновенной автоматической ликвидации проявлений",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "при обосновании конкретных конструкций в ряде нефтепромысловых районов",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "всегда при достижении любой глубины бурения",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "для предотвращения межколонных проявлений и грифонообразования",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "b",
+        "d"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Дополнительная колонна устанавливается выборочно при обосновании конструкций для предотвращения перетоков газа.",
+      "kind": "transfer"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.wellhead_equipment_gas_wells.t2",
+      "type": "gap",
+      "step_id": "test_basarygin.wellhead_equipment_gas_wells",
+      "claim_ids": [
+        "test_basarygin.wellhead_equipment_gas_wells#c2"
+      ],
+      "prompt": "Параметры давления и герметичности устья на скважинах без дополнительного укрепления будут отклоняться из-за возможных перетоков, что приводит к межколонным проявлениям и в наиболее тяжелых случаях к {{1}}.",
+      "options": [],
+      "answer": [
+        "грифонообразования"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Недостаточная герметичность резьбовых соединений стандартных труб при эксплуатации газовых скважин вызывает межколонные проявления и грифонообразования.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.blowout_preventer_stack.t1",
+      "type": "order",
+      "step_id": "test_basarygin.blowout_preventer_stack",
+      "claim_ids": [
+        "test_basarygin.blowout_preventer_stack#c4"
+      ],
+      "prompt": "Расположите элементы устьевого оборудования в порядке их перечисления в описании компоновки для контроля скважины.",
+      "options": [
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "штуцерный манифольд",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "нагнетательный манифольд",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "кольцевой превентор",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o4",
+          "text": "трубные превенторы",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o5",
+          "text": "превентор с глухими плашками",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3",
+        "o4",
+        "o5"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Порядок элементов соответствует списку оборудования в тексте схемы обвязки.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "test_basarygin.blowout_preventer_stack.t2",
+      "type": "single",
+      "step_id": "test_basarygin.blowout_preventer_stack",
+      "claim_ids": [
+        "test_basarygin.blowout_preventer_stack#c3"
+      ],
+      "prompt": "ML-инженер автоматизирует контроль параметров бурения для оперативного обнаружения осложнений. Какая главная задача устьевой компоновки превенторов и манифольдов при высоких пластовых давлениях?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Контроль бурящейся скважины и ликвидация возникающих нефте- и газопроявлений или выбросов",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Мгновенная полная остановка притока без закрытия превенторов за счет штуцерных линий",
+          "misconception": "misc.shut_in_instant_stabilization"
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Снижение забойного давления ниже пластового для безопасного вскрытия пластов",
+          "misconception": "misc.overbalance_prevents_all_influx"
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Автоматическое утяжеление бурового раствора до стабилизации давления на насосах",
+          "misconception": "misc.kill_mud_density_arbitrary"
+        }
+      ],
+      "answer": "a",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Компоновка предназначена для контроля скважины при высоких давлениях и ликвидации проявлений.",
+      "kind": "transfer"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"c\"],\"claim_id\":\"test_basarygin.early_detection_procedures#c2\",\"evidence\":\"уменьшают поверхность приемной емкости установкой перегородки;\"},{\"n\":2,\"answer\":[\"a\",\"c\",\"d\",\"e\"],\"claim_id\":\"test_basarygin.early_detection_procedures#c4\",\"evidence\":\"корректируют положение исходного уровня с учетом объема введенных добавок при обработке и утяжелении бурового раствора\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1324,
+ "tokens_out": 130,
+ "money_usd": 0.0007222000000000001,
+ "attempts": 1
+}

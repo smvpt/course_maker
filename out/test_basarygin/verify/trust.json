@@ -1,0 +1,42 @@
+{
+  "chapter": "test_basarygin",
+  "generated": "2026-11-26T12:49",
+  "nodes": 13,
+  "coverage": {
+    "units": 110,
+    "in_nodes": 109,
+    "with_reason": 1,
+    "pct_in_nodes": 99.1,
+    "pct_accounted": 100.0
+  },
+  "quotes": {
+    "claims": 125,
+    "found": 124,
+    "other_page": 0,
+    "not_found": 1,
+    "pct": 99.2
+  },
+  "numbers": {
+    "total": 36,
+    "found": 36,
+    "pct": 100.0
+  },
+  "remarks": {
+    "critical": 1,
+    "significant": 8,
+    "minor": 0
+  },
+  "manual": {
+    "person_minutes": 0,
+    "mentor_minutes": 0,
+    "edits": 0
+  },
+  "cost": {
+    "llm_calls": 118,
+    "cached": 0,
+    "money_usd": 0.3723,
+    "unpriced_calls": 0,
+    "tokens_in": 598426,
+    "tokens_out": 78206
+  }
+}

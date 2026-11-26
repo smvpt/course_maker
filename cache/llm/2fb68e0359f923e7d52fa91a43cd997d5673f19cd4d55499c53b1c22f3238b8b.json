@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Основные меры безопасности при бурении\",\"note\":\"Нажми на меру безопасности, чтобы узнать её назначение.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"Прогнозирование давления\",\"description\":\"Прогнозирование пластового (порового) давления на всех стадиях проектирования и строительства скважин.\",\"claim_id\":\"test_basarygin.gnvp_safety_measures#c2\",\"rock\":null},{\"label\":\"Конструкции скважин\",\"description\":\"Разработка надежных методов проектирования конструкций скважин.\",\"claim_id\":\"test_basarygin.gnvp_safety_measures#c3\",\"rock\":null},{\"label\":\"Устьевое оборудование\",\"description\":\"Разработка и производство надежного устьевого оборудования – превенторов, дросселей, сепараторов, дегазаторов, запорной арматуры и др.\",\"claim_id\":\"test_basarygin.gnvp_safety_measures#c4\",\"rock\":null},{\"label\":\"Технические системы обнаружения\",\"description\":\"Создание технических систем для обнаружения флюидопроявлений на ранней стадии их возникновения.\",\"claim_id\":\"test_basarygin.gnvp_safety_measures#c5\",\"rock\":null},{\"label\":\"Расчет забойного давления\",\"description\":\"Разработка более совершенных методов расчета изменения забойного давления при бурении, спускоподъемных операциях, а также во время длительных остановок.\",\"claim_id\":\"test_basarygin.gnvp_safety_measures#c6\",\"rock\":null},{\"label\":\"Ликвидация проявлений\",\"description\":\"Разработка и внедрение способов и технических средств ликвидации проявлений.\",\"claim_id\":\"test_basarygin.gnvp_safety_measures#c7\",\"rock\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 3191,
+ "tokens_out": 527,
+ "money_usd": 0.0022748,
+ "attempts": 1
+}

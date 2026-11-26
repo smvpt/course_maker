@@ -1,0 +1,298 @@
+{
+  "ext": {
+    "core": {
+      "foreign_routes": [],
+      "template_fixed": [
+        {
+          "node": "test_basarygin.gnvp_safety_measures",
+          "was": null,
+          "now": "T2"
+        },
+        {
+          "node": "test_basarygin.early_detection_procedures",
+          "was": null,
+          "now": "T2"
+        }
+      ],
+      "hooks_unset": [
+        "test_basarygin.pump_pressure_changes"
+      ]
+    }
+  },
+  "chapter": "test_basarygin",
+  "routes": [
+    {
+      "ext": {
+        "core": {
+          "video_score": 3
+        }
+      },
+      "node_id": "test_basarygin.gnvp_safety_measures",
+      "format": "практикум на данных",
+      "secondary_format": "интерактив",
+      "video_scores": {
+        "ext": {},
+        "time": 1,
+        "invisible": 1,
+        "scale": 0,
+        "counterintuitive": 0,
+        "cause_effect": 1
+      },
+      "hook_short": false,
+      "template": "T2",
+      "why": "Тип трудности Пр (процедура). Оценка по критериям: time=1, invisible=1, cause_effect=1. Практикум на данных закрепляет расчеты и меры безопасности."
+    },
+    {
+      "ext": {
+        "core": {
+          "video_score": 1
+        }
+      },
+      "node_id": "test_basarygin.manifestation_signs_overview",
+      "format": "карточки",
+      "secondary_format": "текст",
+      "video_scores": {
+        "ext": {},
+        "time": 0,
+        "invisible": 0,
+        "scale": 0,
+        "counterintuitive": 0,
+        "cause_effect": 1
+      },
+      "hook_short": false,
+      "template": null,
+      "why": "Тип трудности Р и И. Определения и справочные факты о признаках проявлений подаются через карточки."
+    },
+    {
+      "ext": {
+        "core": {
+          "video_score": 5
+        }
+      },
+      "node_id": "test_basarygin.rop_increase_as_sign",
+      "format": "практикум на данных",
+      "secondary_format": "интерактив",
+      "video_scores": {
+        "ext": {},
+        "time": 1,
+        "invisible": 1,
+        "scale": 0,
+        "counterintuitive": 1,
+        "cause_effect": 2
+      },
+      "hook_short": false,
+      "template": "T2",
+      "why": "Тип трудности И (косвенное измерение). Критерии: invisible=1, counterintuitive=1, cause_effect=2. Анализ реальных данных по механической скорости."
+    },
+    {
+      "ext": {
+        "core": {
+          "video_score": 5
+        }
+      },
+      "node_id": "test_basarygin.mud_tank_level_control",
+      "format": "практикум на данных",
+      "secondary_format": "интерактив",
+      "video_scores": {
+        "ext": {},
+        "time": 1,
+        "invisible": 1,
+        "scale": 0,
+        "counterintuitive": 1,
+        "cause_effect": 2
+      },
+      "hook_short": false,
+      "template": "T2",
+      "why": "Тип трудности И (косвенное измерение) и Пр. Критерии: invisible=1, counterintuitive=1, cause_effect=2. Расчет погрешности и объема в емкостях."
+    },
+    {
+      "ext": {
+        "core": {
+          "video_score": 2
+        }
+      },
+      "node_id": "test_basarygin.early_detection_procedures",
+      "format": "практикум на данных",
+      "secondary_format": "интерактив",
+      "video_scores": {
+        "ext": {},
+        "time": 1,
+        "invisible": 0,
+        "scale": 0,
+        "counterintuitive": 0,
+        "cause_effect": 1
+      },
+      "hook_short": false,
+      "template": "T2",
+      "why": "Тип трудности Пр (процедура). Критерии: time=1, cause_effect=1. Отработка пошаговых процедур обнаружения притока."
+    },
+    {
+      "ext": {
+        "core": {
+          "video_score": 5
+        }
+      },
+      "node_id": "test_basarygin.flow_rate_monitoring",
+      "format": "интерактив",
+      "secondary_format": "практикум на данных",
+      "video_scores": {
+        "ext": {},
+        "time": 1,
+        "invisible": 1,
+        "scale": 0,
+        "counterintuitive": 1,
+        "cause_effect": 2
+      },
+      "hook_short": false,
+      "template": "T2",
+      "why": "Тип трудности И (косвенное измерение) и Ф. Критерии: invisible=1, counterintuitive=1, cause_effect=2. Интерактив на параметры расхода."
+    },
+    {
+      "ext": {
+        "core": {
+          "video_score": 5
+        }
+      },
+      "node_id": "test_basarygin.mud_gassing_analysis",
+      "format": "интерактив",
+      "secondary_format": "практикум на данных",
+      "video_scores": {
+        "ext": {},
+        "time": 1,
+        "invisible": 1,
+        "scale": 0,
+        "counterintuitive": 1,
+        "cause_effect": 2
+      },
+      "hook_short": false,
+      "template": "T2",
+      "why": "Тип трудности И и Н. Критерии: invisible=1, counterintuitive=1, cause_effect=2. Анализ сценариев газирования бурового раствора."
+    },
+    {
+      "ext": {
+        "core": {
+          "video_score": 7
+        }
+      },
+      "node_id": "test_basarygin.pump_pressure_changes",
+      "format": "шортс",
+      "secondary_format": "интерактив",
+      "video_scores": {
+        "ext": {},
+        "time": 2,
+        "invisible": 2,
+        "scale": 0,
+        "counterintuitive": 1,
+        "cause_effect": 2
+      },
+      "hook_short": false,
+      "template": "T1",
+      "why": "Тип трудности М (механизм процесса). Критерии: time=2, invisible=2, counterintuitive=1, cause_effect=2. Анимация изменения давления и движения флюида."
+    },
+    {
+      "ext": {
+        "core": {
+          "video_score": 5
+        }
+      },
+      "node_id": "test_basarygin.tripping_volume_control",
+      "format": "практикум на данных",
+      "secondary_format": "интерактив",
+      "video_scores": {
+        "ext": {},
+        "time": 1,
+        "invisible": 1,
+        "scale": 0,
+        "counterintuitive": 1,
+        "cause_effect": 2
+      },
+      "hook_short": false,
+      "template": "T2",
+      "why": "Тип трудности Пр и И. Критерии: invisible=1, counterintuitive=1, cause_effect=2. Контроль баланса объемов при СПО."
+    },
+    {
+      "ext": {
+        "core": {
+          "video_score": 4
+        }
+      },
+      "node_id": "test_basarygin.mud_properties_changes",
+      "format": "интерактив",
+      "secondary_format": "практикум на данных",
+      "video_scores": {
+        "ext": {},
+        "time": 1,
+        "invisible": 1,
+        "scale": 0,
+        "counterintuitive": 0,
+        "cause_effect": 2
+      },
+      "hook_short": false,
+      "template": "T2",
+      "why": "Тип трудности И и Р. Критерии: time=1, invisible=1, cause_effect=2. Интерпретация изменения свойств раствора с задержкой по времени."
+    },
+    {
+      "ext": {
+        "core": {
+          "video_score": 6
+        }
+      },
+      "node_id": "test_basarygin.gnvp_causes_overview",
+      "format": "шортс",
+      "secondary_format": "карточки",
+      "video_scores": {
+        "ext": {},
+        "time": 2,
+        "invisible": 1,
+        "scale": 0,
+        "counterintuitive": 1,
+        "cause_effect": 2
+      },
+      "hook_short": false,
+      "template": "T1",
+      "why": "Тип трудности М (механизм процесса). Критерии: time=2, invisible=1, counterintuitive=1, cause_effect=2. Показ причин поступления флюидов."
+    },
+    {
+      "ext": {
+        "core": {
+          "video_score": 2
+        }
+      },
+      "node_id": "test_basarygin.wellhead_equipment_gas_wells",
+      "format": "практикум на данных",
+      "secondary_format": "карточки",
+      "video_scores": {
+        "ext": {},
+        "time": 0,
+        "invisible": 1,
+        "scale": 0,
+        "counterintuitive": 0,
+        "cause_effect": 1
+      },
+      "hook_short": false,
+      "template": null,
+      "why": "Тип трудности Пр (процедура). Критерии: invisible=1, cause_effect=1. Изучение укрепления устья и конструкций."
+    },
+    {
+      "ext": {
+        "core": {
+          "video_score": 5
+        }
+      },
+      "node_id": "test_basarygin.blowout_preventer_stack",
+      "format": "интерактив",
+      "secondary_format": "практикум на данных",
+      "video_scores": {
+        "ext": {},
+        "time": 1,
+        "invisible": 2,
+        "scale": 1,
+        "counterintuitive": 0,
+        "cause_effect": 1
+      },
+      "hook_short": false,
+      "template": "T3",
+      "why": "Тип трудности П (пространство) и Пр. Критерии: invisible=2, scale=1, time=1. 3D-интерактив обвязки противовыбросового оборудования."
+    }
+  ]
+}

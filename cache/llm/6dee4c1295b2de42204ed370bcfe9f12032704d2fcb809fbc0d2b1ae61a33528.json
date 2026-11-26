@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"gap\",\"kind\":\"transfer\",\"claim_ids\":[\"test_basarygin.manifestation_signs_overview#c1\"],\"prompt\":\"Поступление пластовых флюидов в ствол бурящейся скважины определенным образом отражается на гидравлических характеристиках циркуляционного {{1}} и свойствах бурового {{2}}.\",\"options\":[],\"gap_answers\":[\"потока\",\"раствора\"],\"calc\":null,\"explanation\":\"Поступление флюида меняет гидравлику потока и свойства раствора, что фиксируют датчики.\"},{\"type\":\"order\",\"kind\":\"data\",\"claim_ids\":[\"test_basarygin.manifestation_signs_overview#c3\",\"test_basarygin.manifestation_signs_overview#c4\",\"test_basarygin.manifestation_signs_overview#c7\",\"test_basarygin.manifestation_signs_overview#c8\"],\"prompt\":\"Расположите поверхностные признаки проявлений в порядке их перечисления в источнике, начиная с объема раствора в емкостях:\",\"options\":[{\"text\":\"увеличение объема (уровня) бурового раствора в емкостях циркуляционной системы\",\"correct\":false,\"misconception\":null},{\"text\":\"повышение расхода (скорости) выходящего потока бурового раствора из скважины при неизменной подаче буровых насосов\",\"correct\":false,\"misconception\":null},{\"text\":\"повышение газосодержания в буровом растворе\",\"correct\":false,\"misconception\":null},{\"text\":\"возрастание механической скорости бурения\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Признаки фиксируются по комплексу параметров циркуляционной системы и режима бурения.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 5202,
+ "tokens_out": 446,
+ "money_usd": 0.0026756,
+ "attempts": 1
+}

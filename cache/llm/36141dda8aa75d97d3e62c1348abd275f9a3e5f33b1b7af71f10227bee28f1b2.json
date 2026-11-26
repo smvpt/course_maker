@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"order\",\"kind\":\"data\",\"claim_ids\":[\"test_basarygin.tripping_volume_control#c12\",\"test_basarygin.tripping_volume_control#c14\"],\"prompt\":\"Расположите шаги контроля объема вытесняемого раствора в правильной последовательности при спуске труб.\",\"options\":[{\"text\":\"Отключить остальные приемные емкости от желобной системы\",\"correct\":false,\"misconception\":null},{\"text\":\"Контролировать объем вытесняемой жидкости по одной приемной емкости\",\"correct\":false,\"misconception\":null},{\"text\":\"Сверять объем вытесняемой жидкости с контрольным после спуска каждых 10 свечей\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Контроль ведется по одной изолированной емкости со сверкой объема после спуска каждых 10 свечей.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 6670,
+ "tokens_out": 222,
+ "money_usd": 0.0025559999999999997,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"false_statement\":\"Превышение расхода на выходе над входом не зависит от текущей подачи насосов.\",\"true_statement\":\"Эффективность обнаружения газопроявлений расходомером существенно зависит от подачи насосов.\",\"explain_false\":\"На практике эффективность обнаружения и время реакции напрямую зависят от производительности насосов.\",\"explain_true\":\"С увеличением подачи время обнаружения проявления при одном и том же притоке газа в скважину сокращается.\",\"claim_ids\":[\"test_basarygin.flow_rate_monitoring#c7\",\"test_basarygin.flow_rate_monitoring#c8\"]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/guess",
+ "tokens_in": 2932,
+ "tokens_out": 161,
+ "money_usd": 0.0012821,
+ "attempts": 1
+}

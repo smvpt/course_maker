@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"claim_id\":\"test_basarygin.mud_tank_level_control#c6\",\"title\":\"Зависимость минимального объема притока от площади емкостей\",\"x_name\":\"S\",\"x_label\":\"Площадь поверхности жидкости\",\"x_unit\":\"м²\",\"y_label\":\"Минимальный регистрируемый объем притока\",\"y_unit\":\"м³\",\"x_min\":5.0,\"x_max\":40.0,\"constants\":{\"epsilon\":0.05},\"expression\":\"epsilon * S\",\"depth_axis\":\"none\",\"curve_key\":null,\"note\":\"График показывает рост минимального фиксируемого объема притока при увеличении площади поверхности жидкости в приемных емкостях.\"}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/illus_curve",
+ "tokens_in": 4500,
+ "tokens_out": 212,
+ "money_usd": 0.00188,
+ "attempts": 1
+}

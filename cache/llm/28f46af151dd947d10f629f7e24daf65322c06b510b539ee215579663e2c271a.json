@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"claim_id\":\"test_basarygin.pump_pressure_changes#c5\",\"title\":\"Падение давления на насосах от высоты столба флюида\",\"slider_name\":\"l_phi\",\"slider_label\":\"Высота столба флюида\",\"slider_unit\":\"м\",\"slider_min\":0.0,\"slider_max\":100.0,\"x_name\":\"rho_phi\",\"x_label\":\"Плотность флюида\",\"x_unit\":\"кг/м³\",\"x_min\":100.0,\"x_max\":1000.0,\"y_label\":\"Падение давления\",\"y_unit\":\"Па\",\"constants\":{\"g\":9.81,\"rho\":1200.0},\"expression\":\"g * l_phi * (rho - rho_phi)\",\"curve_key\":\"PRESSURE\",\"note\":\"При увеличении высоты столба легкого флюида падение давления на насосах возрастает.\"}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/interactive",
+ "tokens_in": 4683,
+ "tokens_out": 279,
+ "money_usd": 0.0021024,
+ "attempts": 1
+}

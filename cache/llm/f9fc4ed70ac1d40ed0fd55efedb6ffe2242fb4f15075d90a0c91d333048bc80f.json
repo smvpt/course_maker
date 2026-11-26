@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"gap\",\"kind\":\"recall\",\"claim_ids\":[\"test_basarygin.flow_rate_monitoring#c2\",\"test_basarygin.flow_rate_monitoring#c3\"],\"prompt\":\"Разность объемных скоростей на входе и выходе из скважины измеряется специальными приборами, а обнаружение начавшегося проявления контролируют с помощью {{1}}, который фиксирует превышение расхода на выходе на {{2}} и более.\",\"options\":[],\"gap_answers\":[\"индикатора потока\",\"10 %\"],\"calc\":null,\"explanation\":\"Для контроля начавшегося проявления используется индикатор потока, фиксирующий превышение расхода на 10% и более.\"},{\"type\":\"order\",\"kind\":\"understanding\",\"claim_ids\":[\"test_basarygin.flow_rate_monitoring#c1\",\"test_basarygin.flow_rate_monitoring#c4\",\"test_basarygin.flow_rate_monitoring#c7\"],\"prompt\":\"Расположите этапы контроля и развития ситуации при притоке пластового флюида в правильной последовательности:\",\"options\":[{\"text\":\"Поступление пластового флюида ускоряет поток бурового раствора из-за ограничения стенок скважины.\",\"correct\":false,\"misconception\":null},{\"text\":\"Изменение расхода фиксируется расходомерами и сопоставляется с уровнем в приемных емкостях.\",\"correct\":false,\"misconception\":null},{\"text\":\"Эффективность обнаружения проявления оценивается с учетом текущей подачи насосов.\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Сначала флюид ускоряет поток, затем расход фиксируется приборами и сопоставляется с емкостями, а эффективность оценивается по подаче насосов.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 5032,
+ "tokens_out": 432,
+ "money_usd": 0.0025896,
+ "attempts": 1
+}

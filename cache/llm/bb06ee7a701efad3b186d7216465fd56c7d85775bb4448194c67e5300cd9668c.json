@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"a\",\"b\"],\"claim_id\":\"test_basarygin.pump_pressure_changes#c12\",\"evidence\":\"Если наблюдается только снижение давления на насосах, то это еще не свидетельствует о слабой интенсивности проявлений.\"},{\"n\":2,\"answer\":[\"насосах\",\"насосах\"],\"claim_id\":\"test_basarygin.pump_pressure_changes#c3\",\"evidence\":\"происходит новое перераспределение давлений за счет снижения давления на буровых насосах.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1246,
+ "tokens_out": 136,
+ "money_usd": 0.0007138,
+ "attempts": 1
+}

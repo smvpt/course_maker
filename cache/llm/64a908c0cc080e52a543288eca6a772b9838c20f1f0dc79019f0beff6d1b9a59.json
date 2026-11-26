@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"order\",\"kind\":\"data\",\"claim_ids\":[\"test_basarygin.tripping_volume_control#c7\",\"test_basarygin.tripping_volume_control#c8\",\"test_basarygin.tripping_volume_control#c14\"],\"prompt\":\"Расположите шаги контроля объемов при спускоподъемных операциях в правильной последовательности, начиная с подготовки измерительного оборудования и заканчивая регламентными замерами при спуске.\",\"options\":[{\"text\":\"Установка мерной емкости с уровнемером объемом в 1,2-1,5 раза больше колонны\",\"correct\":true,\"misconception\":null},{\"text\":\"Подача раствора центробежным насосом и возврат избытка в мерник по сливной трубе\",\"correct\":true,\"misconception\":null},{\"text\":\"Сверка объема вытесняемой жидкости с контрольным после спуска каждых 10 свечей\",\"correct\":true,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Контроль начинается с подготовки емкости, настройки циркуляции и регулярных замеров при спуске.\"},{\"type\":\"single\",\"kind\":\"recall\",\"claim_ids\":[\"test_basarygin.tripping_volume_control#c6\",\"test_basarygin.tripping_volume_control#c13\"],\"prompt\":\"Какое пороговое отклонение фактического объема долива или вытеснения от расчетного указывает на начало газонефтеводопроявления?\",\"options\":[{\"text\":\"Уменьшение или увеличение объема на 1 кубический метр\",\"correct\":true,\"misconception\":null},{\"text\":\"Любое случайное отклонение уровня в пределах погрешности датчиков\",\"correct\":false,\"misconception\":\"misc.pit_level_direct\"},{\"text\":\"Отклонение объема строго на величину чистого объема извлеченного металла\",\"correct\":false,\"misconception\":\"misc.tripping_fill_exact\"}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Критическим отклонением для фиксации начала проявления является разница в 1 кубический метр.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 6476,
+ "tokens_out": 520,
+ "money_usd": 0.0032428,
+ "attempts": 1
+}

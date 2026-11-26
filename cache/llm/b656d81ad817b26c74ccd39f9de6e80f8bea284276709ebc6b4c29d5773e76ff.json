@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"индикатора потока\",\"10 %\"],\"claim_id\":\"test_basarygin.flow_rate_monitoring#c3\",\"evidence\":\"контролируют с помощью индикатора потока, позволяющего обнаружить начавшееся проявление при превышении расхода на выходе на 10 % и более\"},{\"n\":2,\"answer\":[\"o1\",\"o2\",\"o3\"],\"claim_id\":\"test_basarygin.flow_rate_monitoring#c7\",\"evidence\":\"Эффективность обнаружения газопроявлений расходомером существенно зависит от подачи насосов\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1223,
+ "tokens_out": 154,
+ "money_usd": 0.0007519,
+ "attempts": 1
+}

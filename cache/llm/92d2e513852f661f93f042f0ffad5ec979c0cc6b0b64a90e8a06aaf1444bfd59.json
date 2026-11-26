@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Процедурные шаги обнаружения притока по емкостям\",\"note\":\"Нажми на шаг, чтобы узнать его правила и требования.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"Изоляция приемной емкости\",\"description\":\"Емкость, через которую идет циркуляция, полностью отделяется от остальных.\",\"claim_id\":\"test_basarygin.early_detection_procedures#c1\",\"rock\":null},{\"label\":\"Уменьшение поверхности емкости\",\"description\":\"Площадь зеркала раствора сокращается путем установки специальной перегородки.\",\"claim_id\":\"test_basarygin.early_detection_procedures#c2\",\"rock\":null},{\"label\":\"Установка исходного уровня\",\"description\":\"Выставляется базовый уровень раствора сразу после возобновления круговой циркуляции.\",\"claim_id\":\"test_basarygin.early_detection_procedures#c3\",\"rock\":null},{\"label\":\"Остановка процесса бурения\",\"description\":\"Работы выполняются с полной остановкой процесса при бурении в сероводородсодержащих отложениях.\",\"claim_id\":\"test_basarygin.early_detection_procedures#c8\",\"rock\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 3522,
+ "tokens_out": 355,
+ "money_usd": 0.0019441,
+ "attempts": 1
+}

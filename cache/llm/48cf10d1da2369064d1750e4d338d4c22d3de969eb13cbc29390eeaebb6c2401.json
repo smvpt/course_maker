@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Процедурные шаги подготовки емкостей для обнаружения притока\",\"note\":\"Нажми на этап, чтобы узнать его правила и требования.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"Изоляция емкости\",\"description\":\"Рабочая приемная емкость изолируется от остальных для надежного контроля циркуляции.\",\"claim_id\":\"test_basarygin.early_detection_procedures#c1\",\"rock\":null},{\"label\":\"Установка перегородки\",\"description\":\"Поверхность приемной емкости уменьшается путем монтажа специальной перегородки.\",\"claim_id\":\"test_basarygin.early_detection_procedures#c2\",\"rock\":null},{\"label\":\"Установка исходного уровня\",\"description\":\"Уровень бурового раствора выставляется после полного возобновления круговой циркуляции.\",\"claim_id\":\"test_basarygin.early_detection_procedures#c3\",\"rock\":null},{\"label\":\"Согласование переключений\",\"description\":\"Любые переключения насосов, емкостей и перераспределение объемов выполняются исключительно с ведома бурильщика.\",\"claim_id\":\"test_basarygin.early_detection_procedures#c7\",\"rock\":null},{\"label\":\"Остановка бурения\",\"description\":\"Процесс бурения полностью останавливается для выполнения указанных работ при работе в отложениях, содержащих сероводород.\",\"claim_id\":\"test_basarygin.early_detection_procedures#c8\",\"rock\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 3492,
+ "tokens_out": 442,
+ "money_usd": 0.0021526,
+ "attempts": 1
+}

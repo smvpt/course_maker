@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Контроль объема раствора при спуске и подъеме труб\",\"note\":\"Нажми на элемент схемы, чтобы узнать его особенности.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"Подъем колонны\",\"description\":\"Забойное давление уменьшается из-за снижения уровня бурового раствора и колебаний гидродинамического давления от движения труб.\",\"claim_id\":\"test_basarygin.tripping_volume_control#c2\",\"rock\":null},{\"label\":\"Долив раствора\",\"description\":\"Фактический объем определяется мерной емкостью с устройством измерения уровня, причем отклонение объема не должно превышать 1 кубический метр.\",\"claim_id\":\"test_basarygin.tripping_volume_control#c6\",\"rock\":null},{\"label\":\"Спуск колонны\",\"description\":\"Признаком проявления является увеличение объема бурового раствора в приемной емкости против расчетного объема вытеснения.\",\"claim_id\":\"test_basarygin.tripping_volume_control#c10\",\"rock\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 4920,
+ "tokens_out": 252,
+ "money_usd": 0.002106,
+ "attempts": 1
+}

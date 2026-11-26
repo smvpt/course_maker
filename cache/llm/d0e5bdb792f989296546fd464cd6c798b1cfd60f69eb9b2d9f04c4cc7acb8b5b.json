@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Изменение показателей свойств бурового раствора\",\"note\":\"Нажми на показатель, чтобы узнать его роль в оценке притока.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"Плотность, водоотдача, вязкость\",\"description\":\"Изменяются при поступлении пластового флюида в ствол бурящейся скважины наряду с другими параметрами.\",\"claim_id\":\"test_basarygin.mud_properties_changes#c1\",\"rock\":null},{\"label\":\"Напряжения сдвига и сопротивление\",\"description\":\"Включают статическое и динамическое напряжение сдвига, а также удельное сопротивление и концентрацию хлоридов.\",\"claim_id\":\"test_basarygin.mud_properties_changes#c1\",\"rock\":null},{\"label\":\"Информативность показателей\",\"description\":\"Различается для каждого из перечисленных параметров раствора.\",\"claim_id\":\"test_basarygin.mud_properties_changes#c4\",\"rock\":null},{\"label\":\"Информация на поверхности\",\"description\":\"Поступает с запаздыванием на время, требующееся для продвижения забойных пачек к устью скважины.\",\"claim_id\":\"test_basarygin.mud_properties_changes#c5\",\"rock\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 3170,
+ "tokens_out": 380,
+ "money_usd": 0.001901,
+ "attempts": 1
+}

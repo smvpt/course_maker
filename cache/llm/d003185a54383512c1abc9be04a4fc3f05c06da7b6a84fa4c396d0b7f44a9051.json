@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"o1\",\"o2\",\"o3\"],\"claim_id\":\"test_basarygin.tripping_volume_control#c12\",\"evidence\":\"Объем вытесняемой жидкости при спуске труб можно контролировать по объему бурового раствора в одной из приемных емкостей\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 984,
+ "tokens_out": 113,
+ "money_usd": 0.0005777,
+ "attempts": 1
+}

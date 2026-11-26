@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"приемных емкостях\",\"площадь\"],\"claim_id\":\"test_basarygin.mud_tank_level_control#c1\",\"evidence\":\"Увеличение объема бурового раствора в приемных емкостях\"},{\"n\":2,\"answer\":[\"o1\",\"o2\",\"o3\"],\"claim_id\":\"test_basarygin.mud_tank_level_control#c3\",\"evidence\":\"контролируют объем (уровень) в приемных емкостях насосов и общий объем бурового раствора в запасных емкостях показывающими приборами с одновременной регистрацией\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 2626,
+ "tokens_out": 322,
+ "money_usd": 0.0015928000000000001,
+ "attempts": 2
+}

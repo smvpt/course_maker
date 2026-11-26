@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"o1\",\"o3\"],\"claim_id\":\"test_basarygin.tripping_volume_control#c14\",\"evidence\":\"Объем вытесняемой жидкости сверяется с контрольным после спуска каждых 10 свечей.\"},{\"n\":2,\"answer\":[\"b\"],\"claim_id\":\"test_basarygin.tripping_volume_control#c13\",\"evidence\":\"Увеличение объема в приемной емкости на 1 м³ по сравнению с контрольным объемом указывает на начало проявления.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1354,
+ "tokens_out": 139,
+ "money_usd": 0.0007537,
+ "attempts": 1
+}

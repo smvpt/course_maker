@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":false,\"claim_id\":\"\",\"title\":\"\",\"x_name\":\"\",\"x_label\":\"\",\"x_unit\":\"\",\"y_label\":\"\",\"y_unit\":\"\",\"x_min\":0.0,\"x_max\":1.0,\"constants\":{},\"expression\":\"\",\"depth_axis\":\"none\",\"curve_key\":null,\"note\":\"\"}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/illus_curve",
+ "tokens_in": 4557,
+ "tokens_out": 92,
+ "money_usd": 0.0015971,
+ "attempts": 1
+}

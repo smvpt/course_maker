@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"multiple\",\"kind\":\"transfer\",\"claim_ids\":[\"test_basarygin.wellhead_equipment_gas_wells#c1\",\"test_basarygin.wellhead_equipment_gas_wells#c2\",\"test_basarygin.wellhead_equipment_gas_wells#c3\"],\"prompt\":\"Выберите ситуации, в которых при проектировании газовой скважины может применяться дополнительное укрепление устья обсадной колонной:\",\"options\":[{\"text\":\"при обосновании конкретных конструкций в ряде нефтепромысловых районов\",\"correct\":true,\"misconception\":null},{\"text\":\"для предотвращения межколонных проявлений и грифонообразования\",\"correct\":true,\"misconception\":null},{\"text\":\"всегда при достижении любой глубины бурения\",\"correct\":false,\"misconception\":null},{\"text\":\"исключительно для мгновенной автоматической ликвидации проявлений\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Дополнительная колонна устанавливается выборочно при обосновании конструкций для предотвращения перетоков газа.\"},{\"type\":\"gap\",\"kind\":\"data\",\"claim_ids\":[\"test_basarygin.wellhead_equipment_gas_wells#c2\"],\"prompt\":\"Устьевую часть газовых скважин укрепляют дополнительной обсадной колонной перед спуском эксплуатационной, так как резьбовые соединения стандартных труб обладают недостаточной герметичностью, что приводит к межколонным проявлениям и образованию {{1}}.\",\"options\":[],\"gap_answers\":[\"грифонов\"],\"calc\":null,\"explanation\":\"Негерметичность соединений под действием газа вызывает межколонные проявления и тяжелое грифонообразование.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 8598,
+ "tokens_out": 829,
+ "money_usd": 0.0046519,
+ "attempts": 2
+}

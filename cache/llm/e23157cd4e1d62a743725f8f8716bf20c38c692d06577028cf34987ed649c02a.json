@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Признаки и причины изменения скорости бурения\",\"note\":\"Нажми на элемент схемы, чтобы узнать его характеристики и связь с давлением.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"Увеличение механической скорости\",\"description\":\"Указывает на углубление скважины в зону АВПД с постоянным нарастанием порового давления в глинах.\",\"claim_id\":\"test_basarygin.rop_increase_as_sign#c1\",\"rock\":null},{\"label\":\"Скачок проходки\",\"description\":\"Свидетельствует о быстром возрастании аномальности давления на забое в переходной зоне.\",\"claim_id\":\"test_basarygin.rop_increase_as_sign#c2\",\"rock\":null},{\"label\":\"Провалы инструмента\",\"description\":\"Следствие вскрытия крупных трещин или карстовых каверн при разбуривании известковых отложений, ведущее чаще к поглощению бурового раствора.\",\"claim_id\":\"test_basarygin.rop_increase_as_sign#c6\",\"rock\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 3916,
+ "tokens_out": 335,
+ "money_usd": 0.0020123,
+ "attempts": 1
+}

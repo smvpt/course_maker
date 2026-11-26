@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"order\",\"kind\":\"data\",\"claim_ids\":[\"test_basarygin.gnvp_causes_overview#c1\",\"test_basarygin.gnvp_causes_overview#c2\",\"test_basarygin.gnvp_causes_overview#c3\"],\"prompt\":\"Расположите этапы и факты анализа причин поступления пластовых флюидов в логической последовательности проводки скважины:\",\"options\":[{\"text\":\"Постоянное поступление флюидов в скважину в процессе ее проводки\",\"correct\":false,\"misconception\":null},{\"text\":\"Систематизация причин газонефтеводопроявлений для анализа ситуации\",\"correct\":false,\"misconception\":null},{\"text\":\"Оценка факта, что при превышении забойным давлением пластового ситуация не ведет к выбросу\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Сначала флюиды поступают при проводке, затем причины систематизируются, после чего оценивается отсутствие угрозы при нормальном перепаде давления.\"},{\"type\":\"single\",\"kind\":\"understanding\",\"claim_ids\":[\"test_basarygin.gnvp_causes_overview#c1\",\"test_basarygin.gnvp_causes_overview#c3\"],\"prompt\":\"Как влияет превышение забойного давления над пластовым на поступление флюидов из пласта в процессе проводки скважины?\",\"options\":[{\"text\":\"Флюиды могут постоянно поступать в скважину, но предвыбросовой ситуации не возникает.\",\"correct\":true,\"misconception\":null},{\"text\":\"Флюиды полностью блокируются и вообще никогда не попадают в ствол скважины.\",\"correct\":false,\"misconception\":\"misc.overbalance_prevents_all_influx\"},{\"text\":\"Создается критическая предвыбросовая ситуация, требующая немедленной остановки бурения.\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Флюиды поступают постоянно даже при превышении давления, но это не создает угрозы выброса.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 4163,
+ "tokens_out": 498,
+ "money_usd": 0.0024939,
+ "attempts": 1
+}

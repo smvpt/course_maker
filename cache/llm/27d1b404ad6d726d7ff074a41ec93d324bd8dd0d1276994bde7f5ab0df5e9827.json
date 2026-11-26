@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"calc\",\"kind\":\"transfer\",\"claim_ids\":[\"test_basarygin.mud_gassing_analysis#c20\",\"test_basarygin.mud_gassing_analysis#c21\"],\"prompt\":\"Рассчитайте дебит газа в атмосферных условиях g1, если подача насосов Q составляет 40, а плотности негазированного и газированного растворов ро0 и ро гр равны 1.2 и 1.1.\",\"options\":[],\"gap_answers\":[],\"calc\":{\"variables\":{\"Q\":40.0,\"rho_0\":1.2,\"rho_gr\":1.1},\"expression\":\"Q * (rho_0 / rho_gr - 1)\",\"unit\":\"м3/с\"},\"explanation\":\"Дебит газа рассчитывается умножением подачи насосов на отношение плотностей негазированного раствора к газированному минус единица.\"},{\"type\":\"single\",\"kind\":\"data\",\"claim_ids\":[\"test_basarygin.mud_gassing_analysis#c2\",\"test_basarygin.mud_gassing_analysis#c24\"],\"prompt\":\"Модель на основе датчиков газа зафиксировала насыщение раствора на интервале разбуривания глинистой переходной зоны. Как ML-инженеру интерпретировать этот сигнал?\",\"options\":[{\"text\":\"Это признак аварийного выброса, требующий немедленного утяжеления бурового раствора.\",\"correct\":false,\"misconception\":\"misc.gas_cut_mud_is_kick\"},{\"text\":\"Это штатный индикатор условий поступления газа из породы, который не является причиной выброса сам по себе.\",\"correct\":true,\"misconception\":null},{\"text\":\"Это однозначная ошибка датчиков, так как в глинах газ содержаться не может.\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Газирование раствора служит признаком условий поступления газа, а не причиной выброса.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 17539,
+ "tokens_out": 940,
+ "money_usd": 0.00596011,
+ "attempts": 2
+}

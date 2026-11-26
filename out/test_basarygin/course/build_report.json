@@ -1,0 +1,220 @@
+{
+  "chapter": "test_basarygin",
+  "nodes": 13,
+  "tasks": 24,
+  "step_text_nodes": 10,
+  "interactive_steps": 7,
+  "guess_steps": 10,
+  "summary": {
+    "text_model_steps": 10,
+    "steps": 13,
+    "tasks": 24,
+    "tasks_dropped": 2,
+    "fallback_steps": 3,
+    "model": "доступна",
+    "line": "ИТОГ СБОРКИ: текст модели: 10 из 13 шагов · заданий: 24 (выброшено 2) · fallback: 3 · модель: доступна"
+  },
+  "warnings": [
+    {
+      "code": "no_parts",
+      "message": "ни у одного узла нет ext[\"core\"][\"part\"]: вся глава собрана одной частью «Глава»"
+    },
+    {
+      "code": "step_text_fallback",
+      "message": "текст шага test_basarygin.flow_rate_monitoring не прошёл проверки, шаг собран из полей слоя: суть («main») должна быть 2–3 фразы, сейчас 1",
+      "node": "test_basarygin.flow_rate_monitoring",
+      "errors": [
+        "суть («main») должна быть 2–3 фразы, сейчас 1"
+      ]
+    },
+    {
+      "code": "step_text_fallback",
+      "message": "текст шага test_basarygin.pump_pressure_changes не прошёл проверки, шаг собран из полей слоя: абзац 8 (how): claim_id 'test_basarygin.pump_pressure_changes#13' нет в узле",
+      "node": "test_basarygin.pump_pressure_changes",
+      "errors": [
+        "абзац 8 (how): claim_id 'test_basarygin.pump_pressure_changes#13' нет в узле"
+      ]
+    },
+    {
+      "code": "step_text_fallback",
+      "message": "текст шага test_basarygin.gnvp_causes_overview не прошёл проверки, шаг собран из полей слоя: абзац 6 (misconception): фраза из 22 слов (максимум 20): «Считается, что при превышении забойного давления над пластовым флюиды вообще не попадают в скважину, но они могут поступать постоянно в процессе проводки.»",
+      "node": "test_basarygin.gnvp_causes_overview",
+      "errors": [
+        "абзац 6 (misconception): фраза из 22 слов (максимум 20): «Считается, что при превышении забойного давления над пластовым флюиды вообще не попадают в скважину, но они могут поступать постоянно в процессе проводки.»"
+      ]
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_basarygin.gnvp_safety_measures: термин 'сепаратор' не выделен [[…]] ни в одном абзаце",
+      "node": "test_basarygin.gnvp_safety_measures"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_basarygin.gnvp_safety_measures: термин 'флюидопроявление' не выделен [[…]] ни в одном абзаце",
+      "node": "test_basarygin.gnvp_safety_measures"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_basarygin.rop_increase_as_sign: термин 'скачок проходки' не выделен [[…]] ни в одном абзаце",
+      "node": "test_basarygin.rop_increase_as_sign"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_basarygin.rop_increase_as_sign: термин 'механическая скорость бурения' не выделен [[…]] ни в одном абзаце",
+      "node": "test_basarygin.rop_increase_as_sign"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_basarygin.mud_tank_level_control: термин 'уровнемер' не выделен [[…]] ни в одном абзаце",
+      "node": "test_basarygin.mud_tank_level_control"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_basarygin.mud_gassing_analysis: термин 'дегазация' не выделен [[…]] ни в одном абзаце",
+      "node": "test_basarygin.mud_gassing_analysis"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_basarygin.tripping_volume_control: термин 'свабирование' не выделен [[…]] ни в одном абзаце",
+      "node": "test_basarygin.tripping_volume_control"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_basarygin.wellhead_equipment_gas_wells: термин 'межколонные проявления' не выделен [[…]] ни в одном абзаце",
+      "node": "test_basarygin.wellhead_equipment_gas_wells"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_basarygin.blowout_preventer_stack: термин 'манифольд' не выделен [[…]] ни в одном абзаце",
+      "node": "test_basarygin.blowout_preventer_stack"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_basarygin.blowout_preventer_stack: термин 'нагнетательный манифольд' не выделен [[…]] ни в одном абзаце",
+      "node": "test_basarygin.blowout_preventer_stack"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_basarygin.blowout_preventer_stack: термин 'штуцерный манифольд' не выделен [[…]] ни в одном абзаце",
+      "node": "test_basarygin.blowout_preventer_stack"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_basarygin.blowout_preventer_stack: термин 'кольцевой превентор' не выделен [[…]] ни в одном абзаце",
+      "node": "test_basarygin.blowout_preventer_stack"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_basarygin.blowout_preventer_stack: термин 'трубный превентор' не выделен [[…]] ни в одном абзаце",
+      "node": "test_basarygin.blowout_preventer_stack"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_basarygin.blowout_preventer_stack: термин 'превентор с глухими плашками' не выделен [[…]] ни в одном абзаце",
+      "node": "test_basarygin.blowout_preventer_stack"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_basarygin.blowout_preventer_stack: термин 'линия глушения' не выделен [[…]] ни в одном абзаце",
+      "node": "test_basarygin.blowout_preventer_stack"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_basarygin.blowout_preventer_stack: термин 'штуцерная линия' не выделен [[…]] ни в одном абзаце",
+      "node": "test_basarygin.blowout_preventer_stack"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_basarygin.blowout_preventer_stack: термин 'устьевая головка' не выделен [[…]] ни в одном абзаце",
+      "node": "test_basarygin.blowout_preventer_stack"
+    },
+    {
+      "code": "missing_task_type",
+      "message": "нет заданий типов: calc",
+      "types": [
+        "calc"
+      ]
+    },
+    {
+      "code": "task_answer_mismatch",
+      "message": "задание 1 (gap) шага test_basarygin.mud_tank_level_control выброшено: помеченный ответ противоречит цитате книги (слепая проверка): ответ слепой проверки не совпал с помеченным: по цитате test_basarygin.mud_tank_level_control#c6 («\\Delta V_{\\min} = \\varepsilon S,») модель выбрала S, помечено площадь. Перепроверь по цитате, какой ответ верен, и перепиши задание",
+      "node": "test_basarygin.mud_tank_level_control",
+      "slot": 1,
+      "type": "gap",
+      "errors": [
+        "ответ слепой проверки не совпал с помеченным: по цитате test_basarygin.mud_tank_level_control#c6 («\\Delta V_{\\min} = \\varepsilon S,») модель выбрала S, помечено площадь. Перепроверь по цитате, какой ответ верен, и перепиши задание"
+      ]
+    },
+    {
+      "code": "task_dropped",
+      "message": "задание 1 (calc) шага test_basarygin.mud_gassing_analysis выброшено: задание 1: значения Q=45.0 нет в узле",
+      "node": "test_basarygin.mud_gassing_analysis",
+      "slot": 1,
+      "type": "calc",
+      "errors": [
+        "задание 1: значения Q=45.0 нет в узле",
+        "задание 1: значения rho_0=1.25 нет в узле",
+        "задание 1: значения rho_gr=1.18 нет в узле",
+        "задание 1: числа ['1.18', '1.25', '3', '45'] из условия нет в узле"
+      ]
+    },
+    {
+      "code": "interactive_no_data",
+      "message": "интерактив шага test_basarygin.mud_tank_level_control не показан: модель ответила, что по формулам и числам узла шаблон profile построить нельзя; модель ответила, что по формулам и числам узла шаблон dependence построить нельзя",
+      "node": "test_basarygin.mud_tank_level_control",
+      "errors": [
+        "модель ответила, что по формулам и числам узла шаблон profile построить нельзя; модель ответила, что по формулам и числам узла шаблон dependence построить нельзя"
+      ]
+    },
+    {
+      "code": "interactive_no_data",
+      "message": "интерактив шага test_basarygin.mud_gassing_analysis не показан: модель ответила, что по формулам и числам узла шаблон profile построить нельзя; модель ответила, что по формулам и числам узла шаблон dependence построить нельзя",
+      "node": "test_basarygin.mud_gassing_analysis",
+      "errors": [
+        "модель ответила, что по формулам и числам узла шаблон profile построить нельзя; модель ответила, что по формулам и числам узла шаблон dependence построить нельзя"
+      ]
+    },
+    {
+      "code": "interactive_no_data",
+      "message": "интерактив шага test_basarygin.pump_pressure_changes не показан: модель ответила, что по формулам и числам узла шаблон distribution построить нельзя; модель ответила, что по формулам и числам узла шаблон dependence построить нельзя",
+      "node": "test_basarygin.pump_pressure_changes",
+      "errors": [
+        "модель ответила, что по формулам и числам узла шаблон distribution построить нельзя; модель ответила, что по формулам и числам узла шаблон dependence построить нельзя"
+      ]
+    },
+    {
+      "code": "interactive_no_data",
+      "message": "интерактив шага test_basarygin.gnvp_causes_overview не показан: модель ответила, что из утверждений узла схему-исследование построить нельзя",
+      "node": "test_basarygin.gnvp_causes_overview",
+      "errors": [
+        "модель ответила, что из утверждений узла схему-исследование построить нельзя"
+      ]
+    },
+    {
+      "code": "illus_curve_failed",
+      "message": "график по формуле шага test_basarygin.mud_tank_level_control не построен: значения epsilon=0.1 нет в узле: константы берутся только из узла",
+      "node": "test_basarygin.mud_tank_level_control",
+      "errors": [
+        "значения epsilon=0.1 нет в узле: константы берутся только из узла"
+      ]
+    }
+  ],
+  "missing_scans": [
+    231,
+    232,
+    233,
+    234,
+    235,
+    236,
+    237,
+    238,
+    239,
+    312,
+    313,
+    314,
+    315,
+    316,
+    317,
+    318
+  ]
+}

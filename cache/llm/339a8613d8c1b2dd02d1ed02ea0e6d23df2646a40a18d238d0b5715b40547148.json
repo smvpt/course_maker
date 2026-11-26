@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"claim_id\":\"test_basarygin.flow_rate_monitoring#c5\",\"title\":\"Зависимость минимального приращения расхода от максимального\",\"x_name\":\"delta_Q_max\",\"x_label\":\"Максимальный расход\",\"x_unit\":\"л/с\",\"y_label\":\"Минимальное приращение расхода\",\"y_unit\":\"л/с\",\"x_min\":10.0,\"x_max\":100.0,\"constants\":{},\"expression\":\"delta_Q_max / 100\",\"depth_axis\":\"none\",\"curve_key\":null,\"note\":\"График показывает минимальное приращение расхода для обнаружения проявления в зависимости от максимального расхода прибора.\"}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/illus_curve",
+ "tokens_in": 3802,
+ "tokens_out": 189,
+ "money_usd": 0.0016131,
+ "attempts": 1
+}
