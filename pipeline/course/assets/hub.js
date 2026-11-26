@@ -37,6 +37,7 @@
     s.textContent = STATUS[st.status];
     card.querySelector(".bar span").style.width = Math.round(100 * st.done / st.total) + "%";
     card.querySelector(".course-done").textContent = st.status === "new" ? "" : "Пройдено " + st.done + " из " + st.total;
+    card.querySelector(".cta-text").textContent = st.status === "progress" ? "Продолжить" : st.status === "done" ? "Пройти ещё раз" : "Начать";
   });
 
   /* ---------- «Продолжить» / «Начните с» ---------- */
@@ -75,24 +76,26 @@
   });
   review.hidden = anyBad === 0;
 
-  /* ---------- тема ---------- */
-  var MODES = ["system", "light", "dark"], NAMES = { system: "Системная", light: "Светлая", dark: "Тёмная" };
-  var mode = get("course:theme", "system");
-  if (MODES.indexOf(mode) < 0) mode = "system";
-  var tbtn = document.getElementById("hub-theme");
+  /* ---------- меню и тема (как в курсе: системная / светлая / тёмная) ---------- */
+  var menu = document.getElementById("menu"), openMenu = document.getElementById("open-menu");
   requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.add("theme-ready"); }); });
-  function paintTheme() {
-    if (mode === "system") delete root.dataset.theme; else root.dataset.theme = mode;
-    document.getElementById("hub-theme-label").textContent = "Тема: " + NAMES[mode].toLowerCase();
-    tbtn.title = "Тема: " + NAMES[mode].toLowerCase(); tbtn.setAttribute("aria-label", tbtn.title);
+  openMenu.addEventListener("click", function () { menu.showModal(); });
+  menu.addEventListener("click", function (ev) { if (ev.target === menu) menu.close(); });
+  menu.addEventListener("close", function () { openMenu.focus(); });
+  var mode = get("course:theme", "system");
+  if (["system", "light", "dark"].indexOf(mode) < 0) mode = "system";
+  function paintTheme(m) {
+    if (m === "light" || m === "dark") root.dataset.theme = m; else delete root.dataset.theme;
+    document.querySelectorAll("[data-theme-set]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.themeSet === m)); });
   }
-  paintTheme();
-  tbtn.addEventListener("click", function () {
-    mode = MODES[(MODES.indexOf(mode) + 1) % MODES.length];
-    root.classList.add("theme-anim");
-    setTimeout(function () { root.classList.remove("theme-anim"); }, 260);
-    paintTheme();
-    try { localStorage.setItem("course:theme", JSON.stringify(mode)); } catch (e) { /* без сохранения */ }
+  paintTheme(mode);
+  document.querySelectorAll("[data-theme-set]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      root.classList.add("theme-anim");
+      setTimeout(function () { root.classList.remove("theme-anim"); }, 260);
+      paintTheme(b.dataset.themeSet);
+      try { localStorage.setItem("course:theme", JSON.stringify(b.dataset.themeSet)); } catch (e) { /* без сохранения */ }
+    });
   });
 
   /* ---------- поиск по всем курсам ---------- */

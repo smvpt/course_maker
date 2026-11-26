@@ -31,10 +31,10 @@ def _courses(tmp_path):
 
 def test_hub_lists_both_courses_with_valid_relative_links_and_no_network(tmp_path):
     out = _courses(tmp_path)
-    home = hub.build_hub(out)
+    home = hub.build_hub(out, include_fixtures=True)
     html = home.read_text(encoding="utf-8")
     assert home == out / "index.html" and (out / "assets/hub.js").exists() and (out / "assets/tokens.css").exists() and (out / "assets/brand/logo.svg").exists()
-    cards = re.findall(r'<li class="course-card" data-ch="([^"]+)">', html)
+    cards = re.findall(r'<li class="course-card" data-ch="([^"]+)"', html)
     assert cards == ["baraboshkin_par1-2", "mini_test"]
     for ch in cards:
         assert (out / ch / "course/index.html").exists() and f'href="{ch}/course/index.html"' in html
@@ -52,7 +52,7 @@ def test_hub_lists_both_courses_with_valid_relative_links_and_no_network(tmp_pat
 
 def test_hub_data_and_search_are_embedded_json_for_all_courses(tmp_path):
     out = _courses(tmp_path)
-    html = hub.build_hub(out).read_text(encoding="utf-8")
+    html = hub.build_hub(out, include_fixtures=True).read_text(encoding="utf-8")
     data = json.loads(re.search(r'id="hub-data">(.*?)</script>', html, re.S).group(1))
     assert [c["ch"] for c in data] == ["baraboshkin_par1-2", "mini_test"]
     for c in data:
@@ -84,12 +84,12 @@ def test_course_header_has_breadcrumbs_only_when_the_hub_exists(tmp_path):
 
 
 def test_hub_requires_built_courses_and_warns_about_old_builds(tmp_path, capsys):
-    with pytest.raises(FileNotFoundError, match="нет собранных курсов"):
+    with pytest.raises(FileNotFoundError, match="нет собранных настоящих курсов"):
         (tmp_path / "out").mkdir()
-        hub.build_hub(tmp_path / "out")
+        hub.build_hub(tmp_path / "out", include_fixtures=True)
     out = _courses(tmp_path / "x")
     (out / "mini_test/course/course.json").unlink()
-    hub.build_hub(out)
+    hub.build_hub(out, include_fixtures=True)
     assert "course.json" in capsys.readouterr().err
     assert 'data-ch="mini_test"' not in (out / "index.html").read_text(encoding="utf-8")
 
@@ -106,7 +106,7 @@ def test_course_cli_builds_the_hub_after_the_course():
 def test_theme_is_applied_before_first_paint_in_course_and_hub(tmp_path):
     out = _courses(tmp_path)
     pages = [out / "index.html", out / "mini_test/course/index.html", out / "mini_test/course/step-mini.porosity_basics.html"]
-    hub.build_hub(out)
+    hub.build_hub(out, include_fixtures=True)
     for page in pages:
         html = page.read_text(encoding="utf-8")
         head = html[html.index("<head>"):html.index("</head>")]
@@ -130,3 +130,43 @@ def test_glossary_has_only_terms_with_a_definition_and_cards_filter_waits_for_a_
     js = (ROOT / "pipeline/course/assets/course.js").read_text(encoding="utf-8")
     assert "showFilter" in js and 'cardMarks[k] === "repeat"' in js
     assert 'if (mastery(s.id) === "new")' in js                                                                 # у «Не начато» нет кружков «не решено»
+
+
+# ---------------------------------------------------------------- финальная доработка главной
+def test_hub_shows_only_real_chapters_not_fixtures(tmp_path):
+    out = _courses(tmp_path)
+    html = hub.build_hub(out).read_text(encoding="utf-8")
+    assert re.findall(r'<li class="course-card" data-ch="([^"]+)"', html) == ["baraboshkin_par1-2"]
+    assert "mini_test" not in html and "Сопротивление и насыщение пласта" not in html
+    assert hub.fixture_chapters() >= {"mini_test"} and "baraboshkin_par1-2" not in hub.fixture_chapters()
+    only_fixture = tmp_path / "o2"
+    shutil.copytree(out / "mini_test", only_fixture / "mini_test")
+    with pytest.raises(FileNotFoundError, match="настоящих курсов"):
+        hub.build_hub(only_fixture)                                                       # пустая главная — громкая ошибка, не пустая страница
+
+
+def test_hub_layout_header_hero_how_summary_and_cards(tmp_path):
+    out = _courses(tmp_path)
+    html = hub.build_hub(out).read_text(encoding="utf-8")
+    header = html[html.index('<header class="top">'):html.index("</header>")]
+    assert header.index("brand-logo") < header.index('id="search-input"') < header.index('id="open-menu"') and "Меню</span>" in header
+    assert "hub-theme" not in html and 'data-theme-set="dark"' in html and re.search(r'<dialog id="menu"', html)    # тема — в меню
+    assert html.index('class="hub-hero"') < html.index('class="hub-how"') < html.index('class="hub-summary"') < html.index('class="hub-courses"')
+    how = re.findall(r"<li>(?:<svg.*?</svg>)<span>([^<]+)</span></li>", html[html.index('class="how-list"'):], re.S)
+    assert how == ["Читаете суть шага простыми словами", "Проверяете любое утверждение по странице книги", "Закрепляете заданиями с разбором"]
+    assert re.search(r'class="hub-summary">1 курс · 6 шагов · все утверждения со страницами книги</p>', html) or         re.search(r'class="hub-summary">1 курс · 6 шагов · \d+ (?:задание|задания|заданий) · все утверждения со страницами книги</p>', html)
+    card = html[html.index('<li class="course-card"'):html.index("</li>", html.index('<li class="course-card"'))]
+    assert "--card-accent:" in card and 'class="course-meta"' in card and 'class="bar slim"' in card and 'class="status"' in card
+    assert re.search(r'<a class="btn course-cta" href="baraboshkin_par1-2/course/index\.html"><span class="cta-text">Начать</span>', card)
+    assert "Продолжить" in (ROOT / "pipeline/course/assets/hub.js").read_text(encoding="utf-8")
+
+
+def test_hub_css_container_grid_and_breakpoints():
+    css = (ROOT / "pipeline/course/assets/hub.css").read_text(encoding="utf-8")
+    assert re.search(r"\.hub \{[^}]*max-width: 1120px; margin: 0 auto", css) and "repeat(12, minmax(0, 1fr))" in css and "gap: var(--sp-6)" in css
+    assert re.search(r"\.hub-hero \{ grid-column: span 7; \}", css) and re.search(r"\.hub-how \{ grid-column: span 5;", css)
+    assert re.search(r"\.course-cards \{[^}]*repeat\(var\(--cols, 3\), minmax\(0, 1fr\)\)", css)               # 3 в ряд, а при 1–2 курсах — по их числу
+    assert re.search(r"@media \(max-width: 1023\.98px\) \{ \.course-cards \{ grid-template-columns: repeat\(min\(var\(--cols, 3\), 2\)", css)
+    assert re.search(r"@media \(max-width: 639\.98px\)[^@]*\.course-cards \{ grid-template-columns: 1fr", css, re.S)
+    assert ".hub > * + * { margin-top: 40px; }" in css and "margin-top: 28px" in css                              # 40px между секциями, 28px на мобильном
+    assert "::before" in css and "height: 4px" in css                                                              # тонкая цветная полоса сверху карточки

@@ -54,7 +54,7 @@ def bare(tmp_path_factory):
     shutil.copy2(ROOT / "fixtures/course/mini_layer.json", d / "layer.json")
     (d / "units.json").write_text(json.dumps({"domain": "geology"}), encoding="utf-8")
     course = build("mini_test", out_root=out, pages_dir=out / "pages", hub=True)
-    hub.build_hub(out)
+    hub.build_hub(out, include_fixtures=True)          # мини-глава — фикстура: на настоящей главной её нет
     return out, course
 
 

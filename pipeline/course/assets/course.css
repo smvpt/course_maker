@@ -793,11 +793,11 @@ h3, .block h3.block-h, .gloss dt { font-size: 1.0625rem; }
 .btn, .btn-small, .tool, .bar-btn, .pg-btn, .switch, .review-tabs a, .menu-list a, .scheme-part { min-height: 40px; }
 .btn, .btn-small, .tool, .bar-btn, .pg-btn { border-radius: var(--r-sm); }
 .pg, .status, .badge, .prov-chip, .by, .prereq-chip { border-radius: var(--r-sm); }
-.card-box, .task, .gloss, .tiles a, .course-link, .it-step, .progress-list li, .mistakes-list li, .card, .guess, .side-card, .block-main, .scheme-detail, .empty-state { padding: var(--sp-4); }
+.card-box, .task, .gloss, .tiles a, .it-step, .progress-list li, .mistakes-list li, .card, .guess, .side-card, .block-main, .scheme-detail, .empty-state { padding: var(--sp-4); }
 @media (max-width: 767.98px) {
   h1, .hero h1, .step-head h1 { font-size: 1.5rem; }
   .btn, .btn-small, .tool, .bar-btn, .pg-btn, .switch, .review-tabs a, .menu-list a, .scheme-part, .search input { min-height: 44px; }
-  .card-box, .task, .gloss, .tiles a, .course-link, .it-step, .progress-list li, .mistakes-list li, .card, .guess, .side-card, .block-main, .scheme-detail { padding: 14px; }
+  .card-box, .task, .gloss, .tiles a, .it-step, .progress-list li, .mistakes-list li, .card, .guess, .side-card, .block-main, .scheme-detail { padding: 14px; }
 }
 @media (min-width: 900px) { body { font-size: 1rem; } h1, .hero h1, .step-head h1 { font-size: 1.75rem; } }
 /* контейнер: шапка и страницы выровнены по одной левой линии */

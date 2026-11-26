@@ -1048,8 +1048,11 @@ def main() -> None:
     course = build(a.ch, out_root=a.out, node=a.node, pages_dir=a.pages, generate=not a.no_llm, domain=a.domain,
                    extras=not a.no_llm, hub=True)
     from pipeline.course import hub
-    home = hub.build_hub(a.out)                         # главная всех курсов обновляется в конце каждой сборки
-    print(f"курс: {course / 'index.html'}\nглавная всех курсов: {home}")
+    print(f"курс: {course / 'index.html'}")
+    try:
+        print(f"главная всех курсов: {hub.build_hub(a.out)}")        # обновляется в конце каждой сборки
+    except FileNotFoundError as e:                                  # собран только тестовый курс: главной нечего показывать
+        print(f"WARNING: главная всех курсов не обновлена: {e}", file=sys.stderr)
 
 
 if __name__ == "__main__":
