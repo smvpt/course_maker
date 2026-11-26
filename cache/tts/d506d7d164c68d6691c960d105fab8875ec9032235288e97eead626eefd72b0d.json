@@ -1,0 +1,92 @@
+{
+  "key": "d506d7d164c68d6691c960d105fab8875ec9032235288e97eead626eefd72b0d",
+  "text": "У дельты три части: дельтовая равнина над водой, авандельта и продельта под водой.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+0%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 1875000,
+      "text": "У"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 2875000,
+      "duration": 3625000,
+      "text": "дельты"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 6500000,
+      "duration": 2000000,
+      "text": "три"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8500000,
+      "duration": 5125000,
+      "text": "части"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 15000000,
+      "duration": 4125000,
+      "text": "дельтовая"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 19125000,
+      "duration": 3750000,
+      "text": "равнина"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 22875000,
+      "duration": 1375000,
+      "text": "над"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 24250000,
+      "duration": 3875000,
+      "text": "водой"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 30250000,
+      "duration": 7250000,
+      "text": "авандельта"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 37500000,
+      "duration": 875000,
+      "text": "и"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 38375000,
+      "duration": 4875000,
+      "text": "продельта"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 43250000,
+      "duration": 1375000,
+      "text": "под"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 44625000,
+      "duration": 4750000,
+      "text": "водой"
+    }
+  ]
+}

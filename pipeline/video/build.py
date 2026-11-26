@@ -25,7 +25,8 @@ import numpy as np
 
 from pipeline.video import asr, media
 from pipeline.video.passport import (DEFAULT_CHECKLIST, SCHEMA_PATH, PassportError, assemble, audio_check_skipped,
-                                     checklist_answers, load_checklist, plaques_have_number, write_passport)
+                                     checklist_answers, load_checklist, plaques_have_number, source_problems,
+                                     used_claim_ids, write_passport)
 from pipeline.video.inputs import ID_RE, VideoInputError, load_inputs
 from pipeline.video.layout import FRAME_H, LONG_SAFE_ZONE, REF_LONG, REF_H, REF_W, Layout, LayoutError
 from pipeline.video.media import ToolError
@@ -131,13 +132,28 @@ def _prepare_t3(spec, script, sg: dict, templates_dir: Path) -> tuple[dict, dict
     if cfg is None:
         raise VideoInputError(f"нет описания шаблона T3: {Path(templates_dir) / 'T3.json'}")
     prep = t3_template.prepare(spec, script, cfg)
+    if prep["mode"] == "qualitative":
+        q = cfg["qualitative"]
+        colors = {"zones": {z["key"]: _sg_color(sg, z["color"]) for z in q["zones"]},
+                  "water": _sg_color(sg, q["water_color"]), "river": _sg_color(sg, q["river_color"]),
+                  "background": sg["background"]}
+        info = {"mode": "qualitative", "model": q["model"], "assumptions": q["assumptions"],
+                "limitations": q["limitations"], "state_variable": q["state_variable"],
+                "config": str(Path(templates_dir) / "T3.json"),
+                "elements": [{"element": k, "claim_id": v, "appears_at_phrase": prep["appear_at"][k]}
+                             for k, v in prep["elements"].items()],
+                "n_lobes": prep["n_lobes"],
+                "missing_params": (spec.ext.get("video") or {}).get("missing_params", []),
+                "auto_checks": t3_template.qualitative_checks(prep)}
+        return {"t3": prep}, colors, info
     disp = cfg["display"]
     colors = {"layer": _sg_color(sg, disp["layer_color"]), "initial": _sg_color(sg, disp["initial_body_color"]),
               "basin": _sg_color(sg, disp["basin_color"]), "background": sg["background"]}
     m = prep["model"]
-    info = {"model": cfg["model"], "assumptions": cfg["assumptions"], "limitations": cfg["limitations"],
-            "config": str(Path(templates_dir) / "T3.json"),
-            "params": {k: spec.params.get(k, d.get("default")) for k, d in cfg["params"].items()},
+    info = {"mode": "quantitative", "model": cfg["model"], "assumptions": cfg["assumptions"],
+            "limitations": cfg["limitations"], "config": str(Path(templates_dir) / "T3.json"),
+            "params": {k: spec.params.get(k, d.get("default"))
+                       for k, d in t3_template.mode_params(cfg, "quantitative").items()},
             "foreset_length_m": round(m.foreset_length, 3), "r_start_m": m.r0_m, "r_end_m": round(prep["r_end"], 3),
             "layer_times_yr": [float(x) for x in prep["layer_times"]],
             "auto_checks": t3_template.auto_checks(prep)}
@@ -256,7 +272,15 @@ def _auto_checks(spec, tpl_info: dict) -> dict:
         auto["construction_fixed"] = (True, "по построению: обе скважины рисуются одной функцией из одних параметров "
                                             "(ствол, колонна до башмака, превентор из одного SVG) во всех кадрах; "
                                             "меняется только ширина на кадрах с плашкой и состояние плашек превентора")
-    if spec.template == "T3":
+    if spec.template == "T3" and tpl_info.get("mode") == "qualitative":
+        auto.update(tpl_info["auto_checks"])
+        auto["label_matches_source"] = (True, "t3_template.prepare_qualitative: все кадры класса B с меткой «схема» — "
+                                              "расчёта нет; плашек, преувеличений и чисел нет, на кадре пометка "
+                                              "«схема без масштаба»")
+        auto["one_state_variable"] = (True, "по построению: план и разрез — одни стадии t3_template.stages и одни "
+                                            "границы зон zone_bounds от одной доли показа "
+                                            "(тест test_qualitative_plan_and_section_share_zones)")
+    elif spec.template == "T3":
         auto.update(tpl_info["auto_checks"])
         auto["label_matches_source"] = (True, "t3_template.prepare: все кадры класса B с меткой «симуляция» — план и "
                                               "разрез считаются моделью")
@@ -277,8 +301,14 @@ def _auto_checks(spec, tpl_info: dict) -> dict:
     return auto
 
 
-def _sources(script, spec, tpl_info: dict) -> list[dict]:
-    rows = [dict(r) for r in (spec.ext.get("video") or {}).get("sources", [])]
+def _sources(script, spec, tpl_info: dict, node_obj=None) -> list[dict]:
+    """Таблица источников: при переданном узле — кодом из его claims (страница, дословная цитата) для всех
+    использованных утверждений; без узла — из спецификации (её заполнил video.spec тем же кодом)."""
+    if node_obj is not None:
+        from pipeline.video.spec_check import sources_table
+        rows = sources_table(script, node_obj, used_claim_ids(script, spec))
+    else:
+        rows = [dict(r) for r in (spec.ext.get("video") or {}).get("sources", [])]
     if spec.template == "T2":
         p = tpl_info["dataset_provenance"]
         a, b = p["interval_m"]
@@ -391,6 +421,13 @@ def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, f
         node_obj = next((n for n in layer.nodes if n.id == script.node_id), None)
         if node_obj is None:
             raise VideoInputError(f"--layer: узла {script.node_id} нет в {layer_path}")
+    # источники паспорта — до озвучки и рендера: каждое использованное утверждение со страницей и цитатой
+    sources = _sources(script, spec, tpl_info, node_obj)
+    used = used_claim_ids(script, spec)
+    src_problems = source_problems(sources, used, node_obj)
+    if src_problems:
+        hint = "" if node_obj is not None else " (передайте --layer: таблица строится кодом из claims узла)"
+        raise VideoInputError("таблица источников паспорта неполна" + hint + ":\n- " + "\n- ".join(src_problems))
     _check_font(sg["font"])
     layout = (Layout(sg["safe_zone"], sg["min_caption_px"], ref=(REF_W, REF_H)) if fmt == "short"
               else Layout(LONG_SAFE_ZONE, sg["min_caption_px"], ref=REF_LONG))
@@ -431,6 +468,8 @@ def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, f
             "colors": {"text": sg["text"], "muted": sg["muted"], "panel": sg["panel"], **tpl_colors}}
     if spec.template == "T2":
         from pipeline.video.scene_t2 import T2Scene as scene_cls
+    elif spec.template == "T3" and tpl_plan["t3"]["mode"] == "qualitative":
+        from pipeline.video.scene_t3q import T3SchemeScene as scene_cls
     elif spec.template == "T3":
         from pipeline.video.scene_t3 import T3Scene as scene_cls
     elif spec.template == "T4":
@@ -497,11 +536,14 @@ def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, f
                                                   node_obj, out)
     from pipeline.video.templates import load_template_config
     tcfg = load_template_config(ROOT / "domain" / domain / "templates", spec.template)
-    checklist = checklist_answers(checklist_items, (tcfg or {}).get("physics_checklist"), _auto_checks(spec, tpl_info))
+    pc_cfg = (tcfg or {}).get("physics_checklist")
+    if tpl_info.get("mode") == "qualitative":                     # у схемы свой чек-лист: расчёта и масштаба нет
+        pc_cfg = tcfg["qualitative"]["physics_checklist"]
+    checklist = checklist_answers(checklist_items, pc_cfg, _auto_checks(spec, tpl_info))
     passport = assemble(script=script, spec=spec,
                         segments=[{"phrase_id": s.phrase_id, "start": s.start, "end": s.end} for s in tl.segments],
                         frames=[{"t": f["t_s"], "shot_id": f["shot_id"], "file": _rel(f["file"])} for f in report["frames"]],
-                        node_card=_node_card(script, node_obj), sources=_sources(script, spec, tpl_info),
+                        node_card=_node_card(script, node_obj), sources=sources,
                         checklist=checklist, audio_check=audio, scene_spec_path=_rel(out / "scene_spec.json"),
                         panels=((tcfg or {}).get("display") or {}).get("schema_panels"))
     schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
@@ -509,6 +551,8 @@ def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, f
         write_passport(passport, out / "passport.json", schema)
     except PassportError as e:
         raise BuildCheckError(str(e)) from e
+    report["sources_check"] = {"used_claims": used, "rows": len(sources), "ok": True,
+                               "against": "claims узла (--layer)" if node_obj is not None else "ext.video.sources спецификации"}
     report.update({"passport": str(out / "passport.json"), "audio_ok": audio_ok, "audio_problem": audio_problem,
                    "checklist_status": {s: sum(1 for c in checklist if c.status == s)
                                         for s in dict.fromkeys(c.status for c in checklist)}})

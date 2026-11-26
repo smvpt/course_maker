@@ -1,0 +1,68 @@
+{
+  "key": "5461f9420eb96037902066502550b84adcb9636fb553ddaf100ad415e09afee9",
+  "text": "Видим в разрезе повторяющиеся пачки — значит, строение разреза циклическое.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+0%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 4500000,
+      "text": "Видим"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 5500000,
+      "duration": 250000,
+      "text": "в"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 5750000,
+      "duration": 4500000,
+      "text": "разрезе"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 10250000,
+      "duration": 8875000,
+      "text": "повторяющиеся"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 19125000,
+      "duration": 5125000,
+      "text": "пачки"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 25625000,
+      "duration": 5500000,
+      "text": "значит"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 32375000,
+      "duration": 5875000,
+      "text": "строение"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 38250000,
+      "duration": 4375000,
+      "text": "разреза"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 42625000,
+      "duration": 9625000,
+      "text": "циклическое"
+    }
+  ]
+}

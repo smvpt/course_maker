@@ -1,0 +1,186 @@
+{
+  "video_id": "baraboshkin_par1-2.deltas_overview.long",
+  "node_id": "baraboshkin_par1-2.deltas_overview",
+  "format": "long",
+  "ext": {
+    "video": {
+      "note": "проверочная пара для рендера качественного режима T3 на настоящем узле: написана вручную, НЕ ответ модели; содержание — только утверждения узла c1–c5"
+    }
+  },
+  "phrases": [
+    {
+      "id": "p1",
+      "beat": "hook",
+      "claim_id": "baraboshkin_par1-2.deltas_overview#c1",
+      "is_analogy": false,
+      "pause_after_s": 0,
+      "text": "Куда девается материал, который река приносит к морю?",
+      "on_screen": "Куда уходит речной материал?"
+    },
+    {
+      "id": "p2",
+      "beat": "problem",
+      "claim_id": "baraboshkin_par1-2.deltas_overview#c2",
+      "is_analogy": false,
+      "pause_after_s": 0,
+      "text": "Без ответа не понять, почему дельты такие разные: форму задают река, море и тектоника.",
+      "on_screen": "Форму задают река, море, тектоника"
+    },
+    {
+      "id": "p3",
+      "beat": "problem",
+      "claim_id": "baraboshkin_par1-2.deltas_overview#c2",
+      "is_analogy": false,
+      "pause_after_s": 0,
+      "text": "Геометрию определяют речной сток, климат, тектонические движения, рельеф, волны и приливные течения.",
+      "on_screen": "Сток, климат, рельеф, волны, приливы"
+    },
+    {
+      "id": "p4",
+      "beat": "solution",
+      "claim_id": "baraboshkin_par1-2.deltas_overview#c1",
+      "is_analogy": false,
+      "pause_after_s": 0,
+      "text": "Решение — смотреть на дельту как на конус выноса там, где река достигает базиса эрозии.",
+      "on_screen": "Конус выноса у базиса эрозии"
+    },
+    {
+      "id": "p5",
+      "beat": "naming",
+      "claim_id": "baraboshkin_par1-2.deltas_overview#c1",
+      "is_analogy": false,
+      "pause_after_s": 0,
+      "text": "Этот конус выноса у устья реки и называют дельтой.",
+      "on_screen": "Дельта — конус выноса"
+    },
+    {
+      "id": "p6",
+      "beat": "solution",
+      "claim_id": "baraboshkin_par1-2.deltas_overview#c3",
+      "is_analogy": false,
+      "pause_after_s": 0,
+      "text": "У дельты три части: дельтовая равнина над водой, авандельта и продельта под водой.",
+      "on_screen": "Равнина, авандельта, продельта"
+    },
+    {
+      "id": "p7",
+      "beat": "solution",
+      "claim_id": "baraboshkin_par1-2.deltas_overview#c3",
+      "is_analogy": false,
+      "pause_after_s": 0,
+      "text": "Дельтовая равнина — субаэральная часть конуса, то есть та, что над водой.",
+      "on_screen": "Равнина — над водой"
+    },
+    {
+      "id": "p8",
+      "beat": "solution",
+      "claim_id": "baraboshkin_par1-2.deltas_overview#c3",
+      "is_analogy": false,
+      "pause_after_s": 0,
+      "text": "Авандельта — крутая подводная часть конуса из грубого обломочного материала.",
+      "on_screen": "Авандельта — круто, грубый материал"
+    },
+    {
+      "id": "p9",
+      "beat": "solution",
+      "claim_id": "baraboshkin_par1-2.deltas_overview#c3",
+      "is_analogy": false,
+      "pause_after_s": 0,
+      "text": "Продельта — пологая часть конуса из тонкого алеврито-пелитового материала.",
+      "on_screen": "Продельта — полого, тонкий материал"
+    },
+    {
+      "id": "p10",
+      "beat": "prediction",
+      "claim_id": "baraboshkin_par1-2.deltas_overview#c4",
+      "is_analogy": false,
+      "pause_after_s": 1.2,
+      "text": "Как вы думаете, где в дельте накопится больше всего осадка?",
+      "on_screen": "Где накопится больше всего?"
+    },
+    {
+      "id": "p11",
+      "beat": "data",
+      "claim_id": "baraboshkin_par1-2.deltas_overview#c4",
+      "is_analogy": false,
+      "pause_after_s": 0,
+      "text": "Видим: у устья перекрываются все части тела — значит, здесь депоцентр, центр накопления осадков.",
+      "on_screen": "У устья — депоцентр"
+    },
+    {
+      "id": "p12",
+      "beat": "data",
+      "claim_id": "baraboshkin_par1-2.deltas_overview#c4",
+      "is_analogy": false,
+      "pause_after_s": 0,
+      "text": "Тело дельты ограничено по площади, поэтому депоцентр формируется рядом с устьем.",
+      "on_screen": "Тело ограничено по площади"
+    },
+    {
+      "id": "p13",
+      "beat": "solution",
+      "claim_id": "baraboshkin_par1-2.deltas_overview#c5",
+      "is_analogy": false,
+      "pause_after_s": 0,
+      "text": "Лопасть дельты продвигается, затем отмирает, и стадия продвижения повторяется снова.",
+      "on_screen": "Продвижение, отмирание, повтор"
+    },
+    {
+      "id": "p14",
+      "beat": "data",
+      "claim_id": "baraboshkin_par1-2.deltas_overview#c5",
+      "is_analogy": false,
+      "pause_after_s": 0,
+      "text": "Видим в разрезе повторяющиеся пачки — значит, строение разреза циклическое.",
+      "on_screen": "Повторяющиеся пачки — цикличность"
+    },
+    {
+      "id": "p15",
+      "beat": "data",
+      "claim_id": "baraboshkin_par1-2.deltas_overview#c5",
+      "is_analogy": false,
+      "pause_after_s": 0,
+      "text": "Повторяться могут стадии всей дельты или только её отдельных лопастей.",
+      "on_screen": "Вся дельта или её лопасти"
+    },
+    {
+      "id": "p16",
+      "beat": "decision",
+      "claim_id": "baraboshkin_par1-2.deltas_overview#c4",
+      "is_analogy": false,
+      "pause_after_s": 0,
+      "text": "Поэтому тело дельты ищут около устья крупной реки: оно ограничено по площади.",
+      "on_screen": "Искать у устья крупной реки"
+    },
+    {
+      "id": "p17",
+      "beat": "decision",
+      "claim_id": "baraboshkin_par1-2.deltas_overview#c5",
+      "is_analogy": false,
+      "pause_after_s": 0,
+      "text": "А повторяющиеся пачки в разрезе читают как смену стадий лопастей.",
+      "on_screen": "Пачки — стадии лопастей"
+    },
+    {
+      "id": "p18",
+      "beat": "transfer",
+      "claim_id": "baraboshkin_par1-2.deltas_overview#c2",
+      "is_analogy": false,
+      "pause_after_s": 0,
+      "text": "Как изменится геометрия дельты, если сильнее станут волны или приливные течения?",
+      "on_screen": "Что изменят волны и приливы?"
+    },
+    {
+      "id": "p19",
+      "beat": "final",
+      "claim_id": "baraboshkin_par1-2.deltas_overview#c3",
+      "is_analogy": false,
+      "pause_after_s": 0,
+      "text": "Итак: конус выноса, три его части, депоцентр у устья и циклы лопастей.",
+      "on_screen": "Конус, части, депоцентр, циклы"
+    }
+  ],
+  "prediction_question": "Как вы думаете, где в дельте накопится больше всего осадка?",
+  "transfer_question": "Как изменится геометрия дельты, если сильнее станут волны или приливные течения?",
+  "data_it_bridge": "Повторяющиеся пачки в разрезе — признак смены стадий, который можно искать автоматически по данным скважин."
+}

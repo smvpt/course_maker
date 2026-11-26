@@ -1,0 +1,62 @@
+{
+  "key": "3c4254381fb03ced20454267088cf848fb70a763b0f4ac82c88dc948a39fc9b0",
+  "text": "Продельта — пологая часть конуса из тонкого алеврито-пелитового материала.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+0%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 7250000,
+      "text": "Продельта"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 11125000,
+      "duration": 4625000,
+      "text": "пологая"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 15750000,
+      "duration": 3125000,
+      "text": "часть"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 18875000,
+      "duration": 5375000,
+      "text": "конуса"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 24250000,
+      "duration": 1500000,
+      "text": "из"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 25750000,
+      "duration": 4750000,
+      "text": "тонкого"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 30500000,
+      "duration": 10625000,
+      "text": "алеврито-пелитового"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 41125000,
+      "duration": 7000000,
+      "text": "материала"
+    }
+  ]
+}

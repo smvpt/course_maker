@@ -1,0 +1,80 @@
+{
+  "key": "8fdc58317a6cfd6929a8b5f925587c3378bae499d742c6005a645a643a3fe836",
+  "text": "Дельтовая равнина — субаэральная часть конуса, то есть та, что над водой.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+0%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 6000000,
+      "text": "Дельтовая"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 7000000,
+      "duration": 4875000,
+      "text": "равнина"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 12875000,
+      "duration": 7375000,
+      "text": "субаэральная"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 20250000,
+      "duration": 3250000,
+      "text": "часть"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 23500000,
+      "duration": 4875000,
+      "text": "конуса"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 31000000,
+      "duration": 1125000,
+      "text": "то"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 32125000,
+      "duration": 2875000,
+      "text": "есть"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 35000000,
+      "duration": 2125000,
+      "text": "та"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 38500000,
+      "duration": 2000000,
+      "text": "что"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 40500000,
+      "duration": 1500000,
+      "text": "над"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 42000000,
+      "duration": 4625000,
+      "text": "водой"
+    }
+  ]
+}

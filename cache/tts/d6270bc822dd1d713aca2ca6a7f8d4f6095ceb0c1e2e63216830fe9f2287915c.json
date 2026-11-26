@@ -1,0 +1,92 @@
+{
+  "key": "d6270bc822dd1d713aca2ca6a7f8d4f6095ceb0c1e2e63216830fe9f2287915c",
+  "text": "Видим: у устья перекрываются все части тела — значит, здесь депоцентр, центр накопления осадков.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+0%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 5125000,
+      "text": "Видим"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 7500000,
+      "duration": 1125000,
+      "text": "у"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8625000,
+      "duration": 2875000,
+      "text": "устья"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 11500000,
+      "duration": 6375000,
+      "text": "перекрываются"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 17875000,
+      "duration": 2250000,
+      "text": "все"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 20125000,
+      "duration": 3500000,
+      "text": "части"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 23625000,
+      "duration": 3375000,
+      "text": "тела"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 28375000,
+      "duration": 5250000,
+      "text": "значит"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 35375000,
+      "duration": 3000000,
+      "text": "здесь"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 38375000,
+      "duration": 6875000,
+      "text": "депоцентр"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 46375000,
+      "duration": 4000000,
+      "text": "центр"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 50375000,
+      "duration": 6500000,
+      "text": "накопления"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 56875000,
+      "duration": 7250000,
+      "text": "осадков"
+    }
+  ]
+}

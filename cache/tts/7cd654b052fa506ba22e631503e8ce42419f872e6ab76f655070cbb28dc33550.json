@@ -1,0 +1,98 @@
+{
+  "key": "7cd654b052fa506ba22e631503e8ce42419f872e6ab76f655070cbb28dc33550",
+  "text": "Без ответа не понять, почему дельты такие разные: форму задают река, море и тектоника.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+0%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 2875000,
+      "text": "Без"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 3875000,
+      "duration": 3750000,
+      "text": "ответа"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 7625000,
+      "duration": 1000000,
+      "text": "не"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8625000,
+      "duration": 5375000,
+      "text": "понять"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 15125000,
+      "duration": 3875000,
+      "text": "почему"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 19000000,
+      "duration": 3250000,
+      "text": "дельты"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 22250000,
+      "duration": 3250000,
+      "text": "такие"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 25500000,
+      "duration": 4625000,
+      "text": "разные"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 31250000,
+      "duration": 3625000,
+      "text": "форму"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 34875000,
+      "duration": 3875000,
+      "text": "задают"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 38750000,
+      "duration": 3625000,
+      "text": "река"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 43750000,
+      "duration": 4000000,
+      "text": "море"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 47750000,
+      "duration": 1250000,
+      "text": "и"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 49000000,
+      "duration": 8000000,
+      "text": "тектоника"
+    }
+  ]
+}

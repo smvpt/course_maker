@@ -1,0 +1,86 @@
+{
+  "key": "3a90bd477ce6acd0a2dbd24ac7c10069a7ba5dad30ac8a244cb540cc433ee37b",
+  "text": "Итак: конус выноса, три его части, депоцентр у устья и циклы лопастей.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+0%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 6250000,
+      "text": "Итак"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8375000,
+      "duration": 3750000,
+      "text": "конус"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 12125000,
+      "duration": 5250000,
+      "text": "выноса"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 18500000,
+      "duration": 1875000,
+      "text": "три"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 20375000,
+      "duration": 1625000,
+      "text": "его"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 22000000,
+      "duration": 5250000,
+      "text": "части"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 28625000,
+      "duration": 6375000,
+      "text": "депоцентр"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 35000000,
+      "duration": 1375000,
+      "text": "у"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 36375000,
+      "duration": 4625000,
+      "text": "устья"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 41000000,
+      "duration": 1000000,
+      "text": "и"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 42000000,
+      "duration": 3500000,
+      "text": "циклы"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 45500000,
+      "duration": 7625000,
+      "text": "лопастей"
+    }
+  ]
+}
