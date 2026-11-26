@@ -1,0 +1,42 @@
+{
+  "chapter": "basniev_gl23-24",
+  "generated": "2026-11-26T14:19",
+  "nodes": 6,
+  "coverage": {
+    "units": 349,
+    "in_nodes": 349,
+    "with_reason": 0,
+    "pct_in_nodes": 100.0,
+    "pct_accounted": 100.0
+  },
+  "quotes": {
+    "claims": 60,
+    "found": 57,
+    "other_page": 0,
+    "not_found": 3,
+    "pct": 95.0
+  },
+  "numbers": {
+    "total": 22,
+    "found": 21,
+    "pct": 95.5
+  },
+  "remarks": {
+    "critical": 3,
+    "significant": 1,
+    "minor": 0
+  },
+  "manual": {
+    "person_minutes": 0,
+    "mentor_minutes": 0,
+    "edits": 0
+  },
+  "cost": {
+    "llm_calls": 92,
+    "cached": 22,
+    "money_usd": 0.2546,
+    "unpriced_calls": 0,
+    "tokens_in": 429420,
+    "tokens_out": 51626
+  }
+}
