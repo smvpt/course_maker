@@ -4,6 +4,8 @@
   distribution  слайдер времени → распределение (давление и т. п.): график по оси x, слайдер меняет момент (формализм)
   profile       слайдер глубины → кривая: профиль по глубине, глубина вниз, маркер на выбранной глубине (интерпретация)
   growth        слайдер времени → рост тела или слоёв: значение и столбец растут вместе со слайдером (облик, развитие)
+  dependence    общий: один слайдер (любая переменная формулы) → значение и кривая y(x); для формул с одной переменной,
+                запасной шаблон, если формула не годится для основного (например, нужны две переменные, а она одна)
 Модель выбирает только формулу узла, переменные из узла и диапазоны. Значения считает Python (тот же safe_eval, что в
 расчётах заданий и графиках иллюстраций) на сетке положений слайдера и кладёт в interactive.json: JS ничего не вычисляет.
 
@@ -35,8 +37,11 @@ TEMPLATE_HINT = {
                     "(например давление по расстоянию). Нужны две переменные: слайдер и ось x.",
     "profile": "слайдер — глубина; график — профиль величины по глубине, глубина растёт вниз. Нужна одна переменная (глубина).",
     "growth": "слайдер — время; график и столбец показывают, как величина растёт со временем. Нужна одна переменная (время).",
+    "dependence": "слайдер — любая переменная формулы (подпиши её по смыслу); график — кривая результата от этой переменной, маркер на "
+                  "выбранном значении. Нужна одна переменная, остальные величины формулы — константы из узла.",
 }
-SLIDER_STEPS = {"distribution": 41, "profile": 121, "growth": 81}
+SLIDER_STEPS = {"distribution": 41, "profile": 121, "growth": 81, "dependence": 121}
+GENERAL = "dependence"
 X_POINTS = 60
 
 
@@ -165,10 +170,7 @@ def validate_and_compute(node: Node, spec: InteractiveSpec, template: str, curve
         "series": series}
 
 
-def make_interactive(node: Node, template: str, curve_keys: dict[str, str], language: str) -> dict:
-    """Спецификация от модели → проверка → значения от кода. Возвращает {"spec", "data"} для interactive.json."""
-    formulas = [{"claim_id": c.id, "text": c.text, "formula": c.quote, "page": c.page_pdf}
-                for c in node.claims if c.source_kind == "formula"]
+def _try_template(node: Node, template: str, curve_keys: dict[str, str], language: str, formulas: list[dict]) -> dict:
     feedback = "нет, это первая попытка"
     for _ in range(ATTEMPTS):
         spec = complete_json(prompt="course/interactive", schema=InteractiveSpec, tier="default",
@@ -178,13 +180,28 @@ def make_interactive(node: Node, template: str, curve_keys: dict[str, str], lang
                                    "curves": json.dumps([{"key": k, "name": v} for k, v in curve_keys.items()], ensure_ascii=False),
                                    "language": language, "feedback": feedback})
         if not spec.feasible:
-            raise NotFeasible("модель ответила, что по формулам и числам узла интерактив построить нельзя")
+            raise NotFeasible(f"модель ответила, что по формулам и числам узла шаблон {template} построить нельзя")
         errors, data = validate_and_compute(node, spec, template, set(curve_keys))
         if not errors:
             return {"spec": spec.model_dump(), "data": data}
         feedback = "\n".join(f"- {e}" for e in errors)
-    raise GenerationFailed(f"{node.id}: интерактив не прошёл проверку за {ATTEMPTS} попытки:\n{feedback}",
+    raise GenerationFailed(f"{node.id}: интерактив ({template}) не прошёл проверку за {ATTEMPTS} попытки:\n{feedback}",
                            [e.removeprefix("- ") for e in feedback.splitlines()])
+
+
+def make_interactive(node: Node, template: str, curve_keys: dict[str, str], language: str) -> dict:
+    """Спецификация от модели → проверка → значения от кода. Возвращает {"spec", "data"} для interactive.json.
+    Если модель ответила, что основной шаблон по формулам узла не построить, пробуем общий «один слайдер → кривая»."""
+    formulas = [{"claim_id": c.id, "text": c.text, "formula": c.quote, "page": c.page_pdf}
+                for c in node.claims if c.source_kind == "formula"]
+    chain = [template] + ([GENERAL] if template != GENERAL else [])
+    reasons: list[str] = []
+    for t in chain:
+        try:
+            return _try_template(node, t, curve_keys, language, formulas)
+        except NotFeasible as e:
+            reasons.append(str(e))
+    raise NotFeasible("; ".join(reasons))
 
 
 def table_rows(data: dict, count: int = 9) -> tuple[list[str], list[list[str]]]:

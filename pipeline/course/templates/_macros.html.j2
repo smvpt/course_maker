@@ -1,6 +1,6 @@
 {# Общие куски: список шагов пути (боковая панель, шторка, обложка) и метка «автор / модель / гипотеза». #}
 {% macro badge(by) -%}
-<span class="by by-{{ by }}">{{ {"author": "автор", "model": "модель", "hypothesis": "гипотеза"}[by] }}</span>
+<span class="by by-{{ by }}">{{ {"author": "из книги", "model": "пересказ", "hypothesis": "гипотеза"}[by] }}</span>
 {%- endmacro %}
 
 {% macro path_list(steps, current=None) -%}
@@ -17,13 +17,11 @@
 </ol>
 {%- endmacro %}
 
-{% macro main_nav(page, label) -%}
-{% set items = [("index", "index.html", "Путь", "house", None), ("tasks", "tasks.html", "Задания", "list-checks", None),
-                ("progress", "progress.html", "Прогресс", "chart-bar", None), ("summary", "summary.html", "Конспект", "article", None),
-                ("it", "it.html", "ИТ-задачи", "cpu", "ИТ")] %}
-<nav class="main-nav" aria-label="{{ label }}">
-  {% for key, href, text, ic, short in items %}
-  <a href="{{ href }}"{% if short %} aria-label="{{ text }}"{% endif %}{% if page == key or (key == "index" and page == "step") %} aria-current="page"{% endif %}>{{ icon(ic) }}<span>{{ text }}</span>{% if short %}<span class="short" aria-hidden="true">{{ short }}</span>{% endif %}</a>
+{# Общая полоса вкладок раздела «Повторение»: Прогресс · Ошибки · Карточки #}
+{% macro review_tabs(page) -%}
+<nav class="review-tabs" aria-label="Повторение">
+  {% for key, href, text, ic in (("progress", "progress.html", "Прогресс", "chart-bar"), ("mistakes", "mistakes.html", "Ошибки", "arrow-counter-clockwise"), ("cards", "cards.html", "Карточки", "cards")) %}
+  <a href="{{ href }}"{% if page == key %} aria-current="page"{% endif %}>{{ icon(ic) }}<span>{{ text }}</span></a>
   {% endfor %}
 </nav>
 {%- endmacro %}

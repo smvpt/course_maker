@@ -1,0 +1,35 @@
+{% extends "base.html.j2" %}
+{% block title %}Словарь главы — {{ chapter_title }}{% endblock %}
+{% block main %}
+<h1>Словарь главы</h1>
+{% if not items %}
+<div class="empty-state">
+  <p class="empty-ic" aria-hidden="true">{{ icon("book-bookmark") }}</p>
+  <p><strong>В этой главе нет новых терминов.</strong></p>
+  <p class="muted">Когда глава вводит термины, они собираются здесь: определение, страница книги и шаг, где термин вводится.</p>
+  <p><a class="btn" href="index.html">{{ icon("house") }}<span>К пути по главе</span></a></p>
+</div>
+{% else %}
+<p class="muted">Термины, которые вводит глава, по алфавиту: определение, страница книги и шаг, где термин вводится.</p>
+<div class="search search-inline" role="search">
+  <label class="sr" for="glossary-q">Найти термин в словаре</label>
+  <span class="search-ic" aria-hidden="true">{{ icon("magnifying-glass") }}</span>
+  <input id="glossary-q" type="search" placeholder="Найти термин" autocomplete="off" spellcheck="false">
+</div>
+<dl class="glossary" id="glossary-list">
+  {% for g in items %}
+  <div class="gloss" data-key="{{ g.key }}">
+    <dt><strong class="gloss-term">{{ g.term }}</strong></dt>
+    <dd>
+      <p>{{ g.definition }}</p>
+      <p class="gloss-meta">
+        {% if g.page %}<span class="gloss-page">{{ icon("book-open") }}стр. {{ g.page }}</span>{% endif %}
+        <a href="step-{{ g.node }}.html#{{ g.anchor }}">К шагу «{{ g.step_title }}»</a>
+      </p>
+    </dd>
+  </div>
+  {% endfor %}
+</dl>
+<p id="glossary-empty" class="empty" hidden>Такого термина в словаре нет.</p>
+{% endif %}
+{% endblock %}

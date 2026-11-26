@@ -12,8 +12,10 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
-import time
+import threading
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Literal, Optional
 
@@ -44,6 +46,7 @@ class StepTextOut(BaseModel):
 class StepTextNode(Base):
     hash: str
     paragraphs: list[Para]
+    warnings: list[str] = Field(default_factory=list)   # не отказы: например, термин из terms_introduced не выделен
 
 
 class StepTextFailure(Base):
@@ -86,20 +89,44 @@ class LlmState:
         self.in_a_row = 0
         self.failures = 0
         self.calls = 0
+        self._lock = threading.Lock()                       # узлы обрабатываются в нескольких потоках
 
     def success(self) -> None:
-        self.calls += 1
-        self.in_a_row = 0
+        with self._lock:
+            self.calls += 1
+            self.in_a_row = 0
 
     def failure(self, e: LlmError) -> None:
-        self.calls += 1
-        self.failures += 1
-        if isinstance(e, LlmAuthError):
-            self.down = str(e)
-            return
-        self.in_a_row += 1
-        if self.in_a_row >= self.MAX_IN_A_ROW:
-            self.down = f"{self.MAX_IN_A_ROW} отказа подряд, последний: {e}"
+        with self._lock:
+            self.calls += 1
+            self.failures += 1
+            if isinstance(e, LlmAuthError):
+                self.down = str(e)
+                return
+            self.in_a_row += 1
+            if self.in_a_row >= self.MAX_IN_A_ROW and self.down is None:
+                self.down = f"{self.MAX_IN_A_ROW} отказа подряд, последний: {e}"
+
+
+def workers() -> int:
+    """Число потоков обработки узлов: COURSE_WORKERS (по умолчанию 4). Неверное значение — ошибка, а не молчаливая подмена."""
+    raw = os.environ.get("COURSE_WORKERS", "4")
+    try:
+        n = int(raw)
+    except ValueError:
+        n = 0
+    if n < 1:
+        raise ValueError(f"COURSE_WORKERS={raw!r}: нужно целое число потоков от 1")
+    return n
+
+
+def run_parallel(items: list, job) -> list:
+    """job(item) для каждого элемента в пуле потоков; результаты — в порядке items, а не завершения.
+    job сам превращает отказы модели в результат; любое другое исключение (баг) пробрасывается."""
+    if workers() == 1 or len(items) <= 1:
+        return [job(x) for x in items]
+    with ThreadPoolExecutor(max_workers=workers()) as pool:
+        return list(pool.map(job, items))
 
 
 # ---------------------------------------------------------------- разбор текста
@@ -167,15 +194,16 @@ def source_text(node: Node) -> str:
 
 
 def _no_ext(obj):
+    """Без служебных ext и без None: отсутствие поля и поле со значением None — одно и то же (П1 меняет контракт)."""
     if isinstance(obj, dict):
-        return {k: _no_ext(v) for k, v in obj.items() if k != "ext"}
+        return {k: _no_ext(v) for k, v in obj.items() if k != "ext" and v is not None}
     if isinstance(obj, list):
         return [_no_ext(v) for v in obj]
     return obj
 
 
 def node_dict(node: Node) -> dict:
-    """Узел без служебных ext (в том числе вложенных): то, что видит модель и что попадает в хэш."""
+    """Узел без служебных ext (в том числе вложенных) и без None: то, что видит модель и что попадает в хэш."""
     return _no_ext(node.model_dump(mode="json", by_alias=True))
 
 
@@ -241,6 +269,14 @@ def validate_node(node: Node, paras: list[Para]) -> list[str]:
         marks = MARK_RE.findall(p.text)
         if len(marks) != len(p.terms):
             errors.append(f"{tag}: [[…]] в тексте {len(marks)}, а в terms {len(p.terms)}: выдели ровно те термины, что перечислены в terms")
+        if p.block == "main":
+            if len(marks) > 1:
+                errors.append(f"{tag}: в «Суть» не больше одного термина [[…]] (сейчас {len(marks)}): синонимы пиши в скобках обычным текстом, "
+                              "остальные термины вводи в блоке «как это работает» или другом")
+            if "**" in p.text or "__" in p.text:
+                errors.append(f"{tag}: в «Суть» нет жирного шрифта: выдели термин только как [[…]], синонимы — обычным текстом в скобках")
+        elif len(marks) > 2:
+            errors.append(f"{tag}: не больше двух терминов [[…]] на абзац (сейчас {len(marks)}): раздели мысль на два абзаца")
         for t in p.terms:
             if t not in node.terms_introduced:
                 errors.append(f"{tag}: термин {t!r} не из terms_introduced узла")
@@ -251,7 +287,7 @@ def validate_node(node: Node, paras: list[Para]) -> list[str]:
             errors.append(f"{tag}: limit=true допустим только в блоке analogy")
 
     for t in node.terms_introduced:
-        if term_count.get(t, 0) != 1:
+        if term_count.get(t, 0) > 1:                                  # «не выделен» (0) — не отказ, а предупреждение unmarked_terms
             errors.append(f"термин {t!r} должен быть выделен [[…]] и объяснён ровно в одном абзаце (сейчас {term_count.get(t, 0)})")
 
     main = [s for p in paras if p.block == "main" for s in sentences(p.text)]
@@ -268,19 +304,15 @@ def validate_node(node: Node, paras: list[Para]) -> list[str]:
 
 # ---------------------------------------------------------------- вызов модели
 
-PAUSES = (2, 5, 10)                                   # секунды перед повтором временной ошибки
 TRANSIENT_STATUS = {408, 425, 429, 500, 502, 503, 504, 529}
 TRANSIENT_NAMES = {"Timeout", "APITimeoutError", "APIConnectionError", "RateLimitError", "ServiceUnavailableError",
                    "InternalServerError", "BadGatewayError", "TimeoutError", "ConnectionError"}
 AUTH_NAMES = {"AuthenticationError", "PermissionDeniedError"}
 
 
-def _pause(seconds: float) -> None:
-    time.sleep(seconds)
-
-
 def classify(e: Exception) -> str:
-    """auth | transient | other. llm.py (зона П1) сам не повторяет запросы и типы ошибок litellm не оборачивает."""
+    """auth | transient | other. Повторы временных ошибок делает llm.py (зона П1: паузы, запасные модели); сюда временная
+    ошибка доходит только когда они исчерпаны (llm.py оборачивает это в ProviderUnavailable), поэтому здесь это отказ узла."""
     names = {c.__name__ for c in type(e).__mro__}
     status = getattr(e, "status_code", None)
     if status in (401, 403) or names & AUTH_NAMES or "LLM_API_KEY" in str(e):
@@ -298,19 +330,15 @@ def brief(e: Exception, limit: int = 300) -> str:
 
 def call_llm(**kw):
     from pipeline.llm import complete_json as impl   # точка входа в LLM — только pipeline.llm (CLAUDE.md §2)
-    for attempt in range(len(PAUSES) + 1):
-        try:
-            return impl(**kw)
-        except (KeyError, TypeError, FileNotFoundError):
-            raise        # нет промпта, не хватает переменной: это наша ошибка, не отказ модели — падаем громко
-        except Exception as e:
-            kind = classify(e)
-            if kind == "auth":
-                raise LlmAuthError(brief(e)) from e
-            if kind == "transient" and attempt < len(PAUSES):
-                _pause(PAUSES[attempt])
-                continue
-            raise LlmError(brief(e)) from e
+    try:
+        return impl(**kw)
+    except (KeyError, TypeError, FileNotFoundError):
+        raise        # нет промпта, не хватает переменной: это наша ошибка, не отказ модели — падаем громко
+    except Exception as e:
+        # Своих повторов нет: llm.py уже повторял запрос и пробовал запасные модели. Что дошло сюда — отказ узла или слота.
+        if classify(e) == "auth":
+            raise LlmAuthError(brief(e)) from e
+        raise LlmError(brief(e)) from e
 
 
 def complete_json(**kw):
@@ -322,15 +350,47 @@ def quote_language(layer: Layer) -> str:
     return "ru" if cyrillic_share(quotes) >= 0.5 else "en"
 
 
+def normalize_terms(node: Node, paras: list[Para]) -> list[Para]:
+    """Правила терминов выполняет код, а не отказ шага: термин выделен [[…]] один раз за шаг (остальные выделения — обычный
+    текст), в «Суть» не больше одного выделения и без жирного, в остальных блоках не больше двух на абзац, выделение
+    термина вне terms_introduced снимается. Слова текста остаются, меняются только маркеры. Вход не меняется."""
+    canon = {t.casefold(): t for t in node.terms_introduced}      # «Пористость» в начале фразы — тот же термин, что «пористость»
+    seen: set[str] = set()
+    out = []
+    for p in paras:
+        limit = 1 if p.block == "main" else 2
+        kept: list[str] = []
+
+        def sub(m):
+            term = canon.get(m.group(1).casefold())
+            if term is None or term in seen or len(kept) >= limit:
+                return m.group(1)
+            seen.add(term)
+            kept.append(term)
+            return m.group(0)
+        text = MARK_RE.sub(sub, p.text)
+        if p.block == "main":
+            text = text.replace("**", "").replace("__", "")
+        out.append(p.model_copy(update={"text": text, "terms": kept}))
+    return out
+
+
+def unmarked_terms(node: Node, paras: list[Para]) -> list[str]:
+    """Предупреждения: термины из terms_introduced, которые нигде в тексте шага не выделены."""
+    marked = {t.casefold() for p in paras for t in MARK_RE.findall(p.text)}
+    return [f"термин {t!r} не выделен [[…]] ни в одном абзаце" for t in node.terms_introduced if t.casefold() not in marked]
+
+
 def generate_node(node: Node, language: str, viewer: str) -> list[Para]:
     node_json = json.dumps(node_dict(node), ensure_ascii=False, indent=1)
     feedback = "нет, это первая попытка"
     for _ in range(ATTEMPTS):
         out = complete_json(prompt="course/step_page", schema=StepTextOut, tier="default",
                             vars={"node": node_json, "viewer": viewer, "language": language, "feedback": feedback})
-        errors = validate_node(node, out.paragraphs)
+        paragraphs = normalize_terms(node, out.paragraphs)
+        errors = validate_node(node, paragraphs)
         if not errors:
-            return out.paragraphs
+            return paragraphs
         feedback = "\n".join(f"- {e}" for e in errors)
     raise GenerationFailed(f"{node.id}: текст шага не прошёл проверку за {ATTEMPTS} попытки:\n{feedback}",
                            [e.removeprefix("- ") for e in feedback.splitlines()])
@@ -364,6 +424,7 @@ def ensure_step_text(layer: Layer, course_dir: Path, only: Optional[str] = None,
     failed = {k: v for k, v in (old.failed if old else {}).items() if k in ids}
     viewer = (Path(__file__).resolve().parents[2] / VIEWER_FILE).read_text(encoding="utf-8")
     language = quote_language(layer)
+    todo = []
     for n in layer.nodes:
         if only is not None and n.id != only:
             continue
@@ -371,20 +432,30 @@ def ensure_step_text(layer: Layer, course_dir: Path, only: Optional[str] = None,
         if n.id in nodes and nodes[n.id].hash == h:
             continue
         nodes.pop(n.id, None)
+        todo.append((n, h))
+
+    def job(item):
+        n, h = item
         if state.down is not None:
-            failed[n.id] = StepTextFailure(hash=h, errors=[f"модель недоступна: {state.down}"])
-            continue
+            return None, StepTextFailure(hash=h, errors=[f"модель недоступна: {state.down}"])
         try:
-            nodes[n.id] = StepTextNode(hash=h, paragraphs=generate_node(n, language, viewer))
-            failed.pop(n.id, None)
-            state.success()
+            paragraphs = generate_node(n, language, viewer)
         except GenerationFailed as e:
-            failed[n.id] = StepTextFailure(hash=h, errors=e.errors)
             state.success()                                # модель ответила, просто неверно
+            return None, StepTextFailure(hash=h, errors=e.errors)
         except LlmError as e:
             state.failure(e)
             reason = f"модель недоступна: {state.down}" if state.down else f"отказ модели: {e}"
-            failed[n.id] = StepTextFailure(hash=h, errors=[reason])
+            return None, StepTextFailure(hash=h, errors=[reason])
+        state.success()
+        return StepTextNode(hash=h, paragraphs=paragraphs, warnings=unmarked_terms(n, paragraphs)), None
+
+    for (n, _), (ok, fail) in zip(todo, run_parallel(todo, job)):   # итог собирается в порядке слоя, файл пишет один поток
+        if ok is not None:
+            nodes[n.id] = ok
+            failed.pop(n.id, None)
+        else:
+            failed[n.id] = fail
     course_dir.mkdir(parents=True, exist_ok=True)
     path.write_text(StepText(chapter=layer.chapter, nodes=nodes, failed=failed).model_dump_json(by_alias=True, indent=2),
                     encoding="utf-8")

@@ -5,7 +5,7 @@
 | Jinja2 | 3.1.6 | BSD-3-Clause | нет |
 | Pillow (ужатие сканов страниц) | 13.0.0 | MIT-CMU (HPND) | нет |
 | jsonschema (тесты схем организаторов) | 4.26.0 | MIT | нет |
-| Phosphor Icons, regular, SVG в `pipeline/course/assets/icons/` | core@main, скачано 25.11.2026 | MIT | нет |
+| Phosphor Icons, regular, SVG в `pipeline/course/assets/icons/` (все иконки курса — один набор) | @phosphor-icons/core 2.1.1 (npm), скачано 26.11.2026 | MIT (LICENSE-phosphor.txt) | нет |
 | KaTeX (формулы), файлы в `pipeline/course/assets/katex/`: js, css, шрифты woff2 | 0.16.22, скачано 25.11.2026 | MIT | нет |
 | LLM (текст шагов, задания): только через `pipeline/llm.py` П1 | — | — | да: в модель уходит текст узла слоя (см. манифест ядра) |
 
@@ -14,3 +14,4 @@
 Иллюстрации (`pipeline/illus/`) — SVG, написанные кодом без сторонних библиотек: ни matplotlib, ни генерации изображений. Во внешний сервис (через `pipeline/llm.py`) уходит только текст узла слоя, чтобы модель выбрала формулу, переменные и диапазон для графика; значения считает код.
 
 Интерактив и вопрос «сначала угадай» (`pipeline/course/interactive.py`, `guess.py`): новых зависимостей нет, график рисует JS из чисел, которые посчитал Python (`safe_eval`); в модель (через `pipeline/llm.py`) уходит текст узла слоя.
+| axe-core 4.14.1 (только тесты: `tests/course/vendor/axe.min.js`, в курс не попадает) | npm `axe-core`, скачано 26.11.2026 | MPL-2.0 (AXE-LICENSE-MPL-2.0.txt) | нет |

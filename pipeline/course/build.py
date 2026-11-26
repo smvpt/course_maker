@@ -26,7 +26,8 @@ from contracts.models import FormatRu, Illustrations, Layer, Node, ReviewOutput,
 from pipeline.course import guess as guess_mod, interactive as inter_mod
 from pipeline.course.order import break_cycles, group_parts, order_nodes, part_of
 from pipeline.course.pernode import read_store
-from pipeline.course.steptext import Para, node_hash, read_step_text
+from pipeline.course.steptext import Para, node_hash, norm, normalize_terms, read_step_text
+from pipeline.course.tasks import MISMATCH
 from pipeline.illus import gen as illus_gen
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -208,9 +209,98 @@ def paras_view(node: Node, paras: list[Para]) -> dict[str, list[dict]]:
                 raise ValueError(f"step_text.json: шаг {node.id}: абзац ссылается на несуществующее утверждение {cid}")
         html = Markup(re.sub(r"\[\[(.+?)\]\]", r"<dfn>\1</dfn>", str(Markup.escape(p.text))))   # термин при первом упоминании
         out.setdefault(p.block, []).append({
+            "id": f"p-{p.block}-{len(out.get(p.block, [])) + 1}",                       # якорь: поиск, словарь, «Перечитать»
             "html": html, "by": "hypothesis" if p.hypothesis else "model", "limit": p.limit,
             "pages": sorted({page_of[c] for c in p.claim_ids}), "claims": " ".join(p.claim_ids)})
     return out
+
+
+# ---------------------------------------------------------------- словарь, поиск, подсказки терминов
+
+MARK = re.compile(r"\[\[(.+?)\]\]")
+BLOCK_TITLES = {"main": ("b-main", "Суть"), "why": ("b-why", "Зачем этот шаг"), "how": ("b-how", "Как это работает"),
+                "practice": ("b-practice", "Как делает специалист"), "nuances": ("b-nuances", "Нюансы"),
+                "misconception": ("b-misconception", "Частая ошибка"), "decision": ("b-decision", "Решение на данных"),
+                "data": ("b-data", "Что это значит для данных"), "analogy": ("b-analogy", "Аналогия"), "deeper": ("b-deeper", "Глубже")}
+
+
+def strip_marks(text: str) -> str:
+    return MARK.sub(r"\1", text)
+
+
+def term_definition(text: str, term: str) -> str:
+    """Определение термина из текста шага: предложение, где он выделен, и следующее за ним (скобки [[ ]] сняты)."""
+    sents = re.split(r"(?<=[.!?])\s+", text.strip())
+    i = next((k for k, s in enumerate(sents) if term.casefold() in {m.casefold() for m in MARK.findall(s)}), 0)
+    return strip_marks(" ".join(sents[i:i + 2]))
+
+
+def build_glossary(ordered: list[Node], fresh: dict[str, list[Para]]) -> list[dict]:
+    """Все термины, которые вводит глава, по алфавиту: определение, страница книги и шаг, где термин вводится.
+    Определение — из текста шага (то, что модель объяснила по узлу); без текста модели — из утверждения узла."""
+    items = []
+    for n in ordered:
+        paras = fresh.get(n.id)
+        page_of = {c.id: c.page_pdf for c in n.claims}
+        for t in n.terms_introduced:
+            e = {"term": t, "key": norm(t), "node": n.id, "step_title": n.title_novice or n.title,
+                 "definition": None, "page": None, "claim": None, "anchor": "b-main"}
+            if paras:
+                seen: dict[str, int] = {}
+                for p in paras:
+                    seen[p.block] = seen.get(p.block, 0) + 1
+                    if t.casefold() in {m.casefold() for m in MARK.findall(p.text)}:
+                        known = [c for c in p.claim_ids if c in page_of]     # неизвестное утверждение громко упадёт в paras_view
+                        if not known:
+                            continue
+                        cid = min(known, key=lambda c: page_of[c])
+                        e.update(definition=term_definition(p.text, t), page=page_of[cid], claim=cid, anchor=f"p-{p.block}-{seen[p.block]}")
+                        break
+            if e["definition"] is None:
+                stem = norm(t)[:5]
+                c = next((c for c in n.claims if c.source_kind not in ("formula", "table") and stem in norm(c.text)), None)
+                if c is not None:
+                    e.update(definition=c.text, page=c.page_pdf, claim=c.id)
+            items.append(e)
+    return sorted((e for e in items if e["definition"]), key=lambda e: e["key"])      # термин без определения в словарь не попадает: «см. шаг» — не определение
+
+
+def search_index(ordered: list[Node], fresh: dict[str, list[Para]], glossary: list[dict]) -> list[dict]:
+    """Индекс офлайн-поиска: названия шагов, термины, текст блоков. s — шаг, a — якорь абзаца, b — название блока, x — текст."""
+    out: list[dict] = []
+    for n in ordered:
+        title = n.title_novice or n.title
+        out.append({"k": "step", "s": n.id, "t": title, "b": "Шаг", "a": "", "x": " ".join(dict.fromkeys(x for x in (title, n.title, n.layers.topic.text if has_text(n.layers.topic) else "") if x))})   # без повторов
+        paras = fresh.get(n.id)
+        if paras:
+            seen: dict[str, int] = {}
+            for p in paras:
+                seen[p.block] = seen.get(p.block, 0) + 1
+                bid, btitle = BLOCK_TITLES[p.block]
+                out.append({"k": "para", "s": n.id, "t": title, "b": btitle, "a": f"p-{p.block}-{seen[p.block]}", "x": strip_marks(p.text)})
+        else:
+            lay, dm = n.layers, n.data_meaning
+            fields = [("main", lay.main), ("why", n.why_here), ("how", lay.mechanism), ("practice", lay.practice), ("nuances", lay.nuances),
+                      ("data", dm.from_chapter), ("data", dm.breaks), ("misconception", n.misconception) if n.misconception else None]
+            for item in fields:
+                if item and has_text(item[1]):
+                    out.append({"k": "para", "s": n.id, "t": title, "b": BLOCK_TITLES[item[0]][1], "a": BLOCK_TITLES[item[0]][0], "x": item[1].text})
+            if n.it_analogy.text.strip():
+                out.append({"k": "para", "s": n.id, "t": title, "b": "Аналогия", "a": "b-analogy", "x": n.it_analogy.text})
+        d = n.decision_on_data
+        if d:
+            out.append({"k": "para", "s": n.id, "t": title, "b": "Решение на данных", "a": "b-decision", "x": " ".join([*d.features, d.rule, d.conclusion])})
+    for g in glossary:
+        if g["definition"]:
+            out.append({"k": "term", "s": g["node"], "t": g["step_title"], "b": "Термин", "a": g["anchor"], "x": f"{g['term']}. {g['definition']}"})
+    return out
+
+
+def terms_view(glossary: list[dict], node_id: str) -> dict:
+    """Подсказки терминов шага: ключ (термин без регистра, ё = е) → определение, страница, утверждение, ссылка на место, где вводится."""
+    return {g["key"]: {"term": g["term"], "def": g["definition"], "page": g["page"], "claim": g["claim"],
+                       "href": f"step-{g['node']}.html#{g['anchor']}", "step": g["step_title"]}
+            for g in glossary if g["node"] == node_id and g["definition"]}
 
 
 # ---------------------------------------------------------------- интерактив (interactive.json, задача 5)
@@ -218,11 +308,17 @@ def paras_view(node: Node, paras: list[Para]) -> dict[str, list[dict]]:
 def inter_view(data: dict, style_raw: dict) -> dict:
     """Данные интерактива + палитра из styleguide (цвета рисует JS из этих данных, а не из CSS)."""
     gs = illus_gen.Style(style_raw)
+    if data["template"] == "scheme":
+        parts = []
+        for p in data["parts"]:
+            color = style_raw["lithology"][p["rock"]]["color"] if p["rock"] else None
+            parts.append({**p, "color": color, "on": gs.on(color) if color else None})
+        return {"scheme": True, "data": data, "parts": parts, "json": Markup(json.dumps(data, ensure_ascii=False).replace("</", "<\\/"))}
     badge = gs.prov("симуляция")
     palette = {"bg": gs.bg, "panel": gs.panel, "text": gs.text, "muted": gs.muted, "color": gs.curve(data["curve_key"]) or gs.measurement,
                "badge": badge, "badgeText": gs.on(badge)}
     head, rows = inter_mod.table_rows(data)
-    return {"data": data, "head": head, "rows": rows, "steps": len(data["slider"]["values"]),
+    return {"scheme": False, "data": data, "head": head, "rows": rows, "steps": len(data["slider"]["values"]),
             "json": Markup(json.dumps({**data, "palette": palette}, ensure_ascii=False).replace("</", "<\\/"))}
 
 
@@ -324,9 +420,17 @@ def node_pages(node: Node) -> list[int]:
     return sorted(pages)
 
 
+def page_range(node: Node) -> str:
+    """«стр. 38» или «стр. 38–40» по страницам PDF утверждений узла."""
+    pages = node_pages(node)
+    if not pages:
+        return ""
+    return f"стр. {pages[0]}" if pages[0] == pages[-1] else f"стр. {pages[0]}–{pages[-1]}"
+
+
 def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path, tasks: list[Task],
               paras: list[Para] | None = None, interactive: dict | None = None, guess: dict | None = None,
-              style_raw: dict | None = None) -> dict:
+              style_raw: dict | None = None, terms: dict | None = None) -> dict:
     fixes = ocr_fixes(node)
     text_claims = [c for c in node.claims if c.source_kind not in ("formula", "table")]
     formulas = [c for c in node.claims if c.source_kind == "formula"]
@@ -407,6 +511,7 @@ def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path
         "node": node,
         "title": node.title_novice or node.title,
         "minutes": minutes(node),
+        "pages_label": page_range(node),
         "text_claims": text_claims,
         "formulas": formulas,
         "tables": tables,
@@ -425,33 +530,114 @@ def step_view(node: Node, inp: dict, course: Path, pages_src: Path, ch_dir: Path
         "route": inp["routes"].get(node.id),
         "pages": node_pages(node),
         "data_json": Markup(json.dumps(data, ensure_ascii=False).replace("</", "<\\/")),
+        "terms_json": Markup(json.dumps(terms or {}, ensure_ascii=False).replace("</", "<\\/")),
+        "has_terms": bool(terms),
+        "hint_page": (text_claims[0] if text_claims else node.claims[0]).page_pdf,
     }
 
 
+def video_dirs(ch_dir: Path, node_id: str) -> list[tuple[str, str, Path]]:
+    """[(формат, video_id, каталог)] роликов узла: videos/<узел>.short, videos/<узел>.long (так пишет П4),
+    затем старый videos/<узел>/ как запасной."""
+    found = []
+    for fmt in ("short", "long"):
+        d = ch_dir / "videos" / f"{node_id}.{fmt}"
+        if d.is_dir():
+            found.append((fmt, f"{node_id}.{fmt}", d))
+    legacy = ch_dir / "videos" / node_id
+    if legacy.is_dir():
+        found.append(("legacy", node_id, legacy))
+    return found
+
+
+def _mp4(vid: str, d: Path) -> Path | None:
+    exact = d / f"{vid}.mp4"
+    if exact.exists():
+        return exact
+    others = sorted(d.glob("*.mp4"))
+    return others[0] if others else None
+
+
+def _has_video(ch_dir: Path, node_id: str) -> bool:
+    return any(_mp4(vid, d) for _, vid, d in video_dirs(ch_dir, node_id))
+
+
+_VTT_TIME = re.compile(r"(?:(\d+):)?(\d{1,2}):(\d{2})[.,](\d{1,3})")
+
+
+def _vtt_seconds(t: str) -> float:
+    m = _VTT_TIME.fullmatch(t.strip())
+    if not m:
+        raise ValueError(f"субтитры: не разобрать время {t!r}")
+    h, mi, s, ms = m.groups()
+    return int(h or 0) * 3600 + int(mi) * 60 + int(s) + int(ms.ljust(3, "0")) / 1000
+
+
+def parse_vtt(text: str) -> list[dict]:
+    """Реплики WebVTT → [{s, e, t}] (секунды). Субтитры встраиваются в страницу: Chromium не загружает <track src> с file://
+    («'file:' URLs are treated as unique security origins»), а курс открывается двойным кликом."""
+    cues = []
+    for block in re.split(r"\r?\n\r?\n+", text.strip().lstrip(chr(0xFEFF))):
+        lines = [l for l in block.splitlines() if l.strip()]
+        i = next((k for k, l in enumerate(lines) if "-->" in l), None)
+        if i is None:
+            continue                                        # заголовок WEBVTT, NOTE, STYLE
+        start, _, rest = lines[i].partition("-->")
+        end = rest.strip().split()[0] if rest.strip() else ""
+        body = " ".join(l.strip() for l in lines[i + 1:])
+        if body:
+            cues.append({"s": _vtt_seconds(start), "e": _vtt_seconds(end), "t": body})
+    return cues
+
+
+def _player(vid: str, d: Path, mp4: Path, course: Path) -> dict:
+    dst = course / "media" / vid
+    dst.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(mp4, dst / mp4.name)
+    vtt = d / f"{vid}.vtt"
+    if not vtt.exists():
+        others = sorted(d.glob("*.vtt"))
+        vtt = others[0] if others else None
+    cues = None
+    if vtt is not None:
+        shutil.copy2(vtt, dst / vtt.name)                  # файл остаётся рядом (скачать), но плеер берёт реплики из страницы: см. parse_vtt
+        cues = parse_vtt(vtt.read_text(encoding="utf-8"))
+    return {"src": f"media/{vid}/{mp4.name}", "vtt": f"media/{vid}/{vtt.name}" if vtt else None,
+            "cues": Markup(json.dumps(cues, ensure_ascii=False).replace("</", "<\\/")) if cues else None, "passport": _passport(vid, d, course)}
+
+
+def _passport(vid: str, d: Path, course: Path) -> str | None:
+    src = d / "passport.json"
+    if not src.exists():
+        return None
+    dst = course / "media" / vid / "passport.json"
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(src, dst)
+    return f"media/{vid}/passport.json"
+
+
 def video_view(node: Node, inp: dict, course: Path, ch_dir: Path) -> dict | None:
+    """Ролик узла. short — основной плеер, long — второй плеер «подробнее»; только long — он основной.
+    Каталог без mp4 (одна спецификация) — не ролик: ссылка на паспорт, если маршрутизация просила видео."""
+    dirs = video_dirs(ch_dir, node.id)
+    players = {}
+    for fmt, vid, d in dirs:
+        mp4 = _mp4(vid, d)
+        if mp4:
+            players[fmt] = _player(vid, d, mp4, course)
+    if players:
+        main_fmt = next(f for f in ("short", "long", "legacy") if f in players)
+        main = players[main_fmt]
+        more = players["long"] if main_fmt == "short" and "long" in players else None
+        return {"kind": "video", **main, "more": more}
     route = inp["routes"].get(node.id)
-    vdir = ch_dir / "videos" / node.id
-    mp4s = sorted(vdir.glob("*.mp4")) if vdir.exists() else []
-    if mp4s:
-        dst = course / "media" / node.id
-        dst.mkdir(parents=True, exist_ok=True)
-        files = []
-        for f in mp4s + sorted(vdir.glob("*.vtt")):
-            shutil.copy2(f, dst / f.name)
-            files.append(f.name)
-        mp4 = mp4s[0].name
-        vtt = next((f for f in files if f.endswith(".vtt")), None)
-        return {"kind": "video", "src": f"media/{node.id}/{mp4}",
-                "vtt": f"media/{node.id}/{vtt}" if vtt else None}
     wants_video = route is not None and (route.format in VIDEO_FORMATS or route.secondary_format in VIDEO_FORMATS)
     if not wants_video:
         return None
-    passport = vdir / "passport.json"
-    if passport.exists():
-        dst = course / "media" / node.id / "passport.json"
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(passport, dst)
-        return {"kind": "pending", "passport": f"media/{node.id}/passport.json"}
+    for _, vid, d in dirs:
+        link = _passport(vid, d, course)
+        if link:
+            return {"kind": "pending", "passport": link}
     return None                                    # нет ни ролика, ни паспорта: блок не показываем
 
 
@@ -566,30 +752,69 @@ def make_env() -> Environment:
                       undefined=StrictUndefined, trim_blocks=True, lstrip_blocks=True)
     icons = {p.stem: p.read_text(encoding="utf-8") for p in (HERE / "assets/icons").glob("*.svg")}
 
+    used: list[str] = []                                  # иконки, показанные на странице: их спрайт ставится в конце body
+
     def icon(name: str) -> Markup:
         if name not in icons:
             raise KeyError(f"нет иконки {name}.svg в pipeline/course/assets/icons")
-        svg = icons[name].replace("<svg ", '<svg class="ic" aria-hidden="true" focusable="false" ', 1)
-        return Markup(svg)
+        used.append(name)
+        return Markup(f'<svg class="ic" aria-hidden="true"><use href="#i-{name}"/></svg>')
 
-    env.globals.update(icon=icon, by_of=by_of, has_text=has_text)
+    def sprite() -> Markup:
+        """Один <symbol> на каждую иконку страницы (внешний файл через <use> на file:// не работает)."""
+        symbols = []
+        for name in sorted(set(used)):
+            inner = re.sub(r"^<svg[^>]*>|</svg>\s*$", "", icons[name].strip())
+            symbols.append(f'<symbol id="i-{name}" viewBox="0 0 256 256" fill="currentColor">{inner}</symbol>')
+        return Markup('<svg class="sprite" aria-hidden="true" width="0" height="0" style="position:absolute">' + "".join(symbols) + "</svg>")
+
+    def brand(name: str) -> Markup:
+        """Логотип KERN встроенным SVG: обводка и надпись берут цвет темы (--kern-ink), доступное имя — «KERN»."""
+        svg = (HERE / "assets/brand" / f"{name}.svg").read_text(encoding="utf-8")
+        return Markup(svg.replace("<svg ", '<svg class="brand-logo" ', 1).replace(' width="372" height="128"', "").replace(' width="164" height="128"', ""))
+
+    env.globals.update(icon=icon, sprite=sprite, brand=brand, by_of=by_of, has_text=has_text)
+    env.used_icons = used
     env.filters["plural"] = plural
     return env
 
 
-def chapter_title(layer: Layer) -> str:
-    """Человеческое название — layer.ext["core"]["title"] (поле поставляет П1); id главы — только запасной вариант."""
-    return layer.ext.get("core", {}).get("title") or layer.chapter
+def heading_title(ch_dir: Path | None) -> str | None:
+    """Первый заголовок главы из units.json (как в книге, напр. «1.2 Дельты»): без #, без английского перевода в скобках."""
+    units_path = ch_dir / "units.json" if ch_dir else None
+    if units_path is None or not units_path.exists():
+        return None
+    for u in json.loads(units_path.read_text(encoding="utf-8")).get("units", []):
+        if u.get("kind") == "heading":
+            text = re.sub(r"\s*\[[^\]]*\]\s*$", "", u["text"].lstrip("#").strip()).strip()
+            if text:
+                return text
+    return None
 
 
-def _has_video(ch_dir: Path, node_id: str) -> bool:
-    vdir = ch_dir / "videos" / node_id
-    return vdir.exists() and any(vdir.glob("*.mp4"))
+def book_parts(layer: Layer, ch_dir: Path | None = None) -> tuple[str | None, str | None]:
+    """(автор, книга) для карточки курса на главной всех курсов. Поля поставляет П1: ext["core"]["author"] и ["book"] слоя (могут быть
+    null) или те же поля в units.json (верхний уровень или ext.core). Нет значения — None; «автор — книга» хаб пишет, только если есть оба."""
+    sources = [layer.ext.get("core", {})]
+    units_path = ch_dir / "units.json" if ch_dir else None
+    if units_path is not None and units_path.exists():
+        u = json.loads(units_path.read_text(encoding="utf-8"))
+        sources += [u, u.get("ext", {}).get("core", {})]
+
+    def first(key: str) -> str | None:
+        return next((s[key].strip() for s in sources if isinstance(s.get(key), str) and s[key].strip()), None)
+    return first("author"), first("book")
+
+
+def chapter_title(layer: Layer, ch_dir: Path | None = None) -> str:
+    """Название главы: layer.ext["core"]["title"] (поставляет П1) → первый заголовок главы из units.json → id главы."""
+    return layer.ext.get("core", {}).get("title") or heading_title(ch_dir) or layer.chapter
 
 
 def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
           pages_dir: Path = ROOT / "data/pages", styleguide: Path = STYLEGUIDE,
-          generate: bool = False, domain: str | None = None, extras: bool = False) -> Path:
+          generate: bool = False, domain: str | None = None, extras: bool = False, hub: bool = False) -> Path:
+    """hub=True — рядом будет главная всех курсов (её собирает pipeline.course.hub): в шапке появятся «Курсы / название главы»."""
     ch_dir = out_root / ch
     inp = load_inputs(ch_dir)
     layer: Layer = inp["layer"]
@@ -620,6 +845,8 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
 
     inter_plan, inter_no_data = inter_mod.plan(layer.nodes, inp["routes"], inp["has_routing"],
                                                lambda nid: _has_video(ch_dir, nid))
+    scheme_ids = set(inter_no_data)                  # нужен интерактив, формулы нет: «схема-исследование» из утверждений узла
+    inter_wanted = set(inter_plan) | scheme_ids
     for prob in inp["routing_problems"]:
         warn(prob["code"], prob["message"], **{k: v for k, v in prob.items() if k not in ("code", "message")})
 
@@ -631,20 +858,23 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
              nodes=no_part)
 
     if not layer.ext.get("core", {}).get("title"):
-        warn("no_title", 'нет layer.ext["core"]["title"]: в заголовке курса показан id главы')
+        shown = heading_title(ch_dir)
+        warn("no_title", 'нет layer.ext["core"]["title"]: ' + (f"в заголовке курса первый заголовок главы из units.json: «{shown}»"
+                                                              if shown else "в заголовке курса показан id главы"))
 
     course = ch_dir / "course"
     (course / "assets").mkdir(parents=True, exist_ok=True)
     for f in ("course.css", "course.js"):
         shutil.copy2(HERE / "assets" / f, course / "assets" / f)
     shutil.copytree(HERE / "assets/katex", course / "assets/katex", dirs_exist_ok=True)   # формулы без CDN
+    shutil.copytree(HERE / "assets/brand", course / "assets/brand", dirs_exist_ok=True)   # логотип KERN и favicon
     style = json.loads(styleguide.read_text(encoding="utf-8"))
     (course / "assets/tokens.css").write_text(tokens_css(style), encoding="utf-8")
 
     state = None
     if generate:                                   # текст шагов и задания: модель только через pipeline.llm
         from pipeline.course import generate as gen
-        state = gen.run(layer, ch_dir, course, node, domain, extras=extras, style=style, interactive_plan=inter_plan)
+        state = gen.run(layer, ch_dir, course, node, domain, extras=extras, style=style, interactive_plan=inter_plan, scheme_plan=scheme_ids)
     stored = read_step_text(course / "step_text.json", ch)
     step_text = stored.nodes if stored else {}
     orig = {n.id: n for n in layer.nodes}
@@ -659,7 +889,12 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
                 down_reason = down_reason or f.errors[0]
             else:
                 warn("step_text_fallback", msg, node=nid, errors=f.errors)
-    fresh = {nid: st.paragraphs for nid, st in step_text.items() if nid in orig and st.hash == node_hash(orig[nid])}
+    fresh = {nid: normalize_terms(orig[nid], st.paragraphs) for nid, st in step_text.items()
+             if nid in orig and st.hash == node_hash(orig[nid])}     # и текст, созданный до правил терминов, приводится к ним
+    for nid, st in step_text.items():
+        if nid in fresh:
+            for msg in st.warnings:
+                warn("term_not_marked", f"шаг {nid}: {msg}", node=nid)
     stale = [nid for nid in step_text if nid in orig and nid not in fresh]
     if stale:
         warn("stale_step_text", f"step_text.json устарел для шагов {', '.join(stale)} (узел изменился после генерации): "
@@ -675,6 +910,9 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
             note("task_dropped", msg, **extra)
             down_tasks += 1
             down_reason = down_reason or d["errors"][0]
+        elif any(e.startswith(MISMATCH) for e in d["errors"]):
+            warn("task_answer_mismatch", f"задание {d['slot']} ({d['type']}) шага {d['node']} выброшено: помеченный ответ противоречит цитате книги "
+                 f"(слепая проверка): {d['errors'][0]}", **extra)
         else:
             warn("task_dropped", msg, **extra)
     inter_store = read_store(course / "interactive.json", ch)
@@ -682,9 +920,11 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
     guess_ids = {n.id for n in layer.nodes if guess_mod.wanted(n)}
     down_other = 0
     for nid in inter_no_data:
+        if inter_store and (nid in inter_store.nodes or nid in inter_store.failed):
+            continue                                  # схему пробовали строить: итог (или причина отказа) ниже
         warn("interactive_no_data", f"шагу {nid} нужен интерактив (маршрутизация дала видео, ролика нет), но в нём нет формулы: интерактив не показан",
              node=nid)
-    for store, wanted_ids, what, code in ((inter_store, set(inter_plan), "интерактив", "interactive"),
+    for store, wanted_ids, what, code in ((inter_store, inter_wanted, "интерактив", "interactive"),
                                           (guess_store, guess_ids, "вопрос «сначала угадай»", "guess")):
         for nid, f in (store.failed if store else {}).items():
             if nid not in wanted_ids or f.hash != node_hash(orig[nid]):
@@ -697,7 +937,7 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
             else:
                 warn("interactive_no_data" if f.errors[0].startswith("модель ответила") else f"{code}_failed", msg, node=nid, errors=f.errors)
     fresh_inter = {nid: e.data["data"] for nid, e in (inter_store.nodes if inter_store else {}).items()
-                   if nid in inter_plan and e.hash == node_hash(orig[nid])}
+                   if nid in inter_wanted and e.hash == node_hash(orig[nid])}
     fresh_guess = {nid: e.data for nid, e in (guess_store.nodes if guess_store else {}).items()
                    if nid in guess_ids and e.hash == node_hash(orig[nid])}
     for w in inp["illus_warnings"]:                  # предупреждения генератора иллюстраций: в отчёт, в stderr их уже печатал он сам
@@ -721,11 +961,25 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
     meta = {"ch": ch, "steps": steps,
             "tasks": [{"id": t.id, "step_id": t.step_id, "claim_ids": t.claim_ids, "type": t.type, "kind": t.kind,
                        "prompt": mask_gaps(t.prompt), "explanation": t.explanation} for t in tasks]}
-    common = {"ch": ch, "chapter_title": chapter_title(layer), "has_errata": bool(errata), "steps": steps,
-              "n_tasks": len(tasks), "meta": meta, "total_minutes": sum(s["minutes"] for s in steps)}
+    glossary = build_glossary(ordered, fresh)
+    search = search_index(ordered, fresh, glossary)
+    it_list = it_items(ordered)
+    # общие данные курса — один файл на курс (assets/course-data.js, подключается <script src>, на file:// работает без fetch),
+    # а не копия в каждой странице: страница шага ≈ 60 КБ вместо ≈ 175 КБ
+    (course / "assets/course-data.js").write_text("window.COURSE_DATA = " + json.dumps({"meta": meta, "search": search}, ensure_ascii=False) + ";\n", encoding="utf-8")
+    minutes_total = sum(s["minutes"] for s in steps)
+    author, book = book_parts(layer, ch_dir)
+    (course / "course.json").write_text(json.dumps({                    # для главной всех курсов (pipeline.course.hub)
+        "ch": ch, "title": chapter_title(layer, ch_dir), "author": author, "book": book, "minutes": minutes_total, "tasks": len(tasks),
+        "steps": [{"id": s["id"], "title": s["title"], "minutes": s["minutes"], "tasks": s["tasks"]} for s in steps],
+        "task_ids": [t.id for t in tasks], "search": search}, ensure_ascii=False), encoding="utf-8")
+    common = {"ch": ch, "chapter_title": chapter_title(layer, ch_dir), "has_errata": bool(errata), "steps": steps,
+              "n_tasks": len(tasks), "total_minutes": minutes_total, "hub": hub, "has_glossary": any(g["definition"] for g in glossary),
+              "has_it": bool(it_list)}
     titles = {n.id: n.title_novice or n.title for n in ordered}
 
     def render(name: str, tpl: str, **ctx) -> None:
+        env.used_icons.clear()
         html = env.get_template(tpl).render(**common, **ctx)
         (course / name).write_text(html, encoding="utf-8")
 
@@ -735,7 +989,7 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
             continue
         render(f"step-{n.id}.html", "step.html.j2",
                v=step_view(n, inp, course, pages_src, ch_dir, tasks_by_step.get(n.id, []), fresh.get(n.id),
-                              fresh_inter.get(n.id), fresh_guess.get(n.id), style),
+                              fresh_inter.get(n.id), fresh_guess.get(n.id), style, terms_view(glossary, n.id)),
                idx=i, prev=ordered[i - 1] if i > 0 else None,
                next=ordered[i + 1] if i + 1 < len(ordered) else None, titles=titles, page="step")
 
@@ -746,8 +1000,14 @@ def build(ch: str, out_root: Path = ROOT / "out", node: str | None = None,
     render("progress.html", "progress.html.j2", page="progress")
     render("mistakes.html", "mistakes.html.j2", page="mistakes")
     render("cards.html", "cards.html.j2", nodes=ordered, page="cards")
-    render("summary.html", "summary.html.j2", nodes=ordered, page="summary")
-    render("it.html", "it.html.j2", items=it_items(ordered), page="it")
+    sum_extras = {n.id: {"formulas": [c for c in n.claims if c.source_kind == "formula"],
+                         "illus": [{"il": il, "src": f"assets/illus/{Path(il.file).name}"}
+                               for il in inp["illus"].get(n.id, []) if il.ext.get("kind") != "chain"][:2]}
+                  for n in ordered}                      # конспект: формулы и иллюстрации шага (файлы копирует страница шага)
+    render("glossary.html", "glossary.html.j2", items=glossary, page="glossary")
+    render("summary.html", "summary.html.j2", nodes=ordered, page="summary", extras=sum_extras,
+           has_formulas=any(e["formulas"] for e in sum_extras.values()))
+    render("it.html", "it.html.j2", items=it_list, page="it")
     render("map.html", "map.html.j2", m=map_view(ordered), nodes=ordered, titles=titles, page="map")
     if errata:
         render("errata.html", "errata.html.j2", errata=errata, page="errata")
@@ -786,8 +1046,13 @@ def main() -> None:
     ap.add_argument("--pages", type=Path, default=ROOT / "data/pages", help="корень сканов страниц")
     a = ap.parse_args()
     course = build(a.ch, out_root=a.out, node=a.node, pages_dir=a.pages, generate=not a.no_llm, domain=a.domain,
-                   extras=not a.no_llm)
+                   extras=not a.no_llm, hub=True)
+    from pipeline.course import hub
     print(f"курс: {course / 'index.html'}")
+    try:
+        print(f"главная всех курсов: {hub.build_hub(a.out)}")        # обновляется в конце каждой сборки
+    except FileNotFoundError as e:                                  # собран только тестовый курс: главной нечего показывать
+        print(f"WARNING: главная всех курсов не обновлена: {e}", file=sys.stderr)
 
 
 if __name__ == "__main__":

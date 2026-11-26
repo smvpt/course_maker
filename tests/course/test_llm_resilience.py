@@ -61,9 +61,9 @@ def _codes(rep, code):
 
 @pytest.fixture
 def pauses(monkeypatch):
-    """Паузы не спим, а записываем."""
+    """Свои паузы и повторы убраны (их делает llm.py): любой time.sleep записывается, и список должен остаться пустым."""
     spent = []
-    monkeypatch.setattr(steptext, "_pause", spent.append)
+    monkeypatch.setattr("time.sleep", spent.append)
     return spent
 
 
@@ -86,22 +86,21 @@ def _text_reply(kw):
 
 # ---------------------------------------------------------------- классификация и повторы в call_llm
 
-def test_transient_errors_are_retried_with_2_5_10_second_pauses(monkeypatch, pauses):
-    def script(n, kw):
-        if n <= 3:
-            raise [RateLimitError("429"), ServiceError("503"), Timeout("timed out")][n - 1]
-        return "ответ"
-    calls = _fake_provider(monkeypatch, script)
-    assert steptext.call_llm(prompt="x") == "ответ"
-    assert len(calls) == 4 and pauses == [2, 5, 10]
-
-
-def test_transient_error_that_never_clears_becomes_llm_error_after_three_retries(monkeypatch, pauses):
+def test_transient_error_is_not_retried_here_because_llm_py_already_retried(monkeypatch, pauses):
+    """Временная ошибка, дошедшая сюда из llm.py, значит «повторы исчерпаны»: отказ узла, без вложенных повторов и пауз."""
     calls = _fake_provider(monkeypatch, lambda n, kw: (_ for _ in ()).throw(RateLimitError("429 слишком часто")))
     with pytest.raises(LlmError, match="429 слишком часто") as e:
         steptext.call_llm(prompt="x")
-    assert not isinstance(e.value, LlmAuthError)
-    assert len(calls) == 4 and pauses == [2, 5, 10]
+    assert not isinstance(e.value, LlmAuthError) and len(calls) == 1 and pauses == []
+
+
+def test_provider_unavailable_from_llm_py_is_a_node_failure_not_an_outage(monkeypatch, pauses):
+    class ProviderUnavailable(RuntimeError):      # так llm.py сообщает, что ни одна модель не ответила после всех повторов
+        pass
+    calls = _fake_provider(monkeypatch, lambda n, kw: (_ for _ in ()).throw(ProviderUnavailable("ни одна модель не ответила: 503")))
+    with pytest.raises(LlmError, match="ни одна модель не ответила") as e:
+        steptext.call_llm(prompt="x")
+    assert not isinstance(e.value, LlmAuthError) and len(calls) == 1 and pauses == []
 
 
 @pytest.mark.parametrize("exc", [AuthenticationError("неверный ключ"), type("PermissionDeniedError", (Exception,), {"status_code": 403})("нельзя"),
@@ -147,14 +146,16 @@ def test_llm_state_rules():
 
 # ---------------------------------------------------------------- текст шагов через настоящий call_llm
 
-def test_429_twice_then_ok_still_gives_model_text_everywhere(tmp_path, monkeypatch, pauses):
+def test_exhausted_429_on_one_call_degrades_only_that_node(tmp_path, monkeypatch, pauses):
     def script(n, kw):
-        if n <= 2:
+        if n == 1:
             raise RateLimitError("429")
         return _text_reply(kw)
     calls = _fake_provider(monkeypatch, script)
-    nodes = steptext.ensure_step_text(_layer(), tmp_path / "course")
-    assert set(nodes) == set(IDS) and pauses == [2, 5] and len(calls) == 4 + 2
+    state = LlmState()
+    nodes = steptext.ensure_step_text(_layer(), tmp_path / "course", state=state)
+    assert set(nodes) == set(IDS[1:]) and pauses == [] and len(calls) == 4          # первый узел — fallback, остальные с текстом модели
+    assert state.down is None and state.failures == 1
 
 
 def test_one_failed_node_degrades_only_that_node(tmp_path, monkeypatch):
