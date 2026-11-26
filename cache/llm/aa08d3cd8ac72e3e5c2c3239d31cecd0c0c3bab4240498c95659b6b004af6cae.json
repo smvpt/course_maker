@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"a\",\"b\",\"c\"],\"claim_id\":\"latyshova_gl5_par17-20.lithological_column_building#c5\",\"evidence\":\"Повышение содержания глинистого материала в нефтенасыщенном песчанике приводит к уменьшению амплитуды СП и значительному снижению сопротивления\"},{\"n\":2,\"answer\":[\"условную колонку\"],\"claim_id\":\"latyshova_gl5_par17-20.lithological_column_building#c3\",\"evidence\":\"следует строить условную колонку расчленения разреза\"},{\"n\":3,\"answer\":[\"o1\",\"o2\"],\"claim_id\":\"latyshova_gl5_par17-20.lithological_column_building#c1\",\"evidence\":\"Построение разреза включает две операции: определение границ и толщин отдельных пластов и оценку литологической характеристики\"},{\"n\":4,\"answer\":[\"a\"],\"claim_id\":\"latyshova_gl5_par17-20.lithological_column_building#c11\",\"evidence\":\"находят расчетным путем по интегральным характеристикам пачки в целом\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1826,
+ "tokens_out": 294,
+ "money_usd": 0.0012828000000000002,
+ "attempts": 1
+}

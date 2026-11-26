@@ -1,0 +1,20 @@
+{
+  "id": "latyshova_gl5_par17-20",
+  "md": "C:\\Users\\azizs\\Documents\\GitHub\\course_maker\\data\\books\\train_latyshova.md",
+  "pdf": "C:\\Users\\azizs\\Documents\\GitHub\\course_maker\\data\\pdf\\Латышова - Практическое руководство по интерпретации диаграмм геофизических исследований скважин - 1991.pdf",
+  "pages": [
+    [
+      90,
+      108
+    ]
+  ],
+  "start_heading": "^#\\s*Глава\\s+V\\s*$",
+  "end_heading": "^#+\\s*§\\s*21\\.",
+  "language": "ru",
+  "domain": "geology",
+  "prereading": null,
+  "prereq_cards": null,
+  "errata": null,
+  "author": "Латышова",
+  "book": "Практическое руководство по интерпретации диаграмм геофизических исследований скважин"
+}

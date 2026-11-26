@@ -1,0 +1,96 @@
+{
+  "ext": {
+    "illus": {
+      "warnings": []
+    }
+  },
+  "chapter": "latyshova_gl5_par17-20",
+  "illustrations": [
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "latyshova_gl5_par17-20.gis_tasks_and_sections.il1",
+      "step_id": "latyshova_gl5_par17-20.gis_tasks_and_sections",
+      "node_id": "latyshova_gl5_par17-20.gis_tasks_and_sections",
+      "file": "illus/latyshova_gl5_par17-20.gis_tasks_and_sections.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Зачем нужны геофизические исследования в скважинах и как на них влияет бурение». наблюдение: Данные ГИС используются для составления разреза, выделения коллекторов, оценки их толщины, пористости, нефтегазонасыщения, проницаемости и глинистости.; наблюдение: Первая задача и простейшие случаи коллекторов с межзерновой пористостью решаются качественной интерпретацией.; наблюдение: В эксплуатационных…",
+      "source": "утверждения шага, стр. 90",
+      "claim_ids": [
+        "latyshova_gl5_par17-20.gis_tasks_and_sections#c1",
+        "latyshova_gl5_par17-20.gis_tasks_and_sections#c2",
+        "latyshova_gl5_par17-20.gis_tasks_and_sections#c3"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "latyshova_gl5_par17-20.reservoir_types_and_methods.il1",
+      "step_id": "latyshova_gl5_par17-20.reservoir_types_and_methods",
+      "node_id": "latyshova_gl5_par17-20.reservoir_types_and_methods",
+      "file": "illus/latyshova_gl5_par17-20.reservoir_types_and_methods.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Какие бывают породы-коллекторы и какими приборами их изучают». наблюдение: Основные типы разреза включают терригенный, карбонатный и гидрохимический, а также различные смешанные и вулканогенные типы.; наблюдение: По морфологии порового пространства коллекторы разделяют на межзерновые, трещинные, кавернозно-трещинные и смешанные типы.; наблюдение: Комплекс геофизических методов по задачам делится на…",
+      "source": "утверждения шага, стр. 91, 92",
+      "claim_ids": [
+        "latyshova_gl5_par17-20.reservoir_types_and_methods#c1",
+        "latyshova_gl5_par17-20.reservoir_types_and_methods#c2",
+        "latyshova_gl5_par17-20.reservoir_types_and_methods#c3",
+        "latyshova_gl5_par17-20.reservoir_types_and_methods#c10"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "latyshova_gl5_par17-20.lithological_column_building.il1",
+      "step_id": "latyshova_gl5_par17-20.lithological_column_building",
+      "node_id": "latyshova_gl5_par17-20.lithological_column_building",
+      "file": "illus/latyshova_gl5_par17-20.lithological_column_building.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Как по набору кривых каротажа построить геологический разрез». наблюдение: Построение разреза включает определение границ и толщин пластов и оценку литологической характеристики однородных интервалов.; наблюдение: Литологическую характеристику пород оценивают по сумме признаков на диаграммах различных методов.; наблюдение: Увеличение песчанистости глины уменьшает ее пористость, вероятность каверны и…",
+      "source": "утверждения шага, стр. 92, 95",
+      "claim_ids": [
+        "latyshova_gl5_par17-20.lithological_column_building#c1",
+        "latyshova_gl5_par17-20.lithological_column_building#c2",
+        "latyshova_gl5_par17-20.lithological_column_building#c4",
+        "latyshova_gl5_par17-20.lithological_column_building#c3",
+        "latyshova_gl5_par17-20.lithological_column_building#c6"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "column"
+      },
+      "id": "latyshova_gl5_par17-20.lithological_column_building.il2",
+      "step_id": "latyshova_gl5_par17-20.lithological_column_building",
+      "node_id": "latyshova_gl5_par17-20.lithological_column_building",
+      "file": "illus/latyshova_gl5_par17-20.lithological_column_building.column.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Условная колонка: какие породы упоминает шаг. Цвета по единой легенде курса. Порядок и толщины слоёв условные, колонка не показывает реальный разрез.",
+      "alt": "Условная колонка слоёв «Как по набору кривых каротажа построить геологический разрез», не в масштабе. песчаник, глина",
+      "source": "утверждения шага, стр. 92",
+      "claim_ids": [
+        "latyshova_gl5_par17-20.lithological_column_building#c4",
+        "latyshova_gl5_par17-20.lithological_column_building#c5"
+      ],
+      "prompt": null
+    }
+  ]
+}

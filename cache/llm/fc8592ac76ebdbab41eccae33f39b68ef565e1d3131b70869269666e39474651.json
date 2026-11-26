@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"multiple\",\"kind\":\"transfer\",\"claim_ids\":[\"latyshova_gl5_par17-20.reservoir_types_and_methods#c3\",\"latyshova_gl5_par17-20.reservoir_types_and_methods#c4\"],\"prompt\":\"ML-инженер проектирует модель для автоматического выделения коллекторов по комплексу кривых. Какие геофизические данные и прямые признаки на скважине указывают на интервалы с межзерновой пористостью при бурении на глинистом растворе?\",\"options\":[{\"text\":\"Данные микрозондов и каверномера\",\"correct\":true,\"misconception\":null},{\"text\":\"Наличие зоны проникновения в пласте\",\"correct\":true,\"misconception\":null},{\"text\":\"Сужение диаметра скважины за счет глинистой корки\",\"correct\":true,\"misconception\":null},{\"text\":\"Данные резистивиметрии без поправок на соленость\",\"correct\":false,\"misconception\":\"misc.resistivity_is_saturation\"}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Фильтрующие интервалы с межзерновой пористостью устанавливаются микрозондами и каверномером по образованию глинистой корки.\"},{\"type\":\"gap\",\"kind\":\"data\",\"claim_ids\":[\"latyshova_gl5_par17-20.reservoir_types_and_methods#c13\"],\"prompt\":\"Дата-инженер готовит витрину данных для сопоставления кривых в карбонатном разрезе. Для выявления коллекторов и оценки продуктивности применяется {{1}} кривой фокусированного метода с кривой одного из методов {{2}}.\",\"options\":[],\"gap_answers\":[\"способ нормализации\",\"пористости\"],\"calc\":null,\"explanation\":\"Суть способа нормализации — графическое сопоставление кривой сопротивления фокусированного метода с кривой метода пористости.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 8688,
+ "tokens_out": 471,
+ "money_usd": 0.0037839,
+ "attempts": 1
+}

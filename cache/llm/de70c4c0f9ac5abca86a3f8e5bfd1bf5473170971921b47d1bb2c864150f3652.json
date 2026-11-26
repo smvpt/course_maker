@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"Используя анализ размерностей, покажем, что поставленная задача автомодельна, т. е. из аргументов, от которых зависит давление, можно составить один безразмерный комплекс, от которого будет зависеть искомая функция p(x, t).\",\"page_pdf\":482}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 8384,
+ "tokens_out": 77,
+ "money_usd": 0.0027077,
+ "attempts": 1
+}

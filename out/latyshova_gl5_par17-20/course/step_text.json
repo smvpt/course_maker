@@ -1,0 +1,413 @@
+{
+  "ext": {},
+  "chapter": "latyshova_gl5_par17-20",
+  "nodes": {
+    "latyshova_gl5_par17-20.gis_tasks_and_sections": {
+      "ext": {},
+      "hash": "35a3d3eed3510a1f",
+      "paragraphs": [
+        {
+          "block": "main",
+          "text": "[[Геофизические исследования скважин]] (ГИС) — это комплекс замеров для составления разреза и оценки параметров пластов. Качество данных зависит от условий вскрытия разреза буровым раствором.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.gis_tasks_and_sections#c1",
+            "latyshova_gl5_par17-20.gis_tasks_and_sections#c4"
+          ],
+          "terms": [
+            "геофизические исследования скважин"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "why",
+          "text": "Вводящая глава объясняет общую картину ГИС. Она показывает, как параметры бурового раствора искажают физические измерения прибора.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.gis_tasks_and_sections#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "По данным ГИС выделяют коллекторы и оценивают их толщину, пористость и нефтегазонасыщение. В эксплуатационных скважинах так следят за продвижением водонефтяного контакта. На результаты замеров влияет тип промывочная жидкость|промывочной жидкости, которая заполняет ствол при бурении.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.gis_tasks_and_sections#c1",
+            "latyshova_gl5_par17-20.gis_tasks_and_sections#c3",
+            "latyshova_gl5_par17-20.gis_tasks_and_sections#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "[[Глинистый раствор]] создает давление на пласт. Его фильтрат проникает в породы, образуя зону проникновения и глинистую корку.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.gis_tasks_and_sections#c5",
+            "latyshova_gl5_par17-20.gis_tasks_and_sections#c8"
+          ],
+          "terms": [
+            "глинистый раствор"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Плотность раствора определяет репрессия|репрессию давления на пласт, которая увеличивает глубину проникновения фильтрата.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.gis_tasks_and_sections#c8"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "Специалисты применяют оптимальный комплекс геофизических методов. Они подбирают такие параметры раствора, чтобы минимизировать искажения.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.gis_tasks_and_sections#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "Различные типы растворов по-разному влияют на приборы электрометрии и радиоактивного каротажа. Нефильтрующиеся углеводородные растворы исключают методы прямого контакта, оставляя только [[индукционный зонд]].",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.gis_tasks_and_sections#c10"
+          ],
+          "terms": [
+            "индукционный зонд"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Параметры бурения формируют зоны проникновения и корки. Это меняет видимые сопротивления и доступность пласта для приборов.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.gis_tasks_and_sections#c5",
+            "latyshova_gl5_par17-20.gis_tasks_and_sections#c7"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "При смене типа раствора или ухудшении его параметров стандартные интерпретационные модели перестают работать.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.gis_tasks_and_sections#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Учет параметров бурового раствора в качестве признаков для модели повысит точность прогноза при переходе между скважинами.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.gis_tasks_and_sections#c4"
+          ],
+          "terms": [],
+          "hypothesis": true,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Искажение данных из-за условий измерений похоже на аппаратный шум и артефакты препроцессинга в IT.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.gis_tasks_and_sections#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "В отличие от программных IT-артефактов, здесь искажения вызваны физическим гидродинамическим взаимодействием скважины и пласта.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.gis_tasks_and_sections#c5",
+            "latyshova_gl5_par17-20.gis_tasks_and_sections#c8"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": true
+        }
+      ],
+      "warnings": [
+        "термин 'промывочная жидкость' не выделен [[…]] ни в одном абзаце",
+        "термин 'зона проникновения' не выделен [[…]] ни в одном абзаце",
+        "термин 'глинистая корка' не выделен [[…]] ни в одном абзаце",
+        "термин 'репрессия' не выделен [[…]] ни в одном абзаце",
+        "термин 'минерализация фильтрата' не выделен [[…]] ни в одном абзаце",
+        "термин 'качественная интерпретация' не выделен [[…]] ни в одном абзаце",
+        "термин 'количественная интерпретация' не выделен [[…]] ни в одном абзаце"
+      ]
+    },
+    "latyshova_gl5_par17-20.reservoir_types_and_methods": {
+      "ext": {},
+      "hash": "654d7977840b6843",
+      "paragraphs": [
+        {
+          "block": "main",
+          "text": "Разрезы скважин делятся на типы, а методы геофизики группируются по задачам выделения коллекторов и оценки их свойств. Главные типы включают [[терригенный разрез]], состоящий из обломочных пород.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.reservoir_types_and_methods#c1",
+            "latyshova_gl5_par17-20.reservoir_types_and_methods#c3"
+          ],
+          "terms": [
+            "терригенный разрез"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "why",
+          "text": "Данный шаг опирается на понимание условий вскрытия скважины и классифицирует породы и группы геофизических методов для их изучения.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.reservoir_types_and_methods#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Основные типы разреза включают терригенный, карбонатный и гидрохимический, а также смешанные типы. По морфологии порового пространства коллекторы разделяют на межзерновые, трещинные и кавернозно-трещинные. Группа методов пористости включает гамма-гамма-метод, акустический и нейтронные методы. Методами глинистости являются методы собственных потенциалов и естественной радиоактивности.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.reservoir_types_and_methods#c1",
+            "latyshova_gl5_par17-20.reservoir_types_and_methods#c2",
+            "latyshova_gl5_par17-20.reservoir_types_and_methods#c5",
+            "latyshova_gl5_par17-20.reservoir_types_and_methods#c6"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "Специалисты комплексируют методы сопротивления, пористости и радиоактивности для оценки продуктивных интервалов. Также они применяют [[способ нормализации]] кривых для оценки эффективных толщин.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.reservoir_types_and_methods#c13"
+          ],
+          "terms": [
+            "способ нормализации"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "В карбонатных разрезах стандартные методы СП и ГМ менее эффективны из-за слабой связи свойств с глинистостью. Требуются специальные приемы вроде нормализации диаграмм.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.reservoir_types_and_methods#c12",
+            "latyshova_gl5_par17-20.reservoir_types_and_methods#c13"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Данные каротажа разных групп методов несут совместную информацию о литологии и характере насыщения. В карбонатных разрезах прямые связи с глинистостью обрываются, а стандартные признаки могут не работать.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.reservoir_types_and_methods#c9",
+            "latyshova_gl5_par17-20.reservoir_types_and_methods#c12"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Совмещение кривых методом нормализации в пространстве признаков эквивалентно нелинейной коррекции шкалы для поиска аномалий остаточной водонасыщенности.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.reservoir_types_and_methods#c13"
+          ],
+          "terms": [],
+          "hypothesis": true,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Это похоже на мультимодальное слияние признаков, где разные датчики измеряют ортогональные аспекты объекта. Для принятия решения требуется совместный анализ векторов из разных источников.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.reservoir_types_and_methods#c9"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "В отличие от программных логов, физические поля в скважине сильно зависят от скважинных условий и типа бурового раствора.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.reservoir_types_and_methods#c10"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": true
+        }
+      ],
+      "warnings": [
+        "термин 'карбонатный разрез' не выделен [[…]] ни в одном абзаце",
+        "термин 'межзерновой коллектор' не выделен [[…]] ни в одном абзаце",
+        "термин 'трещинный коллектор' не выделен [[…]] ни в одном абзаце",
+        "термин 'метод СП' не выделен [[…]] ни в одном абзаце",
+        "термин 'гамма-метод' не выделен [[…]] ни в одном абзаце",
+        "термин 'метод повторных замеров' не выделен [[…]] ни в одном абзаце",
+        "термин 'метод двух растворов' не выделен [[…]] ни в одном абзаце"
+      ]
+    },
+    "latyshova_gl5_par17-20.lithological_column_building": {
+      "ext": {},
+      "hash": "5eba0d906ec6e348",
+      "paragraphs": [
+        {
+          "block": "main",
+          "text": "Построение разреза включает определение границ пластов и оценку литологии по комплексу геофизических методов с учетом табличных признаков. Эффективная толщина пласта рассчитывается с учетом прослоев неколлекторов и характера насыщения.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.lithological_column_building#c1",
+            "latyshova_gl5_par17-20.lithological_column_building#c10"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "why",
+          "text": "Этот шаг опирается на классификацию методов и признаков пород, переходя к практической процедуре построения разреза и интерпретации таблиц.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.lithological_column_building#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Физические признаки пород часто общие для разных отложений. Литологию оценивают по сумме признаков с помощью справочных таблиц. Слоистые коллекторы рассчитываются через интегральные характеристики пачки по уравнениям связи сопротивлений или палеткам относительных амплитуд СП.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.lithological_column_building#c2",
+            "latyshova_gl5_par17-20.lithological_column_building#c11"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "Специалист сопоставляет диаграммы геофизических исследований скважин, определяет границы пластов и выбирает опорные значения. Затем он вычисляет глинистость и параметры толщины с помощью расчетных формул и номограмм.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.lithological_column_building#c9",
+            "latyshova_gl5_par17-20.lithological_column_building#c10"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "При неизвестном составе строят условную [[условная колонка расчленения]] разреза по физическим признакам с уточнением по керну. Переходные зоны усложняют интерпретацию и требуют количественного подхода с привлечением геологических сведений.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.lithological_column_building#c3",
+            "latyshova_gl5_par17-20.lithological_column_building#c7"
+          ],
+          "terms": [
+            "условная колонка расчленения"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "misconception",
+          "text": "Кривая каротажа не равна напрямую литологии: физические признаки общие, поэтому требуются таблицы признаков, количественная интерпретация и привязка к керну.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.lithological_column_building#c2",
+            "latyshova_gl5_par17-20.lithological_column_building#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "decision",
+          "text": "Если комплекс признаков соответствует табличным значениям и нет аномалий, интервал относится к данному литотипу для определения толщины.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.lithological_column_building#c2",
+            "latyshova_gl5_par17-20.lithological_column_building#c9"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Комбинация кривых сопротивления, СП, гамма-метода и нейтронных методов позволяет выделять литологию и рассчитывать эффективные толщины.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.lithological_column_building#c2",
+            "latyshova_gl5_par17-20.lithological_column_building#c8"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "При наличии переходных зон или слоистой глинистости качественный визуальный анализ дает ошибку, требуя номограммы и уравнения связи.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.lithological_column_building#c7",
+            "latyshova_gl5_par17-20.lithological_column_building#c11"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Автоматический классификатор литологии по единичному методу без учета комплекса и минерализации раствора даст сбой.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.lithological_column_building#c2",
+            "latyshova_gl5_par17-20.lithological_column_building#c5"
+          ],
+          "terms": [],
+          "hypothesis": true,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Ансамбль моделей классификации объединяет разные признаки: отдельный метод дает неопределенность, а их взвешенная комбинация позволяет классифицировать объект.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.lithological_column_building#c2"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "В отличие от ИТ-признаков, геофизические сигналы жестко связаны физическими законами фильтрации и емкости пород.",
+          "claim_ids": [
+            "latyshova_gl5_par17-20.lithological_column_building#c2"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": true
+        }
+      ],
+      "warnings": [
+        "термин 'литологическая колонка' не выделен [[…]] ни в одном абзаце",
+        "термин 'физические признаки пород' не выделен [[…]] ни в одном абзаце",
+        "термин 'литологический разрез' не выделен [[…]] ни в одном абзаце",
+        "термин 'эффективная толщина' не выделен [[…]] ни в одном абзаце",
+        "термин 'слоистая глинистость' не выделен [[…]] ни в одном абзаце"
+      ]
+    }
+  },
+  "failed": {}
+}

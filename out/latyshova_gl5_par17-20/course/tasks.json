@@ -1,0 +1,459 @@
+{
+  "ext": {
+    "course": {
+      "hashes": {
+        "latyshova_gl5_par17-20.gis_tasks_and_sections": "35a3d3eed3510a1f",
+        "latyshova_gl5_par17-20.reservoir_types_and_methods": "654d7977840b6843",
+        "latyshova_gl5_par17-20.lithological_column_building": "5eba0d906ec6e348"
+      },
+      "warnings": [
+        {
+          "code": "few_tasks",
+          "message": "заданий 12, нужно не меньше 15",
+          "count": 12
+        }
+      ],
+      "dropped": [
+        {
+          "node": "latyshova_gl5_par17-20.gis_tasks_and_sections",
+          "slot": 4,
+          "type": "order",
+          "errors": [
+            "задание 4: order — 3–5 элементов в правильном порядке (сейчас 2)"
+          ]
+        },
+        {
+          "node": "latyshova_gl5_par17-20.reservoir_types_and_methods",
+          "slot": 1,
+          "type": "multiple",
+          "errors": [
+            "ответ слепой проверки не совпал с помеченным: по цитате latyshova_gl5_par17-20.reservoir_types_and_methods#c4 («В первую группу входят микрозонды и каверномер») модель выбрала «Данные микрозондов и каверномера», помечено «Данные микрозондов и каверномера»; «Наличие зоны проникновения в пласте»; «Сужение диаметра скважины за счет глинистой корки». Перепроверь по цитате, какой ответ верен, и перепиши задание"
+          ]
+        },
+        {
+          "node": "latyshova_gl5_par17-20.reservoir_types_and_methods",
+          "slot": 2,
+          "type": "gap",
+          "errors": [
+            "ответ слепой проверки не совпал с помеченным: по цитате latyshova_gl5_par17-20.reservoir_types_and_methods#c13 («графическом сопоставлении кривой») модель выбрала графическом сопоставлении, пористости, помечено способ нормализации, пористости. Перепроверь по цитате, какой ответ верен, и перепиши задание"
+          ]
+        }
+      ],
+      "node_warnings": []
+    }
+  },
+  "chapter": "latyshova_gl5_par17-20",
+  "tasks": [
+    {
+      "ext": {},
+      "id": "latyshova_gl5_par17-20.gis_tasks_and_sections.t1",
+      "type": "single",
+      "step_id": "latyshova_gl5_par17-20.gis_tasks_and_sections",
+      "claim_ids": [
+        "latyshova_gl5_par17-20.gis_tasks_and_sections#c1"
+      ],
+      "prompt": "Какая задача из перечисленных решается с помощью данных геофизических исследований скважин?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Прямое измерение текущей рыночной стоимости нефти в пласте",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Определение точного возраста вмещающих пород в миллионах лет",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Измерение абсолютной массы углеводородов в тоннах",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Оценка коэффициентов пористости и нефтегазонасыщения",
+          "misconception": null
+        }
+      ],
+      "answer": "d",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Данные ГИС используются для оценки пористости и нефтегазонасыщения коллекторов.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "latyshova_gl5_par17-20.gis_tasks_and_sections.t2",
+      "type": "multiple",
+      "step_id": "latyshova_gl5_par17-20.gis_tasks_and_sections",
+      "claim_ids": [
+        "latyshova_gl5_par17-20.gis_tasks_and_sections#c5",
+        "latyshova_gl5_par17-20.gis_tasks_and_sections#c8"
+      ],
+      "prompt": "Какие особенности характерны для вскрытия разрезов на глинистом растворе?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Мгновенное испарение всей промывочной жидкости в интервале перфорации",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Образование зоны проникновения фильтрата раствора в межзерновых коллекторах",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Формирование глинистых корок на стенках скважины",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Полное отсутствие давления столба жидкости на пласт",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "b",
+        "c"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "При вскрытии на глинистом растворе образуются зоны проникновения и глинистые корки.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "latyshova_gl5_par17-20.gis_tasks_and_sections.t3",
+      "type": "gap",
+      "step_id": "latyshova_gl5_par17-20.gis_tasks_and_sections",
+      "claim_ids": [
+        "latyshova_gl5_par17-20.gis_tasks_and_sections#c10"
+      ],
+      "prompt": "Применение нефильтрующихся растворов на углеводородной основе исключает использование методов электрометрии, за исключением одного — применим только {{1}} зонд.",
+      "options": [],
+      "answer": [
+        "индукционный"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "На углеводородных растворах из электрометрии применим только индукционный зонд.",
+      "kind": "transfer"
+    },
+    {
+      "ext": {},
+      "id": "latyshova_gl5_par17-20.gis_tasks_and_sections.t5",
+      "type": "single",
+      "step_id": "latyshova_gl5_par17-20.gis_tasks_and_sections",
+      "claim_ids": [
+        "latyshova_gl5_par17-20.gis_tasks_and_sections#c7"
+      ],
+      "prompt": "Как высокая водоотдача глинистого раствора (например, 20 см³/ч) влияет на геофизические исследования?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Полностью уничтожает зоны проникновения и делает породу абсолютно монолитной",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Позволяет идеально точно замерить все параметры без каких-либо искажений",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Улучшает электрический контакт приборов с неизмененной породой пласта",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Делает коллектор недоступным для методов с малой глубинностью из-за толстой корки",
+          "misconception": null
+        }
+      ],
+      "answer": "d",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Высокая водоотдача приводит к глубокому проникновению и толстой корке, ухудшая изучение.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "latyshova_gl5_par17-20.reservoir_types_and_methods.t3",
+      "type": "order",
+      "step_id": "latyshova_gl5_par17-20.reservoir_types_and_methods",
+      "claim_ids": [
+        "latyshova_gl5_par17-20.reservoir_types_and_methods#c3"
+      ],
+      "prompt": "Расположите группы задач геофизического комплекса в порядке их перечисления в классификации методов для изучения разрезов.",
+      "options": [
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "определения пористости",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o4",
+          "text": "оценки продуктивности",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "определения глинистости",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "выделения коллекторов",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3",
+        "o4"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Методы делятся на группы выделения коллекторов, пористости, глинистости и оценки продуктивности.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "latyshova_gl5_par17-20.reservoir_types_and_methods.t4",
+      "type": "calc",
+      "step_id": "latyshova_gl5_par17-20.reservoir_types_and_methods",
+      "claim_ids": [
+        "latyshova_gl5_par17-20.reservoir_types_and_methods#c13"
+      ],
+      "prompt": "Для оценки продуктивных интервалов в карбонатном разрезе общая толщина продуктивных отложений составляет 13.5 м, а суммарная толщина прослоев неколлектора равна 4.5 м. Посчитайте эффективную толщину h_ф.",
+      "options": [],
+      "answer": 9.0,
+      "tolerance": 0.09,
+      "unit": "м",
+      "explanation": "Эффективная толщина определяется вычитанием неколлекторов из общей толщины продуктивных отложений.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "latyshova_gl5_par17-20.reservoir_types_and_methods.t5",
+      "type": "single",
+      "step_id": "latyshova_gl5_par17-20.reservoir_types_and_methods",
+      "claim_ids": [
+        "latyshova_gl5_par17-20.reservoir_types_and_methods#c12"
+      ],
+      "prompt": "Почему стандартные методы СП и ГМ оказываются менее эффективными в карбонатных разрезах?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Потому что в карбонатах нефть лежит в виде подземных открытых озер и пещер",
+          "misconception": "misc.oil_lake"
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Потому что карбонатные породы полностью состоят из глины и дают сильный радиоактивный отклик",
+          "misconception": "misc.gr_measures_clay"
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Из-за того, что карбонаты всегда имеют нулевую пористость и не содержат порового пространства",
+          "misconception": "misc.reservoir_void"
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Из-за слабой связи коллекторских свойств с глинистостью и широкого диапазона пористости",
+          "misconception": null
+        }
+      ],
+      "answer": "d",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "В карбонатах слабая связь свойств с глинистостью и широкий диапазон пористости снижают эффективность СП и ГМ.",
+      "kind": "transfer"
+    },
+    {
+      "ext": {},
+      "id": "latyshova_gl5_par17-20.lithological_column_building.t1",
+      "type": "multiple",
+      "step_id": "latyshova_gl5_par17-20.lithological_column_building",
+      "claim_ids": [
+        "latyshova_gl5_par17-20.lithological_column_building#c4",
+        "latyshova_gl5_par17-20.lithological_column_building#c5"
+      ],
+      "prompt": "Какие изменения на диаграммах происходят при увеличении глинистого материала или песчанистости?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Повышение глинистого материала в нефтенасыщенном песчанике значительно снижает сопротивление.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Повышение содержания глинистого материала в нефтенасыщенном песчанике уменьшает амплитуду СП.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Увеличение песчанистости глины увеличивает сопротивление.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Увеличение песчанистости глины приводит к увеличению ее пористости.",
+          "misconception": "misc.log_is_rock"
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Присутствие глины меняет физические свойства пород, уменьшая СП и сопротивление в песчаниках.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "latyshova_gl5_par17-20.lithological_column_building.t2",
+      "type": "gap",
+      "step_id": "latyshova_gl5_par17-20.lithological_column_building",
+      "claim_ids": [
+        "latyshova_gl5_par17-20.lithological_column_building#c3"
+      ],
+      "prompt": "В тех случаях, когда совершенно неизвестны ни минералогический состав, ни литологическая характеристика пород, следует строить {{1}} расчленения разреза по физическим признакам, которую затем уточняют по данным петрофизических исследований образцов.",
+      "options": [],
+      "answer": [
+        "условную колонку"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "При неизвестном составе строят условную колонку по физическим признакам.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "latyshova_gl5_par17-20.lithological_column_building.t3",
+      "type": "order",
+      "step_id": "latyshova_gl5_par17-20.lithological_column_building",
+      "claim_ids": [
+        "latyshova_gl5_par17-20.lithological_column_building#c1",
+        "latyshova_gl5_par17-20.lithological_column_building#c2",
+        "latyshova_gl5_par17-20.lithological_column_building#c3"
+      ],
+      "prompt": "Расположите этапы построения литологического разреза в порядке их логического выполнения при неизвестном минералогическом составе.",
+      "options": [
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "Определение границ и толщин отдельных пластов по диаграммам методов",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "Оценка литологической характеристики выделенных интервалов по сумме признаков",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o4",
+          "text": "Уточнение разреза по данным петрофизических исследований образцов",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "Построение условной колонки расчленения разреза по физическим признакам",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3",
+        "o4"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Сначала находят границы пластов, затем оценивают литологию, строят условную колонку и уточняют её по керну.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "latyshova_gl5_par17-20.lithological_column_building.t4",
+      "type": "calc",
+      "step_id": "latyshova_gl5_par17-20.lithological_column_building",
+      "claim_ids": [
+        "latyshova_gl5_par17-20.lithological_column_building#c10"
+      ],
+      "prompt": "Рассчитайте эффективную толщину пласта h_fl (в метрах), если общая толщина мощного пласта коллектора составляет 18.0 м, а сумма толщин прослоев неколлектора равна 2.2 м.",
+      "options": [],
+      "answer": 15.8,
+      "tolerance": 0.158,
+      "unit": "м",
+      "explanation": "Эффективная толщина равна разности полной толщины пласта и суммы толщин прослоев неколлектора.",
+      "kind": "transfer"
+    },
+    {
+      "ext": {},
+      "id": "latyshova_gl5_par17-20.lithological_column_building.t5",
+      "type": "single",
+      "step_id": "latyshova_gl5_par17-20.lithological_column_building",
+      "claim_ids": [
+        "latyshova_gl5_par17-20.lithological_column_building#c11"
+      ],
+      "prompt": "Каким образом определяется суммарная эффективная толщина тонкослоистого коллектора со слоистой глинистостью?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Расчетным путем по интегральным характеристикам пачки в целом.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Визуальным подсчетом каждого тонкого прослоя на планшете.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "По единичному показателю кривой микроэлектрических методов.",
+          "misconception": "misc.log_is_rock"
+        }
+      ],
+      "answer": "a",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "В тонкослоистых пачках прослойки не выделяются приборами, поэтому толщину считают по интегральным характеристикам пачки.",
+      "kind": "data"
+    }
+  ]
+}

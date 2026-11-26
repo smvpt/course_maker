@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"order\",\"kind\":\"understanding\",\"claim_ids\":[\"latyshova_gl5_par17-20.lithological_column_building#c1\",\"latyshova_gl5_par17-20.lithological_column_building#c2\",\"latyshova_gl5_par17-20.lithological_column_building#c3\"],\"prompt\":\"Расположите этапы построения литологического разреза в порядке их логического выполнения при неизвестном минералогическом составе.\",\"options\":[{\"text\":\"Определение границ и толщин отдельных пластов по диаграммам методов\",\"correct\":false,\"misconception\":null},{\"text\":\"Оценка литологической характеристики выделенных интервалов по сумме признаков\",\"correct\":false,\"misconception\":null},{\"text\":\"Построение условной колонки расчленения разреза по физическим признакам\",\"correct\":false,\"misconception\":null},{\"text\":\"Уточнение разреза по данным петрофизических исследований образцов\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Сначала находят границы пластов, затем оценивают литологию, строят условную колонку и уточняют её по керну.\"},{\"type\":\"calc\",\"kind\":\"transfer\",\"claim_ids\":[\"latyshova_gl5_par17-20.lithological_column_building#c10\"],\"prompt\":\"Рассчитайте эффективную толщину пласта h_fl (в метрах), если общая толщина мощного пласта коллектора составляет 18.0 м, а сумма толщин прослоев неколлектора равна 2.2 м.\",\"options\":[],\"gap_answers\":[],\"calc\":{\"variables\":{\"h\":18.0,\"sum_hpl\":2.2},\"expression\":\"h - sum_hpl\",\"unit\":\"м\"},\"explanation\":\"Эффективная толщина равна разности полной толщины пласта и суммы толщин прослоев неколлектора.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 8463,
+ "tokens_out": 426,
+ "money_usd": 0.0036039,
+ "attempts": 1
+}

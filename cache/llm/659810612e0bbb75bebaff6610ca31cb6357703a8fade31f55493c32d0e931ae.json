@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"Неустановившиеся процессы протекают тем быстрее, чем больше коэффициент проницаемости k, и тем медленнее, чем больше вязкость жидкости \\\\mu и коэффициенты объемной упругости жидкости \\\\beta_\\\\text{ж} и твердого скелета пласта \\\\beta_\\\\text{с}.\",\"page_pdf\":475}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 6571,
+ "tokens_out": 175,
+ "money_usd": 0.0024088,
+ "attempts": 2
+}

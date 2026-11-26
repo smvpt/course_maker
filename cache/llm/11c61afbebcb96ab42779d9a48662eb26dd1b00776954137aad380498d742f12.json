@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"order\",\"kind\":\"data\",\"claim_ids\":[\"latyshova_gl5_par17-20.gis_tasks_and_sections#c5\",\"latyshova_gl5_par17-20.gis_tasks_and_sections#c6\",\"latyshova_gl5_par17-20.gis_tasks_and_sections#c7\"],\"prompt\":\"Дата-инженер анализирует влияние бурового раствора на качество каротажа. Расположите типы условий вскрытия разреза по возрастанию глубины проникновения фильтрата и толщины глинистой корки (от минимальных до максимальных искажений):\",\"options\":[{\"text\":\"Оптимальная водоотдача глинистого раствора (4–8 см³/ч)\",\"correct\":true,\"misconception\":null},{\"text\":\"Высокая водоотдача глинистого раствора (20 см³/ч)\",\"correct\":true,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"При оптимальной водоотдаче зона проникновения и корка минимальны, а высокая водоотдача создает крайне неблагоприятные условия с глубоким проникновением.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 6674,
+ "tokens_out": 285,
+ "money_usd": 0.0027147,
+ "attempts": 1
+}

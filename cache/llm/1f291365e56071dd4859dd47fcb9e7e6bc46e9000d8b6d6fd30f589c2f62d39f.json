@@ -1,0 +1,10 @@
+{
+ "text": "{\"routes\":[{\"node_id\":\"latyshova_gl5_par17-20.gis_tasks_and_sections\",\"format\":\"интерактив\",\"secondary_format\":\"практикум на данных\",\"video_scores\":{\"ext\":{},\"time\":1,\"invisible\":2,\"scale\":0,\"counterintuitive\":1,\"cause_effect\":2},\"hook_short\":false,\"template\":\"T2\",\"why\":\"Тип трудности И (косвенное измерение); невидимое проникновение фильтрата и цепочка причинно-следственных связей от давления до искажения сигналов дают высокие оценки за invisible и cause_effect.\"},{\"node_id\":\"latyshova_gl5_par17-20.reservoir_types_and_methods\",\"format\":\"практикум на данных\",\"secondary_format\":\"карточки\",\"video_scores\":{\"ext\":{},\"time\":0,\"invisible\":1,\"scale\":0,\"counterintuitive\":0,\"cause_effect\":1},\"hook_short\":false,\"template\":null,\"why\":\"Тип трудности Р и И; сопоставление физических свойств и откликов требует работы с реальными кривыми, оценка за invisible обоснована скрытой структурой пласта.\"},{\"node_id\":\"latyshova_gl5_par17-20.lithological_column_building\",\"format\":\"практикум на данных\",\"secondary_format\":\"текст\",\"video_scores\":{\"ext\":{},\"time\":0,\"invisible\":1,\"scale\":0,\"counterintuitive\":0,\"cause_effect\":1},\"hook_short\":false,\"template\":null,\"why\":\"Тип трудности Пр и Р; процедура построения разреза с учетом линзы неэффективности и ручных шагов требует практикума на данных и работы с табличными признаками.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/route",
+ "tokens_in": 2676,
+ "tokens_out": 443,
+ "money_usd": 0.0019103000000000002,
+ "attempts": 1
+}

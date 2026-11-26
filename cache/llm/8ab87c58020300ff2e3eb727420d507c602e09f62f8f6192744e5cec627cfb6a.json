@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"b\"],\"claim_id\":\"latyshova_gl5_par17-20.reservoir_types_and_methods#c4\",\"evidence\":\"В первую группу входят микрозонды и каверномер\"},{\"n\":2,\"answer\":[\"графическом сопоставлении\",\"пористости\"],\"claim_id\":\"latyshova_gl5_par17-20.reservoir_types_and_methods#c13\",\"evidence\":\"графическом сопоставлении кривой\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1253,
+ "tokens_out": 130,
+ "money_usd": 0.0007009,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"o1\",\"o2\",\"o3\",\"o4\"],\"claim_id\":\"latyshova_gl5_par17-20.lithological_column_building#c3\",\"evidence\":\"следует строить условную колонку расчленения разреза по физическим признакам, которую затем уточняют по данным петрофизических исследований образцов\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1107,
+ "tokens_out": 99,
+ "money_usd": 0.0005796,
+ "attempts": 1
+}

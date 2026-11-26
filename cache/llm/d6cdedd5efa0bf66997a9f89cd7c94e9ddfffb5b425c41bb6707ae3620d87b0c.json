@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"order\",\"kind\":\"data\",\"claim_ids\":[\"latyshova_gl5_par17-20.gis_tasks_and_sections#c5\",\"latyshova_gl5_par17-20.gis_tasks_and_sections#c7\",\"latyshova_gl5_par17-20.gis_tasks_and_sections#c8\"],\"prompt\":\"Дата-инженер анализирует влияние бурового раствора на данные каротажа. Расположите физические процессы в скважине по порядку их возникновения и влияния на измерения: от исходных параметров бурового раствора до формирования зон искажения в пласте.\",\"options\":[{\"text\":\"Плотность глинистого раствора определяет величину давления в скважине и превышение его над пластовым\",\"correct\":false,\"misconception\":null},{\"text\":\"Фильтрат раствора проникает в пористые породы под действием репрессии давления\",\"correct\":false,\"misconception\":null},{\"text\":\"На стенках скважины образуется глинистая корка, а в пласте формируется зона проникновения\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Плотность раствора создает репрессию, под действием которой фильтрат проникает в пласт, образуя корку и зону проникновения.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 6654,
+ "tokens_out": 294,
+ "money_usd": 0.0027312,
+ "attempts": 1
+}

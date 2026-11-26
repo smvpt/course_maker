@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"d\"],\"claim_id\":\"latyshova_gl5_par17-20.gis_tasks_and_sections#c1\",\"evidence\":\"определения эффективной толщины, коэффициентов пористости и нефтегазонасыщения\"},{\"n\":2,\"answer\":[\"b\",\"c\"],\"claim_id\":\"latyshova_gl5_par17-20.gis_tasks_and_sections#c5\",\"evidence\":\"образование в межзерновых коллекторах зон проникновения фильтрата раствора и глинистых корок на стенках скважины\"},{\"n\":3,\"answer\":[\"индукционный\"],\"claim_id\":\"latyshova_gl5_par17-20.gis_tasks_and_sections#c10\",\"evidence\":\"Применим только индукционный зонд\"},{\"n\":4,\"answer\":[\"o1\",\"o2\",\"o3\",\"o4\"],\"claim_id\":\"latyshova_gl5_par17-20.gis_tasks_and_sections#c8\",\"evidence\":\"Плотность б_p глинистого раствора определяет величину давления в скважине\"},{\"n\":5,\"answer\":[\"d\"],\"claim_id\":\"latyshova_gl5_par17-20.gis_tasks_and_sections#c7\",\"evidence\":\"толстая глинистая корка делает коллектор недоступным для изучения методами с малой глубинностью\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 2265,
+ "tokens_out": 363,
+ "money_usd": 0.001587,
+ "attempts": 1
+}

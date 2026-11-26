@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"уравнение пьезопроводности (23.17), которое для одномерного течения в декартовой системе координат запишется в виде:\\n\\n$$\\\\frac{\\\\partial p}{\\\\partial t} = \\\\kappa \\\\frac{\\\\partial^2 p}{\\\\partial x^2}, \\\\quad 0 < x < \\\\infty. \\\\quad (23.19)$$\",\"page_pdf\":481}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 8426,
+ "tokens_out": 105,
+ "money_usd": 0.0027903,
+ "attempts": 1
+}

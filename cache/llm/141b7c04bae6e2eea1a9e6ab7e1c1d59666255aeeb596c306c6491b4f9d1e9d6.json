@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"b\"],\"claim_id\":\"latyshova_gl5_par17-20.reservoir_types_and_methods#c4\",\"evidence\":\"на которых образуется глинистая корка при бурении\"},{\"n\":2,\"answer\":[\"графическом сопоставлении кривой\"],\"claim_id\":\"latyshova_gl5_par17-20.reservoir_types_and_methods#c13\",\"evidence\":\"заключается в графическом сопоставлении кривой\"},{\"n\":3,\"answer\":[\"o1\",\"o2\",\"o3\",\"o4\"],\"claim_id\":\"latyshova_gl5_par17-20.reservoir_types_and_methods#c3\",\"evidence\":\"1) выделения коллекторов (межзерновых); 2) определения пористости; 3) определения глинистости; 4) оценки продуктивности.\"},{\"n\":4,\"answer\":[\"d\"],\"claim_id\":\"latyshova_gl5_par17-20.reservoir_types_and_methods#c12\",\"evidence\":\"слабая связь коллекторских свойств с содержанием глинистого материала\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1768,
+ "tokens_out": 293,
+ "money_usd": 0.0012629,
+ "attempts": 1
+}

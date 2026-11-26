@@ -1,0 +1,10 @@
+{
+ "text": "{\"items\":[{\"unit_id\":\"p488.13\",\"node\":\"math_model_elastic_filtration\",\"reason\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/structure_missing",
+ "tokens_in": 675,
+ "tokens_out": 34,
+ "money_usd": 0.0002875,
+ "attempts": 1
+}

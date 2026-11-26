@@ -1,0 +1,6 @@
+chapter,stage,nodes,llm_tokens_in,llm_tokens_out,money_usd,person_minutes,mentor_minutes,video_seconds,manual_share
+latyshova_gl5_par17-20,layer,3,167952,15564,0.089296,0,0,0.0,0.0
+latyshova_gl5_par17-20,routing,3,2676,443,0.00191,0,0,0.0,0.0
+latyshova_gl5_par17-20,course,3,117672,13442,0.068907,0,0,0.0,0.0
+latyshova_gl5_par17-20,video,3,0,0,0.0,0,0,0.0,0.0
+latyshova_gl5_par17-20,review,3,0,0,0.0,0,0,0.0,0.0

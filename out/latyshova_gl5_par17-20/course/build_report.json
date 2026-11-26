@@ -1,0 +1,154 @@
+{
+  "chapter": "latyshova_gl5_par17-20",
+  "nodes": 3,
+  "tasks": 12,
+  "step_text_nodes": 3,
+  "interactive_steps": 1,
+  "guess_steps": 1,
+  "summary": {
+    "text_model_steps": 3,
+    "steps": 3,
+    "tasks": 12,
+    "tasks_dropped": 3,
+    "fallback_steps": 0,
+    "model": "доступна",
+    "line": "ИТОГ СБОРКИ: текст модели: 3 из 3 шагов · заданий: 12 (выброшено 3) · fallback: 0 · модель: доступна"
+  },
+  "warnings": [
+    {
+      "code": "no_parts",
+      "message": "ни у одного узла нет ext[\"core\"][\"part\"]: вся глава собрана одной частью «Глава»"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг latyshova_gl5_par17-20.gis_tasks_and_sections: термин 'промывочная жидкость' не выделен [[…]] ни в одном абзаце",
+      "node": "latyshova_gl5_par17-20.gis_tasks_and_sections"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг latyshova_gl5_par17-20.gis_tasks_and_sections: термин 'зона проникновения' не выделен [[…]] ни в одном абзаце",
+      "node": "latyshova_gl5_par17-20.gis_tasks_and_sections"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг latyshova_gl5_par17-20.gis_tasks_and_sections: термин 'глинистая корка' не выделен [[…]] ни в одном абзаце",
+      "node": "latyshova_gl5_par17-20.gis_tasks_and_sections"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг latyshova_gl5_par17-20.gis_tasks_and_sections: термин 'репрессия' не выделен [[…]] ни в одном абзаце",
+      "node": "latyshova_gl5_par17-20.gis_tasks_and_sections"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг latyshova_gl5_par17-20.gis_tasks_and_sections: термин 'минерализация фильтрата' не выделен [[…]] ни в одном абзаце",
+      "node": "latyshova_gl5_par17-20.gis_tasks_and_sections"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг latyshova_gl5_par17-20.gis_tasks_and_sections: термин 'качественная интерпретация' не выделен [[…]] ни в одном абзаце",
+      "node": "latyshova_gl5_par17-20.gis_tasks_and_sections"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг latyshova_gl5_par17-20.gis_tasks_and_sections: термин 'количественная интерпретация' не выделен [[…]] ни в одном абзаце",
+      "node": "latyshova_gl5_par17-20.gis_tasks_and_sections"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг latyshova_gl5_par17-20.reservoir_types_and_methods: термин 'карбонатный разрез' не выделен [[…]] ни в одном абзаце",
+      "node": "latyshova_gl5_par17-20.reservoir_types_and_methods"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг latyshova_gl5_par17-20.reservoir_types_and_methods: термин 'межзерновой коллектор' не выделен [[…]] ни в одном абзаце",
+      "node": "latyshova_gl5_par17-20.reservoir_types_and_methods"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг latyshova_gl5_par17-20.reservoir_types_and_methods: термин 'трещинный коллектор' не выделен [[…]] ни в одном абзаце",
+      "node": "latyshova_gl5_par17-20.reservoir_types_and_methods"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг latyshova_gl5_par17-20.reservoir_types_and_methods: термин 'метод СП' не выделен [[…]] ни в одном абзаце",
+      "node": "latyshova_gl5_par17-20.reservoir_types_and_methods"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг latyshova_gl5_par17-20.reservoir_types_and_methods: термин 'гамма-метод' не выделен [[…]] ни в одном абзаце",
+      "node": "latyshova_gl5_par17-20.reservoir_types_and_methods"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг latyshova_gl5_par17-20.reservoir_types_and_methods: термин 'метод повторных замеров' не выделен [[…]] ни в одном абзаце",
+      "node": "latyshova_gl5_par17-20.reservoir_types_and_methods"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг latyshova_gl5_par17-20.reservoir_types_and_methods: термин 'метод двух растворов' не выделен [[…]] ни в одном абзаце",
+      "node": "latyshova_gl5_par17-20.reservoir_types_and_methods"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг latyshova_gl5_par17-20.lithological_column_building: термин 'литологическая колонка' не выделен [[…]] ни в одном абзаце",
+      "node": "latyshova_gl5_par17-20.lithological_column_building"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг latyshova_gl5_par17-20.lithological_column_building: термин 'физические признаки пород' не выделен [[…]] ни в одном абзаце",
+      "node": "latyshova_gl5_par17-20.lithological_column_building"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг latyshova_gl5_par17-20.lithological_column_building: термин 'литологический разрез' не выделен [[…]] ни в одном абзаце",
+      "node": "latyshova_gl5_par17-20.lithological_column_building"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг latyshova_gl5_par17-20.lithological_column_building: термин 'эффективная толщина' не выделен [[…]] ни в одном абзаце",
+      "node": "latyshova_gl5_par17-20.lithological_column_building"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг latyshova_gl5_par17-20.lithological_column_building: термин 'слоистая глинистость' не выделен [[…]] ни в одном абзаце",
+      "node": "latyshova_gl5_par17-20.lithological_column_building"
+    },
+    {
+      "code": "few_tasks",
+      "message": "заданий 12, нужно не меньше 15",
+      "count": 12
+    },
+    {
+      "code": "task_dropped",
+      "message": "задание 4 (order) шага latyshova_gl5_par17-20.gis_tasks_and_sections выброшено: задание 4: order — 3–5 элементов в правильном порядке (сейчас 2)",
+      "node": "latyshova_gl5_par17-20.gis_tasks_and_sections",
+      "slot": 4,
+      "type": "order",
+      "errors": [
+        "задание 4: order — 3–5 элементов в правильном порядке (сейчас 2)"
+      ]
+    },
+    {
+      "code": "task_answer_mismatch",
+      "message": "задание 1 (multiple) шага latyshova_gl5_par17-20.reservoir_types_and_methods выброшено: помеченный ответ противоречит цитате книги (слепая проверка): ответ слепой проверки не совпал с помеченным: по цитате latyshova_gl5_par17-20.reservoir_types_and_methods#c4 («В первую группу входят микрозонды и каверномер») модель выбрала «Данные микрозондов и каверномера», помечено «Данные микрозондов и каверномера»; «Наличие зоны проникновения в пласте»; «Сужение диаметра скважины за счет глинистой корки». Перепроверь по цитате, какой ответ верен, и перепиши задание",
+      "node": "latyshova_gl5_par17-20.reservoir_types_and_methods",
+      "slot": 1,
+      "type": "multiple",
+      "errors": [
+        "ответ слепой проверки не совпал с помеченным: по цитате latyshova_gl5_par17-20.reservoir_types_and_methods#c4 («В первую группу входят микрозонды и каверномер») модель выбрала «Данные микрозондов и каверномера», помечено «Данные микрозондов и каверномера»; «Наличие зоны проникновения в пласте»; «Сужение диаметра скважины за счет глинистой корки». Перепроверь по цитате, какой ответ верен, и перепиши задание"
+      ]
+    },
+    {
+      "code": "task_answer_mismatch",
+      "message": "задание 2 (gap) шага latyshova_gl5_par17-20.reservoir_types_and_methods выброшено: помеченный ответ противоречит цитате книги (слепая проверка): ответ слепой проверки не совпал с помеченным: по цитате latyshova_gl5_par17-20.reservoir_types_and_methods#c13 («графическом сопоставлении кривой») модель выбрала графическом сопоставлении, пористости, помечено способ нормализации, пористости. Перепроверь по цитате, какой ответ верен, и перепиши задание",
+      "node": "latyshova_gl5_par17-20.reservoir_types_and_methods",
+      "slot": 2,
+      "type": "gap",
+      "errors": [
+        "ответ слепой проверки не совпал с помеченным: по цитате latyshova_gl5_par17-20.reservoir_types_and_methods#c13 («графическом сопоставлении кривой») модель выбрала графическом сопоставлении, пористости, помечено способ нормализации, пористости. Перепроверь по цитате, какой ответ верен, и перепиши задание"
+      ]
+    }
+  ],
+  "missing_scans": []
+}
