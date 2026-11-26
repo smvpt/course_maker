@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"gap\",\"kind\":\"transfer\",\"claim_ids\":[\"test_slatt.clinoforms_and_time_lines#c7\"],\"prompt\":\"При сопоставлении разрезов скважин с использованием наклонных поверхностей вместо горизонтальных границ слоев применяют {{1}} корреляцию.\",\"options\":[],\"gap_answers\":[\"хроностратиграфическую\"],\"calc\":null,\"explanation\":\"Для сопоставления по линиям геологического времени используют хроностратиграфический подход.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 5771,
+ "tokens_out": 124,
+ "money_usd": 0.0020413,
+ "attempts": 1
+}

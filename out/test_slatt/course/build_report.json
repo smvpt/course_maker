@@ -1,0 +1,233 @@
+{
+  "chapter": "test_slatt",
+  "nodes": 7,
+  "tasks": 16,
+  "step_text_nodes": 7,
+  "interactive_steps": 5,
+  "guess_steps": 0,
+  "summary": {
+    "text_model_steps": 7,
+    "steps": 7,
+    "tasks": 16,
+    "tasks_dropped": 5,
+    "fallback_steps": 0,
+    "model": "доступна",
+    "line": "ИТОГ СБОРКИ: текст модели: 7 из 7 шагов · заданий: 16 (выброшено 5) · fallback: 0 · модель: доступна"
+  },
+  "warnings": [
+    {
+      "code": "no_parts",
+      "message": "ни у одного узла нет ext[\"core\"][\"part\"]: вся глава собрана одной частью «Глава»"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.clinoforms_and_time_lines: термин 'clinoforms' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.clinoforms_and_time_lines"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.clinoforms_and_time_lines: термин 'lithostratigraphic boundaries' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.clinoforms_and_time_lines"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.clinoforms_and_time_lines: термин 'sequence stratigraphic' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.clinoforms_and_time_lines"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.clinoforms_and_time_lines: термин 'chronostratigraphic correlations' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.clinoforms_and_time_lines"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.clinoforms_and_time_lines: термин 'lithofacies' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.clinoforms_and_time_lines"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.clinoforms_and_time_lines: термин 'линии геологического времени' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.clinoforms_and_time_lines"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.clinoforms_and_time_lines: термин 'литостратиграфическая корреляция' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.clinoforms_and_time_lines"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.clinoforms_and_time_lines: термин 'хроностратиграфическая корреляция' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.clinoforms_and_time_lines"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.clinoforms_and_time_lines: термин 'литофации' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.clinoforms_and_time_lines"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.delta_switching_and_lowstand: термин 'delta distributary switching processes' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.delta_switching_and_lowstand"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.delta_switching_and_lowstand: термин 'shelf-margin' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.delta_switching_and_lowstand"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.delta_switching_and_lowstand: термин 'systems tracts' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.delta_switching_and_lowstand"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.delta_switching_and_lowstand: термин 'shelf-margin deltas' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.delta_switching_and_lowstand"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.litho_vs_chrono_correlation_mekong: термин 'Mekong River Delta' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.litho_vs_chrono_correlation_mekong"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.litho_vs_chrono_correlation_mekong: термин 'progradation' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.litho_vs_chrono_correlation_mekong"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.river_dominated_delta_deposits: термин 'river-dominated delta' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.river_dominated_delta_deposits"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.river_dominated_delta_deposits: термин 'distributary channels' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.river_dominated_delta_deposits"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.river_dominated_delta_deposits: термин 'distributary mouth-bars' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.river_dominated_delta_deposits"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.river_dominated_delta_deposits: термин 'interdistributary bays' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.river_dominated_delta_deposits"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.river_dominated_delta_deposits: термин 'coarsening-upward' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.river_dominated_delta_deposits"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.river_dominated_delta_deposits: термин 'prodelta' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.river_dominated_delta_deposits"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.prudhoe_bay_field_romeo: термин 'Prudhoe Bay field' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.prudhoe_bay_field_romeo"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.prudhoe_bay_field_romeo: термин 'Romeo Zone' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.prudhoe_bay_field_romeo"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.prudhoe_bay_field_romeo: термин 'shale continuity' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.prudhoe_bay_field_romeo"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.prudhoe_bay_field_romeo: термин 'sidetrack' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.prudhoe_bay_field_romeo"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.wave_dominated_deltas: термин 'wave-dominated deltas' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.wave_dominated_deltas"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.wave_dominated_deltas: термин 'longshore drift' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.wave_dominated_deltas"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_slatt.wave_dominated_deltas: термин 'beach ridges' не выделен [[…]] ни в одном абзаце",
+      "node": "test_slatt.wave_dominated_deltas"
+    },
+    {
+      "code": "calc_not_possible",
+      "message": "в главе нет формул и чисел для расчёта: заданий calc нет"
+    },
+    {
+      "code": "task_dropped",
+      "message": "задание 3 (gap) шага test_slatt.clinoforms_and_time_lines выброшено: задание 3: слово пропуска 'хроностратиграфическую' не найдено в тексте узла в такой форме (ответ должен быть в тексте шага; не больше 2 слов)",
+      "node": "test_slatt.clinoforms_and_time_lines",
+      "slot": 3,
+      "type": "gap",
+      "errors": [
+        "задание 3: слово пропуска 'хроностратиграфическую' не найдено в тексте узла в такой форме (ответ должен быть в тексте шага; не больше 2 слов)"
+      ]
+    },
+    {
+      "code": "task_answer_mismatch",
+      "message": "задание 2 (gap) шага test_slatt.river_dominated_delta_deposits выброшено: помеченный ответ противоречит цитате книги (слепая проверка): ответ слепой проверки не совпал с помеченным: по цитате test_slatt.river_dominated_delta_deposits#c1 («Interdistributary bays, marshes, and lagoons») модель выбрала marshes, and lagoons, помечено болотами. Перепроверь по цитате, какой ответ верен, и перепиши задание",
+      "node": "test_slatt.river_dominated_delta_deposits",
+      "slot": 2,
+      "type": "gap",
+      "errors": [
+        "ответ слепой проверки не совпал с помеченным: по цитате test_slatt.river_dominated_delta_deposits#c1 («Interdistributary bays, marshes, and lagoons») модель выбрала marshes, and lagoons, помечено болотами. Перепроверь по цитате, какой ответ верен, и перепиши задание"
+      ]
+    },
+    {
+      "code": "task_answer_mismatch",
+      "message": "задание 3 (gap) шага test_slatt.prudhoe_bay_field_romeo выброшено: помеченный ответ противоречит цитате книги (слепая проверка): ответ слепой проверки не совпал с помеченным: по цитате test_slatt.prudhoe_bay_field_romeo#c8 («help to focus a waterflood») модель выбрала waterflood, помечено заводнение. Перепроверь по цитате, какой ответ верен, и перепиши задание",
+      "node": "test_slatt.prudhoe_bay_field_romeo",
+      "slot": 3,
+      "type": "gap",
+      "errors": [
+        "ответ слепой проверки не совпал с помеченным: по цитате test_slatt.prudhoe_bay_field_romeo#c8 («help to focus a waterflood») модель выбрала waterflood, помечено заводнение. Перепроверь по цитате, какой ответ верен, и перепиши задание"
+      ]
+    },
+    {
+      "code": "task_answer_mismatch",
+      "message": "задание 3 (multiple) шага test_slatt.kuparuk_river_field выброшено: помеченный ответ противоречит цитате книги (слепая проверка): ответ слепой проверки не совпал с помеченным: по цитате test_slatt.kuparuk_river_field#c5 («sequence stratigraphy correlations revealed that the A unit consists of six separate sandstone bodies») модель выбрала «Единица A состоит из шести отдельных песчаных тел.», помечено «Каждая единица изначально считалась латерально выдержанным песчаным телом.»; «Единица A состоит из шести отдельных песчаных тел.». Перепроверь по цитате, какой ответ верен, и перепиши задание",
+      "node": "test_slatt.kuparuk_river_field",
+      "slot": 3,
+      "type": "multiple",
+      "errors": [
+        "ответ слепой проверки не совпал с помеченным: по цитате test_slatt.kuparuk_river_field#c5 («sequence stratigraphy correlations revealed that the A unit consists of six separate sandstone bodies») модель выбрала «Единица A состоит из шести отдельных песчаных тел.», помечено «Каждая единица изначально считалась латерально выдержанным песчаным телом.»; «Единица A состоит из шести отдельных песчаных тел.». Перепроверь по цитате, какой ответ верен, и перепиши задание"
+      ]
+    },
+    {
+      "code": "task_answer_mismatch",
+      "message": "задание 1 (gap) шага test_slatt.wave_dominated_deltas выброшено: помеченный ответ противоречит цитате книги (слепая проверка): ответ слепой проверки не совпал с помеченным: по цитате test_slatt.wave_dominated_deltas#c6 («grain-size effect discussed in Chapter 6») модель выбрала grain-size effect, помечено размера зерен. Перепроверь по цитате, какой ответ верен, и перепиши задание",
+      "node": "test_slatt.wave_dominated_deltas",
+      "slot": 1,
+      "type": "gap",
+      "errors": [
+        "ответ слепой проверки не совпал с помеченным: по цитате test_slatt.wave_dominated_deltas#c6 («grain-size effect discussed in Chapter 6») модель выбрала grain-size effect, помечено размера зерен. Перепроверь по цитате, какой ответ верен, и перепиши задание"
+      ]
+    }
+  ],
+  "missing_scans": [
+    410,
+    411,
+    412,
+    413,
+    414,
+    415,
+    416,
+    417,
+    418,
+    419,
+    420,
+    421,
+    422,
+    423
+  ]
+}

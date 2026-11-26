@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"gap\",\"kind\":\"transfer\",\"claim_ids\":[\"test_slatt.wave_dominated_deltas#c6\"],\"prompt\":\"В волно-доминированных дельтах пористость и проницаемость увеличиваются снизу вверх из-за эффекта {{1}}.\",\"options\":[],\"gap_answers\":[\"размера зерен\"],\"calc\":null,\"explanation\":\"Пористость и проницаемость возрастают из-за изменения размера зерен снизу вверх по разрезу.\"},{\"type\":\"order\",\"kind\":\"data\",\"claim_ids\":[\"test_slatt.wave_dominated_deltas#c2\",\"test_slatt.wave_dominated_deltas#c3\",\"test_slatt.wave_dominated_deltas#c4\"],\"prompt\":\"Расположите этапы формирования волно-доминированной дельты в хронологическом и пространственном порядке от поступления осадков до конечного результата:\",\"options\":[{\"text\":\"Поступление достаточного количества песка к берегу и латеральная аккреция береговой зоны\",\"correct\":false,\"misconception\":null},{\"text\":\"Питание линейной береговой линии вдольбереговым потоком и отклонение речного устья\",\"correct\":false,\"misconception\":null},{\"text\":\"Формирование обширного веерообразного тела песка вроде дельты Нила\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Сначала песок поступает к берегу, затем берег питается вдольбереговым потоком с отклонением устья, а в итоге формируется веерообразное тело.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 5410,
+ "tokens_out": 386,
+ "money_usd": 0.002588,
+ "attempts": 1
+}

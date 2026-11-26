@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"In the subsurface, these same features can be identified in cores and on well logs, including a lateral thinning and fining log response away from the channel axis\",\"page_pdf\":413}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 6759,
+ "tokens_out": 51,
+ "money_usd": 0.0021552,
+ "attempts": 1
+}

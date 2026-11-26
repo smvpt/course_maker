@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Песчаные тела единицы A месторождения\",\"note\":\"Нажми на песчаное тело, чтобы узнать его особенности.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"Песчаные тела единицы A\",\"description\":\"Состоит из шести отдельных тел, которые изначально считались единым латерально выдержанным пластом.\",\"claim_id\":\"test_slatt.kuparuk_river_field#c5\",\"rock\":\"sand\"},{\"label\":\"Шесть песчаных тел\",\"description\":\"Последовательно прородировали в направлении моря на северо-восток.\",\"claim_id\":\"test_slatt.kuparuk_river_field#c6\",\"rock\":\"sand\"},{\"label\":\"Трансгрессивные морские сланцы\",\"description\":\"Разделяют между собой каждое из шести песчаных тел.\",\"claim_id\":\"test_slatt.kuparuk_river_field#c7\",\"rock\":\"shale\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 3192,
+ "tokens_out": 316,
+ "money_usd": 0.0017476,
+ "attempts": 1
+}

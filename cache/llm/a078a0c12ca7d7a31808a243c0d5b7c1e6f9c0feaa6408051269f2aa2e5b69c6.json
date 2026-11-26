@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"a\",\"b\"],\"claim_id\":\"test_slatt.prudhoe_bay_field_romeo#c1\",\"evidence\":\"river-dominated delta-front and prodelta deposits\"},{\"n\":2,\"answer\":[\"a waterflood\"],\"claim_id\":\"test_slatt.prudhoe_bay_field_romeo#c8\",\"evidence\":\"help to focus a waterflood\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1092,
+ "tokens_out": 107,
+ "money_usd": 0.0005951,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"grain-size effect\"],\"claim_id\":\"test_slatt.wave_dominated_deltas#c6\",\"evidence\":\"grain-size effect discussed in Chapter 6\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 789,
+ "tokens_out": 54,
+ "money_usd": 0.0003717,
+ "attempts": 1
+}

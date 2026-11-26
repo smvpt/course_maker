@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"gap\",\"kind\":\"recall\",\"claim_ids\":[\"test_slatt.river_dominated_delta_deposits#c1\"],\"prompt\":\"Главными фациями речно-доминированной дельты являются русла и устьевые бары, разделенные межрусловыми бухтами и {{1}}.\",\"options\":[],\"gap_answers\":[\"болотами\"],\"calc\":null,\"explanation\":\"Песчаные резервуары дельты разделены межрусловыми бухтами и болотами.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 5317,
+ "tokens_out": 124,
+ "money_usd": 0.0019050999999999998,
+ "attempts": 1
+}

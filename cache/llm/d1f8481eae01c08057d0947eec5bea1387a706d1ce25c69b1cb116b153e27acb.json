@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"multiple\",\"kind\":\"recall\",\"claim_ids\":[\"test_slatt.prudhoe_bay_field_romeo#c1\",\"test_slatt.prudhoe_bay_field_romeo#c2\"],\"prompt\":\"Какие типы отложений и фаций формируют нижнюю стратиграфическую зону Ромео на месторождении Прудо-Бей? Выберите все верные варианты.\",\"options\":[{\"text\":\"Отложения дельтового фронта речно-доминированного типа.\",\"correct\":true,\"misconception\":null},{\"text\":\"Продуктивные песчаники устьевых баров.\",\"correct\":true,\"misconception\":null},{\"text\":\"Рифовые известняки с первичной неизмененной пористостью.\",\"correct\":false,\"misconception\":\"misc.reef_porosity_preserved\"},{\"text\":\"Глубоководные карбонатные отложения открытого моря.\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Зона Ромео сложена речно-доминированными дельтовыми отложениями, включая песчаники русел и устьевых баров.\"},{\"type\":\"gap\",\"kind\":\"understanding\",\"claim_ids\":[\"test_slatt.prudhoe_bay_field_romeo#c8\"],\"prompt\":\"Непрерывные сланцы создают барьеры вертикального потока и помогают регулировать {{1}}.\",\"options\":[],\"gap_answers\":[\"заводнение\"],\"calc\":null,\"explanation\":\"Непрерывные сланцевые слои служат барьерами для вертикальной фильтрации флюидов, что позволяет эффективно управлять заводнением пласта.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 6320,
+ "tokens_out": 390,
+ "money_usd": 0.002871,
+ "attempts": 1
+}

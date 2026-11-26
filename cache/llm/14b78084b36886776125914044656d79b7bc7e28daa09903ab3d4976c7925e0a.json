@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"progradational\"],\"claim_id\":\"test_slatt.litho_vs_chrono_correlation_mekong#c3\",\"evidence\":\"progradational nature of the delta\"},{\"n\":2,\"answer\":[\"o1\",\"o2\",\"o3\"],\"claim_id\":\"test_slatt.litho_vs_chrono_correlation_mekong#c1\",\"evidence\":\"Map view of Mekong River Delta\"},{\"n\":3,\"answer\":[\"a\"],\"claim_id\":\"test_slatt.litho_vs_chrono_correlation_mekong#c4\",\"evidence\":\"Note the difference in correlation of sedimentary units based upon the lithostratigraphic and chronostratigraphic correlation strategies\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1440,
+ "tokens_out": 177,
+ "money_usd": 0.0008745000000000001,
+ "attempts": 1
+}

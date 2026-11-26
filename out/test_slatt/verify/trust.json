@@ -1,0 +1,42 @@
+{
+  "chapter": "test_slatt",
+  "generated": "2026-11-26T12:32",
+  "nodes": 7,
+  "coverage": {
+    "units": 91,
+    "in_nodes": 90,
+    "with_reason": 1,
+    "pct_in_nodes": 98.9,
+    "pct_accounted": 100.0
+  },
+  "quotes": {
+    "claims": 47,
+    "found": 47,
+    "other_page": 0,
+    "not_found": 0,
+    "pct": 100.0
+  },
+  "numbers": {
+    "total": 21,
+    "found": 18,
+    "pct": 85.7
+  },
+  "remarks": {
+    "critical": 0,
+    "significant": 5,
+    "minor": 0
+  },
+  "manual": {
+    "person_minutes": 0,
+    "mentor_minutes": 0,
+    "edits": 0
+  },
+  "cost": {
+    "llm_calls": 67,
+    "cached": 0,
+    "money_usd": 0.2131,
+    "unpriced_calls": 0,
+    "tokens_in": 324976,
+    "tokens_out": 48677
+  }
+}

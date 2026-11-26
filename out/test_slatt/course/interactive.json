@@ -1,0 +1,364 @@
+{
+  "ext": {},
+  "chapter": "test_slatt",
+  "nodes": {
+    "test_slatt.clinoforms_and_time_lines": {
+      "ext": {},
+      "hash": "0c03926159baa40c",
+      "data": {
+        "spec": {
+          "feasible": true,
+          "title": "Сопоставление литофаций и хроностратиграфических линий",
+          "note": "Нажми на элемент схемы, чтобы узнать его особенности и связь с корреляцией.",
+          "layout": "layers",
+          "parts": [
+            {
+              "label": "литостратиграфические границы",
+              "description": "Горизонтальные или пологие границы слоев, которые пересекаются клиноформами под наклоном.",
+              "claim_id": "test_slatt.clinoforms_and_time_lines#c1",
+              "rock": null
+            },
+            {
+              "label": "литофации",
+              "description": "Стратиграфические интервалы со схожими показаниями каротажа, используемые для корреляции наряду с геологическим временем.",
+              "claim_id": "test_slatt.clinoforms_and_time_lines#c2",
+              "rock": null
+            },
+            {
+              "label": "глинистые и гетеролитные интервалы",
+              "description": "Разделяют песчаные интервалы, из-за чего пески между скважинами не сообщаются между собой.",
+              "claim_id": "test_slatt.clinoforms_and_time_lines#c3",
+              "rock": "shale"
+            },
+            {
+              "label": "песчаные тела устьевых баров",
+              "description": "Залегают в виде пачек, смещающихся по латерали внутри наклонных хроностратиграфических поверхностей.",
+              "claim_id": "test_slatt.clinoforms_and_time_lines#c8",
+              "rock": "sand"
+            },
+            {
+              "label": "хроностратиграфические поверхности",
+              "description": "Наклонены от верхней части суши слева к нижней части бассейна справа.",
+              "claim_id": "test_slatt.clinoforms_and_time_lines#c9",
+              "rock": null
+            }
+          ]
+        },
+        "data": {
+          "template": "scheme",
+          "title": "Сопоставление литофаций и хроностратиграфических линий",
+          "note": "Нажми на элемент схемы, чтобы узнать его особенности и связь с корреляцией.",
+          "layout": "layers",
+          "parts": [
+            {
+              "label": "литостратиграфические границы",
+              "description": "Горизонтальные или пологие границы слоев, которые пересекаются клиноформами под наклоном.",
+              "claim_id": "test_slatt.clinoforms_and_time_lines#c1",
+              "page": 410,
+              "rock": null
+            },
+            {
+              "label": "литофации",
+              "description": "Стратиграфические интервалы со схожими показаниями каротажа, используемые для корреляции наряду с геологическим временем.",
+              "claim_id": "test_slatt.clinoforms_and_time_lines#c2",
+              "page": 410,
+              "rock": null
+            },
+            {
+              "label": "глинистые и гетеролитные интервалы",
+              "description": "Разделяют песчаные интервалы, из-за чего пески между скважинами не сообщаются между собой.",
+              "claim_id": "test_slatt.clinoforms_and_time_lines#c3",
+              "page": 410,
+              "rock": "shale"
+            },
+            {
+              "label": "песчаные тела устьевых баров",
+              "description": "Залегают в виде пачек, смещающихся по латерали внутри наклонных хроностратиграфических поверхностей.",
+              "claim_id": "test_slatt.clinoforms_and_time_lines#c8",
+              "page": 410,
+              "rock": "sand"
+            },
+            {
+              "label": "хроностратиграфические поверхности",
+              "description": "Наклонены от верхней части суши слева к нижней части бассейна справа.",
+              "claim_id": "test_slatt.clinoforms_and_time_lines#c9",
+              "page": 410,
+              "rock": null
+            }
+          ]
+        }
+      }
+    },
+    "test_slatt.delta_switching_and_lowstand": {
+      "ext": {},
+      "hash": "18ebfbf7b819ee7c",
+      "data": {
+        "spec": {
+          "feasible": true,
+          "title": "Этапы развития и формирования дельт",
+          "note": "Нажми на элемент схемы, чтобы узнать его характеристики.",
+          "layout": "chain",
+          "parts": [
+            {
+              "label": "Переключение русел",
+              "description": "Процесс изменения положения и ориентации распределительных рукавов, который может играть более важную роль в эволюции дельт, чем колебания уровня моря.",
+              "claim_id": "test_slatt.delta_switching_and_lowstand#c1",
+              "rock": null
+            },
+            {
+              "label": "Низкопотенциальные дельты",
+              "description": "Системы, которые формируются во время относительного падения уровня моря (также называемые бровковыми).",
+              "claim_id": "test_slatt.delta_switching_and_lowstand#c2",
+              "rock": null
+            },
+            {
+              "label": "Врезание долин",
+              "description": "Явление, вызываемое относительным падением уровня моря вместе с отступанием береговой линии в сторону моря и ее понижением.",
+              "claim_id": "test_slatt.delta_switching_and_lowstand#c3",
+              "rock": null
+            }
+          ]
+        },
+        "data": {
+          "template": "scheme",
+          "title": "Этапы развития и формирования дельт",
+          "note": "Нажми на элемент схемы, чтобы узнать его характеристики.",
+          "layout": "chain",
+          "parts": [
+            {
+              "label": "Переключение русел",
+              "description": "Процесс изменения положения и ориентации распределительных рукавов, который может играть более важную роль в эволюции дельт, чем колебания уровня моря.",
+              "claim_id": "test_slatt.delta_switching_and_lowstand#c1",
+              "page": 410,
+              "rock": null
+            },
+            {
+              "label": "Низкопотенциальные дельты",
+              "description": "Системы, которые формируются во время относительного падения уровня моря (также называемые бровковыми).",
+              "claim_id": "test_slatt.delta_switching_and_lowstand#c2",
+              "page": 410,
+              "rock": null
+            },
+            {
+              "label": "Врезание долин",
+              "description": "Явление, вызываемое относительным падением уровня моря вместе с отступанием береговой линии в сторону моря и ее понижением.",
+              "claim_id": "test_slatt.delta_switching_and_lowstand#c3",
+              "page": 410,
+              "rock": null
+            }
+          ]
+        }
+      }
+    },
+    "test_slatt.river_dominated_delta_deposits": {
+      "ext": {},
+      "hash": "69a7432738d5ee39",
+      "data": {
+        "spec": {
+          "feasible": true,
+          "title": "Главные фации и зоны речно-доминированной дельты",
+          "note": "Нажми на элемент схемы, чтобы узнать его особенности осадконакопления.",
+          "layout": "chain",
+          "parts": [
+            {
+              "label": "русла",
+              "description": "Выносят песчаный материал на фронт дельты и образуют песчаные резервуары.",
+              "claim_id": "test_slatt.river_dominated_delta_deposits#c1",
+              "rock": null
+            },
+            {
+              "label": "устьевые бары",
+              "description": "Формируются за счет выноса песка потоками и имеют существенные вариации проницаемости от 12 до 129 мД.",
+              "claim_id": "test_slatt.river_dominated_delta_deposits#c3",
+              "rock": null
+            },
+            {
+              "label": "межрусловые бухты",
+              "description": "Разделяют песчаные фации и служат глинистыми барьерами.",
+              "claim_id": "test_slatt.river_dominated_delta_deposits#c1",
+              "rock": null
+            }
+          ]
+        },
+        "data": {
+          "template": "scheme",
+          "title": "Главные фации и зоны речно-доминированной дельты",
+          "note": "Нажми на элемент схемы, чтобы узнать его особенности осадконакопления.",
+          "layout": "chain",
+          "parts": [
+            {
+              "label": "русла",
+              "description": "Выносят песчаный материал на фронт дельты и образуют песчаные резервуары.",
+              "claim_id": "test_slatt.river_dominated_delta_deposits#c1",
+              "page": 411,
+              "rock": null
+            },
+            {
+              "label": "устьевые бары",
+              "description": "Формируются за счет выноса песка потоками и имеют существенные вариации проницаемости от 12 до 129 мД.",
+              "claim_id": "test_slatt.river_dominated_delta_deposits#c3",
+              "page": 415,
+              "rock": null
+            },
+            {
+              "label": "межрусловые бухты",
+              "description": "Разделяют песчаные фации и служат глинистыми барьерами.",
+              "claim_id": "test_slatt.river_dominated_delta_deposits#c1",
+              "page": 411,
+              "rock": null
+            }
+          ]
+        }
+      }
+    },
+    "test_slatt.kuparuk_river_field": {
+      "ext": {},
+      "hash": "384147014805e355",
+      "data": {
+        "spec": {
+          "feasible": true,
+          "title": "Строение единицы A месторождения Купарук-Ривер",
+          "note": "Изучи последовательность песчаных тел и разделяющих их слоев.",
+          "layout": "layers",
+          "parts": [
+            {
+              "label": "единица A",
+              "description": "Интервал добычи нефти, который на ранних этапах разработки считался латерально выдержанным песчаным телом.",
+              "claim_id": "test_slatt.kuparuk_river_field#c4",
+              "rock": "sand"
+            },
+            {
+              "label": "шесть отдельных песчаных тел",
+              "description": "Последовательно прородировали в направлении моря на северо-восток.",
+              "claim_id": "test_slatt.kuparuk_river_field#c5",
+              "rock": "sand"
+            },
+            {
+              "label": "высокочастотный трансгрессивный морской сланец",
+              "description": "Разделяет каждое из отдельных песчаных тел между собой.",
+              "claim_id": "test_slatt.kuparuk_river_field#c7",
+              "rock": "shale"
+            }
+          ]
+        },
+        "data": {
+          "template": "scheme",
+          "title": "Строение единицы A месторождения Купарук-Ривер",
+          "note": "Изучи последовательность песчаных тел и разделяющих их слоев.",
+          "layout": "layers",
+          "parts": [
+            {
+              "label": "единица A",
+              "description": "Интервал добычи нефти, который на ранних этапах разработки считался латерально выдержанным песчаным телом.",
+              "claim_id": "test_slatt.kuparuk_river_field#c4",
+              "page": 422,
+              "rock": "sand"
+            },
+            {
+              "label": "шесть отдельных песчаных тел",
+              "description": "Последовательно прородировали в направлении моря на северо-восток.",
+              "claim_id": "test_slatt.kuparuk_river_field#c5",
+              "page": 422,
+              "rock": "sand"
+            },
+            {
+              "label": "высокочастотный трансгрессивный морской сланец",
+              "description": "Разделяет каждое из отдельных песчаных тел между собой.",
+              "claim_id": "test_slatt.kuparuk_river_field#c7",
+              "page": 422,
+              "rock": "shale"
+            }
+          ]
+        }
+      }
+    },
+    "test_slatt.wave_dominated_deltas": {
+      "ext": {},
+      "hash": "636d11c22b5554ec",
+      "data": {
+        "spec": {
+          "feasible": true,
+          "title": "Строение и осадконакопление волно-доминированной дельты",
+          "note": "Нажми на элемент схемы, чтобы узнать его особенности и характеристики.",
+          "layout": "chain",
+          "parts": [
+            {
+              "label": "Поступающий к берегу осадок",
+              "description": "В незащищенных от волн и течений условиях рассеивается латерально вдоль берега.",
+              "claim_id": "test_slatt.wave_dominated_deltas#c1",
+              "rock": null
+            },
+            {
+              "label": "Береговая зона",
+              "description": "При достаточном поступлении песка со временем аккрецирует латерально и проградирует в сторону бассейна.",
+              "claim_id": "test_slatt.wave_dominated_deltas#c2",
+              "rock": null
+            },
+            {
+              "label": "Линейная береговая линия",
+              "description": "Питается вдольбереговым потоком, вызывая проградацию, латеральную аккрецию и постепенное отклонение речного устья.",
+              "claim_id": "test_slatt.wave_dominated_deltas#c3",
+              "rock": null
+            },
+            {
+              "label": "Веерообразное или дугообразное тело песка",
+              "description": "Представляет собой обширное и мощное конечное образование вроде дельты Нила.",
+              "claim_id": "test_slatt.wave_dominated_deltas#c4",
+              "rock": null
+            },
+            {
+              "label": "Песчаные пляжные грядовые системы",
+              "description": "Их проградация создает вертикальную стратиграфическую последовательность, укрупняющуюся снизу вверх.",
+              "claim_id": "test_slatt.wave_dominated_deltas#c5",
+              "rock": null
+            }
+          ]
+        },
+        "data": {
+          "template": "scheme",
+          "title": "Строение и осадконакопление волно-доминированной дельты",
+          "note": "Нажми на элемент схемы, чтобы узнать его особенности и характеристики.",
+          "layout": "chain",
+          "parts": [
+            {
+              "label": "Поступающий к берегу осадок",
+              "description": "В незащищенных от волн и течений условиях рассеивается латерально вдоль берега.",
+              "claim_id": "test_slatt.wave_dominated_deltas#c1",
+              "page": 423,
+              "rock": null
+            },
+            {
+              "label": "Береговая зона",
+              "description": "При достаточном поступлении песка со временем аккрецирует латерально и проградирует в сторону бассейна.",
+              "claim_id": "test_slatt.wave_dominated_deltas#c2",
+              "page": 423,
+              "rock": null
+            },
+            {
+              "label": "Линейная береговая линия",
+              "description": "Питается вдольбереговым потоком, вызывая проградацию, латеральную аккрецию и постепенное отклонение речного устья.",
+              "claim_id": "test_slatt.wave_dominated_deltas#c3",
+              "page": 423,
+              "rock": null
+            },
+            {
+              "label": "Веерообразное или дугообразное тело песка",
+              "description": "Представляет собой обширное и мощное конечное образование вроде дельты Нила.",
+              "claim_id": "test_slatt.wave_dominated_deltas#c4",
+              "page": 423,
+              "rock": null
+            },
+            {
+              "label": "Песчаные пляжные грядовые системы",
+              "description": "Их проградация создает вертикальную стратиграфическую последовательность, укрупняющуюся снизу вверх.",
+              "claim_id": "test_slatt.wave_dominated_deltas#c5",
+              "page": 423,
+              "rock": null
+            }
+          ]
+        }
+      }
+    }
+  },
+  "failed": {}
+}

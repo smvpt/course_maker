@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"d\"],\"claim_id\":\"test_slatt.kuparuk_river_field#c5\",\"evidence\":\"sequence stratigraphy correlations revealed that the A unit consists of six separate sandstone bodies\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 981,
+ "tokens_out": 58,
+ "money_usd": 0.0004393,
+ "attempts": 1
+}

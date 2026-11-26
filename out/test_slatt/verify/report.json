@@ -1,0 +1,63 @@
+{
+  "ext": {
+    "verify": {
+      "claims": 47,
+      "tasks_checked": true,
+      "scripts_checked": []
+    }
+  },
+  "package_id": "test_slatt",
+  "team": "",
+  "remarks": [
+    {
+      "ext": {},
+      "target": "test_slatt.litho_vs_chrono_correlation_mekong",
+      "category": "other",
+      "severity": "significant",
+      "problem": "текст узла: чисел 2 нет в исходных единицах узла",
+      "fix": "заменить числами из исходных единиц главы или убрать",
+      "page_pdf": 411,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "test_slatt.river_dominated_delta_deposits#c3",
+      "category": "other",
+      "severity": "significant",
+      "problem": "формулировка утверждения: чисел 7 нет в исходных единицах узла",
+      "fix": "заменить числами из исходных единиц главы или убрать",
+      "page_pdf": 415,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "test_slatt.kuparuk_river_field#c2",
+      "category": "other",
+      "severity": "significant",
+      "problem": "формулировка утверждения: чисел 1e+09 нет в исходных единицах узла",
+      "fix": "заменить числами из исходных единиц главы или убрать",
+      "page_pdf": 422,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "test_slatt.litho_vs_chrono_correlation_mekong.t1",
+      "category": "other",
+      "severity": "significant",
+      "problem": "задание: чисел 1 нет в исходных единицах узла",
+      "fix": "заменить числами из исходных единиц главы или убрать",
+      "page_pdf": 411,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "test_slatt.kuparuk_river_field.t2",
+      "category": "other",
+      "severity": "significant",
+      "problem": "задание: чисел 5 нет в исходных единицах узла",
+      "fix": "заменить числами из исходных единиц главы или убрать",
+      "page_pdf": 422,
+      "quote": null
+    }
+  ]
+}

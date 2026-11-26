@@ -1,0 +1,6 @@
+chapter,stage,nodes,llm_tokens_in,llm_tokens_out,money_usd,person_minutes,mentor_minutes,video_seconds,manual_share
+test_slatt,layer,7,115312,15648,0.069299,0,0,0.0,0.0
+test_slatt,routing,7,3466,888,0.00326,0,0,0.0,0.0
+test_slatt,course,7,206198,32141,0.140563,0,0,0.0,0.0
+test_slatt,video,7,0,0,0.0,0,0,0.0,0.0
+test_slatt,review,7,0,0,0.0,0,0,0.0,0.0

@@ -1,0 +1,189 @@
+{
+  "ext": {
+    "illus": {
+      "warnings": []
+    }
+  },
+  "chapter": "test_slatt",
+  "illustrations": [
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_slatt.clinoforms_and_time_lines.il1",
+      "step_id": "test_slatt.clinoforms_and_time_lines",
+      "node_id": "test_slatt.clinoforms_and_time_lines",
+      "file": "illus/test_slatt.clinoforms_and_time_lines.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Как геологические поверхности пересекают слои пород». наблюдение: Для корректной корреляции разрезов важно понимать, что клиноформы, представляющие геологические временные линии, пересекают литостратиграфические границы.; наблюдение: Гипотетический пример на рис. 9.10 показывает корреляции на основе литофаций и геологического времени.; наблюдение: Глинистые и гетеролитные интервалы разделяют песчаные…",
+      "source": "утверждения шага, стр. 410",
+      "claim_ids": [
+        "test_slatt.clinoforms_and_time_lines#c1",
+        "test_slatt.clinoforms_and_time_lines#c2",
+        "test_slatt.clinoforms_and_time_lines#c3",
+        "test_slatt.clinoforms_and_time_lines#c4",
+        "test_slatt.clinoforms_and_time_lines#c6"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "column"
+      },
+      "id": "test_slatt.clinoforms_and_time_lines.il2",
+      "step_id": "test_slatt.clinoforms_and_time_lines",
+      "node_id": "test_slatt.clinoforms_and_time_lines",
+      "file": "illus/test_slatt.clinoforms_and_time_lines.column.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Условная колонка: какие породы упоминает шаг. Цвета по единой легенде курса. Порядок и толщины слоёв условные, колонка не показывает реальный разрез.",
+      "alt": "Условная колонка слоёв «Как геологические поверхности пересекают слои пород», не в масштабе. глина, песчаник",
+      "source": "утверждения шага, стр. 410",
+      "claim_ids": [
+        "test_slatt.clinoforms_and_time_lines#c3",
+        "test_slatt.clinoforms_and_time_lines#c8"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_slatt.delta_switching_and_lowstand.il1",
+      "step_id": "test_slatt.delta_switching_and_lowstand",
+      "node_id": "test_slatt.delta_switching_and_lowstand",
+      "file": "illus/test_slatt.delta_switching_and_lowstand.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Как реки меняют направление и образуют дельты при падении уровня моря». наблюдение: Дельты могут формироваться во время относительного падения уровня моря, образуя низкопотенциальные или бровковые дельты.; наблюдение: Относительное падение уровня моря вызывает врезание долин, а также отступание береговой линии в сторону моря и ее понижение.; наблюдение: Низкопотенциальные дельты обычно менее крупные и…",
+      "source": "утверждения шага, стр. 410",
+      "claim_ids": [
+        "test_slatt.delta_switching_and_lowstand#c2",
+        "test_slatt.delta_switching_and_lowstand#c3",
+        "test_slatt.delta_switching_and_lowstand#c4",
+        "test_slatt.delta_switching_and_lowstand#c1"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_slatt.litho_vs_chrono_correlation_mekong.il1",
+      "step_id": "test_slatt.litho_vs_chrono_correlation_mekong",
+      "node_id": "test_slatt.litho_vs_chrono_correlation_mekong",
+      "file": "illus/test_slatt.litho_vs_chrono_correlation_mekong.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Сравнение двух методов связи скважин на примере современной дельты». наблюдение: На карте дельты Меконга показаны верхняя и нижняя дельтовые равнины, береговые валы, а также линии разрезов A-B с расположением скважин.; наблюдение: Литостратиграфическая корреляция скважин строится на основе интерпретации палеоэкологических условий.; наблюдение: Пронумерованные линии, пересекающие границы литофаций,…",
+      "source": "утверждения шага, стр. 411, 412",
+      "claim_ids": [
+        "test_slatt.litho_vs_chrono_correlation_mekong#c1",
+        "test_slatt.litho_vs_chrono_correlation_mekong#c2",
+        "test_slatt.litho_vs_chrono_correlation_mekong#c3",
+        "test_slatt.litho_vs_chrono_correlation_mekong#c4"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_slatt.river_dominated_delta_deposits.il1",
+      "step_id": "test_slatt.river_dominated_delta_deposits",
+      "node_id": "test_slatt.river_dominated_delta_deposits",
+      "file": "illus/test_slatt.river_dominated_delta_deposits.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Главные элементы и фации дельт, формируемых реками». наблюдение: Главными фациями речно-доминированной дельты являются русла и устьевые бары, разделенные межрусловыми бухтами и болотами.; наблюдение: Фации определяются по вертикальной последовательности зернистости с укрупнением вверх и характерному латеральному утончению на каротаже.; наблюдение: В устьевом баре Прудо-Бей выделено семь литофаций, из…",
+      "source": "утверждения шага, стр. 411, 413, 415, 416",
+      "claim_ids": [
+        "test_slatt.river_dominated_delta_deposits#c1",
+        "test_slatt.river_dominated_delta_deposits#c2",
+        "test_slatt.river_dominated_delta_deposits#c3",
+        "test_slatt.river_dominated_delta_deposits#c4",
+        "test_slatt.river_dominated_delta_deposits#c5"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_slatt.prudhoe_bay_field_romeo.il1",
+      "step_id": "test_slatt.prudhoe_bay_field_romeo",
+      "node_id": "test_slatt.prudhoe_bay_field_romeo",
+      "file": "illus/test_slatt.prudhoe_bay_field_romeo.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Особенности разработки дельтовых отложений на гигантском месторождении». наблюдение: Зона Ромео состоит в основном из отложений дельтового фронта и продельты речно-доминированного типа.; наблюдение: Продуктивными дельтовыми фациями являются песчаники русел и устьевых баров.; наблюдение: Применение хроностратиграфической схемы корреляции позволило лучше согласовать корреляцию скважин с историей добычи.;…",
+      "source": "утверждения шага, стр. 416, 417",
+      "claim_ids": [
+        "test_slatt.prudhoe_bay_field_romeo#c1",
+        "test_slatt.prudhoe_bay_field_romeo#c2",
+        "test_slatt.prudhoe_bay_field_romeo#c5",
+        "test_slatt.prudhoe_bay_field_romeo#c3",
+        "test_slatt.prudhoe_bay_field_romeo#c4"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_slatt.kuparuk_river_field.il1",
+      "step_id": "test_slatt.kuparuk_river_field",
+      "node_id": "test_slatt.kuparuk_river_field",
+      "file": "illus/test_slatt.kuparuk_river_field.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Многослойное строение и проградация пластов на месторождении Купарук». наблюдение: Месторождение Купарук-Ривер на Северном склоне Аляски является вторым по величине нефтяным месторождением в Северной Америке.; наблюдение: По состоянию на 2006 год на месторождении было добыто 2 миллиарда баррелей нефти.; наблюдение: Добыча нефти ведется из двух интервалов, обозначенных как единицы A и C.; вывод: На…",
+      "source": "утверждения шага, стр. 422",
+      "claim_ids": [
+        "test_slatt.kuparuk_river_field#c1",
+        "test_slatt.kuparuk_river_field#c2",
+        "test_slatt.kuparuk_river_field#c3",
+        "test_slatt.kuparuk_river_field#c4",
+        "test_slatt.kuparuk_river_field#c5"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_slatt.wave_dominated_deltas.il1",
+      "step_id": "test_slatt.wave_dominated_deltas",
+      "node_id": "test_slatt.wave_dominated_deltas",
+      "file": "illus/test_slatt.wave_dominated_deltas.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Как волны и течения формируют песчаные пляжи и дельты». наблюдение: Поступающий к берегу осадок в незащищенных от волн и течений условиях рассеивается латерально.; наблюдение: Линейная береговая линия, питаемая вдольбереговым потоком, проградирует, аккрецирует латерально, а ее речное устье постепенно отклоняется.; наблюдение: Конечным результатом является обширное и мощное веерообразное или дугообразное…",
+      "source": "утверждения шага, стр. 423",
+      "claim_ids": [
+        "test_slatt.wave_dominated_deltas#c1",
+        "test_slatt.wave_dominated_deltas#c3",
+        "test_slatt.wave_dominated_deltas#c4",
+        "test_slatt.wave_dominated_deltas#c2",
+        "test_slatt.wave_dominated_deltas#c6"
+      ],
+      "prompt": null
+    }
+  ]
+}

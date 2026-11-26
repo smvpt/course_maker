@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Сопоставление литофаций и хроностратиграфических линий\",\"note\":\"Нажми на элемент схемы, чтобы узнать его особенности и связь с корреляцией.\",\"layout\":\"layers\",\"parts\":[{\"label\":\"литостратиграфические границы\",\"description\":\"Горизонтальные или пологие границы слоев, которые пересекаются клиноформами под наклоном.\",\"claim_id\":\"test_slatt.clinoforms_and_time_lines#c1\",\"rock\":null},{\"label\":\"литофации\",\"description\":\"Стратиграфические интервалы со схожими показаниями каротажа, используемые для корреляции наряду с геологическим временем.\",\"claim_id\":\"test_slatt.clinoforms_and_time_lines#c2\",\"rock\":null},{\"label\":\"глинистые и гетеролитные интервалы\",\"description\":\"Разделяют песчаные интервалы, из-за чего пески между скважинами не сообщаются между собой.\",\"claim_id\":\"test_slatt.clinoforms_and_time_lines#c3\",\"rock\":\"shale\"},{\"label\":\"песчаные тела устьевых баров\",\"description\":\"Залегают в виде пачек, смещающихся по латерали внутри наклонных хроностратиграфических поверхностей.\",\"claim_id\":\"test_slatt.clinoforms_and_time_lines#c8\",\"rock\":\"sand\"},{\"label\":\"хроностратиграфические поверхности\",\"description\":\"Наклонены от верхней части суши слева к нижней части бассейна справа.\",\"claim_id\":\"test_slatt.clinoforms_and_time_lines#c9\",\"rock\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 3801,
+ "tokens_out": 502,
+ "money_usd": 0.0023953,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Главные фации и зоны речно-доминированной дельты\",\"note\":\"Нажми на элемент схемы, чтобы узнать его особенности осадконакопления.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"русла\",\"description\":\"Выносят песчаный материал на фронт дельты и образуют песчаные резервуары.\",\"claim_id\":\"test_slatt.river_dominated_delta_deposits#c1\",\"rock\":null},{\"label\":\"устьевые бары\",\"description\":\"Формируются за счет выноса песка потоками и имеют существенные вариации проницаемости от 12 до 129 мД.\",\"claim_id\":\"test_slatt.river_dominated_delta_deposits#c3\",\"rock\":null},{\"label\":\"межрусловые бухты\",\"description\":\"Разделяют песчаные фации и служат глинистыми барьерами.\",\"claim_id\":\"test_slatt.river_dominated_delta_deposits#c1\",\"rock\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 3419,
+ "tokens_out": 306,
+ "money_usd": 0.0017907,
+ "attempts": 1
+}

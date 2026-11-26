@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Строение единицы A месторождения Купарук-Ривер\",\"note\":\"Изучи последовательность песчаных тел и разделяющих их слоев.\",\"layout\":\"layers\",\"parts\":[{\"label\":\"единица A\",\"description\":\"Интервал добычи нефти, который на ранних этапах разработки считался латерально выдержанным песчаным телом.\",\"claim_id\":\"test_slatt.kuparuk_river_field#c4\",\"rock\":\"sand\"},{\"label\":\"шесть отдельных песчаных тел\",\"description\":\"Последовательно прородировали в направлении моря на северо-восток.\",\"claim_id\":\"test_slatt.kuparuk_river_field#c5\",\"rock\":\"sand\"},{\"label\":\"высокочастотный трансгрессивный морской сланец\",\"description\":\"Разделяет каждое из отдельных песчаных тел между собой.\",\"claim_id\":\"test_slatt.kuparuk_river_field#c7\",\"rock\":\"shale\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 3267,
+ "tokens_out": 247,
+ "money_usd": 0.0015976000000000002,
+ "attempts": 1
+}

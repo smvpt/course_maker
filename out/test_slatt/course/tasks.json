@@ -1,0 +1,723 @@
+{
+  "ext": {
+    "course": {
+      "hashes": {
+        "test_slatt.clinoforms_and_time_lines": "0c03926159baa40c",
+        "test_slatt.delta_switching_and_lowstand": "18ebfbf7b819ee7c",
+        "test_slatt.litho_vs_chrono_correlation_mekong": "5563cbaa68f0afdc",
+        "test_slatt.river_dominated_delta_deposits": "69a7432738d5ee39",
+        "test_slatt.prudhoe_bay_field_romeo": "23ea6c07ad050a53",
+        "test_slatt.kuparuk_river_field": "384147014805e355",
+        "test_slatt.wave_dominated_deltas": "636d11c22b5554ec"
+      },
+      "warnings": [
+        {
+          "code": "calc_not_possible",
+          "message": "в главе нет формул и чисел для расчёта: заданий calc нет"
+        }
+      ],
+      "dropped": [
+        {
+          "node": "test_slatt.clinoforms_and_time_lines",
+          "slot": 3,
+          "type": "gap",
+          "errors": [
+            "задание 3: слово пропуска 'хроностратиграфическую' не найдено в тексте узла в такой форме (ответ должен быть в тексте шага; не больше 2 слов)"
+          ]
+        },
+        {
+          "node": "test_slatt.river_dominated_delta_deposits",
+          "slot": 2,
+          "type": "gap",
+          "errors": [
+            "ответ слепой проверки не совпал с помеченным: по цитате test_slatt.river_dominated_delta_deposits#c1 («Interdistributary bays, marshes, and lagoons») модель выбрала marshes, and lagoons, помечено болотами. Перепроверь по цитате, какой ответ верен, и перепиши задание"
+          ]
+        },
+        {
+          "node": "test_slatt.prudhoe_bay_field_romeo",
+          "slot": 3,
+          "type": "gap",
+          "errors": [
+            "ответ слепой проверки не совпал с помеченным: по цитате test_slatt.prudhoe_bay_field_romeo#c8 («help to focus a waterflood») модель выбрала waterflood, помечено заводнение. Перепроверь по цитате, какой ответ верен, и перепиши задание"
+          ]
+        },
+        {
+          "node": "test_slatt.kuparuk_river_field",
+          "slot": 3,
+          "type": "multiple",
+          "errors": [
+            "ответ слепой проверки не совпал с помеченным: по цитате test_slatt.kuparuk_river_field#c5 («sequence stratigraphy correlations revealed that the A unit consists of six separate sandstone bodies») модель выбрала «Единица A состоит из шести отдельных песчаных тел.», помечено «Каждая единица изначально считалась латерально выдержанным песчаным телом.»; «Единица A состоит из шести отдельных песчаных тел.». Перепроверь по цитате, какой ответ верен, и перепиши задание"
+          ]
+        },
+        {
+          "node": "test_slatt.wave_dominated_deltas",
+          "slot": 1,
+          "type": "gap",
+          "errors": [
+            "ответ слепой проверки не совпал с помеченным: по цитате test_slatt.wave_dominated_deltas#c6 («grain-size effect discussed in Chapter 6») модель выбрала grain-size effect, помечено размера зерен. Перепроверь по цитате, какой ответ верен, и перепиши задание"
+          ]
+        }
+      ],
+      "node_warnings": []
+    }
+  },
+  "chapter": "test_slatt",
+  "tasks": [
+    {
+      "ext": {},
+      "id": "test_slatt.clinoforms_and_time_lines.t1",
+      "type": "single",
+      "step_id": "test_slatt.clinoforms_and_time_lines",
+      "claim_ids": [
+        "test_slatt.clinoforms_and_time_lines#c1"
+      ],
+      "prompt": "Как линии геологического времени (клиноформы) соотносятся с литостратиграфическими границами?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Пересекают литостратиграфические границы под наклоном",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Всегда строго совпадают с границами литологических слоев",
+          "misconception": "misc.model_knows"
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Всегда располагаются строго горизонтально",
+          "misconception": null
+        }
+      ],
+      "answer": "a",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Клиноформы представляют временные линии и пересекают литостратиграфические границы под наклоном.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "test_slatt.clinoforms_and_time_lines.t2",
+      "type": "multiple",
+      "step_id": "test_slatt.clinoforms_and_time_lines",
+      "claim_ids": [
+        "test_slatt.clinoforms_and_time_lines#c3",
+        "test_slatt.clinoforms_and_time_lines#c4"
+      ],
+      "prompt": "К чему приводит отсутствие гидродинамической связи между песчаными телами из-за разделяющих их глинистых интервалов?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Ухудшается эффективность заводнения",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Увеличивается проницаемость пласта вдвое",
+          "misconception": "misc.porosity_eq_perm"
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Автоматически исчезает пластовое давление",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Снижается продуктивность одиночных скважин",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "a",
+        "d"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Изоляция песчаных тел глинами негативно влияет на заводнение и продуктивность скважин.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "test_slatt.delta_switching_and_lowstand.t1",
+      "type": "order",
+      "step_id": "test_slatt.delta_switching_and_lowstand",
+      "claim_ids": [
+        "test_slatt.delta_switching_and_lowstand#c2",
+        "test_slatt.delta_switching_and_lowstand#c3"
+      ],
+      "prompt": "Восстановите последовательность геологических событий в порядке их развития при формировании низкопотенциальной дельты в данных разреза.",
+      "options": [
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "Отступание береговой линии в сторону моря и ее понижение",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "Относительное падение уровня моря",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "Врезание долин",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o4",
+          "text": "Формирование низкопотенциальной дельты",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3",
+        "o4"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Падение уровня моря вызывает врезание долин, смещение береговой линии и образование низкопотенциальных систем.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "test_slatt.delta_switching_and_lowstand.t2",
+      "type": "single",
+      "step_id": "test_slatt.delta_switching_and_lowstand",
+      "claim_ids": [
+        "test_slatt.delta_switching_and_lowstand#c1"
+      ],
+      "prompt": "Какой фактор, помимо колебаний уровня моря, играет важнейшую роль в эволюции и переносе осадков дельтовых систем по данным геометрии разреза?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Изменение минерализации пластовых вод в бассейнах",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Процессы переключения русел распределительных рукавов",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Постоянная скорость распространения пластового давления",
+          "misconception": "misc.pressure_sound_speed"
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Прямое отражение углеводородов на сейсмических волнах",
+          "misconception": "misc.seismic_sees_oil"
+        }
+      ],
+      "answer": "b",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Переключение русел распределительных рукавов может быть важнейшим фактором эволюции дельт.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "test_slatt.delta_switching_and_lowstand.t3",
+      "type": "multiple",
+      "step_id": "test_slatt.delta_switching_and_lowstand",
+      "claim_ids": [
+        "test_slatt.delta_switching_and_lowstand#c2",
+        "test_slatt.delta_switching_and_lowstand#c4"
+      ],
+      "prompt": "Какие особенности характерны для низкопотенциальных (бровковых) дельт при анализе осадконакопления и прогнозе резервуаров?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Они формируются во время относительного падения уровня моря",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Они обычно менее крупные, чем высокопотенциальные дельты",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Они всегда образуют сплошные подземные озера нефти",
+          "misconception": "misc.oil_lake"
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Они имеют более широкое распространение, чем высокопотенциальные системы",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Низкопотенциальные дельты возникают при падении уровня моря и уступают по масштабам высокопотенциальным.",
+      "kind": "transfer"
+    },
+    {
+      "ext": {},
+      "id": "test_slatt.litho_vs_chrono_correlation_mekong.t1",
+      "type": "gap",
+      "step_id": "test_slatt.litho_vs_chrono_correlation_mekong",
+      "claim_ids": [
+        "test_slatt.litho_vs_chrono_correlation_mekong#c3"
+      ],
+      "prompt": "Нумерованные линии, пересекающие границы литофаций, являются измеренными линиями геологического времени в тысячах лет и демонстрируют {{1}} природу дельты.",
+      "options": [],
+      "answer": [
+        "progradational"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Измеренные линии времени пересекают литофации и доказывают проградационный характер дельты.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "test_slatt.litho_vs_chrono_correlation_mekong.t2",
+      "type": "order",
+      "step_id": "test_slatt.litho_vs_chrono_correlation_mekong",
+      "claim_ids": [
+        "test_slatt.litho_vs_chrono_correlation_mekong#c1",
+        "test_slatt.litho_vs_chrono_correlation_mekong#c2",
+        "test_slatt.litho_vs_chrono_correlation_mekong#c4"
+      ],
+      "prompt": "Расположите элементы анализа дельты Меконга в порядке от общих элементов карты к стратегиям сопоставления скважин:",
+      "options": [
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "Секвентно-стратиграфическая корреляция на основе линий времени и её отличие от литостратиграфической",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "Карта дельты Меконга с верхними и нижними равнинами, береговыми валами и линиями разрезов A-B",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "Литостратиграфическая корреляция скважин на основе интерпретации палеоэкологических условий",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Сначала рассматривается карта объекта, затем литостратиграфия и в конце хроностратиграфический подход.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "test_slatt.litho_vs_chrono_correlation_mekong.t3",
+      "type": "single",
+      "step_id": "test_slatt.litho_vs_chrono_correlation_mekong",
+      "claim_ids": [
+        "test_slatt.litho_vs_chrono_correlation_mekong#c3",
+        "test_slatt.litho_vs_chrono_correlation_mekong#c4"
+      ],
+      "prompt": "Почему автоматические алгоритмы корреляции скважин по сходству литофаций без учета линий времени могут приводить к ошибкам в ML-моделях?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Они соединяют диахронные литологические тела, объединяя разновозрастные осадки",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Они напрямую измеряют нефтенасыщенность пласта по кривым сопротивления",
+          "misconception": "misc.resistivity_is_saturation"
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Они считают, что каротажная кривая полностью заменяет физический керн",
+          "misconception": "misc.log_is_rock"
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Они всегда принимают водно-нефтяной контакт за резкую плоскую границу",
+          "misconception": "misc.owc_sharp"
+        }
+      ],
+      "answer": "a",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Игнорирование линий времени приводит к объединению разновозрастных осадков из-за проградации дельты.",
+      "kind": "transfer"
+    },
+    {
+      "ext": {},
+      "id": "test_slatt.river_dominated_delta_deposits.t1",
+      "type": "multiple",
+      "step_id": "test_slatt.river_dominated_delta_deposits",
+      "claim_ids": [
+        "test_slatt.river_dominated_delta_deposits#c2"
+      ],
+      "prompt": "Какие особенности фиксируются на каротажных диаграммах при удалении от оси канала в речно-доминированных дельтах?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Уменьшение размера зерен",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Исчезновение межрусловых барьеров",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Резкое увеличение проницаемости до 129 мД",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Латеральное утончение кривой",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "a",
+        "d"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "В разрезе по данным каротажа фиксируется латеральное утончение и уменьшение размера зерен в сторону от оси канала.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "test_slatt.river_dominated_delta_deposits.t3",
+      "type": "order",
+      "step_id": "test_slatt.river_dominated_delta_deposits",
+      "claim_ids": [
+        "test_slatt.river_dominated_delta_deposits#c5"
+      ],
+      "prompt": "Расположите этапы формирования дельтовых резервуаров в хронологическом и пространственном порядке процесса проградации:",
+      "options": [
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "Формирование широкого пластового песчаного шлейфа",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "Многократное разветвление каналов при продвижении потока вперед",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "Появление внутренних прерывистостей фаций и проницаемости внутри баров",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Проградача и разветвление каналов со временем формируют широкий шлейф с внутренними прерывистостями фаций.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "test_slatt.prudhoe_bay_field_romeo.t1",
+      "type": "single",
+      "step_id": "test_slatt.prudhoe_bay_field_romeo",
+      "claim_ids": [
+        "test_slatt.prudhoe_bay_field_romeo#c6"
+      ],
+      "prompt": "ML-инженер обучает модель корреляции разреза по вертикальным скважинам, но модель стабильно ошибается на песчаниках зоны Ромео. К какому фундаментальному эффекту в данных приводит игнорирование наклонной природы песчаников до секвенс-стратиграфической интерпретации?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Граничные значения коллектора начинают определяться для каждого пласта отдельно.",
+          "misconception": "misc.cutoff_universal"
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Высокое сопротивление пород автоматически принимается за наличие нефти.",
+          "misconception": "misc.high_res_oil"
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Каротажные кривые начинают напрямую измерять нефтенасыщенность пласта.",
+          "misconception": "misc.resistivity_is_saturation"
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Песчаники принимаются за единый горизонтальный пласт, что приводит к неверным корреляциям.",
+          "misconception": null
+        }
+      ],
+      "answer": "d",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Пологая наклонная природа песчаников резервуара ранее не осознавалась, что вело к некорректным сопоставлениям скважин.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "test_slatt.prudhoe_bay_field_romeo.t2",
+      "type": "multiple",
+      "step_id": "test_slatt.prudhoe_bay_field_romeo",
+      "claim_ids": [
+        "test_slatt.prudhoe_bay_field_romeo#c1",
+        "test_slatt.prudhoe_bay_field_romeo#c2"
+      ],
+      "prompt": "Какие типы отложений и фаций формируют нижнюю стратиграфическую зону Ромео на месторождении Прудо-Бей? Выберите все верные варианты.",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Продуктивные песчаники устьевых баров.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Отложения дельтового фронта речно-доминированного типа.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Глубоководные карбонатные отложения открытого моря.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Рифовые известняки с первичной неизмененной пористостью.",
+          "misconception": "misc.reef_porosity_preserved"
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Зона Ромео сложена речно-доминированными дельтовыми отложениями, включая песчаники русел и устьевых баров.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "test_slatt.kuparuk_river_field.t1",
+      "type": "order",
+      "step_id": "test_slatt.kuparuk_river_field",
+      "claim_ids": [
+        "test_slatt.kuparuk_river_field#c4",
+        "test_slatt.kuparuk_river_field#c5",
+        "test_slatt.kuparuk_river_field#c6",
+        "test_slatt.kuparuk_river_field#c7"
+      ],
+      "prompt": "Расположите этапы и результаты анализа резервуара Купарук-Ривер в логической последовательности: от начального представления до детальной секвенс-стратиграфической корреляции.",
+      "options": [
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "Секвенс-стратиграфическая корреляция выявила распад единицы A на шесть отдельных тел.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "Песчаные тела последовательно прородировали в направлении моря на северо-восток.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o4",
+          "text": "Каждое песчаное тело было отделено друг от друга высокочастотным трансгрессивным морским сланцем.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "Единица A считалась единым латерально выдержанным песчаным телом.",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3",
+        "o4"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Переход от простого пласта к секвенс-стратиграфической модели показал проградацию тел и разделение их сланцами.",
+      "kind": "transfer"
+    },
+    {
+      "ext": {},
+      "id": "test_slatt.kuparuk_river_field.t2",
+      "type": "single",
+      "step_id": "test_slatt.kuparuk_river_field",
+      "claim_ids": [
+        "test_slatt.kuparuk_river_field#c3"
+      ],
+      "prompt": "Из каких интервалов ведется добыча нефти на месторождении Купарук-Ривер?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Из единиц A и C.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Из единиц B и D.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Из пяти изолированных пачек.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Из единственного сплошного пласта.",
+          "misconception": "misc.model_knows"
+        }
+      ],
+      "answer": "a",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Добыча на месторождении официально ведется из двух интервалов, названных единицей A и единицей C.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "test_slatt.wave_dominated_deltas.t2",
+      "type": "order",
+      "step_id": "test_slatt.wave_dominated_deltas",
+      "claim_ids": [
+        "test_slatt.wave_dominated_deltas#c2",
+        "test_slatt.wave_dominated_deltas#c3",
+        "test_slatt.wave_dominated_deltas#c4"
+      ],
+      "prompt": "Расположите этапы формирования волно-доминированной дельты в хронологическом и пространственном порядке от поступления осадков до конечного результата:",
+      "options": [
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "Формирование обширного веерообразного тела песка вроде дельты Нила",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "Поступление достаточного количества песка к берегу и латеральная аккреция береговой зоны",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "Питание линейной береговой линии вдольбереговым потоком и отклонение речного устья",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Сначала песок поступает к берегу, затем берег питается вдольбереговым потоком с отклонением устья, а в итоге формируется веерообразное тело.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "test_slatt.wave_dominated_deltas.t3",
+      "type": "single",
+      "step_id": "test_slatt.wave_dominated_deltas",
+      "claim_ids": [
+        "test_slatt.wave_dominated_deltas#c1",
+        "test_slatt.wave_dominated_deltas#c2"
+      ],
+      "prompt": "Что происходит с осадком, поступающим к берегу в условиях отсутствия защиты от волн и течений?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Осадок мгновенно цементируется в сплошной монолитный пласт известняка",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Осадок рассеивается латерально вдоль береговой линии",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Осадок растворяется в пластовой воде и полностью уносится в глубоководную зону",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Осадок оседает строго в месте падения речной струи в виде подводного валуна",
+          "misconception": "misc.reservoir_void"
+        }
+      ],
+      "answer": "b",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Волны и течения эффективно переносят и рассеивают поступающий к берегу осадок в латеральном направлении.",
+      "kind": "understanding"
+    }
+  ]
+}

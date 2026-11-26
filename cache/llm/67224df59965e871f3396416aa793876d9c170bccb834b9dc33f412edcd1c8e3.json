@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Строение и осадконакопление волно-доминированной дельты\",\"note\":\"Нажми на элемент схемы, чтобы узнать его особенности и характеристики.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"Поступающий к берегу осадок\",\"description\":\"В незащищенных от волн и течений условиях рассеивается латерально вдоль берега.\",\"claim_id\":\"test_slatt.wave_dominated_deltas#c1\",\"rock\":null},{\"label\":\"Береговая зона\",\"description\":\"При достаточном поступлении песка со временем аккрецирует латерально и проградирует в сторону бассейна.\",\"claim_id\":\"test_slatt.wave_dominated_deltas#c2\",\"rock\":null},{\"label\":\"Линейная береговая линия\",\"description\":\"Питается вдольбереговым потоком, вызывая проградацию, латеральную аккрецию и постепенное отклонение речного устья.\",\"claim_id\":\"test_slatt.wave_dominated_deltas#c3\",\"rock\":null},{\"label\":\"Веерообразное или дугообразное тело песка\",\"description\":\"Представляет собой обширное и мощное конечное образование вроде дельты Нила.\",\"claim_id\":\"test_slatt.wave_dominated_deltas#c4\",\"rock\":null},{\"label\":\"Песчаные пляжные грядовые системы\",\"description\":\"Их проградация создает вертикальную стратиграфическую последовательность, укрупняющуюся снизу вверх.\",\"claim_id\":\"test_slatt.wave_dominated_deltas#c5\",\"rock\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 3272,
+ "tokens_out": 474,
+ "money_usd": 0.0021666000000000003,
+ "attempts": 1
+}

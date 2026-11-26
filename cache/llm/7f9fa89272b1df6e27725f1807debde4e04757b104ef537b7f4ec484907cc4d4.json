@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"single\",\"kind\":\"recall\",\"claim_ids\":[\"test_slatt.clinoforms_and_time_lines#c1\"],\"prompt\":\"Как линии геологического времени (клиноформы) соотносятся с литостратиграфическими границами?\",\"options\":[{\"text\":\"Пересекают литостратиграфические границы под наклоном\",\"correct\":true,\"misconception\":null},{\"text\":\"Всегда строго совпадают с границами литологических слоев\",\"correct\":false,\"misconception\":\"misc.model_knows\"},{\"text\":\"Всегда располагаются строго горизонтально\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Клиноформы представляют временные линии и пересекают литостратиграфические границы под наклоном.\"},{\"type\":\"multiple\",\"kind\":\"understanding\",\"claim_ids\":[\"test_slatt.clinoforms_and_time_lines#c3\",\"test_slatt.clinoforms_and_time_lines#c4\"],\"prompt\":\"К чему приводит отсутствие гидродинамической связи между песчаными телами из-за разделяющих их глинистых интервалов?\",\"options\":[{\"text\":\"Ухудшается эффективность заводнения\",\"correct\":true,\"misconception\":null},{\"text\":\"Снижается продуктивность одиночных скважин\",\"correct\":true,\"misconception\":null},{\"text\":\"Увеличивается проницаемость пласта вдвое\",\"correct\":false,\"misconception\":\"misc.porosity_eq_perm\"},{\"text\":\"Автоматически исчезает пластовое давление\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Изоляция песчаных тел глинами негативно влияет на заводнение и продуктивность скважин.\"},{\"type\":\"gap\",\"kind\":\"transfer\",\"claim_ids\":[\"test_slatt.clinoforms_and_time_lines#c7\"],\"prompt\":\"При сопоставлении разрезов используют наклонные {{1}} линии вместо границ литологических слоев.\",\"options\":[],\"gap_answers\":[\"хроностратиграфические\"],\"calc\":null,\"explanation\":\"Для точного сопоставления применяют наклонные хроностратиграфические линии.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 5722,
+ "tokens_out": 559,
+ "money_usd": 0.0031141,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"multiple\",\"kind\":\"data\",\"claim_ids\":[\"test_slatt.river_dominated_delta_deposits#c2\"],\"prompt\":\"Какие особенности фиксируются на каротажных диаграммах при удалении от оси канала в речно-доминированных дельтах?\",\"options\":[{\"text\":\"Латеральное утончение кривой\",\"correct\":true,\"misconception\":null},{\"text\":\"Уменьшение размера зерен\",\"correct\":true,\"misconception\":null},{\"text\":\"Резкое увеличение проницаемости до 129 мД\",\"correct\":false,\"misconception\":null},{\"text\":\"Исчезновение межрусловых барьеров\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"В разрезе по данным каротажа фиксируется латеральное утончение и уменьшение размера зерен в сторону от оси канала.\"},{\"type\":\"gap\",\"kind\":\"recall\",\"claim_ids\":[\"test_slatt.river_dominated_delta_deposits#c1\"],\"prompt\":\"Главными фациями речно-доминированной дельты являются русла и устьевые бары, разделенные межрусловыми бухтами и {{1}}.\",\"options\":[],\"gap_answers\":[\"болотами\"],\"calc\":null,\"explanation\":\"Песчаные фации разделены межрусловыми бухтами, болотами и лагунами.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 5442,
+ "tokens_out": 333,
+ "money_usd": 0.0024651,
+ "attempts": 1
+}

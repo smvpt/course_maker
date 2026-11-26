@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"grain-size effect\"],\"claim_id\":\"test_slatt.wave_dominated_deltas#c6\",\"evidence\":\"because of the grain-size effect\"},{\"n\":2,\"answer\":[\"o1\",\"o2\",\"o3\"],\"claim_id\":\"test_slatt.wave_dominated_deltas#c4\",\"evidence\":\"The end result is a fan-shaped or arcuate body of sand\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1138,
+ "tokens_out": 113,
+ "money_usd": 0.0006239,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"o1\",\"o2\",\"o3\",\"o4\"],\"claim_id\":\"test_slatt.delta_switching_and_lowstand#c3\",\"evidence\":\"early fall in sea level, which causes valley incision, and a seaward retreat and lowering of the shoreline\"},{\"n\":2,\"answer\":[\"b\"],\"claim_id\":\"test_slatt.delta_switching_and_lowstand#c1\",\"evidence\":\"channel switching may be an even more important control on the evolution of deltaic systems\"},{\"n\":3,\"answer\":[\"a\",\"b\"],\"claim_id\":\"test_slatt.delta_switching_and_lowstand#c4\",\"evidence\":\"lowstand deltas are generally not as large, nor as prevalent as highstand deltas\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1490,
+ "tokens_out": 269,
+ "money_usd": 0.0011195,
+ "attempts": 1
+}

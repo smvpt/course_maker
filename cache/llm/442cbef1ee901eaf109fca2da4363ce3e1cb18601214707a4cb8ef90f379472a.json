@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"d\"],\"claim_id\":\"test_slatt.river_dominated_delta_deposits#c2\",\"evidence\":\"lateral thinning and fining log response away from the channel axis\"},{\"n\":2,\"answer\":[\"marshes, and lagoons\"],\"claim_id\":\"test_slatt.river_dominated_delta_deposits#c1\",\"evidence\":\"Interdistributary bays, marshes, and lagoons separate sandy facies\"},{\"n\":3,\"answer\":[\"o1\",\"o2\",\"o3\"],\"claim_id\":\"test_slatt.river_dominated_delta_deposits#c5\",\"evidence\":\"repeated bifurcation of distributary mouth channels during progradation led to the development of a broad, strike-parallel sheet composed of numerous mouth bars. However, across a single bar, there are discontinuities in facies and permeability.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1350,
+ "tokens_out": 204,
+ "money_usd": 0.000915,
+ "attempts": 1
+}

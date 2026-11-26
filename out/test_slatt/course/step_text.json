@@ -1,0 +1,902 @@
+{
+  "ext": {},
+  "chapter": "test_slatt",
+  "nodes": {
+    "test_slatt.clinoforms_and_time_lines": {
+      "ext": {},
+      "hash": "0c03926159baa40c",
+      "paragraphs": [
+        {
+          "block": "main",
+          "text": "Линии равного геологического возраста пересекают литостратиграфические границы слоев под наклоном. Из-за этого песчаные интервалы могут быть латерально изолированными глинами. [[Клиноформы]] представляют собой геологические временные линии.",
+          "claim_ids": [
+            "test_slatt.clinoforms_and_time_lines#c1"
+          ],
+          "terms": [
+            "клиноформы"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "why",
+          "text": "Базовая идея объясняет, что линии равного возраста не совпадают с границами литологических слоев.",
+          "claim_ids": [
+            "test_slatt.clinoforms_and_time_lines#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "why",
+          "text": "Она опирается на общие представления осадков и открывает важные принципы корреляции.",
+          "claim_ids": [
+            "test_slatt.clinoforms_and_time_lines#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "При проградации дельты осадконакопление происходит на наклонных поверхностях.",
+          "claim_ids": [
+            "test_slatt.clinoforms_and_time_lines#c10"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Поверхности одинакового возраста наклонены от суши к морю и пересекают горизонтальные слои разных фаций.",
+          "claim_ids": [
+            "test_slatt.clinoforms_and_time_lines#c9",
+            "test_slatt.clinoforms_and_time_lines#c10"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "При корреляции разрезов скважин необходимо разделять литостратиграфический и хроностратиграфический подход.",
+          "claim_ids": [
+            "test_slatt.clinoforms_and_time_lines#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "Это нужно, чтобы верно оценивать гидродинамическую связь песчаных тел между скважинами.",
+          "claim_ids": [
+            "test_slatt.clinoforms_and_time_lines#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "Песчаные тела внутри наклонных хроностратиграфических поверхностей могут быть прерывистыми по латерали.",
+          "claim_ids": [
+            "test_slatt.clinoforms_and_time_lines#c6",
+            "test_slatt.clinoforms_and_time_lines#c8"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "Они разделяются алевролитами или глинами.",
+          "claim_ids": [
+            "test_slatt.clinoforms_and_time_lines#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Похожие показания каротажа в разных скважинах не гарантируют непрерывность песчаного пласта из-за наклонных линий времени.",
+          "claim_ids": [
+            "test_slatt.clinoforms_and_time_lines#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Линейная межскважинная интерполяция песчаных интервалов по литологии приводит к ложному выводу о едином проницаемом резервуаре.",
+          "claim_ids": [
+            "test_slatt.clinoforms_and_time_lines#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Алгоритм пространственной интерполяции каротажа без учета хроностратиграфического каркаса соединит изолированные песчаные тела.",
+          "claim_ids": [
+            "test_slatt.clinoforms_and_time_lines#c3"
+          ],
+          "terms": [],
+          "hypothesis": true,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Процесс похож на соединение точек во временных рядах по значению признака вместо учета фазовых сдвигов и скрытых трендов.",
+          "claim_ids": [
+            "test_slatt.clinoforms_and_time_lines#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "В геологии физические слои и линии времени имеют жесткую пространственно-геометрическую природу осадконакопления.",
+          "claim_ids": [
+            "test_slatt.clinoforms_and_time_lines#c9",
+            "test_slatt.clinoforms_and_time_lines#c10"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": true
+        }
+      ],
+      "warnings": [
+        "термин 'clinoforms' не выделен [[…]] ни в одном абзаце",
+        "термин 'lithostratigraphic boundaries' не выделен [[…]] ни в одном абзаце",
+        "термин 'sequence stratigraphic' не выделен [[…]] ни в одном абзаце",
+        "термин 'chronostratigraphic correlations' не выделен [[…]] ни в одном абзаце",
+        "термин 'lithofacies' не выделен [[…]] ни в одном абзаце",
+        "термин 'линии геологического времени' не выделен [[…]] ни в одном абзаце",
+        "термин 'литостратиграфическая корреляция' не выделен [[…]] ни в одном абзаце",
+        "термин 'хроностратиграфическая корреляция' не выделен [[…]] ни в одном абзаце",
+        "термин 'литофации' не выделен [[…]] ни в одном абзаце"
+      ]
+    },
+    "test_slatt.delta_switching_and_lowstand": {
+      "ext": {},
+      "hash": "18ebfbf7b819ee7c",
+      "paragraphs": [
+        {
+          "block": "main",
+          "text": "Дельты развиваются через процессы переноса русел, которые могут быть важнее изменений уровня моря. Кроме того, они формируются при падении уровня.",
+          "claim_ids": [
+            "test_slatt.delta_switching_and_lowstand#c1",
+            "test_slatt.delta_switching_and_lowstand#c2"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "why",
+          "text": "Этот материал объясняет динамические процессы перемещения источников осадков во времени, продолжая тему развития дельтовых систем.",
+          "claim_ids": [
+            "test_slatt.delta_switching_and_lowstand#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Перенос русел меняет ориентацию и положение источников осадков на дельте относительно общего апекса. Падение уровня моря вызывает врезание долин, смещение береговой линии в сторону моря и ее понижение. Это приводит к образованию [[lowstand]] или системных трактов окраины шельфа, также известных как бровковые дельты.",
+          "claim_ids": [
+            "test_slatt.delta_switching_and_lowstand#c1",
+            "test_slatt.delta_switching_and_lowstand#c2",
+            "test_slatt.delta_switching_and_lowstand#c3"
+          ],
+          "terms": [
+            "lowstand"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "При анализе осадконакопления и прогнозе резервуаров нужно учитывать блуждание русел и фазы падения уровня моря. Однако такие дельты обычно менее масштабны, чем высокопотенциальные.",
+          "claim_ids": [
+            "test_slatt.delta_switching_and_lowstand#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "Низкопотенциальные системы не столь крупные и распространенные, как высокопотенциальные дельты.",
+          "claim_ids": [
+            "test_slatt.delta_switching_and_lowstand#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Смещение русел и падение уровня моря оставляют в пространстве геометрию блуждающих рукавов и врезанных долин, которые проявляются в структуре разреза.",
+          "claim_ids": [
+            "test_slatt.delta_switching_and_lowstand#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "По одной только текущей геометрии русла нельзя однозначно восстановить всю историю миграции точек выноса осадков без учета цикличности уровня моря.",
+          "claim_ids": [
+            "test_slatt.delta_switching_and_lowstand#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Пространственное смещение точек выноса осадков можно смоделировать как случайный или марковский процесс изменения углового смещения русла.",
+          "claim_ids": [
+            "test_slatt.delta_switching_and_lowstand#c1"
+          ],
+          "terms": [],
+          "hypothesis": true,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Это похоже на перенаправление сетевых пакетов или изменение точек маршрутизации через динамическую балансировку нагрузки с изменением весов каналов.",
+          "claim_ids": [
+            "test_slatt.delta_switching_and_lowstand#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "В IT потоки данных безынерционны и управляются протоколами, тогда как потоки осадков подчиняются физике гравитации и геологическому времени.",
+          "claim_ids": [
+            "test_slatt.delta_switching_and_lowstand#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": true
+        }
+      ],
+      "warnings": [
+        "термин 'delta distributary switching processes' не выделен [[…]] ни в одном абзаце",
+        "термин 'shelf-margin' не выделен [[…]] ни в одном абзаце",
+        "термин 'systems tracts' не выделен [[…]] ни в одном абзаце",
+        "термин 'shelf-margin deltas' не выделен [[…]] ни в одном абзаце"
+      ]
+    },
+    "test_slatt.litho_vs_chrono_correlation_mekong": {
+      "ext": {},
+      "hash": "5563cbaa68f0afdc",
+      "paragraphs": [
+        {
+          "block": "main",
+          "text": "Традиционное сопоставление разрезов объединяет разновозрастные осадки. Напротив, [[lithostratigraphic correlation]] (литостратиграфическая корреляция) на основе литофаций уступает новому подходу. Хроностратиграфический подход на основе линий времени отражает истинное развитие дельты.",
+          "claim_ids": [
+            "test_slatt.litho_vs_chrono_correlation_mekong#c4"
+          ],
+          "terms": [
+            "lithostratigraphic correlation"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "why",
+          "text": "Этот пример демонстрирует практическое применение хроностратиграфического подхода на реальном объекте.",
+          "claim_ids": [
+            "test_slatt.litho_vs_chrono_correlation_mekong#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Измеренные линии геологического времени пересекают границы литофаций. Они показывают проградационный характер дельты. Из-за этого сопоставление осадочных тел по литологическим признакам отличается от временных меток.",
+          "claim_ids": [
+            "test_slatt.litho_vs_chrono_correlation_mekong#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "На объекте дельты Меконга сопоставляются скважины по литологическим признакам. Также их сопоставляют по изолихронным поверхностям. Это выявляет расхождения в стратиграфической интерпретации разрезов.",
+          "claim_ids": [
+            "test_slatt.litho_vs_chrono_correlation_mekong#c2"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "Пример опирается на данные разрезов и скважин. Он иллюстрирует различия стратегий корреляции от суши к акватории моря.",
+          "claim_ids": [
+            "test_slatt.litho_vs_chrono_correlation_mekong#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Сопоставление скважинных данных приводит к разным результатам выделения осадочных тел. Игнорирование линий привязки приводит к неверному объединению разновозрастных фациальных зон.",
+          "claim_ids": [
+            "test_slatt.litho_vs_chrono_correlation_mekong#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Алгоритмы автокорреляции скважин по сходству литофаций без учета линий времени будут соединять диахронные литологические тела.",
+          "claim_ids": [
+            "test_slatt.litho_vs_chrono_correlation_mekong#c3"
+          ],
+          "terms": [],
+          "hypothesis": true,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Сравним логирование по текстовым меткам и по таймстемпам. События одного типа происходят в разное время.",
+          "claim_ids": [
+            "test_slatt.litho_vs_chrono_correlation_mekong#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Их нельзя склеивать в один срез без учета шкалы времени. В геологии время считывается косвенно по поверхностям.",
+          "claim_ids": [
+            "test_slatt.litho_vs_chrono_correlation_mekong#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": true
+        }
+      ],
+      "warnings": [
+        "термин 'Mekong River Delta' не выделен [[…]] ни в одном абзаце",
+        "термин 'progradation' не выделен [[…]] ни в одном абзаце"
+      ]
+    },
+    "test_slatt.river_dominated_delta_deposits": {
+      "ext": {},
+      "hash": "69a7432738d5ee39",
+      "paragraphs": [
+        {
+          "block": "main",
+          "text": "Речно-доминированные дельты формируют песчаные резервуары в руслах и устьевых барах, разделенные глинистыми барьерами межрусловых бухт. Главными фациями такой дельты являются русла и устьевые бары, разделенные межрусловыми бухтами и болотами.",
+          "claim_ids": [
+            "test_slatt.river_dominated_delta_deposits#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "why",
+          "text": "Этот материал знакомит с внутренней структурой и фациями речно-доминированных дельт, опираясь на общие понятия дельтового осадконакопления.",
+          "claim_ids": [
+            "test_slatt.river_dominated_delta_deposits#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Осадконакопление идет в процессе проградации. Потоки из русел выносят песчаный материал на фронт дельты. Так формируются бары с характерной вертикальной и латеральной зональностью.",
+          "claim_ids": [
+            "test_slatt.river_dominated_delta_deposits#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Фации определяются по вертикальной последовательности зернистости с укрупнением вверх и характерному латеральному утончению на каротаже.",
+          "claim_ids": [
+            "test_slatt.river_dominated_delta_deposits#c2"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "В устьевом баре Прудо-Бей выделено семь литофаций. Все они умеренно или очень хорошо отсортированы и состоят из мелко- и тонкозернистого материала.",
+          "claim_ids": [
+            "test_slatt.river_dominated_delta_deposits#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Шесть литофаций имеют среднюю проницаемость от 12 до 40 миллидарси. Седьмая, наилучшим образом отсортированная литофация, имеет среднюю проницаемость 129 миллидарси.",
+          "claim_ids": [
+            "test_slatt.river_dominated_delta_deposits#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Считается, что осадочные шлейфы отлагали наиболее проницаемые пески в период паводков. Они формировались в апексе устьевых баров и вдоль их проксимальной маргинальной части.",
+          "claim_ids": [
+            "test_slatt.river_dominated_delta_deposits#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Многократное разветвление каналов при проградации приводит к формированию широкого пластового песчаного шлейфа. Он состоит из многочисленных баров, но внутри отдельного бара фации и проницаемость прерывисты.",
+          "claim_ids": [
+            "test_slatt.river_dominated_delta_deposits#c5"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "Для прогноза проницаемости и песчанистости резервуаров специалисты сопоставляют данные керна, каротажа и современные аналоги осадконакопления.",
+          "claim_ids": [
+            "test_slatt.river_dominated_delta_deposits#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "Различные литофации устьевых баров имеют существенные вариации проницаемости. Значения варьируются от 12 до 129 миллидарси в зависимости от условий осаждения седиментационных шлейфов.",
+          "claim_ids": [
+            "test_slatt.river_dominated_delta_deposits#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "На каротажных диаграммах фации речно-доминированных дельт проявляются в виде латерального утончения и уменьшения размера зерен от оси канала.",
+          "claim_ids": [
+            "test_slatt.river_dominated_delta_deposits#c2"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Связь между фациями и проницаемостью по каротажу нарушается при наличии сложных литологических переходов и несортированных осадков.",
+          "claim_ids": [
+            "test_slatt.river_dominated_delta_deposits#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Модель машинного обучения по каротажу может перепутать проксимальные и дистальные части устьевого бара без учета пространственного тренда.",
+          "claim_ids": [
+            "test_slatt.river_dominated_delta_deposits#c5"
+          ],
+          "terms": [],
+          "hypothesis": true,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Структура похожа на иерархическую структуру данных или разветвленное дерево признаков. В ней корневые элементы дают более сильный сигнал, а периферийные ветви зашумлены.",
+          "claim_ids": [
+            "test_slatt.river_dominated_delta_deposits#c5"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Аналогия перестает работать потому, что в геологии элементы связаны физическими законами переноса осадка, а не логическими правилами классификации.",
+          "claim_ids": [
+            "test_slatt.river_dominated_delta_deposits#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": true
+        }
+      ],
+      "warnings": [
+        "термин 'river-dominated delta' не выделен [[…]] ни в одном абзаце",
+        "термин 'distributary channels' не выделен [[…]] ни в одном абзаце",
+        "термин 'distributary mouth-bars' не выделен [[…]] ни в одном абзаце",
+        "термин 'interdistributary bays' не выделен [[…]] ни в одном абзаце",
+        "термин 'coarsening-upward' не выделен [[…]] ни в одном абзаце",
+        "термин 'prodelta' не выделен [[…]] ни в одном абзаце"
+      ]
+    },
+    "test_slatt.prudhoe_bay_field_romeo": {
+      "ext": {},
+      "hash": "23ea6c07ad050a53",
+      "paragraphs": [
+        {
+          "block": "main",
+          "text": "Учет фаций и времени корреляции улучшает разработку реального месторождения. Здесь применяются [[horizontal wells]], позволяющие точечно вскрывать продуктивные интервалы пласта.",
+          "claim_ids": [
+            "test_slatt.prudhoe_bay_field_romeo#c5"
+          ],
+          "terms": [
+            "horizontal wells"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "why",
+          "text": "Разбор показывает, как понимание фаций и времени корреляции улучшает разработку реального месторождения.",
+          "claim_ids": [
+            "test_slatt.prudhoe_bay_field_romeo#c5"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Речная седиментация приводит к латеральным и вертикальным фациальным изменениям, создавая гетерогенность резервуара. Непрерывные сланцы служат барьерами вертикального потока.",
+          "claim_ids": [
+            "test_slatt.prudhoe_bay_field_romeo#c4",
+            "test_slatt.prudhoe_bay_field_romeo#c8"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "Горизонтальные скважины и синусоидальные траектории позволяют охватить высокопроницаемые фации и избежать конкуренции с водой из других зон.",
+          "claim_ids": [
+            "test_slatt.prudhoe_bay_field_romeo#c7",
+            "test_slatt.prudhoe_bay_field_romeo#c9"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "Некоторые сланцы непрерывны на больших площадях, другие прерываются эрозией или выклиниванием.",
+          "claim_ids": [
+            "test_slatt.prudhoe_bay_field_romeo#c8"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Каротажные данные по горизонтальным скважинам и керну позволяют уточнять геометрию литофаций и траекторию вскрытия песчаников.",
+          "claim_ids": [
+            "test_slatt.prudhoe_bay_field_romeo#c7"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Автоматическая корреляция по пластам-реперам без учета секвенс-стратиграфии пропускает проградационные клинья.",
+          "claim_ids": [
+            "test_slatt.prudhoe_bay_field_romeo#c6"
+          ],
+          "terms": [],
+          "hypothesis": true,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Поиск оптимального маршрута в графе с учетом скрытых барьеров и пропускной способности узлов.",
+          "claim_ids": [
+            "test_slatt.prudhoe_bay_field_romeo#c8"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "В геологии свойства среды меняются непрерывно и зависят от сложной истории осадконакопления.",
+          "claim_ids": [
+            "test_slatt.prudhoe_bay_field_romeo#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": true
+        }
+      ],
+      "warnings": [
+        "термин 'Prudhoe Bay field' не выделен [[…]] ни в одном абзаце",
+        "термин 'Romeo Zone' не выделен [[…]] ни в одном абзаце",
+        "термин 'shale continuity' не выделен [[…]] ни в одном абзаце",
+        "термин 'sidetrack' не выделен [[…]] ни в одном абзаце"
+      ]
+    },
+    "test_slatt.kuparuk_river_field": {
+      "ext": {},
+      "hash": "384147014805e355",
+      "paragraphs": [
+        {
+          "block": "main",
+          "text": "На примере месторждения Купарук-Ривер показано, что изначально единые песчаные интервалы при детальной корреляции распадаются на отдельные автономные тела. Это второе по величине нефтяное [[Kuparuk River field]] (месторождение Купарук-Ривер) на Северном склоне Аляски.",
+          "claim_ids": [
+            "test_slatt.kuparuk_river_field#c1",
+            "test_slatt.kuparuk_river_field#c5"
+          ],
+          "terms": [
+            "Kuparuk River field"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "why",
+          "text": "Материал закрепляет навыки секвенс-стратиграфического анализа на втором крупном примере.",
+          "claim_ids": [
+            "test_slatt.kuparuk_river_field#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "На ранних этапах разработки каждая единица считалась латерально выдержанным песчаным телом. Добыча нефти ведется из двух интервалов, обозначенных как единицы A и C.",
+          "claim_ids": [
+            "test_slatt.kuparuk_river_field#c3",
+            "test_slatt.kuparuk_river_field#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Шесть отдельных песчаных тел последовательно прородировали в сторону моря на северо-восток. Каждое из них отделено от другого [[transgressive marine shale]] (трансгрессивным морским сланцем).",
+          "claim_ids": [
+            "test_slatt.kuparuk_river_field#c5",
+            "test_slatt.kuparuk_river_field#c6",
+            "test_slatt.kuparuk_river_field#c7"
+          ],
+          "terms": [
+            "transgressive marine shale"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "Переход от литостратиграфического подхода к секвенс-стратиграфическому меняет понимание структуры резервуара.",
+          "claim_ids": [
+            "test_slatt.kuparuk_river_field#c5"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "Месторождение разрабатывается по двум интервалам, а разработка единицы [[unit A]] (единицы A) потребовала пересмотра её сплошности.",
+          "claim_ids": [
+            "test_slatt.kuparuk_river_field#c3",
+            "test_slatt.kuparuk_river_field#c5"
+          ],
+          "terms": [
+            "unit A"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Кривые ГИС и корреляционные разрезы позволяют разделить монотонный интервал на несообщающиеся пачки.",
+          "claim_ids": [
+            "test_slatt.kuparuk_river_field#c5"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Автоматическая корреляция без учета циклов объединяет изолированные тела в единый пласт.",
+          "claim_ids": [
+            "test_slatt.kuparuk_river_field#c5"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Модель машинного обучения завысит гидродинамическую связность между скважинами, обучаясь на предположении о латеральной сплошности.",
+          "claim_ids": [
+            "test_slatt.kuparuk_river_field#c4"
+          ],
+          "terms": [],
+          "hypothesis": true,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Монолитное приложение при детальном логировании распадается на независимые сервисы, разделенные интерфейсами.",
+          "claim_ids": [
+            "test_slatt.kuparuk_river_field#c5"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "В IT границы сервисов задаются архитектурой явно, а в геологии разделяющие сланцы выявляются косвенными методами.",
+          "claim_ids": [
+            "test_slatt.kuparuk_river_field#c7"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": true
+        }
+      ],
+      "warnings": []
+    },
+    "test_slatt.wave_dominated_deltas": {
+      "ext": {},
+      "hash": "636d11c22b5554ec",
+      "paragraphs": [
+        {
+          "block": "why",
+          "text": "Знакомство с этим классом систем расширяет общую классификацию осадочных комплексов.",
+          "claim_ids": [
+            "test_slatt.wave_dominated_deltas#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "main",
+          "text": "В таких дельтах осадки распределяются латерально. Они формируют веерообразные тела с восходящим укрупнением зернистости.",
+          "claim_ids": [
+            "test_slatt.wave_dominated_deltas#c1",
+            "test_slatt.wave_dominated_deltas#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Поступающий песок рассеивается волнами и течениями. Происходит проградация береговой зоны в сторону бассейна. Речное устье отклоняется по направлению потока наносов. В итоге создается мощное тело песка.",
+          "claim_ids": [
+            "test_slatt.wave_dominated_deltas#c1",
+            "test_slatt.wave_dominated_deltas#c2",
+            "test_slatt.wave_dominated_deltas#c3",
+            "test_slatt.wave_dominated_deltas#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "Пористость и проницаемость увеличиваются снизу вверх из-за изменения размера зерен. В разрезе преобладают волновые косые слоистости и обломки раковин.",
+          "claim_ids": [
+            "test_slatt.wave_dominated_deltas#c6",
+            "test_slatt.wave_dominated_deltas#c7"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "Процесс требует достаточного снабжения береговой зоны песком. Без этого невозможна латеральная аккреция.",
+          "claim_ids": [
+            "test_slatt.wave_dominated_deltas#c2"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "В скважинах виден тренд роста размера зерен, пористости и проницаемости вверх по разрезу.",
+          "claim_ids": [
+            "test_slatt.wave_dominated_deltas#c6"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Если тип осадконакопления сменяется на речной, петрофизические тренды меняются.",
+          "claim_ids": [
+            "test_slatt.wave_dominated_deltas#c6"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Модель машинного обучения сможет выделять такие интервалы по трендам пористости в каротаже.",
+          "claim_ids": [
+            "test_slatt.wave_dominated_deltas#c6"
+          ],
+          "terms": [],
+          "hypothesis": true,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Это похоже на конвейерную обработку потока данных с накоплением признаков от истока к приемнику.",
+          "claim_ids": [
+            "test_slatt.wave_dominated_deltas#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Физические законы осадконакопления не сводимы к простым алгоритмам потоковой фильтрации данных.",
+          "claim_ids": [
+            "test_slatt.wave_dominated_deltas#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": true
+        }
+      ],
+      "warnings": [
+        "термин 'wave-dominated deltas' не выделен [[…]] ни в одном абзаце",
+        "термин 'longshore drift' не выделен [[…]] ни в одном абзаце",
+        "термин 'beach ridges' не выделен [[…]] ни в одном абзаце"
+      ]
+    }
+  },
+  "failed": {}
+}

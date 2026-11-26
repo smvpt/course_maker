@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"d\"],\"claim_id\":\"test_slatt.prudhoe_bay_field_romeo#c6\",\"evidence\":\"gently dipping nature of these reservoir sandstones was unrecognized and led to improper correlations\"},{\"n\":2,\"answer\":[\"d\",\"b\"],\"claim_id\":\"test_slatt.prudhoe_bay_field_romeo#c1\",\"evidence\":\"composed mainly of river-dominated delta-front and prodelta deposits\"},{\"n\":3,\"answer\":[\"vertical\",\"waterflood\"],\"claim_id\":\"test_slatt.prudhoe_bay_field_romeo#c8\",\"evidence\":\"Continuous shales create vertical flow barriers and help to focus a waterflood\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1421,
+ "tokens_out": 177,
+ "money_usd": 0.0008688,
+ "attempts": 1
+}

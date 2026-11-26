@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"progradational\"],\"claim_id\":\"test_slatt.litho_vs_chrono_correlation_mekong#c3\",\"evidence\":\"progradational nature of the delta\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 821,
+ "tokens_out": 56,
+ "money_usd": 0.0003863,
+ "attempts": 1
+}

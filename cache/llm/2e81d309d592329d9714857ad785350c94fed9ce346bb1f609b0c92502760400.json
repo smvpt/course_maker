@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"multiple\",\"kind\":\"understanding\",\"claim_ids\":[\"test_slatt.kuparuk_river_field#c4\",\"test_slatt.kuparuk_river_field#c5\",\"test_slatt.kuparuk_river_field#c7\"],\"prompt\":\"Какие выводы позволяет сделать секвенс-стратиграфический анализ структуры резервуара на примере единицы A месторождения Купарук-Ривер?\",\"options\":[{\"text\":\"Единица A состоит из шести отдельных песчаных тел.\",\"correct\":true,\"misconception\":null},{\"text\":\"Песчаные тела разделены высокочастотными трансгрессивными морскими сланцами.\",\"correct\":true,\"misconception\":null},{\"text\":\"На ранних этапах разработки каждая единица считалась латерально выдержанным песчаным телом.\",\"correct\":true,\"misconception\":null},{\"text\":\"Каждая единица изначально является единым сплошным песчаным телом без барьеров.\",\"correct\":false,\"misconception\":\"misc.model_knows\"}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Секвенс-стратиграфия разделяет единый пласт на шесть отдельных песчаных тел, разделенных сланцами.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 5245,
+ "tokens_out": 293,
+ "money_usd": 0.002306,
+ "attempts": 1
+}

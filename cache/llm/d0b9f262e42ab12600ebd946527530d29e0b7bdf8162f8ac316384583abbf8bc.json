@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"multiple\",\"kind\":\"understanding\",\"claim_ids\":[\"test_slatt.kuparuk_river_field#c4\",\"test_slatt.kuparuk_river_field#c5\"],\"prompt\":\"Какие особенности выявила секвенс-стратиграфическая корреляция для продуктивных интервалов месторождения Купарук-Ривер?\",\"options\":[{\"text\":\"Единица A состоит из шести отдельных песчаных тел.\",\"correct\":true,\"misconception\":null},{\"text\":\"Каждая единица изначально считалась латерально выдержанным песчаным телом.\",\"correct\":true,\"misconception\":null},{\"text\":\"Пласт является единой сплошной абсолютной пустотой без внутренних преград.\",\"correct\":false,\"misconception\":\"misc.reservoir_void\"},{\"text\":\"Модель месторождения точно отражает сплошность без необходимости уточнения.\",\"correct\":false,\"misconception\":\"misc.model_knows\"}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Секвенс-стратиграфия показала, что единые на первый взгляд интервалы распадаются на автономные песчаные тела, разделенные сланцами.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 5259,
+ "tokens_out": 276,
+ "money_usd": 0.0022677,
+ "attempts": 1
+}

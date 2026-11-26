@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Этапы развития и формирования дельт\",\"note\":\"Нажми на элемент схемы, чтобы узнать его характеристики.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"Переключение русел\",\"description\":\"Процесс изменения положения и ориентации распределительных рукавов, который может играть более важную роль в эволюции дельт, чем колебания уровня моря.\",\"claim_id\":\"test_slatt.delta_switching_and_lowstand#c1\",\"rock\":null},{\"label\":\"Низкопотенциальные дельты\",\"description\":\"Системы, которые формируются во время относительного падения уровня моря (также называемые бровковыми).\",\"claim_id\":\"test_slatt.delta_switching_and_lowstand#c2\",\"rock\":null},{\"label\":\"Врезание долин\",\"description\":\"Явление, вызываемое относительным падением уровня моря вместе с отступанием береговой линии в сторону моря и ее понижением.\",\"claim_id\":\"test_slatt.delta_switching_and_lowstand#c3\",\"rock\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 2780,
+ "tokens_out": 317,
+ "money_usd": 0.0016265,
+ "attempts": 1
+}

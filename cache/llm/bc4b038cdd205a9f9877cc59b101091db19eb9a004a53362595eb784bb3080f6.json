@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"gap\",\"kind\":\"understanding\",\"claim_ids\":[\"test_slatt.prudhoe_bay_field_romeo#c8\"],\"prompt\":\"Непрерывные сланцы создают барьеры вертикального потока и помогают регулировать {{1}}.\",\"options\":[],\"gap_answers\":[\"заводнение\"],\"calc\":null,\"explanation\":\"Сланцевые барьеры помогают управлять процессом заводнения резервуара.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 6144,
+ "tokens_out": 99,
+ "money_usd": 0.00099072,
+ "attempts": 1
+}

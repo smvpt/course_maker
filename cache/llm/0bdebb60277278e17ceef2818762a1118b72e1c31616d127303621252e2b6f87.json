@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"o1\",\"o2\",\"o3\",\"o4\"],\"claim_id\":\"test_slatt.kuparuk_river_field#c5\",\"evidence\":\"sequence stratigraphy correlations revealed that the A unit consists of six separate sandstone bodies\"},{\"n\":2,\"answer\":[\"a\"],\"claim_id\":\"test_slatt.kuparuk_river_field#c3\",\"evidence\":\"Production is from two intervals, named the A and C units\"},{\"n\":3,\"answer\":[\"d\"],\"claim_id\":\"test_slatt.kuparuk_river_field#c7\",\"evidence\":\"each separated by a high-frequency transgressive marine shale\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1553,
+ "tokens_out": 244,
+ "money_usd": 0.0010759,
+ "attempts": 1
+}
