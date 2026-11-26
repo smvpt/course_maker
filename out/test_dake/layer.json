@@ -8,7 +8,7 @@
         "empty_nodes": []
       },
       "term_order_issues": [],
-      "title": "CHAPTER 5. THE BASIC DIFFERENTIAL EQUATION FOR RADIAL FLOW IN A POROUS MEDIUM",
+      "title": "Dake. Гл. 5 Основное уравнение радиального течения в пористой среде",
       "author": null,
       "book": null,
       "meta_source": null
@@ -198,7 +198,7 @@
           "kind": "inference",
           "page_pdf": 76,
           "page_print": null,
-          "quote": "Mass flow rate IN - Mass flow rate OUT = Rate of change of mass in the volume element",
+          "quote": "Consider the flow through a volume element of thickness dr situated at a distance r from the centre of the radial cell. Then applying the principle of mass conservation",
           "source_kind": "text",
           "by_model": true
         },
