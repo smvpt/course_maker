@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"b\"],\"claim_id\":\"basniev_gl23-24.linear_parallel_flows#c6\",\"evidence\":\"требуются отрицательные давления при больших временах t. Реально эти давления возникать не будут – возникнет кавитация вблизи галереи.\"},{\"n\":2,\"answer\":[\"c\",\"d\"],\"claim_id\":\"basniev_gl23-24.linear_parallel_flows#c5\",\"evidence\":\"дебит галереи убывает с течением времени, как 1/\\\\sqrt{t}\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1329,
+ "tokens_out": 147,
+ "money_usd": 0.0007662000000000001,
+ "attempts": 1
+}

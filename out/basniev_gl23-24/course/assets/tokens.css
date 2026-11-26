@@ -1,0 +1,80 @@
+/* Сгенерировано из styleguide.json организаторов. Не править руками. */
+/* legend: одинаковая в обеих темах */
+:root {
+  --lith-sand: #E8C872;
+  --lith-shale: #6B8E5A;
+  --lith-limestone: #7FB3D5;
+  --lith-dolomite: #A98FD1;
+  --lith-anhydrite: #D98CB3;
+  --lith-salt: #C9D6DF;
+  --lith-dense: #8C7B6B;
+  --lith-reef: #F0A35E;
+  --fluid-oil: #2E8B57;
+  --fluid-gas: #E74C3C;
+  --fluid-water: #3498DB;
+  --fluid-filtrate: #9BD7F5;
+  --fluid-mud: #7A6A58;
+  --curve-sp: #E74C3C;
+  --curve-gr: #2ECC71;
+  --curve-res: #F1C40F;
+  --curve-res_shallow: #E67E22;
+  --curve-neutron: #3498DB;
+  --curve-density: #E84393;
+  --curve-sonic: #9B59B6;
+  --curve-caliper: #BDC3C7;
+  --curve-pressure: #00CEC9;
+  --measurement: #F1C40F;
+  --uncertainty: #95A5A6;
+  --prov-0: #27AE60; /* реальные данные */
+  --prov-1: #2980B9; /* симуляция */
+  --prov-2: #8E44AD; /* схема */
+}
+/* theme */
+:root {
+  --radius: 12px;
+  --font-ui: system-ui, "Segoe UI", sans-serif;
+}
+:root {
+  --bg: #FBFAF7;
+  --panel: #FFFFFF;
+  --text: #1B1F24;
+  --muted: #5B6672;
+  --border: rgba(0, 0, 0, .08);
+  --ui-accent: #1F5FD1;
+  --ui-on-accent: #FFFFFF;
+  --ui-link: #1F5FD1;
+  --ui-ok: #1E7F52;
+  --ui-warn: #8A6100;
+  --ui-bad: #C0392B;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+  --bg: #0F1419;
+  --panel: #1A2129;
+  --text: #ECEFF4;
+  --muted: #8A96A3;
+  --border: rgba(255, 255, 255, .08);
+  --ui-accent: #2F6BDB;
+  --ui-on-accent: #FFFFFF;
+  --ui-link: #7FA8FF;
+  --ui-ok: #46C28A;
+  --ui-warn: #E3B341;
+  --ui-bad: #FF7B72;
+  color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1419;
+  --panel: #1A2129;
+  --text: #ECEFF4;
+  --muted: #8A96A3;
+  --border: rgba(255, 255, 255, .08);
+  --ui-accent: #2F6BDB;
+  --ui-on-accent: #FFFFFF;
+  --ui-link: #7FA8FF;
+  --ui-ok: #46C28A;
+  --ui-warn: #E3B341;
+  --ui-bad: #FF7B72;
+  color-scheme: dark;
+}

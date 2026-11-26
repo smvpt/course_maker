@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Области фильтрации по методу ПССС\",\"note\":\"Нажми на часть, чтобы узнать её особенности\",\"layout\":\"chain\",\"parts\":[{\"label\":\"возмущенная область\",\"description\":\"Начинается от стенки скважины, давление распределяется так, как будто движение жидкости в ней установившееся, а внешняя граница служит в данный момент контуром питания.\",\"claim_id\":\"basniev_gl23-24.approximate_methods_psss#c5\",\"rock\":null},{\"label\":\"невозмущенная область\",\"description\":\"Давление всюду постоянно и равно начальному контурному давлению.\",\"claim_id\":\"basniev_gl23-24.approximate_methods_psss#c6\",\"rock\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 6126,
+ "tokens_out": 198,
+ "money_usd": 0.0023328,
+ "attempts": 1
+}

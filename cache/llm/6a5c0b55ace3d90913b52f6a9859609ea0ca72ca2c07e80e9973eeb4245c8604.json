@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Области пласта по методу ПССС\",\"note\":\"Нажми на область, чтобы узнать её распределение давления.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"возмущенная область\",\"description\":\"Начинается от стенки скважины; давление распределяется так, как будто движение жидкости установившееся, а внешняя граница служит контуром питания.\",\"claim_id\":\"basniev_gl23-24.approximate_methods_psss#c5\",\"rock\":null},{\"label\":\"невозмущенная область\",\"description\":\"Располагается дальше от скважины; давление всюду постоянно и равно начальному контурному давлению.\",\"claim_id\":\"basniev_gl23-24.approximate_methods_psss#c6\",\"rock\":null},{\"label\":\"подвижная граница\",\"description\":\"Разделяет возмущенную и невозмущенную области; закон ее движения определяется уравнением материального баланса и граничными условиями.\",\"claim_id\":\"basniev_gl23-24.approximate_methods_psss#c7\",\"rock\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 6137,
+ "tokens_out": 281,
+ "money_usd": 0.0025436,
+ "attempts": 1
+}

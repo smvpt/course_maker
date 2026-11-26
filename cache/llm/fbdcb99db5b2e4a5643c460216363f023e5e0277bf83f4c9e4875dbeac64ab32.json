@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"a\",\"b\"],\"claim_id\":\"basniev_gl23-24.math_model_elastic_filtration#c2\",\"evidence\":\"ставить и решать так называемые обратные задачи определения коллекторских свойств пластов по наблюдениям за изменением дебитов или давлений\"},{\"n\":2,\"answer\":[\"уравнением неразрывности\",\"Дарси\"],\"claim_id\":\"basniev_gl23-24.math_model_elastic_filtration#c4\",\"evidence\":\"уравнением неразрывности потока, уравнениями движения (законом Дарси)\"},{\"n\":3,\"answer\":[\"o1\",\"o2\",\"o3\",\"o4\"],\"claim_id\":\"basniev_gl23-24.math_model_elastic_filtration#c8\",\"evidence\":\"Коэффициент κ, характеризующий скорость перераспределения пластового давления\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1589,
+ "tokens_out": 230,
+ "money_usd": 0.0010517,
+ "attempts": 1
+}

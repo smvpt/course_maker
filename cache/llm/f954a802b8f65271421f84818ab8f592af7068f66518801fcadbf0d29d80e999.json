@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"a\",\"b\",\"e\"],\"claim_id\":\"basniev_gl23-24.approximate_methods_psss#c2\",\"evidence\":\"Метод основан на предположении, что давление в пласте меняется во времени значительно медленнее, чем по координатам\"},{\"n\":2,\"answer\":[\"градиент\",\"разрыв\"],\"claim_id\":\"basniev_gl23-24.approximate_methods_psss#c15\",\"evidence\":\"градиент давления терпит разрыв\"},{\"n\":3,\"answer\":[\"o1\",\"o2\",\"o3\",\"o4\"],\"claim_id\":\"basniev_gl23-24.approximate_methods_psss#c5\",\"evidence\":\"в возмущенной области пласта, начинающейся от стенки скважины, давление распределяется так\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 3813,
+ "tokens_out": 471,
+ "money_usd": 0.0023214,
+ "attempts": 2
+}

@@ -1,0 +1,6 @@
+chapter,stage,nodes,llm_tokens_in,llm_tokens_out,money_usd,person_minutes,mentor_minutes,video_seconds,manual_share
+basniev_gl23-24,layer,6,169642,20567,0.099007,0,0,0.0,0.0
+basniev_gl23-24,routing,6,10172,4402,0.014057,0,0,0.0,0.0
+basniev_gl23-24,course,6,249606,26657,0.141524,0,0,0.0,0.0
+basniev_gl23-24,video,6,0,0,0.0,0,0,0.0,0.0
+basniev_gl23-24,review,6,0,0,0.0,0,0,0.0,0.0

@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"Биогермные и мелкообломочные породы ядра рифа располагаются уже не в центре, а образуют кольцо или овал по периферии рифового комплекса.\",\"page_pdf\":203}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 6407,
+ "tokens_out": 59,
+ "money_usd": 0.0020696,
+ "attempts": 1
+}

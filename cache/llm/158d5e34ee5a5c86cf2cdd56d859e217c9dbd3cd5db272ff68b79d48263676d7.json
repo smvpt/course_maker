@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Разновидности упругого режима\",\"note\":\"Нажми на разновидность режима, чтобы узнать её особенности.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"упруговодонапорный режим\",\"description\":\"Поддерживается напором воды, поступающей в пласт из области питания.\",\"claim_id\":\"basniev_gl23-24.elastic_regime_intro#c8\",\"rock\":null},{\"label\":\"замкнуто-упругий режим\",\"description\":\"Наблюдается в залежах в закрытых со всех сторон пластовых ловушках до снижения давления до давления насыщения.\",\"claim_id\":\"basniev_gl23-24.elastic_regime_intro#c9\",\"rock\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 4453,
+ "tokens_out": 188,
+ "money_usd": 0.0018059,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"o1\",\"o2\",\"o3\",\"o4\"],\"claim_id\":\"basniev_gl23-24.radial_flows_and_basic_formula#c3\",\"evidence\":\"задача автомодельна, и уравнение (23.40) можно свести к обыкновенному дифференциальному уравнению\"},{\"n\":2,\"answer\":[\"b\"],\"claim_id\":\"basniev_gl23-24.radial_flows_and_basic_formula#c7\",\"evidence\":\"можно с высокой степенью точности (до 0,2%) пользоваться формулой (23.52) для бесконечного пласта\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1549,
+ "tokens_out": 168,
+ "money_usd": 0.0008847,
+ "attempts": 1
+}

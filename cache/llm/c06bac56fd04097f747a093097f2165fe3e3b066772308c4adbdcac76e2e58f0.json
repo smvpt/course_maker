@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Этапы и разновидности упругого режима\",\"note\":\"Нажми на часть, чтобы узнать её особенности.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"Упругий режим\",\"description\":\"Приток жидкости к скважинам обеспечивается потенциальной энергией упругой деформации жидкости и твердого скелета пласта.\",\"claim_id\":\"basniev_gl23-24.elastic_regime_intro#c3\",\"rock\":null},{\"label\":\"Упруговодонапорный режим\",\"description\":\"Приток жидкости к забоям скважин поддерживается напором воды, поступающей в пласт из области питания.\",\"claim_id\":\"basniev_gl23-24.elastic_regime_intro#c8\",\"rock\":null},{\"label\":\"Замкнуто-упругий режим\",\"description\":\"Наблюдается в залежах в закрытых со всех сторон пластовых «ловушках» до снижения давления до давления насыщения.\",\"claim_id\":\"basniev_gl23-24.elastic_regime_intro#c9\",\"rock\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 4464,
+ "tokens_out": 339,
+ "money_usd": 0.0021867,
+ "attempts": 1
+}

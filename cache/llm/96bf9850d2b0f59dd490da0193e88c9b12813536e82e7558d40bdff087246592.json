@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"claim_id\":\"basniev_gl23-24.linear_parallel_flows#c4\",\"title\":\"Профиль давления в пласте от времени\",\"slider_name\":\"t\",\"slider_label\":\"Время\",\"slider_unit\":\"с\",\"slider_min\":1.0,\"slider_max\":100.0,\"x_name\":\"x\",\"x_label\":\"Координата\",\"x_unit\":\"м\",\"x_min\":0.0,\"x_max\":50.0,\"y_label\":\"Давление\",\"y_unit\":\"Па\",\"constants\":{\"p_r\":1000000.0,\"p_k\":20000000.0,\"kappa\":1.0},\"expression\":\"p_r + (p_k - p_r) * erf(x / (2 * sqrt(kappa * t)))\",\"curve_key\":\"PRESSURE\",\"note\":\"С течением времени возмущение давления распространяется дальше вглубь пласта.\"}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/interactive",
+ "tokens_in": 5174,
+ "tokens_out": 262,
+ "money_usd": 0.0022072,
+ "attempts": 1
+}

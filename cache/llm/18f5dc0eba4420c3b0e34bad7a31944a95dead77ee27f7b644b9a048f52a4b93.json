@@ -1,0 +1,10 @@
+{
+ "text": "{\"found\":true,\"quote\":\"Одиночные куполовидные рифы включают две основные литолого-фациальные зоны – ядра рифа и его склона (предрифовый шлейф).\",\"page_pdf\":203}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "core/quote_fix",
+ "tokens_in": 6394,
+ "tokens_out": 57,
+ "money_usd": 0.0020607,
+ "attempts": 1
+}

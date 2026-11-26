@@ -1,0 +1,150 @@
+{
+  "ext": {
+    "illus": {
+      "warnings": []
+    }
+  },
+  "chapter": "basniev_gl23-24",
+  "illustrations": [
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "basniev_gl23-24.elastic_regime_intro.il1",
+      "step_id": "basniev_gl23-24.elastic_regime_intro",
+      "node_id": "basniev_gl23-24.elastic_regime_intro",
+      "file": "illus/basniev_gl23-24.elastic_regime_intro.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Что такое упругий режим и откуда берется энергия пласта». наблюдение: При разработке месторождений возникают неустановившиеся процессы с перераспределением давления и изменением скоростей и дебитов.; наблюдение: Движение жидкости при упругом режиме начинается сначала у забоя, а затем во всё более удаленных областях пласта.; наблюдение: Приток жидкости может поддерживаться напором воды из области…",
+      "source": "утверждения шага, стр. 474",
+      "claim_ids": [
+        "basniev_gl23-24.elastic_regime_intro#c1",
+        "basniev_gl23-24.elastic_regime_intro#c5",
+        "basniev_gl23-24.elastic_regime_intro#c8",
+        "basniev_gl23-24.elastic_regime_intro#c4",
+        "basniev_gl23-24.elastic_regime_intro#c2",
+        "basniev_gl23-24.elastic_regime_intro#c3"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "basniev_gl23-24.elastic_reserve_calculation.il1",
+      "step_id": "basniev_gl23-24.elastic_reserve_calculation",
+      "node_id": "basniev_gl23-24.elastic_reserve_calculation",
+      "file": "illus/basniev_gl23-24.elastic_reserve_calculation.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Как рассчитать количество нефти и воды за счет упругости пласта». наблюдение: Под упругим запасом жидкости понимают количество извлекаемой жидкости при снижении давления за счет упругости скелета и флюидов.; наблюдение: Изменение объема жидкости и объема пор при изменении давления выражается через коэффициенты упругости.; допущение: Начальный объем жидкости в элементе пласта равен полному объему пор.;…",
+      "source": "утверждения шага, стр. 475, 476",
+      "claim_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation#c1",
+        "basniev_gl23-24.elastic_reserve_calculation#c2",
+        "basniev_gl23-24.elastic_reserve_calculation#c4",
+        "basniev_gl23-24.elastic_reserve_calculation#c3",
+        "basniev_gl23-24.elastic_reserve_calculation#c5"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "basniev_gl23-24.math_model_elastic_filtration.il1",
+      "step_id": "basniev_gl23-24.math_model_elastic_filtration",
+      "node_id": "basniev_gl23-24.math_model_elastic_filtration",
+      "file": "illus/basniev_gl23-24.math_model_elastic_filtration.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Система уравнений для упругого потока в пористой среде». наблюдение: Изучение гидродинамики упругого режима фильтрации важно для теории и практики разработки месторождений углеводородов.; наблюдение: При естественном упругом режиме добывается до 2-5% извлекаемых запасов, но на месторождении Тенгиз доля достигает 20%.; наблюдение: Основное дифференциальное уравнение теории упругого режима фильтрации…",
+      "source": "утверждения шага, стр. 477, 478, 480",
+      "claim_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration#c1",
+        "basniev_gl23-24.math_model_elastic_filtration#c3",
+        "basniev_gl23-24.math_model_elastic_filtration#c7",
+        "basniev_gl23-24.math_model_elastic_filtration#c4",
+        "basniev_gl23-24.math_model_elastic_filtration#c2",
+        "basniev_gl23-24.math_model_elastic_filtration#c6"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "basniev_gl23-24.linear_parallel_flows.il1",
+      "step_id": "basniev_gl23-24.linear_parallel_flows",
+      "node_id": "basniev_gl23-24.linear_parallel_flows",
+      "file": "illus/basniev_gl23-24.linear_parallel_flows.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Точные решения для плоского пласта и движение границы давления». наблюдение: В полубесконечном пласте при мгновенном снижении давления на галерее образуется неустановившийся прямолинейно-параллельный поток упругой жидкости.; наблюдение: Одномерное уравнение пьезопроводности в декартовой системе координат записывается через частные производные давления по времени и координате.; вывод: Анализ размерностей…",
+      "source": "утверждения шага, стр. 481, 482, 484",
+      "claim_ids": [
+        "basniev_gl23-24.linear_parallel_flows#c1",
+        "basniev_gl23-24.linear_parallel_flows#c2",
+        "basniev_gl23-24.linear_parallel_flows#c3",
+        "basniev_gl23-24.linear_parallel_flows#c4"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "basniev_gl23-24.radial_flows_and_basic_formula.il1",
+      "step_id": "basniev_gl23-24.radial_flows_and_basic_formula",
+      "node_id": "basniev_gl23-24.radial_flows_and_basic_formula",
+      "file": "illus/basniev_gl23-24.radial_flows_and_basic_formula.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Решение для радиального притока к скважине и интегральная показательная функция». наблюдение: В неограниченном горизонтальном пласте постоянной толщины при пуске скважины с постоянным объемным дебитом образуется неустановившийся плоскорадиальный поток упругой жидкости.; наблюдение: Распределение давления в пласте определяется интегрированием уравнения пьезопроводности для цилиндрической системы…",
+      "source": "утверждения шага, стр. 488, 489, 490, 491",
+      "claim_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula#c1",
+        "basniev_gl23-24.radial_flows_and_basic_formula#c2",
+        "basniev_gl23-24.radial_flows_and_basic_formula#c5",
+        "basniev_gl23-24.radial_flows_and_basic_formula#c3",
+        "basniev_gl23-24.radial_flows_and_basic_formula#c4"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "basniev_gl23-24.approximate_methods_psss.il1",
+      "step_id": "basniev_gl23-24.approximate_methods_psss",
+      "node_id": "basniev_gl23-24.approximate_methods_psss",
+      "file": "illus/basniev_gl23-24.approximate_methods_psss.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Упрощенный расчет нестационарных процессов через стационарные состояния». наблюдение: Решения краевых задач неустановившейся фильтрации часто громоздки, поэтому разработаны приближенные методы.; наблюдение: Процесс перераспределения давления протекает в две фазы, где в первой фазе граница возмущенной области расширяется.; наблюдение: Для бесконечного пласта рассматривается только первая фаза без…",
+      "source": "утверждения шага, стр. 494, 495, 497",
+      "claim_ids": [
+        "basniev_gl23-24.approximate_methods_psss#c1",
+        "basniev_gl23-24.approximate_methods_psss#c8",
+        "basniev_gl23-24.approximate_methods_psss#c9",
+        "basniev_gl23-24.approximate_methods_psss#c2",
+        "basniev_gl23-24.approximate_methods_psss#c7",
+        "basniev_gl23-24.approximate_methods_psss#c12"
+      ],
+      "prompt": null
+    }
+  ]
+}

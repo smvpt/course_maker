@@ -1,0 +1,3845 @@
+{
+  "ext": {},
+  "chapter": "basniev_gl23-24",
+  "rows": [
+    {
+      "ext": {},
+      "unit_id": "p474.01",
+      "kind": "heading",
+      "page_pdf": 474,
+      "excerpt": "Глава XXIII",
+      "node_ids": [
+        "basniev_gl23-24.elastic_regime_intro"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p474.02",
+      "kind": "heading",
+      "page_pdf": 474,
+      "excerpt": "НЕУСТАНОВИВШЕЕСЯ ДВИЖЕНИЕ УПРУГОЙ ЖИДКОСТИ В УПРУГОМ ПЛАСТЕ",
+      "node_ids": [
+        "basniev_gl23-24.elastic_regime_intro"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p474.03",
+      "kind": "heading",
+      "page_pdf": 474,
+      "excerpt": "§1. Упругий режим пласта и его характерные особенности",
+      "node_ids": [
+        "basniev_gl23-24.elastic_regime_intro"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p474.04",
+      "kind": "paragraph",
+      "page_pdf": 474,
+      "excerpt": "При разработке и эксплуатации месторождений углеводородного сырья в пластах часто возникают неустановившиеся",
+      "node_ids": [
+        "basniev_gl23-24.elastic_regime_intro"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p474.05",
+      "kind": "paragraph",
+      "page_pdf": 474,
+      "excerpt": "Математическая модель, которая будет сформулирована далее, учитывает проявление упругих сил в однофазном",
+      "node_ids": [
+        "basniev_gl23-24.elastic_regime_intro"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p474.06",
+      "kind": "paragraph",
+      "page_pdf": 474,
+      "excerpt": "При пуске скважины в эксплуатацию в условиях упругого режима движение жидкости начинается",
+      "node_ids": [
+        "basniev_gl23-24.elastic_regime_intro"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p474.07",
+      "kind": "paragraph",
+      "page_pdf": 474,
+      "excerpt": "В некоторых случаях приток жидкости к забоям скважин поддерживается и напором воды,",
+      "node_ids": [
+        "basniev_gl23-24.elastic_regime_intro"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p475.01",
+      "kind": "paragraph",
+      "page_pdf": 475,
+      "excerpt": "Характерная особенность проявления упругого режима в процессе разработки нефтяных месторождений проявляется в",
+      "node_ids": [
+        "basniev_gl23-24.elastic_regime_intro"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p475.02",
+      "kind": "paragraph",
+      "page_pdf": 475,
+      "excerpt": "Первыми исследователями, разрабатывавшими теорию упругого режима в 30-х годах 20-го века, были",
+      "node_ids": [
+        "basniev_gl23-24.elastic_regime_intro"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p475.03",
+      "kind": "heading",
+      "page_pdf": 475,
+      "excerpt": "§2. Подсчет упругого запаса жидкости в пласте",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p475.04",
+      "kind": "paragraph",
+      "page_pdf": 475,
+      "excerpt": "Под упругим запасом жидкости в пласте понимают количество жидкости, которое можно извлечь",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p475.05",
+      "kind": "paragraph",
+      "page_pdf": 475,
+      "excerpt": "Упругий запас жидкости в пласте можно подсчитать следующим образом. Выделим мысленно элемент",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p476.01",
+      "kind": "formula",
+      "page_pdf": 476,
+      "excerpt": "- beta_ text ж V_ 0 text ж Delta p = Delta",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p476.02",
+      "kind": "paragraph",
+      "page_pdf": 476,
+      "excerpt": "Для дальнейшего использования этих формул необходимо внести некоторые уточнения. При определении формулы",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p476.03",
+      "kind": "formula",
+      "page_pdf": 476,
+      "excerpt": "Delta V_ text з = beta_ text ж V_ 0 text ж",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p476.04",
+      "kind": "paragraph",
+      "page_pdf": 476,
+      "excerpt": "Учтем, что начальный объем жидкости, насыщающей элемент объема пласта V_0 , равен",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p476.05",
+      "kind": "formula",
+      "page_pdf": 476,
+      "excerpt": "V_ 0 text ж = m V_0, quad (23.2)",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p476.06",
+      "kind": "paragraph",
+      "page_pdf": 476,
+      "excerpt": "m – пористость пласта.",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p476.07",
+      "kind": "paragraph",
+      "page_pdf": 476,
+      "excerpt": "Тогда формулу (23.1) с учетом равенства (23.2) можно переписать в следующем виде:",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p476.08",
+      "kind": "formula",
+      "page_pdf": 476,
+      "excerpt": "Delta V_ text з = (m beta_ text ж + beta_ text",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p476.09",
+      "kind": "paragraph",
+      "page_pdf": 476,
+      "excerpt": "или",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p476.10",
+      "kind": "formula",
+      "page_pdf": 476,
+      "excerpt": "Delta V_ text з = beta^ V_0 Delta p, quad (23.4)",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p476.11",
+      "kind": "paragraph",
+      "page_pdf": 476,
+      "excerpt": "где",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p476.12",
+      "kind": "formula",
+      "page_pdf": 476,
+      "excerpt": "beta^ = m beta_ text ж + beta_ text с . quad",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p476.13",
+      "kind": "paragraph",
+      "page_pdf": 476,
+      "excerpt": "Коэффициент beta^ называется коэффициентом упругоемкости пласта. Из формулы (23.4) следует, что коэффициент",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p476.14",
+      "kind": "formula",
+      "page_pdf": 476,
+      "excerpt": "beta^ = frac Delta V_ text з V_0 Delta p .",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p476.15",
+      "kind": "paragraph",
+      "page_pdf": 476,
+      "excerpt": "Если формулы (23.3) или (23.4) относить к разрабатываемому в условиях замкнуто-упругого режима",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p477.01",
+      "kind": "formula",
+      "page_pdf": 477,
+      "excerpt": "Delta p = p_ kappa - bar p , quad (23.6)",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p477.02",
+      "kind": "paragraph",
+      "page_pdf": 477,
+      "excerpt": "где p_ kappa – начальное пластовое давление; bar p – средневзвешенное по",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p477.03",
+      "kind": "paragraph",
+      "page_pdf": 477,
+      "excerpt": "Вычислить средневзвешенное пластовое давление bar p можно, если известна геометрия возмущенной части",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p477.04",
+      "kind": "paragraph",
+      "page_pdf": 477,
+      "excerpt": "Дифференцируя равенство (23.4), получим",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p477.05",
+      "kind": "formula",
+      "page_pdf": 477,
+      "excerpt": "d( Delta V_3) = beta^ d[V_0(t) Delta p].",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p477.06",
+      "kind": "paragraph",
+      "page_pdf": 477,
+      "excerpt": "С другой стороны, изменение упругого запаса жидкости в пласте за время dt",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p477.07",
+      "kind": "formula",
+      "page_pdf": 477,
+      "excerpt": "d( Delta V_3) = Q(t) dt,",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p477.08",
+      "kind": "paragraph",
+      "page_pdf": 477,
+      "excerpt": "где Q(t) – дебит всех скважин, эксплуатирующих данную нефтяную залежь.",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p477.09",
+      "kind": "paragraph",
+      "page_pdf": 477,
+      "excerpt": "Приравняв правые части двух последних равенств, получим дифференциальное уравнение истощения нефтяной залежи",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p477.10",
+      "kind": "formula",
+      "page_pdf": 477,
+      "excerpt": "beta^ d[V_0(t) Delta p] = Q(t) dt. quad (23.7)",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p477.11",
+      "kind": "paragraph",
+      "page_pdf": 477,
+      "excerpt": "Полученное соотношение далее будет использоваться при построении приближенных решений теории упругого режима.",
+      "node_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p477.12",
+      "kind": "heading",
+      "page_pdf": 477,
+      "excerpt": "§3. Математическая модель неустановившейся фильтрации упругой жидкости в упругой пористой среде",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p477.13",
+      "kind": "paragraph",
+      "page_pdf": 477,
+      "excerpt": "Изучение гидродинамики упругого режима фильтрации имеет важнейшее значение как для теории, так",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p478.01",
+      "kind": "paragraph",
+      "page_pdf": 478,
+      "excerpt": "Для вывода основных дифференциальных уравнений фильтрации упругой жидкости в упругой пористой среде",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p478.02",
+      "kind": "formula",
+      "page_pdf": 478,
+      "excerpt": "frac partial m rho partial t + text div rho bar w",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p478.03",
+      "kind": "formula",
+      "page_pdf": 478,
+      "excerpt": "bar w = - frac k mu ( text grad p +",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p478.04",
+      "kind": "formula",
+      "page_pdf": 478,
+      "excerpt": "rho = rho(p), m = m(p), k = k(p), mu = mu(p),",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p478.05",
+      "kind": "paragraph",
+      "page_pdf": 478,
+      "excerpt": "которая после пренебрежения массовыми силами и введения обобщенной функции Лейбензона, преобразуется к",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p478.06",
+      "kind": "formula",
+      "page_pdf": 478,
+      "excerpt": "frac partial m rho partial t - Delta P = 0,",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p478.07",
+      "kind": "formula",
+      "page_pdf": 478,
+      "excerpt": "rho bar w = - text grad P,",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p478.08",
+      "kind": "formula",
+      "page_pdf": 478,
+      "excerpt": "rho = rho(p), m = m(p), k = k(p), mu = mu(p),",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p478.09",
+      "kind": "formula",
+      "page_pdf": 478,
+      "excerpt": "P = int frac k(p) mu(p) rho(p) , dp.",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p478.10",
+      "kind": "paragraph",
+      "page_pdf": 478,
+      "excerpt": "В качестве уравнений состояния среды и жидкости воспользуемся уравнениями состояния упругой жидкости",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p478.11",
+      "kind": "formula",
+      "page_pdf": 478,
+      "excerpt": "rho = rho_0 [1 + beta_ infty (p - p_0)], quad (23.10)",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p478.12",
+      "kind": "formula",
+      "page_pdf": 478,
+      "excerpt": "m = m_0 + beta_c (p - p_0). quad (23.11)",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p478.13",
+      "kind": "paragraph",
+      "page_pdf": 478,
+      "excerpt": "Для проницаемости и вязкости примем k = text const и mu =",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p479.01",
+      "kind": "heading",
+      "page_pdf": 479,
+      "excerpt": "§4. Вывод дифференциального уравнения фильтрации упругой жидкости в упругой пористой среде по",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p479.02",
+      "kind": "paragraph",
+      "page_pdf": 479,
+      "excerpt": "Обратимся теперь к математической модели неустановившегося движения упругого флюида, подчиняющегося закону Дарси,",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p479.03",
+      "kind": "formula",
+      "page_pdf": 479,
+      "excerpt": "frac partial m rho partial t - Delta P = 0,",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p479.04",
+      "kind": "formula",
+      "page_pdf": 479,
+      "excerpt": "rho dot w = - text grad P,",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p479.05",
+      "kind": "formula",
+      "page_pdf": 479,
+      "excerpt": "rho = rho_0[1 + beta_ infty(p - p_0)],",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p479.06",
+      "kind": "formula",
+      "page_pdf": 479,
+      "excerpt": "m = m_0 + beta_c(p - p_0),",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p479.07",
+      "kind": "formula",
+      "page_pdf": 479,
+      "excerpt": "k = text const , mu = text const ,",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p479.08",
+      "kind": "formula",
+      "page_pdf": 479,
+      "excerpt": "P = frac k mu int rho , dp.",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p479.09",
+      "kind": "paragraph",
+      "page_pdf": 479,
+      "excerpt": "Понятно, что все уравнения системы определяют математическую модель, но для постановки и",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p479.10",
+      "kind": "paragraph",
+      "page_pdf": 479,
+      "excerpt": "Подставив в него функцию Лейбензона, получим",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p479.11",
+      "kind": "formula",
+      "page_pdf": 479,
+      "excerpt": "frac partial(m rho) partial t = frac k mu Delta int rho",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p479.12",
+      "kind": "paragraph",
+      "page_pdf": 479,
+      "excerpt": "Теперь преобразуем выражение в левой части уравнения (23.12), для чего используем уравнения",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p479.13",
+      "kind": "formula",
+      "page_pdf": 479,
+      "excerpt": "rho = rho_0[1 + beta_ infty(p - p_0)], quad m = m_0",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p479.14",
+      "kind": "paragraph",
+      "page_pdf": 479,
+      "excerpt": "и вычислим произведение m rho",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p479.15",
+      "kind": "formula",
+      "page_pdf": 479,
+      "excerpt": "m rho = m_0 rho_0 + (m_0 rho_0 beta_ infty + rho_0",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p479.16",
+      "kind": "paragraph",
+      "page_pdf": 479,
+      "excerpt": "Последним слагаемым в правой части полученного выражения ввиду его малости по сравнению",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p480.01",
+      "kind": "paragraph",
+      "page_pdf": 480,
+      "excerpt": "(напомним, что для нефтей beta_ text ж изменяется в диапазоне от 7",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p480.02",
+      "kind": "formula",
+      "page_pdf": 480,
+      "excerpt": "m rho = m_0 rho_0 left[ 1 + beta^ (p - p_0)/m_0",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p480.03",
+      "kind": "paragraph",
+      "page_pdf": 480,
+      "excerpt": "откуда после дифференцирования выражения по времени t находим",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p480.04",
+      "kind": "formula",
+      "page_pdf": 480,
+      "excerpt": "frac partial(m rho) partial t = rho_0 beta^ frac partial p partial",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p480.05",
+      "kind": "paragraph",
+      "page_pdf": 480,
+      "excerpt": "Теперь преобразуем правую часть равенства (23.12)",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p480.06",
+      "kind": "formula",
+      "page_pdf": 480,
+      "excerpt": "frac k mu Delta left( int rho dp right).",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p480.07",
+      "kind": "paragraph",
+      "page_pdf": 480,
+      "excerpt": "Подставив под знак интеграла уравнение состояния упругой жидкости (23.10), получим",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p480.08",
+      "kind": "formula",
+      "page_pdf": 480,
+      "excerpt": "frac k mu Delta left( int rho dp right) = frac k",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p480.09",
+      "kind": "paragraph",
+      "page_pdf": 480,
+      "excerpt": "но снова учитывая, что жидкость слабосжимаемая и коэффициент beta_ text ж мал,",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p480.10",
+      "kind": "formula",
+      "page_pdf": 480,
+      "excerpt": "frac k mu Delta left( int rho dp right) = frac k",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p480.11",
+      "kind": "paragraph",
+      "page_pdf": 480,
+      "excerpt": "Подставив (23.13) и (23.15) в исходное дифференциальное уравнение (23.12), получим дифференциальное уравнение",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p480.12",
+      "kind": "formula",
+      "page_pdf": 480,
+      "excerpt": "beta^ frac partial p partial t = frac k mu Delta p,",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p480.13",
+      "kind": "paragraph",
+      "page_pdf": 480,
+      "excerpt": "или в декартовой системе координат",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p480.14",
+      "kind": "formula",
+      "page_pdf": 480,
+      "excerpt": "frac partial p partial t = kappa left( frac partial^2 p partial",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p480.15",
+      "kind": "paragraph",
+      "page_pdf": 480,
+      "excerpt": "где введено обозначение",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p480.16",
+      "kind": "formula",
+      "page_pdf": 480,
+      "excerpt": "kappa = k / ( mu beta^ ). quad (23.18)",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p480.17",
+      "kind": "paragraph",
+      "page_pdf": 480,
+      "excerpt": "Уравнение (23.16) – основное дифференциальное уравнение теории упругого режима фильтрации. По предложению",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p480.18",
+      "kind": "paragraph",
+      "page_pdf": 480,
+      "excerpt": "Коэффициент kappa , характеризующий скорость перераспределения пластового давления при неустановившейся фильтрации упругой",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p481.01",
+      "kind": "paragraph",
+      "page_pdf": 481,
+      "excerpt": "Размерность коэффициента пьезопроводности kappa можно установить из (23.18):",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p481.02",
+      "kind": "formula",
+      "page_pdf": 481,
+      "excerpt": "[ kappa] = frac h [ mu][ beta^ ] = frac L^2",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p481.03",
+      "kind": "paragraph",
+      "page_pdf": 481,
+      "excerpt": "где L , M , T – соответственно, размерности длины, массы и",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p481.04",
+      "kind": "paragraph",
+      "page_pdf": 481,
+      "excerpt": "Отметим, что уравнение пьезопроводности (23.16) применимо только для слабосжимаемой упругой жидкости, для",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p481.05",
+      "kind": "heading",
+      "page_pdf": 481,
+      "excerpt": "§5. Одномерные фильтрационные потоки упругой жидкости. Точные решения уравнения пьезопроводности. Основная формула",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p481.06",
+      "kind": "paragraph",
+      "page_pdf": 481,
+      "excerpt": "Рассмотрим наиболее простые точные решения уравнения пьезопроводности (23.16) для одномерных потоков.",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p481.07",
+      "kind": "heading",
+      "page_pdf": 481,
+      "excerpt": "5.1. Прямолинейно-параллельный фильтрационный поток упругой жидкости",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p481.08",
+      "kind": "paragraph",
+      "page_pdf": 481,
+      "excerpt": "Случай 1. Приток к галерее, на которой поддерживается постоянное давление. Пусть в",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p481.09",
+      "kind": "paragraph",
+      "page_pdf": 481,
+      "excerpt": "При этих условиях в упругом (деформируемом) пласте образуется неустановившийся прямолинейно-параллельный поток упругой",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p481.10",
+      "kind": "formula",
+      "page_pdf": 481,
+      "excerpt": "frac partial p partial t = kappa frac partial^2 p partial x^2",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p482.01",
+      "kind": "paragraph",
+      "page_pdf": 482,
+      "excerpt": "Начальные и граничные условия, сформулированные выше и записанные в виде математических соотношений,",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p482.02",
+      "kind": "formula",
+      "page_pdf": 482,
+      "excerpt": "p(x, t) = p_ kappa quad text при quad t = 0;",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p482.03",
+      "kind": "formula",
+      "page_pdf": 482,
+      "excerpt": "p(x, t) = p_ tau quad text при quad x = 0,",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p482.04",
+      "kind": "formula",
+      "page_pdf": 482,
+      "excerpt": "p(x, t) = p_ kappa quad text при quad x = infty,",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p482.05",
+      "kind": "paragraph",
+      "page_pdf": 482,
+      "excerpt": "Задача заключается в определении дебита галереи Q(t) и давления в любой точке",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p482.06",
+      "kind": "paragraph",
+      "page_pdf": 482,
+      "excerpt": "Используя анализ размерностей, покажем, что поставленная задача автомодельна, т. е. из аргументов,",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p482.07",
+      "kind": "paragraph",
+      "page_pdf": 482,
+      "excerpt": "Обозначим через P = (p - p_ tau)/(p_ kappa - p_ tau)",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p482.08",
+      "kind": "formula",
+      "page_pdf": 482,
+      "excerpt": "P = f(x, t, kappa).",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p482.09",
+      "kind": "paragraph",
+      "page_pdf": 482,
+      "excerpt": "Размерности этих аргументов следующие: [x] = L , [t] = T ,",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p482.10",
+      "kind": "formula",
+      "page_pdf": 482,
+      "excerpt": "P = 0 quad text при quad u = 0,",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p482.11",
+      "kind": "formula",
+      "page_pdf": 482,
+      "excerpt": "P = 1 quad text при quad u = infty. tag 23.21",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p482.12",
+      "kind": "paragraph",
+      "page_pdf": 482,
+      "excerpt": "В силу линейности дифференциального уравнения (23.19) для безразмерного давления P имеем такое",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p482.13",
+      "kind": "formula",
+      "page_pdf": 482,
+      "excerpt": "frac partial P partial t = kappa frac partial^2 P partial x^2",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p482.14",
+      "kind": "paragraph",
+      "page_pdf": 482,
+      "excerpt": "Используя правило дифференцирования сложных функций, частные производные по координате и времени можно",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p482.15",
+      "kind": "formula",
+      "page_pdf": 482,
+      "excerpt": "frac partial P partial x = frac dP du frac partial u",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p482.16",
+      "kind": "formula",
+      "page_pdf": 482,
+      "excerpt": "frac partial P partial t = frac dP du frac partial u",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p482.17",
+      "kind": "formula",
+      "page_pdf": 482,
+      "excerpt": "frac partial^2 P partial x^2 = frac partial partial x left( frac",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p483.01",
+      "kind": "paragraph",
+      "page_pdf": 483,
+      "excerpt": "Подставляя найденные значения производных в уравнение (23.22), получим обыкновенное дифференциальное уравнение",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p483.02",
+      "kind": "formula",
+      "page_pdf": 483,
+      "excerpt": "frac d^2P du^2 + 2u frac dP du = 0, quad (23.23)",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p483.03",
+      "kind": "paragraph",
+      "page_pdf": 483,
+      "excerpt": "которое должно быть решено при условиях (23.21). Для решения уравнения (23.23) обозначим",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p483.04",
+      "kind": "formula",
+      "page_pdf": 483,
+      "excerpt": "frac d xi du + 2u xi = 0. quad (23.24)",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p483.05",
+      "kind": "paragraph",
+      "page_pdf": 483,
+      "excerpt": "Разделив переменные в (23.24), будем иметь",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p483.06",
+      "kind": "formula",
+      "page_pdf": 483,
+      "excerpt": "frac d xi xi = -2udu",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p483.07",
+      "kind": "paragraph",
+      "page_pdf": 483,
+      "excerpt": "и далее, проинтегрировав, получим",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p483.08",
+      "kind": "formula",
+      "page_pdf": 483,
+      "excerpt": "ln xi = -u^2 + ln C_1,",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p483.09",
+      "kind": "paragraph",
+      "page_pdf": 483,
+      "excerpt": "потенцируя которое, найдем",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p483.10",
+      "kind": "formula",
+      "page_pdf": 483,
+      "excerpt": "xi = frac dP du = C_1 e^ -u^2 , quad (23.25)",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p483.11",
+      "kind": "paragraph",
+      "page_pdf": 483,
+      "excerpt": "где C_1 – постоянная интегрирования.",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p483.12",
+      "kind": "paragraph",
+      "page_pdf": 483,
+      "excerpt": "Проинтегрировав (23.25) с учетом первого из условий (23.21), получим:",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p483.13",
+      "kind": "formula",
+      "page_pdf": 483,
+      "excerpt": "P = C_1 int_0^u e^ -u^2 du.",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p483.14",
+      "kind": "paragraph",
+      "page_pdf": 483,
+      "excerpt": "Вторым условием (23.20) воспользуемся для нахождения константы интегрирования C_1 . Устремим переменный",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p483.15",
+      "kind": "formula",
+      "page_pdf": 483,
+      "excerpt": "1 = C_1 int_0^ infty e^ -u^2 du.",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p483.16",
+      "kind": "paragraph",
+      "page_pdf": 483,
+      "excerpt": "Из интегрального исчисления известно, что int_0^ infty e^ -u^2 du = sqrt",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p483.17",
+      "kind": "formula",
+      "page_pdf": 483,
+      "excerpt": "P = frac 2 sqrt pi int_0^ frac x 2 sqrt pi",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p483.18",
+      "kind": "paragraph",
+      "page_pdf": 483,
+      "excerpt": "Интеграл (23.26) называется интегралом вероятности, является табулированной функцией, изменяющейся в пределах от",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p484.01",
+      "kind": "formula",
+      "page_pdf": 484,
+      "excerpt": "frac 2 sqrt pi int_0^ frac x 2 sqrt kappa t e^",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p484.02",
+      "kind": "paragraph",
+      "page_pdf": 484,
+      "excerpt": "Таким образом, P = operatorname erf left( frac x 2 sqrt kappa",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p484.03",
+      "kind": "formula",
+      "page_pdf": 484,
+      "excerpt": "p = p_ mathrm r + (p_ mathrm k - p_ mathrm",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p484.04",
+      "kind": "paragraph",
+      "page_pdf": 484,
+      "excerpt": "Типичные кривые распределения давления в различные моменты времени в неустановившемся прямолинейно-параллельном потоке",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p484.05",
+      "kind": "figure",
+      "page_pdf": 484,
+      "excerpt": "Рис. 23.1. Кривые распределения давления в различные моменты времени в неустановившемся прямолинейно-параллельном",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p484.06",
+      "kind": "paragraph",
+      "page_pdf": 484,
+      "excerpt": "Найдем дебит галереи Q . Будем считать положительным дебит, отбираемый из галереи",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p484.07",
+      "kind": "formula",
+      "page_pdf": 484,
+      "excerpt": "w = frac k mu left( frac partial p partial x right)_",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p484.08",
+      "kind": "paragraph",
+      "page_pdf": 484,
+      "excerpt": "где B, h – соответственно, ширина и толщина пласта. Продифференцировав выражение (23.27),",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p484.09",
+      "kind": "formula",
+      "page_pdf": 484,
+      "excerpt": "left( frac partial p partial x right)_ x=0 = (p_ mathrm k",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p484.10",
+      "kind": "paragraph",
+      "page_pdf": 484,
+      "excerpt": "Дебит галереи в любой момент времени найдем, подставив значение градиента давления partial",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p484.11",
+      "kind": "formula",
+      "page_pdf": 484,
+      "excerpt": "Q = frac k mu frac p_ mathrm k - p_ mathrm",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p485.01",
+      "kind": "paragraph",
+      "page_pdf": 485,
+      "excerpt": "Из формулы (23.30) следует, что дебит галереи убывает с течением времени, как",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p485.02",
+      "kind": "paragraph",
+      "page_pdf": 485,
+      "excerpt": "Накопленная к моменту t добыча (объем добытой нефти) V_ доб определяется по",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p485.03",
+      "kind": "formula",
+      "page_pdf": 485,
+      "excerpt": "V_ доб = int_0^t Q(t)dt = frac k(p_к - p_г)Bh mu sqrt",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p485.04",
+      "kind": "paragraph",
+      "page_pdf": 485,
+      "excerpt": "т.е. сразу после начала отбора из галереи она быстро возрастает, а в",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p485.05",
+      "kind": "paragraph",
+      "page_pdf": 485,
+      "excerpt": "Случай 2. Приток к галерее, на которой поддерживается постоянный дебит. Пусть в",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p485.06",
+      "kind": "paragraph",
+      "page_pdf": 485,
+      "excerpt": "Математически задача заключается в интегрировании того же уравнения (23.22), но с иными",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p485.07",
+      "kind": "formula",
+      "page_pdf": 485,
+      "excerpt": "begin aligned p(x, t) &= p_к quad text при quad t =",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p485.08",
+      "kind": "paragraph",
+      "page_pdf": 485,
+      "excerpt": "Первое условие, как и в первом случае, задает распределение давления в пласте",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p485.09",
+      "kind": "paragraph",
+      "page_pdf": 485,
+      "excerpt": "Для интегрирования уравнения пьезопроводности в данном случае умножим обе части уравнения (23.22)",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p485.10",
+      "kind": "figure",
+      "page_pdf": 485,
+      "excerpt": "Рис. 23.2. Зависимости дебита и добычи жидкости от времени после пуска галереи",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p486.01",
+      "kind": "formula",
+      "page_pdf": 486,
+      "excerpt": "frac k mu frac partial^2 p partial x partial t = frac",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p486.02",
+      "kind": "paragraph",
+      "page_pdf": 486,
+      "excerpt": "откуда, поменяв порядок вычисления производных, получим:",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p486.03",
+      "kind": "formula",
+      "page_pdf": 486,
+      "excerpt": "frac partial partial t left( frac k mu frac partial p partial",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p486.04",
+      "kind": "paragraph",
+      "page_pdf": 486,
+      "excerpt": "Так как",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p486.05",
+      "kind": "formula",
+      "page_pdf": 486,
+      "excerpt": "frac k mu frac partial p partial x = w(x, t),",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p486.06",
+      "kind": "paragraph",
+      "page_pdf": 486,
+      "excerpt": "то уравнение (23.32) можно переписать в виде",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p486.07",
+      "kind": "formula",
+      "page_pdf": 486,
+      "excerpt": "frac partial w(x, t) partial t = kappa frac partial^2 w(x, t)",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p486.08",
+      "kind": "paragraph",
+      "page_pdf": 486,
+      "excerpt": "Уравнение (23.33) по форме также совпадает с уравнением теплопроводности (23.22). Следовательно, решением",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p486.09",
+      "kind": "formula",
+      "page_pdf": 486,
+      "excerpt": "w = C_1 operatorname erf left( frac x 2 sqrt kappa t",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p486.10",
+      "kind": "paragraph",
+      "page_pdf": 486,
+      "excerpt": "При этом следует иметь в виду, что начальное и граничное условия для",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p486.11",
+      "kind": "formula",
+      "page_pdf": 486,
+      "excerpt": "w(x, 0) = 0, quad w(0, t) = w_1.",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p486.12",
+      "kind": "paragraph",
+      "page_pdf": 486,
+      "excerpt": "Используя эти условия, найдем константы интегрирования.",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p486.13",
+      "kind": "paragraph",
+      "page_pdf": 486,
+      "excerpt": "При t = 0 из (23.34) следует",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p486.14",
+      "kind": "formula",
+      "page_pdf": 486,
+      "excerpt": "0 = C_1 frac 2 sqrt pi int_0^ infty e^ -u^2 du",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p486.15",
+      "kind": "paragraph",
+      "page_pdf": 486,
+      "excerpt": "Так как int_0^ infty e^ -u^2 du = sqrt pi /2 ,",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p486.16",
+      "kind": "formula",
+      "page_pdf": 486,
+      "excerpt": "0 = C_1 + C_2.",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p486.17",
+      "kind": "paragraph",
+      "page_pdf": 486,
+      "excerpt": "Второе условие, при x = 0 , дает",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p486.18",
+      "kind": "formula",
+      "page_pdf": 486,
+      "excerpt": "w_1 = C_1 frac 2 sqrt pi int_0^0 e^ -u^2 du +",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p486.19",
+      "kind": "paragraph",
+      "page_pdf": 486,
+      "excerpt": "Из этих двух равенств имеем C_2 = w_1 , C_1 = -w_1",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p486.20",
+      "kind": "formula",
+      "page_pdf": 486,
+      "excerpt": "w(x, t) = w_1 left[ 1 - operatorname erf left( frac x",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p487.01",
+      "kind": "paragraph",
+      "page_pdf": 487,
+      "excerpt": "Чтобы найти распределение давления в потоке, необходимо проинтегрировать уравнение (23.35) по x",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p487.02",
+      "kind": "formula",
+      "page_pdf": 487,
+      "excerpt": "frac k mu int_0^x frac partial p partial x dx = w_1",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p487.03",
+      "kind": "paragraph",
+      "page_pdf": 487,
+      "excerpt": "Выполнив интегрирование, получаем",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p487.04",
+      "kind": "formula",
+      "page_pdf": 487,
+      "excerpt": "p(x, t) - p(0, t) = frac mu k w_1 x -",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p487.05",
+      "kind": "paragraph",
+      "page_pdf": 487,
+      "excerpt": "Последнее слагаемое в (23.36) интегрируется по частям",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p487.06",
+      "kind": "formula",
+      "page_pdf": 487,
+      "excerpt": "begin aligned frac mu k frac 2 sqrt pi w_1 int_0^x left(",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p487.07",
+      "kind": "paragraph",
+      "page_pdf": 487,
+      "excerpt": "Поэтому уравнение (23.36) можно записать в виде",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p487.08",
+      "kind": "formula",
+      "page_pdf": 487,
+      "excerpt": "p(x, t) - p(0, t) = frac mu w_1 k x left[",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p487.09",
+      "kind": "paragraph",
+      "page_pdf": 487,
+      "excerpt": "С учетом того, что p(0, t) есть давление на галерее, т.е. p(0,",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p487.10",
+      "kind": "formula",
+      "page_pdf": 487,
+      "excerpt": "p(x, t) = p_ text r + frac mu w_1 k left[",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p487.11",
+      "kind": "paragraph",
+      "page_pdf": 487,
+      "excerpt": "Чтобы найти закон изменения давления на галерее p_ text r (t) ,",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p488.01",
+      "kind": "formula",
+      "page_pdf": 488,
+      "excerpt": "p_ mathrm r (t) = p_ mathrm k - frac 2 mu",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p488.02",
+      "kind": "paragraph",
+      "page_pdf": 488,
+      "excerpt": "или",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p488.03",
+      "kind": "formula",
+      "page_pdf": 488,
+      "excerpt": "p_ mathrm r (t) = p_ mathrm k - frac Q mu",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p488.04",
+      "kind": "paragraph",
+      "page_pdf": 488,
+      "excerpt": "Нетрудно видеть, что решение (23.39) при очень больших значениях времени теряет физический",
+      "node_ids": [
+        "basniev_gl23-24.linear_parallel_flows"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p488.05",
+      "kind": "heading",
+      "page_pdf": 488,
+      "excerpt": "5.2. Плоскорадиальный фильтрационный поток упругой жидкости. Основная формула теории упругого режима фильтрации",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p488.06",
+      "kind": "paragraph",
+      "page_pdf": 488,
+      "excerpt": "Пусть в неограниченном горизонтальном пласте постоянной толщины h имеется добывающая скважина «нулевого»",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p488.07",
+      "kind": "paragraph",
+      "page_pdf": 488,
+      "excerpt": "Распределение давления в пласте (в любой его точке в любой момент времени)",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p488.08",
+      "kind": "formula",
+      "page_pdf": 488,
+      "excerpt": "frac partial p partial t = kappa left( frac partial^2 p partial",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p488.09",
+      "kind": "paragraph",
+      "page_pdf": 488,
+      "excerpt": "Начальные и граничные условия задачи следующие:",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p488.10",
+      "kind": "formula",
+      "page_pdf": 488,
+      "excerpt": "p(r, t) = p_ mathrm k quad text при t = 0,",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p488.11",
+      "kind": "formula",
+      "page_pdf": 488,
+      "excerpt": "p(r, t) = p_ mathrm k quad text при t > 0",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p488.12",
+      "kind": "formula",
+      "page_pdf": 488,
+      "excerpt": "Q = frac 2 pi kh mu left( r frac partial p",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p488.13",
+      "kind": "paragraph",
+      "page_pdf": 488,
+      "excerpt": "Первое условие означает, что до момента времени t = 0 во всем",
+      "node_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p489.01",
+      "kind": "paragraph",
+      "page_pdf": 489,
+      "excerpt": "Последнее условие запишем в виде",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p489.02",
+      "kind": "formula",
+      "page_pdf": 489,
+      "excerpt": "left( r frac partial p partial r right)_ r=0 = frac Q_0",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p489.03",
+      "kind": "paragraph",
+      "page_pdf": 489,
+      "excerpt": "Так же, как в предыдущем случае, проведем анализ размерностей. Искомое распределение давления",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p489.04",
+      "kind": "formula",
+      "page_pdf": 489,
+      "excerpt": "[r] = L, [t] = T, [ kappa] = L^2 T^ -1",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p489.05",
+      "kind": "paragraph",
+      "page_pdf": 489,
+      "excerpt": "где [p] – размерность давления. Из этого следует, что давление, приведенное к",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p489.06",
+      "kind": "formula",
+      "page_pdf": 489,
+      "excerpt": "P = f left( xi, frac Q_0 mu 2 pi k h",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p489.07",
+      "kind": "paragraph",
+      "page_pdf": 489,
+      "excerpt": "Таким образом, задача автомодельна, и уравнение (23.40) можно свести к обыкновенному дифференциальному",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p489.08",
+      "kind": "formula",
+      "page_pdf": 489,
+      "excerpt": "frac partial P partial t = - frac dP d xi frac",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p489.09",
+      "kind": "paragraph",
+      "page_pdf": 489,
+      "excerpt": "Подставив полученные выражения в уравнение (23.40), получим обыкновенное дифференциальное уравнение",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p489.10",
+      "kind": "formula",
+      "page_pdf": 489,
+      "excerpt": "frac d^2 P d xi^2 + left( frac 1 xi + 2",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p489.11",
+      "kind": "paragraph",
+      "page_pdf": 489,
+      "excerpt": "которое нужно проинтегрировать при условиях, полученных из (23.41) преобразованием к безразмерному виду,",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p489.12",
+      "kind": "formula",
+      "page_pdf": 489,
+      "excerpt": "P( xi) = 1 quad text при xi to infty,",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p489.13",
+      "kind": "formula",
+      "page_pdf": 489,
+      "excerpt": "left( xi frac dP d xi right)_ xi=0 = frac Q_0 mu",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p489.14",
+      "kind": "paragraph",
+      "page_pdf": 489,
+      "excerpt": "Воспользуемся подстановкой",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p489.15",
+      "kind": "formula",
+      "page_pdf": 489,
+      "excerpt": "frac dP d xi = v",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p489.16",
+      "kind": "paragraph",
+      "page_pdf": 489,
+      "excerpt": "и из уравнения (23.44) получим или",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p489.17",
+      "kind": "formula",
+      "page_pdf": 489,
+      "excerpt": "frac dv d xi + left( frac 1 xi + 2 xi",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p490.01",
+      "kind": "formula",
+      "page_pdf": 490,
+      "excerpt": "frac d xi xi + frac dv v = -2 xi d",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p490.02",
+      "kind": "paragraph",
+      "page_pdf": 490,
+      "excerpt": "Проинтегрировав (23.46), получим",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p490.03",
+      "kind": "formula",
+      "page_pdf": 490,
+      "excerpt": "ln xi + ln v = - xi^2 + ln C_1, quad",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p490.04",
+      "kind": "paragraph",
+      "page_pdf": 490,
+      "excerpt": "где C_1 – постоянная интегрирования.",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p490.05",
+      "kind": "paragraph",
+      "page_pdf": 490,
+      "excerpt": "Потенцируя (23.47), найдем:",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p490.06",
+      "kind": "formula",
+      "page_pdf": 490,
+      "excerpt": "v = frac dP d xi = C_1 frac e^ - xi^2",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p490.07",
+      "kind": "paragraph",
+      "page_pdf": 490,
+      "excerpt": "Проинтегрируем (23.48) в пределах от xi до бесконечности, учтя первое из условий",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p490.08",
+      "kind": "formula",
+      "page_pdf": 490,
+      "excerpt": "P( xi) = -C_1 int_ xi ^ infty frac e^ - xi^2",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p490.09",
+      "kind": "paragraph",
+      "page_pdf": 490,
+      "excerpt": "Умножая равенство (23.49) на xi , устремляя xi to 0 и используя",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p490.10",
+      "kind": "formula",
+      "page_pdf": 490,
+      "excerpt": "C_1 = frac Q_0 mu 2 pi k h p_ kappa .",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p490.11",
+      "kind": "paragraph",
+      "page_pdf": 490,
+      "excerpt": "Тогда (23.49) преобразуется к виду",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p490.12",
+      "kind": "formula",
+      "page_pdf": 490,
+      "excerpt": "P( xi) = 1 - frac Q_0 mu 2 pi k h",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p490.13",
+      "kind": "paragraph",
+      "page_pdf": 490,
+      "excerpt": "Интеграл в последней формуле легко свести к табличному подстановкой",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p490.14",
+      "kind": "formula",
+      "page_pdf": 490,
+      "excerpt": "u = xi^2 = frac r^2 4 kappa t , quad frac",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p490.15",
+      "kind": "paragraph",
+      "page_pdf": 490,
+      "excerpt": "Перейдя также от безразмерного давления P к размерному p = P p_",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p490.16",
+      "kind": "formula",
+      "page_pdf": 490,
+      "excerpt": "p(r, t) = p_ kappa - frac Q_0 mu 2 pi k",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p490.17",
+      "kind": "paragraph",
+      "page_pdf": 490,
+      "excerpt": "Интеграл в формуле (23.51) называется интегральной показательной функцией, которая табулирована и имеет",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p490.18",
+      "kind": "formula",
+      "page_pdf": 490,
+      "excerpt": "- text Ei left( - frac r^2 4 kappa t right) =",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p491.01",
+      "kind": "paragraph",
+      "page_pdf": 491,
+      "excerpt": "Таким образом, давление в любой точке плоскорадиального потока в условиях упругого режима",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p491.02",
+      "kind": "formula",
+      "page_pdf": 491,
+      "excerpt": "p(r, t) = p_ kappa - frac Q_0 mu 4 pi k",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p491.03",
+      "kind": "paragraph",
+      "page_pdf": 491,
+      "excerpt": "Формула (23.52) получила название основной формулы теории упругого режима фильтрации. Она имеет",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p491.04",
+      "kind": "paragraph",
+      "page_pdf": 491,
+      "excerpt": "Интегральную показательную функцию можно представить в виде ряда",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p491.05",
+      "kind": "formula",
+      "page_pdf": 491,
+      "excerpt": "- text Ei (- x) = ln frac 1 x - gamma",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p491.06",
+      "kind": "paragraph",
+      "page_pdf": 491,
+      "excerpt": "который сходится при всех значениях x ( 0 < x < infty",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p491.07",
+      "kind": "paragraph",
+      "page_pdf": 491,
+      "excerpt": "При изменении аргумента x от 0 до infty функция - text Ei",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p491.08",
+      "kind": "formula",
+      "page_pdf": 491,
+      "excerpt": "- text Ei (- x) = ln frac 1 x - 0,5772.",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p491.09",
+      "kind": "paragraph",
+      "page_pdf": 491,
+      "excerpt": "При этом погрешность не превосходит:",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p491.10",
+      "kind": "formula",
+      "page_pdf": 491,
+      "excerpt": "0,25 %, quad text если x = frac r^2 4 kappa t",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p491.11",
+      "kind": "formula",
+      "page_pdf": 491,
+      "excerpt": "5,7 %, quad text если x leq 0,1;",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p491.12",
+      "kind": "formula",
+      "page_pdf": 491,
+      "excerpt": "9,7 %, quad text если x leq 0,14.",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p491.13",
+      "kind": "paragraph",
+      "page_pdf": 491,
+      "excerpt": "Следовательно, для значений r^2/(4 kappa t) leq 1 давление можно определять по",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p491.14",
+      "kind": "formula",
+      "page_pdf": 491,
+      "excerpt": "p(r, t) = p_ kappa - frac Q_0 mu 4 pi k",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p491.15",
+      "kind": "figure",
+      "page_pdf": 491,
+      "excerpt": "Рис. 23.3. График интегральной показательной функции",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p492.01",
+      "kind": "paragraph",
+      "page_pdf": 492,
+      "excerpt": "Из (23.52) находим, что расход жидкости через любую цилиндрическую поверхность радиусом r",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p492.02",
+      "kind": "formula",
+      "page_pdf": 492,
+      "excerpt": "Q(r, t) = frac k mu frac partial p partial r 2",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p492.03",
+      "kind": "formula",
+      "page_pdf": 492,
+      "excerpt": "w = frac Q_0 2 pi rh e^ -r^2/4 kappa t .",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p492.04",
+      "kind": "paragraph",
+      "page_pdf": 492,
+      "excerpt": "Из последней формулы следует, что стационарная скорость w_ text стац = Q_0/(2",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p492.05",
+      "kind": "paragraph",
+      "page_pdf": 492,
+      "excerpt": "При теоретическом исследовании неустановившихся процессов перераспределения пластового давления удобно пользоваться безразмерными параметрами",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p492.06",
+      "kind": "formula",
+      "page_pdf": 492,
+      "excerpt": "f_0 = frac kappa t r_c^2 , quad F_0 = frac kappa",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p492.07",
+      "kind": "paragraph",
+      "page_pdf": 492,
+      "excerpt": "В зависимости от специфики решаемой задачи удобно пользоваться тем или другим из",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p492.08",
+      "kind": "paragraph",
+      "page_pdf": 492,
+      "excerpt": "Строго говоря, основная формула теории упругого режима (23.52) справедлива лишь для случая",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p492.09",
+      "kind": "paragraph",
+      "page_pdf": 492,
+      "excerpt": "Для оценки влияния конечности радиуса возмущающей скважины r_c на результаты расчетов давления",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p492.10",
+      "kind": "paragraph",
+      "page_pdf": 492,
+      "excerpt": "Оценим практическое значение этой погрешности. Допустим, что kappa = 1 м ^2",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p492.11",
+      "kind": "formula",
+      "page_pdf": 492,
+      "excerpt": "t = f_0 frac r_c^2 kappa = 100 frac 0,1^2 1 =",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p493.01",
+      "kind": "paragraph",
+      "page_pdf": 493,
+      "excerpt": "Для расчетов пластового давления в любой точке открытого кругового пласта в случае",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p493.02",
+      "kind": "paragraph",
+      "page_pdf": 493,
+      "excerpt": "В дополнение к указанным оценкам можно еще отметить, что различие в величинах",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p493.03",
+      "kind": "paragraph",
+      "page_pdf": 493,
+      "excerpt": "Решения дифференциального уравнения Фурье (23.40) для различных случаев фильтрации упругой жидкости в",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p493.04",
+      "kind": "paragraph",
+      "page_pdf": 493,
+      "excerpt": "В заключение покажем, как ведут себя пьезометрические кривые вблизи скважины, которая эксплуатируется",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p493.05",
+      "kind": "formula",
+      "page_pdf": 493,
+      "excerpt": "partial p / partial r = Q_0 mu / (2 pi k",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p493.06",
+      "kind": "figure",
+      "page_pdf": 493,
+      "excerpt": "Рис. 23.4. Пьезометрические кривые при пуске скважины с постоянным дебитом Q₀; rc",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p493.07",
+      "kind": "paragraph",
+      "page_pdf": 493,
+      "excerpt": "Из этой формулы следует, что градиент давления для значений r, удовлетворяющих неравенству",
+      "node_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p494.01",
+      "kind": "heading",
+      "page_pdf": 494,
+      "excerpt": "Глава XXIV",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p494.02",
+      "kind": "heading",
+      "page_pdf": 494,
+      "excerpt": "ПРИБЛИЖЕННЫЕ МЕТОДЫ РЕШЕНИЯ ЗАДАЧ ТЕОРИИ УПРУГОГО РЕЖИМА",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p494.03",
+      "kind": "paragraph",
+      "page_pdf": 494,
+      "excerpt": "Как было показано в предыдущей главе, решения краевых задач неустановившейся фильтрации упругой",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p494.04",
+      "kind": "heading",
+      "page_pdf": 494,
+      "excerpt": "§1. Метод последовательной смены стационарных состояний",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p494.05",
+      "kind": "paragraph",
+      "page_pdf": 494,
+      "excerpt": "Одним из наиболее простых по своей идее приближенных методов решения задач теории",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p494.06",
+      "kind": "paragraph",
+      "page_pdf": 494,
+      "excerpt": "В каждый момент времени весь пласт условно разделяется на две области –",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p495.01",
+      "kind": "paragraph",
+      "page_pdf": 495,
+      "excerpt": "Разделение фильтрационного потока на две области – возмущенную и невозмущенную – вызывает",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p495.02",
+      "kind": "paragraph",
+      "page_pdf": 495,
+      "excerpt": "Рассмотрим теперь расчет неустановившихся одномерных потоков упругой жидкости при помощи метода ПССС.",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p495.03",
+      "kind": "paragraph",
+      "page_pdf": 495,
+      "excerpt": "Прямолинейно-параллельный неустановившийся фильтрационный поток упругой жидкости.",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p495.04",
+      "kind": "paragraph",
+      "page_pdf": 495,
+      "excerpt": "Случай 1. Приток к галерее, на которой поддерживается постоянный дебит Q .",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p495.05",
+      "kind": "paragraph",
+      "page_pdf": 495,
+      "excerpt": "К моменту времени t после пуска галереи граница возмущенной области распространится на",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p495.06",
+      "kind": "paragraph",
+      "page_pdf": 495,
+      "excerpt": "в этой области считается установившимся (см. гл. XX, §2), т.е. описывается линейной",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p495.07",
+      "kind": "formula",
+      "page_pdf": 495,
+      "excerpt": "p(x, t) = p_к - frac Q mu kBh (l(t) - x),",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p495.08",
+      "kind": "paragraph",
+      "page_pdf": 495,
+      "excerpt": "Требуется найти закон перемещения во времени внешней границы возмущенной области l(t) .",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p495.09",
+      "kind": "paragraph",
+      "page_pdf": 495,
+      "excerpt": "Воспользуемся соотношением (23.7), которое выражает условие того, что количество добытой продукции за",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p495.10",
+      "kind": "formula",
+      "page_pdf": 495,
+      "excerpt": "Qdt = beta^ d[V(t) Delta p], quad (24.2)",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p495.11",
+      "kind": "paragraph",
+      "page_pdf": 495,
+      "excerpt": "где V(t) – объем возмущенной зоны пласта,",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p495.12",
+      "kind": "formula",
+      "page_pdf": 495,
+      "excerpt": "V(t) = Bh l(t); quad (24.3)",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p495.13",
+      "kind": "formula",
+      "page_pdf": 495,
+      "excerpt": "Delta p = p_к - bar p = p_к - frac p_к",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p495.14",
+      "kind": "figure",
+      "page_pdf": 495,
+      "excerpt": "Рис. 24.1. Кривые распределения давления в прямолинейно-параллельном потоке по методу ПССС",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p496.01",
+      "kind": "paragraph",
+      "page_pdf": 496,
+      "excerpt": "Приняв во внимание, что p(x, t) = p_ mathrm r (t) при",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p496.02",
+      "kind": "formula",
+      "page_pdf": 496,
+      "excerpt": "Q = frac k mu frac p_ mathrm k - p_ mathrm",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p496.03",
+      "kind": "paragraph",
+      "page_pdf": 496,
+      "excerpt": "откуда",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p496.04",
+      "kind": "formula",
+      "page_pdf": 496,
+      "excerpt": "frac Q mu l(t) 2kBh = frac p_ mathrm k - p_",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p496.05",
+      "kind": "paragraph",
+      "page_pdf": 496,
+      "excerpt": "Подставив равенства (24.3)–(24.5) в соотношение (24.2), получим",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p496.06",
+      "kind": "formula",
+      "page_pdf": 496,
+      "excerpt": "Q = beta^ frac d dt left( Bhl frac Q mu l",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p496.07",
+      "kind": "paragraph",
+      "page_pdf": 496,
+      "excerpt": "или, так как Q = text const ,",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p496.08",
+      "kind": "formula",
+      "page_pdf": 496,
+      "excerpt": "2Q = frac beta^ mu k Q frac d dt (l^2),",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p496.09",
+      "kind": "paragraph",
+      "page_pdf": 496,
+      "excerpt": "откуда следует",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p496.10",
+      "kind": "formula",
+      "page_pdf": 496,
+      "excerpt": "2 kappa dt = dl^2 quad ( kappa = k/( mu beta^",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p496.11",
+      "kind": "paragraph",
+      "page_pdf": 496,
+      "excerpt": "Проинтегрируем полученное соотношение и найдем",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p496.12",
+      "kind": "formula",
+      "page_pdf": 496,
+      "excerpt": "l(t) = sqrt 2 kappa t . quad (24.6)",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p496.13",
+      "kind": "paragraph",
+      "page_pdf": 496,
+      "excerpt": "Следовательно, формула для распределения давления в пласте (24.1) будет иметь вид",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p496.14",
+      "kind": "formula",
+      "page_pdf": 496,
+      "excerpt": "p(x, t) = p_ mathrm k - frac Q mu kBh (",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p496.15",
+      "kind": "formula",
+      "page_pdf": 496,
+      "excerpt": "p(x, t) = p_ mathrm k , quad x > sqrt 2",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p496.16",
+      "kind": "paragraph",
+      "page_pdf": 496,
+      "excerpt": "Значения депрессии p_ mathrm k - p_ mathrm r по приближенной формуле",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p496.17",
+      "kind": "paragraph",
+      "page_pdf": 496,
+      "excerpt": "Случай 2. Приток к галерее, на которой поддерживается постоянное забойное давление p_",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p496.18",
+      "kind": "paragraph",
+      "page_pdf": 496,
+      "excerpt": "Дебит галереи в условиях установившегося движения, очевидно, можно выразить следующим образом:",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p496.19",
+      "kind": "formula",
+      "page_pdf": 496,
+      "excerpt": "Q(t) = frac k(p_ mathrm k - p_ mathrm r ) mu",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p497.01",
+      "kind": "paragraph",
+      "page_pdf": 497,
+      "excerpt": "Задача решается аналогично предыдущему случаю с той лишь разницей, что в уравнение",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p497.02",
+      "kind": "formula",
+      "page_pdf": 497,
+      "excerpt": "V(t) = B h l(t),",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p497.03",
+      "kind": "formula",
+      "page_pdf": 497,
+      "excerpt": "Delta p = p_ kappa - bar p = p_ kappa -",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p497.04",
+      "kind": "formula",
+      "page_pdf": 497,
+      "excerpt": "Q(t) = frac k(p_ kappa - p_ tau) mu l(t) Bh.",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p497.05",
+      "kind": "paragraph",
+      "page_pdf": 497,
+      "excerpt": "Таким образом, в результате получим",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p497.06",
+      "kind": "formula",
+      "page_pdf": 497,
+      "excerpt": "frac k(p_ kappa - p_ tau) mu l(t) Bh dt = beta^",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p497.07",
+      "kind": "paragraph",
+      "page_pdf": 497,
+      "excerpt": "Проведя арифметические преобразования в этом соотношении, и выполнив интегрирование, найдем закон движения",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p497.08",
+      "kind": "formula",
+      "page_pdf": 497,
+      "excerpt": "l(t) = 2 sqrt kappa t .",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p497.09",
+      "kind": "paragraph",
+      "page_pdf": 497,
+      "excerpt": "Следовательно, распределение давления в возмущенной зоне пласта определяется соотношением",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p497.10",
+      "kind": "formula",
+      "page_pdf": 497,
+      "excerpt": "p(x, t) = p_ kappa - (p_ kappa - p_ tau) left(",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p497.11",
+      "kind": "formula",
+      "page_pdf": 497,
+      "excerpt": "p(x, t) = p_ kappa, quad x > 2 sqrt kappa t",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p497.12",
+      "kind": "paragraph",
+      "page_pdf": 497,
+      "excerpt": "а дебит галереи – соотношением",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p497.13",
+      "kind": "formula",
+      "page_pdf": 497,
+      "excerpt": "Q(t) = frac k(p_ kappa - p_ tau) mu 2 sqrt kappa",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p497.14",
+      "kind": "paragraph",
+      "page_pdf": 497,
+      "excerpt": "Погрешность расчета дебита галереи по приближенной формуле (24.8) по сравнению с расчетами",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p497.15",
+      "kind": "paragraph",
+      "page_pdf": 497,
+      "excerpt": "Плоскорадиальный неустановившийся фильтрационный поток упругой жидкости.",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p497.16",
+      "kind": "paragraph",
+      "page_pdf": 497,
+      "excerpt": "Случай 1. Приток к скважине, на которой поддерживается постоянный дебит Q .",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p497.17",
+      "kind": "paragraph",
+      "page_pdf": 497,
+      "excerpt": "В соответствии с методом ПССС принимаем, что через время t после пуска",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p498.01",
+      "kind": "formula",
+      "page_pdf": 498,
+      "excerpt": "p(r, t) = p_ kappa - frac Q mu 2 pi kh",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p498.02",
+      "kind": "figure",
+      "page_pdf": 498,
+      "excerpt": "Рис. 24.2. Кривые распределения давления в плоскорадиальном потоке в разные моменты времени",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p498.03",
+      "kind": "paragraph",
+      "page_pdf": 498,
+      "excerpt": "В остальной части пласта сохраняется начальное пластовое давление p_ kappa .",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p498.04",
+      "kind": "paragraph",
+      "page_pdf": 498,
+      "excerpt": "Требуется найти закон движения границы возмущенной области R(t) .",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p498.05",
+      "kind": "paragraph",
+      "page_pdf": 498,
+      "excerpt": "Кривые распределения давления в разные моменты времени в таком потоке приведены на",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p498.06",
+      "kind": "formula",
+      "page_pdf": 498,
+      "excerpt": "Q = frac 2 pi kh(p_ kappa - p_c(t)) mu ln(R(t)/r_c) .",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p498.07",
+      "kind": "paragraph",
+      "page_pdf": 498,
+      "excerpt": "Размеры возмущенной области найдем из уравнения материального баланса (24.2) при",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p498.08",
+      "kind": "formula",
+      "page_pdf": 498,
+      "excerpt": "V(t) = pi(R^2(t) - r_c^2)h, quad Delta p = p_ kappa -",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p498.09",
+      "kind": "paragraph",
+      "page_pdf": 498,
+      "excerpt": "Средневзвешенное пластовое давление bar p в установившемся плоскорадиальном потоке (см. гл. XX,",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p498.10",
+      "kind": "formula",
+      "page_pdf": 498,
+      "excerpt": "bar p = p_ kappa - frac p_ kappa - p_c 2",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p498.11",
+      "kind": "paragraph",
+      "page_pdf": 498,
+      "excerpt": "откуда, учитывая (24.11), находим",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p498.12",
+      "kind": "formula",
+      "page_pdf": 498,
+      "excerpt": "Delta p = p_ kappa - bar p = frac p_ kappa",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p498.13",
+      "kind": "paragraph",
+      "page_pdf": 498,
+      "excerpt": "Закон движения границы возмущенной области R(t) найдем, подставив выражения (24.12) и (24.13)",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p498.14",
+      "kind": "formula",
+      "page_pdf": 498,
+      "excerpt": "4 kappa dt = d(R^2(t) - r_c^2),",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p498.15",
+      "kind": "paragraph",
+      "page_pdf": 498,
+      "excerpt": "откуда после интегрирования в пределах от 0 до t и от r_c",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p498.16",
+      "kind": "formula",
+      "page_pdf": 498,
+      "excerpt": "R(t) = sqrt r_c^2 + 4 kappa t . quad (24.14)",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p499.01",
+      "kind": "paragraph",
+      "page_pdf": 499,
+      "excerpt": "Тогда из равенства (24.10) можно определить давление в любой точке пласта в",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p499.02",
+      "kind": "formula",
+      "page_pdf": 499,
+      "excerpt": "p(r, t) = p_ kappa - frac Q mu 2 pi kh",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p499.03",
+      "kind": "formula",
+      "page_pdf": 499,
+      "excerpt": "p(r, t) = p_ kappa, quad r > sqrt r_c^2 + 4",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p499.04",
+      "kind": "paragraph",
+      "page_pdf": 499,
+      "excerpt": "Депрессия в момент времени t :",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p499.05",
+      "kind": "formula",
+      "page_pdf": 499,
+      "excerpt": "Delta p_c equiv p_ kappa - p_c(t) = frac Q mu 2",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p499.06",
+      "kind": "paragraph",
+      "page_pdf": 499,
+      "excerpt": "Сравнивая (24.16) с депрессией, определенной по точной формуле (23.52), можно убедиться, что",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p499.07",
+      "kind": "paragraph",
+      "page_pdf": 499,
+      "excerpt": "Случай 2. Приток к скважине, на которой поддерживается постоянное давление p_c =",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p499.08",
+      "kind": "paragraph",
+      "page_pdf": 499,
+      "excerpt": "Дебит скважины определяется по формуле Дюпюи (24.11) при p_c = text const",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p499.09",
+      "kind": "paragraph",
+      "page_pdf": 499,
+      "excerpt": "Сравнение с результатами точных расчетов, выполненных К.А.Царевичем и И.Ф.Курановым, показывает, что погрешность",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p499.10",
+      "kind": "paragraph",
+      "page_pdf": 499,
+      "excerpt": "Заметим, что как в случае линейной, так и радиальной фильтрации в точке",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p499.11",
+      "kind": "figure",
+      "page_pdf": 499,
+      "excerpt": "Рис. 24.3. Зависимость безразмерного радиуса возмущенной области R(t)/r_c от безразмерного времени f_0",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    },
+    {
+      "ext": {},
+      "unit_id": "p500.01",
+      "kind": "paragraph",
+      "page_pdf": 500,
+      "excerpt": "Распределение давления в области фильтрации, получаемое по методу ПССС, является довольно грубым",
+      "node_ids": [
+        "basniev_gl23-24.approximate_methods_psss"
+      ],
+      "reason": null
+    }
+  ]
+}

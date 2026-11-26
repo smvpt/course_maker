@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"gap\",\"kind\":\"data\",\"claim_ids\":[\"basniev_gl23-24.math_model_elastic_filtration#c4\"],\"prompt\":\"Для вывода основных дифференциальных уравнений фильтрации упругой жидкости используются уравнение неразрывности потока, закон Дарси и уравнения {{1}}.\",\"options\":[],\"gap_answers\":[\"состояния\"],\"calc\":null,\"explanation\":\"Модель упругой фильтрации объединяет уравнение неразрывности, закон Дарси и уравнения состояния среды и жидкости.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 6583,
+ "tokens_out": 130,
+ "money_usd": 0.0022999,
+ "attempts": 1
+}

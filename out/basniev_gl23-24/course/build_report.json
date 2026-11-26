@@ -1,0 +1,192 @@
+{
+  "chapter": "basniev_gl23-24",
+  "nodes": 6,
+  "tasks": 16,
+  "step_text_nodes": 4,
+  "interactive_steps": 3,
+  "guess_steps": 0,
+  "summary": {
+    "text_model_steps": 4,
+    "steps": 6,
+    "tasks": 16,
+    "tasks_dropped": 2,
+    "fallback_steps": 2,
+    "model": "доступна",
+    "line": "ИТОГ СБОРКИ: текст модели: 4 из 6 шагов · заданий: 16 (выброшено 2) · fallback: 2 · модель: доступна"
+  },
+  "warnings": [
+    {
+      "code": "no_parts",
+      "message": "ни у одного узла нет ext[\"core\"][\"part\"]: вся глава собрана одной частью «Глава»"
+    },
+    {
+      "code": "step_text_fallback",
+      "message": "текст шага basniev_gl23-24.math_model_elastic_filtration не прошёл проверки, шаг собран из полей слоя: суть («main») должна быть 2–3 фразы, сейчас 4",
+      "node": "basniev_gl23-24.math_model_elastic_filtration",
+      "errors": [
+        "суть («main») должна быть 2–3 фразы, сейчас 4"
+      ]
+    },
+    {
+      "code": "step_text_fallback",
+      "message": "текст шага basniev_gl23-24.approximate_methods_psss не прошёл проверки, шаг собран из полей слоя: абзац 12 (analogy): фраза из 21 слов (максимум 20): «Здесь допущение основано на реальном физическом разделении масштабов времени распространения упругой волны и емкостных параметров пласта, а не на численных трюках.»",
+      "node": "basniev_gl23-24.approximate_methods_psss",
+      "errors": [
+        "абзац 12 (analogy): фраза из 21 слов (максимум 20): «Здесь допущение основано на реальном физическом разделении масштабов времени распространения упругой волны и емкостных параметров пласта, а не на численных трюках.»",
+        "суть («main») должна быть 2–3 фразы, сейчас 1"
+      ]
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг basniev_gl23-24.elastic_regime_intro: термин 'упругий режим' не выделен [[…]] ни в одном абзаце",
+      "node": "basniev_gl23-24.elastic_regime_intro"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг basniev_gl23-24.elastic_regime_intro: термин 'неустановившийся процесс' не выделен [[…]] ни в одном абзаце",
+      "node": "basniev_gl23-24.elastic_regime_intro"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг basniev_gl23-24.elastic_regime_intro: термин 'энергия упругой деформации' не выделен [[…]] ни в одном абзаце",
+      "node": "basniev_gl23-24.elastic_regime_intro"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг basniev_gl23-24.elastic_regime_intro: термин 'упруговодонапорный режим' не выделен [[…]] ни в одном абзаце",
+      "node": "basniev_gl23-24.elastic_regime_intro"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг basniev_gl23-24.elastic_regime_intro: термин 'замкнуто-упругий режим' не выделен [[…]] ни в одном абзаце",
+      "node": "basniev_gl23-24.elastic_regime_intro"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг basniev_gl23-24.elastic_regime_intro: термин 'коэффициент проницаемости' не выделен [[…]] ни в одном абзаце",
+      "node": "basniev_gl23-24.elastic_regime_intro"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг basniev_gl23-24.elastic_regime_intro: термин 'вязкость жидкости' не выделен [[…]] ни в одном абзаце",
+      "node": "basniev_gl23-24.elastic_regime_intro"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг basniev_gl23-24.elastic_regime_intro: термин 'коэффициент объемной упругой деформации жидкости' не выделен [[…]] ни в одном абзаце",
+      "node": "basniev_gl23-24.elastic_regime_intro"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг basniev_gl23-24.elastic_regime_intro: термин 'коэффициент объемной упругости твердого скелета пласта' не выделен [[…]] ни в одном абзаце",
+      "node": "basniev_gl23-24.elastic_regime_intro"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг basniev_gl23-24.elastic_regime_intro: термин 'неустановившиеся процессы' не выделен [[…]] ни в одном абзаце",
+      "node": "basniev_gl23-24.elastic_regime_intro"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг basniev_gl23-24.elastic_reserve_calculation: термин 'средневзвешенное пластовое давление' не выделен [[…]] ни в одном абзаце",
+      "node": "basniev_gl23-24.elastic_reserve_calculation"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг basniev_gl23-24.elastic_reserve_calculation: термин 'дифференциальное уравнение истощения нефтяной залежи' не выделен [[…]] ни в одном абзаце",
+      "node": "basniev_gl23-24.elastic_reserve_calculation"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг basniev_gl23-24.elastic_reserve_calculation: термин 'уравнение истощения нефтяной залежи' не выделен [[…]] ни в одном абзаце",
+      "node": "basniev_gl23-24.elastic_reserve_calculation"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг basniev_gl23-24.linear_parallel_flows: термин 'автомодельная переменная' не выделен [[…]] ни в одном абзаце",
+      "node": "basniev_gl23-24.linear_parallel_flows"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг basniev_gl23-24.linear_parallel_flows: термин 'интеграл вероятности (erf)' не выделен [[…]] ни в одном абзаце",
+      "node": "basniev_gl23-24.linear_parallel_flows"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг basniev_gl23-24.linear_parallel_flows: термин 'интеграл вероятности' не выделен [[…]] ни в одном абзаце",
+      "node": "basniev_gl23-24.linear_parallel_flows"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг basniev_gl23-24.radial_flows_and_basic_formula: термин 'интегральная показательная функция (-Ei)' не выделен [[…]] ни в одном абзаце",
+      "node": "basniev_gl23-24.radial_flows_and_basic_formula"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг basniev_gl23-24.radial_flows_and_basic_formula: термин 'основная формула теории упругого режима фильтрации' не выделен [[…]] ни в одном абзаце",
+      "node": "basniev_gl23-24.radial_flows_and_basic_formula"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг basniev_gl23-24.radial_flows_and_basic_formula: термин 'параметры Фурье' не выделен [[…]] ни в одном абзаце",
+      "node": "basniev_gl23-24.radial_flows_and_basic_formula"
+    },
+    {
+      "code": "missing_task_type",
+      "message": "нет заданий типов: calc",
+      "types": [
+        "calc"
+      ]
+    },
+    {
+      "code": "task_dropped",
+      "message": "задание 2 (calc) шага basniev_gl23-24.elastic_reserve_calculation выброшено: задание 2: значения m=0.2 нет в узле",
+      "node": "basniev_gl23-24.elastic_reserve_calculation",
+      "slot": 2,
+      "type": "calc",
+      "errors": [
+        "задание 2: значения m=0.2 нет в узле",
+        "задание 2: значения beta_w=0.001 нет в узле",
+        "задание 2: значения beta_c=0.0005 нет в узле",
+        "задание 2: числа ['0.0005', '0.001', '0.2', '1'] из условия нет в узле"
+      ]
+    },
+    {
+      "code": "task_dropped",
+      "message": "задание 1 (calc) шага basniev_gl23-24.linear_parallel_flows выброшено: задание 1: значения dp_dt=0.25 нет в узле",
+      "node": "basniev_gl23-24.linear_parallel_flows",
+      "slot": 1,
+      "type": "calc",
+      "errors": [
+        "задание 1: значения dp_dt=0.25 нет в узле",
+        "задание 1: значения d2p_dx2=0.05 нет в узле",
+        "задание 1: числа ['0.05', '0.25'] из условия нет в узле"
+      ]
+    },
+    {
+      "code": "interactive_no_data",
+      "message": "интерактив шага basniev_gl23-24.elastic_reserve_calculation не показан: модель ответила, что по формулам и числам узла шаблон distribution построить нельзя; модель ответила, что по формулам и числам узла шаблон dependence построить нельзя",
+      "node": "basniev_gl23-24.elastic_reserve_calculation",
+      "errors": [
+        "модель ответила, что по формулам и числам узла шаблон distribution построить нельзя; модель ответила, что по формулам и числам узла шаблон dependence построить нельзя"
+      ]
+    },
+    {
+      "code": "interactive_no_data",
+      "message": "интерактив шага basniev_gl23-24.math_model_elastic_filtration не показан: модель ответила, что из утверждений узла схему-исследование построить нельзя",
+      "node": "basniev_gl23-24.math_model_elastic_filtration",
+      "errors": [
+        "модель ответила, что из утверждений узла схему-исследование построить нельзя"
+      ]
+    },
+    {
+      "code": "interactive_no_data",
+      "message": "интерактив шага basniev_gl23-24.linear_parallel_flows не показан: модель ответила, что по формулам и числам узла шаблон profile построить нельзя; модель ответила, что по формулам и числам узла шаблон dependence построить нельзя",
+      "node": "basniev_gl23-24.linear_parallel_flows",
+      "errors": [
+        "модель ответила, что по формулам и числам узла шаблон profile построить нельзя; модель ответила, что по формулам и числам узла шаблон dependence построить нельзя"
+      ]
+    }
+  ],
+  "missing_scans": []
+}

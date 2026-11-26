@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"состояния\"],\"claim_id\":\"basniev_gl23-24.math_model_elastic_filtration#c4\",\"evidence\":\"уравнениями состояния пористой среды и насыщающей ее жидкости\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 861,
+ "tokens_out": 65,
+ "money_usd": 0.00042080000000000004,
+ "attempts": 1
+}

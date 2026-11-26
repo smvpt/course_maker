@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"calc\",\"kind\":\"recall\",\"claim_ids\":[\"basniev_gl23-24.elastic_reserve_calculation#c5\"],\"prompt\":\"Рассчитайте коэффициент упругоемкости пласта beta^* (в единицах 1/МПа), если пористость m равна 0.2, сжимаемость жидкости beta_ж равна 0.001 1/МПа, а сжимаемость скелета beta_с равна 0.0005 1/МПа. Используйте формулу beta^* = m * beta_ж + beta_с.\",\"options\":[],\"gap_answers\":[],\"calc\":{\"variables\":{\"m\":0.2,\"beta_ж\":0.001,\"beta_с\":0.0005},\"expression\":\"m * beta_ж + beta_с\",\"unit\":\"1/МПа\"},\"explanation\":\"Коэффициент упругоемкости равен сумме произведения пористости на сжимаемость жидкости и сжимаемости скелета.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 5700,
+ "tokens_out": 244,
+ "money_usd": 0.00232,
+ "attempts": 1
+}

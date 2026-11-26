@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"c\",\"d\"],\"claim_id\":\"basniev_gl23-24.linear_parallel_flows#c4\",\"evidence\":\"закон распределения давления в неустановившемся прямолинейно-параллельном фильтрационном потоке упругой жидкости имеет вид\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1127,
+ "tokens_out": 81,
+ "money_usd": 0.0005406,
+ "attempts": 1
+}

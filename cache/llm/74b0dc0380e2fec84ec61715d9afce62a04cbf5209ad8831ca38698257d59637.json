@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"gap\",\"kind\":\"recall\",\"claim_ids\":[\"basniev_gl23-24.radial_flows_and_basic_formula#c1\"],\"prompt\":\"В неограниченном горизонтальном пласте постоянной толщины при пуске скважины с постоянным объемным дебитом образуется неустановившийся плоскорадиальный поток {{1}}.\",\"options\":[],\"gap_answers\":[\"упругой жидкости\"],\"calc\":null,\"explanation\":\"При пуске скважины возникает неустановившийся плоскорадиальный поток упругой жидкости.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 6342,
+ "tokens_out": 136,
+ "money_usd": 0.0022426,
+ "attempts": 1
+}

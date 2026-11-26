@@ -1,0 +1,663 @@
+{
+  "ext": {
+    "course": {
+      "hashes": {
+        "basniev_gl23-24.elastic_regime_intro": "e93e226055f5a08e",
+        "basniev_gl23-24.elastic_reserve_calculation": "13b938350a4ebdec",
+        "basniev_gl23-24.math_model_elastic_filtration": "cf49371a12fde4b0",
+        "basniev_gl23-24.linear_parallel_flows": "7545909c49227142",
+        "basniev_gl23-24.radial_flows_and_basic_formula": "59ae415801b0ba76",
+        "basniev_gl23-24.approximate_methods_psss": "b0d694870292ef28"
+      },
+      "warnings": [
+        {
+          "code": "missing_task_type",
+          "message": "нет заданий типов: calc",
+          "types": [
+            "calc"
+          ]
+        }
+      ],
+      "dropped": [
+        {
+          "node": "basniev_gl23-24.elastic_reserve_calculation",
+          "slot": 2,
+          "type": "calc",
+          "errors": [
+            "задание 2: значения m=0.2 нет в узле",
+            "задание 2: значения beta_w=0.001 нет в узле",
+            "задание 2: значения beta_c=0.0005 нет в узле",
+            "задание 2: числа ['0.0005', '0.001', '0.2', '1'] из условия нет в узле"
+          ]
+        },
+        {
+          "node": "basniev_gl23-24.linear_parallel_flows",
+          "slot": 1,
+          "type": "calc",
+          "errors": [
+            "задание 1: значения dp_dt=0.25 нет в узле",
+            "задание 1: значения d2p_dx2=0.05 нет в узле",
+            "задание 1: числа ['0.05', '0.25'] из условия нет в узле"
+          ]
+        }
+      ],
+      "node_warnings": []
+    }
+  },
+  "chapter": "basniev_gl23-24",
+  "tasks": [
+    {
+      "ext": {},
+      "id": "basniev_gl23-24.elastic_regime_intro.t1",
+      "type": "single",
+      "step_id": "basniev_gl23-24.elastic_regime_intro",
+      "claim_ids": [
+        "basniev_gl23-24.elastic_regime_intro#c3"
+      ],
+      "prompt": "Какая основная форма энергии обеспечивает приток жидкости к скважинам при неустановившихся процессах в упругом режиме?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Энергия упругой деформации жидкостей и твердого скелета пласта",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Гравитационная энергия столба жидкости в скважине",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Кинетическая энергия движущегося потока нефти",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Тепловая энергия недр глубоких горизонтов",
+          "misconception": null
+        }
+      ],
+      "answer": "a",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Основным источником энергии при таких процессах является упругая деформация флюида и скелета.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "basniev_gl23-24.elastic_regime_intro.t2",
+      "type": "multiple",
+      "step_id": "basniev_gl23-24.elastic_regime_intro",
+      "claim_ids": [
+        "basniev_gl23-24.elastic_regime_intro#c11"
+      ],
+      "prompt": "От каких параметров зависит скорость протекания неустановившихся процессов в пласте?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Географическая глубина залегания залежи",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Коэффициенты объемной упругости жидкости и скелета",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Вязкость насыщающей жидкости",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Коэффициент проницаемости пласта",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "b",
+        "c",
+        "d"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Процессы идут быстрее при высокой проницаемости и медленнее при росте вязкости и коэффициентов упругости.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "basniev_gl23-24.elastic_regime_intro.t3",
+      "type": "gap",
+      "step_id": "basniev_gl23-24.elastic_regime_intro",
+      "claim_ids": [
+        "basniev_gl23-24.elastic_regime_intro#c4"
+      ],
+      "prompt": "Математическая модель упругого режима учитывает проявление упругих сил в однофазном фильтрационном потоке, когда давление в любой точке выше давления {{1}} жидкости газом.",
+      "options": [],
+      "answer": [
+        "насыщения"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Модель применима в однофазном потоке строго выше давления насыщения газом.",
+      "kind": "transfer"
+    },
+    {
+      "ext": {},
+      "id": "basniev_gl23-24.elastic_reserve_calculation.t1",
+      "type": "order",
+      "step_id": "basniev_gl23-24.elastic_reserve_calculation",
+      "claim_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation#c1",
+        "basniev_gl23-24.elastic_reserve_calculation#c5",
+        "basniev_gl23-24.elastic_reserve_calculation#c7"
+      ],
+      "prompt": "Расположите этапы формирования и описания упругого режима залежи в правильной последовательности:",
+      "options": [
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "Определение суммарного эффекта через коэффициент упругоемкости пласта",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "Снижение пластового давления и проявление объемной упругости скелета и флюидов",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "Вывод дифференциального уравнения истощения нефтяной залежи для расчета отбора",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Сначала падает давление и проявляется упругость, затем эффект оценивается упругоемкостью, после чего строится уравнение истощения.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "basniev_gl23-24.elastic_reserve_calculation.t3",
+      "type": "single",
+      "step_id": "basniev_gl23-24.elastic_reserve_calculation",
+      "claim_ids": [
+        "basniev_gl23-24.elastic_reserve_calculation#c3"
+      ],
+      "prompt": "Почему в формуле упругого режима при падении давления знак минус перед коэффициентом упругости жидкости beta_ж опускается?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Жидкость ведет себя как абсолютно несжимаемый флюид в жестких порах",
+          "misconception": "misc.reservoir_void"
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Давление в пласте всегда остается постоянным на упругом режиме",
+          "misconception": "misc.gas_kick_constant"
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Объем жидкости в порах уменьшается при падении давления, так как скелет сжимает ее",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Сейсмические приборы напрямую фиксируют рост объема нефти",
+          "misconception": "misc.seismic_sees_oil"
+        }
+      ],
+      "answer": "c",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "При падении давления объем пор уменьшается, и сжимающий скелет уменьшает объем жидкости, поэтому знак меняется на противоположный.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "basniev_gl23-24.math_model_elastic_filtration.t1",
+      "type": "multiple",
+      "step_id": "basniev_gl23-24.math_model_elastic_filtration",
+      "claim_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration#c2",
+        "basniev_gl23-24.math_model_elastic_filtration#c8"
+      ],
+      "prompt": "Как аналитики и инженеры могут применять модель пьезопроводности и знание упругого режима при работе с данными разработки месторождений?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Для оценки скорости перераспределения пластового давления",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Для решения обратных задач определения коллекторских свойств по динамике давлений и дебитов",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Для расчета точной нефтенасыщенности пласта напрямую по значению сопротивления",
+          "misconception": "misc.resistivity_is_saturation"
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Для прямого сейсмического определения объемов нефти в породе",
+          "misconception": "misc.seismic_sees_oil"
+        },
+        {
+          "ext": {},
+          "id": "e",
+          "text": "Для точного определения границ подземных пещер и нефтяных озер",
+          "misconception": "misc.oil_lake"
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Модель пьезопроводности позволяет оценивать скорость перераспределения давления и решать обратные задачи по динамике дебитов и давлений.",
+      "kind": "transfer"
+    },
+    {
+      "ext": {},
+      "id": "basniev_gl23-24.math_model_elastic_filtration.t2",
+      "type": "gap",
+      "step_id": "basniev_gl23-24.math_model_elastic_filtration",
+      "claim_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration#c4"
+      ],
+      "prompt": "Для вывода основных дифференциальных уравнений фильтрации упругой жидкости в упругой пористой среде необходимо воспользоваться уравнением неразрывности потока, законами движения и уравнениями {{1}} пористой среды и насыщающей ее жидкости.",
+      "options": [],
+      "answer": [
+        "состояния"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Модель объединяет уравнение неразрывности, закон Дарси и уравнения состояния среды и жидкости.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "basniev_gl23-24.math_model_elastic_filtration.t3",
+      "type": "order",
+      "step_id": "basniev_gl23-24.math_model_elastic_filtration",
+      "claim_ids": [
+        "basniev_gl23-24.math_model_elastic_filtration#c4",
+        "basniev_gl23-24.math_model_elastic_filtration#c7",
+        "basniev_gl23-24.math_model_elastic_filtration#c8"
+      ],
+      "prompt": "Расположите этапы и понятия математического описания упругого режима фильтрации в порядке их логического применения и построения модели:",
+      "options": [
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "Запись уравнения неразрывности и закона Дарси для потока",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "Получение дифференциального уравнения пьезопроводности",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o4",
+          "text": "Оценка скорости перераспределения давления через коэффициент пьезопроводности",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "Подстановка уравнений состояния через функцию Лейбензона в систему",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3",
+        "o4"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Сначала записываются базовые законы, затем через функцию Лейбензона они сводятся к уравнению пьезопроводности, характеризующему перераспределение давления.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "basniev_gl23-24.linear_parallel_flows.t2",
+      "type": "single",
+      "step_id": "basniev_gl23-24.linear_parallel_flows",
+      "claim_ids": [
+        "basniev_gl23-24.linear_parallel_flows#c6"
+      ],
+      "prompt": "ML-инженер обучает модель прогноза давления по данным галереи и замечает, что при больших временах аналитическая формула начинает выдавать отрицательные значения давления. Как физически интерпретируется этот математический артефакт вблизи галереи?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Датчики давления выходят из строя из-за насыщения сигнала",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Возникает кавитация вблизи галереи из-за слишком жесткого граничного условия",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Происходит разрыв пласта из-за высокого горного давления",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Модель переобучилась на зашумленных данных временного ряда",
+          "misconception": null
+        }
+      ],
+      "answer": "b",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Отрицательные давления означают, что условие постоянного дебита слишком жесткое, и в реальности возникает кавитация.",
+      "kind": "transfer"
+    },
+    {
+      "ext": {},
+      "id": "basniev_gl23-24.linear_parallel_flows.t3",
+      "type": "multiple",
+      "step_id": "basniev_gl23-24.linear_parallel_flows",
+      "claim_ids": [
+        "basniev_gl23-24.linear_parallel_flows#c4",
+        "basniev_gl23-24.linear_parallel_flows#c5"
+      ],
+      "prompt": "Какие особенности характерны для неустановившегося прямолинейно-параллельного потока упругой жидкости по аналитическим решениям?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Дебит галереи со временем возрастает до бесконечности",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Давление в пласте распространяется с постоянной скоростью звука без затухания",
+          "misconception": "misc.pressure_sound_speed"
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Дебит галереи при постоянном забойном давлении убывает обратно пропорционально квадратному корню из времени",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Закон распределения давления выражается через функцию ошибок erf",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "c",
+        "d"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Решение описывается функцией ошибок, а дебит галереи со временем падает по закону обратного корня из времени.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "basniev_gl23-24.radial_flows_and_basic_formula.t1",
+      "type": "gap",
+      "step_id": "basniev_gl23-24.radial_flows_and_basic_formula",
+      "claim_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula#c1"
+      ],
+      "prompt": "В неограниченном горизонтальном пласте постоянной толщины при пуске скважины с постоянным объемным дебитом образуется неустановившийся плоскорадиальный поток {{1}}.",
+      "options": [],
+      "answer": [
+        "упругой жидкости"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "При пуске скважины возникает неустановившийся плоскорадиальный поток упругой жидкости.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "basniev_gl23-24.radial_flows_and_basic_formula.t2",
+      "type": "order",
+      "step_id": "basniev_gl23-24.radial_flows_and_basic_formula",
+      "claim_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula#c1",
+        "basniev_gl23-24.radial_flows_and_basic_formula#c2",
+        "basniev_gl23-24.radial_flows_and_basic_formula#c3",
+        "basniev_gl23-24.radial_flows_and_basic_formula#c4"
+      ],
+      "prompt": "Расположите этапы вывода основной формулы теории упругого режима в правильном порядке:",
+      "options": [
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "Пуск скважины с постоянным объемным дебитом и образование неустановившегося радиального потока",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o4",
+          "text": "Интегрирование уравнения с учетом граничных условий и получение выражения через интегральную показательную функцию",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "Сведение задачи к обыкновенному дифференциальному уравнению через автомодельную переменную",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "Запись уравнения пьезопроводности в цилиндрической системе координат",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3",
+        "o4"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Вывод строится последовательно от физической постановки к дифференциальному уравнению, его автомодельной замене и интегрированию.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "basniev_gl23-24.radial_flows_and_basic_formula.t3",
+      "type": "single",
+      "step_id": "basniev_gl23-24.radial_flows_and_basic_formula",
+      "claim_ids": [
+        "basniev_gl23-24.radial_flows_and_basic_formula#c5",
+        "basniev_gl23-24.radial_flows_and_basic_formula#c7"
+      ],
+      "prompt": "Как в промысловых расчетах и анализе данных применяется формула для бесконечного пласта при исследовании конечных открытых пластов?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Формула применима всегда, так как конечные границы пласта никак не влияют на динамику давления в скважине.",
+          "misconception": "misc.model_knows"
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "При определенных ограничениях на безразмерные критерии времени и радиус контура формула для бесконечного пласта применяется с высокой точностью.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Формула используется только для закрытых пластов и полностью непригодна для открытых круговых систем.",
+          "misconception": null
+        }
+      ],
+      "answer": "b",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Формула бесконечного пласта с высокой точностью работает для конечных открытых пластов при выполнении ограничений по радиусу.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "basniev_gl23-24.approximate_methods_psss.t1",
+      "type": "multiple",
+      "step_id": "basniev_gl23-24.approximate_methods_psss",
+      "claim_ids": [
+        "basniev_gl23-24.approximate_methods_psss#c2",
+        "basniev_gl23-24.approximate_methods_psss#c3",
+        "basniev_gl23-24.approximate_methods_psss#c4"
+      ],
+      "prompt": "Какие допущения и базовые принципы лежат в основе метода последовательной смены стационарных состояний (ПССС)?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Для давления в возмущенной области получается уравнение Лапласа",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Весь пласт условно разделяется на возмущенную и невозмущенную области",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Давление в пласте расходится мгновенно по всему объему пласта",
+          "misconception": "misc.pressure_sound_speed"
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Модель пласта точно знает все параметры и полностью исключает приближения",
+          "misconception": "misc.model_knows"
+        },
+        {
+          "ext": {},
+          "id": "e",
+          "text": "Давление меняется во времени медленнее, чем по координатам, поэтому производную по времени отбрасывают",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "e"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Метод ПССС пренебрегает производной по времени в первом приближении, разделяя пласт на две зоны.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "basniev_gl23-24.approximate_methods_psss.t2",
+      "type": "gap",
+      "step_id": "basniev_gl23-24.approximate_methods_psss",
+      "claim_ids": [
+        "basniev_gl23-24.approximate_methods_psss#c15"
+      ],
+      "prompt": "В точке перехода от возмущенной к невозмущенной области {{1}} давления терпит {{2}}, что служит одной из причин расхождения с точным решением.",
+      "options": [],
+      "answer": [
+        "градиент",
+        "разрыв"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "В точке перехода между областями градиент давления имеет разрыв, влияющий на точность метода.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "basniev_gl23-24.approximate_methods_psss.t3",
+      "type": "order",
+      "step_id": "basniev_gl23-24.approximate_methods_psss",
+      "claim_ids": [
+        "basniev_gl23-24.approximate_methods_psss#c4",
+        "basniev_gl23-24.approximate_methods_psss#c5",
+        "basniev_gl23-24.approximate_methods_psss#c6",
+        "basniev_gl23-24.approximate_methods_psss#c8"
+      ],
+      "prompt": "Расположите этапы и свойства зон пласта в методе ПССС в порядке от стенки скважины вглубь пласта:",
+      "options": [
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "Внешняя граница возмущенной области, служащая в данный момент контуром питания",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "Возмущенная область, начинающаяся от стенки скважины, где распределение давления соответствует установившемуся движению",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o4",
+          "text": "Невозмущенная область пласта, где давление всюду постоянно и равно начальному контурному давлению",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "Подвижная граница, непрерывно расширяющаяся в течение первой фазы",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3",
+        "o4"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Пласт последовательно делится от скважины на возмущенную зону, ее подвижную границу и невозмущенную область.",
+      "kind": "transfer"
+    }
+  ]
+}

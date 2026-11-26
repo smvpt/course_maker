@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"упругой жидкости\"],\"claim_id\":\"basniev_gl23-24.radial_flows_and_basic_formula#c1\",\"evidence\":\"образуется неустановившийся плоскорадиальный поток упругой жидкости\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 841,
+ "tokens_out": 69,
+ "money_usd": 0.0004248,
+ "attempts": 1
+}

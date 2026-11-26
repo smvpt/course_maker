@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"b\"],\"claim_id\":\"basniev_gl23-24.linear_parallel_flows#c6\",\"evidence\":\"возникнет кавитация вблизи галереи\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1026,
+ "tokens_out": 57,
+ "money_usd": 0.00045030000000000005,
+ "attempts": 1
+}
