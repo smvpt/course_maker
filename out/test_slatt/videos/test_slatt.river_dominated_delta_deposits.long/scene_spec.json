@@ -1,0 +1,244 @@
+{
+  "ext": {
+    "video": {
+      "param_sources": {},
+      "missing_params": [
+        "depth_m",
+        "foreset_angle_deg",
+        "initial_radius_m",
+        "n_layers",
+        "r_max_m",
+        "supply_m3_per_yr",
+        "t_end_yr"
+      ],
+      "sources": [
+        {
+          "ext": {},
+          "claim_id": "test_slatt.river_dominated_delta_deposits#c1",
+          "page_or_dataset": "стр. 411",
+          "quote": "The main facies of a river-dominated delta, and their distribution in space, are shown in Fig. 9.14. Sandy reservoir facies are deposits of distributary channels and distributary mouth-bars. Interdistributary bays, marshes, and lagoons separate sandy facies and provide shale barriers",
+          "claim_text": "Главными фациями речно-доминированной дельты являются русла и устьевые бары, разделенные межрусловыми бухтами и болотами.",
+          "kind": "observation",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {},
+          "claim_id": "test_slatt.river_dominated_delta_deposits#c3",
+          "page_or_dataset": "стр. 415",
+          "quote": "Seven sandy lithofacies were identified in the core, all are moderately to very well sorted and fine to very fine-grained. Six of the lithofacies exhibit average horizontal permeabilities of 12–40 md. The seventh, best-sorted lithofacies averages 129 md.",
+          "claim_text": "В устьевом баре Прудо-Бей выделено семь литофаций, из которых наиболее отсортированная имеет среднюю проницаемость 129 мД.",
+          "kind": "observation",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {},
+          "claim_id": "test_slatt.river_dominated_delta_deposits#c2",
+          "page_or_dataset": "стр. 413",
+          "quote": "In the subsurface, these same features can be identified in cores and on well logs, including a lateral thinning and fining log response away from the channel axis",
+          "claim_text": "Фации определяются по вертикальной последовательности зернистости с укрупнением вверх и характерному латеральному утончению на каротаже.",
+          "kind": "observation",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {},
+          "claim_id": "test_slatt.river_dominated_delta_deposits#c4",
+          "page_or_dataset": "стр. 415",
+          "quote": "Geoscientists believe that sediment plumes emanating from distributary channels during flood stage deposited the best-sorted and most-permeable sands (the seventh lithofacies) at the apex or most-proximal part of the distributary mouth bars, as well as along the proximal-bar margin",
+          "claim_text": "Наиболее проницаемые пески отлагались осадочными шлейфами в период паводков в апексе устьевых баров.",
+          "kind": "inference",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {},
+          "claim_id": "test_slatt.river_dominated_delta_deposits#c5",
+          "page_or_dataset": "стр. 416",
+          "quote": "Over a long period of time, repeated bifurcation of distributary mouth channels during progradation led to the development of a broad, strike-parallel sheet composed of numerous mouth bars. However, across a single bar, there are discontinuities in facies and permeability.",
+          "claim_text": "Многократное разветвление каналов при проградации формирует широкий пластовый песчаный шлейф с внутренними прерывистостями фаций.",
+          "kind": "inference",
+          "source_kind": "text",
+          "by_model": false
+        }
+      ],
+      "route": {
+        "format": "длинное видео",
+        "secondary_format": "интерактив",
+        "template": "T3",
+        "hook_short": false,
+        "why": "Тип трудности М; наглядно показано движение потоков, формирование баров и пространственная структура во времени."
+      },
+      "template_config": "domain/geology/templates/T3.json"
+    }
+  },
+  "video_id": "test_slatt.river_dominated_delta_deposits.long",
+  "node_id": "test_slatt.river_dominated_delta_deposits",
+  "template": "T3",
+  "params": {
+    "mode": "qualitative",
+    "elements": [
+      {
+        "element": "cone",
+        "claim_id": "test_slatt.river_dominated_delta_deposits#c1"
+      }
+    ],
+    "n_lobes": 1
+  },
+  "objects": [
+    "схема речно-доминированной дельты",
+    "русла",
+    "устьевые бары",
+    "межрусловые бухты",
+    "болота",
+    "керн",
+    "каротажные диаграммы"
+  ],
+  "invariants": [
+    "Главными фациями речно-доминированной дельты являются русла и устьевые бары, разделенные межрусловыми бухтами и болотами.",
+    "Фации определяются по вертикальной последовательности зернистости с укрупнением вверх и характерному латеральному утончению на каротаже."
+  ],
+  "assumptions": [
+    "Качественная схема отображает пространственное взаиморасположение фаций без точного масштаба и расхода осадка."
+  ],
+  "exaggerations": [],
+  "shots": [
+    {
+      "ext": {},
+      "id": "s1",
+      "phrase_ids": [
+        "p1"
+      ],
+      "frame_class": "B",
+      "label": "схема",
+      "shows": "Обзорная схема песчаных пластов разного типа поведения.",
+      "plaque": null
+    },
+    {
+      "ext": {},
+      "id": "s2",
+      "phrase_ids": [
+        "p2"
+      ],
+      "frame_class": "B",
+      "label": "схема",
+      "shows": "Схема сложнейшего строения дельт и зоны неопределенности коллекторов.",
+      "plaque": null
+    },
+    {
+      "ext": {},
+      "id": "s3",
+      "phrase_ids": [
+        "p3"
+      ],
+      "frame_class": "B",
+      "label": "схема",
+      "shows": "Схема пространственного распределения фаций и разделяющих барьеров.",
+      "plaque": null
+    },
+    {
+      "ext": {},
+      "id": "s4",
+      "phrase_ids": [
+        "p41",
+        "p42"
+      ],
+      "frame_class": "B",
+      "label": "схема",
+      "shows": "План речно-доминированной дельты с выделенными руслами, устьевыми барами, межрусловыми бухтами и болотами.",
+      "plaque": null
+    },
+    {
+      "ext": {},
+      "id": "s5",
+      "phrase_ids": [
+        "p5"
+      ],
+      "frame_class": "B",
+      "label": "схема",
+      "shows": "Вопрос на схеме с указанием литофаций устьевого бара.",
+      "plaque": null
+    },
+    {
+      "ext": {},
+      "id": "s6",
+      "phrase_ids": [
+        "p61",
+        "p62",
+        "p63"
+      ],
+      "frame_class": "B",
+      "label": "схема",
+      "shows": "Колонка керна устьевого бара Прудо-Бей с семью литофациями и графиком проницаемости от 12 до 129 мД.",
+      "plaque": null
+    },
+    {
+      "ext": {},
+      "id": "s7",
+      "phrase_ids": [
+        "observe0",
+        "observe1",
+        "observe2"
+      ],
+      "frame_class": "B",
+      "label": "схема",
+      "shows": "Сопоставление керна и каротажных диаграмм с демонстрацией укрупнения зерен вверх по разрезу и латерального утончения.",
+      "plaque": null
+    },
+    {
+      "ext": {},
+      "id": "s8",
+      "phrase_ids": [
+        "p71",
+        "p72"
+      ],
+      "frame_class": "B",
+      "label": "схема",
+      "shows": "Анимация осаждения паводковых шлейфов в апексе устьевых баров и вдоль проксимального края.",
+      "plaque": null
+    },
+    {
+      "ext": {},
+      "id": "s9",
+      "phrase_ids": [
+        "p81",
+        "p82"
+      ],
+      "frame_class": "B",
+      "label": "схема",
+      "shows": "Процесс разветвления каналов при проградации и формирование пластового шлейфа с внутренними прерывистостями фаций.",
+      "plaque": null
+    },
+    {
+      "ext": {},
+      "id": "s10",
+      "phrase_ids": [
+        "p9"
+      ],
+      "frame_class": "B",
+      "label": "схема",
+      "shows": "Схема для вопроса переноса внутренних прерывистостей в трехмерную модель.",
+      "plaque": null
+    },
+    {
+      "ext": {},
+      "id": "s11",
+      "phrase_ids": [
+        "p101",
+        "p102"
+      ],
+      "frame_class": "B",
+      "label": "схема",
+      "shows": "Итоговая схема системы песчаных резервуаров, глинистых барьеров и результатов прогноза.",
+      "plaque": null
+    }
+  ],
+  "true_scale_shot_id": null,
+  "convention": "русская школа ГИС",
+  "data_sources": [
+    "расчет по утверждению test_slatt.river_dominated_delta_deposits#c3"
+  ],
+  "references": [],
+  "historical_objects": []
+}
