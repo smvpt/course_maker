@@ -9,7 +9,7 @@
 ```
 git clone <репозиторий> && cd course_maker
 python -m venv .venv
-.venv/bin/activate             # Windows: .venv\Scripts\activate
+source .venv/bin/activate      # Windows: .venv\Scripts\activate
 make install                   # = python -m pip install -r requirements.txt
 make test                      # все тесты, без сети
 make smoke                     # весь путь без ключа на маленькой главе, несколько секунд
