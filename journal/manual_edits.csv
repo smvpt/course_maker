@@ -1,1 +1,2 @@
 time,chapter,file,what_changed,person_minutes,people,run_no,reason,commit
+2026-11-26T12:59,test_slatt,out/test_slatt/layer.json,название главы на русском,2,1,1,заголовок курса был английским капсом,e0adc0e94d1d1663cfde1f0376663c94dfd9f5f9
