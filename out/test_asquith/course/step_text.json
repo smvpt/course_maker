@@ -1,0 +1,947 @@
+{
+  "ext": {},
+  "chapter": "test_asquith",
+  "nodes": {
+    "test_asquith.log_interpretation_overview": {
+      "ext": {},
+      "hash": "9060338f91553731",
+      "paragraphs": [
+        {
+          "block": "main",
+          "text": "[[интерпретация каротажа]] помогает оценить объемы флюидов в пласте. Это первый шаг для перевода сырых геофизических данных в оценки запасов нефти, газа и воды.",
+          "claim_ids": [
+            "test_asquith.log_interpretation_overview#c1"
+          ],
+          "terms": [
+            "интерпретация каротажа"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "why",
+          "text": "Этот шаг вводит всю тему главы, опираясь на предыдущие этапы оценки пористости и сопротивления.",
+          "claim_ids": [
+            "test_asquith.log_interpretation_overview#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Сырые геофизические измерения последовательно преобразуются в параметры насыщения. Для этого применяются специализированные методы интерпретации.",
+          "claim_ids": [
+            "test_asquith.log_interpretation_overview#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "Специалисты используют такие инструменты, как уравнение Арчи для расчетной[[водонасыщенность]], метод отношений и экспресс-методы. Также в работе применяются[[объемная водонасыщенность]],кроссплоты насыщения, расчетпроницаемость по каротажу ианализ глинистых коллекторов.",
+          "claim_ids": [
+            "test_asquith.log_interpretation_overview#c3",
+            "test_asquith.log_interpretation_overview#c4"
+          ],
+          "terms": [
+            "водонасыщенность",
+            "объемная водонасыщенность"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "Полученные оценки нельзя применять изолированно. Геолог обязан учитывать все дополнительные данные перед принятием решения об обсадке скважины.",
+          "claim_ids": [
+            "test_asquith.log_interpretation_overview#c5",
+            "test_asquith.log_interpretation_overview#c6"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Сырые данные каротажа через расчет пористости и сопротивления преобразуются в оценки объемов флюидов. Эти данные требуют обязательной валидации с помощью сторонней информации.",
+          "claim_ids": [
+            "test_asquith.log_interpretation_overview#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Автоматическое применение интерпретации каротажа без учета испытаний и шлама приводит к ложным выводам о продуктивности интервала.",
+          "claim_ids": [
+            "test_asquith.log_interpretation_overview#c6"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Модель прогноза запасов по каротажу деградирует при отсутствии кросс-доменных признаков из бурения и испытаний.",
+          "claim_ids": [
+            "test_asquith.log_interpretation_overview#c6"
+          ],
+          "terms": [],
+          "hypothesis": true,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Pipeline обработки признаков сопоставим с интерпретацией каротажа. Сырые логи здесь выступают как первичные сырые признаки, а промежуточные расчеты — как сгенерированные признаки. Финальное решение о спуске трубы аналогично бизнес-методологии на ансамбле моделей и внешних данных.",
+          "claim_ids": [
+            "test_asquith.log_interpretation_overview#c1",
+            "test_asquith.log_interpretation_overview#c6"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "В IT пайплайн исполняется автоматически. В нефтегазовой геологии финальная точка суждения критически завязана на экспертный анализ разнородных физических данных человеком.",
+          "claim_ids": [
+            "test_asquith.log_interpretation_overview#c6"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": true
+        }
+      ],
+      "warnings": [
+        "термин 'water saturation' не выделен [[…]] ни в одном абзаце",
+        "термин 'true resistivity' не выделен [[…]] ни в одном абзаце",
+        "термин 'bulk volume water' не выделен [[…]] ни в одном абзаце",
+        "термин 'movable hydrocarbon index' не выделен [[…]] ни в одном абзаце",
+        "термин 'истинное сопротивление' не выделен [[…]] ни в одном абзаце",
+        "термин 'пористость' не выделен [[…]] ни в одном абзаце",
+        "термин 'метод отношений' не выделен [[…]] ни в одном абзаце",
+        "термин 'кроссплоты насыщения' не выделен [[…]] ни в одном абзаце",
+        "термин 'проницаемость по каротажу' не выделен [[…]] ни в одном абзаце",
+        "термин 'анализ глинистых коллекторов' не выделен [[…]] ни в одном абзаце"
+      ]
+    },
+    "test_asquith.reconnaissance_scanning": {
+      "ext": {},
+      "hash": "c4c9b0ee61662f82",
+      "paragraphs": [
+        {
+          "block": "main",
+          "text": "Перед детальной обработкой разрез сканируют, чтобы быстро отделить коллекторы от неколлекторов. Этот процесс называется [[экспресс-анализ]] (сканирование разреза) для первичного разделения разреза.",
+          "claim_ids": [
+            "test_asquith.reconnaissance_scanning#c1"
+          ],
+          "terms": [
+            "экспресс-анализ"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "why",
+          "text": "Экспресс-анализ дает первый шаг перед детальным анализом. Он опирается на общие понятия коллекторов.",
+          "claim_ids": [
+            "test_asquith.reconnaissance_scanning#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Сканирование разреза помогает выделить потенциальные продуктивные и водяные зоны. Идентификация водяных зон важна для оценки присутствия углеводородов.",
+          "claim_ids": [
+            "test_asquith.reconnaissance_scanning#c1",
+            "test_asquith.reconnaissance_scanning#c2"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "В терригенных отложениях кривая сопротивления является основным инструментом сканирования. В карбонатных породах основным инструментом служит кривая пористости.",
+          "claim_ids": [
+            "test_asquith.reconnaissance_scanning#c3",
+            "test_asquith.reconnaissance_scanning#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "Интерпретатор использует блок-схему экспресс-анализа. Он выбирает путь в зависимости от типа пород.",
+          "claim_ids": [
+            "test_asquith.reconnaissance_scanning#c3",
+            "test_asquith.reconnaissance_scanning#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "Зоны, похожие на глины, могут оказаться радиоактивными продуктивными интервалами. Глинистые зоны могут давать приток нефти или газа даже при низком сопротивлении.",
+          "claim_ids": [
+            "test_asquith.reconnaissance_scanning#c5",
+            "test_asquith.reconnaissance_scanning#c6"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "decision",
+          "text": "Выделение зоны интереса для перехода к детальному анализу.",
+          "claim_ids": [
+            "test_asquith.reconnaissance_scanning#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "По кривым сопротивления для терригенных пород и пористости для карбонатов можно выделить зоны интереса до начала детального расчета.",
+          "claim_ids": [
+            "test_asquith.reconnaissance_scanning#c3",
+            "test_asquith.reconnaissance_scanning#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Применение пути для терригенных пород к карбонатам приводит к ошибочному выделению коллекторов.",
+          "claim_ids": [
+            "test_asquith.reconnaissance_scanning#c3",
+            "test_asquith.reconnaissance_scanning#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Автоматический классификатор зон интереса может использовать ветвление по литологии аналогично экспертной блок-схеме.",
+          "claim_ids": [
+            "test_asquith.reconnaissance_scanning#c3",
+            "test_asquith.reconnaissance_scanning#c4"
+          ],
+          "terms": [],
+          "hypothesis": true,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Фильтрация данных на первом этапе выполняет грубую селекцию по ключевому признаку перед тяжелыми расчетами.",
+          "claim_ids": [
+            "test_asquith.reconnaissance_scanning#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "В геологии выбор первичного признака жестко зависит от типа литологии.",
+          "claim_ids": [
+            "test_asquith.reconnaissance_scanning#c3",
+            "test_asquith.reconnaissance_scanning#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": true
+        }
+      ],
+      "warnings": [
+        "термин 'scanning technique' не выделен [[…]] ни в одном абзаце",
+        "термин 'pay zone' не выделен [[…]] ни в одном абзаце",
+        "термин 'wet zone' не выделен [[…]] ни в одном абзаце",
+        "термин 'сканирование разреза' не выделен [[…]] ни в одном абзаце",
+        "термин 'базовая водяная зона' не выделен [[…]] ни в одном абзаце"
+      ]
+    },
+    "test_asquith.archie_water_saturation": {
+      "ext": {},
+      "hash": "1296b4572126d307",
+      "paragraphs": [
+        {
+          "block": "main",
+          "text": "Для оценки насыщенности пласта используют базовый метод расчета. Он определяет [[water saturation]] — долю объема пор, занятую водой в неизмененной части пласта.",
+          "claim_ids": [
+            "test_asquith.archie_water_saturation#c1",
+            "test_asquith.archie_water_saturation#c5"
+          ],
+          "terms": [
+            "water saturation"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "why",
+          "text": "Этот метод является фундаментальным для расчета насыщений. На него опираются все остальные кроссплоты и индексы.",
+          "claim_ids": [
+            "test_asquith.archie_water_saturation#c5"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Формула связывает искомую величину с сопротивлением воды, истинным сопротивлением пласта и пористостью. В расчет также входят эмпирические коэффициенты извилистости, цементации и насыщения.",
+          "claim_ids": [
+            "test_asquith.archie_water_saturation#c2"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "Специалист рассчитывает [[Sw]] для неизмененной зоны. Для промытой зоны он находит [[Sxo]], используя свойства фильтра или воды.",
+          "claim_ids": [
+            "test_asquith.archie_water_saturation#c10"
+          ],
+          "terms": [
+            "Sw",
+            "Sxo"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "Знание одной лишь водонасыщенности не гарантирует коммерческую добычу. Дополнительно требуется оценивать проницаемость и подвижность углеводородов.",
+          "claim_ids": [
+            "test_asquith.archie_water_saturation#c6",
+            "test_asquith.archie_water_saturation#c8"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "decision",
+          "text": "Если Sxo значительно больше Sw, углеводороды в прискважинной зоне подвижны и вытеснены фильтратом бурового раствора.",
+          "claim_ids": [
+            "test_asquith.archie_water_saturation#c15"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Данные глубокого и малого сопротивления, а также пористости позволяют рассчитать Sw и Sxo. Расчет нарушается при некорректном задании параметров цементации и сопротивлений.",
+          "claim_ids": [
+            "test_asquith.archie_water_saturation#c2",
+            "test_asquith.archie_water_saturation#c11"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Модель машинного обучения может выучить неявную связь между сопротивлениями и насыщением без явного расчета по формуле Арчи.",
+          "claim_ids": [
+            "test_asquith.archie_water_saturation#c2"
+          ],
+          "terms": [],
+          "hypothesis": true,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Расчет водонасыщенности похож на Feature Engineering на основе физического закона. Мы вычисляем целевую переменную через физические параметры.",
+          "claim_ids": [
+            "test_asquith.archie_water_saturation#c2"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "В отличие от программного кода с фиксированными константами, физические параметры в пласте меняются от интервала к интервалу.",
+          "claim_ids": [
+            "test_asquith.archie_water_saturation#c2"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": true
+        }
+      ],
+      "warnings": [
+        "термин 'uninvaded zone' не выделен [[…]] ни в одном абзаце",
+        "термин 'flushed zone' не выделен [[…]] ни в одном абзаце",
+        "термин 'tortuosity factor' не выделен [[…]] ни в одном абзаце",
+        "термин 'cementation exponent' не выделен [[…]] ни в одном абзаце",
+        "термин 'saturation exponent' не выделен [[…]] ни в одном абзаце",
+        "термин 'hydrocarbon moveability' не выделен [[…]] ни в одном абзаце",
+        "термин 'Rw' не выделен [[…]] ни в одном абзаце",
+        "термин 'Rt' не выделен [[…]] ни в одном абзаце",
+        "термин 'Rmf' не выделен [[…]] ни в одном абзаце",
+        "термин 'Rxo' не выделен [[…]] ни в одном абзаце"
+      ]
+    },
+    "test_asquith.ratio_method": {
+      "ext": {},
+      "hash": "be3aa822d8e2bf1a",
+      "paragraphs": [
+        {
+          "block": "main",
+          "text": "Метод отношений позволяет оценивать водонасыщенность и moveable hydrocarbon index|индекс подвижных углеводородов без данных пористости. Для этого сравниваются сопротивления различных зон пласта.",
+          "claim_ids": [
+            "test_asquith.ratio_method#c1",
+            "test_asquith.ratio_method#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "why",
+          "text": "Этот подход развивает формулу Арчи. Он помогает в ситуациях, когда отсутствуют данные пористости, и опирается на сравнение зон.",
+          "claim_ids": [
+            "test_asquith.ratio_method#c1",
+            "test_asquith.ratio_method#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Уравнение для неизмененной зоны делят на уравнение для зоны проникновения. Коэффициент пористости при этом сокращается.",
+          "claim_ids": [
+            "test_asquith.ratio_method#c2",
+            "test_asquith.ratio_method#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "В расчетах используют отношения глубокого и мелкофокусированного сопротивлений. Также учитываются удельные сопротивления фильтра и воды.",
+          "claim_ids": [
+            "test_asquith.ratio_method#c2",
+            "test_asquith.ratio_method#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "Специалист рассчитывает индекс подвижных углеводородов. Наличие углеводородов оценивают по пороговым значениям.",
+          "claim_ids": [
+            "test_asquith.ratio_method#c5",
+            "test_asquith.ratio_method#c6"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "Для песчаников пороговое значение составляет менее 0.7. Результаты сопоставляют с методом Арчи.",
+          "claim_ids": [
+            "test_asquith.ratio_method#c6",
+            "test_asquith.ratio_method#c8"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "Метод предполагает, что цементирующий коэффициент равен 2.0. Пороги подвижности углеводородов различаются для песчаников и карбонатов.",
+          "claim_ids": [
+            "test_asquith.ratio_method#c4",
+            "test_asquith.ratio_method#c6"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "Расхождения между методами указывают на тип профиля проникновения. Также они могут выявлять аномалии разреза.",
+          "claim_ids": [
+            "test_asquith.ratio_method#c8",
+            "test_asquith.ratio_method#c9",
+            "test_asquith.ratio_method#c10"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "decision",
+          "text": "Отношение сопротивлений показывает подвижность углеводородов и корректность модели вторжения.",
+          "claim_ids": [
+            "test_asquith.ratio_method#c6",
+            "test_asquith.ratio_method#c8"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Данные глубокого и мелкого сопротивления помогают оценивать насыщение. Они работают даже без данных пористости.",
+          "claim_ids": [
+            "test_asquith.ratio_method#c1",
+            "test_asquith.ratio_method#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Метод дает искажения при сложных профилях вторжения. Ошибки возникают в низкопроницаемых карбонатах с выщебренной пористостью.",
+          "claim_ids": [
+            "test_asquith.ratio_method#c10",
+            "test_asquith.ratio_method#c11"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Сравнение значений можно использовать в пайплайне предобработки данных. Это помогает выявлять аномалии сопротивления.",
+          "claim_ids": [
+            "test_asquith.ratio_method#c8",
+            "test_asquith.ratio_method#c9"
+          ],
+          "terms": [],
+          "hypothesis": true,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "ratio method|Метод отношений похож на отношение признаков в машинном обучении. Он позволяет убрать общий фактор шума.",
+          "claim_ids": [
+            "test_asquith.ratio_method#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Физические законы жестко задают степенные зависимости. Простые отношения в машинном обучении могут не учитывать литологию.",
+          "claim_ids": [
+            "test_asquith.ratio_method#c2",
+            "test_asquith.ratio_method#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": true
+        }
+      ],
+      "warnings": [
+        "термин 'ratio method' не выделен [[…]] ни в одном абзаце",
+        "термин 'moveable hydrocarbon index' не выделен [[…]] ни в одном абзаце"
+      ]
+    },
+    "test_asquith.bulk_volume_water": {
+      "ext": {},
+      "hash": "f1bb4a1a14c854d2",
+      "paragraphs": [
+        {
+          "block": "main",
+          "text": "Произведение водонасыщенности и пористости пласта образует [[bulk volume water]] (объемную водонасыщенность). Постоянные значения этого показателя на разных глубинах указывают на остаточную водонасыщенность пласта.",
+          "claim_ids": [
+            "test_asquith.bulk_volume_water#c1",
+            "test_asquith.bulk_volume_water#c3"
+          ],
+          "terms": [
+            "bulk volume water"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "why",
+          "text": "Понятие объединяет пористость и насыщенность для оценки характера притока.",
+          "claim_ids": [
+            "test_asquith.bulk_volume_water#c11"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Вода удерживается на зернах породы капиллярными силами. При остаточной водонасыщенной зоне вода неподвижна, поэтому приток нефти должен быть безводным. Если пласт не достигает остаточной водонасыщенности, значения объемной воды сильно варьируются.",
+          "claim_ids": [
+            "test_asquith.bulk_volume_water#c4",
+            "test_asquith.bulk_volume_water#c5"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "Для анализа строят график Бакклза — кроссплот пористости и водонасыщенности в линейных масштабах. Точки равного BVW образуют на нем гиперболические кривые. Расположение точек вдоль одной гиперболы говорит о безводной добыче, а их рассеяние — о подвижной воде.",
+          "claim_ids": [
+            "test_asquith.bulk_volume_water#c6",
+            "test_asquith.bulk_volume_water#c13",
+            "test_asquith.bulk_volume_water#c14"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "Значения объемной водонасыщенности для карбонатов следует использовать только как очень общий ориентир для разных типов пористости.",
+          "claim_ids": [
+            "test_asquith.bulk_volume_water#c10"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "decision",
+          "text": "Константные значения BVW на гиперболе графика Бакклза показывают остаточную водонасыщенность и безводный приток нефти.",
+          "claim_ids": [
+            "test_asquith.bulk_volume_water#c13"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Плотный кластер точек вдоль гиперболы означает чистую нефть, а рассеяние точек указывает на добычу воды.",
+          "claim_ids": [
+            "test_asquith.bulk_volume_water#c13",
+            "test_asquith.bulk_volume_water#c14"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Кластеризация точек в пространстве пористости и водонасыщенности по гиперболическим уровням позволяет автоматически выделять интервалы чистой нефти.",
+          "claim_ids": [
+            "test_asquith.bulk_volume_water#c6"
+          ],
+          "terms": [],
+          "hypothesis": true,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Произведение двух признаков образует инвариант в виде гиперболы, а отклонение от него сигнализирует об аномалии.",
+          "claim_ids": [
+            "test_asquith.bulk_volume_water#c6"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Физическая природа связи обусловлена капиллярными силами и размером пор, а не статистической закономерностью в выборке.",
+          "claim_ids": [
+            "test_asquith.bulk_volume_water#c9"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": true
+        }
+      ],
+      "warnings": [
+        "термин 'irreducible water saturation' не выделен [[…]] ни в одном абзаце",
+        "термин 'Buckles plot' не выделен [[…]] ни в одном абзаце"
+      ]
+    },
+    "test_asquith.permeability_from_logs": {
+      "ext": {},
+      "hash": "fe19c44d1d1dd758",
+      "paragraphs": [
+        {
+          "block": "main",
+          "text": "[[Log-derived permeability]] — это оценка проницаемости пласта по данным геофизических исследований скважин. Такие формулы применимы только в зонах с неснижаемой водонасыщенностью.",
+          "claim_ids": [
+            "test_asquith.permeability_from_logs#c1"
+          ],
+          "terms": [
+            "log-derived permeability"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "why",
+          "text": "Оценка опирается на концепцию связанной воды и формулы Вилли-Роуза, Тимура и Коутса-Думануара.",
+          "claim_ids": [
+            "test_asquith.permeability_from_logs#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Связь пористости, связанной воды и проницаемости выражается через эмпирические зависимости. Метод Вилли-Роуза использует две формулы для нефти средней плотности и сухого газа. Формула Тимура рассчитывает проницаемость через пористость и водонасыщенность. В методе Coates and Dumanoir method|Коутса-Думануара плотность углеводородов входит в уравнение явно через константы C и W.",
+          "claim_ids": [
+            "test_asquith.permeability_from_logs#c5",
+            "test_asquith.permeability_from_logs#c6",
+            "test_asquith.permeability_from_logs#c7",
+            "test_asquith.permeability_from_logs#c8",
+            "test_asquith.permeability_from_logs#c9",
+            "test_asquith.permeability_from_logs#c11"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "Специалист проверяет постоянство объемной водонасыщенности для подтверждения зоны неснижаемой воды. Затем он выбирает формулу под тип флюида и рассчитывает проницаемость.",
+          "claim_ids": [
+            "test_asquith.permeability_from_logs#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "Полученные значения проницаемости относительны. Они требуют калибровки по данным соседних добывающих скважин с известной историей.",
+          "claim_ids": [
+            "test_asquith.permeability_from_logs#c2"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "decision",
+          "text": "При постоянстве объемной водонасыщенности расчет по эмпирическим формулам дает оценку проницаемости для сравнения с соседними скважинами.",
+          "claim_ids": [
+            "test_asquith.permeability_from_logs#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "В данных ГИС проницаемость не измеряется напрямую. Она оценивается через пористость и водонасыщенность при условии неснижаемой воды.",
+          "claim_ids": [
+            "test_asquith.permeability_from_logs#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Оценка не работает в зонах перехода выше водонефтяного контакта, где объемная водонасыщенность непостоянна.",
+          "claim_ids": [
+            "test_asquith.permeability_from_logs#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Модель машинного обучения сможет предсказать проницаемость без проверки зоны на неснижаемую водонасыщенность, но получит большую ошибку.",
+          "claim_ids": [
+            "test_asquith.permeability_from_logs#c4"
+          ],
+          "terms": [],
+          "hypothesis": true,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Это похоже на расчет косвенного признака по формуле из других признаков с жесткими ограничениями применимости.",
+          "claim_ids": [
+            "test_asquith.permeability_from_logs#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "В IT формулы не зависят от физического состояния пласта, а здесь нарушение условий применимости дает полностью неверный физический результат.",
+          "claim_ids": [
+            "test_asquith.permeability_from_logs#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": true
+        }
+      ],
+      "warnings": [
+        "термин 'Wyllie and Rose method' не выделен [[…]] ни в одном абзаце",
+        "термин 'Timur method' не выделен [[…]] ни в одном абзаце",
+        "термин 'Coates and Dumanoir method' не выделен [[…]] ни в одном абзаце",
+        "термин 'Wyllie and Rose' не выделен [[…]] ни в одном абзаце",
+        "термин 'Timur' не выделен [[…]] ни в одном абзаце",
+        "термин 'Coates and Dumanoir' не выделен [[…]] ни в одном абзаце"
+      ]
+    },
+    "test_asquith.shaly_sand_analysis": {
+      "ext": {},
+      "hash": "f3e19bdb0fc0ea99",
+      "paragraphs": [
+        {
+          "block": "main",
+          "text": "Присутствие глины искажает пористость и водонасыщенность, занижая последнюю и создавая риск перепутать пласты. Такие породы называют [[shaly sands]], то есть глинистыми коллекторами с примесью глинистых минералов.",
+          "claim_ids": [
+            "test_asquith.shaly_sand_analysis#c2",
+            "test_asquith.shaly_sand_analysis#c7",
+            "test_asquith.shaly_sand_analysis#c10"
+          ],
+          "terms": [
+            "shaly sands"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "why",
+          "text": "Раздел завершает главу, опираясь на методы расчета насыщения и показывая их ограничения в реальных породах.",
+          "claim_ids": [
+            "test_asquith.shaly_sand_analysis#c7"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Сланец и глины уменьшают электрическое сопротивление породы. Из-за этого падает контраст сопротивлений между нефтеносной и водяной зонами. Ранние методы пытались учитывать этот эффект через объем сланца. Позднее модели вроде метода [[Waxman-Smits model]] стали использовать электрические свойства глины для точного прогноза. Модель разделяет воду на связанную глинистую и свободную подвижную.",
+          "claim_ids": [
+            "test_asquith.shaly_sand_analysis#c1",
+            "test_asquith.shaly_sand_analysis#c4",
+            "test_asquith.shaly_sand_analysis#c6",
+            "test_asquith.shaly_sand_analysis#c8"
+          ],
+          "terms": [
+            "Waxman-Smits model"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "Для оценки влияния глинистости анализируют содержание сланца. Если его объем превышает 10-15%, стандартные уравнения дают ошибку.",
+          "claim_ids": [
+            "test_asquith.shaly_sand_analysis#c9"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "В литературе понятия объема сланца и объема глины часто используют как взаимозаменяемые. Однако геологически сланец и глина различаются. Ошибочное завышение содержания сланца может привести к ложному принятию водяного пласта за нефтеносный.",
+          "claim_ids": [
+            "test_asquith.shaly_sand_analysis#c2",
+            "test_asquith.shaly_sand_analysis#c3",
+            "test_asquith.shaly_sand_analysis#c10"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "В глинистых коллекторах стандартные кривые сопротивления дают сниженный контраст и занижают водонасыщенность без специальных поправок. Обычные уравнения расчета водонасыщенности полностью ломаются в разрезах с содержанием сланца выше 10-15%.",
+          "claim_ids": [
+            "test_asquith.shaly_sand_analysis#c8",
+            "test_asquith.shaly_sand_analysis#c9"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Модель машинного обучения, предсказывающая водонасыщенность без признаков глинистости, выдаст заниженную воду и ложно расценит водяной пласт как нефтенасыщенный.",
+          "claim_ids": [
+            "test_asquith.shaly_sand_analysis#c10"
+          ],
+          "terms": [],
+          "hypothesis": true,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Эффект похож на фоновый шум или систематическую примесь в сигнале датчика, которая смещает базовую калибровку измерительной шкалы.",
+          "claim_ids": [
+            "test_asquith.shaly_sand_analysis#c5"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "В отличие от линейного шума в IT, проводимость глины нелинейно зависит от минерального состава и связи воды с поверхностью породы.",
+          "claim_ids": [
+            "test_asquith.shaly_sand_analysis#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": true
+        }
+      ],
+      "warnings": [
+        "термин 'shale volume' не выделен [[…]] ни в одном абзаце",
+        "термин 'clay volume' не выделен [[…]] ни в одном абзаце",
+        "термин 'bound water' не выделен [[…]] ни в одном абзаце",
+        "термин 'free water' не выделен [[…]] ни в одном абзаце",
+        "термин 'dual water model' не выделен [[…]] ни в одном абзаце",
+        "термин 'Waxman-Smits method' не выделен [[…]] ни в одном абзаце"
+      ]
+    }
+  },
+  "failed": {
+    "test_asquith.quick_look_methods": {
+      "ext": {},
+      "hash": "9817df57a84d7e40",
+      "errors": [
+        "абзац 4 (practice): claim_id 'test_asquith.quick_look_methods#3' нет в узле",
+        "суть («main») должна быть 2–3 фразы, сейчас 1"
+      ]
+    },
+    "test_asquith.saturation_crossplots": {
+      "ext": {},
+      "hash": "e351c350ff5580b5",
+      "errors": [
+        "абзац 3 (how): фраза из 26 слов (максимум 20): «Метод Хингла позволяет найти водонасыщенность при неизвестных матричных свойствах или сопротивлении воды, где водоносные точки также лежат на прямой линии, а нефтеносные точки лежат ниже нее.»",
+        "суть («main») должна быть 2–3 фразы, сейчас 1"
+      ]
+    }
+  }
+}

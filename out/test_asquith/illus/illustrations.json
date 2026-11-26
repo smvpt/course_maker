@@ -1,0 +1,319 @@
+{
+  "ext": {
+    "illus": {
+      "warnings": []
+    }
+  },
+  "chapter": "test_asquith",
+  "illustrations": [
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_asquith.log_interpretation_overview.il1",
+      "step_id": "test_asquith.log_interpretation_overview",
+      "node_id": "test_asquith.log_interpretation_overview",
+      "file": "illus/test_asquith.log_interpretation_overview.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Зачем нужно переводить данные каротажа в запасы углеводородов». наблюдение: Определение пористости и истинного сопротивления зоны — первый шаг перевода сырых данных каротажа в оценки нефти, газа и воды.; наблюдение: В данной главе рассматриваются водонасыщенность по Арчи, метод отношений, экспресс-техника, объемная водонасыщенность и кроссплоты насыщения.; наблюдение: В главе также обсуждаются…",
+      "source": "утверждения шага, стр. 126",
+      "claim_ids": [
+        "test_asquith.log_interpretation_overview#c1",
+        "test_asquith.log_interpretation_overview#c3",
+        "test_asquith.log_interpretation_overview#c4",
+        "test_asquith.log_interpretation_overview#c5",
+        "test_asquith.log_interpretation_overview#c2",
+        "test_asquith.log_interpretation_overview#c6"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_asquith.reconnaissance_scanning.il1",
+      "step_id": "test_asquith.reconnaissance_scanning",
+      "node_id": "test_asquith.reconnaissance_scanning",
+      "file": "illus/test_asquith.reconnaissance_scanning.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Как быстро отличить пласты-коллекторы от не-коллекторов по кривым». наблюдение: Сканирование разреза помогает быстро отделить коллектор от неколлектора и выделить потенциальные продуктивные и водяные зоны.; наблюдение: В терригенных отложениях кривая сопротивления является основным инструментом сканирования из-за вмещающих пород с относительно постоянным сопротивлением.; наблюдение: В карбонатных…",
+      "source": "утверждения шага, стр. 126",
+      "claim_ids": [
+        "test_asquith.reconnaissance_scanning#c1",
+        "test_asquith.reconnaissance_scanning#c3",
+        "test_asquith.reconnaissance_scanning#c4",
+        "test_asquith.reconnaissance_scanning#c2"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_asquith.archie_water_saturation.il1",
+      "step_id": "test_asquith.archie_water_saturation",
+      "node_id": "test_asquith.archie_water_saturation",
+      "file": "illus/test_asquith.archie_water_saturation.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Как рассчитать насыщенность воды в неизмененной и промытой зонах». наблюдение: Водонасыщенность неизмененной зоны рассчитывается по формуле Арчи 1942 года.; наблюдение: Формула Арчи для водонасыщенности неизмененной зоны включает сопротивление воды, истинное сопротивление пласта и пористость.; наблюдение: Параметр Rw обозначает удельное сопротивление пластовой воды при пластовой температуре.; вывод:…",
+      "source": "утверждения шага, стр. 126, 127",
+      "claim_ids": [
+        "test_asquith.archie_water_saturation#c1",
+        "test_asquith.archie_water_saturation#c2",
+        "test_asquith.archie_water_saturation#c3",
+        "test_asquith.archie_water_saturation#c5",
+        "test_asquith.archie_water_saturation#c6"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_asquith.ratio_method.il1",
+      "step_id": "test_asquith.ratio_method",
+      "node_id": "test_asquith.ratio_method",
+      "file": "illus/test_asquith.ratio_method.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Как оценить подвижные углеводороды без знания пористости». наблюдение: Метод отношений идентифицирует углеводороды по разнице водонасыщенностей промытой и неизмененной зон.; наблюдение: Если отношение Sw/Sxo равно или больше 1.0, углеводороды не перемещались при вторжении.; наблюдение: Значение отношения Sw/Sxo менее 0.7 для песчаников или менее 0.6 для карбонатов указывает на подвижные углеводороды.;…",
+      "source": "утверждения шага, стр. 127",
+      "claim_ids": [
+        "test_asquith.ratio_method#c1",
+        "test_asquith.ratio_method#c5",
+        "test_asquith.ratio_method#c6",
+        "test_asquith.ratio_method#c4",
+        "test_asquith.ratio_method#c2",
+        "test_asquith.ratio_method#c3"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_asquith.quick_look_methods.il1",
+      "step_id": "test_asquith.quick_look_methods",
+      "node_id": "test_asquith.quick_look_methods",
+      "file": "illus/test_asquith.quick_look_methods.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Быстрые визуальные индикаторы углеводородов по кривым». наблюдение: Экспресс-методы дают индикаторы для поиска возможных зон скопления углеводородов.; наблюдение: Рассматриваются четыре экспресс-метода: отношение Rxo/Rt, кажущееся удельное сопротивление воды, проводимостная пористость и влажное сопротивление.; наблюдение: Метод Rxo/Rt опирается на сравнение кривой отношения сопротивлений и кривой SP.;…",
+      "source": "утверждения шага, стр. 128, 129",
+      "claim_ids": [
+        "test_asquith.quick_look_methods#c1",
+        "test_asquith.quick_look_methods#c2",
+        "test_asquith.quick_look_methods#c3",
+        "test_asquith.quick_look_methods#c11",
+        "test_asquith.quick_look_methods#c7",
+        "test_asquith.quick_look_methods#c8"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_asquith.bulk_volume_water.il1",
+      "step_id": "test_asquith.bulk_volume_water",
+      "node_id": "test_asquith.bulk_volume_water",
+      "file": "illus/test_asquith.bulk_volume_water.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Как проверить, находится ли пласт в равновесии и свободен ли от воды». наблюдение: Произведение водной насыщенности пласта и его пористости является объемной водонасыщенностью.; наблюдение: Объемная водонасыщенность рассчитывается как произведение Sw на пористость.; наблюдение: Пласт, не достигающий остаточной водонасыщенности, демонстрирует большие вариации значений объемной воды.; допущение: Значения…",
+      "source": "утверждения шага, стр. 131",
+      "claim_ids": [
+        "test_asquith.bulk_volume_water#c1",
+        "test_asquith.bulk_volume_water#c2",
+        "test_asquith.bulk_volume_water#c5",
+        "test_asquith.bulk_volume_water#c10",
+        "test_asquith.bulk_volume_water#c3",
+        "test_asquith.bulk_volume_water#c4"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "curve",
+        "spec": {
+          "feasible": true,
+          "claim_id": "test_asquith.bulk_volume_water#c2",
+          "title": "Зависимость объемной водонасыщенности от пористости",
+          "x_name": "phi",
+          "x_label": "Пористость",
+          "x_unit": "д. ед.",
+          "y_label": "Объемная водонасыщенность",
+          "y_unit": "д. ед.",
+          "x_min": 0.05,
+          "x_max": 0.35,
+          "constants": {
+            "Sw": 0.04
+          },
+          "expression": "Sw * phi",
+          "depth_axis": "none",
+          "curve_key": null,
+          "note": "График показывает изменение объемной водонасыщенности в зависимости от пористости при постоянном значении водонасыщенности."
+        }
+      },
+      "id": "test_asquith.bulk_volume_water.il2",
+      "step_id": "test_asquith.bulk_volume_water",
+      "node_id": "test_asquith.bulk_volume_water",
+      "file": "illus/test_asquith.bulk_volume_water.curve.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "симуляция",
+      "caption": "График показывает изменение объемной водонасыщенности в зависимости от пористости при постоянном значении водонасыщенности. Значения рассчитаны кодом по формуле главы, а не измерены.",
+      "alt": "Зависимость объемной водонасыщенности от пористости. График показывает изменение объемной водонасыщенности в зависимости от пористости при постоянном значении водонасыщенности.; по горизонтали: Пористость; по вертикали: Объемная водонасыщенность",
+      "source": "формула главы, стр. 131",
+      "claim_ids": [
+        "test_asquith.bulk_volume_water#c2"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_asquith.saturation_crossplots.il1",
+      "step_id": "test_asquith.saturation_crossplots",
+      "node_id": "test_asquith.saturation_crossplots",
+      "file": "illus/test_asquith.saturation_crossplots.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Графические методы определения параметров пласта по кроссплотам». наблюдение: Кроссплоты насыщения или кроссплоты сопротивления-пористости являются графическими решениями уравнения водонасыщенности Арчи.; наблюдение: Метод Пикетта оценивает водонасыщенность, сопротивление воды, цементационный фактор и параметры матрицы для акустического и плотностного каротажа.; наблюдение: В методе Пикетта истинное…",
+      "source": "утверждения шага, стр. 132",
+      "claim_ids": [
+        "test_asquith.saturation_crossplots#c1",
+        "test_asquith.saturation_crossplots#c2",
+        "test_asquith.saturation_crossplots#c3"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_asquith.permeability_from_logs.il1",
+      "step_id": "test_asquith.permeability_from_logs",
+      "node_id": "test_asquith.permeability_from_logs",
+      "file": "illus/test_asquith.permeability_from_logs.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Как рассчитать проницаемость пласта по пористости и связанной воде». наблюдение: Формулы проницаемости по данным ГИС применимы только для оценки проницаемости в пластах с неснижаемой водонасыщенностью.; наблюдение: При постоянных значениях объемной водонасыщенности пласт находится в состоянии неснижаемой водонасыщенности.; наблюдение: Метод Вилли-Роуза использует палетку или две формулы для нефти…",
+      "source": "утверждения шага, стр. 134, 135",
+      "claim_ids": [
+        "test_asquith.permeability_from_logs#c1",
+        "test_asquith.permeability_from_logs#c3",
+        "test_asquith.permeability_from_logs#c5",
+        "test_asquith.permeability_from_logs#c6",
+        "test_asquith.permeability_from_logs#c2",
+        "test_asquith.permeability_from_logs#c4"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "curve",
+        "spec": {
+          "feasible": true,
+          "claim_id": "test_asquith.permeability_from_logs#c12",
+          "title": "Зависимость константы C от плотности углеводородов",
+          "x_name": "rho_h",
+          "x_label": "Плотность углеводородов",
+          "x_unit": "г/см3",
+          "y_label": "Константа C",
+          "y_unit": "",
+          "x_min": 0.1,
+          "x_max": 0.8,
+          "constants": {},
+          "expression": "23 + 465 * rho_h - 188 * rho_h**2",
+          "depth_axis": "none",
+          "curve_key": null,
+          "note": "График показывает изменение константы C в зависимости от плотности углеводородов в формуле Коутса-Думануара."
+        }
+      },
+      "id": "test_asquith.permeability_from_logs.il2",
+      "step_id": "test_asquith.permeability_from_logs",
+      "node_id": "test_asquith.permeability_from_logs",
+      "file": "illus/test_asquith.permeability_from_logs.curve.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "симуляция",
+      "caption": "График показывает изменение константы C в зависимости от плотности углеводородов в формуле Коутса-Думануара. Значения рассчитаны кодом по формуле главы, а не измерены.",
+      "alt": "Зависимость константы C от плотности углеводородов. График показывает изменение константы C в зависимости от плотности углеводородов в формуле Коутса-Думануара.; по горизонтали: Плотность углеводородов; по вертикали: Константа C",
+      "source": "формула главы, стр. 136",
+      "claim_ids": [
+        "test_asquith.permeability_from_logs#c12"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "test_asquith.shaly_sand_analysis.il1",
+      "step_id": "test_asquith.shaly_sand_analysis",
+      "node_id": "test_asquith.shaly_sand_analysis",
+      "file": "illus/test_asquith.shaly_sand_analysis.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Как наличие глины искажает данные каротажа и как с этим бороться». наблюдение: В ранней литературе формирования с глинами и сланцами называли shaly sands, а для учета их эффектов в уравнение Арчи вводили объем сланца.; наблюдение: В интерпретации термины volume сланца и глины часто используют как взаимозаменяемые, хотя большинство методов нацелены на объём сланца.; наблюдение: Работы Waxman-Smits и…",
+      "source": "утверждения шага, стр. 136",
+      "claim_ids": [
+        "test_asquith.shaly_sand_analysis#c1",
+        "test_asquith.shaly_sand_analysis#c3",
+        "test_asquith.shaly_sand_analysis#c5",
+        "test_asquith.shaly_sand_analysis#c2",
+        "test_asquith.shaly_sand_analysis#c4"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "column"
+      },
+      "id": "test_asquith.shaly_sand_analysis.il2",
+      "step_id": "test_asquith.shaly_sand_analysis",
+      "node_id": "test_asquith.shaly_sand_analysis",
+      "file": "illus/test_asquith.shaly_sand_analysis.column.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Условная колонка: какие породы упоминает шаг. Цвета по единой легенде курса. Порядок и толщины слоёв условные, колонка не показывает реальный разрез.",
+      "alt": "Условная колонка слоёв «Как наличие глины искажает данные каротажа и как с этим бороться», не в масштабе. глина, песчаник, известняк, доломит",
+      "source": "утверждения шага, стр. 136",
+      "claim_ids": [
+        "test_asquith.shaly_sand_analysis#c1",
+        "test_asquith.shaly_sand_analysis#c2",
+        "test_asquith.shaly_sand_analysis#c3",
+        "test_asquith.shaly_sand_analysis#c4",
+        "test_asquith.shaly_sand_analysis#c5",
+        "test_asquith.shaly_sand_analysis#c6",
+        "test_asquith.shaly_sand_analysis#c7",
+        "test_asquith.shaly_sand_analysis#c10"
+      ],
+      "prompt": null
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "ext": {
+    "verify": {
+      "claims": 109,
+      "tasks_checked": true,
+      "scripts_checked": []
+    }
+  },
+  "package_id": "test_asquith",
+  "team": "",
+  "remarks": [
+    {
+      "ext": {},
+      "target": "test_asquith.bulk_volume_water#c17",
+      "category": "other",
+      "severity": "significant",
+      "problem": "формулировка утверждения: чисел 0 нет в исходных единицах узла",
+      "fix": "заменить числами из исходных единиц главы или убрать",
+      "page_pdf": 141,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "test_asquith.bulk_volume_water",
+      "category": "other",
+      "severity": "significant",
+      "problem": "текст узла: чисел 2 нет в исходных единицах узла",
+      "fix": "заменить числами из исходных единиц главы или убрать",
+      "page_pdf": 131,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "test_asquith.shaly_sand_analysis#c6",
+      "category": "other",
+      "severity": "significant",
+      "problem": "формулировка утверждения: чисел 2 нет в исходных единицах узла",
+      "fix": "заменить числами из исходных единиц главы или убрать",
+      "page_pdf": 136,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "test_asquith.log_interpretation_overview",
+      "category": "other",
+      "severity": "significant",
+      "problem": "термин «экспресс-методы» используется раньше узла test_asquith.quick_look_methods, где он объяснён",
+      "fix": "объяснить «экспресс-методы» здесь или перенести узел test_asquith.quick_look_methods раньше",
+      "page_pdf": 128,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "test_asquith.bulk_volume_water.t2",
+      "category": "other",
+      "severity": "significant",
+      "problem": "задание: чисел 0 нет в исходных единицах узла",
+      "fix": "заменить числами из исходных единиц главы или убрать",
+      "page_pdf": 131,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "test_asquith.shaly_sand_analysis.t1",
+      "category": "other",
+      "severity": "significant",
+      "problem": "задание: чисел 2 нет в исходных единицах узла",
+      "fix": "заменить числами из исходных единиц главы или убрать",
+      "page_pdf": 136,
+      "quote": null
+    }
+  ]
+}

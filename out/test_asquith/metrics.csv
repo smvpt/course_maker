@@ -1,0 +1,6 @@
+chapter,stage,nodes,llm_tokens_in,llm_tokens_out,money_usd,person_minutes,mentor_minutes,video_seconds,manual_share
+test_asquith,layer,9,367106,36684,0.186407,0,0,0.0,0.0
+test_asquith,routing,9,3695,1266,0.004274,0,0,0.0,0.0
+test_asquith,course,9,414647,53194,0.254625,0,0,0.0,0.0
+test_asquith,video,9,0,0,0.0,0,0,0.0,0.0
+test_asquith,review,9,0,0,0.0,0,0,0.0,0.0

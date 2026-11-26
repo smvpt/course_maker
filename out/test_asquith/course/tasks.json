@@ -1,0 +1,582 @@
+{
+  "ext": {
+    "course": {
+      "hashes": {
+        "test_asquith.log_interpretation_overview": "9060338f91553731",
+        "test_asquith.reconnaissance_scanning": "c4c9b0ee61662f82",
+        "test_asquith.archie_water_saturation": "1296b4572126d307",
+        "test_asquith.ratio_method": "be3aa822d8e2bf1a",
+        "test_asquith.quick_look_methods": "9817df57a84d7e40",
+        "test_asquith.bulk_volume_water": "f1bb4a1a14c854d2",
+        "test_asquith.saturation_crossplots": "e351c350ff5580b5",
+        "test_asquith.permeability_from_logs": "fe19c44d1d1dd758",
+        "test_asquith.shaly_sand_analysis": "f3e19bdb0fc0ea99"
+      },
+      "warnings": [
+        {
+          "code": "few_tasks",
+          "message": "заданий 12, нужно не меньше 15",
+          "count": 12
+        },
+        {
+          "code": "missing_task_type",
+          "message": "нет заданий типов: calc",
+          "types": [
+            "calc"
+          ]
+        }
+      ],
+      "dropped": [
+        {
+          "node": "test_asquith.reconnaissance_scanning",
+          "slot": 1,
+          "type": "gap",
+          "errors": [
+            "ответ слепой проверки не совпал с помеченным: по цитате test_asquith.reconnaissance_scanning#c3 («the resistivity log is the primary reconnaissance measurement») модель выбрала resistivity log, помечено сопротивления. Перепроверь по цитате, какой ответ верен, и перепиши задание"
+          ]
+        },
+        {
+          "node": "test_asquith.archie_water_saturation",
+          "slot": 1,
+          "type": "calc",
+          "errors": [
+            "задание 1: значения m=2.0 нет в узле",
+            "задание 1: значения n=2.0 нет в узле",
+            "задание 1: числа ['2'] из условия нет в узле"
+          ]
+        },
+        {
+          "node": "test_asquith.quick_look_methods",
+          "slot": 2,
+          "type": "calc",
+          "errors": [
+            "задание 2: значения Rt=20.0 нет в узле",
+            "задание 2: значения phi=0.15 нет в узле",
+            "задание 2: числа ['0.15', '20'] из условия нет в узле"
+          ]
+        },
+        {
+          "node": "test_asquith.saturation_crossplots",
+          "slot": 1,
+          "type": "gap",
+          "errors": [
+            "ответ слепой проверки не совпал с помеченным: по цитате test_asquith.saturation_crossplots#c5 («moved horizontally to the right from the water-bearing line by their increased resistivity») модель выбрала resistivity, помечено сопротивления. Перепроверь по цитате, какой ответ верен, и перепиши задание"
+          ]
+        },
+        {
+          "node": "test_asquith.permeability_from_logs",
+          "slot": 1,
+          "type": "calc",
+          "errors": [
+            "задание 1: значения S_wirr=0.4 нет в узле",
+            "задание 1: числа ['0.4'] из условия нет в узле"
+          ]
+        },
+        {
+          "node": "test_asquith.shaly_sand_analysis",
+          "slot": 2,
+          "type": "gap",
+          "errors": [
+            "ответ слепой проверки не совпал с помеченным: по цитате test_asquith.shaly_sand_analysis#c9 («greater than 10 to 15%») модель выбрала 10 to 15%, помечено 10-15%. Перепроверь по цитате, какой ответ верен, и перепиши задание"
+          ]
+        }
+      ],
+      "node_warnings": []
+    }
+  },
+  "chapter": "test_asquith",
+  "tasks": [
+    {
+      "ext": {},
+      "id": "test_asquith.log_interpretation_overview.t1",
+      "type": "single",
+      "step_id": "test_asquith.log_interpretation_overview",
+      "claim_ids": [
+        "test_asquith.log_interpretation_overview#c1"
+      ],
+      "prompt": "Какой параметр зоны является самым первым шагом при переводе сырых данных каротажа в оценки количества нефти, газа и воды?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Прямое пластовое давление",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Пористость и истинное сопротивление",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Начальное насыщение газом",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Проницаемость и объемная глина",
+          "misconception": null
+        }
+      ],
+      "answer": "b",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Первым шагом перевода сырых данных каротажа является определение пористости и истинного сопротивления пласта.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "test_asquith.log_interpretation_overview.t2",
+      "type": "multiple",
+      "step_id": "test_asquith.log_interpretation_overview",
+      "claim_ids": [
+        "test_asquith.log_interpretation_overview#c5",
+        "test_asquith.log_interpretation_overview#c6"
+      ],
+      "prompt": "Почему полученные по каротажу оценки нельзя применять изолированно и требуется учитывать другие данные?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Математическая модель пласта точно знает состав флюида под землей",
+          "misconception": "misc.model_knows"
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Информация по каротажу критически важна, но требует проверки дополнительными источниками",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Геолог обязан рассмотреть все релевантные данные перед спуском обсадных труб",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Каротажная кривая полностью заменяет керн и шлам на любых типах скважин",
+          "misconception": "misc.log_is_rock"
+        }
+      ],
+      "answer": [
+        "b",
+        "c"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Оценки каротажа не применяются изолированно, так как перед спуском труб геолог должен проанализировать все данные.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "test_asquith.reconnaissance_scanning.t2",
+      "type": "order",
+      "step_id": "test_asquith.reconnaissance_scanning",
+      "claim_ids": [
+        "test_asquith.reconnaissance_scanning#c1",
+        "test_asquith.reconnaissance_scanning#c3",
+        "test_asquith.reconnaissance_scanning#c4"
+      ],
+      "prompt": "Расположите этапы экспресс-анализа разреза скважины в правильной последовательности для быстрого выделения потенциальных зон.",
+      "options": [
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "Выбрать тип разреза — терригенный или карбонатный",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "Провести сканирование разреза перед детальной обработкой для отделения коллекторов от неколлекторов",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o4",
+          "text": "Наметить зоны с потенциальными углеводородами и водяные зоны",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "Применить кривую сопротивления для терригенных отложений или кривую пористости для карбонатов",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3",
+        "o4"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Экспресс-анализ начинается со сканирования, выбора пути по литологии, применения базовой кривой и выделения зон.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "test_asquith.archie_water_saturation.t2",
+      "type": "single",
+      "step_id": "test_asquith.archie_water_saturation",
+      "claim_ids": [
+        "test_asquith.archie_water_saturation#c10",
+        "test_asquith.archie_water_saturation#c14",
+        "test_asquith.archie_water_saturation#c15"
+      ],
+      "prompt": "О чем говорит превышение водонасыщенности промытой зоны (Sxo) над водонасыщенностью неизмененной зоны (Sw)?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Углеводороды в прискважинной зоне были вытеснены фильтратом раствора.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Водонефтяной контакт находится выше интервала исследования.",
+          "misconception": "misc.owc_sharp"
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Пористость и проницаемость в промытой зоне полностью равны.",
+          "misconception": "misc.porosity_eq_perm"
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Прибор сопротивления прямо измеряет нефтенасыщенность пласта.",
+          "misconception": "misc.resistivity_is_saturation"
+        }
+      ],
+      "answer": "a",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Превышение Sxo над Sw указывает на вытеснение углеводородов фильтратом и подвижность флюидов.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "test_asquith.ratio_method.t1",
+      "type": "multiple",
+      "step_id": "test_asquith.ratio_method",
+      "claim_ids": [
+        "test_asquith.ratio_method#c8",
+        "test_asquith.ratio_method#c9",
+        "test_asquith.ratio_method#c10",
+        "test_asquith.ratio_method#c11"
+      ],
+      "prompt": "Дата-инженер автоматизирует пайплайн контроля качества кривых сопротивления и сопоставляет водонасыщенность по методу отношений (Swa) с водонасыщенностью по Арчи (Swr). Какие выводы можно сделать при отклонениях между этими значениями?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Прибор сопротивления напрямую измеряет нефтенасыщенность, поэтому любые расхождения вызваны сбоем калибровки.",
+          "misconception": "misc.resistivity_is_saturation"
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Равенство Swa и Swr указывает на корректность ступенчатого профиля вторжения и всех определенных по нему значений.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Значение Swa меньше Swr в карбонатах может указывать на пористую структуру выщелачивания и низкую проницаемость.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Превышение Swa над Swr означает, что вторжение было слишком глубоким или сопротивление Rt было занижено.",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "b",
+        "c"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Сопоставление Swa и Swr позволяет выявить аномалии профиля вторжения и особенности литологии разреза.",
+      "kind": "transfer"
+    },
+    {
+      "ext": {},
+      "id": "test_asquith.ratio_method.t2",
+      "type": "gap",
+      "step_id": "test_asquith.ratio_method",
+      "claim_ids": [
+        "test_asquith.ratio_method#c5"
+      ],
+      "prompt": "При анализе результатов метода отношений инженеры смотрят на отношение водонасыщенностей. Если отношение Sw/Sxo равно или больше {{1}}, углеводороды не перемещались при вторжении.",
+      "options": [],
+      "answer": [
+        "1.0"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Значение отношения Sw к Sxo, равное или превышающее 1.0, свидетельствует об отсутствии подвижности углеводородов.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "test_asquith.quick_look_methods.t1",
+      "type": "order",
+      "step_id": "test_asquith.quick_look_methods",
+      "claim_ids": [
+        "test_asquith.quick_look_methods#c3",
+        "test_asquith.quick_look_methods#c4",
+        "test_asquith.quick_look_methods#c5",
+        "test_asquith.quick_look_methods#c6"
+      ],
+      "prompt": "Расположите поведение кривой отношения Rxo/Rt в разных литологических интервалах и зонах сверху вниз, от глин к нефтегазоносным зонам:",
+      "options": [
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "В водоносной зоне отношение Rxo/Rt повторяет ход кривой SP",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "В нефтегазоносной зоне отношение Rxo/Rt отклоняется от кривой SP вправо при нормальной отрицательной аномалии ПС",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "В глинах отношение относительно константно и близко к 1",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Поведение кривой Rxo/Rt последовательно меняется при переходе от глинистых интервалов к водоносным и нефтегазоносным зонам пласта.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "test_asquith.bulk_volume_water.t1",
+      "type": "single",
+      "step_id": "test_asquith.bulk_volume_water",
+      "claim_ids": [
+        "test_asquith.bulk_volume_water#c13",
+        "test_asquith.bulk_volume_water#c15"
+      ],
+      "prompt": "Вы анализируете скважину, которая по данным испытаний дает 96% нефти. На графике Бакклза точки объемной водонасыщенности (BVW) для этого интервала лежат в узком диапазоне от 0.04 до 0.05. Что означает такое поведение точек для данного интервала?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Пласт находится на остаточной водонасыщенности и дает безводную нефть",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Водонефтяной контакт является резкой плоской границей раздела",
+          "misconception": "misc.owc_sharp"
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Прибор сопротивления прямо измеряет нефтенасыщенность породы",
+          "misconception": "misc.resistivity_is_saturation"
+        }
+      ],
+      "answer": "a",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Постоянное значение BVW и близость точек к одной гиперболе указывают на остаточную водонасыщенность и безводный приток.",
+      "kind": "transfer"
+    },
+    {
+      "ext": {},
+      "id": "test_asquith.bulk_volume_water.t2",
+      "type": "multiple",
+      "step_id": "test_asquith.bulk_volume_water",
+      "claim_ids": [
+        "test_asquith.bulk_volume_water#c6",
+        "test_asquith.bulk_volume_water#c8",
+        "test_asquith.bulk_volume_water#c14"
+      ],
+      "prompt": "Какие признаки на графике Бакклза указывают на появление подвижной воды и риск обводнения скважины?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Расположение всех точек строго вдоль одной гиперболической кривой",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Падение значений пористости до нуля во всем интервале",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Увеличение значений объемной воды выше уровня остаточной водонасыщенности",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Сильное рассеяние точек объемной водонасыщенности относительно гиперболических кривых",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "c",
+        "d"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Рассеяние точек BVW и рост значений выше остаточных показывают наличие подвижной воды и обводнение.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "test_asquith.saturation_crossplots.t2",
+      "type": "order",
+      "step_id": "test_asquith.saturation_crossplots",
+      "claim_ids": [
+        "test_asquith.saturation_crossplots#c3",
+        "test_asquith.saturation_crossplots#c4",
+        "test_asquith.saturation_crossplots#c5"
+      ],
+      "prompt": "Расположите шаги анализа данных в методе Пикетта в правильной последовательности:",
+      "options": [
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "Построить истинное сопротивление и пористость в логарифмических масштабах",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "Определить сдвиг аномальных точек вправо для оценки водонасыщенности",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "Провести прямую линию водоносного пласта (Ro) с наклоном -1/m",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Сначала строят график, затем проводят линию Ro и анализируют сдвиг точек.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "test_asquith.permeability_from_logs.t2",
+      "type": "single",
+      "step_id": "test_asquith.permeability_from_logs",
+      "claim_ids": [
+        "test_asquith.permeability_from_logs#c4"
+      ],
+      "prompt": "Почему расчет проницаемости по формулам ГИС может оказаться неверным в интервале, где объемная водонасыщенность (BVW) непостоянна?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Прибор сопротивления прямо измеряет нефтенасыщенность пласта",
+          "misconception": "misc.resistivity_is_saturation"
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Пористость и проницаемость в этом интервале становятся равны",
+          "misconception": "misc.porosity_eq_perm"
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Модель пласта автоматически исправляет ошибку изменения воды",
+          "misconception": "misc.model_knows"
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Зона не находится в состоянии неснижаемой водонасыщенности",
+          "misconception": null
+        }
+      ],
+      "answer": "d",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Формулы ГИС применимы только в зонах с неснижаемой водой, а переменная BVW делает оценки сомнительными.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "test_asquith.shaly_sand_analysis.t1",
+      "type": "multiple",
+      "step_id": "test_asquith.shaly_sand_analysis",
+      "claim_ids": [
+        "test_asquith.shaly_sand_analysis#c6"
+      ],
+      "prompt": "Какие два типа воды выделяет модель dual water в глинистой формации?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "кристаллическая вода внутри минеральной решетки",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "связанная неподвижная вода у поверхности глины",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "минерализованная пластовая вода на контакте",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "свободная подвижная вода, вытесняемая углеводородами",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "b",
+        "d"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Модель разделяет воду на связанную неподвижную у поверхности глины и свободную подвижную.",
+      "kind": "recall"
+    }
+  ]
+}

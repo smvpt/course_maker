@@ -1,0 +1,351 @@
+{
+  "chapter": "test_asquith",
+  "nodes": 9,
+  "tasks": 12,
+  "step_text_nodes": 7,
+  "interactive_steps": 6,
+  "guess_steps": 1,
+  "summary": {
+    "text_model_steps": 7,
+    "steps": 9,
+    "tasks": 12,
+    "tasks_dropped": 6,
+    "fallback_steps": 2,
+    "model": "доступна",
+    "line": "ИТОГ СБОРКИ: текст модели: 7 из 9 шагов · заданий: 12 (выброшено 6) · fallback: 2 · модель: доступна"
+  },
+  "warnings": [
+    {
+      "code": "no_parts",
+      "message": "ни у одного узла нет ext[\"core\"][\"part\"]: вся глава собрана одной частью «Глава»"
+    },
+    {
+      "code": "step_text_fallback",
+      "message": "текст шага test_asquith.quick_look_methods не прошёл проверки, шаг собран из полей слоя: абзац 4 (practice): claim_id 'test_asquith.quick_look_methods#3' нет в узле",
+      "node": "test_asquith.quick_look_methods",
+      "errors": [
+        "абзац 4 (practice): claim_id 'test_asquith.quick_look_methods#3' нет в узле",
+        "суть («main») должна быть 2–3 фразы, сейчас 1"
+      ]
+    },
+    {
+      "code": "step_text_fallback",
+      "message": "текст шага test_asquith.saturation_crossplots не прошёл проверки, шаг собран из полей слоя: абзац 3 (how): фраза из 26 слов (максимум 20): «Метод Хингла позволяет найти водонасыщенность при неизвестных матричных свойствах или сопротивлении воды, где водоносные точки также лежат на прямой линии, а нефтеносные точки лежат ниже нее.»",
+      "node": "test_asquith.saturation_crossplots",
+      "errors": [
+        "абзац 3 (how): фраза из 26 слов (максимум 20): «Метод Хингла позволяет найти водонасыщенность при неизвестных матричных свойствах или сопротивлении воды, где водоносные точки также лежат на прямой линии, а нефтеносные точки лежат ниже нее.»",
+        "суть («main») должна быть 2–3 фразы, сейчас 1"
+      ]
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.log_interpretation_overview: термин 'water saturation' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.log_interpretation_overview"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.log_interpretation_overview: термин 'true resistivity' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.log_interpretation_overview"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.log_interpretation_overview: термин 'bulk volume water' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.log_interpretation_overview"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.log_interpretation_overview: термин 'movable hydrocarbon index' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.log_interpretation_overview"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.log_interpretation_overview: термин 'истинное сопротивление' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.log_interpretation_overview"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.log_interpretation_overview: термин 'пористость' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.log_interpretation_overview"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.log_interpretation_overview: термин 'метод отношений' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.log_interpretation_overview"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.log_interpretation_overview: термин 'кроссплоты насыщения' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.log_interpretation_overview"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.log_interpretation_overview: термин 'проницаемость по каротажу' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.log_interpretation_overview"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.log_interpretation_overview: термин 'анализ глинистых коллекторов' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.log_interpretation_overview"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.reconnaissance_scanning: термин 'scanning technique' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.reconnaissance_scanning"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.reconnaissance_scanning: термин 'pay zone' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.reconnaissance_scanning"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.reconnaissance_scanning: термин 'wet zone' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.reconnaissance_scanning"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.reconnaissance_scanning: термин 'сканирование разреза' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.reconnaissance_scanning"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.reconnaissance_scanning: термин 'базовая водяная зона' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.reconnaissance_scanning"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.archie_water_saturation: термин 'uninvaded zone' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.archie_water_saturation"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.archie_water_saturation: термин 'flushed zone' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.archie_water_saturation"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.archie_water_saturation: термин 'tortuosity factor' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.archie_water_saturation"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.archie_water_saturation: термин 'cementation exponent' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.archie_water_saturation"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.archie_water_saturation: термин 'saturation exponent' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.archie_water_saturation"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.archie_water_saturation: термин 'hydrocarbon moveability' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.archie_water_saturation"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.archie_water_saturation: термин 'Rw' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.archie_water_saturation"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.archie_water_saturation: термин 'Rt' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.archie_water_saturation"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.archie_water_saturation: термин 'Rmf' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.archie_water_saturation"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.archie_water_saturation: термин 'Rxo' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.archie_water_saturation"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.ratio_method: термин 'ratio method' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.ratio_method"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.ratio_method: термин 'moveable hydrocarbon index' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.ratio_method"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.bulk_volume_water: термин 'irreducible water saturation' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.bulk_volume_water"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.bulk_volume_water: термин 'Buckles plot' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.bulk_volume_water"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.permeability_from_logs: термин 'Wyllie and Rose method' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.permeability_from_logs"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.permeability_from_logs: термин 'Timur method' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.permeability_from_logs"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.permeability_from_logs: термин 'Coates and Dumanoir method' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.permeability_from_logs"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.permeability_from_logs: термин 'Wyllie and Rose' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.permeability_from_logs"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.permeability_from_logs: термин 'Timur' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.permeability_from_logs"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.permeability_from_logs: термин 'Coates and Dumanoir' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.permeability_from_logs"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.shaly_sand_analysis: термин 'shale volume' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.shaly_sand_analysis"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.shaly_sand_analysis: термин 'clay volume' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.shaly_sand_analysis"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.shaly_sand_analysis: термин 'bound water' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.shaly_sand_analysis"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.shaly_sand_analysis: термин 'free water' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.shaly_sand_analysis"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.shaly_sand_analysis: термин 'dual water model' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.shaly_sand_analysis"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг test_asquith.shaly_sand_analysis: термин 'Waxman-Smits method' не выделен [[…]] ни в одном абзаце",
+      "node": "test_asquith.shaly_sand_analysis"
+    },
+    {
+      "code": "few_tasks",
+      "message": "заданий 12, нужно не меньше 15",
+      "count": 12
+    },
+    {
+      "code": "missing_task_type",
+      "message": "нет заданий типов: calc",
+      "types": [
+        "calc"
+      ]
+    },
+    {
+      "code": "task_answer_mismatch",
+      "message": "задание 1 (gap) шага test_asquith.reconnaissance_scanning выброшено: помеченный ответ противоречит цитате книги (слепая проверка): ответ слепой проверки не совпал с помеченным: по цитате test_asquith.reconnaissance_scanning#c3 («the resistivity log is the primary reconnaissance measurement») модель выбрала resistivity log, помечено сопротивления. Перепроверь по цитате, какой ответ верен, и перепиши задание",
+      "node": "test_asquith.reconnaissance_scanning",
+      "slot": 1,
+      "type": "gap",
+      "errors": [
+        "ответ слепой проверки не совпал с помеченным: по цитате test_asquith.reconnaissance_scanning#c3 («the resistivity log is the primary reconnaissance measurement») модель выбрала resistivity log, помечено сопротивления. Перепроверь по цитате, какой ответ верен, и перепиши задание"
+      ]
+    },
+    {
+      "code": "task_dropped",
+      "message": "задание 1 (calc) шага test_asquith.archie_water_saturation выброшено: задание 1: значения m=2.0 нет в узле",
+      "node": "test_asquith.archie_water_saturation",
+      "slot": 1,
+      "type": "calc",
+      "errors": [
+        "задание 1: значения m=2.0 нет в узле",
+        "задание 1: значения n=2.0 нет в узле",
+        "задание 1: числа ['2'] из условия нет в узле"
+      ]
+    },
+    {
+      "code": "task_dropped",
+      "message": "задание 2 (calc) шага test_asquith.quick_look_methods выброшено: задание 2: значения Rt=20.0 нет в узле",
+      "node": "test_asquith.quick_look_methods",
+      "slot": 2,
+      "type": "calc",
+      "errors": [
+        "задание 2: значения Rt=20.0 нет в узле",
+        "задание 2: значения phi=0.15 нет в узле",
+        "задание 2: числа ['0.15', '20'] из условия нет в узле"
+      ]
+    },
+    {
+      "code": "task_answer_mismatch",
+      "message": "задание 1 (gap) шага test_asquith.saturation_crossplots выброшено: помеченный ответ противоречит цитате книги (слепая проверка): ответ слепой проверки не совпал с помеченным: по цитате test_asquith.saturation_crossplots#c5 («moved horizontally to the right from the water-bearing line by their increased resistivity») модель выбрала resistivity, помечено сопротивления. Перепроверь по цитате, какой ответ верен, и перепиши задание",
+      "node": "test_asquith.saturation_crossplots",
+      "slot": 1,
+      "type": "gap",
+      "errors": [
+        "ответ слепой проверки не совпал с помеченным: по цитате test_asquith.saturation_crossplots#c5 («moved horizontally to the right from the water-bearing line by their increased resistivity») модель выбрала resistivity, помечено сопротивления. Перепроверь по цитате, какой ответ верен, и перепиши задание"
+      ]
+    },
+    {
+      "code": "task_dropped",
+      "message": "задание 1 (calc) шага test_asquith.permeability_from_logs выброшено: задание 1: значения S_wirr=0.4 нет в узле",
+      "node": "test_asquith.permeability_from_logs",
+      "slot": 1,
+      "type": "calc",
+      "errors": [
+        "задание 1: значения S_wirr=0.4 нет в узле",
+        "задание 1: числа ['0.4'] из условия нет в узле"
+      ]
+    },
+    {
+      "code": "task_answer_mismatch",
+      "message": "задание 2 (gap) шага test_asquith.shaly_sand_analysis выброшено: помеченный ответ противоречит цитате книги (слепая проверка): ответ слепой проверки не совпал с помеченным: по цитате test_asquith.shaly_sand_analysis#c9 («greater than 10 to 15%») модель выбрала 10 to 15%, помечено 10-15%. Перепроверь по цитате, какой ответ верен, и перепиши задание",
+      "node": "test_asquith.shaly_sand_analysis",
+      "slot": 2,
+      "type": "gap",
+      "errors": [
+        "ответ слепой проверки не совпал с помеченным: по цитате test_asquith.shaly_sand_analysis#c9 («greater than 10 to 15%») модель выбрала 10 to 15%, помечено 10-15%. Перепроверь по цитате, какой ответ верен, и перепиши задание"
+      ]
+    },
+    {
+      "code": "interactive_no_data",
+      "message": "интерактив шага test_asquith.archie_water_saturation не показан: модель ответила, что по формулам и числам узла шаблон distribution построить нельзя; модель ответила, что по формулам и числам узла шаблон dependence построить нельзя",
+      "node": "test_asquith.archie_water_saturation",
+      "errors": [
+        "модель ответила, что по формулам и числам узла шаблон distribution построить нельзя; модель ответила, что по формулам и числам узла шаблон dependence построить нельзя"
+      ]
+    }
+  ],
+  "missing_scans": [
+    126,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    140,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146
+  ]
+}

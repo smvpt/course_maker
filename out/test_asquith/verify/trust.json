@@ -1,0 +1,42 @@
+{
+  "chapter": "test_asquith",
+  "generated": "2026-11-26T13:07",
+  "nodes": 9,
+  "coverage": {
+    "units": 347,
+    "in_nodes": 347,
+    "with_reason": 0,
+    "pct_in_nodes": 100.0,
+    "pct_accounted": 100.0
+  },
+  "quotes": {
+    "claims": 109,
+    "found": 109,
+    "other_page": 0,
+    "not_found": 0,
+    "pct": 100.0
+  },
+  "numbers": {
+    "total": 74,
+    "found": 71,
+    "pct": 95.9
+  },
+  "remarks": {
+    "critical": 0,
+    "significant": 6,
+    "minor": 0
+  },
+  "manual": {
+    "person_minutes": 0,
+    "mentor_minutes": 0,
+    "edits": 0
+  },
+  "cost": {
+    "llm_calls": 109,
+    "cached": 2,
+    "money_usd": 0.4453,
+    "unpriced_calls": 0,
+    "tokens_in": 785448,
+    "tokens_out": 91144
+  }
+}

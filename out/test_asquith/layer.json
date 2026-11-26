@@ -1,0 +1,3394 @@
+{
+  "ext": {
+    "core": {
+      "plan": {
+        "dropped_unit_ids": [],
+        "bad_reasons": [],
+        "auto_assigned": [],
+        "empty_nodes": []
+      },
+      "term_order_issues": [],
+      "title": "Log Interpretation",
+      "author": null,
+      "book": null,
+      "meta_source": null
+    }
+  },
+  "chapter": "test_asquith",
+  "source": "data/test/test_asquith.md",
+  "pdf_pages": [
+    "126",
+    "127",
+    "128",
+    "129",
+    "130",
+    "131",
+    "132",
+    "133",
+    "134",
+    "135",
+    "136",
+    "140",
+    "141",
+    "142",
+    "143",
+    "144",
+    "145",
+    "146"
+  ],
+  "generated_by": "конвейер «глава → курс», structure, модель gemini/gemini-3.5-flash-lite (запасные при лимитах: gemini/gemini-3.1-flash-lite; какая ответила — out/_metrics/llm_calls.jsonl)",
+  "nodes": [
+    {
+      "ext": {},
+      "id": "test_asquith.log_interpretation_overview",
+      "order": 1,
+      "title": "Обзор интерпретации каротажа",
+      "why_here": {
+        "ext": {},
+        "text": "Вводит всю тему главы, опираясь на предыдущие этапы оценки пористости и сопротивления.",
+        "by_model": true
+      },
+      "difficulty": {
+        "ext": {},
+        "primary": "Пр",
+        "secondary": null
+      },
+      "threshold": true,
+      "layers": {
+        "ext": {},
+        "topic": {
+          "ext": {},
+          "text": "Переход от сырых данных каротажа к количественной оценке запасов флюидов",
+          "by_model": true
+        },
+        "main": {
+          "ext": {},
+          "text": "Определение пористости и истинного сопротивления пласта является первым шагом для пересчета данных каротажа в запасы нефти, газа и воды. Полученные оценки используются для принятия решения о возможности испытания скважины.",
+          "by_model": true
+        },
+        "mechanism": {
+          "ext": {},
+          "text": "Сырые геофизические измерения последовательно преобразуются через расчет пористости и сопротивления в параметры насыщения с помощью специализированных методов интерпретации.",
+          "by_model": true
+        },
+        "practice": {
+          "ext": {},
+          "text": "Интерпретаторы применяют уравнения Арчи, метод отношений, экспресс-методы, анализ объемной водонасыщенности, кроссплоты, расчет проницаемости и анализ глинистых коллекторов.",
+          "by_model": true
+        },
+        "nuances": {
+          "ext": {},
+          "text": "Полученные по каротажу оценки нельзя применять изолированно; геолог обязан учитывать все дополнительные данные перед принятием решения об обсадке скважины.",
+          "by_model": true
+        },
+        "deeper": []
+      },
+      "claims": [
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.log_interpretation_overview#c1",
+          "text": "Определение пористости и истинного сопротивления зоны — первый шаг перевода сырых данных каротажа в оценки нефти, газа и воды.",
+          "kind": "observation",
+          "page_pdf": 126,
+          "page_print": null,
+          "quote": "determining the porosity and true resistivity of a zone is the first step in converting the raw log data into estimated quantities of oil, gas, and water in a formation",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.log_interpretation_overview#c2",
+          "text": "Оценки запасов флюидов применяются для оценки зоны и решения о целесообразности попытки окончания скважины.",
+          "kind": "inference",
+          "page_pdf": 126,
+          "page_print": null,
+          "quote": "These estimated quantities are used to evaluate a zone and to determine whether a well completion attempt is warranted",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.log_interpretation_overview#c3",
+          "text": "В данной главе рассматриваются водонасыщенность по Арчи, метод отношений, экспресс-техника, объемная водонасыщенность и кроссплоты насыщения.",
+          "kind": "observation",
+          "page_pdf": 126,
+          "page_print": null,
+          "quote": "The methods discussed are: Archie water saturations ($S_w$ and $S_{xo}$) and the ratio method, quick-look technique, bulk volume water ($BVW$), and saturation crossplots (Pickett plots and Hingle plots)",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.log_interpretation_overview#c4",
+          "text": "В главе также обсуждаются определение проницаемости по данным каротажа и анализ глинистых коллекторов.",
+          "kind": "observation",
+          "page_pdf": 126,
+          "page_print": null,
+          "quote": "Determination of log-derived permeability ($K_e$) and shaly sand analysis are also discussed",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.log_interpretation_overview#c5",
+          "text": "Информация по каротажу не должна применяться без включения других данных.",
+          "kind": "assumption",
+          "page_pdf": 126,
+          "page_print": null,
+          "quote": "As important as this log-derived information is, however, it should not be applied without the inclusion of other data",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.log_interpretation_overview#c6",
+          "text": "Геолог должен рассматривать все релевантные данные перед принятием решения о спуске обсадных труб.",
+          "kind": "inference",
+          "page_pdf": 126,
+          "page_print": null,
+          "quote": "A geologist should always consider every item of relevant data, such as drill stem tests, sample shows, mud-log analysis, nearby production, etc., before making a decision to set pipe",
+          "source_kind": "text",
+          "by_model": false
+        }
+      ],
+      "links": [],
+      "misconception": null,
+      "data_meaning": {
+        "ext": {},
+        "from_chapter": {
+          "ext": {},
+          "text": "Сырые данные каротажа через расчет пористости и сопротивления преобразуются в оценки объемов флюидов, но требуют валидации сторонними данными.",
+          "by_model": true
+        },
+        "breaks": {
+          "ext": {},
+          "text": "Автоматическое применение интерпретации каротажа без учета испытаний и шлама приводит к ложным выводам о продуктивности интервала.",
+          "by_model": true
+        },
+        "hypotheses": [
+          {
+            "ext": {},
+            "text": "Модель прогноза запасов по каротажу деградирует при отсутствии кросс-доменных признаков из бурения и испытаний.",
+            "by_model": true,
+            "hypothesis": true
+          }
+        ]
+      },
+      "it_analogy": {
+        "ext": {},
+        "text": "Пipeline обработки признаков: сырые логи — это первичные сырые признаки (raw features), промежуточные расчеты — это сгенерированные признаки (derived features), а финальное решение о спуске трубы — это бизнес-метродология на ансамбле моделей и внешних данных.",
+        "breaks_where": "В IT пайплайн исполняется автоматически, тогда как в нефтегазовой геологии финальная точка суждения критически завязана на экспертный анализ разнородных физических данных человеком.",
+        "by_model": true
+      },
+      "now_practice": null,
+      "inefficiency_lens": null,
+      "terms_introduced": [
+        "water saturation",
+        "true resistivity",
+        "bulk volume water",
+        "movable hydrocarbon index",
+        "интерпретация каротажа",
+        "истинное сопротивление",
+        "пористость",
+        "водонасыщенность",
+        "метод отношений",
+        "объемная водонасыщенность",
+        "кроссплоты насыщения",
+        "проницаемость по каротажу",
+        "анализ глинистых коллекторов"
+      ],
+      "terms_used": [
+        "каротаж",
+        "испытание пластов",
+        "анализ шлама",
+        "обсадная колонна"
+      ],
+      "needs_scan": [],
+      "decision_on_data": null,
+      "worked_examples": [],
+      "book_tasks": [],
+      "pages": [
+        126
+      ],
+      "title_novice": "Зачем нужно переводить данные каротажа в запасы углеводородов",
+      "unit_ids": [
+        "p126.01",
+        "p126.02",
+        "p126.03",
+        "p126.04",
+        "p126.05"
+      ]
+    },
+    {
+      "ext": {},
+      "id": "test_asquith.reconnaissance_scanning",
+      "order": 2,
+      "title": "Экспресс-анализ (сканирование) разреза скважин",
+      "why_here": {
+        "ext": {},
+        "text": "Дает первый шаг перед детальным анализом, опираясь на общие понятия коллекторов.",
+        "by_model": true
+      },
+      "difficulty": {
+        "ext": {},
+        "primary": "Р",
+        "secondary": "Пр"
+      },
+      "threshold": false,
+      "layers": {
+        "ext": {},
+        "topic": {
+          "ext": {},
+          "text": "Экспресс-анализ каротажа для первичного разделения разреза",
+          "by_model": true
+        },
+        "main": {
+          "ext": {},
+          "text": "Перед детальной обработкой разрез сканируют, чтобы быстро отделить коллекторы от неколлекторов и наметить зоны с потенциальными углеводородами и водой.",
+          "by_model": true
+        },
+        "mechanism": {
+          "ext": {},
+          "text": "В терригенных породах основной метод — анализ сопротивления из-за постоянного фона глинистых пород, а в карбонатных — анализ пористости из-за широкой вариации литологии.",
+          "by_model": true
+        },
+        "practice": {
+          "ext": {},
+          "text": "Интерпретатор использует блок-схему экспресс-анализа, выбирая путь в зависимости от типа пород (терригенные или карбонатные).",
+          "by_model": true
+        },
+        "nuances": {
+          "ext": {},
+          "text": "Зоны, выглядящие как глины, могут быть радиоактивными продуктивными интервалами, а глинистые зоны могут давать нефть или газ при низком сопротивлении.",
+          "by_model": true
+        },
+        "deeper": []
+      },
+      "claims": [
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.reconnaissance_scanning#c1",
+          "text": "Сканирование разреза помогает быстро отделить коллектор от неколлектора и выделить потенциальные продуктивные и водяные зоны.",
+          "kind": "observation",
+          "page_pdf": 126,
+          "page_print": null,
+          "quote": "a scanning technique that sorts reservoir from nonreservoir can be helpful, even with access to computer-aided processing. A good scanning technique not only identifies the reservoirs, but can also give the geologist hints as to potential pay and wet zones",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "Remember that in the interpretive process, the identification of wet zones is as important as the discovery of those containing hydrocarbons, because the comparison of the two helps clearly identify both the presence and amount of the hydrocarbons"
+            }
+          },
+          "id": "test_asquith.reconnaissance_scanning#c2",
+          "text": "Идентификация водяных зон так же важна, как и поиск углеводородов, для оценки их присутствия и объема.",
+          "kind": "inference",
+          "page_pdf": 126,
+          "page_print": null,
+          "quote": "Remember that in the interpretive process, the identification of wet zones is as important as the discovery of those containing hydrocarbons, because the com\n\ncomparison of the two helps clearly identify both the presence and amount of the hydrocarbons",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.reconnaissance_scanning#c3",
+          "text": "В терригенных отложениях кривая сопротивления является основным инструментом сканирования из-за вмещающих пород с относительно постоянным сопротивлением.",
+          "kind": "observation",
+          "page_pdf": 126,
+          "page_print": null,
+          "quote": "In the clastic case, the resistivity log is the primary reconnaissance measurement because clastics tend to consist of reservoirs surrounded by shales of slowly varying resistivity",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.reconnaissance_scanning#c4",
+          "text": "В карбонатных породах сопротивление сильно меняется при смене литологии, поэтому основным инструментом сканирования служит кривая пористости.",
+          "kind": "observation",
+          "page_pdf": 126,
+          "page_print": null,
+          "quote": "On the carbonate path, on the other hand, formation resistivities tend to vary widely with changing rock types, and commonly there are few shales against which to measure changes. In this case, the porosity log is the primary reconnaissance measurement",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.reconnaissance_scanning#c5",
+          "text": "Зоны, похожие на глины, могут оказаться радиоактивными продуктивными интервалами.",
+          "kind": "observation",
+          "page_pdf": 140,
+          "page_print": null,
+          "quote": "Zones that appear to be shales might be radioactive productive zones.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.reconnaissance_scanning#c6",
+          "text": "Глинистые зоны могут давать приток нефти или газа даже при низком сопротивлении.",
+          "kind": "observation",
+          "page_pdf": 140,
+          "page_print": null,
+          "quote": "Shaly zones might produce oil or gas even if they have low resistivity.",
+          "source_kind": "text",
+          "by_model": false
+        }
+      ],
+      "links": [
+        {
+          "ext": {},
+          "type": "prerequisite",
+          "target": "test_asquith.log_interpretation_overview"
+        }
+      ],
+      "misconception": null,
+      "data_meaning": {
+        "ext": {},
+        "from_chapter": {
+          "ext": {},
+          "text": "По кривым сопротивления для терригенных пород и пористости для карбонатов можно выделить зоны интереса до начала детального расчета.",
+          "by_model": true
+        },
+        "breaks": {
+          "ext": {},
+          "text": "Применение пути для терригенных пород к карбонатам (или наоборот) приводит к ошибочному выделению коллекторов.",
+          "by_model": true
+        },
+        "hypotheses": [
+          {
+            "ext": {},
+            "text": "Автоматический классификатор зон интереса может использовать ветвление по литологии аналогично экспертной блок-схеме.",
+            "by_model": true,
+            "hypothesis": true
+          }
+        ]
+      },
+      "it_analogy": {
+        "ext": {},
+        "text": "Фильтрация данных на первом этапе (грубая селекция по ключевому признаку перед тяжелыми расчетами).",
+        "breaks_where": "В геологии выбор первичного признака жестко зависит от типа литологии (терригенные vs карбонаты).",
+        "by_model": true
+      },
+      "now_practice": null,
+      "inefficiency_lens": {
+        "ext": {},
+        "inputs": "Данные кривых сопротивления, пористости, гамма-каротажа.",
+        "manual_steps": "Визуальный обход кривых по блок-схеме для выделения чистых пластов, проверки сопротивления или пористости и поиска зон сравнения.",
+        "judgment_points": "Определение типа разреза (терригенный или карбонатный), выбор опорной водяной зоны для базового сравнения.",
+        "time": "Первичный экспресс-анализ скважины занимает от минут до часов в зависимости от объема интервала.",
+        "typical_errors": "Пропуск продуктивных интервалов в глинистых или радиоактивных пластах из-за слепого доверия низким показателям сопротивления.",
+        "by_model": true
+      },
+      "terms_introduced": [
+        "scanning technique",
+        "pay zone",
+        "wet zone",
+        "экспресс-анализ",
+        "сканирование разреза",
+        "базовая водяная зона"
+      ],
+      "terms_used": [
+        "resistivity log",
+        "porosity log",
+        "clastics",
+        "carbonates",
+        "shales"
+      ],
+      "needs_scan": [
+        {
+          "ext": {},
+          "page": 140,
+          "what": "Блок-схема экспресс-анализа каротажа (Figure 7.1) для терригенных и карбонатных пород."
+        },
+        {
+          "ext": {},
+          "page": 126,
+          "what": "Figure 7.1: нет описания рисунка"
+        }
+      ],
+      "decision_on_data": {
+        "ext": {},
+        "features": [
+          "тип породы (терригенная / карбонатная)",
+          "кривая сопротивления",
+          "кривая пористости"
+        ],
+        "rule": "Для терригенных пород проверяем сопротивление: высокое сопротивление при хорошей пористости указывает на зону интереса, низкое — на водяной базовый уровень. Для карбонатов сначала ищем пористые зоны, затем проверяем сопротивление.",
+        "conclusion": "Выделение зоны интереса (pay или wet) для перехода к детальному анализу.",
+        "counterexample": "Зона с низким сопротивлением и высокой пористостью в глинистом пласте, которая на самом деле является продуктивной."
+      },
+      "worked_examples": [],
+      "book_tasks": [],
+      "pages": [
+        126,
+        140
+      ],
+      "title_novice": "Как быстро отличить пласты-коллекторы от не-коллекторов по кривым",
+      "unit_ids": [
+        "p126.06",
+        "p126.07",
+        "p126.08",
+        "p126.09",
+        "p126.10",
+        "p140.01",
+        "p140.02",
+        "p140.03",
+        "p140.04",
+        "p140.05",
+        "p140.06",
+        "p140.07",
+        "p140.08",
+        "p140.09",
+        "p140.10",
+        "p140.11",
+        "p140.12",
+        "p140.13",
+        "p140.14",
+        "p140.15"
+      ]
+    },
+    {
+      "ext": {},
+      "id": "test_asquith.archie_water_saturation",
+      "order": 3,
+      "title": "Водонасыщенность по Арчи: Sw и Sxo",
+      "why_here": {
+        "ext": {},
+        "text": "Фундаментальный метод расчета насыщений, на который опираются все остальные кроссплоты и индексы.",
+        "by_model": true
+      },
+      "difficulty": {
+        "ext": {},
+        "primary": "Ф",
+        "secondary": "И"
+      },
+      "threshold": true,
+      "layers": {
+        "ext": {},
+        "topic": {
+          "ext": {},
+          "text": "Расчет водонасыщенности по формуле Арчи для неизмененной и промытой зон",
+          "by_model": true
+        },
+        "main": {
+          "ext": {},
+          "text": "Водонасыщенность неизмененной зоны рассчитывается по фундаментальной формуле Арчи. Для ее полной оценки требуется проверить ряд дополнительных условий по продуктивности и проницаемости.",
+          "by_model": true
+        },
+        "mechanism": {
+          "ext": {},
+          "text": "Формула связывает водонасыщенность с удельным сопротивлением пластовой воды, истинным сопротивлением пласта и пористостью через эмпирические коэффициенты извилистости, цементации и насыщения.",
+          "by_model": true
+        },
+        "practice": {
+          "ext": {},
+          "text": "Специалист рассчитывает Sw для неизмененной зоны и Sxo для промытой зоны, используя сопротивления, параметры пористости и свойства фильтра или воды.",
+          "by_model": true
+        },
+        "nuances": {
+          "ext": {},
+          "text": "Знание одной лишь водонасыщенности не гарантирует коммерческую добычу; требуется оценивать подвижность углеводородов, проницаемость и достаточность объема запасов.",
+          "by_model": true
+        },
+        "deeper": []
+      },
+      "claims": [
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.archie_water_saturation#c1",
+          "text": "Водонасыщенность неизмененной зоны рассчитывается по формуле Арчи 1942 года.",
+          "kind": "observation",
+          "page_pdf": 126,
+          "page_print": null,
+          "quote": "Water saturation ($S_w$) of a reservoir's uninvaded zone is calculated by the Archie (1942) formula:",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.archie_water_saturation#c2",
+          "text": "Формула Арчи для водонасыщенности неизмененной зоны включает сопротивление воды, истинное сопротивление пласта и пористость.",
+          "kind": "observation",
+          "page_pdf": 126,
+          "page_print": null,
+          "quote": "S_w = \\left( \\frac{a \\times R_w}{R_t \\times \\phi^m} \\right)^{\\frac{1}{n}} \\tag{7.1}",
+          "source_kind": "formula",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "R_w = resistivity of formation water at formation temperature"
+            }
+          },
+          "id": "test_asquith.archie_water_saturation#c3",
+          "text": "Параметр Rw обозначает удельное сопротивление пластовой воды при пластовой температуре.",
+          "kind": "observation",
+          "page_pdf": 126,
+          "page_print": null,
+          "quote": "R_w =$ resistivity of formation water at formation temperature",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "R_t = true formation resistivity (i.e., deep induction or deep laterolog corrected for invasion)"
+            }
+          },
+          "id": "test_asquith.archie_water_saturation#c4",
+          "text": "Параметр Rt обозначает истинное удельное сопротивление пласта с поправкой на проникновение.",
+          "kind": "observation",
+          "page_pdf": 126,
+          "page_print": null,
+          "quote": "R_t =$ true formation resistivity (i.e., deep induction or deep laterolog corrected for invasion)",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "The uninvaded zone's water saturation (Sw), determined by the Archie equation, is the most fundamental quantity used in log evaluation."
+            }
+          },
+          "id": "test_asquith.archie_water_saturation#c5",
+          "text": "Водонасыщенность неизмененной зоны по уравнению Арчи является важнейшей базовой величиной в оценке каротажа.",
+          "kind": "inference",
+          "page_pdf": 127,
+          "page_print": null,
+          "quote": "The uninvaded zone's water saturation ($S_w$), determined by the Archie equation, is the most fundamental quantity used in log evaluation.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "But merely knowing a zone's water saturation (Sw) does not provide enough information to completely evaluate a zone's potential productivity."
+            }
+          },
+          "id": "test_asquith.archie_water_saturation#c6",
+          "text": "Знание одной лишь водонасыщенности недостаточно для полной оценки потенциальной продуктивности интервала.",
+          "kind": "inference",
+          "page_pdf": 127,
+          "page_print": null,
+          "quote": "But merely knowing a zone's water saturation ($S_w$) does not provide enough information to completely evaluate a zone's potential productivity.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.archie_water_saturation#c7",
+          "text": "Геолог должен определить, является ли водонасыщенность достаточно низкой для безводной эксплуатации.",
+          "kind": "observation",
+          "page_pdf": 127,
+          "page_print": null,
+          "quote": "the water saturation is low enough for a water-free completion",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "the hydrocarbons are moveable\\nthe zone is permeable"
+            }
+          },
+          "id": "test_asquith.archie_water_saturation#c8",
+          "text": "Геолог должен убедиться, что углеводороды подвижны, а интервал проницаем.",
+          "kind": "observation",
+          "page_pdf": 127,
+          "page_print": null,
+          "quote": "the hydrocarbons are moveable\nthe zone is permeable",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.archie_water_saturation#c9",
+          "text": "Геолог должен установить наличие коммерческого объема извлекаемых запасов углеводородов.",
+          "kind": "observation",
+          "page_pdf": 127,
+          "page_print": null,
+          "quote": "there is an commercial volume of recoverable hydrocarbon reserves",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.archie_water_saturation#c10",
+          "text": "Водонасыщенность промытой зоны основана на уравнении Арчи с заменой Rw на Rmf и Rt на Rxo.",
+          "kind": "observation",
+          "page_pdf": 127,
+          "page_print": null,
+          "quote": "Water saturation of a formation's flushed zone ($S_{xo}$) is also based on the Archie equation, but two variables are changed: mud filtrate resistivity ($R_{mf}$) in place of formation water resistivity ($R_w$) and flushed zone resistivity ($R_{xo}$) in place of uninvaded zone resistivity ($R_t$).",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.archie_water_saturation#c11",
+          "text": "Формула Арчи для водонасыщенности промытой зоны записывается через сопротивление фильтра бурового раствора и сопротивление промытой зоны.",
+          "kind": "observation",
+          "page_pdf": 127,
+          "page_print": null,
+          "quote": "S_{xo} = \\left( \\frac{a \\times R_{mf}}{R_{xo} \\times \\phi^m} \\right)^{\\frac{1}{n}} \\tag{7.2}",
+          "source_kind": "formula",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "R_{mf} = resistivity of the mud filtrate at formation temperature"
+            }
+          },
+          "id": "test_asquith.archie_water_saturation#c12",
+          "text": "Параметр Rmf обозначает удельное сопротивление фильтра бурового раствора при пластовой температуре.",
+          "kind": "observation",
+          "page_pdf": 127,
+          "page_print": null,
+          "quote": "R_{mf} =$ resistivity of the mud filtrate at formation temperature",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "R_{xo} = shallow resistivity from a very shallow reading device, such as laterolog-8, microspherically focused log, or microlaterolog"
+            }
+          },
+          "id": "test_asquith.archie_water_saturation#c13",
+          "text": "Параметр Rxo определяется по приборам очень мелкого исследования.",
+          "kind": "observation",
+          "page_pdf": 127,
+          "page_print": null,
+          "quote": "R_{xo} =$ shallow resistivity from a very shallow reading device, such as laterolog-8, microspherically focused log, or microlaterolog",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "Water saturation of the flushed zone (Sxo) can be used as an indicator of hydrocarbon moveability."
+            }
+          },
+          "id": "test_asquith.archie_water_saturation#c14",
+          "text": "Водонасыщенность промытой зоны может применяться как индикатор подвижности углеводородов.",
+          "kind": "inference",
+          "page_pdf": 127,
+          "page_print": null,
+          "quote": "Water saturation of the flushed zone ($S_{xo}$) can be used as an *indicator of hydrocarbon moveability*.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "fuzzy"
+            }
+          },
+          "id": "test_asquith.archie_water_saturation#c15",
+          "text": "Если Sxo существенно больше Sw, углеводороды вблизи скважины вероятно были вытеснены фильтратом раствора.",
+          "kind": "inference",
+          "page_pdf": 127,
+          "page_print": null,
+          "quote": "For example, if the value of Sxo is much larger than Sw, then hydrocarbons in the flushed zone have probably been moved or flushed out of the zone nearest the borehole by the invading drilling fluids (Rmf).",
+          "source_kind": "text",
+          "by_model": false
+        }
+      ],
+      "links": [
+        {
+          "ext": {},
+          "type": "prerequisite",
+          "target": "test_asquith.log_interpretation_overview"
+        }
+      ],
+      "misconception": null,
+      "data_meaning": {
+        "ext": {},
+        "from_chapter": {
+          "ext": {},
+          "text": "Данные глубокого и малого сопротивления, а также пористости позволяют рассчитать Sw и Sxo для оценки насыщения и подвижности.",
+          "by_model": true
+        },
+        "breaks": {
+          "ext": {},
+          "text": "Расчет нарушается при некорректном задании параметров цементации, извилистости и сопротивлений пластовой воды или фильтра.",
+          "by_model": true
+        },
+        "hypotheses": [
+          {
+            "ext": {},
+            "text": "Модель машинного обучения может выучить неявную связь между сопротивлениями и насыщением без явного расчета по формуле Арчи.",
+            "by_model": true,
+            "hypothesis": true
+          }
+        ]
+      },
+      "it_analogy": {
+        "ext": {},
+        "text": "Расчет целевой переменной по физической формуле (Feature Engineering на основе физического закона).",
+        "breaks_where": "В отличие от программного кода с фиксированными константами, физические параметры в пласте меняются от интервала к интервалу.",
+        "by_model": true
+      },
+      "now_practice": null,
+      "inefficiency_lens": null,
+      "terms_introduced": [
+        "water saturation",
+        "uninvaded zone",
+        "flushed zone",
+        "tortuosity factor",
+        "cementation exponent",
+        "saturation exponent",
+        "hydrocarbon moveability",
+        "Sw",
+        "Sxo",
+        "Rw",
+        "Rt",
+        "Rmf",
+        "Rxo"
+      ],
+      "terms_used": [
+        "porosity",
+        "tortuosity factor",
+        "cementation exponent",
+        "saturation exponent"
+      ],
+      "needs_scan": [],
+      "decision_on_data": {
+        "ext": {},
+        "features": [
+          "Sw",
+          "Sxo"
+        ],
+        "rule": "Если Sxo значительно больше Sw",
+        "conclusion": "Углеводороды в прискважинной зоне подвижны и вытеснены фильтратом бурового раствора",
+        "counterexample": "Равенство Sxo и Sw при высоком сопротивлении может указывать на отсутствие подвижных углеводородов (например, остаточную нефть или плотный неколлектор)."
+      },
+      "worked_examples": [],
+      "book_tasks": [],
+      "pages": [
+        126,
+        127
+      ],
+      "title_novice": "Как рассчитать насыщенность воды в неизмененной и промытой зонах",
+      "unit_ids": [
+        "p126.11",
+        "p126.12",
+        "p126.13",
+        "p126.14",
+        "p126.15",
+        "p126.16",
+        "p126.17",
+        "p126.18",
+        "p126.19",
+        "p127.01",
+        "p127.02",
+        "p127.03",
+        "p127.04",
+        "p127.05",
+        "p127.06",
+        "p127.07",
+        "p127.08",
+        "p127.09",
+        "p127.10",
+        "p127.11",
+        "p127.12",
+        "p127.13",
+        "p127.14",
+        "p127.15"
+      ]
+    },
+    {
+      "ext": {},
+      "id": "test_asquith.ratio_method",
+      "order": 4,
+      "title": "Метод отношений",
+      "why_here": {
+        "ext": {},
+        "text": "Развивает формулу Арчи для случаев, когда нет данных пористости, опираясь на сравнение зон.",
+        "by_model": true
+      },
+      "difficulty": {
+        "ext": {},
+        "primary": "Ф",
+        "secondary": "И"
+      },
+      "threshold": false,
+      "layers": {
+        "ext": {},
+        "topic": {
+          "ext": {},
+          "text": "Метод отношений для оценки водонасыщенности и подвижных углеводородов без данных пористости",
+          "by_model": true
+        },
+        "main": {
+          "ext": {},
+          "text": "Метод отношений позволяет определять водонасыщенность и индекс подвижных углеводородов по соотношению сопротивлений зон пласта, исключая из расчётов неизвестную пористость. Для уточнения результатов метод сопоставляют с уравнением Арчи, корректируя профиль проникновения.",
+          "by_model": true
+        },
+        "mechanism": {
+          "ext": {},
+          "text": "При делении уравнения Арчи для неизмененной зоны на уравнение для зоны проникновения коэффициент пористости сокращается, так как для обеих зон используется одинаковое значение. Итоговая формула завязывает расчет на отношения глубокого и мелкофокусированного сопротивлений, а также удельных сопротивлений фильтра и воды.",
+          "by_model": true
+        },
+        "practice": {
+          "ext": {},
+          "text": "Специалист рассчитывает индекс подвижных углеводородов и оценивает их наличие по пороговым значениям (например, ниже 0.7 для песчаников), а также сопоставляет водонасыщенность по Арчи с методом отношений для выявления характера проникновения промывной жидкости.",
+          "by_model": true
+        },
+        "nuances": {
+          "ext": {},
+          "text": "Метод предполагает цементирующий коэффициент n равным 2.0. Пороги подвижности углеводородов различаются для песчаников и карбонатов. Расхождения между методами Арчи и отношений указывают на тип профиля проникновения (ступенчатый, переходный, кольцевой) или аномалии разреза.",
+          "by_model": true
+        },
+        "deeper": []
+      },
+      "claims": [
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "fuzzy"
+            }
+          },
+          "id": "test_asquith.ratio_method#c1",
+          "text": "Метод отношений идентифицирует углеводороды по разнице водонасыщенностей промытой и неизмененной зон.",
+          "kind": "observation",
+          "page_pdf": 127,
+          "page_print": null,
+          "quote": "The ratio method identifies hydrocarbons from the difference between water saturations in the flushed zone (Sxo) and the uninvaded zone (Sw).",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.ratio_method#c2",
+          "text": "Формула отношения 7.3 получается делением уравнения Арчи для неизмененной зоны на уравнение для промытой зоны.",
+          "kind": "inference",
+          "page_pdf": 127,
+          "page_print": null,
+          "quote": "When the uninvaded zone form of Archie's equation (Equation 7.1) is divided by the flushed zone form (Equation 7.2), the following results:",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "fuzzy"
+            }
+          },
+          "id": "test_asquith.ratio_method#c3",
+          "text": "При делении Sw на Sxo коэффициент пористости сокращается, позволяя вычислить индекс подвижных углеводородов без данных пористости.",
+          "kind": "inference",
+          "page_pdf": 127,
+          "page_print": null,
+          "quote": "When Sw is divided by Sxo, the formation factor (F = a/m) is cancelled out of the equation because the same formation factor is used to calculate both Sw and Sxo.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "The cementation exponent (n) is assumed to be 2.0"
+            }
+          },
+          "id": "test_asquith.ratio_method#c4",
+          "text": "Цементирующий коэффициент n в методе принимается равным 2.0.",
+          "kind": "assumption",
+          "page_pdf": 127,
+          "page_print": null,
+          "quote": "The cementation exponent ($n$) is assumed to be 2.0",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "If the ratio Sw/Sxo is equal to or greater than 1.0, then hydrocarbons were not moved during invasion."
+            }
+          },
+          "id": "test_asquith.ratio_method#c5",
+          "text": "Если отношение Sw/Sxo равно или больше 1.0, углеводороды не перемещались при вторжении.",
+          "kind": "observation",
+          "page_pdf": 127,
+          "page_print": null,
+          "quote": "If the ratio $S_w/S_{xo}$ is equal to or greater than 1.0, then hydrocarbons were not moved during invasion.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "Whenever the ratio Sw/Sxo is less than 0.7 for sandstones or less than 0.6 for carbonates, moveable hydrocarbons are indicated"
+            }
+          },
+          "id": "test_asquith.ratio_method#c6",
+          "text": "Значение отношения Sw/Sxo менее 0.7 для песчаников или менее 0.6 для карбонатов указывает на подвижные углеводороды.",
+          "kind": "observation",
+          "page_pdf": 127,
+          "page_print": null,
+          "quote": "Whenever the ratio $S_w/S_{xo}$ is less than 0.7 for sandstones or less than 0.6 for carbonates, moveable hydrocarbons are indicated",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "In the flushed zone of formations with moderate invasion and average residual hydrocarbon saturation, the following relationship normally works well: Sxo = (Sw)^(1/2)"
+            }
+          },
+          "id": "test_asquith.ratio_method#c7",
+          "text": "Для умеренного вторжения и средней остаточной насыщенности используется связь Sxo = (Sw)^(1/2).",
+          "kind": "assumption",
+          "page_pdf": 128,
+          "page_print": null,
+          "quote": "In the flushed zone of formations with moderate invasion and average residual hydrocarbon saturation, the following relationship normally works well:\n\n$$S_{xo} = (S_w)^{\\frac{1}{2}} \\tag{7.5}$$",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "1. If Swa ~ Swr, the assumption of a step-contact invasion profile is indicated to be correct, and all values determined (Sw, Rt, Rxo, and dt) are correct."
+            }
+          },
+          "id": "test_asquith.ratio_method#c8",
+          "text": "Сравнение Swa и Swr позволяет оценить профиль вторжения: при Swa ~ Swr профиль ступенчатый и все значения корректны.",
+          "kind": "observation",
+          "page_pdf": 128,
+          "page_print": null,
+          "quote": "1. If $S_{wa} \\sim S_{wr}$, the assumption of a step-contact invasion profile is indicated to be correct, and all values determined ($S_w$, $R_t$, $R_{xo}$, and $d_t$) are correct.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "2. If Swa > Swr, then the value for Rxo/Rt is too low. Rxo is too low because invasion is very shallow, or Rt is too high because invasion is very deep."
+            }
+          },
+          "id": "test_asquith.ratio_method#c9",
+          "text": "Если Swa > Swr, отношение Rxo/Rt слишком низкое из-за очень слабого вторжения или очень глубокого проникновения.",
+          "kind": "observation",
+          "page_pdf": 128,
+          "page_print": null,
+          "quote": "2. If $S_{wa} > S_{wr}$, then the value for $R_{xo}/R_t$ is too low. $R_{xo}$ is too low because invasion is very shallow, or $R_t$ is too high because invasion is very deep.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "3. If Swa < Swr, then the value for Rxo/Rt is too high. Rxo is too high because of the effect of adjacent, high-resistivity beds, or Rt estimated from the deep resistivity measurement is too low"
+            }
+          },
+          "id": "test_asquith.ratio_method#c10",
+          "text": "Если Swa < Swr, отношение Rxo/Rt слишком высокое из-за соседних высокоомных пластов или заниженного Rt.",
+          "kind": "observation",
+          "page_pdf": 128,
+          "page_print": null,
+          "quote": "3. If $S_{wa} < S_{wr}$, then the value for $R_{xo}/R_t$ is too high. $R_{xo}$ is too high because of the effect of adjacent, high-resistivity beds, or $R_t$ estimated from the deep resistivity measurement is too low",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "4. If Swa < Swr, the reservoir might be a carbonate with moldic (i.e., oomoldic, fossil-moldic, etc.) porosity and low permeability."
+            }
+          },
+          "id": "test_asquith.ratio_method#c11",
+          "text": "При Swa < Swr коллектор может быть карбонатом с пористой структурой выщелачивания и низкой проницаемостью.",
+          "kind": "observation",
+          "page_pdf": 128,
+          "page_print": null,
+          "quote": "4. If $S_{wa} < S_{wr}$, the reservoir might be a carbonate with moldic (i.e., oomoldic, fossil-moldic, etc.) porosity and low permeability.",
+          "source_kind": "text",
+          "by_model": false
+        }
+      ],
+      "links": [
+        {
+          "ext": {},
+          "type": "prerequisite",
+          "target": "test_asquith.archie_water_saturation"
+        }
+      ],
+      "misconception": null,
+      "data_meaning": {
+        "ext": {},
+        "from_chapter": {
+          "ext": {},
+          "text": "Данные глубокого и мелкого сопротивления совместно с удельными сопротивлениями фильтра и воды позволяют оценивать насыщение и подвижность углеводородов даже при отсутствии данных пористости.",
+          "by_model": true
+        },
+        "breaks": {
+          "ext": {},
+          "text": "Метод дает искажения при сложных профилях вторжения (кольцевой, переходный), влиянии соседних высокоомных пластов или в низкопроницаемых карбонатах с выщебренной пористостью.",
+          "by_model": true
+        },
+        "hypotheses": [
+          {
+            "ext": {},
+            "text": "Автоматизированное сравнение Swa и Swr можно использовать как признак аномалий качества каротажа сопротивления в пайплайне предобработки данных.",
+            "by_model": true,
+            "hypothesis": true
+          }
+        ]
+      },
+      "it_analogy": {
+        "ext": {},
+        "text": "Отношение признаков (ratio feature) в машинном обучении, позволяющее убрать общий мультипликативный фактор шума или неизмеряемый параметр.",
+        "breaks_where": "Физические законы (уравнение Арчи) жестко задают степенные зависимости, в то время как простые отношения признаков в ML могут не учитывать нелинейность и литологические коэффициенты.",
+        "by_model": true
+      },
+      "now_practice": null,
+      "inefficiency_lens": {
+        "ext": {},
+        "inputs": "Кривые глубокого и мелкого сопротивления (Rt, Rxo), параметры Rw и Rmf при пластовой температуре.",
+        "manual_steps": "Расчет отношения сопротивлений, вычисление индекса подвижных углеводородов по формуле 7.4, сопоставление результатов с методом Арчи.",
+        "judgment_points": "Выбор пороговых значений подвижности углеводородов в зависимости от литологии (песчаники/карбонаты), оценка правильности профиля вторжения по расхождению Swa и Swr.",
+        "time": "Минуты при расчете по формулам или автоматизированном скрипте.",
+        "typical_errors": "Использование неверного значения Rw или Rmf, игнорирование влияния соседних высокоомных пластов на Rxo.",
+        "by_model": true
+      },
+      "terms_introduced": [
+        "ratio method",
+        "moveable hydrocarbon index"
+      ],
+      "terms_used": [
+        "water saturation",
+        "true resistivity",
+        "flushed zone",
+        "uninvaded zone",
+        "cementation exponent",
+        "hydrocarbon moveability"
+      ],
+      "needs_scan": [],
+      "decision_on_data": {
+        "ext": {},
+        "features": [
+          "Sw/Sxo",
+          "Swa",
+          "Swr"
+        ],
+        "rule": "Если Sw/Sxo < 0.7 для песчаников (или < 0.6 для карбонатов), фиксируется наличие подвижных углеводородов; при Swa ~ Swr профиль вторжения считается ступенчатым.",
+        "conclusion": "Вывод о подвижности углеводородов и корректности модели вторжения.",
+        "counterexample": "Значение Swa < Swr в карбонатах с выщебренной пористостью и низкой проницаемостью, где метод дает ложное указание на аномалию вторжения."
+      },
+      "worked_examples": [],
+      "book_tasks": [],
+      "pages": [
+        127,
+        128
+      ],
+      "title_novice": "Как оценить подвижные углеводороды без знания пористости",
+      "unit_ids": [
+        "p127.16",
+        "p127.17",
+        "p127.18",
+        "p127.19",
+        "p127.20",
+        "p127.21",
+        "p127.22",
+        "p127.23",
+        "p127.24",
+        "p127.25",
+        "p127.26",
+        "p127.27",
+        "p127.28",
+        "p127.29",
+        "p127.30",
+        "p127.31",
+        "p127.32",
+        "p127.33",
+        "p127.34",
+        "p127.35",
+        "p127.36",
+        "p127.37",
+        "p128.01",
+        "p128.02",
+        "p128.03",
+        "p128.04",
+        "p128.05",
+        "p128.06",
+        "p128.07",
+        "p128.08",
+        "p128.09",
+        "p128.10",
+        "p128.11",
+        "p128.12",
+        "p128.13",
+        "p128.14",
+        "p128.15",
+        "p128.16",
+        "p128.17",
+        "p128.18",
+        "p128.19",
+        "p128.20",
+        "p128.21",
+        "p128.22",
+        "p128.23",
+        "p128.24",
+        "p128.25",
+        "p128.26",
+        "p128.27"
+      ]
+    },
+    {
+      "ext": {},
+      "id": "test_asquith.quick_look_methods",
+      "order": 5,
+      "title": "Экспресс-методы интерпретации",
+      "why_here": {
+        "ext": {},
+        "text": "Опирается на базовый закон Арчи и кривые SP/сопротивления для оперативного поиска зон.",
+        "by_model": true
+      },
+      "difficulty": {
+        "ext": {},
+        "primary": "И",
+        "secondary": "Р"
+      },
+      "threshold": false,
+      "layers": {
+        "ext": {},
+        "topic": {
+          "ext": {},
+          "text": "Экспресс-методы качественной оценки зон по геофизическим данным",
+          "by_model": true
+        },
+        "main": {
+          "ext": {},
+          "text": "Экспресс-методы позволяют быстро находить потенциально нефтегазоносные зоны с помощью сравнения кривых сопротивления, SP и расчетных параметров без трудоемкого полного счета.",
+          "by_model": true
+        },
+        "mechanism": {
+          "ext": {},
+          "text": "Методы основаны на сопоставлении показаний глубокого и мелкого исследования сопротивления, кривой ПС и расчетных значений apparent water resistivity, conductivity-derived porosity и wet resistivity с базовыми законами.",
+          "by_model": true
+        },
+        "practice": {
+          "ext": {},
+          "text": "Интерпретаторы строят кривые соотношений Rxo/Rt, Rwa, проводимостной пористости или Ro в одном масштабе с SP или сопротивлением и визуально ищут аномалии расхождения кривых.",
+          "by_model": true
+        },
+        "nuances": {
+          "ext": {},
+          "text": "В практике часто используют упрощенные константы a=1.0, m=2.0, n=2.0 и данные без экологических поправок, а в низкопористых зонах Rwa занижает истинное Rw.",
+          "by_model": true
+        },
+        "deeper": []
+      },
+      "claims": [
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c1",
+          "text": "Экспресс-методы дают индикаторы для поиска возможных зон скопления углеводородов.",
+          "kind": "observation",
+          "page_pdf": 128,
+          "page_print": null,
+          "quote": "Quick-look methods are helpful to the geologist because they provide flags, or indicators, that point to possible hydrocarbon zones requiring further investigation.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c2",
+          "text": "Рассматриваются четыре экспресс-метода: отношение Rxo/Rt, кажущееся удельное сопротивление воды, проводимостная пористость и влажное сопротивление.",
+          "kind": "observation",
+          "page_pdf": 128,
+          "page_print": null,
+          "quote": "The four quick-look methods discussed here are:\n\n- $R_{xo}/R_t$\n- apparent water resistivity ($R_{wa}$)\n- conductivity-derived porosity\n- Wet resistivity ($R_o$)",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "The Rxo/Rt technique relies on the comparison of the resistivity ratio, plotted as a curve on the log display, to the SP curve."
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c3",
+          "text": "Метод Rxo/Rt опирается на сравнение кривой отношения сопротивлений и кривой SP.",
+          "kind": "observation",
+          "page_pdf": 128,
+          "page_print": null,
+          "quote": "The $R_{xo}/R_t$ technique relies on the comparison of the resistivity ratio, plotted as a curve on the log display, to the SP curve.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c4",
+          "text": "В глинах отношение Rxo/Rt относительно константно и близко к 1.",
+          "kind": "observation",
+          "page_pdf": 128,
+          "page_print": null,
+          "quote": "1. In a shale, the ratio is relatively constant, like the SP, and usually close to 1.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "2. In a water-bearing zone, the Rxo/Rt ratio tracks the SP."
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c5",
+          "text": "В водоносной зоне отношение Rxo/Rt повторяет ход кривой SP.",
+          "kind": "observation",
+          "page_pdf": 128,
+          "page_print": null,
+          "quote": "2. In a water-bearing zone, the $R_{xo}/R_t$ ratio tracks the SP.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "3. In a hydrocarbon-bearing zone, the Rxo/Rt ratio moves away from the SP [a deflection to the right for the case of a normal (negative) SP]."
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c6",
+          "text": "В нефтегазоносной зоне отношение Rxo/Rt отклоняется от кривой SP вправо при нормальной отрицательной аномалии ПС.",
+          "kind": "observation",
+          "page_pdf": 128,
+          "page_print": null,
+          "quote": "3. In a hydrocarbon-bearing zone, the $R_{xo}/R_t$ ratio moves away from the SP [a deflection to the right for the case of a normal (negative) SP].",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c7",
+          "text": "Отношение Rxo/Ro связано с SP через постоянную формулу с логарифмом отношения Rmf к Rw.",
+          "kind": "inference",
+          "page_pdf": 129,
+          "page_print": null,
+          "quote": "SP = -K \\times \\log\\left(\\frac{R_{xo}}{R_o}\\right)",
+          "source_kind": "formula",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "In a hydrocarbon-bearing interval, while the SP still responds to the differences in connate water and mud filtrate resistivities and moves accordingly, the Rxo/Rt ratio decreases (because of increasing Rt) and the Rxo/Rt curve moves away from the SP."
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c8",
+          "text": "В нефтеносном интервале Rt растет, из-за чего отношение Rxo/Rt уменьшается и кривая уходит от SP.",
+          "kind": "inference",
+          "page_pdf": 129,
+          "page_print": null,
+          "quote": "In a hydrocarbon-bearing interval, while the SP still responds to the differences in connate water and mud filtrate resistivities and moves accordingly, the $R_{xo}/R_t$ ratio decreases (because of increasing $R_t$) and the $R_{xo}/R_t$ curve moves away from the SP.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "fuzzy"
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c9",
+          "text": "Для Rxo используют микрософокусированный каротаж или миколатеролог, а для Rt — глубокий индукционный каротаж или глубокий латеролог.",
+          "kind": "observation",
+          "page_pdf": 129,
+          "page_print": null,
+          "quote": "The Rxo curve usually used for the ratio is derived from a shallow-reading measurement, such as a microspherically focused log or a microlaterolog. The Rt curve is derived from a deep-reading measurement such as the deep induction log or deep laterolog.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "The Rwa technique relies on the comparison of calculated values of water resistivity between intervals in a well."
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c10",
+          "text": "Метод Rwa сравнивает расчетные значения удельного сопротивления воды между интервалами для поиска минимального значения.",
+          "kind": "observation",
+          "page_pdf": 129,
+          "page_print": null,
+          "quote": "The $R_{wa}$ technique relies on the comparison of calculated values of water resistivity between intervals in a well.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "The assumption is that this lowest value of Rwa is the closest approximation to the true formation water resistivity (Rw) and that values of Rwa greater than the minimum value are indicative of the presence of hydrocarbons."
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c11",
+          "text": "Минимальное значение Rwa принимается за истинное сопротивление пластовой воды, а большие значения указывают на углеводороды.",
+          "kind": "assumption",
+          "page_pdf": 129,
+          "page_print": null,
+          "quote": "The assumption is that this lowest value of $R_{wa}$ is the closest approximation to the true formation water resistivity ($R_w$) and that values of $R_{wa}$ greater than the minimum value are indicative of the presence of hydrocarbons.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "fuzzy"
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c12",
+          "text": "В зонах с низкой пористостью менее 10% значение Rwa получается ниже реального Rw.",
+          "kind": "observation",
+          "page_pdf": 129,
+          "page_print": null,
+          "quote": "In low-porosity zones (less than about 10% porosity), the Rwa value is lower than the actual Rw value.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c13",
+          "text": "Кажущееся удельное сопротивление воды Rwa определяется через Rt, пористость, цементационный показатель и параметр a.",
+          "kind": "inference",
+          "page_pdf": 129,
+          "page_print": null,
+          "quote": "R_{wa} = \\frac{R_t \\times \\phi^m}{a}",
+          "source_kind": "formula",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "fuzzy"
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c14",
+          "text": "На практике для Rwa используют параметры a=1.0 и m=2.0 без экологических поправок.",
+          "kind": "observation",
+          "page_pdf": 130,
+          "page_print": null,
+          "quote": "In practice, especially when calculated and displayed as a curve during a logging job, the following values are used for simplicity: a = 1.0, m = 2.0.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "where the cementation exponent (n) in the equation above is assumed to be 2."
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c15",
+          "text": "Водонасыщенность по Арчи через Rwa рассчитывается с предположением, что показатель n равен 2.",
+          "kind": "assumption",
+          "page_pdf": 130,
+          "page_print": null,
+          "quote": "where the cementation exponent ($n$) in the equation above is assumed to be 2.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c16",
+          "text": "Экспресс-оценка Sw дает для отношения Rwa к минимальному Rwa равного 3 значение Sw 0.58.",
+          "kind": "observation",
+          "page_pdf": 130,
+          "page_print": null,
+          "quote": "- ($R_{wa\\ zone}/R_{wa\\ minimum}$) = 3 yields $S_w = 0.58$;",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "fuzzy"
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c17",
+          "text": "Метод проводимостной пористости рассчитывает пористость по уравнению Арчи при Sw равном 1.",
+          "kind": "observation",
+          "page_pdf": 130,
+          "page_print": null,
+          "quote": "This technique calculates a porosity from Archie's equation, using the form of the equation for water-bearing zones (Sw = 1).",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c18",
+          "text": "В водоносных зонах проводимостная пористость высока и равна истинной пористости, а в нефтегазоносных — ниже ее.",
+          "kind": "observation",
+          "page_pdf": 130,
+          "page_print": null,
+          "quote": "1. In water-bearing zones, the conductivity-derived porosity is high and approximately equal to the true formation porosity. 2. In zones that contain hydrocarbons, the conductivity-derived porosity is low, lower than the true formation porosity.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "The choice of an incorrect value for Rw would change the value of conductivity-derived porosity, and might make its comparison to true formation porosity inaccurate. It would not, however, change the results of comparison of the curve values in different zones."
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c19",
+          "text": "Неверный выбор Rw меняет значение проводимостной пористости, но не меняет результат сравнения между зонами.",
+          "kind": "inference",
+          "page_pdf": 130,
+          "page_print": null,
+          "quote": "The choice of an incorrect value for $R_w$ would change the value of conductivity-derived porosity, and might make its comparison to true formation porosity inaccurate. It would not, however, change the results of comparison of the curve values in different zones.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c20",
+          "text": "Водонасыщенность можно оценить как отношение проводимостной пористости к фактической пористости.",
+          "kind": "inference",
+          "page_pdf": 130,
+          "page_print": null,
+          "quote": "S_w = \\frac{\\phi_{conductivity}}{\\phi_{actual}}",
+          "source_kind": "formula",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c21",
+          "text": "Кривая влажного сопротивления Ro строится как наложение на кривую глубокого сопротивления.",
+          "kind": "observation",
+          "page_pdf": 131,
+          "page_print": null,
+          "quote": "Unlike the other curves, which tend to be compared to the SP curve, it is plotted as an overlay on the resistivity curve.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "1. In water-bearing zones, Ro and the deep resistivity should overlay. 2. In hydrocarbon-bearing zones, the deep resistivity is higher than Ro, with the separation increasing with increasing hydrocarbon saturation."
+            }
+          },
+          "id": "test_asquith.quick_look_methods#c22",
+          "text": "В водоносных зонах кривые Ro и глубокого сопротивления совпадают, а в нефтеносных глубокое сопротивление выше Ro.",
+          "kind": "observation",
+          "page_pdf": 131,
+          "page_print": null,
+          "quote": "1. In water-bearing zones, $R_o$ and the deep resistivity should overlay.\n2. In hydrocarbon-bearing zones, the deep resistivity is higher than $R_o$, with the separation increasing with increasing hydrocarbon saturation.",
+          "source_kind": "text",
+          "by_model": false
+        }
+      ],
+      "links": [
+        {
+          "ext": {},
+          "type": "prerequisite",
+          "target": "test_asquith.archie_water_saturation"
+        },
+        {
+          "ext": {},
+          "type": "to_data",
+          "target": "data.las_curve"
+        }
+      ],
+      "misconception": null,
+      "data_meaning": {
+        "ext": {},
+        "from_chapter": {
+          "ext": {},
+          "text": "Кривые отношений Rxo/Rt, Rwa, проводимостной пористости и Ro позволяют прямо на планшете каротажа видеть расхождения и определять перспективные интервалы.",
+          "by_model": true
+        },
+        "breaks": {
+          "ext": {},
+          "text": "Методы дают сбои в низкопористых коллекторах и при неверном задании параметров пластовой воды или литологии.",
+          "by_model": true
+        },
+        "hypotheses": [
+          {
+            "ext": {},
+            "text": "Алгоритм сегментации аномалий на планшете можно автоматизировать через пороговые правила по отношению Rxo/Rt и Rwa.",
+            "by_model": true,
+            "hypothesis": true
+          }
+        ]
+      },
+      "it_analogy": {
+        "ext": {},
+        "text": "Эвристический скрининг аномалий в сырых логах по отклонению от базовой линии, похожий на поиск выбросов по скользящему среднему.",
+        "breaks_where": "Физические законы фильтрации и геометрии зоны проникновения жестко задают связи между кривыми, в отличие от чисто статистических выбросов в ИТ.",
+        "by_model": true
+      },
+      "now_practice": null,
+      "inefficiency_lens": null,
+      "terms_introduced": [
+        "apparent water resistivity",
+        "conductivity-derived porosity",
+        "wet resistivity",
+        "экспресс-методы",
+        "кажущееся удельное сопротивление воды",
+        "проводимостная пористость",
+        "влажное сопротивление"
+      ],
+      "terms_used": [
+        "water saturation",
+        "true resistivity",
+        "bulk volume water",
+        "movable hydrocarbon index",
+        "scanning technique",
+        "pay zone",
+        "wet zone",
+        "uninvaded zone",
+        "flushed zone",
+        "tortuosity factor",
+        "cementation exponent",
+        "saturation exponent",
+        "hydrocarbon moveability",
+        "ratio method"
+      ],
+      "needs_scan": [],
+      "decision_on_data": {
+        "ext": {},
+        "features": [
+          "Rxo/Rt",
+          "Rwa",
+          "проводимостная пористость",
+          "Ro"
+        ],
+        "rule": "Если кривая соотношения Rxo/Rt отклоняется вправо от SP, Rwa выше минимального, проводимостная пористость ниже фактической, а глубокое сопротивление выше Ro — это зона с углеводородами.",
+        "conclusion": "Интервал является нефтегазоносным.",
+        "counterexample": "Плотный неколлектор с высоким сопротивлением или глинистый интервал."
+      },
+      "worked_examples": [],
+      "book_tasks": [],
+      "pages": [
+        128,
+        129,
+        130,
+        131
+      ],
+      "title_novice": "Быстрые визуальные индикаторы углеводородов по кривым",
+      "unit_ids": [
+        "p128.28",
+        "p128.29",
+        "p128.30",
+        "p128.31",
+        "p128.32",
+        "p128.33",
+        "p128.34",
+        "p128.35",
+        "p128.36",
+        "p128.37",
+        "p129.01",
+        "p129.02",
+        "p129.03",
+        "p129.04",
+        "p129.05",
+        "p129.06",
+        "p129.07",
+        "p129.08",
+        "p129.09",
+        "p129.10",
+        "p129.11",
+        "p129.12",
+        "p129.13",
+        "p129.14",
+        "p129.15",
+        "p129.16",
+        "p129.17",
+        "p129.18",
+        "p129.19",
+        "p129.20",
+        "p129.21",
+        "p129.22",
+        "p129.23",
+        "p129.24",
+        "p129.25",
+        "p129.26",
+        "p129.27",
+        "p129.28",
+        "p129.29",
+        "p130.01",
+        "p130.02",
+        "p130.03",
+        "p130.04",
+        "p130.05",
+        "p130.06",
+        "p130.07",
+        "p130.08",
+        "p130.09",
+        "p130.10",
+        "p130.11",
+        "p130.12",
+        "p130.13",
+        "p130.14",
+        "p130.15",
+        "p130.16",
+        "p130.17",
+        "p130.18",
+        "p130.19",
+        "p130.20",
+        "p130.21",
+        "p130.22",
+        "p130.23",
+        "p130.24",
+        "p130.25",
+        "p130.26",
+        "p131.01",
+        "p131.02",
+        "p131.03",
+        "p131.04",
+        "p131.05",
+        "p131.06",
+        "p131.07",
+        "p131.08",
+        "p131.09",
+        "p131.10",
+        "p131.11",
+        "p131.12"
+      ]
+    },
+    {
+      "ext": {},
+      "id": "test_asquith.bulk_volume_water",
+      "order": 6,
+      "title": "Объемная водонасыщенность (BVW)",
+      "why_here": {
+        "ext": {},
+        "text": "Вводит понятие irreducible water saturation, объединяя пористость и насыщенность для оценки характера притока.",
+        "by_model": true
+      },
+      "difficulty": {
+        "ext": {},
+        "primary": "И",
+        "secondary": "Ф"
+      },
+      "threshold": true,
+      "layers": {
+        "ext": {},
+        "topic": {
+          "ext": {},
+          "text": "Объемная водонасыщенность для оценки характера притока",
+          "by_model": true
+        },
+        "main": {
+          "ext": {},
+          "text": "Объемная водонасыщенность (BVW) представляет собой произведение водонасыщенности и пористости. Постоянные значения BVW по разрезу указывают на единый тип породы и достижение остаточной водонасыщенности, при которой скважина дает чистый приток нефти без воды.",
+          "by_model": true
+        },
+        "mechanism": {
+          "ext": {},
+          "text": "Вода удерживается на зернах породы капиллярными силами, величина которых растет с уменьшением размера зерен. Из-за этого объемная водонасыщенность увеличивается при переходе к более мелкозернистым литотипам.",
+          "by_model": true
+        },
+        "practice": {
+          "ext": {},
+          "text": "Для анализа строят график Бакклза — кроссплот пористости и водонасыщенности в линейных масштабах, где линии постоянного BVW выглядят как гиперболические кривые. Расположение точек вдоль одной гиперболы говорит о безводной добыче, а рассеяние точек — о подвижной воде и обводнении.",
+          "by_model": true
+        },
+        "nuances": {
+          "ext": {},
+          "text": "Значения объемной водонасыщенности для карбонатов следует использовать только как очень общий ориентир для разных типов пористости.",
+          "by_model": true
+        },
+        "deeper": []
+      },
+      "claims": [
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "fuzzy"
+            }
+          },
+          "id": "test_asquith.bulk_volume_water#c1",
+          "text": "Произведение водной насыщенности пласта и его пористости является объемной водонасыщенностью.",
+          "kind": "observation",
+          "page_pdf": 131,
+          "page_print": null,
+          "quote": "The product of a formation's water saturation (Sw) and its porosity (φ) is the bulk volume of water (BVW).",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "fuzzy"
+            }
+          },
+          "id": "test_asquith.bulk_volume_water#c2",
+          "text": "Объемная водонасыщенность рассчитывается как произведение Sw на пористость.",
+          "kind": "observation",
+          "page_pdf": 131,
+          "page_print": null,
+          "quote": "The product of a formation's water saturation (Sw) and its porosity (φ) is the bulk volume of water (BVW).",
+          "source_kind": "formula",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.bulk_volume_water#c3",
+          "text": "Постоянные или близкие к постоянным значения BVW на разных глубинах указывают на единый тип породы и остаточную водонасыщенность.",
+          "kind": "inference",
+          "page_pdf": 131,
+          "page_print": null,
+          "quote": "If values for bulk volume water, calculated at several depths in a formation, are constant or very close to constant, they indicate that the zone is of a single rock type and at irreducible water saturation",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "When a zone is at irreducible water saturation, water in the uninvaded zone (Sw) does not move because it is held on grains by capillary pressure. Therefore, hydrocarbon production from a zone at irreducible water saturation should be water free"
+            }
+          },
+          "id": "test_asquith.bulk_volume_water#c4",
+          "text": "При остаточной водонасыщенности вода в невнедренной зоне неподвижна, так как удерживается на зернах капиллярным давлением, поэтому приток должен быть безводным.",
+          "kind": "inference",
+          "page_pdf": 131,
+          "page_print": null,
+          "quote": "When a zone is at irreducible water saturation, water in the uninvaded zone ($S_w$) does not move because it is held on grains by capillary pressure. Therefore, hydrocarbon production from a zone at irreducible water saturation should be water free",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "A formation not at irreducible water saturation (Sw irr) exhibits wide variations in bulk volume water values."
+            }
+          },
+          "id": "test_asquith.bulk_volume_water#c5",
+          "text": "Пласт, не достигающий остаточной водонасыщенности, демонстрирует большие вариации значений объемной воды.",
+          "kind": "observation",
+          "page_pdf": 131,
+          "page_print": null,
+          "quote": "A formation not at irreducible water saturation ($S_{w\\ irr}$) exhibits wide variations in bulk volume water values.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "The Buckles plot (Buckles, 1965) is a graph of porosity (φ) versus Sw. Points of equal BVW form hyperbolic curves across this plot."
+            }
+          },
+          "id": "test_asquith.bulk_volume_water#c6",
+          "text": "График Бакклза представляет собой зависимость пористости от водонасыщенности, на которой точки равного BVW образуют гиперболические кривые.",
+          "kind": "observation",
+          "page_pdf": 131,
+          "page_print": null,
+          "quote": "The Buckles plot (Buckles, 1965) is a graph of porosity ($\\phi$) versus $S_w$. Points of equal $BVW$ form hyperbolic curves across this plot.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "fuzzy"
+            }
+          },
+          "id": "test_asquith.bulk_volume_water#c7",
+          "text": "Для формации при остаточной водонасыщенности точки на графике ложатся на одну гиперболическую кривую.",
+          "kind": "observation",
+          "page_pdf": 131,
+          "page_print": null,
+          "quote": "If BVW is plotted using data from a formation at irreducible water saturation, the points fall along a single hyperbolic curve",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.bulk_volume_water#c8",
+          "text": "Для резервуаров с большим процентом добываемой воды точки на графике более рассредоточены.",
+          "kind": "observation",
+          "page_pdf": 131,
+          "page_print": null,
+          "quote": "If the data come from reservoirs with higher percentages of produced water, the points are more scattered",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.bulk_volume_water#c9",
+          "text": "Количество воды, удерживаемое капиллярным давлением, увеличивается при уменьшении размера зерен, поэтому BVW также растет при уменьшении размера зерен.",
+          "kind": "inference",
+          "page_pdf": 131,
+          "page_print": null,
+          "quote": "Because the amount of water a formation can hold by capillary pressure increases with decreasing grain size, the bulk volume water also increases with decreasing grain size.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.bulk_volume_water#c10",
+          "text": "Значения BVW для карбонатов следует использовать только как очень общий ориентир для различных типов пористости.",
+          "kind": "assumption",
+          "page_pdf": 131,
+          "page_print": null,
+          "quote": "The bulk volume water values for carbonates should be used only as a very general guide to different types of porosity.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.bulk_volume_water#c11",
+          "text": "Важно знать объемную водонасыщенность и нахождение пласта при остаточной водонасыщенности, так как добыча воды влияет на экономику проекта.",
+          "kind": "inference",
+          "page_pdf": 141,
+          "page_print": null,
+          "quote": "Because production of water in a well can affect a prospect's economics, it is important to know the bulk volume water and whether the formation is at irreducible water saturation",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "With SW and porosity plotted on linear scales, points of equal bulk volume water (BVW) plot as hyperbolic curves."
+            }
+          },
+          "id": "test_asquith.bulk_volume_water#c12",
+          "text": "При построении Sw и пористости в линейных масштабах точки равного BVW отображаются в виде гиперболических кривых.",
+          "kind": "observation",
+          "page_pdf": 141,
+          "page_print": null,
+          "quote": "With $S_{W}$ and porosity plotted on linear scales, points of equal bulk volume water (BVW) plot as hyperbolic curves.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.bulk_volume_water#c13",
+          "text": "Серия точек вдоль конкретной гиперболической кривой указывает на постоянство объемной воды и близость пласта к остаточной водонасыщенности, при этом резервуар не дает воды.",
+          "kind": "inference",
+          "page_pdf": 141,
+          "page_print": null,
+          "quote": "A series of points plotting along a particular hyperbolic curve indicates that the bulk volume water is constant and that the formation is close to irreducible water saturation. A reservoir in that condition would not produce water.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.bulk_volume_water#c14",
+          "text": "По мере увеличения пластовой воды значения BVW рассеиваются относительно гиперболических кривых, насыщение перестает быть остаточным, и добывается больше воды относительно нефти.",
+          "kind": "inference",
+          "page_pdf": 141,
+          "page_print": null,
+          "quote": "As the amount of formation water increases, the bulk volume water values become scattered from the hyperbolic curves and the formation has more water than it can hold by capillary pressure. The water saturation is no longer at, or near, irreducible, so more water is produced relative to oil.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.bulk_volume_water#c15",
+          "text": "Формация, дающая 96% нефти, имеет почти постоянное BVW между 0.04 и 0.05 и находится очень близко к остаточной водонасыщенности или на ней.",
+          "kind": "observation",
+          "page_pdf": 141,
+          "page_print": null,
+          "quote": "Figure 7.3a is an example of nearly constant BVW. The formation shown produces 96% oil. Note that all the points plot between 0.04 and 0.05 BVW. The formation is very close to, or at, irreducible water saturation.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "Figure 7.3b shows a well producing 68% oil. About half the points cluster around a BVW value of 0.04, but the higher values of BVW, indicating moveable water."
+            }
+          },
+          "id": "test_asquith.bulk_volume_water#c16",
+          "text": "Скважина, дающая 68% нефти, имеет около половины точек с кластером около BVW 0.04 и половину с более высокими значениями, что указывает на подвижную воду.",
+          "kind": "observation",
+          "page_pdf": 141,
+          "page_print": null,
+          "quote": "Figure 7.3b shows a well producing 68% oil. About half the points cluster around a BVW value of 0.04, but the other half have higher values of BVW, indicating moveable water.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.bulk_volume_water#c17",
+          "text": "Скважина, дающая только воду (0% нефти), показывает рассеяние значений BVW от гиперболических кривых, указывая, что пласт не находится при остаточной водонасыщенности.",
+          "kind": "observation",
+          "page_pdf": 141,
+          "page_print": null,
+          "quote": "Figure 7.3c shows a well producing no oil (all water). Note the scatter of BVW values from the hyperbolic curves, indicating that the formation is not at irreducible water saturation.",
+          "source_kind": "text",
+          "by_model": false
+        }
+      ],
+      "links": [
+        {
+          "ext": {},
+          "type": "prerequisite",
+          "target": "test_asquith.archie_water_saturation"
+        },
+        {
+          "ext": {},
+          "type": "prerequisite",
+          "target": "prereq.bulk_volume_water"
+        }
+      ],
+      "misconception": null,
+      "data_meaning": {
+        "ext": {},
+        "from_chapter": {
+          "ext": {},
+          "text": "На графике Бакклза (пористость против водонасыщенности в линейных масштабах) точки постоянного BVW лежат на гиперболах. Если точки образуют плотный кластер вдоль одной гиперболы — пласт на остаточной водонасыщенности и дает чистую нефть; если точки рассеяны — в пласте есть подвижная вода и идет добыча воды.",
+          "by_model": true
+        },
+        "breaks": {
+          "ext": {},
+          "text": "Перестает работать в карбонатах со сложной пористостью, где значения BVW служат лишь общим ориентиром, а также при изменении минерализации воды или литологии в пределах интервала.",
+          "by_model": true
+        },
+        "hypotheses": [
+          {
+            "ext": {},
+            "text": "Кластеризация точек в пространстве (пористость, Sw) по гиперболическим уровням позволяет автоматически выделять интервалы чистой нефти без ручного анализа кривых.",
+            "by_model": true,
+            "hypothesis": true
+          }
+        ]
+      },
+      "it_analogy": {
+        "ext": {},
+        "text": "Анализ остатков (residuals) или нормирование признаков на константу: произведение двух признаков образует инвариант (гиперболу), отклонение от которого сигнализирует об аномалии (подвижной воде).",
+        "breaks_where": "Физическая природа связи обусловлена капиллярными силами и размером пор, а не статистической закономерностью в выборке.",
+        "by_model": true
+      },
+      "now_practice": null,
+      "inefficiency_lens": null,
+      "terms_introduced": [
+        "bulk volume water",
+        "irreducible water saturation",
+        "Buckles plot"
+      ],
+      "terms_used": [
+        "water saturation",
+        "porosity"
+      ],
+      "needs_scan": [
+        {
+          "ext": {},
+          "page": 141,
+          "what": "Figure 7.3, 7.3a, 7.3b, 7.3c (Buckles plots showing porosity vs water saturation curves for different water cuts)"
+        }
+      ],
+      "decision_on_data": {
+        "ext": {},
+        "features": [
+          "porosity",
+          "water saturation (Sw)",
+          "bulk volume water (BVW)"
+        ],
+        "rule": "Если значения BVW, рассчитанные по глубинам, константны и лежат на одной гиперболической кривой графика Бакклза, то интервал находится на остаточной водонасыщенности.",
+        "conclusion": "Интервал продуктивен безводно (чистая нефть).",
+        "counterexample": "Сильное рассеяние точек BVW относительно гипербол при высокой водонасыщенности — скважина будет давать воду или только воду."
+      },
+      "worked_examples": [],
+      "book_tasks": [],
+      "pages": [
+        131,
+        141
+      ],
+      "title_novice": "Как проверить, находится ли пласт в равновесии и свободен ли от воды",
+      "unit_ids": [
+        "p131.13",
+        "p131.14",
+        "p131.15",
+        "p131.16",
+        "p131.17",
+        "p131.18",
+        "p131.19",
+        "p131.20",
+        "p131.21",
+        "p131.22",
+        "p131.23",
+        "p131.24",
+        "p131.25",
+        "p131.26",
+        "p141.01",
+        "p141.02",
+        "p141.03",
+        "p141.04",
+        "p141.05",
+        "p141.06",
+        "p141.07"
+      ]
+    },
+    {
+      "ext": {},
+      "id": "test_asquith.saturation_crossplots",
+      "order": 7,
+      "title": "Кроссплоты насыщения: Pickett и Hingle",
+      "why_here": {
+        "ext": {},
+        "text": "Обобщает формулу Арчи в графическом виде, опираясь на понятия пористости и сопротивления.",
+        "by_model": true
+      },
+      "difficulty": {
+        "ext": {},
+        "primary": "Ф",
+        "secondary": "И"
+      },
+      "threshold": true,
+      "layers": {
+        "ext": {},
+        "topic": {
+          "ext": {},
+          "text": "Графические методы оценки водонасыщенности по кривым каротажа",
+          "by_model": true
+        },
+        "main": {
+          "ext": {},
+          "text": "Кроссплоты Pickett и Hingle представляют собой графические методы решения уравнения Арчи для оценки водонасыщенности, параметров пласта и литологии без сложных предварительных вычислений.",
+          "by_model": true
+        },
+        "mechanism": {
+          "ext": {},
+          "text": "Логарифмирование уравнения Арчи в методе Пикетта преобразует его в линейную зависимость сопротивления от пористости, где линия 100% воды разделяет водоносные и нефтеносные интервалы. В методе Хингла нелинейные шкалы сопротивления и пористости также выпрямляют линию водоносного пласта.",
+          "by_model": true
+        },
+        "practice": {
+          "ext": {},
+          "text": "Интерпретаторы строят кроссплоты для определения удельного сопротивления воды, цементационного показателя, матричных параметров и коэффициента водонасыщенности аномальных точек с помощью таблиц множителей.",
+          "by_model": true
+        },
+        "nuances": {
+          "ext": {},
+          "text": "Методы требуют наличия широкого диапазона пористости в водоносной зоне, а литология и удельное сопротивление воды должны быть постоянными на сравниваемых интервалах.",
+          "by_model": true
+        },
+        "deeper": []
+      },
+      "claims": [
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "Saturation crossplots, also called resistivity-porosity crossplots (or specifically, Pickett plots and Hingle plots) are similar to the porosity crossplots discussed in Chapter 4. They are x-y plots of log data from which quantities of interest are derived; in this case, that quantity is water saturation (Sw). Both the Pickett and Hingle methods are essentially graphical solutions to the Archie saturation equation."
+            }
+          },
+          "id": "test_asquith.saturation_crossplots#c1",
+          "text": "Кроссплоты насыщения или кроссплоты сопротивления-пористости являются графическими решениями уравнения водонасыщенности Арчи.",
+          "kind": "observation",
+          "page_pdf": 132,
+          "page_print": null,
+          "quote": "Saturation crossplots, also called resistivity-porosity crossplots (or specifically, Pickett plots and Hingle plots) are similar to the porosity crossplots discussed in Chapter 4. They are x-y plots of log data from which quantities of interest are derived; in this case, that quantity is water saturation ($S_w$). Both the Pickett and Hingle methods are essentially graphical solutions to the Archie saturation equation.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.saturation_crossplots#c2",
+          "text": "Метод Пикетта оценивает водонасыщенность, сопротивление воды, цементационный фактор и параметры матрицы для акустического и плотностного каротажа.",
+          "kind": "observation",
+          "page_pdf": 132,
+          "page_print": null,
+          "quote": "The Pickett plot (Pickett, 1966, 1973) is one of the simplest and most effective crossplot methods in use. This technique estimates water saturation and can also help determine:",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "fuzzy"
+            }
+          },
+          "id": "test_asquith.saturation_crossplots#c3",
+          "text": "В методе Пикетта истинное сопротивление и пористость откладываются в логарифмических масштабах.",
+          "kind": "observation",
+          "page_pdf": 132,
+          "page_print": null,
+          "quote": "This form of the equation (y = b + mx) indicates that by plotting Rt on the y-axis (on a logarithmic scale) against porosity (phi) on the x-axis (on a logarithmic scale), one can determine the product (a * Rw) from intercept of the line (b), and the cementation exponent (m) from the slope of the line (m).",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "fuzzy"
+            }
+          },
+          "id": "test_asquith.saturation_crossplots#c4",
+          "text": "На кроссплоте Пикетта водоносные точки разной пористости образуют прямую линию с наклоном -1/m, называемую линией Ro.",
+          "kind": "observation",
+          "page_pdf": 132,
+          "page_print": null,
+          "quote": "Water-bearing points of different porosities plot along a straight line with a slope of (-1/m) and an intercept (at porosity = 1.0) of (a * Rw). From this line, the cementation exponent (m) can be determined, and if the tortuosity factor (a) is known (or can be estimated), Rw can be predicted. This is the water-bearing, or Ro, line.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "Hydrocarbon-bearing points lie away from the line, moved horizontally to the right from the water-bearing line by their increased resistivity. The horizontal distance of a point from the water-bearing line depends on the water saturation (Sw) of that point."
+            }
+          },
+          "id": "test_asquith.saturation_crossplots#c5",
+          "text": "Нефтеносные точки на кроссплоте Пикетта смещаются вправо от линии водоносного пласта из-за повышенного сопротивления.",
+          "kind": "observation",
+          "page_pdf": 132,
+          "page_print": null,
+          "quote": "Hydrocarbon-bearing points lie away from the line, moved horizontally to the right from the water-bearing line by their increased resistivity. The horizontal distance of a point from the water-bearing line depends on the water saturation ($S_w$) of that point.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "recovered",
+              "quote_by_model": "As in other crossplot techniques, a significant benefit of Hingle's technique is that a value for water saturation (Sw) can be determined even if matrix properties (rorma or Dtma) of a reservoir are unknown. This is also true if a reservoir's water resistivity (Rw) is unknown."
+            }
+          },
+          "id": "test_asquith.saturation_crossplots#c6",
+          "text": "Метод Хингла позволяет определить водонасыщенность даже если неизвестны матричные свойства коллектора или сопротивление пластовой воды.",
+          "kind": "observation",
+          "page_pdf": 133,
+          "page_print": null,
+          "quote": "As in other crossplot techniques, a significant benefit of Hingle's technique is that a value for water saturation ($$S_w$$) can be determined even if matrix properties ($$\\rho_{ma}$$ or $$\\Delta t_{ma}$$) of a reservoir are unknown. This is also true if a reservoir's water resistivity ($$R_w$$) is unknown.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.saturation_crossplots#c7",
+          "text": "На кроссплоте Хингла водоносные точки располагаются на прямой линии, а точка с нулевой пористостью лежит на оси абсцисс при бесконечном сопротивлении.",
+          "kind": "observation",
+          "page_pdf": 133,
+          "page_print": null,
+          "quote": "Water-bearing points of different porosities plot along a straight line. The x-intercept of the line (where conductivity is zero and resistivity is infinite) occurs at the point where porosity is zero.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.saturation_crossplots#c8",
+          "text": "Нефтеносные точки на графике Хингла лежат ниже линии 100% водонасыщенности из-за повышенного сопротивления.",
+          "kind": "observation",
+          "page_pdf": 134,
+          "page_print": null,
+          "quote": "Hydrocarbon-bearing points lie below the line of 100% water saturation, moved downward from the water-bearing line by their increased resistivity.",
+          "source_kind": "text",
+          "by_model": false
+        }
+      ],
+      "links": [
+        {
+          "ext": {},
+          "type": "prerequisite",
+          "target": "test_asquith.archie_water_saturation"
+        },
+        {
+          "ext": {},
+          "type": "to_data",
+          "target": "data.las_curve"
+        }
+      ],
+      "misconception": {
+        "ext": {},
+        "ref": "misc.high_res_oil",
+        "text": "Высокое сопротивление на кроссплотах не принимается слепо за нефть: оно анализируется относительно линии водоносного пласта (Ro), учитывая пористость и параметры литологии.",
+        "by_model": true
+      },
+      "data_meaning": {
+        "ext": {},
+        "from_chapter": {
+          "ext": {},
+          "text": "На кроссплотах точки песчаника из Оклахомы образуют кластеры, позволяющие графически выделить линию чистой воды и рассчитать водонасыщенность аномальных точек.",
+          "by_model": true
+        },
+        "breaks": {
+          "ext": {},
+          "text": "Методы не работают, если литология или сопротивление воды меняются в пределах интервала сопоставления, либо если в разрезе отсутствует достаточный диапазон пористости.",
+          "by_model": true
+        },
+        "hypotheses": [
+          {
+            "ext": {},
+            "text": "Кластеризацию точек на кроссплотах можно автоматизировать алгоритмами unsupervised learning для автоматического выделения водоносных и продуктивных интервалов.",
+            "by_model": true,
+            "hypothesis": true
+          }
+        ]
+      },
+      "it_analogy": {
+        "ext": {},
+        "text": "Линейная регрессия в логарифмическом пространстве или анализ выбросов (outlier detection) на диаграмме рассеяния.",
+        "breaks_where": "В отличие от абстрактных признаков в ML, оси кроссплота жёстко связаны физическими уравнениями Арчи и параметрами породы.",
+        "by_model": true
+      },
+      "now_practice": {
+        "ext": {},
+        "text": "Исторически созданные до компьютеров графические методы сейчас встроены в полнофункциональное компьютерное ПО интерпретации ГИС, где алгоритмы строят те же кроссплоты мгновенно.",
+        "by_model": true
+      },
+      "inefficiency_lens": {
+        "ext": {},
+        "inputs": "Данные каротажа сопротивления (Rt), пористости (плотностной, акустической или нейтронной), значения параметров a, m, n.",
+        "manual_steps": "Построение осей в логарифмическом или специальном масштабе, проведение линии водоносного пласта (Ro), чтение значений сопротивлений, расчет коэффициентов и линий Sw по таблицам.",
+        "judgment_points": "Выбор правильной линии 100% воды при разбросе точек, подбор параметров цементации (m) и матричных значений.",
+        "time": "От нескольких минут в современном ПО до десятков минут при ручном построении на бумаге.",
+        "typical_errors": "Неправильный выбор матричного значения, приводящий к искривлению линии Ro вместо прямой; неверная оценка сопротивления воды или параметров цементации.",
+        "by_model": true
+      },
+      "terms_introduced": [
+        "Pickett plot",
+        "Hingle plot",
+        "water-bearing line",
+        "кроссплоты насыщения",
+        "кроссплоты сопротивления-пористости",
+        "кроссплот Пикетта",
+        "кроссплот Хингла",
+        "линия водоносного пласта"
+      ],
+      "terms_used": [
+        "водонасыщенность",
+        "истинное сопротивление",
+        "пористость",
+        "уравнение Арчи",
+        "цементационный показатель",
+        "фактор извилистости",
+        "плотность породы",
+        "акустическое время пробега"
+      ],
+      "needs_scan": [
+        {
+          "ext": {},
+          "page": 142,
+          "what": "Figure 7.4: Pickett plot showing data points, water-bearing line, and saturation lines."
+        },
+        {
+          "ext": {},
+          "page": 143,
+          "what": "Figure 7.5: Hingle plot grid for sandstones."
+        },
+        {
+          "ext": {},
+          "page": 145,
+          "what": "Figure 7.7: Hingle plot with Morrow Sandstone data points and water saturation curves."
+        }
+      ],
+      "decision_on_data": {
+        "ext": {},
+        "features": [
+          "Rt",
+          "пористость (DPHI)",
+          "объемная плотность (rhob)"
+        ],
+        "rule": "Если точка лежит на линии водоносного пласта (Ro), то Sw = 100%; если точка смещена вправо (на Пикетте) или вниз (на Хингле) от линии Ro, рассчитывается Sw по отношению Ro к Rt.",
+        "conclusion": "Интервал является продуктивным (нефтеносным), если водонасыщенность ниже 100% (например, 14%).",
+        "counterexample": "Высокое сопротивление при попадании точки на линию Ro означает водонасыщенный плотный высокоомный интервал (например, чистый плотный известняк), а не нефть.",
+        "by_model": true
+      },
+      "worked_examples": [
+        {
+          "ext": {},
+          "page_pdf": 142,
+          "condition": "Данные по скважине Morrow Sandstone, Cimarron County, Oklahoma (Таблица 7.4). Рассчитать Rw по кроссплоту Пикетта.",
+          "steps": [
+            "Для пористости 10% (DPHI = 0.10) прочитать сопротивление линии Rw (Ra = 4.6 ом-м).",
+            "Принять фактор извилистости a = 1.0 и цементационный показатель m = 2.0.",
+            "Подставить значения в формулу Rw = (Ra * phi^m) / a."
+          ],
+          "result": "Rw = 0.046 ом-м при пластовой температуре.",
+          "figure": "Figure 7.4"
+        },
+        {
+          "ext": {},
+          "page_pdf": 145,
+          "condition": "Те же данные Morrow Sandstone для кроссплота Хингла.",
+          "steps": [
+            "Для пористости 10% (объемная плотность = 2.485 г/см³) прочитать Ra = 4.1 ом-м.",
+            "Принять a = 1.0, m = 2.0.",
+            "Рассчитать Rw через формулу."
+          ],
+          "result": "Rw = 0.041 ом-м при пластовой температуре.",
+          "figure": "Figure 7.5"
+        }
+      ],
+      "book_tasks": [],
+      "pages": [
+        132,
+        133,
+        134,
+        135,
+        142,
+        143,
+        144,
+        145
+      ],
+      "title_novice": "Графические методы определения параметров пласта по кроссплотам",
+      "unit_ids": [
+        "p132.01",
+        "p132.02",
+        "p132.03",
+        "p132.04",
+        "p132.05",
+        "p132.06",
+        "p132.07",
+        "p132.08",
+        "p132.09",
+        "p132.10",
+        "p132.11",
+        "p132.12",
+        "p132.13",
+        "p132.14",
+        "p132.15",
+        "p132.16",
+        "p132.17",
+        "p132.18",
+        "p132.19",
+        "p132.20",
+        "p132.21",
+        "p132.22",
+        "p132.23",
+        "p133.01",
+        "p133.02",
+        "p133.03",
+        "p133.04",
+        "p133.05",
+        "p133.06",
+        "p133.07",
+        "p133.08",
+        "p133.09",
+        "p133.10",
+        "p133.11",
+        "p133.12",
+        "p133.13",
+        "p133.14",
+        "p133.15",
+        "p133.16",
+        "p133.17",
+        "p133.18",
+        "p133.19",
+        "p134.01",
+        "p134.02",
+        "p134.03",
+        "p134.04",
+        "p134.05",
+        "p134.06",
+        "p134.07",
+        "p134.08",
+        "p134.09",
+        "p135.01",
+        "p135.02",
+        "p135.03",
+        "p135.04",
+        "p142.01",
+        "p142.02",
+        "p142.03",
+        "p142.04",
+        "p142.05",
+        "p142.06",
+        "p142.07",
+        "p142.08",
+        "p142.09",
+        "p142.10",
+        "p142.11",
+        "p142.12",
+        "p142.13",
+        "p142.14",
+        "p142.15",
+        "p142.16",
+        "p142.17",
+        "p142.18",
+        "p142.19",
+        "p142.20",
+        "p143.01",
+        "p144.01",
+        "p145.01",
+        "p145.02",
+        "p145.03",
+        "p145.04",
+        "p145.05",
+        "p145.06",
+        "p145.07",
+        "p145.08",
+        "p145.09",
+        "p145.10",
+        "p145.11",
+        "p145.12",
+        "p145.13",
+        "p145.14",
+        "p145.15",
+        "p145.16",
+        "p145.17",
+        "p145.18",
+        "p145.19"
+      ]
+    },
+    {
+      "ext": {},
+      "id": "test_asquith.permeability_from_logs",
+      "order": 8,
+      "title": "Оценка проницаемости по данным ГИС",
+      "why_here": {
+        "ext": {},
+        "text": "Опирается на концепцию связанной воды (BVW) и формулы Вилли-Роуза, Тимура, Коутса-Думануара.",
+        "by_model": true
+      },
+      "difficulty": {
+        "ext": {},
+        "primary": "Ф",
+        "secondary": "Пр"
+      },
+      "threshold": false,
+      "layers": {
+        "ext": {},
+        "topic": {
+          "ext": {},
+          "text": "Оценка проницаемости пластов по данным ГИС с помощью эмпирических формул",
+          "by_model": true
+        },
+        "main": {
+          "ext": {},
+          "text": "Формулы проницаемости по ГИС применимы только в зонах с неснижаемой водонасыщенностью. Для расчетов используются модели Вилли-Роуза, Тимура и Коутса-Думануара.",
+          "by_model": true
+        },
+        "mechanism": {
+          "ext": {},
+          "text": "Связь пористости, связанной воды и проницаемости выражается через эмпирические зависимости, учитывающие тип флюида или его плотность.",
+          "by_model": true
+        },
+        "practice": {
+          "ext": {},
+          "text": "Специалист проверяет постоянство BVW для подтверждения зоны неснижаемой водонасыщенности, выбирает формулу под тип флюида и рассчитывает проницаемость.",
+          "by_model": true
+        },
+        "nuances": {
+          "ext": {},
+          "text": "Полученные значения проницаемости относительны и требуют калибровки по данным соседних добывающих скважин с известной историей.",
+          "by_model": true
+        },
+        "deeper": []
+      },
+      "claims": [
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.permeability_from_logs#c1",
+          "text": "Формулы проницаемости по данным ГИС применимы только для оценки проницаемости в пластах с неснижаемой водонасыщенностью.",
+          "kind": "observation",
+          "page_pdf": 134,
+          "page_print": null,
+          "quote": "Log-derived permeability formulas are only valid for estimating permeability in formations at irreducible water saturation",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.permeability_from_logs#c2",
+          "text": "Оценку проницаемости следует сравнивать с данными соседних скважин с хорошей и плохой историей добычи.",
+          "kind": "inference",
+          "page_pdf": 134,
+          "page_print": null,
+          "quote": "Productivity estimates can be based on log-derived permeabilities if the formation evaluated is compared with both good and poor production histories in these nearby wells",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.permeability_from_logs#c3",
+          "text": "При постоянных значениях объемной водонасыщенности пласт находится в состоянии неснижаемой водонасыщенности.",
+          "kind": "observation",
+          "page_pdf": 134,
+          "page_print": null,
+          "quote": "When the bulk volume water values of a formation are constant (Figure 7.3a), the zone is at irreducible water saturation",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.permeability_from_logs#c4",
+          "text": "Если значения объемной водонасыщенности не постоянны, зона не находится в состоянии неснижаемой водонасыщенности, и оценки проницаемости сомнительны.",
+          "kind": "inference",
+          "page_pdf": 134,
+          "page_print": null,
+          "quote": "If the values are not constant, a zone is not at irreducible water saturation (Figures 7.3b and 7.3c), and the estimates of permeability are suspect",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.permeability_from_logs#c5",
+          "text": "Метод Вилли-Роуза использует палетку или две формулы для нефти средней плотности и сухого газа.",
+          "kind": "observation",
+          "page_pdf": 135,
+          "page_print": null,
+          "quote": "This method for determining permeability utilizes a chart (Figure 7.8) or the two forms of the following formula",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.permeability_from_logs#c6",
+          "text": "Формула Вилли-Роуза для нефти средней плотности имеет вид K = (250 * phi^3 / S_wirr)^2.",
+          "kind": "assumption",
+          "page_pdf": 135,
+          "page_print": null,
+          "quote": "K = \\left( 250 \\times \\frac{\\phi^3}{S_{\\text{wirr}}} \\right)^2 \\text{ (medium-gravity oils)}",
+          "source_kind": "formula",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.permeability_from_logs#c7",
+          "text": "Формула Вилли-Роуза для сухого газа имеет вид K = (79 * phi^3 / S_wirr)^2.",
+          "kind": "assumption",
+          "page_pdf": 135,
+          "page_print": null,
+          "quote": "K = \\left( 79 \\times \\frac{\\phi^3}{S_{\\text{wirr}}} \\right)^2 \\text{ dry gas)}",
+          "source_kind": "formula",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.permeability_from_logs#c8",
+          "text": "Формула Тимура для расчета проницаемости имеет вид K = ((93 * phi^2.2) / S_wirr)^2.",
+          "kind": "assumption",
+          "page_pdf": 135,
+          "page_print": null,
+          "quote": "K = \\left( \\frac{93 \\times \\phi^{2.2}}{S_{\\text{wirr}}} \\right)^2",
+          "source_kind": "formula",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.permeability_from_logs#c9",
+          "text": "В формуле Коутса-Думануара плотность углеводородов входит в уравнение явно, а не через изменение константы.",
+          "kind": "observation",
+          "page_pdf": 135,
+          "page_print": null,
+          "quote": "Unlike the Wyllie and Rose (1950) formulas, hydrocarbon density is explicitly part of the equation, instead of being indirectly accounted for by changing a constant",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.permeability_from_logs#c10",
+          "text": "Для расчета по формуле Коутса-Думануара требуются R_w, R_t irr, плотность углеводородов и пористость.",
+          "kind": "observation",
+          "page_pdf": 135,
+          "page_print": null,
+          "quote": "The following data are required to calculate permeability by the Coates and Dumanoir formula.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "fuzzy"
+            }
+          },
+          "id": "test_asquith.permeability_from_logs#c11",
+          "text": "Первым шагом в методе Коутса-Думануара является расчет констант C и W.",
+          "kind": "inference",
+          "page_pdf": 136,
+          "page_print": null,
+          "quote": "A first step in the Coates and Dumanoir permeability formula is calculation of values for two constants: C and W.",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.permeability_from_logs#c12",
+          "text": "Константа C рассчитывается по формуле C = 23 + 465 * rho_h - 188 * rho_h^2.",
+          "kind": "assumption",
+          "page_pdf": 136,
+          "page_print": null,
+          "quote": "C = 23 + 465 \\times \\rho_{h} - 188 \\times \\rho_{h}^{2}",
+          "source_kind": "formula",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.permeability_from_logs#c13",
+          "text": "Константа W рассчитывается через пористость, отношение удельных сопротивлений и логарифмические члены.",
+          "kind": "assumption",
+          "page_pdf": 136,
+          "page_print": null,
+          "quote": "W = \\left\\{(3.75 - \\phi) + \\left[ \\frac{(\\log(R_{w} / R_{t \\text{ irr}}) + 2.2)^{2}}{2.0} \\right] \\right\\}^{\\frac{1}{2}}",
+          "source_kind": "formula",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.permeability_from_logs#c14",
+          "text": "Итоговая формула проницаемости Коутса-Думануара использует константы C, W, пористость и отношение R_w к R_t irr.",
+          "kind": "assumption",
+          "page_pdf": 136,
+          "page_print": null,
+          "quote": "K = \\left[ \\frac{C \\times \\phi^{2W}}{W^{4} \\times (R_{w} / R_{t \\text{ irr}})} \\right]^{2}",
+          "source_kind": "formula",
+          "by_model": false
+        }
+      ],
+      "links": [
+        {
+          "ext": {},
+          "type": "prerequisite",
+          "target": "test_asquith.bulk_volume_water"
+        }
+      ],
+      "misconception": null,
+      "data_meaning": {
+        "ext": {},
+        "from_chapter": {
+          "ext": {},
+          "text": "В данных ГИС проницаемость не измеряется напрямую, а оценивается через пористость и водонасыщенность при условии неснижаемой воды.",
+          "by_model": true
+        },
+        "breaks": {
+          "ext": {},
+          "text": "Оценка не работает в зонах перехода выше ВНК, где объемная водонасыщенность непостоянна.",
+          "by_model": true
+        },
+        "hypotheses": [
+          {
+            "ext": {},
+            "text": "Модель машинного обучения сможет предсказать проницаемость без проверки зоны на неснижаемую водонасыщенность, но получит большую ошибку.",
+            "by_model": true,
+            "hypothesis": true
+          }
+        ]
+      },
+      "it_analogy": {
+        "ext": {},
+        "text": "Расчет косвенного признака по формуле из других признаков (feature engineering) с жесткими ограничениями применимости.",
+        "breaks_where": "В IT формулы не зависят от физического состояния пласта, а здесь нарушение условий применимости дает полностью неверный физический результат.",
+        "by_model": true
+      },
+      "now_practice": null,
+      "inefficiency_lens": {
+        "ext": {},
+        "inputs": "Кривые пористости, истинного сопротивления R_t, удельного сопротивления воды R_w, плотность флюида.",
+        "manual_steps": "Проверка зоны на постоянство BVW, выбор формулы (Вилли-Роуз, Тимур, Коутс-Думануар), расчет промежуточных констант, вычисление проницаемости и калибровка по соседним скважинам.",
+        "judgment_points": "Определение, находится ли интервал в зоне неснижаемой водонасыщенности; выбор метода расчета в зависимости от типа флюида.",
+        "time": "Десятки минут на ручной подбор параметров и проверку по палеткам для интервала.",
+        "typical_errors": "Применение формул в зоне перехода, где BVW не постоянна; использование абсолютных значений без калибровки по истории добычи.",
+        "by_model": true
+      },
+      "terms_introduced": [
+        "log-derived permeability",
+        "Wyllie and Rose method",
+        "Timur method",
+        "Coates and Dumanoir method",
+        "Wyllie and Rose",
+        "Timur",
+        "Coates and Dumanoir"
+      ],
+      "terms_used": [
+        "bulk volume water",
+        "porosity",
+        "water saturation",
+        "irreducible water saturation",
+        "true formation resistivity",
+        "formation water resistivity"
+      ],
+      "needs_scan": [
+        {
+          "ext": {},
+          "page": 146,
+          "what": "Палетка Chart K-3 (Figure 7.8) для оценки проницаемости и объемной водонасыщенности по пористости и неснижаемой водонасыщенности."
+        }
+      ],
+      "decision_on_data": {
+        "ext": {},
+        "features": [
+          "porosity",
+          "bulk volume water",
+          "water saturation",
+          "true resistivity",
+          "formation water resistivity"
+        ],
+        "rule": "Если интервал находится в зоне неснижаемой водонасыщенности (BVW константа), применить формулу Вилли-Роуза, Тимура или Коутса-Думануара.",
+        "conclusion": "Получена оценка проницаемости пласта, пригодная для сравнения с соседними скважинами.",
+        "counterexample": "Интервал находится в зоне перехода (BVW меняется), из-за чего расчет по формуле дает искаженное значение проницаемости."
+      },
+      "worked_examples": [
+        {
+          "ext": {},
+          "page_pdf": 146,
+          "condition": "Пористость (phi) = 0.25 (25 p.u.), неснижаемая водонасыщенность (S_wi in) = 40% для нефтеносного песчаника (нефть средней плотности).",
+          "steps": [
+            "Найти пористость 25 p.u. на горизонтальной шкале и S_wi in = 40% на вертикальной шкале палетки.",
+            "Найти точку пересечения значений на графике.",
+            "Определить проницаемость по тяжелой кривой и объемную водонасыщенность по гиперболической кривой."
+          ],
+          "result": "Проницаемость K = 130 md, объемная водонасыщенность BVW = 0.10.",
+          "figure": "Figure 7.8"
+        }
+      ],
+      "book_tasks": [],
+      "pages": [
+        134,
+        135,
+        136,
+        146
+      ],
+      "title_novice": "Как рассчитать проницаемость пласта по пористости и связанной воде",
+      "unit_ids": [
+        "p134.10",
+        "p134.11",
+        "p134.12",
+        "p135.05",
+        "p135.06",
+        "p135.07",
+        "p135.08",
+        "p135.09",
+        "p135.10",
+        "p135.11",
+        "p135.12",
+        "p135.13",
+        "p135.14",
+        "p135.15",
+        "p135.16",
+        "p135.17",
+        "p135.18",
+        "p136.01",
+        "p136.02",
+        "p136.03",
+        "p136.04",
+        "p136.05",
+        "p136.06",
+        "p136.07",
+        "p136.08",
+        "p136.09",
+        "p136.10",
+        "p136.11",
+        "p136.12",
+        "p136.13",
+        "p136.14",
+        "p136.15",
+        "p136.16",
+        "p136.17",
+        "p136.18",
+        "p136.19",
+        "p136.20",
+        "p136.21",
+        "p136.22",
+        "p146.01",
+        "p146.02",
+        "p146.03",
+        "p146.04",
+        "p146.05",
+        "p146.06",
+        "p146.07",
+        "p146.08",
+        "p146.09"
+      ]
+    },
+    {
+      "ext": {},
+      "id": "test_asquith.shaly_sand_analysis",
+      "order": 9,
+      "title": "Анализ глинистых коллекторов (Shaly Sand)",
+      "why_here": {
+        "ext": {},
+        "text": "Завершает главу, опираясь на все предыдущие методы расчета насыщения и показывая их ограничения в реальных глинистых породах.",
+        "by_model": true
+      },
+      "difficulty": {
+        "ext": {},
+        "primary": "И",
+        "secondary": "Н"
+      },
+      "threshold": false,
+      "layers": {
+        "ext": {},
+        "topic": {
+          "ext": {},
+          "text": "Учёт влияния глинистости при определении водонасыщенности коллекторов",
+          "by_model": true
+        },
+        "main": {
+          "ext": {},
+          "text": "Присутствие глины и сланца в породе искажает значения пористости и водонасыщенности, занижая последнюю и создавая риск перепутать водоносный пласт с продуктивным. Методы вроде Waxman-Smits и dual water учитывают электрические свойства глин для точного расчёта.",
+          "by_model": true
+        },
+        "mechanism": {
+          "ext": {},
+          "text": "Сланец и глины уменьшают сопротивление породы и контраст между сопротивлением нефтеносной и водяной зон, так как сами обладают проводимостью. Модель двойной воды разделяет воду на связанную глинистую и свободную подвижную.",
+          "by_model": true
+        },
+        "practice": {
+          "ext": {},
+          "text": "Для оценки влияния глинистости анализируют содержание сланца: если его объем превышает 10-15%, стандартные уравнения Арчи дают ошибку, и применяют специализированные модели глинистых коллекторов.",
+          "by_model": true
+        },
+        "nuances": {
+          "ext": {},
+          "text": "Понятия объема сланца и объема глины в литературе часто используют как взаимозаменяемые, хотя геологически сланец и глина различаются. Ошибочное завышение содержания сланца может привести к ложному принятию водяного пласта за нефтеносный.",
+          "by_model": true
+        },
+        "deeper": []
+      },
+      "claims": [
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.shaly_sand_analysis#c1",
+          "text": "В ранней литературе формирования с глинами и сланцами называли shaly sands, а для учета их эффектов в уравнение Арчи вводили объем сланца.",
+          "kind": "observation",
+          "page_pdf": 136,
+          "page_print": null,
+          "quote": "The early literature tended to refer to the formations as containing shale, and a number of modifications were made to Archie’s equation using shale volume",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.shaly_sand_analysis#c2",
+          "text": "Геологические исследования показали разницу между сланцем (shale) и глиной (clay); глинистые пески обычно содержат именно глины, отличные от окружающих сланцев.",
+          "kind": "inference",
+          "page_pdf": 136,
+          "page_print": null,
+          "quote": "As our understanding of geological processes matured, it became understood that shale and clay are different and that shaly sands are usually not just sands with shales mixed in but sands that contain clays",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.shaly_sand_analysis#c3",
+          "text": "В интерпретации термины volume сланца и глины часто используют как взаимозаменяемые, хотя большинство методов нацелены на объём сланца.",
+          "kind": "observation",
+          "page_pdf": 136,
+          "page_print": null,
+          "quote": "Again, the literature and our interpretive techniques commonly use the terms shale volume and clay volume interchangeably. Most of the shaly sand techniques developed over the years concern themselves with shale volume",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.shaly_sand_analysis#c4",
+          "text": "Методы Waxman-Smits и dual water используют электрические свойства глинистых минералов для прогноза точной водонасыщенности.",
+          "kind": "inference",
+          "page_pdf": 136,
+          "page_print": null,
+          "quote": "a few, notably the Waxman-Smits and dual water methods, seek to use the electrical properties of the clays in the formations to predict an accurate water saturation",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.shaly_sand_analysis#c5",
+          "text": "Работы Waxman-Smits и Waxman-Thomas помогли понять физические причины отклика геофизических приборов в глинистых коллекторах.",
+          "kind": "observation",
+          "page_pdf": 136,
+          "page_print": null,
+          "quote": "Beginning in the late 1960s, the work of Waxman and Smits (1968) and Waxman and Thomas (1974) helped to better understand the physical causes of the responses of logging measurements to shaly sands",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.shaly_sand_analysis#c6",
+          "text": "Модель dual water выделяет два типа воды: связанную неподвижную воду у поверхности глины и свободную подвижную воду.",
+          "kind": "observation",
+          "page_pdf": 136,
+          "page_print": null,
+          "quote": "The dual water model postulates two different types of water in a shaly formation, a immovable water layer next to the clay surfaces (bound water) and movable water that can be displaced by hydrocarbons (free water)",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.shaly_sand_analysis#c7",
+          "text": "Присутствие сланца или глины приводит к ошибочным значениям пористости и водонасыщенности в песчаниках, известняках и доломитах.",
+          "kind": "observation",
+          "page_pdf": 136,
+          "page_print": null,
+          "quote": "The presence of shale or clay minerals in a reservoir can cause erroneous values for water saturation and porosity derived from logs. These erroneous values are not limited to sandstones but also occur in limestones and dolomites",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.shaly_sand_analysis#c8",
+          "text": "Главный эффект сланца — снижение контраста сопротивлений между углеводородами и водой, что затрудняет или делает невозможным оценку продуктивности при высоком содержании сланца.",
+          "kind": "inference",
+          "page_pdf": 136,
+          "page_print": null,
+          "quote": "Hilchie (1978) notes that the most significant effect of shale in a formation is to reduce the resistivity contrast between oil or gas, and water. The net result is that if enough shale is present in a reservoir, it may be very difficult, or perhaps impossible, to determine if a zone is productive",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "fuzzy"
+            }
+          },
+          "id": "test_asquith.shaly_sand_analysis#c9",
+          "text": "Сланец существенно влияет на рассчитанную водонасыщенность, если его содержание превышает 10-15%.",
+          "kind": "observation",
+          "page_pdf": 136,
+          "page_print": null,
+          "quote": "Hilchie (1978) suggests that for shale to significantly affect log-derived water saturations, shale content must be greater than 10 to 15%",
+          "source_kind": "text",
+          "by_model": false
+        },
+        {
+          "ext": {
+            "core": {
+              "quote_verified": true,
+              "quote_match": "exact"
+            }
+          },
+          "id": "test_asquith.shaly_sand_analysis#c10",
+          "text": "Формулы для глинистых коллекторов занижают водонасыщенность по сравнению с расчетом без учёта глины, из-за чего переоценка сланца может ложно показать продуктивный интервал в водоносной зоне.",
+          "kind": "inference",
+          "page_pdf": 136,
+          "page_print": null,
+          "quote": "Remember that all shaly sandstone formulas reduce the water saturation value from the value that would be calculated if shale effect were ignored. However, this lowering of water saturation can be a problem in log evaluation, because, if a geologist overestimates shale content, a water-bearing zone might appear to be a hydrocarbon-bearing zone",
+          "source_kind": "text",
+          "by_model": false
+        }
+      ],
+      "links": [
+        {
+          "ext": {},
+          "type": "prerequisite",
+          "target": "test_asquith.archie_water_saturation"
+        }
+      ],
+      "misconception": null,
+      "data_meaning": {
+        "ext": {},
+        "from_chapter": {
+          "ext": {},
+          "text": "В глинистых коллекторах стандартные кривые сопротивления дают сниженный контраст и занижают водонасыщенность, если не применять поправки на глинистость.",
+          "by_model": true
+        },
+        "breaks": {
+          "ext": {},
+          "text": "Обычные уравнения расчёта Sw без учёта глины полностью ломаются и занижают значения в разрезах с содержанием сланца выше 10-15%.",
+          "by_model": true
+        },
+        "hypotheses": [
+          {
+            "ext": {},
+            "text": "Модель машинного обучения, предсказывающая Sw без признаков глинистости, выдаст заниженную воду и ложно расценит водяной пласт как нефтенасыщенный.",
+            "by_model": true,
+            "hypothesis": true
+          }
+        ]
+      },
+      "it_analogy": {
+        "ext": {},
+        "text": "Фоновый шум или систематическая примесь в сигнале датчика, которая смещает базовую калибровку измерительной шкалы.",
+        "breaks_where": "В отличие от линейного шума в IT, проводимость глины нелинейно зависит от минерального состава и физико-химической связи воды с поверхностью породы.",
+        "by_model": true
+      },
+      "now_practice": null,
+      "inefficiency_lens": null,
+      "terms_introduced": [
+        "shaly sands",
+        "shale volume",
+        "clay volume",
+        "bound water",
+        "free water",
+        "Waxman-Smits model",
+        "dual water model",
+        "Waxman-Smits method"
+      ],
+      "terms_used": [
+        "water saturation",
+        "porosity",
+        "resistivity"
+      ],
+      "needs_scan": [],
+      "decision_on_data": null,
+      "worked_examples": [],
+      "book_tasks": [],
+      "pages": [
+        136
+      ],
+      "title_novice": "Как наличие глины искажает данные каротажа и как с этим бороться",
+      "unit_ids": [
+        "p136.23",
+        "p136.24",
+        "p136.25",
+        "p136.26",
+        "p136.27",
+        "p136.28",
+        "p136.29"
+      ]
+    }
+  ]
+}
