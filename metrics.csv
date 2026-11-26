@@ -1,0 +1,6 @@
+chapter,stage,nodes,llm_tokens_in,llm_tokens_out,money_usd,person_minutes,mentor_minutes,video_seconds,manual_share
+baraboshkin_par1-2,layer,6,202843,88094,0.418291,0,0,0.0,0.0
+baraboshkin_par1-2,routing,6,3234,822,0.003025,0,0,0.0,0.0
+baraboshkin_par1-2,course,6,0,0,0.0,0,0,0.0,0.0
+baraboshkin_par1-2,video,6,0,0,0.0,0,0,0.0,0.0
+baraboshkin_par1-2,review,6,0,0,0.0,0,0,0.0,0.0
