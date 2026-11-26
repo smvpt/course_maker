@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Линии уменьшающейся Sw расходятся веером\",\"author\":\"Lines of decreasing water saturation radiate ... and spread like a fan\",\"match\":true},{\"part\":\"от пересечения с осью x\",\"author\":\"from the x-axis intercept\",\"match\":true},{\"part\":\"к правой стороне графика\",\"author\":\"toward the right side of the chart\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6257,
+ "tokens_out": 133,
+ "money_usd": 0.0022096,
+ "attempts": 1
+}

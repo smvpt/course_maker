@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Просмотр похож на предварительный фильтр или разведочный анализ (EDA): сначала быстро отбираем подозрительные участки данных, потом строим тяжёлую модель только по ним.\",\"author\":\"В главе описан scanning technique (reconnaissance technique), который сортирует коллектор от неколлектора и помогает наметить potential pay and wet zones.\",\"match\":true},{\"part\":\"Фильтр здесь зависит от типа разреза (какая кривая главная), а сноски показывают, что и правильные «интересные» зоны могут не пройти фильтр: порог не универсален.\",\"author\":\"В тексте выделены два пути (clastics - resistivity, carbonates - porosity) и сноски про радиоактивные продуктивные зоны и низкоомные сланцы.\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 4823,
+ "tokens_out": 220,
+ "money_usd": 0.0019969,
+ "attempts": 1
+}

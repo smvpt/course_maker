@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Формула Wyllie-Rose для нефти средней плотности: K = 250·φ³/Swirr\",\"author\":\"В цитате формула записана как квадрат выражения: K = (250 × (φ³ / Swirr))²\",\"match\":false},{\"part\":\"проницаемость растёт как куб пористости\",\"author\":\"В формуле числитель содержит φ³, но всё выражение возводится в квадрат, то есть в шестую степень (φ⁶)\",\"match\":false}],\"verdict\":\"contradicted\",\"category\":\"wrong_scaling\",\"severity\":\"critical\",\"problem\":\"В формуле Wyllie-Rose (7.30) всё выражение в скобках возводится в квадрат, поэтому проницаемость пропорциональна шестой степени пористости (φ⁶), а не кубу (φ³), как указано в элементе.\",\"fix\":\"Формула Wyllie-Rose для нефти средней плотности: K = (250·φ³/Swirr)², то есть проницаемость зависит от шестой степени пористости.\",\"page_pdf\":135,\"quote\":\"K = \\\\left( 250 \\\\times \\\\frac{\\\\phi^3}{S_{\\\\text{wirr}}} \\\\right)^2 \\\\text{ (medium-gravity oils)} \\\\tag{7.30}\"}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6162,
+ "tokens_out": 314,
+ "money_usd": 0.0026336,
+ "attempts": 1
+}

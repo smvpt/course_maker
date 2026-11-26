@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Водоносные точки разной пористости лежат на прямой\",\"author\":\"Water-bearing points of different porosities plot along a straight line\",\"match\":true},{\"part\":\"с наклоном −1/m\",\"author\":\"with a slope of ($-1/m$)\",\"match\":true},{\"part\":\"и отсечкой a·Rw при пористости 1,0\",\"author\":\"and an intercept (at porosity = 1.0) of ($a \\\\times R_w$)\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6409,
+ "tokens_out": 165,
+ "money_usd": 0.0023352,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Очень мелкий зонд, например микробоковой, измеряет сопротивление промытой зоны.\",\"author\":\"R_xo is shallow resistivity from a very shallow reading device, such as laterolog-8, microspherically focused log, or microlaterolog\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6162,
+ "tokens_out": 105,
+ "money_usd": 0.0021111,
+ "attempts": 1
+}

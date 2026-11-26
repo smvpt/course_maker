@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Минимальное значение Rwa — это измеренное сопротивление пластовой воды Rw\",\"author\":\"The assumption is that this lowest value of Rwa is the closest approximation to the true formation water resistivity (Rw)\",\"match\":true},{\"part\":\"значения выше минимума указывают на углеводороды\",\"author\":\"values of Rwa greater than the minimum value are indicative of the presence of hydrocarbons\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6049,
+ "tokens_out": 139,
+ "money_usd": 0.0021622,
+ "attempts": 1
+}

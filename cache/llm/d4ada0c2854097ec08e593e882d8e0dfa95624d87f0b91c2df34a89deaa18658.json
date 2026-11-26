@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Ro — ожидаемое по модели значение (baseline) для «нормальной» водоносной породы\",\"author\":\"The wet-resistivity curve (Ro) is calculated from the porosity and an estimate of formation water resistivity (Rw)\",\"match\":true},{\"part\":\"разность Rt и Ro играет роль остатка (residual) при поиске аномалий\",\"author\":\"In hydrocarbon-bearing zones, the deep resistivity is higher than Ro, with the separation increasing with increasing hydrocarbon saturation\",\"match\":true},{\"part\":\"Базовая линия строится не обучением по данным, а по физической формуле с допущенными параметрами (Rw, a, m)\",\"author\":\"Ro is then calculated from a porosity measurement, usually the sonic or density, with an estimate of Rw, a, and m\",\"match\":true},{\"part\":\"Неверный параметр сдвигает весь baseline сразу, а не только отдельные точки\",\"author\":\"If the value of Rw chosen to calculate Ro is incorrect, the curves would not align in water-bearing zones\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 4023,
+ "tokens_out": 276,
+ "money_usd": 0.0018969,
+ "attempts": 1
+}

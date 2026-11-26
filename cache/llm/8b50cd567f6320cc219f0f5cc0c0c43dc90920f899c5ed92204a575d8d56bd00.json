@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Некалиброванный скор ранжирования: абсолютное значение не доверяют, а объекты сравнивают между собой.\",\"author\":\"By using comparisons of log-derived permeabilities from several wells, a geologist is not using an absolute value for log-derived permeability.\",\"match\":true},{\"part\":\"Аналогия переносится без ограничений: как любой скор, каротажную проницаемость можно сравнивать между любыми пластами и скважинами при любой водонасыщенности.\",\"author\":\"Log-derived permeability formulas are only valid for estimating permeability in formations at irreducible water saturation\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 8055,
+ "tokens_out": 358,
+ "money_usd": 0.0033115,
+ "attempts": 2
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Исключение: зона, похожая на глину, может быть радиоактивной продуктивной зоной.\",\"author\":\"Zones that appear to be shales might be radioactive productive zones.\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 4268,
+ "tokens_out": 88,
+ "money_usd": 0.0015003999999999998,
+ "attempts": 1
+}

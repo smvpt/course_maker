@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"При неснижаемой насыщенности вода в неизменённой зоне неподвижна\",\"author\":\"When a zone is at irreducible water saturation, water in the uninvaded zone (Sw) does not move\",\"match\":true},{\"part\":\"её запирает глинистая корка на стенке скважины\",\"author\":\"because it is held on grains by capillary pressure\",\"match\":false}],\"verdict\":\"contradicted\",\"category\":\"wrong_mechanism\",\"severity\":\"critical\",\"problem\":\"В тексте книги указано, что вода в неизменённой зоне удерживается на зёрнах капиллярным давлением, а не глинистой коркой на стенке скважины (глинистая корка формируется в зоне проникновения, а не в неизменённой зоне).\",\"fix\":\"При неснижаемой насыщенности вода в неизменённой зоне неподвижна: её удерживают на зёрнах силы капиллярного давления.\",\"page_pdf\":131,\"quote\":\"When a zone is at irreducible water saturation, water in the uninvaded zone ($S_w$) does not move because it is held on grains by capillary pressure.\"}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6302,
+ "tokens_out": 274,
+ "money_usd": 0.0025756,
+ "attempts": 1
+}

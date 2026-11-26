@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Если Swa > Swr, отношение Rxo/Rt занижено\",\"author\":\"If Swa > Swr, then the value for Rxo/Rt is too low\",\"match\":true},{\"part\":\"из-за очень мелкого вторжения Rxo мало\",\"author\":\"Rxo is too low because invasion is very shallow\",\"match\":true},{\"part\":\"или из-за очень глубокого Rt завышено\",\"author\":\"or Rt is too high because invasion is very deep\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6323,
+ "tokens_out": 160,
+ "money_usd": 0.0022969,
+ "attempts": 1
+}

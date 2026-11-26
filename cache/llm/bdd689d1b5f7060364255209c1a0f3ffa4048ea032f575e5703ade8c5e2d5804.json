@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"В терригенном разрезе изменения сопротивления из-за флюидов видны на относительно постоянном фоне глин.\",\"author\":\"In the clastic case, the resistivity log is the primary reconnaissance measurement because clastics tend to consist of reservoirs surrounded by shales of slowly varying resistivity. The changes in resistivity due to changes in fluid content of the reservoirs tend to stand out against this relatively constant background.\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 4723,
+ "tokens_out": 134,
+ "money_usd": 0.0017519,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"На Пикетте для двух высокоомных точек одинаковой пористости Ro по линии 0,80 Ом·м\",\"author\":\"For the two points of interest (both having the same porosity), Ra = 0.80 ohm-m.\",\"match\":true},{\"part\":\"для точки с Rt = 40 Ом·м Sw ≈ 0,14\",\"author\":\"For the point who's resistivity is 40 ohm-m, the saturation is found by: ... Sw = 0.14\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 5377,
+ "tokens_out": 166,
+ "money_usd": 0.0020281,
+ "attempts": 1
+}

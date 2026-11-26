@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Точки с углеводородами лежат ниже линии 100 % водонасыщенности\",\"author\":\"Hydrocarbon-bearing points lie below the line of 100% water saturation\",\"match\":true},{\"part\":\"из-за повышенного сопротивления\",\"author\":\"moved downward from the water-bearing line by their increased resistivity\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6257,
+ "tokens_out": 128,
+ "money_usd": 0.0021971,
+ "attempts": 1
+}

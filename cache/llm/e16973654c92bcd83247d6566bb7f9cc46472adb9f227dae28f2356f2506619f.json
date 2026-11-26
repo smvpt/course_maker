@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Если Sw/Sxo ≥ 1,0, углеводороды не были вытеснены.\",\"author\":\"If the ratio Sw/Sxo is equal to or greater than 1.0, then hydrocarbons were not moved during invasion.\",\"match\":true},{\"part\":\"Это верно и для пласта, в котором углеводородов нет вовсе.\",\"author\":\"This is true regardless of whether or not a formation contains hydrocarbons.\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 5934,
+ "tokens_out": 143,
+ "money_usd": 0.0021377,
+ "attempts": 1
+}

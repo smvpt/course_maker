@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Формула 7.2 повторяет форму 7.1\",\"author\":\"Формула 7.2 основана на уравнении Арчи так же, как и 7.1, но в ней заменены переменные Rw на Rmf и Rt на Rxo\",\"match\":true},{\"part\":\"с Rmf и Rxo\",\"author\":\"mud filtrate resistivity (Rmf) in place of formation water resistivity (Rw) and flushed zone resistivity (Rxo) in place of uninvaded zone resistivity (Rt)\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6019,
+ "tokens_out": 165,
+ "money_usd": 0.0022182,
+ "attempts": 1
+}

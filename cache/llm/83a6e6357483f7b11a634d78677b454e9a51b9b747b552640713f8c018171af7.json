@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"В карбонатах основная кривая просмотра — пористость\",\"author\":\"On the carbonate path, on the other hand, formation resistivities tend to vary widely with changing rock types, and commonly there are few shales against which to measure changes. In this case, the porosity log is the primary reconnaissance measurement.\",\"match\":true},{\"part\":\"сначала находят зоны, способные вместить флюид\",\"author\":\"By first finding the porous zones, those with the capacity to hold fluids (of any type) can be identified.\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 4723,
+ "tokens_out": 165,
+ "money_usd": 0.0018294000000000001,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Табл. 7.2 содержит множители от 1,56 (Sw 0,80) до 25 (Sw 0,20) для n = 2,0\",\"author\":\"Таблица 7.2 содержит ровно эти значения множителей и соответствующие им значения Sw для n = 2.0\",\"match\":true},{\"part\":\"общая для графиков Пикетта и Хингла\",\"author\":\"Текст подтверждает, что Таблица 7.2 используется как для графика Пикетта, так и для графика Хингла\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6190,
+ "tokens_out": 179,
+ "money_usd": 0.0023045,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Кривая Ro — один из старейших экспресс-методов.\",\"author\":\"The wet-resistivity curve (Ro) is one of the oldest quick-look techniques.\",\"match\":true},{\"part\":\"Её накладывают на кривую сопротивления\",\"author\":\"it is plotted as an overlay on the resistivity curve.\",\"match\":true},{\"part\":\"а другие экспресс-кривые сравнивают с ПС.\",\"author\":\"Unlike the other curves, which tend to be compared to the SP curve\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6085,
+ "tokens_out": 164,
+ "money_usd": 0.0022355,
+ "attempts": 1
+}

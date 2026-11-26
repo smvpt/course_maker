@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"BVW растёт с уменьшением размера зерна\",\"author\":\"Because the amount of water a formation can hold by capillary pressure increases with decreasing grain size, the bulk volume water also increases with decreasing grain size.\",\"match\":true},{\"part\":\"Табл. 7.1 сопоставляет BVW с размером зерна и типом породы: от крупных зёрен (0,02–0,025) к алевриту (0,07–0,09) в терригенных\",\"author\":\"Table 7.1. Bulk volume water (BVW) as a function of grain size and lithology... Coarse: 0.02 to 0.025 ... Silt: 0.07 to 0.09\",\"match\":true},{\"part\":\"от 0,005–0,015 у каверновых до 0,05 у меловых карбонатов\",\"author\":\"Vuggy: 0.005 to 0.015 ... Chalky: 0.05\",\"match\":true},{\"part\":\"Значения для карбонатов автор даёт лишь как очень общий ориентир\",\"author\":\"The bulk volume water values for carbonates should be used only as a very general guide to different types of porosity.\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6302,
+ "tokens_out": 341,
+ "money_usd": 0.0027431,
+ "attempts": 1
+}

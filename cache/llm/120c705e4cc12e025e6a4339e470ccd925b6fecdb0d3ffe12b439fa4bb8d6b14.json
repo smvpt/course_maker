@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Ось глубины направлена вниз: 2000 м вверху кадра, 2060 м внизу, деления через 10 м.\",\"author\":\"В спецификации сцены параметры depth_top = 2000, depth_bottom = 2060, depth_tick = 10; в инвариантах указано, что глубина растёт вниз.\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 9151,
+ "tokens_out": 139,
+ "money_usd": 0.0014398599999999998,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Пороги подвижности: ниже 0,7 для песчаников\",\"author\":\"Whenever the ratio Sw/Sxo is less than 0.7 for sandstones\",\"match\":true},{\"part\":\"и ниже 0,6 для карбонатов\",\"author\":\"or less than 0.6 for carbonates, moveable hydrocarbons are indicated\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 5934,
+ "tokens_out": 126,
+ "money_usd": 0.0020952,
+ "attempts": 1
+}

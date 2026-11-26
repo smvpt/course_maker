@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Каротаж, на котором коллектора больше, чем неколлектора\",\"author\":\"It is an exceedingly rare log that contains more reservoir than nonreservoir\",\"match\":true},{\"part\":\"встречается крайне редко\",\"author\":\"It is an exceedingly rare log that contains more reservoir than nonreservoir\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 4723,
+ "tokens_out": 116,
+ "money_usd": 0.0017069,
+ "attempts": 1
+}

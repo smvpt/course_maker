@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Если Swa ≈ Swr\",\"author\":\"If Swa ~ Swr\",\"match\":true},{\"part\":\"допущение ступенчатого профиля проникновения верно\",\"author\":\"the assumption of a step-contact invasion profile is indicated to be correct\",\"match\":true},{\"part\":\"найденные значения достоверны\",\"author\":\"and all values determined (Sw, Rt, Rxo, and dt) are correct\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6323,
+ "tokens_out": 145,
+ "money_usd": 0.0022594,
+ "attempts": 1
+}

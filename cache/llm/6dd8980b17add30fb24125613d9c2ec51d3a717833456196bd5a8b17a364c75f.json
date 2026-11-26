@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Результаты каротажа не следует применять без привлечения других данных.\",\"author\":\"As important as this log-derived information is, however, it should not be applied without the inclusion of other data.\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 4561,
+ "tokens_out": 92,
+ "money_usd": 0.0015983,
+ "attempts": 1
+}

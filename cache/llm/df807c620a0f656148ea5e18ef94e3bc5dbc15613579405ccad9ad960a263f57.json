@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Формула 7.1: отношение a·Rw/(Rt·φ^m)\",\"author\":\"В формуле 7.1 в числителе a * R_w, в знаменателе R_t * \\\\phi^m\",\"match\":true},{\"part\":\"возводится в степень n (показатель насыщенности), то есть Sw = (a·Rw/(Rt·φ^m))^n\",\"author\":\"У автора в формуле 7.1 выражение в скобках возводится в степень 1/n: S_w = \\\\left( \\\\frac{a \\\\times R_w}{R_t \\\\times \\\\phi^m} \\\\right)^{\\\\frac{1}{n}}\",\"match\":false}],\"verdict\":\"contradicted\",\"category\":\"wrong_scaling\",\"severity\":\"critical\",\"problem\":\"В элементе указано, что отношение возводится в степень n, тогда как по формуле Арчи (7.1) в книге оно возводится в степень 1/n.\",\"fix\":\"Формула 7.1: отношение a·Rw/(Rt·φ^m) возводится в степень 1/n (где n — показатель насыщенности), то есть Sw = (a·Rw/(Rt·φ^m))^(1/n).\",\"page_pdf\":126,\"quote\":\"S_w = \\\\left( \\\\frac{a \\\\times R_w}{R_t \\\\times \\\\phi^m} \\\\right)^{\\\\frac{1}{n}} \\\\tag{7.1}\"}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 4789,
+ "tokens_out": 350,
+ "money_usd": 0.0023117,
+ "attempts": 1
+}

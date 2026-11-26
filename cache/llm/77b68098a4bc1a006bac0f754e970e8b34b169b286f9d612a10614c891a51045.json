@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"В водоносной зоне кривая Rxo/Rt повторяет ПС\",\"author\":\"In a water-bearing zone, the Rxo/Rt ratio tracks the SP (In water-bearing intervals, the Rxo/Rt ratio parallels the response of the SP)\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6123,
+ "tokens_out": 105,
+ "money_usd": 0.0020994,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Прибор спустился примерно до 2013 м, в кровлю водяного пласта\",\"author\":\"Прибор находится на отметке около 2013 м на границе с водяным пластом\",\"match\":true},{\"part\":\"Кривая мелкого зонда скачком растёт\",\"author\":\"Мелкий зонд в водяном пласте показывает более высокое сопротивление (12.5 Ом·м) из-за влияния Rmf\",\"match\":true},{\"part\":\"Кривая глубокого зонда почти не меняется\",\"author\":\"Глубокий зонд в водяном пласте остается на низком уровне (1.25 Ом·м)\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic_frame",
+ "tokens_in": 10677,
+ "tokens_out": 209,
+ "money_usd": 0.0037256,
+ "attempts": 1
+}

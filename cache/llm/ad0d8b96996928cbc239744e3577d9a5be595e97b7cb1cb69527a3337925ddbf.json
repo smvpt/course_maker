@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Формула Timur: K = (93·φ^2,2/Swirr)²\",\"author\":\"В тексте на странице 135 приведена формула Timur: K = \\\\left( \\\\frac{93 \\\\times \\\\phi^{2.2}}{S_{\\\\text{wirr}}} \\\\right)^2\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6162,
+ "tokens_out": 120,
+ "money_usd": 0.0021486,
+ "attempts": 1
+}

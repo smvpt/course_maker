@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Оба трека — глубокий и мелкий зонд — в одной линейной шкале 0–40 Ом·м\",\"author\":\"В спецификации сцены params.curves заданы шкалы RES и RES_SHALLOW от 0 до 40 Ом·м\",\"match\":true},{\"part\":\"кривые вычислены из props слоёв с окном усреднения 1 м, конец кривой на глубине прибора\",\"author\":\"В спецификации сцены и invariants/assumptions описаны слои с props, окно 1.0 м и глубина прибора\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 9259,
+ "tokens_out": 180,
+ "money_usd": 0.0032276999999999996,
+ "attempts": 1
+}

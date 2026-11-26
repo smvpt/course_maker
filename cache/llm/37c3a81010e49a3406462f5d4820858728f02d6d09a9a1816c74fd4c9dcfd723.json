@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Номограмма пригодна для оценки K\",\"author\":\"The chart is constructed with the assumption of a medium-gravity oil... for estimating permeability (K)\",\"match\":true},{\"part\":\"только в зонах при неснижаемой водонасыщенности\",\"author\":\"It is important to remember that this chart is only valid for estimating permeability (K) in zones at irreducible water saturation (S_wi in).\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 5019,
+ "tokens_out": 142,
+ "money_usd": 0.0018607,
+ "attempts": 1
+}

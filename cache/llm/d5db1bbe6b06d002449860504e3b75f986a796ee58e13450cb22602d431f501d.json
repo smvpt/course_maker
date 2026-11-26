@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Главный эффект глины — снижение контраста сопротивлений между нефтью или газом и водой.\",\"author\":\"Hilchie (1978) notes that the most significant effect of shale in a formation is to reduce the resistivity contrast between oil or gas, and water.\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 4999,
+ "tokens_out": 107,
+ "money_usd": 0.0017671999999999998,
+ "attempts": 1
+}

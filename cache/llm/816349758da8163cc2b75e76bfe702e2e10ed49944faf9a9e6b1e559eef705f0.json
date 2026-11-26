@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Прибор у кровли нефтяного пласта (2033 м)\",\"author\":\"Прибор находится на глубине 2033 м у кровли нефтеносного интервала\",\"match\":true},{\"part\":\"Обе кривые начинают расти\",\"author\":\"В точке кровли нефтяного пласта кривые сопротивления реагируют на изменение пласта\",\"match\":true},{\"part\":\"Подпись «Rmf вместо Rw, Rxo вместо Rt»\",\"author\":\"Water saturation of a formation's flushed zone (Sxo) is also based on the Archie equation, but two variables are changed: mud filtrate resistivity (Rmf) in place of formation water resistivity (Rw) and flushed zone resistivity (Rxo) in place of uninvaded zone resistivity (Rt)\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic_frame",
+ "tokens_in": 10669,
+ "tokens_out": 220,
+ "money_usd": 0.0037507,
+ "attempts": 1
+}

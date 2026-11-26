@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Где воды больше: у ствола или вдали от него?\",\"author\":\"В главе обсуждается водонасыщенность зоны проникновения (Sxo) и неизмененной зоны (Sw), а также то, что при вторжении бурового раствора (фильтрата Rmf) вода вытесняет углеводороды или наоборот, что позволяет оценивать подвижность углеводородов по соотношению Sxo и Sw.\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6156,
+ "tokens_out": 140,
+ "money_usd": 0.0021968,
+ "attempts": 1
+}

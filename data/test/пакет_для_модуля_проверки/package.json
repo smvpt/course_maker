@@ -1,0 +1,1186 @@
+{
+ "package_id": "test_asquith",
+ "chapter": "asquith_ch7",
+ "chapter_file": "asquith_ch7.md",
+ "language": "en",
+ "items": [
+  {
+   "id": "C001",
+   "type": "claim",
+   "node_id": "asquith.goal_logs_to_saturation",
+   "text": "Определение пористости и истинного сопротивления зоны — первый шаг перевода сырых каротажных данных в оценки нефти, газа и воды.",
+   "kind": "observation",
+   "page_pdf": 126,
+   "quote": "As shown in the previous chapters, determining the porosity and true resistivity of a zone is the first step in converting the raw log data into estimated quantities of oil, gas, and water in a formation."
+  },
+  {
+   "id": "C002",
+   "type": "claim",
+   "node_id": "asquith.goal_logs_to_saturation",
+   "text": "Результаты каротажа не следует применять без привлечения других данных.",
+   "kind": "inference",
+   "page_pdf": 126,
+   "quote": "As important as this log-derived information is, however, it should not be applied without the inclusion of other data."
+  },
+  {
+   "id": "C003",
+   "type": "claim",
+   "node_id": "asquith.scanning_reconnaissance",
+   "text": "Каротаж, на котором коллектора больше, чем неколлектора, встречается крайне редко.",
+   "kind": "observation",
+   "page_pdf": 126,
+   "quote": "It is an exceedingly rare log that contains more reservoir than nonreservoir"
+  },
+  {
+   "id": "C004",
+   "type": "claim",
+   "node_id": "asquith.scanning_reconnaissance",
+   "text": "В терригенном разрезе изменения сопротивления из-за флюидов видны на относительно постоянном фоне глин.",
+   "kind": "observation",
+   "page_pdf": 126,
+   "quote": "The changes in resistivity due to changes in fluid content of the reservoirs tend to stand out against this relatively constant background."
+  },
+  {
+   "id": "C005",
+   "type": "claim",
+   "node_id": "asquith.scanning_reconnaissance",
+   "text": "В карбонатах основная кривая просмотра — пористость: сначала находят зоны, способные вместить флюид.",
+   "kind": "inference",
+   "page_pdf": 126,
+   "quote": "In this case, the porosity log is the primary reconnaissance measurement. By first finding the porous zones, those with the capacity to hold fluids (of any type) can be identified."
+  },
+  {
+   "id": "C006",
+   "type": "claim",
+   "node_id": "asquith.scanning_reconnaissance",
+   "text": "Исключение: зона, похожая на глину, может быть радиоактивной продуктивной зоной.",
+   "kind": "observation",
+   "page_pdf": 140,
+   "quote": "Zones that appear to be shales might be radioactive productive zones."
+  },
+  {
+   "id": "C007",
+   "type": "claim",
+   "node_id": "asquith.archie_sw",
+   "text": "Водонасыщенность неизменённой зоны пласта вычисляется по формуле Арчи (1942), то есть это расчётная, а не измеренная величина.",
+   "kind": "observation",
+   "page_pdf": 126,
+   "quote": "Water saturation ($S_w$) of a reservoir's uninvaded zone is calculated by the Archie (1942) formula:"
+  },
+  {
+   "id": "C008",
+   "type": "claim",
+   "node_id": "asquith.archie_sw",
+   "text": "Формула 7.1: отношение a·Rw/(Rt·φ^m) возводится в степень n (показатель насыщенности), то есть Sw = (a·Rw/(Rt·φ^m))^n.",
+   "kind": "observation",
+   "page_pdf": 126,
+   "quote": "S_w = \\left( \\frac{a \\times R_w}{R_t \\times \\phi^m} \\right)^{\\frac{1}{n}} \\tag{7.1}"
+  },
+  {
+   "id": "C009",
+   "type": "claim",
+   "node_id": "asquith.archie_sw",
+   "text": "Rt — истинное сопротивление пласта: глубокое измерение (индукционное или боковое), исправленное за проникновение.",
+   "kind": "observation",
+   "page_pdf": 126,
+   "quote": "true formation resistivity (i.e., deep induction or deep laterolog corrected for invasion)"
+  },
+  {
+   "id": "C010",
+   "type": "claim",
+   "node_id": "asquith.archie_sw",
+   "text": "Знания одной Sw недостаточно, чтобы полностью оценить продуктивность зоны.",
+   "kind": "inference",
+   "page_pdf": 127,
+   "quote": "But merely knowing a zone's water saturation ($S_w$) does not provide enough information to completely evaluate a zone's potential productivity."
+  },
+  {
+   "id": "C011",
+   "type": "claim",
+   "node_id": "asquith.sxo_flushed_zone",
+   "text": "Sxo считают по уравнению Арчи, заменяя Rw на Rmf (сопротивление фильтрата) и Rt на Rxo.",
+   "kind": "observation",
+   "page_pdf": 127,
+   "quote": "Water saturation of a formation's flushed zone ($S_{xo}$) is also based on the Archie equation, but two variables are changed: mud filtrate resistivity ($R_{mf}$) in place of formation water resistivity ($R_w$)"
+  },
+  {
+   "id": "C012",
+   "type": "claim",
+   "node_id": "asquith.sxo_flushed_zone",
+   "text": "Формула 7.2 повторяет форму 7.1 с Rmf и Rxo.",
+   "kind": "observation",
+   "page_pdf": 127,
+   "quote": "S_{xo} = \\left( \\frac{a \\times R_{mf}}{R_{xo} \\times \\phi^m} \\right)^{\\frac{1}{n}} \\tag{7.2}"
+  },
+  {
+   "id": "C013",
+   "type": "claim",
+   "node_id": "asquith.sxo_flushed_zone",
+   "text": "Rxo получают с очень мелкого прибора: бокового каротажа-8, микросферического или микробокового каротажа.",
+   "kind": "observation",
+   "page_pdf": 127,
+   "quote": "$R_{xo} =$ shallow resistivity from a very shallow reading device, such as laterolog-8, microspherically focused log, or microlaterolog"
+  },
+  {
+   "id": "C014",
+   "type": "claim",
+   "node_id": "asquith.sxo_flushed_zone",
+   "text": "Sxo можно использовать как индикатор подвижности углеводородов.",
+   "kind": "observation",
+   "page_pdf": 127,
+   "quote": "Water saturation of the flushed zone ($S_{xo}$) can be used as an *indicator of hydrocarbon moveability*."
+  },
+  {
+   "id": "C015",
+   "type": "claim",
+   "node_id": "asquith.sxo_flushed_zone",
+   "text": "Если Sxo много больше Sw, это доказывает, что углеводороды подвижны и зона даст нефть.",
+   "kind": "inference",
+   "page_pdf": 127,
+   "quote": "For example, if the value of $S_{xo}$ is much larger than $S_w$, then hydrocarbons in the flushed zone have probably been moved or flushed out of the zone nearest the borehole by the invading drilling fluids ($R_{mf}$)."
+  },
+  {
+   "id": "C016",
+   "type": "claim",
+   "node_id": "asquith.ratio_method_mobility",
+   "text": "При делении Sw на Sxo фактор формации сокращается, потому что в обоих расчётах он один и тот же.",
+   "kind": "inference",
+   "page_pdf": 127,
+   "quote": "When $S_w$ is divided by $S_{xo}$, the formation factor ($F = a/\\phi^m$) is cancelled out of the equation because the same formation factor is used to calculate both $S_w$ and $S_{xo}$."
+  },
+  {
+   "id": "C017",
+   "type": "claim",
+   "node_id": "asquith.ratio_method_mobility",
+   "text": "Для индекса принято n = 2,0. В тексте этот показатель ошибочно назван показателем цементации, хотя n обозначает показатель насыщенности.",
+   "kind": "assumption",
+   "page_pdf": 127,
+   "quote": "The cementation exponent ($n$) is assumed to be 2.0"
+  },
+  {
+   "id": "C018",
+   "type": "claim",
+   "node_id": "asquith.ratio_method_mobility",
+   "text": "Если Sw/Sxo ≥ 1,0, углеводороды не были вытеснены. Это верно и для пласта, в котором углеводородов нет вовсе.",
+   "kind": "observation",
+   "page_pdf": 127,
+   "quote": "If the ratio $S_w/S_{xo}$ is equal to or greater than 1.0, then hydrocarbons were not moved during invasion. This is true regardless of whether or not a formation contains hydrocarbons."
+  },
+  {
+   "id": "C019",
+   "type": "claim",
+   "node_id": "asquith.ratio_method_mobility",
+   "text": "Пороги подвижности: ниже 0,7 для песчаников и ниже 0,6 для карбонатов.",
+   "kind": "observation",
+   "page_pdf": 127,
+   "quote": "Whenever the ratio $S_w/S_{xo}$ is less than 0.7 for sandstones or less than 0.6 for carbonates, moveable hydrocarbons are indicated (Schlumberger, 1972)."
+  },
+  {
+   "id": "C020",
+   "type": "claim",
+   "node_id": "asquith.ratio_method_sw_derivation",
+   "text": "При разборе случая Swa < Swr автор ссылается на неравенство Sxo < Sw^(1/5) «из уравнения 7.5». Показатель 1/5 согласуется с выводом 5/8, а записанный в 7.5 показатель 1/2 — нет.",
+   "kind": "inference",
+   "page_pdf": 128,
+   "quote": "Also, an annulus-type invasion profile might be indicated and/or $S_{xo} < S_w^{1/5}$ (from Equation 7.5)."
+  },
+  {
+   "id": "C021",
+   "type": "claim",
+   "node_id": "asquith.ratio_method_sw_derivation",
+   "text": "Итоговая формула: Swr равна отношению (Rxo/Rt)/(Rmf/Rw) в степени 0,625.",
+   "kind": "observation",
+   "page_pdf": 128,
+   "quote": "$$S_{wr} = \\left( \\frac{R_{xo} / R_t}{R_{mf} / R_w} \\right)^{0.625} \\tag{7.7}$$"
+  },
+  {
+   "id": "C022",
+   "type": "claim",
+   "node_id": "asquith.ratio_vs_archie_diagnosis",
+   "text": "Если Swa ≈ Swr, допущение ступенчатого профиля проникновения верно, и найденные значения достоверны.",
+   "kind": "inference",
+   "page_pdf": 128,
+   "quote": "If $S_{wa} \\sim S_{wr}$, the assumption of a step-contact invasion profile is indicated to be correct, and all values determined ($S_w$, $R_t$, $R_{xo}$, and $d_t$) are correct."
+  },
+  {
+   "id": "C023",
+   "type": "claim",
+   "node_id": "asquith.ratio_vs_archie_diagnosis",
+   "text": "Если Swa > Swr, отношение Rxo/Rt занижено: из-за очень мелкого вторжения Rxo мало или из-за очень глубокого Rt завышено.",
+   "kind": "inference",
+   "page_pdf": 128,
+   "quote": "If $S_{wa} > S_{wr}$, then the value for $R_{xo}/R_t$ is too low. $R_{xo}$ is too low because invasion is very shallow, or $R_t$ is too high because invasion is very deep."
+  },
+  {
+   "id": "C024",
+   "type": "claim",
+   "node_id": "asquith.ratio_vs_archie_diagnosis",
+   "text": "Если Swa < Swr, отношение Rxo/Rt завышено, в частности из-за влияния соседних высокоомных пластов.",
+   "kind": "inference",
+   "page_pdf": 128,
+   "quote": "If $S_{wa} < S_{wr}$, then the value for $R_{xo}/R_t$ is too high. $R_{xo}$ is too high because of the effect of adjacent, high-resistivity beds"
+  },
+  {
+   "id": "C025",
+   "type": "claim",
+   "node_id": "asquith.ratio_vs_archie_diagnosis",
+   "text": "Если Swa < Swr, коллектор — карбонат с молдовой пористостью и низкой проницаемостью; других объяснений у такого расхождения нет.",
+   "kind": "inference",
+   "page_pdf": 128,
+   "quote": "If $S_{wa} < S_{wr}$, the reservoir might be a carbonate with moldic (i.e., oomoldic, fossil-moldic, etc.) porosity and low permeability."
+  },
+  {
+   "id": "C026",
+   "type": "claim",
+   "node_id": "asquith.quicklook_ro_baseline",
+   "text": "Кривая Ro — один из старейших экспресс-методов. Её накладывают на кривую сопротивления, а другие экспресс-кривые сравнивают с ПС.",
+   "kind": "observation",
+   "page_pdf": 131,
+   "quote": "The wet-resistivity curve ($R_o$) is one of the oldest quick-look techniques. Unlike the other curves, which tend to be compared to the SP curve, it is plotted as an overlay on the resistivity curve."
+  },
+  {
+   "id": "C027",
+   "type": "claim",
+   "node_id": "asquith.quicklook_ro_baseline",
+   "text": "В углеводородных зонах глубокое сопротивление ниже Ro, и отрыв растёт с насыщенностью углеводородами.",
+   "kind": "observation",
+   "page_pdf": 131,
+   "quote": "In hydrocarbon-bearing zones, the deep resistivity is higher than $R_o$, with the separation increasing with increasing hydrocarbon saturation."
+  },
+  {
+   "id": "C028",
+   "type": "claim",
+   "node_id": "asquith.quicklook_ro_baseline",
+   "text": "Если Rw для Ro выбрано неверно, кривые не совпадут даже в водоносных зонах.",
+   "kind": "observation",
+   "page_pdf": 131,
+   "quote": "If the value of $R_w$ chosen to calculate $R_o$ is incorrect, the curves would not align in water-bearing zones."
+  },
+  {
+   "id": "C029",
+   "type": "claim",
+   "node_id": "asquith.quicklook_rwa",
+   "text": "Rwa = Rt·φ^m/a (ф. 7.16). Если пласт водоносный, Rt превращается в Ro и Rwa равно Rw.",
+   "kind": "inference",
+   "page_pdf": 129,
+   "quote": "When a given zone is water bearing, $R_t$ reverts to the water-bearing resistivity ($R_o$) and $R_{wa}$ equals $R_w$."
+  },
+  {
+   "id": "C030",
+   "type": "claim",
+   "node_id": "asquith.quicklook_rwa",
+   "text": "Минимальное значение Rwa — это измеренное сопротивление пластовой воды Rw; значения выше минимума указывают на углеводороды.",
+   "kind": "observation",
+   "page_pdf": 129,
+   "quote": "The assumption is that this lowest value of $R_{wa}$ is the closest approximation to the true formation water resistivity ($R_w$) and that values of $R_{wa}$ greater than the minimum value are indicative of the presence of hydrocarbons."
+  },
+  {
+   "id": "C031",
+   "type": "claim",
+   "node_id": "asquith.quicklook_rwa",
+   "text": "В малопористых зонах (менее примерно 10%) Rwa ниже настоящего Rw.",
+   "kind": "observation",
+   "page_pdf": 129,
+   "quote": "In low-porosity zones (less than about 10% porosity), the $R_{wa}$ value is lower than the actual $R_w$ value."
+  },
+  {
+   "id": "C032",
+   "type": "claim",
+   "node_id": "asquith.quicklook_conductivity_porosity",
+   "text": "В зонах с углеводородами Rt больше Ro, поэтому рассчитанная пористость меньше фактической.",
+   "kind": "inference",
+   "page_pdf": 130,
+   "quote": "When the formation contains hydrocarbons, $R_t$ is greater than $R_o$, and the calculated porosity is less than the actual formation porosity."
+  },
+  {
+   "id": "C033",
+   "type": "claim",
+   "node_id": "asquith.quicklook_conductivity_porosity",
+   "text": "Сравнение значений кривой между разными зонами при неверном Rw остаётся прежним.",
+   "kind": "observation",
+   "page_pdf": 130,
+   "quote": "It would not, however, change the results of comparison of the curve values in different zones."
+  },
+  {
+   "id": "C034",
+   "type": "claim",
+   "node_id": "asquith.quicklook_conductivity_porosity",
+   "text": "Метод опирается на кривую проводимости, которую сегодня обычно выводят на каротажный планшет рядом с ПС.",
+   "kind": "observation",
+   "page_pdf": 130,
+   "quote": "the conductivity curve is now rarely presented on log displays, and the technique is described here using the resistivity measurement."
+  },
+  {
+   "id": "C035",
+   "type": "claim",
+   "node_id": "asquith.quicklook_rxo_rt_sp",
+   "text": "В водоносной зоне кривая Rxo/Rt повторяет ПС.",
+   "kind": "observation",
+   "page_pdf": 128,
+   "quote": "In a water-bearing zone, the $R_{xo}/R_t$ ratio tracks the SP."
+  },
+  {
+   "id": "C036",
+   "type": "claim",
+   "node_id": "asquith.quicklook_rxo_rt_sp",
+   "text": "В зоне с углеводородами отношение уходит от ПС (вправо при нормальной, отрицательной ПС).",
+   "kind": "observation",
+   "page_pdf": 128,
+   "quote": "In a hydrocarbon-bearing zone, the $R_{xo}/R_t$ ratio moves away from the SP [a deflection to the right for the case of a normal (negative) SP]."
+  },
+  {
+   "id": "C037",
+   "type": "claim",
+   "node_id": "asquith.quicklook_rxo_rt_sp",
+   "text": "В углеводородном интервале отношение Rxo/Rt падает, потому что падает Rxo, и кривая расходится с ПС.",
+   "kind": "inference",
+   "page_pdf": 129,
+   "quote": "the $R_{xo}/R_t$ ratio decreases (because of increasing $R_t$) and the $R_{xo}/R_t$ curve moves away from the SP."
+  },
+  {
+   "id": "C038",
+   "type": "claim",
+   "node_id": "asquith.bvw_irreducible_saturation",
+   "text": "BVW есть произведение водонасыщенности на пористость (ф. 7.22).",
+   "kind": "observation",
+   "page_pdf": 131,
+   "quote": "The product of a formation's water saturation ($S_w$) and its porosity ($\\phi$) is the bulk volume of water ($BVW$)."
+  },
+  {
+   "id": "C039",
+   "type": "claim",
+   "node_id": "asquith.bvw_irreducible_saturation",
+   "text": "При неснижаемой насыщенности вода в неизменённой зоне неподвижна: её запирает глинистая корка на стенке скважины.",
+   "kind": "observation",
+   "page_pdf": 131,
+   "quote": "When a zone is at irreducible water saturation, water in the uninvaded zone ($S_w$) does not move because it is held on grains by capillary pressure."
+  },
+  {
+   "id": "C040",
+   "type": "claim",
+   "node_id": "asquith.bvw_irreducible_saturation",
+   "text": "Рис. 7.3a: BVW почти постоянен (все точки между 0,04 и 0,05), пласт близок к неснижаемой насыщенности и даёт 96% нефти.",
+   "kind": "observation",
+   "page_pdf": 141,
+   "quote": "Figure 7.3a is an example of nearly constant BVW. The formation shown produces 96% oil. Note that all the points plot between 0.04 and 0.05 BVW."
+  },
+  {
+   "id": "C041",
+   "type": "claim",
+   "node_id": "asquith.bvw_irreducible_saturation",
+   "text": "BVW растёт с уменьшением размера зерна. Табл. 7.1 сопоставляет BVW с размером зерна и типом породы: от крупных зёрен (0,02–0,025) к алевриту (0,07–0,09) в терригенных, от 0,005–0,015 у каверновых до 0,05 у меловых карбонатов. Значения для карбонатов автор даёт лишь как очень общий ориентир.",
+   "kind": "observation",
+   "page_pdf": 131,
+   "quote": "Table 7.1. Bulk volume water ($BVW$) as a function of grain size and lithology. A comparative chart."
+  },
+  {
+   "id": "C042",
+   "type": "claim",
+   "node_id": "asquith.pickett_plot_principle",
+   "text": "Водоносные точки разной пористости лежат на прямой с наклоном −1/m и отсечкой a·Rw при пористости 1,0.",
+   "kind": "observation",
+   "page_pdf": 132,
+   "quote": "Water-bearing points of different porosities plot along a straight line with a slope of ($-1/m$) and an intercept (at porosity = 1.0) of ($a \\times R_w$)."
+  },
+  {
+   "id": "C043",
+   "type": "claim",
+   "node_id": "asquith.pickett_plot_principle",
+   "text": "Точки с углеводородами смещены по горизонтали вправо от водоносной линии из-за более высокого сопротивления.",
+   "kind": "observation",
+   "page_pdf": 132,
+   "quote": "Hydrocarbon-bearing points lie away from the line, moved horizontally to the right from the water-bearing line by their increased resistivity."
+  },
+  {
+   "id": "C044",
+   "type": "claim",
+   "node_id": "asquith.pickett_plot_principle",
+   "text": "Сила метода в том, что Rw и m оценивают по самим данным, а не берут из местных знаний или дорогих измерений на керне.",
+   "kind": "observation",
+   "page_pdf": 132,
+   "quote": "The power in the Pickett plot is that water resistivity ($R_w$) and cementation exponent ($m$) can be estimated from the data, rather than having to be derived from local knowledge or from expensive core measurements."
+  },
+  {
+   "id": "C045",
+   "type": "claim",
+   "node_id": "asquith.pickett_plot_principle",
+   "text": "Расположение Rt по оси x — историческое: оно связано с доступностью логарифмической бумаги, а не с физикой.",
+   "kind": "observation",
+   "page_pdf": 132,
+   "quote": "This convention stems from the availability of full-logarithmic graph paper (both scales logarithmic) at the time Pickett developed the technique."
+  },
+  {
+   "id": "C046",
+   "type": "claim",
+   "node_id": "asquith.pickett_matrix_and_sw_lines",
+   "text": "Водоносная линия на графике Пикетта получается прямой при любом выбранном значении матрицы.",
+   "kind": "observation",
+   "page_pdf": 133,
+   "quote": "If there is a range of porosities in the zones defining the water-bearing line on the Pickett plot, and if the matrix value is chosen correctly, the line is straight."
+  },
+  {
+   "id": "C047",
+   "type": "claim",
+   "node_id": "asquith.pickett_matrix_and_sw_lines",
+   "text": "Табл. 7.2 содержит множители от 1,56 (Sw 0,80) до 25 (Sw 0,20) для n = 2,0; общая для графиков Пикетта и Хингла.",
+   "kind": "observation",
+   "page_pdf": 133,
+   "quote": "Table 7.2. Factors for positioning water-saturation lines on Pickett and Hingle plots."
+  },
+  {
+   "id": "C048",
+   "type": "claim",
+   "node_id": "asquith.hingle_plot",
+   "text": "Сетка с a = 1,0 и m = 2,0 обычно используется для песчаников, а с a = 0,62 и m = 2,15 — для карбонатов.",
+   "kind": "observation",
+   "page_pdf": 133,
+   "quote": "The grid constructed using a = 1.0 and m = 2.0 is usually used for sandstones (Figure 7.5), and the grid constructed using a = 0.62 and m = 2.15 is used for carbonates (Figure 7.6)."
+  },
+  {
+   "id": "C049",
+   "type": "claim",
+   "node_id": "asquith.hingle_plot",
+   "text": "Точки с углеводородами лежат ниже линии 100 % водонасыщенности из-за повышенного сопротивления.",
+   "kind": "observation",
+   "page_pdf": 134,
+   "quote": "Hydrocarbon-bearing points lie below the line of 100% water saturation, moved downward from the water-bearing line by their increased resistivity."
+  },
+  {
+   "id": "C050",
+   "type": "claim",
+   "node_id": "asquith.hingle_plot",
+   "text": "Линии уменьшающейся Sw расходятся веером от пересечения с осью x к правой стороне графика.",
+   "kind": "observation",
+   "page_pdf": 134,
+   "quote": "Lines of decreasing water saturation radiate from the x-axis intercept and spread like a fan toward the right side of the chart."
+  },
+  {
+   "id": "C051",
+   "type": "claim",
+   "node_id": "asquith.crossplot_worked_example",
+   "text": "Водоносную линию провели через кластер точек с наклоном −1/2, то есть m = 2; по автору, можно обосновать и другие m — от 1,8 до 2,15.",
+   "kind": "observation",
+   "page_pdf": 142,
+   "quote": "The water-bearing line ($S_w = 100\\%$) was drawn through the cluster of points with a slope of $-1/2$ ($m = 2$)."
+  },
+  {
+   "id": "C052",
+   "type": "claim",
+   "node_id": "asquith.crossplot_worked_example",
+   "text": "На Пикетте при φ = 0,10 на водоносной линии Ro = 4,6 Ом·м; при a = 1 и m = 2 получают Rw = 0,046 Ом·м.",
+   "kind": "observation",
+   "page_pdf": 142,
+   "quote": "In this case, for a porosity of $10\\%$ ($\\mathrm{DPHI} = 0.10$), $R_{a} = 4.6$ ohm-m."
+  },
+  {
+   "id": "C053",
+   "type": "claim",
+   "node_id": "asquith.crossplot_worked_example",
+   "text": "На Пикетте для двух высокоомных точек одинаковой пористости Ro по линии 0,80 Ом·м; для точки с Rt = 40 Ом·м Sw ≈ 0,14.",
+   "kind": "observation",
+   "page_pdf": 142,
+   "quote": "For the two points of interest (both having the same porosity), $R_{a} = 0.80$ ohm-m."
+  },
+  {
+   "id": "C054",
+   "type": "claim",
+   "node_id": "asquith.permeability_from_logs_basis",
+   "text": "Формулы проницаемости по каротажу дают оценку проницаемости в любом пласте-коллекторе, независимо от его водонасыщенности.",
+   "kind": "assumption",
+   "page_pdf": 134,
+   "quote": "Log-derived permeability formulas are only valid for estimating permeability in formations at irreducible water saturation (Schlumberger, 1977)."
+  },
+  {
+   "id": "C055",
+   "type": "claim",
+   "node_id": "asquith.permeability_from_logs_basis",
+   "text": "Каротажная проницаемость — не абсолютная величина: геолог опирается на сопоставление скважин.",
+   "kind": "inference",
+   "page_pdf": 134,
+   "quote": "By using comparisons of log-derived permeabilities from several wells, a geologist is not using an absolute value for log-derived permeability."
+  },
+  {
+   "id": "C056",
+   "type": "claim",
+   "node_id": "asquith.permeability_wyllie_timur_chart",
+   "text": "Формула Wyllie-Rose для нефти средней плотности: K = 250·φ³/Swirr, то есть проницаемость растёт как куб пористости.",
+   "kind": "observation",
+   "page_pdf": 135,
+   "quote": "K = \\left( 250 \\times \\frac{\\phi^3}{S_{\\text{wirr}}} \\right)^2 \\text{ (medium-gravity oils)} \\tag{7.30}"
+  },
+  {
+   "id": "C057",
+   "type": "claim",
+   "node_id": "asquith.permeability_wyllie_timur_chart",
+   "text": "Формула Timur: K = (93·φ^2,2/Swirr)².",
+   "kind": "observation",
+   "page_pdf": 135,
+   "quote": "K = \\left( \\frac{93 \\times \\phi^{2.2}}{S_{\\text{wirr}}} \\right)^2 \\tag{7.32}"
+  },
+  {
+   "id": "C058",
+   "type": "claim",
+   "node_id": "asquith.permeability_wyllie_timur_chart",
+   "text": "Номограмма пригодна для оценки K только в зонах при неснижаемой водонасыщенности.",
+   "kind": "assumption",
+   "page_pdf": 146,
+   "quote": "It is important to remember that this chart is only valid for estimating permeability (K) in zones at irreducible water saturation ($S_{wi}$ in)."
+  },
+  {
+   "id": "C059",
+   "type": "claim",
+   "node_id": "asquith.permeability_coates_dumanoir",
+   "text": "В формуле Coates-Dumanoir плотность углеводорода входит явно, а не через смену константы, как у Wyllie-Rose.",
+   "kind": "observation",
+   "page_pdf": 135,
+   "quote": "Unlike the Wyllie and Rose (1950) formulas, hydrocarbon density is explicitly part of the equation, instead of being indirectly accounted for by changing a constant."
+  },
+  {
+   "id": "C060",
+   "type": "claim",
+   "node_id": "asquith.shaly_sand_effects",
+   "text": "Главный эффект глины — снижение контраста сопротивлений между нефтью или газом и водой.",
+   "kind": "observation",
+   "page_pdf": 136,
+   "quote": "Hilchie (1978) notes that the most significant effect of shale in a formation is to reduce the resistivity contrast between oil or gas, and water."
+  },
+  {
+   "id": "C061",
+   "type": "claim",
+   "node_id": "asquith.shaly_sand_effects",
+   "text": "По Hilchie, любое содержание сланца, даже несколько процентов, заметно искажает водонасыщенность по каротажу.",
+   "kind": "observation",
+   "page_pdf": 136,
+   "quote": "Hilchie (1978) suggests that for shale to significantly affect log-derived water saturations, shale content must be greater than 10 to \\(15\\%\\)."
+  },
+  {
+   "id": "C062",
+   "type": "claim",
+   "node_id": "asquith.shaly_sand_effects",
+   "text": "Любая формула для глинистых песчаников уменьшает Sw по сравнению с расчётом без учёта глины.",
+   "kind": "observation",
+   "page_pdf": 136,
+   "quote": "Remember that all shaly sandstone formulas reduce the water saturation value from the value that would be calculated if shale effect were ignored."
+  },
+  {
+   "id": "C063",
+   "type": "claim",
+   "node_id": "asquith.interpretation_workflow_map",
+   "text": "Пористость и объём глинистого сланца (глинистость) можно вычислить из сырых данных несколькими способами.",
+   "kind": "observation",
+   "page_pdf": 140,
+   "quote": "The chart shows that there are several ways to calculate porosity ($\\phi$) and shale volume ($V_{shale}$) from the raw data."
+  },
+  {
+   "id": "A01",
+   "type": "analogy",
+   "node_id": "asquith.pickett_plot_principle",
+   "text": "Регрессия степенного закона: после логарифмирования обеих осей зависимость становится линейной, а параметры модели читаются из наклона и отсечки. Точки, ушедшие от прямой, — это не шум, а целевой сигнал.",
+   "breaks_where": "Прямую проводят вручную по отобранным водоносным точкам, то есть по размеченному подмножеству, а не по всем данным. Параметры a и n регрессия не оценивает, их задают допущением."
+  },
+  {
+   "id": "A02",
+   "type": "analogy",
+   "node_id": "asquith.permeability_from_logs_basis",
+   "text": "Некалиброванный скор ранжирования: абсолютное значение не доверяют, а объекты сравнивают между собой.",
+   "breaks_where": "Аналогия переносится без ограничений: как любой скор, каротажную проницаемость можно сравнивать между любыми пластами и скважинами при любой водонасыщенности."
+  },
+  {
+   "id": "A03",
+   "type": "analogy",
+   "node_id": "asquith.scanning_reconnaissance",
+   "text": "Просмотр похож на предварительный фильтр или разведочный анализ (EDA): сначала быстро отбираем подозрительные участки данных, потом строим тяжёлую модель только по ним.",
+   "breaks_where": "Фильтр здесь зависит от типа разреза (какая кривая главная), а сноски показывают, что и правильные «интересные» зоны могут не пройти фильтр: порог не универсален."
+  },
+  {
+   "id": "A04",
+   "type": "analogy",
+   "node_id": "asquith.quicklook_rwa",
+   "text": "Минимум Rwa похож на оценку «шумового пола» или базовой линии: самое низкое значение по набору окон принимают за фон, а отклонения вверх — за аномалии.",
+   "breaks_where": "Базовая линия здесь — допущение, а не измерение. «Самая водная» зона сама может быть нефтеносной, и тогда пол занижен, а в малопористых зонах минимум искусственно понижается артефактом метода."
+  },
+  {
+   "id": "A05",
+   "type": "analogy",
+   "node_id": "asquith.quicklook_ro_baseline",
+   "text": "Ro — ожидаемое по модели значение (baseline) для «нормальной» водоносной породы, а разность Rt и Ro играет роль остатка (residual) при поиске аномалий.",
+   "breaks_where": "Базовая линия строится не обучением по данным, а по физической формуле с допущенными параметрами (Rw, a, m). Неверный параметр сдвигает весь baseline сразу, а не только отдельные точки."
+  },
+  {
+   "id": "L01",
+   "type": "script_line",
+   "node_id": "asquith.sxo_flushed_zone",
+   "video_id": "asqu_v1",
+   "t_start": 0.25,
+   "t_end": 4.836,
+   "text": "Нефть в пласте нашли. Но пойдёт ли она в скважину?",
+   "claim_ref": "C014",
+   "on_screen": "Нефть есть. Подвижна?"
+  },
+  {
+   "id": "L02",
+   "type": "script_line",
+   "node_id": "asquith.sxo_flushed_zone",
+   "video_id": "asqu_v1",
+   "t_start": 4.836,
+   "t_end": 10.56,
+   "text": "Буровой раствор проникает в пласт, и его жидкая часть, фильтрат, вытесняет флюид у ствола.",
+   "claim_ref": "C015",
+   "on_screen": "Фильтрат вытесняет флюид"
+  },
+  {
+   "id": "L03",
+   "type": "script_line",
+   "node_id": "asquith.sxo_flushed_zone",
+   "video_id": "asqu_v1",
+   "t_start": 10.56,
+   "t_end": 15.715,
+   "text": "Очень мелкий зонд, например микробоковой, измеряет сопротивление промытой зоны.",
+   "claim_ref": "C013",
+   "on_screen": "Мелкий зонд: промытая зона"
+  },
+  {
+   "id": "L04",
+   "type": "script_line",
+   "node_id": "asquith.sxo_flushed_zone",
+   "video_id": "asqu_v1",
+   "t_start": 15.715,
+   "t_end": 18.819,
+   "text": "Глубокий зонд читает в основном нетронутую зону пласта.",
+   "claim_ref": "C009",
+   "on_screen": "Глубокий зонд: в основном нетронутая зона"
+  },
+  {
+   "id": "L05",
+   "type": "script_line",
+   "node_id": "asquith.sxo_flushed_zone",
+   "video_id": "asqu_v1",
+   "t_start": 18.819,
+   "t_end": 23.666,
+   "text": "Насыщенность промытой зоны, эс-икс-о, считают по той же формуле Арчи.",
+   "claim_ref": "C012",
+   "on_screen": "Sxo — формула Арчи"
+  },
+  {
+   "id": "L06",
+   "type": "script_line",
+   "node_id": "asquith.sxo_flushed_zone",
+   "video_id": "asqu_v1",
+   "t_start": 23.666,
+   "t_end": 30.31,
+   "text": "Только вместо сопротивления фильтрата берут сопротивление пластовой воды, а вместо мелкого сопротивления — глубокое.",
+   "claim_ref": "C011",
+   "on_screen": "Те же формулы — другие сопротивления"
+  },
+  {
+   "id": "L07",
+   "type": "script_line",
+   "node_id": "asquith.sxo_flushed_zone",
+   "video_id": "asqu_v1",
+   "t_start": 30.31,
+   "t_end": 35.797,
+   "text": "Теперь нефтяной пласт. Где воды больше: у ствола или вдали от него?",
+   "claim_ref": "C015",
+   "on_screen": "Где воды больше?"
+  },
+  {
+   "id": "L08",
+   "type": "script_line",
+   "node_id": "asquith.sxo_flushed_zone",
+   "video_id": "asqu_v1",
+   "t_start": 37.097,
+   "t_end": 43.864,
+   "text": "У ствола. Фильтрат вытеснил часть нефти, поэтому эс-икс-о выше водонасыщенности нетронутой зоны.",
+   "claim_ref": "C015",
+   "on_screen": "Sxo 0,6 против Sw 0,25: расчёт"
+  },
+  {
+   "id": "L09",
+   "type": "script_line",
+   "node_id": "asquith.sxo_flushed_zone",
+   "video_id": "asqu_v1",
+   "t_start": 43.864,
+   "t_end": 49.248,
+   "text": "Если разница велика, нефть, вероятно, подвижна: так осторожно пишет автор.",
+   "claim_ref": "C015",
+   "on_screen": "«Вероятно» — не доказательство"
+  },
+  {
+   "id": "L10",
+   "type": "script_line",
+   "node_id": "asquith.sxo_flushed_zone",
+   "video_id": "asqu_v1",
+   "t_start": 49.248,
+   "t_end": 56.133,
+   "text": "Сопротивления и насыщенности снимают зонды. Подвижность — вывод.",
+   "claim_ref": "C007",
+   "on_screen": "Измерение → вывод"
+  },
+  {
+   "id": "L11",
+   "type": "script_line",
+   "node_id": "asquith.sxo_flushed_zone",
+   "video_id": "asqu_v1",
+   "t_start": 56.133,
+   "t_end": 61.217,
+   "text": "Водяной пласт тоже показал разницу кривых, поэтому по кривым одним судить нельзя.",
+   "claim_ref": "C011",
+   "on_screen": "Разница кривых ≠ подвижность"
+  },
+  {
+   "id": "L12",
+   "type": "script_line",
+   "node_id": "asquith.sxo_flushed_zone",
+   "video_id": "asqu_v1",
+   "t_start": 61.217,
+   "t_end": 65.941,
+   "text": "Как изменится вывод, если сопротивление промытой зоны взять с глубокого зонда?",
+   "claim_ref": "C013",
+   "on_screen": "Rxo с глубокого зонда?"
+  },
+  {
+   "id": "S01",
+   "type": "scene_fact",
+   "node_id": "asquith.sxo_flushed_zone",
+   "video_id": "asqu_v1",
+   "text": "Ось глубины направлена вниз: 2000 м вверху кадра, 2060 м внизу, деления через 10 м.",
+   "spec_path": "params.depth_top, params.depth_bottom, params.depth_tick; invariants[0]"
+  },
+  {
+   "id": "S02",
+   "type": "scene_fact",
+   "node_id": "asquith.sxo_flushed_zone",
+   "video_id": "asqu_v1",
+   "text": "Слои сверху вниз: сланец 2000–2012 м, водяной пласт 2012–2027 м, сланец 2027–2033 м, нефтяной пласт 2033–2050 м, сланец 2050–2060 м. Глинистая корка и зона проникновения есть только у двух пластов-песчаников, у сланцев их нет.",
+   "spec_path": "params.layers; invariants[1], invariants[4]"
+  },
+  {
+   "id": "S03",
+   "type": "scene_fact",
+   "node_id": "asquith.sxo_flushed_zone",
+   "video_id": "asqu_v1",
+   "text": "Нефтяной пласт задан с Sw = 0,6 и Sxo = 0,25: у ствола воды меньше, чем в нетронутой зоне. Отсюда Rt = 20 Ом·м и Rxo = 34,7 Ом·м.",
+   "spec_path": "assumptions[3]; params.layers[3].props"
+  },
+  {
+   "id": "S04",
+   "type": "scene_fact",
+   "node_id": "asquith.sxo_flushed_zone",
+   "video_id": "asqu_v1",
+   "text": "Оба трека — глубокий и мелкий зонд — в одной линейной шкале 0–40 Ом·м; кривые вычислены из props слоёв с окном усреднения 1 м, конец кривой на глубине прибора.",
+   "spec_path": "params.curves; invariants[0], invariants[2]"
+  },
+  {
+   "id": "S05",
+   "type": "scene_fact",
+   "node_id": "asquith.sxo_flushed_zone",
+   "video_id": "asqu_v1",
+   "text": "Водяной пласт: Sw = Sxo = 1, но мелкий зонд показывает 12,5 Ом·м, а глубокий 1,25 Ом·м — в десять раз меньше. Разницу создаёт только отношение Rmf/Rw = 10 (0,5 и 0,05 Ом·м), углеводородов в пласте нет.",
+   "spec_path": "assumptions[2], assumptions[4]; params.layers[1].props"
+  },
+  {
+   "id": "S06",
+   "type": "scene_fact",
+   "node_id": "asquith.sxo_flushed_zone",
+   "video_id": "asqu_v1",
+   "text": "Преувеличены и названы: ширина ствола (условно, в десятки раз шире реальной), ширина зоны проникновения (условно) и толщина глинистой корки; на плашке: «не в масштабе: ствол и зона проникновения шире».",
+   "spec_path": "exaggerations; plaque"
+  }
+ ],
+ "scenes": [
+  {
+   "video_id": "asqu_v1",
+   "spec": {
+    "video_id": "asqu_v1",
+    "chapter": "asquith_ch7",
+    "node_id": "asquith.sxo_flushed_zone",
+    "template": "well_tool_curve",
+    "title": "Нефть есть. Но она подвижна?",
+    "plaque": [
+     "не в масштабе:",
+     "ствол и зона проникновения шире"
+    ],
+    "params": {
+     "depth_top": 2000,
+     "depth_bottom": 2060,
+     "depth_tick": 10,
+     "tool_start": 2000,
+     "tool_resolution_m": 1.0,
+     "bore_width": 0.5,
+     "layers": [
+      {
+       "top": 2000,
+       "bottom": 2012,
+       "lith": "shale",
+       "label": "Сланец",
+       "props": {
+        "RES": 2,
+        "RES_SHALLOW": 2
+       },
+       "mud_cake": false,
+       "invasion_width": 0
+      },
+      {
+       "top": 2012,
+       "bottom": 2027,
+       "lith": "sand",
+       "label": "Водяной пласт",
+       "props": {
+        "RES": 1.25,
+        "RES_SHALLOW": 12.5
+       },
+       "mud_cake": true,
+       "invasion_width": 0.9
+      },
+      {
+       "top": 2027,
+       "bottom": 2033,
+       "lith": "shale",
+       "label": "Сланец",
+       "props": {
+        "RES": 2,
+        "RES_SHALLOW": 2
+       },
+       "mud_cake": false,
+       "invasion_width": 0
+      },
+      {
+       "top": 2033,
+       "bottom": 2050,
+       "lith": "sand",
+       "label": "Нефтяной пласт",
+       "props": {
+        "RES": 20,
+        "RES_SHALLOW": 34.7
+       },
+       "mud_cake": true,
+       "invasion_width": 0.9
+      },
+      {
+       "top": 2050,
+       "bottom": 2060,
+       "lith": "shale",
+       "label": "Сланец",
+       "props": {
+        "RES": 2,
+        "RES_SHALLOW": 2
+       },
+       "mud_cake": false,
+       "invasion_width": 0
+      }
+     ],
+     "curves": [
+      {
+       "key": "RES",
+       "prop": "RES",
+       "label": "Глубокий зонд",
+       "unit": "Ом·м",
+       "min": 0,
+       "max": 40
+      },
+      {
+       "key": "RES_SHALLOW",
+       "prop": "RES_SHALLOW",
+       "label": "Мелкий зонд",
+       "unit": "Ом·м",
+       "min": 0,
+       "max": 40
+      }
+     ]
+    },
+    "beats": [
+     {
+      "say": "Нефть в пласте нашли. Но пойдёт ли она в скважину?",
+      "claim_id": "asquith.sxo_flushed_zone#c6",
+      "on_screen": "Нефть есть. Подвижна?",
+      "label": "симуляция",
+      "frame_class": "B",
+      "action": {},
+      "is_analogy": false
+     },
+     {
+      "say": "Буровой раствор проникает в пласт, и его жидкая часть, фильтрат, вытесняет флюид у ствола.",
+      "claim_id": "asquith.sxo_flushed_zone#c7",
+      "on_screen": "Фильтрат вытесняет флюид",
+      "label": "симуляция",
+      "frame_class": "B",
+      "action": {
+       "show_mud_cake": true,
+       "show_invasion": true
+      },
+      "is_analogy": false
+     },
+     {
+      "say": "Очень мелкий зонд, например микробоковой, измеряет сопротивление промытой зоны.",
+      "claim_id": "asquith.sxo_flushed_zone#c5",
+      "on_screen": "Мелкий зонд: промытая зона",
+      "label": "симуляция",
+      "frame_class": "B",
+      "action": {
+       "tool_to": 2027
+      },
+      "is_analogy": false
+     },
+     {
+      "say": "Глубокий зонд читает в основном нетронутую зону пласта.",
+      "claim_id": "asquith.archie_sw#c4",
+      "on_screen": "Глубокий зонд: в основном нетронутая зона",
+      "label": "симуляция",
+      "frame_class": "B",
+      "action": {},
+      "is_analogy": false
+     },
+     {
+      "say": "Насыщенность промытой зоны, эс-икс-о, считают по той же формуле Арчи.",
+      "claim_id": "asquith.sxo_flushed_zone#c3",
+      "on_screen": "Sxo — формула Арчи",
+      "label": "симуляция",
+      "frame_class": "B",
+      "action": {
+       "tool_to": 2033
+      },
+      "is_analogy": false
+     },
+     {
+      "say": "Только вместо сопротивления фильтрата берут сопротивление пластовой воды, а вместо мелкого сопротивления — глубокое.",
+      "claim_id": "asquith.sxo_flushed_zone#c1",
+      "on_screen": "Те же формулы — другие сопротивления",
+      "label": "симуляция",
+      "frame_class": "B",
+      "action": {},
+      "is_analogy": false
+     },
+     {
+      "say": "Теперь нефтяной пласт. Где воды больше: у ствола или вдали от него?",
+      "claim_id": "asquith.sxo_flushed_zone#c7",
+      "on_screen": "Где воды больше?",
+      "label": "симуляция",
+      "frame_class": "B",
+      "action": {
+       "mark": {
+        "top": 2033,
+        "bottom": 2050
+       }
+      },
+      "is_analogy": false
+     },
+     {
+      "say": "",
+      "pause": 1.3,
+      "on_screen": "У ствола или вдали?",
+      "label": "симуляция",
+      "frame_class": "B",
+      "action": {}
+     },
+     {
+      "say": "У ствола. Фильтрат вытеснил часть нефти, поэтому эс-икс-о выше водонасыщенности нетронутой зоны.",
+      "claim_id": "asquith.sxo_flushed_zone#c7",
+      "on_screen": "Sxo 0,6 против Sw 0,25: расчёт",
+      "label": "симуляция",
+      "frame_class": "B",
+      "action": {
+       "tool_to": 2050
+      },
+      "is_analogy": false
+     },
+     {
+      "say": "Если разница велика, нефть, вероятно, подвижна: так осторожно пишет автор.",
+      "claim_id": "asquith.sxo_flushed_zone#c7",
+      "on_screen": "«Вероятно» — не доказательство",
+      "label": "симуляция",
+      "frame_class": "B",
+      "action": {
+       "tool_to": 2060
+      },
+      "is_analogy": false
+     },
+     {
+      "say": "Сопротивления и насыщенности снимают зонды. Подвижность — вывод.",
+      "claim_id": "asquith.archie_sw#c1",
+      "on_screen": "Измерение → вывод",
+      "label": "симуляция",
+      "frame_class": "B",
+      "action": {
+       "clear_marks": true
+      },
+      "is_analogy": false
+     },
+     {
+      "say": "Водяной пласт тоже показал разницу кривых, поэтому по кривым одним судить нельзя.",
+      "claim_id": "asquith.sxo_flushed_zone#c1",
+      "on_screen": "Разница кривых ≠ подвижность",
+      "label": "симуляция",
+      "frame_class": "B",
+      "action": {
+       "mark": {
+        "top": 2012,
+        "bottom": 2027
+       }
+      },
+      "is_analogy": false
+     },
+     {
+      "say": "Как изменится вывод, если сопротивление промытой зоны взять с глубокого зонда?",
+      "claim_id": "asquith.sxo_flushed_zone#c5",
+      "on_screen": "Rxo с глубокого зонда?",
+      "label": "симуляция",
+      "frame_class": "B",
+      "action": {
+       "clear_marks": true
+      },
+      "is_analogy": false
+     }
+    ],
+    "objects": [
+     "вертикальный ствол скважины",
+     "каротажный прибор на кабеле",
+     "глинистая корка на проницаемых пластах",
+     "зона проникновения фильтрата",
+     "два трека: глубокий и мелкий зонд"
+    ],
+    "invariants": [
+     "глубина растёт вниз, шкалы подписаны (Ом·м, 0–40)",
+     "порядок слоёв и их границы не меняются между кадрами",
+     "обе кривые вычисляются из props слоёв с окном усреднения 1 м, конец кривой на глубине прибора",
+     "прибор и ствол не меняют конструкцию",
+     "глинистая корка и зона проникновения только у проницаемых пластов, у сланцев нет"
+    ],
+    "assumptions": [
+     "Глубины 2000–2060 м, границы слоёв и окно 1,0 м — условные, в главе их нет.",
+     "Параметры Арчи: пористость 0,20, a = 1, m = 2, n = 2 (фактор формации 25). Это допущение, не данные главы.",
+     "Rw = 0,05 Ом·м и Rmf = 0,5 Ом·м — условные числа. Из них заданы Rt и Rxo.",
+     "Нефтяной пласт: Sw = 0,6 и Sxo = 0,25 заданы для примера. Отсюда Rt = 20 и Rxo = 34,7 Ом·м.",
+     "Водяной пласт: Sw = Sxo = 1. Отсюда Rt = 1,25 и Rxo = 12,5 Ом·м; расхождение кривых там создаёт только разница Rmf и Rw.",
+     "Сланцы: 2 Ом·м на обеих кривых, условно, без проникновения.",
+     "Шаблон не моделирует вытеснение флюида. Показаны следствие в данных (две кривые сопротивления) и расчёт Sxo и Sw; сами Sxo и Sw кривыми не рисуются.",
+     "Подпись «Sxo 0,6 против Sw 0,25» — результат расчёта по формулам из заданных props, а не измерение.",
+     "Кривая мелкого зонда условно соответствует очень мелкому прибору (микробоковой каротаж); конкретный прибор шаблоном не задаётся.",
+     "Граница зоны проникновения показана резкой (ступенчатый профиль). В реальности она размыта, профили проникновения разбирает другой узел."
+    ],
+    "exaggerations": [
+     "Ствол показан шире реального в десятки раз; горизонтальный масштаб условный.",
+     "Зона проникновения показана шириной 0,9 кадра, условно; реальные радиусы зависят от пласта и времени.",
+     "Глинистая корка нарисована заметной толщины, в реальности миллиметры или сантиметры."
+    ],
+    "prediction_question": "Теперь нефтяной пласт. Где воды больше: у ствола или вдали от него?",
+    "transfer_question": "Как изменится вывод о подвижности, если сопротивление промытой зоны взять не с мелкого, а с глубокого зонда?",
+    "data_it_bridge": "В данных для Sxo нужны кривая мелкого зонда (Rxo), пористость и Rmf при температуре пласта. Нужно проверить, что кривая действительно с очень мелкого прибора. Высокое сопротивление само по себе не означает нефть (misc.high_res_oil): водяной пласт в кадре даёт мелкую кривую выше, чем глубокая. Признак «Sxo минус Sw» — гипотеза для ML: он наследует ошибки Rw, Rmf, a, m и n, и подвижность остаётся вероятностным выводом.",
+    "terms_to_check": [
+     "фильтрат",
+     "промытая зона",
+     "Sxo",
+     "Rxo",
+     "Rmf",
+     "уравнение Арчи",
+     "микробоковой каротаж",
+     "водонасыщенность",
+     "нетронутая зона"
+    ],
+    "listen_check": [
+     "фильтрáт",
+     "каротáж",
+     "микробокóвой",
+     "вытесняет",
+     "нетрóнутый",
+     "сланéц",
+     "Арчи",
+     "эс-икс-о"
+    ],
+    "physics_checklist": {},
+    "spec_check": []
+   }
+  }
+ ],
+ "frames": [
+  {
+   "id": "F01",
+   "video_id": "asqu_v1",
+   "file": "frames/F01.png",
+   "t": 2.5,
+   "frame_class": "B",
+   "label": "симуляция",
+   "shows": "Начальное состояние: разрез 2000–2060 м (сланец, водяной пласт, сланец, нефтяной пласт, сланец), ствол скважины, прибор у кровли на 2000 м. Треки глубокого и мелкого зонда пустые, зоны проникновения ещё нет.",
+   "plaque": "не в масштабе: ствол и зона проникновения шире"
+  },
+  {
+   "id": "F02",
+   "video_id": "asqu_v1",
+   "file": "frames/F02.png",
+   "t": 7.7,
+   "frame_class": "B",
+   "label": "симуляция",
+   "shows": "У водяного и нефтяного пластов появились глинистая корка на стенке ствола и светлая зона проникновения фильтрата; у сланцев их нет. Прибор на 2000 м, кривые ещё не записаны.",
+   "plaque": null
+  },
+  {
+   "id": "F03",
+   "video_id": "asqu_v1",
+   "file": "frames/F03.png",
+   "t": 13.1,
+   "frame_class": "B",
+   "label": "симуляция",
+   "shows": "Прибор спустился примерно до 2013 м, в кровлю водяного пласта. Кривая мелкого зонда скачком растёт, кривая глубокого зонда почти не меняется.",
+   "plaque": "не в масштабе: ствол и зона проникновения шире"
+  },
+  {
+   "id": "F04",
+   "video_id": "asqu_v1",
+   "file": "frames/F04.png",
+   "t": 17.3,
+   "frame_class": "A",
+   "label": "реальные данные",
+   "shows": "Прибор у подошвы водяного пласта (около 2027 м). В водяном пласте мелкий зонд показывает около 12,5 Ом·м, глубокий — около 1,25 Ом·м.",
+   "plaque": "не в масштабе: ствол и зона проникновения шире"
+  },
+  {
+   "id": "F05",
+   "video_id": "asqu_v1",
+   "file": "frames/F05.png",
+   "t": 21.2,
+   "frame_class": "B",
+   "label": "симуляция",
+   "shows": "Прибор в сланце между пластами (около 2030 м): обе кривые вернулись к значению сланца, около 2 Ом·м.",
+   "plaque": "не в масштабе: ствол и зона проникновения шире"
+  },
+  {
+   "id": "F06",
+   "video_id": "asqu_v1",
+   "file": "frames/F06.png",
+   "t": 27.0,
+   "frame_class": "B",
+   "label": "симуляция",
+   "shows": "Прибор у кровли нефтяного пласта (2033 м): обе кривые начинают расти; подпись «Rmf вместо Rw, Rxo вместо Rt».",
+   "plaque": "не в масштабе: ствол и зона проникновения шире"
+  },
+  {
+   "id": "F07",
+   "video_id": "asqu_v1",
+   "file": "frames/F07.png",
+   "t": 33.1,
+   "frame_class": "B",
+   "label": "симуляция",
+   "shows": "Нефтяной пласт 2033–2050 м выделен скобкой; вопрос-предсказание «Где воды больше?». Прибор остаётся на 2033 м.",
+   "plaque": "не в масштабе: ствол и зона проникновения шире"
+  },
+  {
+   "id": "F08",
+   "video_id": "asqu_v1",
+   "file": "frames/F08.png",
+   "t": 36.4,
+   "frame_class": "B",
+   "label": "симуляция",
+   "shows": "Пауза на вопросе: нефтяной пласт выделен рамкой через все треки, подпись «У ствола или вдали?».",
+   "plaque": "не в масштабе: ствол и зона проникновения шире"
+  },
+  {
+   "id": "F09",
+   "video_id": "asqu_v1",
+   "file": "frames/F09.png",
+   "t": 66.8,
+   "frame_class": "B",
+   "label": "симуляция",
+   "shows": "Финал: прибор у забоя (2060 м), обе кривые записаны целиком. В нефтяном пласте кривая глубокого зонда (около 35 Ом·м) правее кривой мелкого (около 20 Ом·м); в водяном пласте мелкий зонд около 12,5 Ом·м при глубоком около 1,25 Ом·м.",
+   "plaque": "не в масштабе: ствол и зона проникновения шире"
+  }
+ ]
+}

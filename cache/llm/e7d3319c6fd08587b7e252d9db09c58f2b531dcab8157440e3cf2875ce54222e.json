@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Пористость и объём глинистого сланца (глинистость) можно вычислить из сырых данных несколькими способами.\",\"author\":\"The chart shows that there are several ways to calculate porosity (\\\\phi) and shale volume (V_{shale}) from the raw data.\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 4003,
+ "tokens_out": 112,
+ "money_usd": 0.0014809,
+ "attempts": 1
+}

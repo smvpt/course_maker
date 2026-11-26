@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Rt — истинное сопротивление пласта\",\"author\":\"true formation resistivity\",\"match\":true},{\"part\":\"глубокое измерение (индукционное или боковое), исправленное за проникновение\",\"author\":\"deep induction or deep laterolog corrected for invasion\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 4789,
+ "tokens_out": 109,
+ "money_usd": 0.0017092,
+ "attempts": 1
+}

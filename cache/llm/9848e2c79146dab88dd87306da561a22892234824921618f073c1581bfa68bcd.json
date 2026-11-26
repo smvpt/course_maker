@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Водонасыщенность неизменённой зоны пласта вычисляется по формуле Арчи (1942)\",\"author\":\"Water saturation (Sw) of a reservoir's uninvaded zone is calculated by the Archie (1942) formula\",\"match\":true},{\"part\":\"то есть это расчётная, а не измеренная величина\",\"author\":\"determining the porosity and true resistivity of a zone is the first step in converting the raw log data into estimated quantities of oil, gas, and water in a formation... calculated by the Archie (1942) formula\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 4789,
+ "tokens_out": 178,
+ "money_usd": 0.0018817,
+ "attempts": 1
+}

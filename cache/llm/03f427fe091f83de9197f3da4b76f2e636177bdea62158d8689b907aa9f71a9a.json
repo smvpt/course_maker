@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Сетка с a = 1,0 и m = 2,0 обычно используется для песчаников\",\"author\":\"The grid constructed using a = 1.0 and m = 2.0 is usually used for sandstones\",\"match\":true},{\"part\":\"а с a = 0,62 и m = 2,15 — для карбонатов\",\"author\":\"and the grid constructed using a = 0.62 and m = 2.15 is used for carbonates\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6312,
+ "tokens_out": 161,
+ "money_usd": 0.0022960999999999997,
+ "attempts": 1
+}

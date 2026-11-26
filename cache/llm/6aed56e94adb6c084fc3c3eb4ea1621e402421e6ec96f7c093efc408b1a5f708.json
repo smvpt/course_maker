@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Насыщенность промытой зоны, эс-икс-о\",\"author\":\"Water saturation of a formation's flushed zone (S_xo)\",\"match\":true},{\"part\":\"считают по той же формуле Арчи\",\"author\":\"Water saturation of a formation's flushed zone (S_xo) is also based on the Archie equation\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6164,
+ "tokens_out": 129,
+ "money_usd": 0.0021717,
+ "attempts": 1
+}

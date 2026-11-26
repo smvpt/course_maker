@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Точки с углеводородами смещены по горизонтали вправо от водоносной линии\",\"author\":\"Hydrocarbon-bearing points lie away from the line, moved horizontally to the right from the water-bearing line\",\"match\":true},{\"part\":\"из-за более высокого сопротивления\",\"author\":\"by their increased resistivity\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6409,
+ "tokens_out": 123,
+ "money_usd": 0.0022302,
+ "attempts": 1
+}

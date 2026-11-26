@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Преувеличены и названы: ширина ствола (условно, в десятки раз шире реальной), ширина зоны проникновения (условно) и толщина глинистой корки\",\"author\":\"В спецификации сцены и экспликации указаны те же условные преувеличения геометрии скважины и зоны проникновения\",\"match\":true},{\"part\":\"на плашке: «не в масштабе: ствол и зона проникновения шире»\",\"author\":\"Текст плашки в спеке сцены совпадает с описанием\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 9220,
+ "tokens_out": 174,
+ "money_usd": 0.003201,
+ "attempts": 1
+}

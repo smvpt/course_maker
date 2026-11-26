@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Rwa = Rt·φ^m/a (ф. 7.16)\",\"author\":\"Rwa = (Rt * φ^m) / a (Equation 7.16)\",\"match\":true},{\"part\":\"Если пласт водоносный, Rt превращается в Ro и Rwa равно Rw\",\"author\":\"When a given zone is water bearing, Rt reverts to the water-bearing resistivity (Ro) and Rwa equals Rw.\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6049,
+ "tokens_out": 148,
+ "money_usd": 0.0021847,
+ "attempts": 1
+}

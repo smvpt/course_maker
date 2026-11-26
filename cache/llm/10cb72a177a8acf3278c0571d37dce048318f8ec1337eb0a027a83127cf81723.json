@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Sxo считают по уравнению Арчи\",\"author\":\"Water saturation of a formation's flushed zone (Sxo) is also based on the Archie equation\",\"match\":true},{\"part\":\"заменяя Rw на Rmf (сопротивление фильтрата)\",\"author\":\"mud filtrate resistivity (Rmf) in place of formation water resistivity (Rw)\",\"match\":true},{\"part\":\"и Rt на Rxo\",\"author\":\"flushed zone resistivity (Rxo) in place of uninvaded zone resistivity (Rt)\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6019,
+ "tokens_out": 165,
+ "money_usd": 0.0022182,
+ "attempts": 1
+}

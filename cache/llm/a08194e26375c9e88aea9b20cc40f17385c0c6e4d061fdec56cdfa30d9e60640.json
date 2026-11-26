@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Сила метода в том, что Rw и m оценивают по самим данным\",\"author\":\"The power in the Pickett plot is that water resistivity (Rw) and cementation exponent (m) can be estimated from the data\",\"match\":true},{\"part\":\"а не берут из местных знаний или дорогих измерений на керне\",\"author\":\"rather than having to be derived from local knowledge or from expensive core measurements.\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6409,
+ "tokens_out": 140,
+ "money_usd": 0.00117245,
+ "attempts": 1
+}

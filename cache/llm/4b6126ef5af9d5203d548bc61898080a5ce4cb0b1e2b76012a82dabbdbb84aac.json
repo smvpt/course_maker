@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Любая формула для глинистых песчаников уменьшает Sw\",\"author\":\"Remember that all shaly sandstone formulas reduce the water saturation value from the value that would be calculated if shale effect were ignored.\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 4999,
+ "tokens_out": 92,
+ "money_usd": 0.0017296999999999998,
+ "attempts": 1
+}

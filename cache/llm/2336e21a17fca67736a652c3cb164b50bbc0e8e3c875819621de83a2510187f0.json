@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"В зонах с углеводородами Rt больше Ro\",\"author\":\"When the formation contains hydrocarbons, Rt is greater than Ro\",\"match\":true},{\"part\":\"поэтому рассчитанная пористость меньше фактической\",\"author\":\"and the calculated porosity is less than the actual formation porosity\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6000,
+ "tokens_out": 114,
+ "money_usd": 0.002085,
+ "attempts": 1
+}

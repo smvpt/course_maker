@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Глубокий зонд читает в основном нетронутую зону пласта.\",\"author\":\"Rt — истинное сопротивление пласта: глубокое измерение (индукционное или боковое), исправленное за проникновение.\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 4937,
+ "tokens_out": 98,
+ "money_usd": 0.0017261,
+ "attempts": 1
+}

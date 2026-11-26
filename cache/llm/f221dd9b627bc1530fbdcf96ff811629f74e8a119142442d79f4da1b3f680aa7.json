@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Разрез 2000–2060 м: сланец, водяной пласт, сланец, нефтяной пласт, сланец\",\"author\":\"Введение в анализ каротажа и уравнение Арчи для промытой зоны\",\"match\":true},{\"part\":\"Ствол скважины и каротажный прибор у кровли на 2000 м\",\"author\":\"Начальное состояние симуляции\",\"match\":true},{\"part\":\"Треки глубокого и мелкого зонда пустые, зоны проникновения ещё нет\",\"author\":\"Начальное состояние перед записью кривых\",\"match\":true},{\"part\":\"Плашка о несоответствии масштаба ствола\",\"author\":\"Условность визуализации\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic_frame",
+ "tokens_in": 10709,
+ "tokens_out": 222,
+ "money_usd": 0.0037676999999999997,
+ "attempts": 1
+}

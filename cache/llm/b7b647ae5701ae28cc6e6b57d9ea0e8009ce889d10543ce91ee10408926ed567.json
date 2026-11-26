@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Знания одной Sw недостаточно, чтобы полностью оценить продуктивность зоны.\",\"author\":\"But merely knowing a zone's water saturation (Sw) does not provide enough information to completely evaluate a zone's potential productivity.\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 5893,
+ "tokens_out": 94,
+ "money_usd": 0.0020029,
+ "attempts": 1
+}

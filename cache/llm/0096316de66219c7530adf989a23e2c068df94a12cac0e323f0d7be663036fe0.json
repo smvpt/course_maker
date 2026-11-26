@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Буровой раствор проникает в пласт\",\"author\":\"invading drilling fluids\",\"match\":true},{\"part\":\"его жидкая часть, фильтрат, вытесняет флюид у ствола\",\"author\":\"hydrocarbons in the flushed zone have probably been moved or flushed out of the zone nearest the borehole by the invading drilling fluids\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6172,
+ "tokens_out": 126,
+ "money_usd": 0.0021666,
+ "attempts": 1
+}

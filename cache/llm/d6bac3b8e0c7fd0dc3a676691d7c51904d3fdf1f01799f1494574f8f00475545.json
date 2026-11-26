@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Сопротивления и насыщенности снимают зонды\",\"author\":\"Водонасыщенность зоны вычисляется по формуле Арчи, а не измеряется напрямую зондами\",\"match\":false},{\"part\":\"Подвижность — вывод\",\"author\":\"Подвижные углеводороды оцениваются по соотношению насыщения или индексу\",\"match\":true}],\"verdict\":\"contradicted\",\"category\":\"measured_vs_inferred\",\"severity\":\"critical\",\"problem\":\"Водонасыщенность и сопротивления пласта не «снимают зонды» как готовую величину насыщенности: зонды измеряют сопротивления ($R_t$, $R_{xo}$), а водонасыщенность ($S_w$, $S_{xo}$) вычисляется по формуле Арчи (расчётная, а не измеренная величина).\",\"fix\":\"Сопротивления измеряют зонды, а насыщенность вычисляют. Подвижность — вывод.\",\"page_pdf\":126,\"quote\":\"Water saturation ($S_w$) of a reservoir's uninvaded zone is calculated by the Archie (1942) formula, to is a calculated, not measured, quantity.\"}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 4927,
+ "tokens_out": 281,
+ "money_usd": 0.0021806,
+ "attempts": 1
+}

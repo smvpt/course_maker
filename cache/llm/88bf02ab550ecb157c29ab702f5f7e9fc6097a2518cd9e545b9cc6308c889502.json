@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"В зоне с углеводородами отношение уходит от ПС\",\"author\":\"In a hydrocarbon-bearing zone, the $R_{xo}/R_t$ ratio moves away from the SP\",\"match\":true},{\"part\":\"вправо при нормальной, отрицательной ПС\",\"author\":\"a deflection to the right for the case of a normal (negative) SP\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6123,
+ "tokens_out": 132,
+ "money_usd": 0.0021669,
+ "attempts": 1
+}

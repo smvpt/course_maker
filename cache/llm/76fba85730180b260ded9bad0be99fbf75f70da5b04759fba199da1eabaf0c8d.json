@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"На Пикетте при φ = 0,10 на водоносной линии Ro = 4,6 Ом·м\",\"author\":\"For some porosity value, read the value of Ra from the water-bearing line on the crossplot. In this case, for a porosity of 10% (DPHI = 0.10), Ra = 4.6 ohm-m.\",\"match\":true},{\"part\":\"при a = 1 и m = 2 получают Rw = 0,046 Ом·м\",\"author\":\"Assume a value of tortuosity factor (a). In this case, a = 1.0. ... Rw = 0.046 ohm-m at formation temperature\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 5377,
+ "tokens_out": 207,
+ "money_usd": 0.0021306,
+ "attempts": 1
+}

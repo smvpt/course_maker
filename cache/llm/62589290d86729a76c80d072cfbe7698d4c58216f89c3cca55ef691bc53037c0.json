@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Итоговая формула: Swr равна отношению (Rxo/Rt)/(Rmf/Rw) в степени 0,625.\",\"author\":\"В тексте на странице 128 приведена формула 7.7: S_wr = ((R_xo / R_t) / (R_mf / R_w))^0.625\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6077,
+ "tokens_out": 128,
+ "money_usd": 0.0021431,
+ "attempts": 1
+}

@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"BVW есть произведение водонасыщенности на пористость\",\"author\":\"The product of a formation's water saturation (Sw) and its porosity (phi) is the bulk volume of water (BVW)\",\"match\":true},{\"part\":\"согласно формуле 7.22\",\"author\":\"BVW = Sw * phi (7.22)\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6302,
+ "tokens_out": 130,
+ "money_usd": 0.0022156,
+ "attempts": 1
+}

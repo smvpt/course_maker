@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Формулы проницаемости по каротажу дают оценку проницаемости в любом пласте-коллекторе\",\"author\":\"Log-derived permeability formulas are only valid for estimating permeability in formations at irreducible water saturation\",\"match\":false},{\"part\":\"независимо от его водонасыщенности\",\"author\":\"formulas are only valid for estimating permeability in formations at irreducible water saturation\",\"match\":false}],\"verdict\":\"contradicted\",\"category\":\"lost_condition\",\"severity\":\"critical\",\"problem\":\"Утверждается, что формулы работают в любом коллекторе независимо от водонасыщенности, тогда как автор прямо указывает, что они применимы только для пластов при остаточной водонасыщенности.\",\"fix\":\"Формулы проницаемости по каротажу дают оценку проницаемости только в пластах-коллекторах с остаточной водонасыщенностью.\",\"page_pdf\":134,\"quote\":\"Log-derived permeability formulas are only valid for estimating permeability in formations at irreducible water saturation (Schlumberger, 1977).\"}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6117,
+ "tokens_out": 253,
+ "money_usd": 0.0024676,
+ "attempts": 1
+}

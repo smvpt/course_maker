@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Определение пористости и истинного сопротивления зоны — первый шаг перевода сырых каротажных данных в оценки нефти, газа и воды\",\"author\":\"determining the porosity and true resistivity of a zone is the first step in converting the raw log data into estimated quantities of oil, gas, and water in a formation\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 4561,
+ "tokens_out": 118,
+ "money_usd": 0.0016633,
+ "attempts": 1
+}

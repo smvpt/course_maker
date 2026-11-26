@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Водяной пласт: Sw = Sxo = 1\",\"author\":\"В спецификации сцены (assumptions[4]) для водяного пласта задано Sw = Sxo = 1\",\"match\":true},{\"part\":\"мелкий зонд показывает 12,5 Ом·м, а глубокий 1,25 Ом·м — в десять раз меньше\",\"author\":\"В спецификации сцены для водяного пласта заданы параметры RES = 1.25 и RES_SHALLOW = 12.5 (отношение 10)\",\"match\":true},{\"part\":\"разницу создаёт только отношение Rmf/Rw = 10 (0,5 и 0,05 Ом·м)\",\"author\":\"В спецификации (assumptions[4], assumptions[2]) для водяного пласта указано, что расхождение кривых создаёт только разница Rmf и Rw (0,5 и 0,05)\",\"match\":true},{\"part\":\"углеводородов в пласте нет\",\"author\":\"Для водяного пласта (Sw = 1) углеводороды отсутствуют\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 9190,
+ "tokens_out": 308,
+ "money_usd": 0.0035269999999999998,
+ "attempts": 1
+}

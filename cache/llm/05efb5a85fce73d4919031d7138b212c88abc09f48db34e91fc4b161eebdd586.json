@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Прибор в сланце между пластами (около 2030 м)\",\"author\":\"положение прибора на глубине 2030 м в прослое сланца между водяным и нефтяным пластами\",\"match\":true},{\"part\":\"Обе кривые вернулись к значению сланца, около 2 Ом·м\",\"author\":\"сопротивление сланцев на обеих кривых составляет около 2 Ом·м\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic_frame",
+ "tokens_in": 10670,
+ "tokens_out": 155,
+ "money_usd": 0.0035884999999999997,
+ "attempts": 1
+}

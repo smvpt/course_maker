@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Регрессия степенного закона: после логарифмирования обеих осей зависимость становится линейная, а параметры модели читаются из наклона и отсечки\",\"author\":\"Taking the logarithm of the equation produces... This form of the equation (y = b + mx) indicates that by plotting... one can determine the product from intercept of the line (b), and the cementation exponent (m) from the slope of the line\",\"match\":true},{\"part\":\"Точки, ушедшие от прямой, — это не шум, а целевой сигнал\",\"author\":\"Hydrocarbon-bearing points lie away from the line, moved horizontally to the right... The horizontal distance of a point from the water-bearing line depends on the water saturation\",\"match\":true},{\"part\":\"Прямую проводят вручную по отобранным водоносным точкам, то есть по размеченному подмножеству, а не по всем данным. Параметры a и n регрессия не оценивает, их задают допущением.\",\"author\":\"The power in the Pickett plot is that water resistivity (Rw) and cementation exponent (m) can be estimated from the data, rather than having to be derived from local knowledge\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 4233,
+ "tokens_out": 312,
+ "money_usd": 0.0020499000000000003,
+ "attempts": 1
+}

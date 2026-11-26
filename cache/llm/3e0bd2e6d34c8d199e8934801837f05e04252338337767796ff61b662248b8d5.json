@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"У ствола. Фильтрат вытеснил часть нефти\",\"author\":\"hydrocarbons in the flushed zone have probably been moved or flushed out of the zone nearest the borehole by the invading drilling fluids\",\"match\":true},{\"part\":\"поэтому эс-икс-о выше водонасыщенности нетронутой зоны\",\"author\":\"For example, if the value of Sxo is much larger than Sw, then hydrocarbons in the flushed zone have probably been moved...\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6184,
+ "tokens_out": 153,
+ "money_usd": 0.0022377,
+ "attempts": 1
+}

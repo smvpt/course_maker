@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Прибор у забоя (2060 м), обе кривые записаны целиком\",\"author\":\"нет в главе\",\"match\":true},{\"part\":\"В нефтяном пласте кривая глубокого зонда правее кривой мелкого\",\"author\":\"нет в главе\",\"match\":true},{\"part\":\"В водяном пласте мелкий зонд выше глубокого\",\"author\":\"нет в главе\",\"match\":true},{\"part\":\"Плашка «не в масштабе: ствол и зона проникновения шире»\",\"author\":\"нет в главе\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic_frame",
+ "tokens_in": 10726,
+ "tokens_out": 180,
+ "money_usd": 0.0036677999999999997,
+ "attempts": 1
+}

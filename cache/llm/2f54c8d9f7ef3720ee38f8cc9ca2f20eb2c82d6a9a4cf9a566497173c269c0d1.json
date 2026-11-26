@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Sxo можно использовать как индикатор подвижности углеводородов\",\"author\":\"Water saturation of the flushed zone (Sxo) can be used as an indicator of hydrocarbon moveability.\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6019,
+ "tokens_out": 88,
+ "money_usd": 0.0020257,
+ "attempts": 1
+}

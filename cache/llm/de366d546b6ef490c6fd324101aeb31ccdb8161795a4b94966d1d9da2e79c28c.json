@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Если разница велика, нефть, вероятно, подвижна\",\"author\":\"if the value of Sxo is much larger than Sw, then hydrocarbons in the flushed zone have probably been moved or flushed out\",\"match\":true},{\"part\":\"так осторожно пишет автор\",\"author\":\"автор использует слово probably (вероятно)\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6161,
+ "tokens_out": 121,
+ "money_usd": 0.0021508,
+ "attempts": 1
+}

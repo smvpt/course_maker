@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Водоносную линию провели через кластер точек с наклоном −1/2, то есть m = 2\",\"author\":\"The water-bearing line (Sw = 100%) was drawn through the cluster of points with a slope of −1/2 (m = 2).\",\"match\":true},{\"part\":\"по автору, можно обосновать и другие m — от 1,8 до 2,15\",\"author\":\"Because of the limited porosity range of the points and their scatter, other values of m from 1.8 to 2.15 could be justified.\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 5377,
+ "tokens_out": 181,
+ "money_usd": 0.0020656,
+ "attempts": 1
+}

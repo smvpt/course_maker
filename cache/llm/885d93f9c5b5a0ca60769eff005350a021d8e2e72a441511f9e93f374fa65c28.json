@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Каротажная проницаемость — не абсолютная величина\",\"author\":\"By using comparisons of log-derived permeabilities from several wells, a geologist is not using an absolute value for log-derived permeability\",\"match\":true},{\"part\":\"геолог опирается на сопоставление скважин\",\"author\":\"By using comparisons of log-derived permeabilities from several wells\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6117,
+ "tokens_out": 134,
+ "money_usd": 0.0021701,
+ "attempts": 1
+}

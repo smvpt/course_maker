@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Нефть в пласте нашли.\",\"author\":\"Asquith discusses finding oil and evaluating reservoirs using porosity and true resistivity.\",\"match\":true},{\"part\":\"Но пойдёт ли она в скважину?\",\"author\":\"Water saturation of the flushed zone (Sxo) can be used as an indicator of hydrocarbon moveability.\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 6157,
+ "tokens_out": 121,
+ "money_usd": 0.0021495999999999998,
+ "attempts": 1
+}

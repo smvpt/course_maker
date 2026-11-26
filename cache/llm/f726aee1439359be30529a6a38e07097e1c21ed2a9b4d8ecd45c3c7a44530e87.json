@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Для индекса принято n = 2,0\",\"author\":\"The cementation exponent (n) is assumed to be 2.0\",\"match\":true},{\"part\":\"в тексте этот показатель ошибочно назван показателем цементации, хотя n обозначает показатель насыщенности\",\"author\":\"Автор называет n saturation exponent (показатель насыщенности), а показатель цементации у него обозначен как m. В тексте элемента утверждается, что n ошибочно назван показателем цементации, хотя в книге n везде правильно называется saturation exponent\",\"match\":false}],\"verdict\":\"contradicted\",\"category\":\"other\",\"severity\":\"significant\",\"problem\":\"В элементе утверждается, что показатель n в тексте ошибочно назван показателем цементации, хотя n — это показатель насыщенности (saturation exponent), а показатель цементации — это m. В книге n везде корректно назван saturation exponent, а m — cementation exponent.\",\"fix\":\"Для индекса принято n = 2,0, где n обозначает показатель насыщенности (saturation exponent).\",\"page_pdf\":127,\"quote\":\"The cementation exponent ($n$) is assumed to be 2.0\"}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 5934,
+ "tokens_out": 278,
+ "money_usd": 0.0024752000000000003,
+ "attempts": 1
+}

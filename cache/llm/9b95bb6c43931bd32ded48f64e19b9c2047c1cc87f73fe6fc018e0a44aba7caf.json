@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"В формуле Coates-Dumanoir плотность углеводорода входит явно\",\"author\":\"Unlike the Wyllie and Rose (1950) formulas, hydrocarbon density is explicitly part of the equation\",\"match\":true},{\"part\":\"а не через смену константы, как у Wyllie-Rose\",\"author\":\"instead of being indirectly accounted for by changing a constant\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic",
+ "tokens_in": 5930,
+ "tokens_out": 135,
+ "money_usd": 0.0021165,
+ "attempts": 1
+}

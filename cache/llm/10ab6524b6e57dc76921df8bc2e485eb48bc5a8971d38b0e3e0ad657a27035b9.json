@@ -1,0 +1,10 @@
+{
+ "text": "{\"checks\":[{\"part\":\"Нефтяной пласт выделен рамкой через все треки\",\"author\":\"нет в главе\",\"match\":true},{\"part\":\"Подпись «У ствола или вдали?»\",\"author\":\"Water saturation of the flushed zone (Sxo) can be used as an indicator of hydrocarbon moveability.\",\"match\":true},{\"part\":\"Глубина растёт вниз, шкалы подписаны (0–40 Ом·м)\",\"author\":\"нет в главе\",\"match\":true}],\"verdict\":\"supported\",\"category\":null,\"severity\":null,\"problem\":\"\",\"fix\":\"\",\"page_pdf\":null,\"quote\":null}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "verify/critic_frame",
+ "tokens_in": 10665,
+ "tokens_out": 154,
+ "money_usd": 0.0035844999999999996,
+ "attempts": 1
+}
