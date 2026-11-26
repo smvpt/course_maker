@@ -104,6 +104,8 @@ def run_all(spec: config.ChapterSpec, video: bool = False) -> int:
           and core_stage(rep, "route", route.run, spec))
     if ok:
         downstream(rep, spec.id, video)
+    from pipeline.common import metrics
+    print(f"[run] метрики: {metrics.write(spec.id)}")
     return rep.done(f"глава {spec.id}")
 
 
