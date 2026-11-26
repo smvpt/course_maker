@@ -1,3 +1,4 @@
 time,chapter,file,what_changed,person_minutes,people,run_no,reason,commit
 2026-11-26T12:59,test_slatt,out/test_slatt/layer.json,название главы на русском,2,1,1,заголовок курса был английским капсом,e0adc0e94d1d1663cfde1f0376663c94dfd9f5f9
 2026-11-26T13:18,test_basarygin,out/test_basarygin/layer.json,цитата c3: стр. 232 без переноса; название на русском,4,1,1,verify: цитата не найдена (склейка через разрыв страницы),d2548ee6f2821799ff4d59493e0fb7bdf74fc4c4
+2026-11-26T13:18,test_dake,out/test_dake/layer.json,цитата c8: текст вместо формулы LaTeX; название на русском,4,1,1,verify: цитата не найдена (взята из формулы),42774ca0e52b32c16638a18d60d34f986bd3dbf7
