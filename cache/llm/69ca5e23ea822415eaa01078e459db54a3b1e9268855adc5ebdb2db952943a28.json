@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"order\",\"kind\":\"transfer\",\"claim_ids\":[\"kuznetsov_gl10.reef_traps_and_exploration#c29\",\"kuznetsov_gl10.reef_traps_and_exploration#c30\"],\"prompt\":\"Расположите этапы и зоны разведочного бурения столовых рифов и атоллов в правильной последовательности от начала работ до детальной оценки.\",\"options\":[{\"text\":\"Бурение центральных частей рифа для первичного вскрытия массива\",\"correct\":false,\"misconception\":null},{\"text\":\"Бурение дополнительных оценочных скважин по периферии ловушки\",\"correct\":false,\"misconception\":null},{\"text\":\"Анализ краевых зон с лучшими коллекторскими свойствами для оценки атоллов\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Разведка столовых рифов начинается с центра, после чего бурят периферийные скважины для оценки краевых зон с лучшими свойствами.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 10966,
+ "tokens_out": 260,
+ "money_usd": 0.0039398,
+ "attempts": 1
+}

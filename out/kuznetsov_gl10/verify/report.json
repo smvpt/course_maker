@@ -1,0 +1,53 @@
+{
+  "ext": {
+    "verify": {
+      "claims": 81,
+      "tasks_checked": true,
+      "scripts_checked": []
+    }
+  },
+  "package_id": "kuznetsov_gl10",
+  "team": "",
+  "remarks": [
+    {
+      "ext": {},
+      "target": "kuznetsov_gl10.reef_basics_and_types#c6",
+      "category": "other",
+      "severity": "critical",
+      "problem": "цитата не найдена в главе (лучшее сходство 68): «Биогерм – холмовидное геологическое тело, образованное остатками колониальных и прикрепляющихся друг к другу организмов,»",
+      "fix": "заменить цитату дословным фрагментом md со стр. 201 или убрать утверждение",
+      "page_pdf": 201,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "kuznetsov_gl10.reef_traps_and_exploration#c30",
+      "category": "other",
+      "severity": "critical",
+      "problem": "цитата не найдена в главе (лучшее сходство 75): «Разведка рифов этой группы, как правило, начинается также с разбирания их центральных частей... Для проведения предварит»",
+      "fix": "заменить цитату дословным фрагментом md со стр. 220 или убрать утверждение",
+      "page_pdf": 220,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "kuznetsov_gl10.reef_basics_and_types.t1",
+      "category": "other",
+      "severity": "significant",
+      "problem": "задание: чисел 50, 55, 25, 30 нет в исходных единицах узла",
+      "fix": "заменить числами из исходных единиц главы или убрать",
+      "page_pdf": 200,
+      "quote": null
+    },
+    {
+      "ext": {},
+      "target": "kuznetsov_gl10.reef_lithology_and_porosity.t3",
+      "category": "other",
+      "severity": "significant",
+      "problem": "задание: чисел 1 нет в исходных единицах узла",
+      "fix": "заменить числами из исходных единиц главы или убрать",
+      "page_pdf": 201,
+      "quote": null
+    }
+  ]
+}

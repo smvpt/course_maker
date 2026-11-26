@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Группы рифовых ловушек и залежей\",\"note\":\"Нажми на группу ловушек, чтобы узнать её особенности.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"собственно палеогеоморфологические\",\"description\":\"Чаще всего образуются в одиночных изолированных рифах или в одиночных куполовидных рифах на асимметричной системе.\",\"claim_id\":\"kuznetsov_gl10.reef_traps_and_exploration#c9\",\"rock\":null},{\"label\":\"литолого-палеогеоморфологические\",\"description\":\"Высота увеличивается на величину мощности экранирующих отложений при плотных внерифовых породах.\",\"claim_id\":\"kuznetsov_gl10.reef_traps_and_exploration#c11\",\"rock\":null},{\"label\":\"структурно-палеогеоморфологические\",\"description\":\"Возникают при наложении структурообразующих движений на сформировавшийся риф, увеличивая объем и смещая свод.\",\"claim_id\":\"kuznetsov_gl10.reef_traps_and_exploration#c17\",\"rock\":null},{\"label\":\"структурно-палеогеографические с литологическим экранированием\",\"description\":\"Выделяются в составе четырех генетических групп рифовых ловушек.\",\"claim_id\":\"kuznetsov_gl10.reef_traps_and_exploration#c8\",\"rock\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 9051,
+ "tokens_out": 372,
+ "money_usd": 0.0036452999999999998,
+ "attempts": 1
+}

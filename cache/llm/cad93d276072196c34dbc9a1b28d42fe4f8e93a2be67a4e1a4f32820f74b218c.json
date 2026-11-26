@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Распределение коллекторских свойств в рифах разного типа\",\"note\":\"Нажми на зону рифа, чтобы узнать особенности ее коллекторских свойств.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"Одиночные куполовидные рифы\",\"description\":\"Наилучшими свойствами обладают центральные части массивов.\",\"claim_id\":\"kuznetsov_gl10.reef_reservoirs_structure#c2\",\"rock\":\"reef\"},{\"label\":\"Плосковершинные и атолловидные рифы\",\"description\":\"Зона улучшенных свойств смещается к периферии комплекса в область биогермного гребня и предрифового обломочного шлейфа.\",\"claim_id\":\"kuznetsov_gl10.reef_reservoirs_structure#c3\",\"rock\":\"reef\"},{\"label\":\"Крупные рифовые массивы\",\"description\":\"Характерно слоистое и линзовидно-слоистое расположение наиболее пористых и проницаемых пачек.\",\"claim_id\":\"kuznetsov_gl10.reef_reservoirs_structure#c4\",\"rock\":\"reef\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 4117,
+ "tokens_out": 279,
+ "money_usd": 0.0019326,
+ "attempts": 1
+}

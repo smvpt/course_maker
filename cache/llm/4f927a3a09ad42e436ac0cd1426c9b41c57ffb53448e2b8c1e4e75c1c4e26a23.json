@@ -1,0 +1,10 @@
+{
+ "text": "{\"tasks\":[{\"type\":\"single\",\"kind\":\"transfer\",\"claim_ids\":[\"kuznetsov_gl10.reef_traps_and_exploration#c28\"],\"prompt\":\"Куда геологоразведка проектирует бурение первой скважины при обнаружении залежи, связанной с небольшим одиночным куполовидным рифом?\",\"options\":[{\"text\":\"В центральной, наиболее приподнятой части рифа\",\"correct\":true,\"misconception\":null},{\"text\":\"В краевой зоне рифа для поиска наилучших коллекторов\",\"correct\":false,\"misconception\":null},{\"text\":\"В тыльно-рифовой зоне по аналогии с атолловыми системами\",\"correct\":false,\"misconception\":null}],\"gap_answers\":[],\"calc\":null,\"explanation\":\"Для куполовидных рифов бурение целесообразно проектировать в центральной, наиболее приподнятой части.\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/tasks",
+ "tokens_in": 11176,
+ "tokens_out": 211,
+ "money_usd": 0.0038803,
+ "attempts": 1
+}

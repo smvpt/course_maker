@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"o1\",\"o2\"],\"claim_id\":\"kuznetsov_gl10.reef_traps_and_exploration#c30\",\"evidence\":\"начинается также с разбирания их центральных частей... Для проведения предварительной оценки и выявления особенностей строения залежей необходимо бурение дополнительных оценочных скважин по периферии ловушки\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1061,
+ "tokens_out": 96,
+ "money_usd": 0.0005583000000000001,
+ "attempts": 1
+}

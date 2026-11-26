@@ -1,0 +1,123 @@
+{
+  "chapter": "kuznetsov_gl10",
+  "nodes": 4,
+  "tasks": 15,
+  "step_text_nodes": 3,
+  "interactive_steps": 3,
+  "guess_steps": 2,
+  "summary": {
+    "text_model_steps": 3,
+    "steps": 4,
+    "tasks": 15,
+    "tasks_dropped": 1,
+    "fallback_steps": 1,
+    "model": "доступна",
+    "line": "ИТОГ СБОРКИ: текст модели: 3 из 4 шагов · заданий: 15 (выброшено 1) · fallback: 1 · модель: доступна"
+  },
+  "warnings": [
+    {
+      "code": "no_parts",
+      "message": "ни у одного узла нет ext[\"core\"][\"part\"]: вся глава собрана одной частью «Глава»"
+    },
+    {
+      "code": "step_text_fallback",
+      "message": "текст шага kuznetsov_gl10.reef_traps_and_exploration не прошёл проверки, шаг собран из полей слоя: абзац 17 (data): фраза из 22 слов (максимум 20): «Сейсмические данные не дают прямых указаний на внутреннее распределение пористости и коллекторских зон в сложных атолловидных или асимметричных рифах без параметрического бурения.»",
+      "node": "kuznetsov_gl10.reef_traps_and_exploration",
+      "errors": [
+        "абзац 17 (data): фраза из 22 слов (максимум 20): «Сейсмические данные не дают прямых указаний на внутреннее распределение пористости и коллекторских зон в сложных атолловидных или асимметричных рифах без параметрического бурения.»",
+        "абзац 18 (data): фраза из 21 слов (максимум 20): «Модель машинного обучения по сейсмическим атрибутам может ошибочно предсказывать высокие коллекторские свойства в центральной части атолловидного рифа, где развиты литологические экраны.»",
+        "абзац 20 (analogy): фраза из 26 слов (максимум 20): «В геологии физическое расположение емких зон обусловлено седиментацией и меняется от объекта к объекту, в то время как индексы в БД создаются по заранее заданному алгоритму.»"
+      ]
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг kuznetsov_gl10.reef_basics_and_types: термин 'риф' не выделен [[…]] ни в одном абзаце",
+      "node": "kuznetsov_gl10.reef_basics_and_types"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг kuznetsov_gl10.reef_basics_and_types: термин 'одиночные рифы' не выделен [[…]] ни в одном абзаце",
+      "node": "kuznetsov_gl10.reef_basics_and_types"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг kuznetsov_gl10.reef_basics_and_types: термин 'асимметричные рифовые системы' не выделен [[…]] ни в одном абзаце",
+      "node": "kuznetsov_gl10.reef_basics_and_types"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг kuznetsov_gl10.reef_lithology_and_porosity: термин 'спарит' не выделен [[…]] ни в одном абзаце",
+      "node": "kuznetsov_gl10.reef_lithology_and_porosity"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг kuznetsov_gl10.reef_lithology_and_porosity: термин 'предрифовый шлейф' не выделен [[…]] ни в одном абзаце",
+      "node": "kuznetsov_gl10.reef_lithology_and_porosity"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг kuznetsov_gl10.reef_lithology_and_porosity: термин 'первичная пористость' не выделен [[…]] ни в одном абзаце",
+      "node": "kuznetsov_gl10.reef_lithology_and_porosity"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг kuznetsov_gl10.reef_lithology_and_porosity: термин 'вторичная пористость' не выделен [[…]] ни в одном абзаце",
+      "node": "kuznetsov_gl10.reef_lithology_and_porosity"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг kuznetsov_gl10.reef_lithology_and_porosity: термин 'каверновая пустотность' не выделен [[…]] ни в одном абзаце",
+      "node": "kuznetsov_gl10.reef_lithology_and_porosity"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг kuznetsov_gl10.reef_lithology_and_porosity: термин 'межкристаллическая пористость' не выделен [[…]] ни в одном абзаце",
+      "node": "kuznetsov_gl10.reef_lithology_and_porosity"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг kuznetsov_gl10.reef_lithology_and_porosity: термин 'известняковые брекчии' не выделен [[…]] ни в одном абзаце",
+      "node": "kuznetsov_gl10.reef_lithology_and_porosity"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг kuznetsov_gl10.reef_lithology_and_porosity: термин 'известняковые конгломераты' не выделен [[…]] ни в одном абзаце",
+      "node": "kuznetsov_gl10.reef_lithology_and_porosity"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг kuznetsov_gl10.reef_reservoirs_structure: термин 'эффективная мощность' не выделен [[…]] ни в одном абзаце",
+      "node": "kuznetsov_gl10.reef_reservoirs_structure"
+    },
+    {
+      "code": "term_not_marked",
+      "message": "шаг kuznetsov_gl10.reef_reservoirs_structure: термин 'линзовидно-пластовое размещение' не выделен [[…]] ни в одном абзаце",
+      "node": "kuznetsov_gl10.reef_reservoirs_structure"
+    },
+    {
+      "code": "calc_not_possible",
+      "message": "в главе нет формул и чисел для расчёта: заданий calc нет"
+    },
+    {
+      "code": "task_answer_mismatch",
+      "message": "задание 4 (order) шага kuznetsov_gl10.reef_traps_and_exploration выброшено: помеченный ответ противоречит цитате книги (слепая проверка): ответ слепой проверки не совпал с помеченным: по цитате kuznetsov_gl10.reef_traps_and_exploration#c30 («начинается также с разбирания их центральных частей... Для проведения предварительной оценки и выявления особенностей строения залежей необходимо бурение дополнительных оценочных скважин по периферии ловушки») модель выбрала «Бурение центральных частей рифа для первичного вскрытия массива»; «Бурение дополнительных оценочных скважин по периферии ловушки», помечено «Бурение центральных частей рифа для первичного вскрытия массива»; «Бурение дополнительных оценочных скважин по периферии ловушки»; «Анализ краевых зон с лучшими коллекторскими свойствами для оценки атоллов». Перепроверь по цитате, какой ответ верен, и перепиши задание",
+      "node": "kuznetsov_gl10.reef_traps_and_exploration",
+      "slot": 4,
+      "type": "order",
+      "errors": [
+        "ответ слепой проверки не совпал с помеченным: по цитате kuznetsov_gl10.reef_traps_and_exploration#c30 («начинается также с разбирания их центральных частей... Для проведения предварительной оценки и выявления особенностей строения залежей необходимо бурение дополнительных оценочных скважин по периферии ловушки») модель выбрала «Бурение центральных частей рифа для первичного вскрытия массива»; «Бурение дополнительных оценочных скважин по периферии ловушки», помечено «Бурение центральных частей рифа для первичного вскрытия массива»; «Бурение дополнительных оценочных скважин по периферии ловушки»; «Анализ краевых зон с лучшими коллекторскими свойствами для оценки атоллов». Перепроверь по цитате, какой ответ верен, и перепиши задание"
+      ]
+    },
+    {
+      "code": "interactive_failed",
+      "message": "интерактив шага kuznetsov_gl10.reef_reservoirs_structure не показан: часть 1: rock 'reef' допустим только при layout=layers и только из списка пород (иначе null)",
+      "node": "kuznetsov_gl10.reef_reservoirs_structure",
+      "errors": [
+        "часть 1: rock 'reef' допустим только при layout=layers и только из списка пород (иначе null)",
+        "часть 2: rock 'reef' допустим только при layout=layers и только из списка пород (иначе null)",
+        "часть 3: rock 'reef' допустим только при layout=layers и только из списка пород (иначе null)"
+      ]
+    }
+  ],
+  "missing_scans": []
+}

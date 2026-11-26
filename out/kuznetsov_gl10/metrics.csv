@@ -1,0 +1,6 @@
+chapter,stage,nodes,llm_tokens_in,llm_tokens_out,money_usd,person_minutes,mentor_minutes,video_seconds,manual_share
+kuznetsov_gl10,layer,4,143102,20829,0.095003,0,0,0.0,0.0
+kuznetsov_gl10,routing,4,2898,3369,0.009292,0,0,0.0,0.0
+kuznetsov_gl10,course,4,193789,20203,0.106991,0,0,0.0,0.0
+kuznetsov_gl10,video,4,0,0,0.0,0,0,0.0,0.0
+kuznetsov_gl10,review,4,0,0,0.0,0,0,0.0,0.0

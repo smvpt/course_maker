@@ -1,0 +1,20 @@
+{
+  "id": "kuznetsov_gl10",
+  "md": "C:\\Users\\azizs\\Documents\\GitHub\\course_maker\\data\\books\\train_kuznetsov.md",
+  "pdf": "C:\\Users\\azizs\\Documents\\GitHub\\course_maker\\data\\pdf\\Кузнецов Литология природных резервуаров нефти и газа 2012.pdf",
+  "pages": [
+    [
+      200,
+      222
+    ]
+  ],
+  "start_heading": null,
+  "end_heading": null,
+  "language": "ru",
+  "domain": "geology",
+  "prereading": null,
+  "prereq_cards": null,
+  "errata": null,
+  "author": "Кузнецов",
+  "book": "Литология природных резервуаров нефти и газа"
+}

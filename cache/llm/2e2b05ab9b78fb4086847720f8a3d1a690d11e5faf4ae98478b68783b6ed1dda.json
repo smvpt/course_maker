@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Зоны улучшенных коллекторских свойств в рифах разного типа\",\"note\":\"Нажми на часть рифа, чтобы узнать особенности размещения коллекторов.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"центральные части куполовидных рифов\",\"description\":\"Обладают наилучшими коллекторскими свойствами в относительно небольших и слабо дифференцированных массивах.\",\"claim_id\":\"kuznetsov_gl10.reef_reservoirs_structure#c2\",\"rock\":\"reef\"},{\"label\":\"периферия плосковершинных и атолловидных рифов\",\"description\":\"Зона улучшенных коллекторских свойств смещается сюда в более крупных массивах и атоллах.\",\"claim_id\":\"kuznetsov_gl10.reef_reservoirs_structure#c3\",\"rock\":\"reef\"},{\"label\":\"биогермный гребень и предрифовый шлейф\",\"description\":\"Область периферии рифового комплекса, куда смещается зона улучшенных свойств в крупных рифах.\",\"claim_id\":\"kuznetsov_gl10.reef_reservoirs_structure#c3\",\"rock\":\"reef\"},{\"label\":\"пористые и проницаемые пачки\",\"description\":\"Характеризуются слоистым и линзовидно-слоистым расположением в разрезе крупных рифовых массивов.\",\"claim_id\":\"kuznetsov_gl10.reef_reservoirs_structure#c4\",\"rock\":\"reef\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 4053,
+ "tokens_out": 435,
+ "money_usd": 0.0023034,
+ "attempts": 1
+}

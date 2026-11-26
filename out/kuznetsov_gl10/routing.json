@@ -1,0 +1,98 @@
+{
+  "ext": {
+    "core": {
+      "foreign_routes": [],
+      "template_fixed": [],
+      "hooks_unset": [
+        "kuznetsov_gl10.reef_lithology_and_porosity"
+      ]
+    }
+  },
+  "chapter": "kuznetsov_gl10",
+  "routes": [
+    {
+      "ext": {
+        "core": {
+          "video_score": 8
+        }
+      },
+      "node_id": "kuznetsov_gl10.reef_basics_and_types",
+      "format": "длинное видео",
+      "secondary_format": "карточки",
+      "video_scores": {
+        "ext": {},
+        "time": 2,
+        "invisible": 1,
+        "scale": 2,
+        "counterintuitive": 1,
+        "cause_effect": 2
+      },
+      "hook_short": false,
+      "template": "T3",
+      "why": "Тип трудности М и П. Оценки обусловлены изменением во времени, сантиметровыми масштабами биогенного осаждения и сложной цепочкой причин и седствий роста органогенных построек."
+    },
+    {
+      "ext": {
+        "core": {
+          "video_score": 8
+        }
+      },
+      "node_id": "kuznetsov_gl10.reef_lithology_and_porosity",
+      "format": "интерактив",
+      "secondary_format": "карточки",
+      "video_scores": {
+        "ext": {},
+        "time": 1,
+        "invisible": 2,
+        "scale": 1,
+        "counterintuitive": 2,
+        "cause_effect": 2
+      },
+      "hook_short": false,
+      "template": "T2",
+      "why": "Тип трудности И и М. Выщелачивание и формирование вторичной порозности невидимы и контринтуитивны (сокращение первичной и рост вторичной емкости)."
+    },
+    {
+      "ext": {
+        "core": {
+          "video_score": 6
+        }
+      },
+      "node_id": "kuznetsov_gl10.reef_reservoirs_structure",
+      "format": "интерактив",
+      "secondary_format": "шортс",
+      "video_scores": {
+        "ext": {},
+        "time": 0,
+        "invisible": 2,
+        "scale": 1,
+        "counterintuitive": 1,
+        "cause_effect": 2
+      },
+      "hook_short": false,
+      "template": "T3",
+      "why": "Тип трудности П и И. Объёмное строение и локализация коллекторов требуют 3D-интерактива для анализа перемещения зон улучшенных свойств."
+    },
+    {
+      "ext": {
+        "core": {
+          "video_score": 6
+        }
+      },
+      "node_id": "kuznetsov_gl10.reef_traps_and_exploration",
+      "format": "практикум на данных",
+      "secondary_format": "интерактив",
+      "video_scores": {
+        "ext": {},
+        "time": 1,
+        "invisible": 1,
+        "scale": 1,
+        "counterintuitive": 1,
+        "cause_effect": 2
+      },
+      "hook_short": false,
+      "template": "T2",
+      "why": "Тип трудности Пр и Н. Процедура разведки и оценка ловушек оптимально осваиваются через практикум на данных и сценарии бурения."
+    }
+  ]
+}

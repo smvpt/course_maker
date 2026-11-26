@@ -1,0 +1,424 @@
+{
+  "ext": {},
+  "chapter": "kuznetsov_gl10",
+  "nodes": {
+    "kuznetsov_gl10.reef_basics_and_types": {
+      "ext": {},
+      "hash": "be0053f731516d30",
+      "paragraphs": [
+        {
+          "block": "main",
+          "text": "Рифы являются уникальными карбонатными объектами с высокой плотностью запасов углеводородов. Они содержат значительную долю мировых запасов при минимальном объеме отложений.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_basics_and_types#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "main",
+          "text": "Для работы с такими объектами важно знать, что [[органогенная постройка]] — это геологическое образование, созданное нараставшими друг на друга организмами.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_basics_and_types#c4"
+          ],
+          "terms": [
+            "органогенная постройка"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "why",
+          "text": "Разбор этой темы дает базовое понимание рифов как уникальных карбонатных объектов с высокой плотностью запасов и задает классификацию органогенных построек.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_basics_and_types#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Рифы формируются благодаря биогенному осаждению карбонатного материала колониальными организмами. Скорость их роста превышает скорость накопления окружающих осадков.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_basics_and_types#c7"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Высота таких залежей бывает очень большой. Например, на месторождении Карачаганак она превышает 1500 м.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_basics_and_types#c2"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "Геологи выделяют [[биостром]] (уплощенную линзу или пласт, сложенный организмами без выражения в рельефе) для оценки потенциала залежей.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_basics_and_types#c5"
+          ],
+          "terms": [
+            "биостром"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "Также специалисты выделяют [[биогерм]] — холмовидное геологическое тело, возвышавшееся над дном, но не выходившее выше уровня волн.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_basics_and_types#c6"
+          ],
+          "terms": [
+            "биогерм"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "Необоснованное расширение понятия рифа приводит к ошибочным поисково-разведочным работам в областях, где рифов нет.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_basics_and_types#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Рифовые объекты на картах и разрезах выделяются как локальные аномальные по мощности и форме карбонатные тела с высокой плотностью запасов.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_basics_and_types#c7"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Автоматические модели могут принять за риф любые массивные карбонатные отложения биоморфной структуры.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_basics_and_types#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Алгоритм сегментации может спутать региональный карбонатный пласт с локальной органогенной постройкой из-за схожих значений импеданса.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_basics_and_types#c4"
+          ],
+          "terms": [],
+          "hypothesis": true,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "В данных риф можно представить как аномально плотный кластер в разреженной базе данных.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_basics_and_types#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "В данных нет физических ограничений роста структур под воздействием волн и биологических факторов.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_basics_and_types#c7"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": true
+        }
+      ],
+      "warnings": [
+        "термин 'риф' не выделен [[…]] ни в одном абзаце",
+        "термин 'одиночные рифы' не выделен [[…]] ни в одном абзаце",
+        "термин 'асимметричные рифовые системы' не выделен [[…]] ни в одном абзаце"
+      ]
+    },
+    "kuznetsov_gl10.reef_lithology_and_porosity": {
+      "ext": {},
+      "hash": "61409c513eeb9df2",
+      "paragraphs": [
+        {
+          "block": "main",
+          "text": "Рифы сложены [[биогермные известняки]] (породы, образованные остатками нарастающих организмов) и обломочными породами. Их емкость формируется за счет вторичных процессов выщелачивания и доломитизации.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_lithology_and_porosity#c6",
+            "kuznetsov_gl10.reef_lithology_and_porosity#c9"
+          ],
+          "terms": [
+            "биогермные известняки"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "why",
+          "text": "Текст опирается на понятие рифа и раскрывает его внутреннее строение, типы пород, а также первичную и вторичную пористость.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_lithology_and_porosity#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "Рельеф рифа создает резкие перепады глубин, освещенности и гидродинамики. Это определяет литолого-фациальную зональность. Первичные пустоты скелетов частично цементируются. Вторичные процессы формируют каверновую и межкристаллическую пористость.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_lithology_and_porosity#c14",
+            "kuznetsov_gl10.reef_lithology_and_porosity#c31",
+            "kuznetsov_gl10.reef_lithology_and_porosity#c36"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "При интерпретации данных учитывают резкую литологическую зональность и высокую вариативность типов пород от ядра к склонам. Крупные каверны способны обеспечивать аномальные дебиты скважин.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_lithology_and_porosity#c13",
+            "kuznetsov_gl10.reef_lithology_and_porosity#c35"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "Чистая первичная пористость практически не сохраняется в полном объеме. Литолого-фациальный профиль и типы пород кардинально различаются в одиночных куполовидных рифах, атоллах и линейно вытянутых рифовых системах.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_lithology_and_porosity#c23",
+            "kuznetsov_gl10.reef_lithology_and_porosity#c30"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "misconception",
+          "text": "Пористость рифовых известняков не сохраняется неизменной с момента образования. Она сильно сокращается в процессе роста из-за цементации, а затем преобразуется вторичными процессами.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_lithology_and_porosity#c30"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "В данных по рифовым резервуарам фиксируются резкие изменения литологии и емкостных свойств на коротких расстояниях из-за зональности и развития каверн.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_lithology_and_porosity#c13",
+            "kuznetsov_gl10.reef_lithology_and_porosity#c31"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Стандартные модели межзерновой пористости терригенных пород не работают для карбонатных рифов из-за сложной каверновой и трещинно-пустотной структуры.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_lithology_and_porosity#c31"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Модель машинного обучения, прогнозирующая проницаемость только по общей пористости, выдаст ошибку на рифовых интервалах с крупными кавернами и карстовыми пещерами.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_lithology_and_porosity#c35"
+          ],
+          "terms": [],
+          "hypothesis": true,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Рифовый резервуар похож на сложную нереляционную базу данных с динамической структурой связей. Данные в ней распределены неравномерно по зонам кластера.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_lithology_and_porosity#c13"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Физические процессы растворения и карстообразования создают пустоты с экстремальной проницаемостью, которую нельзя описать простыми вероятностными распределениями.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_lithology_and_porosity#c35"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": true
+        }
+      ],
+      "warnings": [
+        "термин 'спарит' не выделен [[…]] ни в одном абзаце",
+        "термин 'предрифовый шлейф' не выделен [[…]] ни в одном абзаце",
+        "термин 'первичная пористость' не выделен [[…]] ни в одном абзаце",
+        "термин 'вторичная пористость' не выделен [[…]] ни в одном абзаце",
+        "термин 'каверновая пустотность' не выделен [[…]] ни в одном абзаце",
+        "термин 'межкристаллическая пористость' не выделен [[…]] ни в одном абзаце",
+        "термин 'известняковые брекчии' не выделен [[…]] ни в одном абзаце",
+        "термин 'известняковые конгломераты' не выделен [[…]] ни в одном абзаце"
+      ]
+    },
+    "kuznetsov_gl10.reef_reservoirs_structure": {
+      "ext": {},
+      "hash": "a15b5bae983558f1",
+      "paragraphs": [
+        {
+          "block": "main",
+          "text": "Строение рифовых резервуаров и размещение зон улучшенных свойств зависят от морфолого-генетического типа рифов. Эти особенности определяются фациальной зональностью.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_reservoirs_structure#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "why",
+          "text": "Этот материал опирается на литологию и типы пород. Он показывает пространственное распределение пористости и проницаемости в разных типах рифов.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_reservoirs_structure#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "how",
+          "text": "В небольших одиночных куполовидных рифах лучшие свойства сосредоточены в центральной части. В крупных плосковершинных рифах и атоллах зоны улучшенных свойств смещаются к периферии комплекса.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_reservoirs_structure#c2",
+            "kuznetsov_gl10.reef_reservoirs_structure#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "practice",
+          "text": "При разведке и разработке месторождений учитывают латеральную и вертикальную неоднородность рифов. Специалисты выделяют пачки коллекторов и плотные экранирующие породы.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_reservoirs_structure#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "nuances",
+          "text": "В мощных рифовых комплексах наблюдается сложная [[вертикальная неоднородность]], вызванная сменой палеогеографических условий, перекристаллизацией и доломитизацией. Это разнообразие слоев по разрезу.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_reservoirs_structure#c4"
+          ],
+          "terms": [
+            "вертикальная неоднородность"
+          ],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "misconception",
+          "text": "Мнение об однородном массивном разрезе рифа и равномерном распределении свойств является чрезвычайно упрощенным.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_reservoirs_structure#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Данные каротажа, пористости и проницаемости показывают сложную неоднородность рифовых резервуаров. Она строго соответствует фациальной зональности.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_reservoirs_structure#c1",
+            "kuznetsov_gl10.reef_reservoirs_structure#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Предположение о равномерном распределении свойств приводит к ошибкам при прогнозе продуктивных интервалов.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_reservoirs_structure#c4"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "data",
+          "text": "Модель пористости, обученная на центре одиночного рифа, может не переноситься на периферию атоллов без учета фациальной зональности.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_reservoirs_structure#c2",
+            "kuznetsov_gl10.reef_reservoirs_structure#c3"
+          ],
+          "terms": [],
+          "hypothesis": true,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "Пространственная структура данных в рифе похожа на кластеризацию. Плотность точек и их свойства резко меняются от центра к периферии.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_reservoirs_structure#c2",
+            "kuznetsov_gl10.reef_reservoirs_structure#c3"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": false
+        },
+        {
+          "block": "analogy",
+          "text": "В геологии закономерности подчинены физико-химическим факторам осадконакопления, а не произвольным признакам.",
+          "claim_ids": [
+            "kuznetsov_gl10.reef_reservoirs_structure#c1"
+          ],
+          "terms": [],
+          "hypothesis": false,
+          "limit": true
+        }
+      ],
+      "warnings": [
+        "термин 'эффективная мощность' не выделен [[…]] ни в одном абзаце",
+        "термин 'линзовидно-пластовое размещение' не выделен [[…]] ни в одном абзаце"
+      ]
+    }
+  },
+  "failed": {
+    "kuznetsov_gl10.reef_traps_and_exploration": {
+      "ext": {},
+      "hash": "9ff317cf06102ae4",
+      "errors": [
+        "абзац 17 (data): фраза из 22 слов (максимум 20): «Сейсмические данные не дают прямых указаний на внутреннее распределение пористости и коллекторских зон в сложных атолловидных или асимметричных рифах без параметрического бурения.»",
+        "абзац 18 (data): фраза из 21 слов (максимум 20): «Модель машинного обучения по сейсмическим атрибутам может ошибочно предсказывать высокие коллекторские свойства в центральной части атолловидного рифа, где развиты литологические экраны.»",
+        "абзац 20 (analogy): фраза из 26 слов (максимум 20): «В геологии физическое расположение емких зон обусловлено седиментацией и меняется от объекта к объекту, в то время как индексы в БД создаются по заранее заданному алгоритму.»"
+      ]
+    }
+  }
+}

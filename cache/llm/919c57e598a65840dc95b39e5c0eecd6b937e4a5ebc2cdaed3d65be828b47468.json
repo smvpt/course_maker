@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Основные виды органогенных построек\",\"note\":\"Нажми на часть схемы, чтобы узнать её особенности и форму.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"биостром\",\"description\":\"Уплощенная линза или пласт без выражения в рельефе, сложенный остатками организмов в прижизненном положении.\",\"claim_id\":\"kuznetsov_gl10.reef_basics_and_types#c5\",\"rock\":\"reef\"},{\"label\":\"биогерм\",\"description\":\"Холмовидное геологическое тело, возвышавшееся над дном, но не выходившее выше уровня волн.\",\"claim_id\":\"kuznetsov_gl10.reef_basics_and_types#c6\",\"rock\":\"reef\"},{\"label\":\"риф\",\"description\":\"Сложное геологическое образование в виде карбонатного массива, созданное организмами и продуктами их разрушения.\",\"claim_id\":\"kuznetsov_gl10.reef_basics_and_types#c7\",\"rock\":\"reef\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 3437,
+ "tokens_out": 316,
+ "money_usd": 0.0018211,
+ "attempts": 1
+}

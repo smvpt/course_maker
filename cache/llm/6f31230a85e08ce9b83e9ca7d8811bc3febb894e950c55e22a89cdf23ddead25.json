@@ -1,0 +1,10 @@
+{
+ "text": "{\"picks\":[{\"n\":1,\"answer\":[\"b\"],\"claim_id\":\"kuznetsov_gl10.reef_reservoirs_structure#c3\",\"evidence\":\"зона улучшенных коллекторских свойств смещается к периферии рифового комплекса\"},{\"n\":2,\"answer\":[\"a\",\"c\"],\"claim_id\":\"kuznetsov_gl10.reef_reservoirs_structure#c1\",\"evidence\":\"В очень большой степени от морфолого-генетического типа рифов зависит площадное распространение зон улучшенных коллекторских свойств\"},{\"n\":3,\"answer\":[\"центральные\"],\"claim_id\":\"kuznetsov_gl10.reef_reservoirs_structure#c2\",\"evidence\":\"центральные части массивов\"},{\"n\":4,\"answer\":[\"o1\",\"o2\",\"o3\"],\"claim_id\":\"kuznetsov_gl10.reef_reservoirs_structure#c2\",\"evidence\":\"Наиболее простое распределение коллекторских свойств отмечается в относительно небольших и слабо дифференцированных одиночных куполовидных рифах\"}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/answer_check",
+ "tokens_in": 1621,
+ "tokens_out": 266,
+ "money_usd": 0.0011513,
+ "attempts": 1
+}

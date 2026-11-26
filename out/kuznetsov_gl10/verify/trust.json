@@ -1,0 +1,42 @@
+{
+  "chapter": "kuznetsov_gl10",
+  "generated": "2026-11-26T14:21",
+  "nodes": 4,
+  "coverage": {
+    "units": 152,
+    "in_nodes": 152,
+    "with_reason": 0,
+    "pct_in_nodes": 100.0,
+    "pct_accounted": 100.0
+  },
+  "quotes": {
+    "claims": 81,
+    "found": 79,
+    "other_page": 0,
+    "not_found": 2,
+    "pct": 97.5
+  },
+  "numbers": {
+    "total": 17,
+    "found": 17,
+    "pct": 100.0
+  },
+  "remarks": {
+    "critical": 2,
+    "significant": 2,
+    "minor": 0
+  },
+  "manual": {
+    "person_minutes": 0,
+    "mentor_minutes": 0,
+    "edits": 0
+  },
+  "cost": {
+    "llm_calls": 51,
+    "cached": 0,
+    "money_usd": 0.2113,
+    "unpriced_calls": 0,
+    "tokens_in": 339789,
+    "tokens_out": 44401
+  }
+}

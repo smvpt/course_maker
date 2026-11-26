@@ -1,0 +1,149 @@
+{
+  "ext": {
+    "illus": {
+      "warnings": []
+    }
+  },
+  "chapter": "kuznetsov_gl10",
+  "illustrations": [
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "kuznetsov_gl10.reef_basics_and_types.il1",
+      "step_id": "kuznetsov_gl10.reef_basics_and_types",
+      "node_id": "kuznetsov_gl10.reef_basics_and_types",
+      "file": "illus/kuznetsov_gl10.reef_basics_and_types.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Что такое рифы, почему в них много нефти и чем они отличаются». наблюдение: Рифы составляют малую долю осадочных образований, но содержат 10-12% мировых запасов углеводородов.; наблюдение: Высота залежей на месторождении Карачаганак превышает 1500 м, а в зоне Ла Реформа составляет 900-2100 м.; наблюдение: Органогенная постройка — геологическое образование, созданное нараставшими друг на друга…",
+      "source": "утверждения шага, стр. 200",
+      "claim_ids": [
+        "kuznetsov_gl10.reef_basics_and_types#c1",
+        "kuznetsov_gl10.reef_basics_and_types#c2",
+        "kuznetsov_gl10.reef_basics_and_types#c4",
+        "kuznetsov_gl10.reef_basics_and_types#c3"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "kuznetsov_gl10.reef_lithology_and_porosity.il1",
+      "step_id": "kuznetsov_gl10.reef_lithology_and_porosity",
+      "node_id": "kuznetsov_gl10.reef_lithology_and_porosity",
+      "file": "illus/kuznetsov_gl10.reef_lithology_and_porosity.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Из каких пород состоят рифы и как в них появляются пустоты для нефти». наблюдение: Для геологов-нефтяников наибольший интерес представляют рифы в узком буквальном смысле этого слова.; наблюдение: Рифы различаются по морфологии, тектонической и палеогеографической позиции в бассейне.; наблюдение: Выделяется два основных типа рифов: одиночные рифы и асимметричные рифовые системы.; вывод: Различные…",
+      "source": "утверждения шага, стр. 201, 202, 203",
+      "claim_ids": [
+        "kuznetsov_gl10.reef_lithology_and_porosity#c1",
+        "kuznetsov_gl10.reef_lithology_and_porosity#c2",
+        "kuznetsov_gl10.reef_lithology_and_porosity#c3",
+        "kuznetsov_gl10.reef_lithology_and_porosity#c13",
+        "kuznetsov_gl10.reef_lithology_and_porosity#c14"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "column"
+      },
+      "id": "kuznetsov_gl10.reef_lithology_and_porosity.il2",
+      "step_id": "kuznetsov_gl10.reef_lithology_and_porosity",
+      "node_id": "kuznetsov_gl10.reef_lithology_and_porosity",
+      "file": "illus/kuznetsov_gl10.reef_lithology_and_porosity.column.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Условная колонка: какие породы упоминает шаг. Цвета по единой легенде курса. Порядок и толщины слоёв условные, колонка не показывает реальный разрез.",
+      "alt": "Условная колонка слоёв «Из каких пород состоят рифы и как в них появляются пустоты для нефти», не в масштабе. известняк, доломит, песчаник, глина",
+      "source": "утверждения шага, стр. 202, 203, 204, 205",
+      "claim_ids": [
+        "kuznetsov_gl10.reef_lithology_and_porosity#c6",
+        "kuznetsov_gl10.reef_lithology_and_porosity#c7",
+        "kuznetsov_gl10.reef_lithology_and_porosity#c9",
+        "kuznetsov_gl10.reef_lithology_and_porosity#c10",
+        "kuznetsov_gl10.reef_lithology_and_porosity#c11",
+        "kuznetsov_gl10.reef_lithology_and_porosity#c18",
+        "kuznetsov_gl10.reef_lithology_and_porosity#c19",
+        "kuznetsov_gl10.reef_lithology_and_porosity#c28",
+        "kuznetsov_gl10.reef_lithology_and_porosity#c12",
+        "kuznetsov_gl10.reef_lithology_and_porosity#c36",
+        "kuznetsov_gl10.reef_lithology_and_porosity#c32"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "kuznetsov_gl10.reef_reservoirs_structure.il1",
+      "step_id": "kuznetsov_gl10.reef_reservoirs_structure",
+      "node_id": "kuznetsov_gl10.reef_reservoirs_structure",
+      "file": "illus/kuznetsov_gl10.reef_reservoirs_structure.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Как коллекторы распределяются внутри рифа по площади и разрезу». наблюдение: В небольших одиночных куполовидных рифах наилучшими коллекторскими свойствами обладают центральные части массивов.; наблюдение: В крупных плосковершинных и атолловидных рифах зона улучшенных коллекторских свойств смещается к периферии рифового комплекса.; вывод: Площадное распространение зон улучшенных коллекторских свойств…",
+      "source": "утверждения шага, стр. 205, 207, 214",
+      "claim_ids": [
+        "kuznetsov_gl10.reef_reservoirs_structure#c2",
+        "kuznetsov_gl10.reef_reservoirs_structure#c3",
+        "kuznetsov_gl10.reef_reservoirs_structure#c1",
+        "kuznetsov_gl10.reef_reservoirs_structure#c4"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "chain"
+      },
+      "id": "kuznetsov_gl10.reef_traps_and_exploration.il1",
+      "step_id": "kuznetsov_gl10.reef_traps_and_exploration",
+      "node_id": "kuznetsov_gl10.reef_traps_and_exploration",
+      "file": "illus/kuznetsov_gl10.reef_traps_and_exploration.chain.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Утверждения шага по ролям: что автор наблюдает, что допускает и что из этого выводит. Схема построена кодом из утверждений шага.",
+      "alt": "Схема шага «Как формируются ловушки для нефти в рифах и как их правильно разведовать». наблюдение: Перекрытие рифов непроницаемыми толщами-флюидоупорами часто обусловлено палеогеографическими и палеотектоническими условиями рифообразования.; наблюдение: Рост рифов происходит в эпохи трансгрессий или повышения уровня моря, сопровождающегося карбонатонакоплением.; наблюдение: Прекращение образования рифов связано с…",
+      "source": "утверждения шага, стр. 216, 218",
+      "claim_ids": [
+        "kuznetsov_gl10.reef_traps_and_exploration#c1",
+        "kuznetsov_gl10.reef_traps_and_exploration#c2",
+        "kuznetsov_gl10.reef_traps_and_exploration#c3",
+        "kuznetsov_gl10.reef_traps_and_exploration#c6",
+        "kuznetsov_gl10.reef_traps_and_exploration#c10"
+      ],
+      "prompt": null
+    },
+    {
+      "ext": {
+        "kind": "column"
+      },
+      "id": "kuznetsov_gl10.reef_traps_and_exploration.il2",
+      "step_id": "kuznetsov_gl10.reef_traps_and_exploration",
+      "node_id": "kuznetsov_gl10.reef_traps_and_exploration",
+      "file": "illus/kuznetsov_gl10.reef_traps_and_exploration.column.svg",
+      "frame_class": "B",
+      "origin": "code_from_model",
+      "label": "схема",
+      "caption": "Условная колонка: какие породы упоминает шаг. Цвета по единой легенде курса. Порядок и толщины слоёв условные, колонка не показывает реальный разрез.",
+      "alt": "Условная колонка слоёв «Как формируются ловушки для нефти в рифах и как их правильно разведовать», не в масштабе. глина, песчаник, доломит",
+      "source": "утверждения шага, стр. 216",
+      "claim_ids": [
+        "kuznetsov_gl10.reef_traps_and_exploration#c4",
+        "kuznetsov_gl10.reef_traps_and_exploration#c5"
+      ],
+      "prompt": null
+    }
+  ]
+}

@@ -1,0 +1,574 @@
+{
+  "ext": {
+    "course": {
+      "hashes": {
+        "kuznetsov_gl10.reef_basics_and_types": "be0053f731516d30",
+        "kuznetsov_gl10.reef_lithology_and_porosity": "61409c513eeb9df2",
+        "kuznetsov_gl10.reef_reservoirs_structure": "a15b5bae983558f1",
+        "kuznetsov_gl10.reef_traps_and_exploration": "9ff317cf06102ae4"
+      },
+      "warnings": [
+        {
+          "code": "calc_not_possible",
+          "message": "в главе нет формул и чисел для расчёта: заданий calc нет"
+        }
+      ],
+      "dropped": [
+        {
+          "node": "kuznetsov_gl10.reef_traps_and_exploration",
+          "slot": 4,
+          "type": "order",
+          "errors": [
+            "ответ слепой проверки не совпал с помеченным: по цитате kuznetsov_gl10.reef_traps_and_exploration#c30 («начинается также с разбирания их центральных частей... Для проведения предварительной оценки и выявления особенностей строения залежей необходимо бурение дополнительных оценочных скважин по периферии ловушки») модель выбрала «Бурение центральных частей рифа для первичного вскрытия массива»; «Бурение дополнительных оценочных скважин по периферии ловушки», помечено «Бурение центральных частей рифа для первичного вскрытия массива»; «Бурение дополнительных оценочных скважин по периферии ловушки»; «Анализ краевых зон с лучшими коллекторскими свойствами для оценки атоллов». Перепроверь по цитате, какой ответ верен, и перепиши задание"
+          ]
+        }
+      ],
+      "node_warnings": []
+    }
+  },
+  "chapter": "kuznetsov_gl10",
+  "tasks": [
+    {
+      "ext": {},
+      "id": "kuznetsov_gl10.reef_basics_and_types.t1",
+      "type": "single",
+      "step_id": "kuznetsov_gl10.reef_basics_and_types",
+      "claim_ids": [
+        "kuznetsov_gl10.reef_basics_and_types#c1"
+      ],
+      "prompt": "Какую примерно долю мировых запасов углеводородов содержат рифы, несмотря на свою малую долю среди осадочных образований?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "1-2%",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "50-55%",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "10-12%",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "25-30%",
+          "misconception": null
+        }
+      ],
+      "answer": "c",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Рифы составляют малую долю осадков, но содержат 10-12% мировых запасов углеводородов.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "kuznetsov_gl10.reef_basics_and_types.t2",
+      "type": "multiple",
+      "step_id": "kuznetsov_gl10.reef_basics_and_types",
+      "claim_ids": [
+        "kuznetsov_gl10.reef_basics_and_types#c4",
+        "kuznetsov_gl10.reef_basics_and_types#c6"
+      ],
+      "prompt": "Какие особенности характерны для биогермов согласно тексту?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Выходили выше уровня волн",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Образованы остатками организмов",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Представляют собой уплощенный пласт",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Холмовидное геологическое тело",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "b",
+        "d"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Биогерм — холмовидное тело из остатков организмов, которое не выходило выше уровня волн.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "kuznetsov_gl10.reef_basics_and_types.t3",
+      "type": "gap",
+      "step_id": "kuznetsov_gl10.reef_basics_and_types",
+      "claim_ids": [
+        "kuznetsov_gl10.reef_basics_and_types#c3"
+      ],
+      "prompt": "Неправильное понимание рифов и отнесение к ним карбонатных отложений биоморфной структуры приводит к тому, что поисково-разведочные работы ставятся в областях, где {{1}} нет.",
+      "options": [],
+      "answer": [
+        "рифов"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Ошибочное понимание рифов ведет к поисковым работам там, где рифов нет.",
+      "kind": "transfer"
+    },
+    {
+      "ext": {},
+      "id": "kuznetsov_gl10.reef_basics_and_types.t4",
+      "type": "order",
+      "step_id": "kuznetsov_gl10.reef_basics_and_types",
+      "claim_ids": [
+        "kuznetsov_gl10.reef_basics_and_types#c5",
+        "kuznetsov_gl10.reef_basics_and_types#c6",
+        "kuznetsov_gl10.reef_basics_and_types#c7"
+      ],
+      "prompt": "Расположите геологические объекты в порядке возрастания сложности их строения и масштаба (от простых элементов до крупных массивов):",
+      "options": [
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "Риф",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "Биогерм",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "Биостром",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Биостром и биогерм — это элементы строения, а рифы — более сложные крупные карбонатные массивы.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "kuznetsov_gl10.reef_lithology_and_porosity.t1",
+      "type": "single",
+      "step_id": "kuznetsov_gl10.reef_lithology_and_porosity",
+      "claim_ids": [
+        "kuznetsov_gl10.reef_lithology_and_porosity#c30"
+      ],
+      "prompt": "Что происходит с первичной пористостью рифов в процессе их роста?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Она полностью исчезает из-за растворения скелетов организмов",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Она сохраняется в полном объеме и заполняется нефтью",
+          "misconception": "misc.reef_porosity_preserved"
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Она сильно сокращается из-за цементации и выпадения карбонатов",
+          "misconception": null
+        }
+      ],
+      "answer": "c",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Первичная пористость рифов сокращается в процессе их роста за счет цементации и выпадения карбонатов.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "kuznetsov_gl10.reef_lithology_and_porosity.t2",
+      "type": "multiple",
+      "step_id": "kuznetsov_gl10.reef_lithology_and_porosity",
+      "claim_ids": [
+        "kuznetsov_gl10.reef_lithology_and_porosity#c10",
+        "kuznetsov_gl10.reef_lithology_and_porosity#c18",
+        "kuznetsov_gl10.reef_lithology_and_porosity#c31"
+      ],
+      "prompt": "Какие типы пород и пустотное пространство характерны для рифовых комплексов?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Межзерновая пористость песчаников",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Известняковые брекчии и конгломераты на склонах",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Вторичная каверновая пустотность от выщелачивания",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Биогермные известняки в ядре рифа",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "b",
+        "c",
+        "d"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Рифы состоят из биогермных известняков, обломочных пород на склонах и обладают вторичной каверновой пористостью.",
+      "kind": "transfer"
+    },
+    {
+      "ext": {},
+      "id": "kuznetsov_gl10.reef_lithology_and_porosity.t3",
+      "type": "gap",
+      "step_id": "kuznetsov_gl10.reef_lithology_and_porosity",
+      "claim_ids": [
+        "kuznetsov_gl10.reef_lithology_and_porosity#c35"
+      ],
+      "prompt": "Уникальный дебит скважины 4 Серро-Асуль в Мексике (42000 м³/сут) обусловлен тем, что она вскрыла карстовую {{1}} в мелом рифе, где вместе с нефтью выносились обломки {{2}}.",
+      "options": [],
+      "answer": [
+        "пещеру",
+        "сталактитов"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Скважина вскрыла карстовую пещеру, из которой выносились обломки сталактитов.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "kuznetsov_gl10.reef_lithology_and_porosity.t4",
+      "type": "order",
+      "step_id": "kuznetsov_gl10.reef_lithology_and_porosity",
+      "claim_ids": [
+        "kuznetsov_gl10.reef_lithology_and_porosity#c23"
+      ],
+      "prompt": "Расположите фациальные зоны линейно вытянутой рифовой системы в правильном порядке от глубоководной части к тыловой:",
+      "options": [
+        {
+          "ext": {},
+          "id": "o4",
+          "text": "тыльно-рифовые фации",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "предрифовые фации",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o5",
+          "text": "зарифовые лагунные или мелководно-морские фации",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "фации ядра рифа",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "депрессионные бассейновые фации",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3",
+        "o4",
+        "o5"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Профиль рифовой системы последовательно сменяется от депрессий и предрифовых зон к ядру и лагунам.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "kuznetsov_gl10.reef_reservoirs_structure.t1",
+      "type": "single",
+      "step_id": "kuznetsov_gl10.reef_reservoirs_structure",
+      "claim_ids": [
+        "kuznetsov_gl10.reef_reservoirs_structure#c3"
+      ],
+      "prompt": "Вы строите ML-модель для прогноза пористости в крупном атолловидном рифе. Используя знание о фациальной зональности, куда вы сместите поисковые зоны улучшенных коллекторских свойств относительно центра рифа?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Равномерно по всему разрезу",
+          "misconception": "misc.reef_porosity_preserved"
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "К периферии рифового комплекса",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "В центральную часть массива",
+          "misconception": "misc.model_knows"
+        }
+      ],
+      "answer": "b",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "В крупных атолловидных рифах зоны улучшенных свойств смещаются к периферии.",
+      "kind": "transfer"
+    },
+    {
+      "ext": {},
+      "id": "kuznetsov_gl10.reef_reservoirs_structure.t2",
+      "type": "multiple",
+      "step_id": "kuznetsov_gl10.reef_reservoirs_structure",
+      "claim_ids": [
+        "kuznetsov_gl10.reef_reservoirs_structure#c1",
+        "kuznetsov_gl10.reef_reservoirs_structure#c4"
+      ],
+      "prompt": "Какие особенности пространственного распределения коллекторов в рифовых резервуарах должны учитывать дата-инженеры и аналитики при подготовке данных для моделей?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Слоистое и линзовидно-слоистое расположение пористых пачек",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Абсолютно равномерное распределение пористости во всех точках разреза",
+          "misconception": "misc.reef_porosity_preserved"
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Зависимость распределения свойств от морфолого-генетического типа рифов",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Однородный массивный разрез без изменения свойств по площади",
+          "misconception": "misc.reservoir_void"
+        }
+      ],
+      "answer": [
+        "a",
+        "c"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Рифовые резервуары обладают сложной неоднородностью и зависят от типа рифа.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "kuznetsov_gl10.reef_reservoirs_structure.t3",
+      "type": "gap",
+      "step_id": "kuznetsov_gl10.reef_reservoirs_structure",
+      "claim_ids": [
+        "kuznetsov_gl10.reef_reservoirs_structure#c2"
+      ],
+      "prompt": "В относительно небольших и слабо дифференцированных одиночных куполовидных рифах наилучшими коллекторскими свойствами обладают {{1}} частей массивов.",
+      "options": [],
+      "answer": [
+        "центральные"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "В простых одиночных рифах лучшие коллекторы сосредоточены в центре.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "kuznetsov_gl10.reef_reservoirs_structure.t4",
+      "type": "order",
+      "step_id": "kuznetsov_gl10.reef_reservoirs_structure",
+      "claim_ids": [
+        "kuznetsov_gl10.reef_reservoirs_structure#c2",
+        "kuznetsov_gl10.reef_reservoirs_structure#c3",
+        "kuznetsov_gl10.reef_reservoirs_structure#c4"
+      ],
+      "prompt": "Расположите типы рифовых структур и особенностей строения по мере усложнения характера распределения коллекторов от простых к сложным:",
+      "options": [
+        {
+          "ext": {},
+          "id": "o2",
+          "text": "Крупные плосковершинные и атолловидные рифы со смещением коллекторов к периферии",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o3",
+          "text": "Крупные рифовые массивы со слоистым и линзовидно-слоистым размещением пачек",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "o1",
+          "text": "Небольшие одиночные куполовидные рифы с коллекторами в центре",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "o1",
+        "o2",
+        "o3"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Распределение коллекторов усложняется от простых куполов к крупным атоллу и слоистым массивам.",
+      "kind": "understanding"
+    },
+    {
+      "ext": {},
+      "id": "kuznetsov_gl10.reef_traps_and_exploration.t1",
+      "type": "single",
+      "step_id": "kuznetsov_gl10.reef_traps_and_exploration",
+      "claim_ids": [
+        "kuznetsov_gl10.reef_traps_and_exploration#c25"
+      ],
+      "prompt": "ML-инженер обучает модель по сейсмическим атрибутам для автоматического прогнозирования коллекторских зон в рифовых комплексах. Какой главный фактор ограничивает прямое предсказание внутренних коллекторов по сейсмике без параметрического бурения?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Модель машинного обучения полностью заменяет геологоразведочное бурение.",
+          "misconception": "misc.model_knows"
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Высокая амплитуда на сейсмических профилях всегда гарантирует наличие углеводородов.",
+          "misconception": "misc.amplitude_hc"
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Сейсмические данные не дают прямых указаний на внутреннее распределение пористости и коллекторских зон.",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Сейсмика напрямую измеряет нефтенасыщенность пород в рифовом массиве.",
+          "misconception": "misc.seismic_sees_oil"
+        }
+      ],
+      "answer": "c",
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Сейсмика определяет тип рифа, но не показывает внутреннее распределение пористости без бурения.",
+      "kind": "data"
+    },
+    {
+      "ext": {},
+      "id": "kuznetsov_gl10.reef_traps_and_exploration.t2",
+      "type": "multiple",
+      "step_id": "kuznetsov_gl10.reef_traps_and_exploration",
+      "claim_ids": [
+        "kuznetsov_gl10.reef_traps_and_exploration#c8"
+      ],
+      "prompt": "Какие генетические группы рифовых ловушек выделяются в классификации?",
+      "options": [
+        {
+          "ext": {},
+          "id": "a",
+          "text": "Собственно палеогеоморфологические",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "b",
+          "text": "Литолого-палеогеоморфологические",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "c",
+          "text": "Структурно-палеогеоморфологические",
+          "misconception": null
+        },
+        {
+          "ext": {},
+          "id": "d",
+          "text": "Гидродинамически замкнутые тектонические",
+          "misconception": null
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Классификация включает палеогеоморфологические, литолого-палеогеоморфологические, структурно-палеогеоморфологические и структурно-палеогеографические ловушки с литологическим экранированием.",
+      "kind": "recall"
+    },
+    {
+      "ext": {},
+      "id": "kuznetsov_gl10.reef_traps_and_exploration.t3",
+      "type": "gap",
+      "step_id": "kuznetsov_gl10.reef_traps_and_exploration",
+      "claim_ids": [
+        "kuznetsov_gl10.reef_traps_and_exploration#c32"
+      ],
+      "prompt": "Абсолютное большинство связанных с рифами залежей нефти и газа относится к {{1}} типу, то есть ограничено сверху выпуклой поверхностью ловушки, а снизу плоскостью ВНК или ГВК.",
+      "options": [],
+      "answer": [
+        "массивному"
+      ],
+      "tolerance": null,
+      "unit": null,
+      "explanation": "Большинство рифовых залежей являются массивными, ограниченными сверху ловушкой, а снизу — ВНК или ГВК.",
+      "kind": "understanding"
+    }
+  ]
+}

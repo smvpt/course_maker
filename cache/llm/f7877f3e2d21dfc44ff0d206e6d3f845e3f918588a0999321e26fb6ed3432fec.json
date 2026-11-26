@@ -1,0 +1,10 @@
+{
+ "text": "{\"feasible\":true,\"title\":\"Классификация органогенных построек и рифов\",\"note\":\"Нажми на тип постройки, чтобы узнать её особенности и форму.\",\"layout\":\"chain\",\"parts\":[{\"label\":\"биостром\",\"description\":\"Уплощенная линза или пласт, образованный остатками организмов в прижизненном положении без выражения в рельефе.\",\"claim_id\":\"kuznetsov_gl10.reef_basics_and_types#c5\",\"rock\":null},{\"label\":\"биогерм\",\"description\":\"Холмовидное геологическое тело, возвышавшееся над дном, но не выходившее выше уровня волн.\",\"claim_id\":\"kuznetsov_gl10.reef_basics_and_types#c6\",\"rock\":null},{\"label\":\"рифы\",\"description\":\"Сложные геологические образования, представляющие собой карбонатный массив из организмов и продуктов их разрушения, возвышающийся над окружающими осадками.\",\"claim_id\":\"kuznetsov_gl10.reef_basics_and_types#c7\",\"rock\":null}]}",
+ "model": "gemini/gemini-3.5-flash-lite",
+ "model_requested": "gemini/gemini-3.5-flash-lite",
+ "prompt": "course/scheme",
+ "tokens_in": 3511,
+ "tokens_out": 277,
+ "money_usd": 0.0017458,
+ "attempts": 1
+}
