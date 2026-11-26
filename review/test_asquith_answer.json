@@ -32,16 +32,6 @@
     },
     {
       "ext": {},
-      "target": "C017",
-      "category": "other",
-      "severity": "significant",
-      "problem": "В элементе утверждается, что показатель n в тексте ошибочно назван показателем цементации, хотя n — это показатель насыщенности (saturation exponent), а показатель цементации — это m. В книге n везде корректно назван saturation exponent, а m — cementation exponent.",
-      "fix": "Для индекса принято n = 2,0, где n обозначает показатель насыщенности (saturation exponent).",
-      "page_pdf": 127,
-      "quote": "The cementation exponent ($n$) is assumed to be 2.0"
-    },
-    {
-      "ext": {},
       "target": "C025",
       "category": "overgeneralization",
       "severity": "significant",
@@ -142,16 +132,6 @@
     },
     {
       "ext": {},
-      "target": "L11",
-      "category": "other",
-      "severity": "significant",
-      "problem": "Фраза искажает логику интерпретации кривых: в тексте главы кривые (например, Rxo/Rt и SP, или Sxo и Sw) используются для оценки подвижности углеводородов и выделения пластов, а не объявляются непригодными для суда 'по одним кривым'.",
-      "fix": "Сравнение кривых позволяет определить подвижность углеводородов.",
-      "page_pdf": 127,
-      "quote": "Water saturation of the flushed zone ($S_{xo}$) can be used as an indicator of hydrocarbon moveability."
-    },
-    {
-      "ext": {},
       "target": "S03",
       "category": "sign_flip",
       "severity": "critical",
@@ -169,6 +149,15 @@
       "fix": "Изменить метку происхождения кадра в метаданных с «реальные данные» на «симуляция».",
       "page_pdf": 127,
       "quote": null
+    },
+    {
+      "target": "C030",
+      "category": "measured_vs_inferred",
+      "severity": "significant",
+      "problem": "Минимальное Rwa названо измеренным сопротивлением пластовой воды, но Rwa — расчётная величина, и автор лишь допускает, что её минимум ближе всего к Rw.",
+      "fix": "Минимальное значение Rwa принимают за ближайшее приближение к сопротивлению пластовой воды Rw; значения выше минимума указывают на углеводороды.",
+      "page_pdf": 129,
+      "quote": "The assumption is that this lowest value of $R_{wa}$ is the closest approximation to the true formation water resistivity ($R_w$)"
     }
   ]
 }
