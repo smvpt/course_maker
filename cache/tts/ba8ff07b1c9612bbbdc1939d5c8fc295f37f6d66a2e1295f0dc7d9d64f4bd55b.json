@@ -1,0 +1,98 @@
+{
+  "key": "ba8ff07b1c9612bbbdc1939d5c8fc295f37f6d66a2e1295f0dc7d9d64f4bd55b",
+  "text": "Это комплексная интерпретация каротажа: показания приборов помогают оценивать свойства коллектора, но требуют проверки условий.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 2500000,
+      "text": "Это"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 3500000,
+      "duration": 5900000,
+      "text": "комплексная"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 9400000,
+      "duration": 6200000,
+      "text": "интерпретация"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 15600000,
+      "duration": 4600000,
+      "text": "каротажа"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 21200000,
+      "duration": 4300000,
+      "text": "показания"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 25500000,
+      "duration": 3700000,
+      "text": "приборов"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 29200000,
+      "duration": 3700000,
+      "text": "помогают"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 32900000,
+      "duration": 3500000,
+      "text": "оценивать"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 36400000,
+      "duration": 3100000,
+      "text": "свойства"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 39500000,
+      "duration": 4500000,
+      "text": "коллектора"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 46200000,
+      "duration": 1000000,
+      "text": "но"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 47200000,
+      "duration": 3900000,
+      "text": "требуют"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 51100000,
+      "duration": 4000000,
+      "text": "проверки"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 55100000,
+      "duration": 5100000,
+      "text": "условий"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "key": "ae20036c7f9797cfe509aa54a09b4fabbd33a3b26d96ceefe42e249f4aedd121",
+  "text": "Высокое сопротивление. Значит, нашли нефть?",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 5500000,
+      "text": "Высокое"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 6500000,
+      "duration": 8900000,
+      "text": "сопротивление"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 22700000,
+      "duration": 5800000,
+      "text": "Значит"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 30400000,
+      "duration": 3400000,
+      "text": "нашли"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 33800000,
+      "duration": 4300000,
+      "text": "нефть"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "key": "6245adab79651c38d039fb0e846cbe5233925c0dd24d48c9465e3f1b8d1c74f6",
+  "text": "Как думаете, пунктирная граница будет удаляться от скважины с постоянной скоростью?",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 2300000,
+      "text": "Как"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 3300000,
+      "duration": 4600000,
+      "text": "думаете"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8900000,
+      "duration": 4900000,
+      "text": "пунктирная"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 13800000,
+      "duration": 3800000,
+      "text": "граница"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 17600000,
+      "duration": 2200000,
+      "text": "будет"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 19800000,
+      "duration": 3800000,
+      "text": "удаляться"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 23600000,
+      "duration": 700000,
+      "text": "от"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 24300000,
+      "duration": 3500000,
+      "text": "скважины"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 27800000,
+      "duration": 500000,
+      "text": "с"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 28300000,
+      "duration": 4500000,
+      "text": "постоянной"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 32800000,
+      "duration": 5200000,
+      "text": "скоростью"
+    }
+  ]
+}

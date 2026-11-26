@@ -1,0 +1,92 @@
+{
+  "key": "22478c5330b537c796807b002b6ef08620daf9c033326aea06db1230cbe0e4da",
+  "text": "По одной кривой легко сделать поспешный вывод. Латышова предлагает рассматривать данные в комплексе.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 1400000,
+      "text": "По"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 2400000,
+      "duration": 2300000,
+      "text": "одной"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 4700000,
+      "duration": 2700000,
+      "text": "кривой"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 7400000,
+      "duration": 2800000,
+      "text": "легко"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 10200000,
+      "duration": 3200000,
+      "text": "сделать"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 13400000,
+      "duration": 4500000,
+      "text": "поспешный"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 17900000,
+      "duration": 3900000,
+      "text": "вывод"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 29000000,
+      "duration": 5000000,
+      "text": "Латышова"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 34000000,
+      "duration": 4300000,
+      "text": "предлагает"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 38300000,
+      "duration": 4900000,
+      "text": "рассматривать"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 43200000,
+      "duration": 3500000,
+      "text": "данные"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 46700000,
+      "duration": 500000,
+      "text": "в"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 47200000,
+      "duration": 5400000,
+      "text": "комплексе"
+    }
+  ]
+}

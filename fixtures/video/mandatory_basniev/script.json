@@ -1,0 +1,116 @@
+{
+  "ext": {
+    "video": {
+      "manual_preparation": true,
+      "mentor_approved": false
+    }
+  },
+  "video_id": "basniev_gl23-24.pressure_diffusion.short",
+  "node_id": "basniev_gl23-24.pressure_diffusion",
+  "format": "short",
+  "phrases": [
+    {
+      "ext": {},
+      "id": "p1",
+      "text": "Скважину пустили. Давление меняется везде сразу?",
+      "on_screen": "Когда пласт почувствует скважину?",
+      "beat": "hook",
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p2",
+      "text": "После пуска перераспределяется давление. Но это не резкий фронт, движущийся с постоянной скоростью.",
+      "on_screen": "Давление перераспределяется постепенно",
+      "beat": "problem",
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c3",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p3",
+      "text": "Посмотрим на карту пласта и профиль вдоль линии: они рассчитаны для одного момента.",
+      "on_screen": "Карта и профиль синхронны",
+      "beat": "solution",
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c3",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p4",
+      "text": "Этот процесс описывает пьезопроводность. В основе расчёта — решение из книги Басниева.",
+      "on_screen": "Пьезопроводность пласта",
+      "beat": "naming",
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c2",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p5",
+      "text": "Радиус скважины и пьезопроводность взяты из примера книги. Падение показано в относительных единицах.",
+      "on_screen": "Относительное падение, не измерение",
+      "beat": "solution",
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c4",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p6",
+      "text": "Как думаете, пунктирная граница будет удаляться от скважины с постоянной скоростью?",
+      "on_screen": "Граница движется равномерно?",
+      "beat": "prediction",
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c5",
+      "is_analogy": false,
+      "pause_after_s": 1.2
+    },
+    {
+      "ext": {},
+      "id": "p7",
+      "text": "Нет. При выбранном постоянном пороге её радиус растёт как корень из времени.",
+      "on_screen": "Радиус растёт всё медленнее",
+      "beat": "data",
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c3",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p8",
+      "text": "Пунктир — условный порог падения, не край возмущения. Специалист учитывает время после пуска.",
+      "on_screen": "Сигнал: падение. Вывод: влияние меняется",
+      "beat": "decision",
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c3",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p9",
+      "text": "Теперь истинный масштаб: скважина меньше точки. Модель предполагает однородный пласт без внешней границы.",
+      "on_screen": "Истинный масштаб. Учитывайте допущения",
+      "beat": "final",
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c6",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p10",
+      "text": "Как при том же времени изменится зона влияния, если пьезопроводность пласта станет больше?",
+      "on_screen": "А если пьезопроводность больше?",
+      "beat": "transfer",
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c5",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    }
+  ],
+  "prediction_question": "Как думаете, пунктирная граница будет удаляться от скважины с постоянной скоростью?",
+  "transfer_question": "Как при том же времени изменится зона влияния, если пьезопроводность пласта станет больше?",
+  "data_it_bridge": "Одно состояние управляет изображением и данными; наблюдение отделено от решения."
+}

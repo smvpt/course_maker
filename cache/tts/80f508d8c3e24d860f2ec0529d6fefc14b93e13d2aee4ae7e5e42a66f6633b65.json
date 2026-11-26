@@ -1,0 +1,92 @@
+{
+  "key": "80f508d8c3e24d860f2ec0529d6fefc14b93e13d2aee4ae7e5e42a66f6633b65",
+  "text": "Теперь истинный масштаб: скважина меньше точки. Модель предполагает однородный пласт без внешней границы.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 3500000,
+      "text": "Теперь"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 4500000,
+      "duration": 3600000,
+      "text": "истинный"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8100000,
+      "duration": 3800000,
+      "text": "масштаб"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 12800000,
+      "duration": 4800000,
+      "text": "скважина"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 17600000,
+      "duration": 2900000,
+      "text": "меньше"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 20500000,
+      "duration": 4500000,
+      "text": "точки"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 31700000,
+      "duration": 4000000,
+      "text": "Модель"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 35700000,
+      "duration": 5300000,
+      "text": "предполагает"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 41000000,
+      "duration": 4200000,
+      "text": "однородный"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 45200000,
+      "duration": 3100000,
+      "text": "пласт"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 48300000,
+      "duration": 1600000,
+      "text": "без"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 49900000,
+      "duration": 3500000,
+      "text": "внешней"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 53400000,
+      "duration": 5200000,
+      "text": "границы"
+    }
+  ]
+}

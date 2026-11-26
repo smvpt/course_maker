@@ -1,0 +1,92 @@
+{
+  "key": "09a9ec721669223524214ea52ec5b0b9d348279e7c4673d0f18475e2304b2d99",
+  "text": "После пуска перераспределяется давление. Но это не резкий фронт, движущийся с постоянной скоростью.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 3200000,
+      "text": "После"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 4200000,
+      "duration": 3000000,
+      "text": "пуска"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 7200000,
+      "duration": 7400000,
+      "text": "перераспределяется"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 14600000,
+      "duration": 6200000,
+      "text": "давление"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 28100000,
+      "duration": 2100000,
+      "text": "Но"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 30200000,
+      "duration": 1900000,
+      "text": "это"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 32100000,
+      "duration": 900000,
+      "text": "не"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 33000000,
+      "duration": 2600000,
+      "text": "резкий"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 35600000,
+      "duration": 3000000,
+      "text": "фронт"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 41000000,
+      "duration": 6100000,
+      "text": "движущийся"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 47100000,
+      "duration": 500000,
+      "text": "с"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 47600000,
+      "duration": 4900000,
+      "text": "постоянной"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 52500000,
+      "duration": 6000000,
+      "text": "скоростью"
+    }
+  ]
+}

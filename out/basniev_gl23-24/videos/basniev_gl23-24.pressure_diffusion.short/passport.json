@@ -1,0 +1,741 @@
+{
+  "ext": {},
+  "video_id": "basniev_gl23-24.pressure_diffusion.short",
+  "node_id": "basniev_gl23-24.pressure_diffusion",
+  "node_card": {
+    "node_id": "basniev_gl23-24.pressure_diffusion",
+    "title": "Как распространяется падение давления",
+    "title_novice": null,
+    "difficulty": {
+      "ext": {},
+      "primary": "Ф",
+      "secondary": null
+    },
+    "threshold": true,
+    "main": "После пуска скважины с постоянным дебитом возникает неустановившийся радиальный поток.",
+    "pages": [
+      481,
+      488,
+      489,
+      491,
+      492
+    ],
+    "terms_introduced": [
+      "пьезопроводность",
+      "давление",
+      "скважина"
+    ],
+    "claims": [
+      {
+        "id": "basniev_gl23-24.pressure_diffusion#c1",
+        "kind": "inference",
+        "page_pdf": 488
+      },
+      {
+        "id": "basniev_gl23-24.pressure_diffusion#c2",
+        "kind": "inference",
+        "page_pdf": 481
+      },
+      {
+        "id": "basniev_gl23-24.pressure_diffusion#c3",
+        "kind": "inference",
+        "page_pdf": 491
+      },
+      {
+        "id": "basniev_gl23-24.pressure_diffusion#c4",
+        "kind": "inference",
+        "page_pdf": 492
+      },
+      {
+        "id": "basniev_gl23-24.pressure_diffusion#c5",
+        "kind": "inference",
+        "page_pdf": 489
+      },
+      {
+        "id": "basniev_gl23-24.pressure_diffusion#c6",
+        "kind": "inference",
+        "page_pdf": 492
+      }
+    ]
+  },
+  "script": [
+    {
+      "ext": {},
+      "t_start": 0.3,
+      "t_end": 4.644,
+      "text": "Скважину пустили. Давление меняется везде сразу?",
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c1",
+      "is_analogy": false,
+      "on_screen": "Когда пласт почувствует скважину?",
+      "phrase_id": "p1",
+      "beat": "hook",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 4.644,
+      "t_end": 11.196,
+      "text": "После пуска перераспределяется давление. Но это не резкий фронт, движущийся с постоянной скоростью.",
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c3",
+      "is_analogy": false,
+      "on_screen": "Давление перераспределяется постепенно",
+      "phrase_id": "p2",
+      "beat": "problem",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 11.196,
+      "t_end": 15.804,
+      "text": "Посмотрим на карту пласта и профиль вдоль линии: они рассчитаны для одного момента.",
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c3",
+      "is_analogy": false,
+      "on_screen": "Карта и профиль синхронны",
+      "phrase_id": "p3",
+      "beat": "solution",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 15.804,
+      "t_end": 21.996,
+      "text": "Этот процесс описывает пьезопроводность. В основе расчёта — решение из книги Басниева.",
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c2",
+      "is_analogy": false,
+      "on_screen": "Пьезопроводность пласта",
+      "phrase_id": "p4",
+      "beat": "naming",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 21.996,
+      "t_end": 28.62,
+      "text": "Радиус скважины и пьезопроводность взяты из примера книги. Падение показано в относительных единицах.",
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c4",
+      "is_analogy": false,
+      "on_screen": "Относительное падение, не измерение",
+      "phrase_id": "p5",
+      "beat": "solution",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 28.62,
+      "t_end": 33.108,
+      "text": "Как думаете, пунктирная граница будет удаляться от скважины с постоянной скоростью?",
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c5",
+      "is_analogy": false,
+      "on_screen": "Граница движется равномерно?",
+      "phrase_id": "p6",
+      "beat": "prediction",
+      "pause_after_s": 1.2
+    },
+    {
+      "ext": {},
+      "t_start": 34.308,
+      "t_end": 39.636,
+      "text": "Нет. При выбранном постоянном пороге её радиус растёт как корень из времени.",
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c3",
+      "is_analogy": false,
+      "on_screen": "Радиус растёт всё медленнее",
+      "phrase_id": "p7",
+      "beat": "data",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 39.636,
+      "t_end": 46.14,
+      "text": "Пунктир — условный порог падения, не край возмущения. Специалист учитывает время после пуска.",
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c3",
+      "is_analogy": false,
+      "on_screen": "Сигнал: падение. Вывод: влияние меняется",
+      "phrase_id": "p8",
+      "beat": "decision",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 46.14,
+      "t_end": 52.716,
+      "text": "Теперь истинный масштаб: скважина меньше точки. Модель предполагает однородный пласт без внешней границы.",
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c6",
+      "is_analogy": false,
+      "on_screen": "Истинный масштаб. Учитывайте допущения",
+      "phrase_id": "p9",
+      "beat": "final",
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "t_start": 52.716,
+      "t_end": 57.636,
+      "text": "Как при том же времени изменится зона влияния, если пьезопроводность пласта станет больше?",
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c5",
+      "is_analogy": false,
+      "on_screen": "А если пьезопроводность больше?",
+      "phrase_id": "p10",
+      "beat": "transfer",
+      "pause_after_s": 0.0
+    }
+  ],
+  "sources": [
+    {
+      "ext": {},
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c1",
+      "page_or_dataset": "стр. 488",
+      "quote": "Пусть в неограниченном горизонтальном пласте постоянной толщины $h$ имеется добывающая скважина «нулевого» радиуса (точечный сток). Начальное пластовое давление во всем пласте одинаково и равно $p_{\\mathrm{k}}$. В момент времени $t = 0$ скважина пущена в эксплуатацию с постоянным объемным дебитом $Q_0$. В результате в пласте образуется неустановившийся плоскорадиальный поток упругой жидкости.",
+      "claim_text": "После пуска скважины с постоянным дебитом возникает неустановившийся радиальный поток.",
+      "kind": "inference",
+      "source_kind": "text",
+      "by_model": true
+    },
+    {
+      "ext": {},
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c3",
+      "page_or_dataset": "стр. 491",
+      "quote": "$$p(r, t) = p_\\kappa - \\frac{Q_0 \\mu}{4 \\pi k h} \\left[ - \\text{Ei} \\left( - \\frac{r^2}{4 \\kappa t} \\right) \\right]. \\quad (23.52)$$",
+      "claim_text": "При постоянных параметрах одинаковому относительному падению соответствует радиус, пропорциональный корню из времени.",
+      "kind": "inference",
+      "source_kind": "formula",
+      "by_model": true
+    },
+    {
+      "ext": {},
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c2",
+      "page_or_dataset": "стр. 481",
+      "quote": "упругой пористой среде, В.Н.Щелкачев назвал коэффициентом пьезопроводности пласта по аналогии с коэффициентом температуропроводности в уравнении теплопроводности.",
+      "claim_text": "Перераспределение давления описывает пьезопроводность.",
+      "kind": "inference",
+      "source_kind": "text",
+      "by_model": true
+    },
+    {
+      "ext": {},
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c4",
+      "page_or_dataset": "стр. 492",
+      "quote": "Оценим практическое значение этой погрешности. Допустим, что $\\kappa = 1$ м$^2$/с, $r_c = 0,1$ м. Тогда, полагая $f_0 = 100$, найдем",
+      "claim_text": "В примере книги пьезопроводность 1 м²/с, радиус скважины 0,1 м.",
+      "kind": "inference",
+      "source_kind": "text",
+      "by_model": true
+    },
+    {
+      "ext": {},
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c5",
+      "page_or_dataset": "стр. 489",
+      "quote": "$$P = f \\left( \\xi, \\frac{Q_0 \\mu}{2\\pi k h p_\\kappa} \\right), \\quad \\xi = \\frac{r}{2\\sqrt{\\kappa t}}. \\quad (23.43)$$",
+      "claim_text": "Автомодельная координата пропорциональна расстоянию, делённому на корень из произведения пьезопроводности и времени.",
+      "kind": "inference",
+      "source_kind": "formula",
+      "by_model": true
+    },
+    {
+      "ext": {},
+      "claim_id": "basniev_gl23-24.pressure_diffusion#c6",
+      "page_or_dataset": "стр. 492",
+      "quote": "Строго говоря, основная формула теории упругого режима (23.52) справедлива лишь для случая точечного стока (при $r_c = 0$) в неограниченном пласте ($R_k = \\infty$).",
+      "claim_text": "Решение для точечного стока и неограниченного пласта имеет пределы применимости.",
+      "kind": "inference",
+      "source_kind": "text",
+      "by_model": true
+    }
+  ],
+  "scene_spec": "out/basniev_gl23-24/videos/basniev_gl23-24.pressure_diffusion.short/scene_spec.json",
+  "frames": [
+    {
+      "ext": {
+        "shot_id": "s1",
+        "file": "out/basniev_gl23-24/videos/basniev_gl23-24.pressure_diffusion.short/frames/s1.png"
+      },
+      "t": 2.472,
+      "class": "B",
+      "label": "симуляция"
+    },
+    {
+      "ext": {
+        "shot_id": "s2",
+        "file": "out/basniev_gl23-24/videos/basniev_gl23-24.pressure_diffusion.short/frames/s2.png"
+      },
+      "t": 7.92,
+      "class": "B",
+      "label": "симуляция"
+    },
+    {
+      "ext": {
+        "shot_id": "s3",
+        "file": "out/basniev_gl23-24/videos/basniev_gl23-24.pressure_diffusion.short/frames/s3.png"
+      },
+      "t": 13.5,
+      "class": "B",
+      "label": "симуляция"
+    },
+    {
+      "ext": {
+        "shot_id": "s4",
+        "file": "out/basniev_gl23-24/videos/basniev_gl23-24.pressure_diffusion.short/frames/s4.png"
+      },
+      "t": 18.9,
+      "class": "B",
+      "label": "симуляция"
+    },
+    {
+      "ext": {
+        "shot_id": "s5",
+        "file": "out/basniev_gl23-24/videos/basniev_gl23-24.pressure_diffusion.short/frames/s5.png"
+      },
+      "t": 25.308,
+      "class": "B",
+      "label": "симуляция"
+    },
+    {
+      "ext": {
+        "shot_id": "s6",
+        "file": "out/basniev_gl23-24/videos/basniev_gl23-24.pressure_diffusion.short/frames/s6.png"
+      },
+      "t": 31.464,
+      "class": "B",
+      "label": "симуляция"
+    },
+    {
+      "ext": {
+        "shot_id": "s7",
+        "file": "out/basniev_gl23-24/videos/basniev_gl23-24.pressure_diffusion.short/frames/s7.png"
+      },
+      "t": 36.972,
+      "class": "B",
+      "label": "симуляция"
+    },
+    {
+      "ext": {
+        "shot_id": "s8",
+        "file": "out/basniev_gl23-24/videos/basniev_gl23-24.pressure_diffusion.short/frames/s8.png"
+      },
+      "t": 42.888,
+      "class": "B",
+      "label": "симуляция"
+    },
+    {
+      "ext": {
+        "shot_id": "s9",
+        "file": "out/basniev_gl23-24/videos/basniev_gl23-24.pressure_diffusion.short/frames/s9.png"
+      },
+      "t": 49.428,
+      "class": "B",
+      "label": "симуляция"
+    },
+    {
+      "ext": {
+        "shot_id": "s10",
+        "file": "out/basniev_gl23-24/videos/basniev_gl23-24.pressure_diffusion.short/frames/s10.png"
+      },
+      "t": 55.176,
+      "class": "B",
+      "label": "симуляция"
+    },
+    {
+      "ext": {
+        "shot_id": "s10",
+        "file": "out/basniev_gl23-24/videos/basniev_gl23-24.pressure_diffusion.short/frames/final.png"
+      },
+      "t": 58.586,
+      "class": "B",
+      "label": "симуляция"
+    }
+  ],
+  "exaggerations": [
+    "значок скважины увеличен в 100 раз"
+  ],
+  "prediction_question": "Как думаете, пунктирная граница будет удаляться от скважины с постоянной скоростью?",
+  "transfer_question": "Как при том же времени изменится зона влияния, если пьезопроводность пласта станет больше?",
+  "data_it_bridge": "Одно состояние управляет изображением и данными; наблюдение отделено от решения.",
+  "physics_checklist": [
+    {
+      "ext": {},
+      "item": "pc.layers_order",
+      "answer": "н/п",
+      "note": "T1 показывает однородный пласт в плане, слои не рисуются",
+      "status": "не применимо",
+      "text": "Порядок слоёв сохраняется во всех кадрах; молодые лежат на старых, если не показан надвиг или опрокидывание."
+    },
+    {
+      "ext": {},
+      "item": "pc.fault_consistent",
+      "answer": "н/п",
+      "note": "разломы не рисуются",
+      "status": "не применимо",
+      "text": "Разлом смещает слои согласованно по обе стороны; смещение не исчезает и не меняет знак между кадрами."
+    },
+    {
+      "ext": {},
+      "item": "pc.unconformity_event",
+      "answer": "н/п",
+      "note": "несогласия не рисуются",
+      "status": "не применимо",
+      "text": "Несогласие показано как событие: размыв, перерыв, новое накопление."
+    },
+    {
+      "ext": {},
+      "item": "pc.fluids_in_pores",
+      "answer": "нет",
+      "note": "не проверено: нужен просмотр ментором. «нет» стоит потому, что схема не допускает значения «не проверено»; это не найденная ошибка",
+      "status": "не проверено",
+      "text": "Нефть и газ находятся в порах породы, а не в полостях и озёрах."
+    },
+    {
+      "ext": {},
+      "item": "pc.gas_oil_water",
+      "answer": "н/п",
+      "note": "флюидальные контакты не рисуются",
+      "status": "не применимо",
+      "text": "Газ над нефтью, нефть над водой; контакт горизонтален или оговорено иное."
+    },
+    {
+      "ext": {},
+      "item": "pc.flow_high_to_low",
+      "answer": "нет",
+      "note": "не проверено: нужен просмотр ментором. «нет» стоит потому, что схема не допускает значения «не проверено»; это не найденная ошибка",
+      "status": "не проверено",
+      "text": "Флюид движется от высокого давления к низкому; ловушка имеет покрышку."
+    },
+    {
+      "ext": {},
+      "item": "pc.causality",
+      "answer": "нет",
+      "note": "не проверено: нужен просмотр ментором. «нет» стоит потому, что схема не допускает значения «не проверено»; это не найденная ошибка",
+      "status": "не проверено",
+      "text": "Порядок операций и событий верный: причина раньше следствия."
+    },
+    {
+      "ext": {},
+      "item": "pc.balance",
+      "answer": "нет",
+      "note": "не проверено: нужен просмотр ментором. «нет» стоит потому, что схема не допускает значения «не проверено»; это не найденная ошибка",
+      "status": "не проверено",
+      "text": "Соблюдается баланс (масса, объём)."
+    },
+    {
+      "ext": {},
+      "item": "pc.views_consistent",
+      "answer": "да",
+      "note": "по построению: карта и график — одна функция PressureModel.delta_p от одного времени (тест test_field_and_graph_come_from_one_function)",
+      "status": "проверено автоматически",
+      "check": "one_state_variable",
+      "text": "Разрез, план и поверхность показывают одно и то же состояние."
+    },
+    {
+      "ext": {},
+      "item": "pc.tool_mechanism",
+      "answer": "н/п",
+      "note": "прибор не показывается",
+      "status": "не применимо",
+      "text": "Механизм прибора верный (ГК — собственное излучение, не «отражение»)."
+    },
+    {
+      "ext": {},
+      "item": "pc.signal_vs_property",
+      "answer": "н/п",
+      "note": "измерений прибором нет — показан расчёт",
+      "status": "не применимо",
+      "text": "Сигнал отделён от свойства: прибор измеряет отклик, свойство получают интерпретацией."
+    },
+    {
+      "ext": {},
+      "item": "pc.applicability",
+      "answer": "нет",
+      "note": "не проверено: нужен просмотр ментором. «нет» стоит потому, что схема не допускает значения «не проверено»; это не найденная ошибка",
+      "status": "не проверено",
+      "text": "Названы условия применимости правила (напр., знак ПС зависит от соотношения минерализаций)."
+    },
+    {
+      "ext": {},
+      "item": "pc.curve_sync",
+      "answer": "да",
+      "note": "по построению: карта и график — одна функция PressureModel.delta_p от одного времени (тест test_field_and_graph_come_from_one_function)",
+      "status": "проверено автоматически",
+      "check": "one_state_variable",
+      "text": "Кривая синхронна с прибором и вычислена из той же модели."
+    },
+    {
+      "ext": {},
+      "item": "pc.plausible_numbers",
+      "answer": "нет",
+      "note": "не проверено: нужен просмотр ментором. «нет» стоит потому, что схема не допускает значения «не проверено»; это не найденная ошибка",
+      "status": "не проверено",
+      "text": "Глубины, температуры, давления и размеры правдоподобны."
+    },
+    {
+      "ext": {},
+      "item": "pc.exaggeration_named",
+      "answer": "да",
+      "note": "все плашки и преувеличения с числом; кадр истинного масштаба — s9",
+      "status": "проверено автоматически",
+      "check": "plaques_have_number",
+      "text": "Преувеличения названы числом, а не только общей плашкой."
+    },
+    {
+      "ext": {},
+      "item": "pc.objects_stable",
+      "answer": "нет",
+      "note": "не проверено: нужен просмотр ментором. «нет» стоит потому, что схема не допускает значения «не проверено»; это не найденная ошибка",
+      "status": "не проверено",
+      "text": "Оборудование и прибор не меняют конструкцию между кадрами."
+    },
+    {
+      "ext": {},
+      "item": "pc.objects_plausible",
+      "answer": "нет",
+      "note": "не проверено: нужен просмотр ментором. «нет» стоит потому, что схема не допускает значения «не проверено»; это не найденная ошибка",
+      "status": "не проверено",
+      "text": "Объекты не совмещены неправдоподобно."
+    },
+    {
+      "ext": {},
+      "item": "pc.depth_down",
+      "answer": "н/п",
+      "note": "план пласта: оси глубины нет",
+      "status": "не применимо",
+      "text": "Глубина растёт вниз; шкалы, единицы и полярность подписаны."
+    },
+    {
+      "ext": {},
+      "item": "pc.label_matches",
+      "answer": "да",
+      "note": "t1_template.prepare: все кадры A/B с меткой «симуляция» — кадр считается моделью",
+      "status": "проверено автоматически",
+      "check": "label_matches_source",
+      "text": "Вертикальное преувеличение подписано числом; метка происхождения соответствует тому, как сделан кадр."
+    },
+    {
+      "ext": {},
+      "item": "pc.modern_or_historic",
+      "answer": "нет",
+      "note": "не проверено: нужен просмотр ментором. «нет» стоит потому, что схема не допускает значения «не проверено»; это не найденная ошибка",
+      "status": "не проверено",
+      "text": "Оборудование современное или помечено как историческое."
+    },
+    {
+      "ext": {},
+      "item": "pc.hydrostatic",
+      "answer": "н/п",
+      "note": "ствол и раствор не показываются",
+      "status": "не применимо",
+      "text": "Гидростатическое давление растёт с глубиной и плотностью раствора; при циркуляции давление на забой выше статического."
+    },
+    {
+      "ext": {},
+      "item": "pc.gas_closed_well",
+      "answer": "н/п",
+      "note": "ствол не показывается",
+      "status": "не применимо",
+      "text": "Газ в закрытой скважине почти не может расшириться и, всплывая, поднимает давление по всему стволу; в открытой скважине газ расширяется, сильнее всего у устья."
+    },
+    {
+      "ext": {},
+      "item": "pc.pit_gain",
+      "answer": "н/п",
+      "note": "приёмные ёмкости не показываются",
+      "status": "не применимо",
+      "text": "Рост объёма раствора в приёмной ёмкости — признак притока из пласта, уменьшение — признак поглощения."
+    },
+    {
+      "ext": {},
+      "item": "pc.well_construction",
+      "answer": "н/п",
+      "note": "конструкция скважины не рисуется",
+      "status": "не применимо",
+      "text": "Колонны, пакеры и оборудование на своих местах во всех кадрах; конструкция скважины не меняется между видами."
+    }
+  ],
+  "audio_check": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "tempo": {
+      "wpm": 146.0,
+      "target": [
+        110,
+        150
+      ],
+      "ok": true,
+      "method": "слова сценария / время от первого до последнего слова фраз по меткам TTS"
+    },
+    "loudness": {
+      "integrated_lufs": -16.0,
+      "true_peak_dbtp": -1.5,
+      "target_lufs": -16.0,
+      "ok": true,
+      "no_clipping": true
+    },
+    "trailing_silence_s": 1.555,
+    "last_phrase_inside": true,
+    "asr": {
+      "status": "проверено автоматически",
+      "engine": "faster-whisper",
+      "version": "1.2.1",
+      "model": "small",
+      "language": "ru",
+      "wer": 0.0342,
+      "limit": 0.1,
+      "ok": true,
+      "n_ref_words": 117,
+      "substitutions": 4,
+      "deletions": 0,
+      "insertions": 0,
+      "errors": [
+        {
+          "type": "sub",
+          "phrase_id": "p4",
+          "expected": "пьезопроводность",
+          "heard": "пизопроводность"
+        },
+        {
+          "type": "sub",
+          "phrase_id": "p4",
+          "expected": "басниева",
+          "heard": "босниева"
+        },
+        {
+          "type": "sub",
+          "phrase_id": "p5",
+          "expected": "пьезопроводность",
+          "heard": "пизопроводность"
+        },
+        {
+          "type": "sub",
+          "phrase_id": "p10",
+          "expected": "пьезопроводность",
+          "heard": "пизопроводность"
+        }
+      ],
+      "per_phrase": {
+        "p1": 0,
+        "p2": 0,
+        "p3": 0,
+        "p4": 2,
+        "p5": 1,
+        "p6": 0,
+        "p7": 0,
+        "p8": 0,
+        "p9": 0,
+        "p10": 1
+      },
+      "report": "asr_report.json"
+    },
+    "sync": {
+      "method": "слова: распознавание готового MP4 против меток слов TTS в таймлайне ролика; по слову проверяются обе границы; одна за порогом — «не проверено», кроме обоснованных исключений (boundary_exceptions)",
+      "matched_words": 113,
+      "measure": "по слову — обе границы (начало и конец)",
+      "median_abs_s": 0.044,
+      "p95_abs_s": 0.186,
+      "max_abs_s": 0.428,
+      "desynced_words": [],
+      "uncertain_words": [],
+      "boundary_exceptions": [
+        {
+          "word": "как",
+          "tts_start": 28.72,
+          "start_diff": -0.9,
+          "end_diff": -0.05,
+          "reason": "начало первого слова сегмента распознавание поставило в тишину перед ним (после конца предыдущего слова по меткам TTS) — звука там нет; конец слова совпал"
+        }
+      ],
+      "unmeasured_words": 0,
+      "limit_s": 0.5,
+      "ok": true,
+      "status": "проверено автоматически",
+      "frame_vs_voice": {
+        "status": "не проверено",
+        "reason": "смысловое соответствие кадра фразе проверяет человек; подписи и анимация привязаны к тому же звуковому таймлайну по построению"
+      }
+    },
+    "terms": {
+      "status": "проверено автоматически",
+      "method": "каждое употребление термина в сценарии — по выравниванию сценария и распознавания",
+      "terms_in_script": [
+        "пьезопроводность",
+        "давление",
+        "скважина"
+      ],
+      "occurrences": [
+        {
+          "term": "пьезопроводность",
+          "phrase_id": "p4",
+          "ok": false,
+          "heard": [
+            "пизопроводность"
+          ]
+        },
+        {
+          "term": "пьезопроводность",
+          "phrase_id": "p5",
+          "ok": false,
+          "heard": [
+            "пизопроводность"
+          ]
+        },
+        {
+          "term": "пьезопроводность",
+          "phrase_id": "p10",
+          "ok": false,
+          "heard": [
+            "пизопроводность"
+          ]
+        },
+        {
+          "term": "давление",
+          "phrase_id": "p1",
+          "ok": true,
+          "heard": [
+            "давление"
+          ]
+        },
+        {
+          "term": "давление",
+          "phrase_id": "p2",
+          "ok": true,
+          "heard": [
+            "давление"
+          ]
+        },
+        {
+          "term": "скважина",
+          "phrase_id": "p9",
+          "ok": true,
+          "heard": [
+            "скважина"
+          ]
+        }
+      ],
+      "not_recognized": [
+        "пьезопроводность"
+      ],
+      "ok": false
+    },
+    "stress": {
+      "status": "не проверено",
+      "reason": "распознавание ударения не проверяет; словаря ударений домена в пакете нет",
+      "to_listen": [
+        "басниева",
+        "пьезопроводность"
+      ]
+    },
+    "listened_by_human": false,
+    "human_phrase_reviews": [
+      {
+        "reviewer": "user in Codex conversation",
+        "reviewed_on": "2026-11-26",
+        "scope": "Только фраза p4 и произношение термина в ней; не просмотр всего ролика и не одобрение ментора.",
+        "phrase_id": "p4",
+        "term": "пьезопроводность",
+        "tts_key": "e5a659b391f25866d0375060ffcefc0d2450139f3abb21acb2e505e01c5ee9a1",
+        "audio_sha256": "6bb0b8a4af47fc8e01678ba03854f9b65213981310d99e6abf6664d38bef3485",
+        "question": "В короткой фразе выше слово «пьезопроводность» звучит правильно и понятно?",
+        "answer": "Звучит правильно и понятно",
+        "accepted": true,
+        "asr_findings_preserved": true,
+        "coverage": "только указанная фраза и термин",
+        "automatic_results_overridden": false
+      }
+    ]
+  }
+}

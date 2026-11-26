@@ -1,0 +1,92 @@
+{
+  "key": "bc1a525b74aedaec48989e48e57e306fd5d8d82efe1b8b8298e67f33dae4575b",
+  "text": "Прибор на схеме движется вниз. На той же глубине раскрываются соответствующие участки кривых.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 3300000,
+      "text": "Прибор"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 4300000,
+      "duration": 800000,
+      "text": "на"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 5100000,
+      "duration": 3200000,
+      "text": "схеме"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8300000,
+      "duration": 3800000,
+      "text": "движется"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 12100000,
+      "duration": 3900000,
+      "text": "вниз"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 22700000,
+      "duration": 2100000,
+      "text": "На"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 24800000,
+      "duration": 1300000,
+      "text": "той"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 26100000,
+      "duration": 900000,
+      "text": "же"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 27000000,
+      "duration": 3500000,
+      "text": "глубине"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 30500000,
+      "duration": 5100000,
+      "text": "раскрываются"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 35600000,
+      "duration": 7800000,
+      "text": "соответствующие"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 43400000,
+      "duration": 4200000,
+      "text": "участки"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 47600000,
+      "duration": 4600000,
+      "text": "кривых"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "key": "e5a659b391f25866d0375060ffcefc0d2450139f3abb21acb2e505e01c5ee9a1",
+  "text": "Этот процесс описывает пьезопроводность. В основе расчёта — решение из книги Басниева.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 3000000,
+      "text": "Этот"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 4000000,
+      "duration": 4300000,
+      "text": "процесс"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8300000,
+      "duration": 5400000,
+      "text": "описывает"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 13700000,
+      "duration": 8800000,
+      "text": "пьезопроводность"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 29100000,
+      "duration": 1300000,
+      "text": "В"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 30400000,
+      "duration": 3000000,
+      "text": "основе"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 33400000,
+      "duration": 4100000,
+      "text": "расчёта"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 40600000,
+      "duration": 4300000,
+      "text": "решение"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 44900000,
+      "duration": 1600000,
+      "text": "из"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 46500000,
+      "duration": 2900000,
+      "text": "книги"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 49400000,
+      "duration": 5400000,
+      "text": "Басниева"
+    }
+  ]
+}

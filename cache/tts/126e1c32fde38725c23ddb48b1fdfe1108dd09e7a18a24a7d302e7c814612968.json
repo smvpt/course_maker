@@ -1,0 +1,98 @@
+{
+  "key": "126e1c32fde38725c23ddb48b1fdfe1108dd09e7a18a24a7d302e7c814612968",
+  "text": "Проверим условия бурения и свойства промывочной жидкости: они влияют на информацию, которую регистрируют приборы.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 3800000,
+      "text": "Проверим"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 4800000,
+      "duration": 3500000,
+      "text": "условия"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8300000,
+      "duration": 4600000,
+      "text": "бурения"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 12900000,
+      "duration": 500000,
+      "text": "и"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 13400000,
+      "duration": 3700000,
+      "text": "свойства"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 17100000,
+      "duration": 4800000,
+      "text": "промывочной"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 21900000,
+      "duration": 4400000,
+      "text": "жидкости"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 27400000,
+      "duration": 1900000,
+      "text": "они"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 29300000,
+      "duration": 3500000,
+      "text": "влияют"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 32800000,
+      "duration": 600000,
+      "text": "на"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 33400000,
+      "duration": 6500000,
+      "text": "информацию"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 41800000,
+      "duration": 3000000,
+      "text": "которую"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 44800000,
+      "duration": 5700000,
+      "text": "регистрируют"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 50500000,
+      "duration": 4200000,
+      "text": "приборы"
+    }
+  ]
+}

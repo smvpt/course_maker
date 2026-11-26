@@ -1,0 +1,86 @@
+{
+  "key": "092fed4e35cbf0ccd1fd04a4c95d4a90df0a3e8cf56fb1edf48d27870286481a",
+  "text": "Отсутствие градиента сопротивления тоже не исключает коллектор. Отрицательный признак требует аккуратного толкования.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 5600000,
+      "text": "Отсутствие"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 6600000,
+      "duration": 4200000,
+      "text": "градиента"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 10800000,
+      "duration": 5600000,
+      "text": "сопротивления"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 16400000,
+      "duration": 2800000,
+      "text": "тоже"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 19200000,
+      "duration": 900000,
+      "text": "не"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 20100000,
+      "duration": 4600000,
+      "text": "исключает"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 24700000,
+      "duration": 5100000,
+      "text": "коллектор"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 36500000,
+      "duration": 6200000,
+      "text": "Отрицательный"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 42700000,
+      "duration": 3400000,
+      "text": "признак"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 46100000,
+      "duration": 3900000,
+      "text": "требует"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 50000000,
+      "duration": 4600000,
+      "text": "аккуратного"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 54600000,
+      "duration": 7800000,
+      "text": "толкования"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "key": "78cafad93fdb10570b488dbc611428ce59c5f8ee50e6be7fcc2ae09296daaf95",
+  "text": "В книге сопротивление неизменённой части пласта сопоставляют с оценкой того же пласта в водонасыщенном состоянии.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 1100000,
+      "text": "В"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 2100000,
+      "duration": 2900000,
+      "text": "книге"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 5000000,
+      "duration": 5600000,
+      "text": "сопротивление"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 10600000,
+      "duration": 5000000,
+      "text": "неизменённой"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 15600000,
+      "duration": 3200000,
+      "text": "части"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 18800000,
+      "duration": 3000000,
+      "text": "пласта"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 21800000,
+      "duration": 5300000,
+      "text": "сопоставляют"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 27100000,
+      "duration": 500000,
+      "text": "с"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 27600000,
+      "duration": 3400000,
+      "text": "оценкой"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 31000000,
+      "duration": 1800000,
+      "text": "того"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 32800000,
+      "duration": 1000000,
+      "text": "же"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 33800000,
+      "duration": 3300000,
+      "text": "пласта"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 37100000,
+      "duration": 300000,
+      "text": "в"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 37400000,
+      "duration": 6600000,
+      "text": "водонасыщенном"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 44000000,
+      "duration": 6200000,
+      "text": "состоянии"
+    }
+  ]
+}

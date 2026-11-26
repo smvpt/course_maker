@@ -1,0 +1,255 @@
+{
+  "video_id": "basniev_gl23-24.pressure_diffusion.short",
+  "node_id": "basniev_gl23-24.pressure_diffusion",
+  "format": "short",
+  "draft": false,
+  "resolution": [
+    1080,
+    1920
+  ],
+  "fps": 30,
+  "inputs": {
+    "script": "fixtures\\video\\mandatory_basniev\\script.json",
+    "scene_spec": "fixtures\\video\\mandatory_basniev\\scene_spec.json",
+    "styleguide": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\data\\organizers\\03_стайлгайд\\styleguide.json"
+  },
+  "tts": {
+    "engine": "edge-tts",
+    "version": "7.3.1",
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "manim": "0.22.1",
+  "ffmpeg": "ffmpeg version N-127043-g5a54fcf75e-20260930 Copyright (c) 2000-2026 the FFmpeg developers",
+  "loudnorm_input": {
+    "input_i": "-20.48",
+    "input_tp": "-3.20",
+    "input_lra": "2.60",
+    "input_thresh": "-31.05",
+    "output_i": "-16.31",
+    "output_tp": "-1.50",
+    "output_lra": "2.10",
+    "output_thresh": "-26.92",
+    "normalization_type": "dynamic",
+    "target_offset": "0.31"
+  },
+  "words": 117,
+  "wpm": 146.0,
+  "warnings": [],
+  "template": "T1",
+  "template_info": {
+    "model": "Уравнение пьезопроводности в радиальной постановке; скважина — линейный источник с постоянным дебитом в бесконечном однородном пласте; решение Δp = A·E1(r²/(4κt)). Это диффузия, а не фронт с постоянной скоростью.",
+    "influence_radius": "условная граница, где падение давления равно порогу threshold_mpa; растёт как корень из времени; не физический фронт",
+    "params": {
+      "kappa_m2_s": 1.0,
+      "pressure_scale_mpa": null,
+      "r_well_m": 0.1,
+      "r_max_m": 450,
+      "t_end_s": 21600,
+      "threshold_mpa": 0.2,
+      "well_exaggeration": 100,
+      "evolve_shot_ids": [
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s7"
+      ],
+      "pressure_mode": "relative"
+    },
+    "r_influence_end_m": 302.007,
+    "well_argument_end": 1.1574074074074077e-07,
+    "color_max_mpa": null,
+    "graph_max_mpa": null,
+    "pressure_unit": "отн. ед.",
+    "normalized_pressure": true,
+    "config": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\domain\\geology\\templates\\T1.json"
+  },
+  "shots": [
+    {
+      "shot_id": "s1",
+      "start_s": 0.3,
+      "end_s": 4.644,
+      "plaque": "не в масштабе: скважина крупнее в 100 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s2",
+      "start_s": 4.644,
+      "end_s": 11.196,
+      "plaque": "не в масштабе: скважина крупнее в 100 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s3",
+      "start_s": 11.196,
+      "end_s": 15.804,
+      "plaque": "не в масштабе: скважина крупнее в 100 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s4",
+      "start_s": 15.804,
+      "end_s": 21.996,
+      "plaque": "не в масштабе: скважина крупнее в 100 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s5",
+      "start_s": 21.996,
+      "end_s": 28.62,
+      "plaque": "не в масштабе: скважина крупнее в 100 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s6",
+      "start_s": 28.62,
+      "end_s": 34.308,
+      "plaque": "не в масштабе: скважина крупнее в 100 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s7",
+      "start_s": 34.308,
+      "end_s": 39.636,
+      "plaque": "не в масштабе: скважина крупнее в 100 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s8",
+      "start_s": 39.636,
+      "end_s": 46.14,
+      "plaque": "не в масштабе: скважина крупнее в 100 раз",
+      "true_scale": false
+    },
+    {
+      "shot_id": "s9",
+      "start_s": 46.14,
+      "end_s": 52.716,
+      "plaque": null,
+      "true_scale": true
+    },
+    {
+      "shot_id": "s10",
+      "start_s": 52.716,
+      "end_s": 57.636,
+      "plaque": "не в масштабе: скважина крупнее в 100 раз",
+      "true_scale": false
+    }
+  ],
+  "subtitle_timing": [
+    "word"
+  ],
+  "cues": 27,
+  "mp4": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\basniev_gl23-24\\videos\\basniev_gl23-24.pressure_diffusion.short\\basniev_gl23-24.pressure_diffusion.short.mp4",
+  "vtt": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\basniev_gl23-24\\videos\\basniev_gl23-24.pressure_diffusion.short\\basniev_gl23-24.pressure_diffusion.short.vtt",
+  "probe": {
+    "width": 1080,
+    "height": 1920,
+    "video_codec": "h264",
+    "pix_fmt": "yuv420p",
+    "video_frames": 1759,
+    "video_duration_s": 58.633333,
+    "audio_codec": "aac",
+    "audio_sample_rate": 48000,
+    "audio_duration_s": 58.636,
+    "timeline_total_s": 58.636,
+    "last_phrase_end_s": 57.636,
+    "trailing_silence_s": 1.555,
+    "integrated_lufs": -16.0,
+    "true_peak_dbtp": -1.5,
+    "checks": {
+      "video_h264": true,
+      "pix_fmt_yuv420p": true,
+      "size": true,
+      "audio_aac": true,
+      "video_covers_timeline": true,
+      "audio_covers_timeline": true,
+      "last_phrase_inside": true,
+      "trailing_silence_ge_0.3s": true,
+      "lufs_within_1lu_of_-16": true,
+      "true_peak_le_-1dbtp": true
+    }
+  },
+  "frames": [
+    {
+      "shot_id": "s1",
+      "t_s": 2.472,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\basniev_gl23-24\\videos\\basniev_gl23-24.pressure_diffusion.short\\frames\\s1.png"
+    },
+    {
+      "shot_id": "s2",
+      "t_s": 7.92,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\basniev_gl23-24\\videos\\basniev_gl23-24.pressure_diffusion.short\\frames\\s2.png"
+    },
+    {
+      "shot_id": "s3",
+      "t_s": 13.5,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\basniev_gl23-24\\videos\\basniev_gl23-24.pressure_diffusion.short\\frames\\s3.png"
+    },
+    {
+      "shot_id": "s4",
+      "t_s": 18.9,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\basniev_gl23-24\\videos\\basniev_gl23-24.pressure_diffusion.short\\frames\\s4.png"
+    },
+    {
+      "shot_id": "s5",
+      "t_s": 25.308,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\basniev_gl23-24\\videos\\basniev_gl23-24.pressure_diffusion.short\\frames\\s5.png"
+    },
+    {
+      "shot_id": "s6",
+      "t_s": 31.464,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\basniev_gl23-24\\videos\\basniev_gl23-24.pressure_diffusion.short\\frames\\s6.png"
+    },
+    {
+      "shot_id": "s7",
+      "t_s": 36.972,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\basniev_gl23-24\\videos\\basniev_gl23-24.pressure_diffusion.short\\frames\\s7.png"
+    },
+    {
+      "shot_id": "s8",
+      "t_s": 42.888,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\basniev_gl23-24\\videos\\basniev_gl23-24.pressure_diffusion.short\\frames\\s8.png"
+    },
+    {
+      "shot_id": "s9",
+      "t_s": 49.428,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\basniev_gl23-24\\videos\\basniev_gl23-24.pressure_diffusion.short\\frames\\s9.png"
+    },
+    {
+      "shot_id": "s10",
+      "t_s": 55.176,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\basniev_gl23-24\\videos\\basniev_gl23-24.pressure_diffusion.short\\frames\\s10.png"
+    },
+    {
+      "shot_id": "s10",
+      "t_s": 58.586,
+      "file": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\basniev_gl23-24\\videos\\basniev_gl23-24.pressure_diffusion.short\\frames\\final.png"
+    }
+  ],
+  "sources_check": {
+    "used_claims": [
+      "basniev_gl23-24.pressure_diffusion#c1",
+      "basniev_gl23-24.pressure_diffusion#c3",
+      "basniev_gl23-24.pressure_diffusion#c2",
+      "basniev_gl23-24.pressure_diffusion#c4",
+      "basniev_gl23-24.pressure_diffusion#c5",
+      "basniev_gl23-24.pressure_diffusion#c6"
+    ],
+    "rows": 6,
+    "ok": true,
+    "against": "claims узла (--layer)"
+  },
+  "passport": "C:\\Users\\nurda\\Documents\\ChatGPT\\хакатон кмг дигитал\\p4_integration\\out\\basniev_gl23-24\\videos\\basniev_gl23-24.pressure_diffusion.short\\passport.json",
+  "audio_ok": false,
+  "audio_problem": "термины",
+  "checklist_status": {
+    "не применимо": 11,
+    "не проверено": 9,
+    "проверено автоматически": 4
+  }
+}

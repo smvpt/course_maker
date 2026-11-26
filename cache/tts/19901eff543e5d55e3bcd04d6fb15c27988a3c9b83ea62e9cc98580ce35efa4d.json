@@ -1,0 +1,98 @@
+{
+  "key": "19901eff543e5d55e3bcd04d6fb15c27988a3c9b83ea62e9cc98580ce35efa4d",
+  "text": "По Латышовой, изменчивая пористость может приводить к перекрытию диапазонов сопротивлений. Поэтому одного сигнала недостаточно.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 1100000,
+      "text": "По"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 2100000,
+      "duration": 5500000,
+      "text": "Латышовой"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8700000,
+      "duration": 5300000,
+      "text": "изменчивая"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 14000000,
+      "duration": 4400000,
+      "text": "пористость"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 18400000,
+      "duration": 2400000,
+      "text": "может"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 20800000,
+      "duration": 3800000,
+      "text": "приводить"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 24600000,
+      "duration": 500000,
+      "text": "к"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 25100000,
+      "duration": 4800000,
+      "text": "перекрытию"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 29900000,
+      "duration": 5000000,
+      "text": "диапазонов"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 34900000,
+      "duration": 6900000,
+      "text": "сопротивлений"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 48600000,
+      "duration": 4600000,
+      "text": "Поэтому"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 53200000,
+      "duration": 3300000,
+      "text": "одного"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 56500000,
+      "duration": 4300000,
+      "text": "сигнала"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 60800000,
+      "duration": 7900000,
+      "text": "недостаточно"
+    }
+  ]
+}

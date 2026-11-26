@@ -1,0 +1,13 @@
+{
+  "reviewer": "user in Codex conversation",
+  "reviewed_on": "2026-11-26",
+  "scope": "Только фраза p9 и произношение термина в ней; не просмотр всего ролика и не одобрение ментора.",
+  "phrase_id": "p9",
+  "term": "сопротивление",
+  "tts_key": "78cafad93fdb10570b488dbc611428ce59c5f8ee50e6be7fcc2ae09296daaf95",
+  "audio_sha256": "8cd68763d6d48644fb84854fc6eedd150e4da1dc8ed9cacdaef532770d5d0d64",
+  "question": "Во второй короткой фразе выше слово «сопротивление» произнесено понятно, без искажения?",
+  "answer": "Да, звучит понятно и правильно",
+  "accepted": true,
+  "asr_findings_preserved": true
+}

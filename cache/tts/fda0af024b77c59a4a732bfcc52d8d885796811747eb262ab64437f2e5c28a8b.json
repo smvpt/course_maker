@@ -1,0 +1,92 @@
+{
+  "key": "fda0af024b77c59a4a732bfcc52d8d885796811747eb262ab64437f2e5c28a8b",
+  "text": "Сопоставим сопротивление с пористостью на одной глубине. Затем отделим наблюдение от решения специалиста.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 5500000,
+      "text": "Сопоставим"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 6500000,
+      "duration": 5900000,
+      "text": "сопротивление"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 12400000,
+      "duration": 700000,
+      "text": "с"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 13100000,
+      "duration": 5000000,
+      "text": "пористостью"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 18100000,
+      "duration": 1100000,
+      "text": "на"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 19200000,
+      "duration": 2600000,
+      "text": "одной"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 21800000,
+      "duration": 4300000,
+      "text": "глубине"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 33200000,
+      "duration": 4400000,
+      "text": "Затем"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 37600000,
+      "duration": 2800000,
+      "text": "отделим"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 40400000,
+      "duration": 5700000,
+      "text": "наблюдение"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 46100000,
+      "duration": 1400000,
+      "text": "от"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 47500000,
+      "duration": 3900000,
+      "text": "решения"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 51400000,
+      "duration": 6600000,
+      "text": "специалиста"
+    }
+  ]
+}

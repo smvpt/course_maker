@@ -1,0 +1,201 @@
+{
+  "ext": {
+    "video": {
+      "manual_preparation": true,
+      "full_chapter_layer": false,
+      "mentor_approved": false
+    }
+  },
+  "chapter": "basniev_gl23-24",
+  "source": "data/books/train_basniev.md",
+  "pdf_pages": [],
+  "generated_by": "Codex: вручную подготовленный фрагмент слоя для P4; API не использовался",
+  "nodes": [
+    {
+      "ext": {
+        "video": {
+          "preparation": "manual_layer_fragment",
+          "mentor_approved": false
+        }
+      },
+      "id": "basniev_gl23-24.pressure_diffusion",
+      "order": 1,
+      "title": "Как распространяется падение давления",
+      "why_here": {
+        "ext": {},
+        "text": "Как распространяется падение давления",
+        "by_model": true
+      },
+      "difficulty": {
+        "ext": {},
+        "primary": "Ф",
+        "secondary": null
+      },
+      "threshold": true,
+      "layers": {
+        "ext": {},
+        "topic": {
+          "ext": {},
+          "text": "Как распространяется падение давления",
+          "by_model": true
+        },
+        "main": {
+          "ext": {},
+          "text": "После пуска скважины с постоянным дебитом возникает неустановившийся радиальный поток.",
+          "by_model": true
+        },
+        "mechanism": {
+          "ext": {},
+          "text": "Перераспределение давления описывает пьезопроводность.",
+          "by_model": true
+        },
+        "practice": {
+          "ext": {},
+          "text": "Решение для точечного стока и неограниченного пласта имеет пределы применимости.",
+          "by_model": true
+        },
+        "nuances": {
+          "ext": {},
+          "text": "Численные настройки показа не являются измерениями пласта; пределы вывода оговариваются.",
+          "by_model": true
+        },
+        "deeper": []
+      },
+      "claims": [
+        {
+          "ext": {
+            "video": {
+              "quote_verified_exact": true
+            }
+          },
+          "id": "basniev_gl23-24.pressure_diffusion#c1",
+          "text": "После пуска скважины с постоянным дебитом возникает неустановившийся радиальный поток.",
+          "kind": "inference",
+          "page_pdf": 488,
+          "page_print": null,
+          "quote": "Пусть в неограниченном горизонтальном пласте постоянной толщины $h$ имеется добывающая скважина «нулевого» радиуса (точечный сток). Начальное пластовое давление во всем пласте одинаково и равно $p_{\\mathrm{k}}$. В момент времени $t = 0$ скважина пущена в эксплуатацию с постоянным объемным дебитом $Q_0$. В результате в пласте образуется неустановившийся плоскорадиальный поток упругой жидкости.",
+          "source_kind": "text",
+          "by_model": true
+        },
+        {
+          "ext": {
+            "video": {
+              "quote_verified_exact": true
+            }
+          },
+          "id": "basniev_gl23-24.pressure_diffusion#c2",
+          "text": "Перераспределение давления описывает пьезопроводность.",
+          "kind": "inference",
+          "page_pdf": 481,
+          "page_print": null,
+          "quote": "упругой пористой среде, В.Н.Щелкачев назвал коэффициентом пьезопроводности пласта по аналогии с коэффициентом температуропроводности в уравнении теплопроводности.",
+          "source_kind": "text",
+          "by_model": true
+        },
+        {
+          "ext": {
+            "video": {
+              "quote_verified_exact": true
+            }
+          },
+          "id": "basniev_gl23-24.pressure_diffusion#c3",
+          "text": "При постоянных параметрах одинаковому относительному падению соответствует радиус, пропорциональный корню из времени.",
+          "kind": "inference",
+          "page_pdf": 491,
+          "page_print": null,
+          "quote": "$$p(r, t) = p_\\kappa - \\frac{Q_0 \\mu}{4 \\pi k h} \\left[ - \\text{Ei} \\left( - \\frac{r^2}{4 \\kappa t} \\right) \\right]. \\quad (23.52)$$",
+          "source_kind": "formula",
+          "by_model": true
+        },
+        {
+          "ext": {
+            "video": {
+              "quote_verified_exact": true
+            }
+          },
+          "id": "basniev_gl23-24.pressure_diffusion#c4",
+          "text": "В примере книги пьезопроводность 1 м²/с, радиус скважины 0,1 м.",
+          "kind": "inference",
+          "page_pdf": 492,
+          "page_print": null,
+          "quote": "Оценим практическое значение этой погрешности. Допустим, что $\\kappa = 1$ м$^2$/с, $r_c = 0,1$ м. Тогда, полагая $f_0 = 100$, найдем",
+          "source_kind": "text",
+          "by_model": true
+        },
+        {
+          "ext": {
+            "video": {
+              "quote_verified_exact": true
+            }
+          },
+          "id": "basniev_gl23-24.pressure_diffusion#c5",
+          "text": "Автомодельная координата пропорциональна расстоянию, делённому на корень из произведения пьезопроводности и времени.",
+          "kind": "inference",
+          "page_pdf": 489,
+          "page_print": null,
+          "quote": "$$P = f \\left( \\xi, \\frac{Q_0 \\mu}{2\\pi k h p_\\kappa} \\right), \\quad \\xi = \\frac{r}{2\\sqrt{\\kappa t}}. \\quad (23.43)$$",
+          "source_kind": "formula",
+          "by_model": true
+        },
+        {
+          "ext": {
+            "video": {
+              "quote_verified_exact": true
+            }
+          },
+          "id": "basniev_gl23-24.pressure_diffusion#c6",
+          "text": "Решение для точечного стока и неограниченного пласта имеет пределы применимости.",
+          "kind": "inference",
+          "page_pdf": 492,
+          "page_print": null,
+          "quote": "Строго говоря, основная формула теории упругого режима (23.52) справедлива лишь для случая точечного стока (при $r_c = 0$) в неограниченном пласте ($R_k = \\infty$).",
+          "source_kind": "text",
+          "by_model": true
+        }
+      ],
+      "links": [],
+      "misconception": null,
+      "data_meaning": {
+        "ext": {},
+        "from_chapter": {
+          "ext": {},
+          "text": "После пуска скважины с постоянным дебитом возникает неустановившийся радиальный поток.",
+          "by_model": true
+        },
+        "breaks": {
+          "ext": {},
+          "text": "Нельзя переносить вывод за пределы допущений модели или условий интерпретации.",
+          "by_model": true
+        },
+        "hypotheses": []
+      },
+      "it_analogy": {
+        "ext": {},
+        "text": "Автоматизация сопоставляет синхронные значения и проверяет условия.",
+        "breaks_where": "Алгоритм не заменяет физическую модель и проверку специалистом.",
+        "by_model": true
+      },
+      "now_practice": null,
+      "inefficiency_lens": null,
+      "terms_introduced": [
+        "пьезопроводность",
+        "давление",
+        "скважина"
+      ],
+      "terms_used": [],
+      "needs_scan": [],
+      "decision_on_data": null,
+      "worked_examples": [],
+      "book_tasks": [],
+      "pages": [
+        481,
+        488,
+        489,
+        491,
+        492
+      ],
+      "title_novice": null,
+      "unit_ids": []
+    }
+  ]
+}

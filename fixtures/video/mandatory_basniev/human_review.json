@@ -1,0 +1,13 @@
+{
+  "reviewer": "user in Codex conversation",
+  "reviewed_on": "2026-11-26",
+  "scope": "Только фраза p4 и произношение термина в ней; не просмотр всего ролика и не одобрение ментора.",
+  "phrase_id": "p4",
+  "term": "пьезопроводность",
+  "tts_key": "e5a659b391f25866d0375060ffcefc0d2450139f3abb21acb2e505e01c5ee9a1",
+  "audio_sha256": "6bb0b8a4af47fc8e01678ba03854f9b65213981310d99e6abf6664d38bef3485",
+  "question": "В короткой фразе выше слово «пьезопроводность» звучит правильно и понятно?",
+  "answer": "Звучит правильно и понятно",
+  "accepted": true,
+  "asr_findings_preserved": true
+}

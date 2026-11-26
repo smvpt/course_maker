@@ -1,0 +1,104 @@
+{
+  "key": "bb1eb683ff9f935ea8e7da95816fecb5f1635d2f836de098036759fd1bc0f4b7",
+  "text": "Пороги здесь условные, выбраны для объяснения работы фильтра. Это не нормативы Латышовой и не диагноз.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 3700000,
+      "text": "Пороги"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 4700000,
+      "duration": 2000000,
+      "text": "здесь"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 6700000,
+      "duration": 5200000,
+      "text": "условные"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 13000000,
+      "duration": 3100000,
+      "text": "выбраны"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 16100000,
+      "duration": 1200000,
+      "text": "для"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 17300000,
+      "duration": 4500000,
+      "text": "объяснения"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 21800000,
+      "duration": 2900000,
+      "text": "работы"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 24700000,
+      "duration": 5100000,
+      "text": "фильтра"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 36600000,
+      "duration": 2500000,
+      "text": "Это"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 39100000,
+      "duration": 700000,
+      "text": "не"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 39800000,
+      "duration": 4200000,
+      "text": "нормативы"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 44000000,
+      "duration": 5200000,
+      "text": "Латышовой"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 49200000,
+      "duration": 1200000,
+      "text": "и"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 50400000,
+      "duration": 900000,
+      "text": "не"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 51300000,
+      "duration": 5600000,
+      "text": "диагноз"
+    }
+  ]
+}

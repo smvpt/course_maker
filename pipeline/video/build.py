@@ -97,9 +97,10 @@ def _prepare_template(spec, script, sg: dict, templates_dir: Path) -> tuple[dict
     info = {"model": cfg["model"], "influence_radius": cfg["influence_radius"],
             "params": {k: spec.params.get(k, d.get("default")) for k, d in cfg["params"].items()},
             "r_influence_end_m": round(prep["r_influence_end"], 3),
-            "well_argument_end": prep["well_argument_end"], "color_max_mpa": prep["color_max"],
-            "graph_max_mpa": prep["graph_max"], "config": str(Path(templates_dir) / "T1.json")}
-    return {"t1": prep}, {"field": _sg_color(sg, prep["field_color_key"])}, info
+            "well_argument_end": prep["well_argument_end"], "color_max_mpa": prep["color_max"] if prep["pressure_unit"] == "МПа" else None,
+            "graph_max_mpa": prep["graph_max"] if prep["pressure_unit"] == "МПа" else None,
+            "pressure_unit": prep["pressure_unit"], "normalized_pressure": prep["pressure_unit"] != "МПа", "config": str(Path(templates_dir) / "T1.json")}
+    return {"t1": prep}, {"field": _sg_color(sg, prep["field_color_key"]), "background": sg["background"]}, info
 
 
 def _prepare_t2(spec, script, sg: dict, templates_dir: Path) -> tuple[dict, dict, dict]:
@@ -113,7 +114,8 @@ def _prepare_t2(spec, script, sg: dict, templates_dir: Path) -> tuple[dict, dict
     colors = {"curve_colors": {cv["mnemonic"]: _sg_color(sg, f"curves.{cv['kind']}") for cv in prep["curves"]},
               "tool": _sg_color(sg, disp["tool_color"]), "mud": _sg_color(sg, disp["mud_color"]),
               "uncertainty": _sg_color(sg, disp["rule_unknown_color"]),
-              "rule_true": sg[disp["rule_true_color"]], "schema": sg["provenance"]["схема"]}
+              "rule_true": sg[disp["rule_true_color"]], "schema": sg["provenance"]["схема"],
+              "background": sg["background"]}
     ds = prep["dataset"]
     info = {"model": cfg["model"], "config": str(Path(templates_dir) / "T2.json"),
             "dataset_provenance": ds.provenance, "data_label": ds.label,
@@ -122,7 +124,8 @@ def _prepare_t2(spec, script, sg: dict, templates_dir: Path) -> tuple[dict, dict
             "rule_counts": {"выполнено": int((prep["rule_state"] == 1).sum()), "не выполнено": int((prep["rule_state"] == 0).sum()),
                             "нет данных": int((prep["rule_state"] == -1).sum())},
             "borehole_exaggeration": prep["exaggeration"]}
-    return {"t2": prep, "chain": disp["chain"], "school_label": disp["school_label"]}, colors, info
+    return {"t2": prep, "chain": disp["chain"], "school_label": disp["school_label"],
+            "band_opacity": float(disp["candidate_band_opacity"])}, colors, info
 
 
 def _prepare_t3(spec, script, sg: dict, templates_dir: Path) -> tuple[dict, dict, dict]:
@@ -172,7 +175,8 @@ def _prepare_t4(spec, script, sg: dict, templates_dir: Path) -> tuple[dict, dict
     if not svg.is_file():
         raise VideoInputError(f"нет схемы оборудования T4: {svg}")
     colors = {"mud": _sg_color(sg, disp["mud_color"]), "gas": _sg_color(sg, disp["gas_color"]),
-              "pressure": _sg_color(sg, disp["pressure_color"]), "casing": _sg_color(sg, disp["casing_color"])}
+              "pressure": _sg_color(sg, disp["pressure_color"]), "casing": _sg_color(sg, disp["casing_color"]),
+              "background": sg["background"]}
     m = prep["model"]
     o, c = t4_template.states(prep, prep["top_stop"])
     info = {"model": cfg["model"], "assumptions": cfg["assumptions"], "limitations": cfg["limitations"],
@@ -392,7 +396,7 @@ def _audio_check(mp4: Path, script, timeline: dict, probe: dict, wpm: float, voi
 def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, fmt: str | None,
           voice: str, styleguide: Path, out_root: Path, cache_dir: Path, domain: str = "geology",
           skip_asr: bool = False, asr_model: str = asr.DEFAULT_MODEL, layer_path: Path | None = None,
-          checklist_path: Path = DEFAULT_CHECKLIST) -> dict:
+          checklist_path: Path = DEFAULT_CHECKLIST, tts_rate: str = "+0%") -> dict:
     if not ID_RE.match(ch):
         raise VideoInputError(f"--ch «{ch}» — допустимы только [a-z0-9_.-]")
     if not ID_RE.match(domain):
@@ -438,7 +442,7 @@ def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, f
     work.mkdir(parents=True, exist_ok=True)
 
     # 1. озвучка по фразам (кэш) → PCM → фактическая длительность в сэмплах
-    params = TtsParams(voice=voice)
+    params = TtsParams(voice=voice, rate=tts_rate)
     tts, pcm = {}, {}
     for p in script.phrases:
         tts[p.id] = synthesize(p.text, params, cache_dir)
@@ -461,7 +465,7 @@ def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, f
         raise VideoInputError(f"в стайлгайде нет цвета метки происхождения для {missing}")
     segs =[{"phrase_id": s.phrase_id, "start": s.start, "end": s.end, "hold_end": s.hold_end,
              "on_screen": p.on_screen, "shot_id": shot_of[p.id].id, "plaque": shot_of[p.id].plaque,
-             "label": shot_of[p.id].label, "label_color": sg["provenance"][shot_of[p.id].label]}
+             "label": shot_of[p.id].label, "label_color": sg["provenance"][shot_of[p.id].label], "beat": p.beat}
             for s, p in zip(tl.segments, script.phrases)]
     plan = {"layout": layout, "font": sg["font"], "fps": fps, "segments": segs, "total": tl.total,
             "speech_total": tl.speech_total, **tpl_plan,
@@ -638,6 +642,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--format", choices=["short", "long"], help="по умолчанию — Script.format")
     ap.add_argument("--draft", action="store_true", help="черновик 540×960, 15 к/с")
     ap.add_argument("--voice", default=DEFAULT_VOICE, help="голос edge-tts (один на всю серию)")
+    ap.add_argument("--tts-rate", default="+0%", help="темп синтеза, например +25%%; одинаковый для всей серии")
     ap.add_argument("--styleguide", type=Path, default=DEFAULT_STYLEGUIDE)
     ap.add_argument("--domain", default="geology", help="доменный пакет: настройки шаблонов в domain/<домен>/templates/")
     ap.add_argument("--out-root", type=Path, default=ROOT / "out")
@@ -654,7 +659,7 @@ def main(argv: list[str] | None = None) -> int:
         script_path, spec_path, layer_path, fmt = resolve_inputs(
             a.ch, a.node, a.script, a.scene_spec, a.layer, a.routing, a.out_root, a.domain, a.format, a.dataset)
         r = build(a.ch, a.node, script_path, spec_path, a.draft, fmt, a.voice,
-                  a.styleguide, a.out_root, a.cache_dir, a.domain, a.skip_asr, a.asr_model, layer_path, a.checklist)
+                  a.styleguide, a.out_root, a.cache_dir, a.domain, a.skip_asr, a.asr_model, layer_path, a.checklist, a.tts_rate)
     except (VideoInputError, TtsError, ToolError, LayoutError, BuildCheckError) as e:
         print(f"ОШИБКА video.build: {e}", file=sys.stderr)
         return 2

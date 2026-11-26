@@ -56,6 +56,12 @@
       "default": null,
       "meaning": "кадры, на фразах которых идёт время симуляции; null — все кадры",
       "kind": "display"
+    },
+    "pressure_mode": {
+      "required": false,
+      "default": "absolute",
+      "kind": "display",
+      "meaning": "absolute: МПа с источником амплитуды; relative: падение, делённое на A, без значения A. В relative параметр pressure_scale_mpa запрещён; threshold_mpa — порог в относительных единицах."
     }
   },
   "display": {

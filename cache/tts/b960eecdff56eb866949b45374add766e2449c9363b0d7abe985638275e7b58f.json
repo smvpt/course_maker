@@ -1,0 +1,86 @@
+{
+  "key": "b960eecdff56eb866949b45374add766e2449c9363b0d7abe985638275e7b58f",
+  "text": "Запомним порядок: совмещаем глубину, сравниваем признаки, проверяем условия, затем формулируем ограниченный вывод.",
+  "params": {
+    "voice": "ru-RU-SvetlanaNeural",
+    "rate": "+25%",
+    "volume": "+0%",
+    "pitch": "+0Hz",
+    "boundary": "WordBoundary"
+  },
+  "edge_tts_version": "7.3.1",
+  "events": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 5400000,
+      "text": "Запомним"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 6400000,
+      "duration": 4100000,
+      "text": "порядок"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 11400000,
+      "duration": 5100000,
+      "text": "совмещаем"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 16500000,
+      "duration": 3700000,
+      "text": "глубину"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 21100000,
+      "duration": 4500000,
+      "text": "сравниваем"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 25600000,
+      "duration": 4300000,
+      "text": "признаки"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 31500000,
+      "duration": 3500000,
+      "text": "проверяем"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 35000000,
+      "duration": 4400000,
+      "text": "условия"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 40500000,
+      "duration": 3000000,
+      "text": "затем"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 43500000,
+      "duration": 5300000,
+      "text": "формулируем"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 48800000,
+      "duration": 5200000,
+      "text": "ограниченный"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 54000000,
+      "duration": 3800000,
+      "text": "вывод"
+    }
+  ]
+}

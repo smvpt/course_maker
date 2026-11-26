@@ -67,9 +67,9 @@ def builds(monkeypatch):
     calls = []
 
     def fake_build(ch, node, script_path, spec_path, draft, fmt, voice, styleguide, out_root, cache_dir, domain,
-                   skip_asr, asr_model, layer_path, checklist):
+                   skip_asr, asr_model, layer_path, checklist, tts_rate="+0%"):
         calls.append({"script": Path(script_path), "spec": Path(spec_path), "fmt": fmt, "layer": layer_path,
-                      "draft": draft, "domain": domain})
+                      "draft": draft, "domain": domain, "tts_rate": tts_rate})
         return dict(REPORT)
     monkeypatch.setattr(build, "build", fake_build)
     return calls
@@ -96,6 +96,14 @@ def test_explicit_pair_is_used_as_is(tmp_path, builds, no_llm):
                      str(hello / "script.json"), "--scene-spec", str(hello / "scene_spec.json"),
                      "--out-root", str(tmp_path)])
     assert rc == 0 and builds[0]["script"] == hello / "script.json" and builds[0]["layer"] is None
+
+
+def test_cli_passes_requested_tts_rate_to_synthesis(tmp_path, builds, no_llm):
+    hello = ROOT / "fixtures/video/hello"
+    assert build.main(["--ch", "video_hello", "--node", "video_hello.pipeline_check",
+                       "--script", str(hello / "script.json"), "--scene-spec", str(hello / "scene_spec.json"),
+                       "--out-root", str(tmp_path), "--tts-rate=+25%"] ) == 0
+    assert builds[0]["tts_rate"] == "+25%"
 
 
 @pytest.mark.parametrize("flag", ["--script", "--scene-spec"])
