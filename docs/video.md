@@ -539,3 +539,43 @@ LLM и сервис озвучки для этой команды не нужн�
 Тесты работают без сети, сервис edge-tts в них подменён. Они проверяют таймлайн из нескольких фраз с паузами, интервалы VTT, кэш TTS (попадание, промах при смене текста или любого параметра, `TTS_OFFLINE`, оборванная запись), ошибки входа и CLI.
 
 Для `video.spec` подменяется `pipeline.llm`: подставной модуль с тем же интерфейсом `complete_json`, который вдобавок сверяет переданные переменные с плейсхолдерами файла промпта. Ответы модели лежат в `fixtures/video/spec/llm_*.json`. Тесты проверяют успешную генерацию, второй формат маршрута, английские цитаты, неизвестный узел, чужую главу, маршрут не на видео и отсутствие маршрута, чужой `claim_id` (с повторной попыткой), исправление ошибки на повторе, нарушенные связи кадров, ошибку JSON от ядра и отсутствие `pipeline.llm`. Все правила `spec_check` покрыты отдельными тестами.
+# Два обязательных ролика: подготовка 26.11
+
+Входы: `fixtures/video/mandatory_basniev/` и `fixtures/video/mandatory_latyshova/`.
+Это **вручную подготовленные фрагменты учебного слоя для P4**, а не полный
+результат P1 и не демонстрация автоматической генерации через API. У всех
+пересказов `by_model=true`; цитаты кодом скопированы из страниц исходного md.
+Восстановление входов: `python -m fixtures.video.prepare_mandatory`.
+Проверка цитат, схем и производственных правил: `python -m pytest tests/video/test_mandatory_inputs.py`.
+
+Сборка в финальном разрешении, один голос и один темп для обоих роликов:
+
+```powershell
+python -m pipeline.video.build --ch basniev_gl23-24 --node basniev_gl23-24.pressure_diffusion --script fixtures/video/mandatory_basniev/script.json --scene-spec fixtures/video/mandatory_basniev/scene_spec.json --layer fixtures/video/mandatory_basniev/layer.json --voice ru-RU-SvetlanaNeural --tts-rate=+25%
+python -m pipeline.video.build --ch latyshova_gl5_par17-20 --node latyshova_gl5_par17-20.resistivity_porosity --script fixtures/video/mandatory_latyshova/script.json --scene-spec fixtures/video/mandatory_latyshova/scene_spec.json --layer fixtures/video/mandatory_latyshova/layer.json --voice ru-RU-SvetlanaNeural --tts-rate=+25%
+```
+
+Выходы: `out/basniev_gl23-24/videos/basniev_gl23-24.pressure_diffusion.short/`
+и `out/latyshova_gl5_par17-20/videos/latyshova_gl5_par17-20.resistivity_porosity.long/`.
+Канонические `video_id` пригодны для поиска P3. Отключаемые VTT лежат рядом с MP4.
+С сохранённым кэшем синтеза эти же команды работают при `TTS_OFFLINE=1`.
+
+T1: пьезопроводность и радиус скважины взяты из примера на PDF стр. 492
+Басниева; форма распределения — формула 23.52 на стр. 491. Амплитуда давления
+из примера не известна: `pressure_mode=relative` показывает падение, делённое
+на A, в относительных единицах, без приписывания пласту выдуманных МПа.
+В этом режиме `pressure_scale_mpa` запрещён. Существующий ключ
+`threshold_mpa` задаёт относительный порог; его единицы определяет режим.
+В абсолютном режиме прежняя проверка источника амплитуды сохраняется.
+
+T2: сопоставление сопротивления и пористости объясняется по PDF стр. 97
+Латышовой; данные Volve — отдельная открытая иллюстрация. Пороговый фильтр
+явно условный: это выбор кандидата для проверки, а не расчёт нефтенасыщения.
+Нужные для количественной оценки данные о воде не подменяются допущением.
+
+**Передача лидеру:** полного учебного слоя главы и ответа ментора ещё нет.
+Флаги `manual_preparation=true`, `full_chapter_layer=false`,
+`mentor_approved=false` сохранены во входах. Физические пункты, ударения и
+соответствие кадра речи, требующие просмотра человеком, остаются честно
+неподтверждёнными в паспорте. Ручную подготовку двух фрагментов следует
+отдельно учесть в журнале P2; автоматический прогон с API не заявляется.

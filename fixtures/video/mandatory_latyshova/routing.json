@@ -1,0 +1,26 @@
+{
+  "ext": {
+    "video": {
+      "manual_preparation": true
+    }
+  },
+  "chapter": "latyshova_gl5_par17-20",
+  "routes": [
+    {
+      "ext": {},
+      "node_id": "latyshova_gl5_par17-20.resistivity_porosity",
+      "format": "длинное видео",
+      "secondary_format": null,
+      "video_scores": {
+        "ext": {},
+        "time": 2,
+        "invisible": 2,
+        "scale": 2,
+        "counterintuitive": 1,
+        "cause_effect": 2
+      },
+      "template": "T2",
+      "why": "Ручной выбор обязательного ролика P4 по ТЗ; не результат API-маршрутизации."
+    }
+  ]
+}

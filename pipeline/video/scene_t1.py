@@ -69,6 +69,7 @@ class T1Scene(MovingCameraScene):
         kit = Kit(self, lay, c, font, tau)
         t_evolve = min((s["start"] for s in segs if s["phrase_id"] in prep["evolve_phrase_ids"]), default=0.0)
         model, r_max, thr = prep["model"], prep["r_max"], prep["threshold"]
+        pressure_unit = prep.get("pressure_unit", "МПа")
 
         # ---- верх: метка, часы симуляции, плашка
         badge_bottom = add_badges(self, lay, segs, tau, font, add=kit.hud, fill=c["background"])
@@ -183,7 +184,7 @@ class T1Scene(MovingCameraScene):
         leg_y = center[1] - map_h / 2 - gap - legend_h / 2
         dash = DashedLine([left, leg_y, 0], [left + u(70), leg_y, 0], color=c["text"], stroke_width=3,
                           dash_length=u(12))
-        leg = txt(f"условная граница: падение {fmt_num(thr)} МПа")
+        leg = txt(f"порог: {fmt_num(thr)} {pressure_unit}" if pressure_unit != "МПа" else f"условная граница: падение {fmt_num(thr)} МПа")
         leg.move_to([dash.get_right()[0] + gap / 2 + leg.width / 2, leg_y, 0])
         if leg.get_right()[0] > right:
             raise LayoutError("легенда T1 не помещается в строку")
@@ -192,7 +193,7 @@ class T1Scene(MovingCameraScene):
 
         # ---- график: профиль Δp вдоль А–Б, ось x совпадает с картой метр в метр
         g_title_y = leg_y - legend_h / 2 - gap - text_h / 2
-        y_title = txt("падение давления вдоль А–Б, МПа", c["muted"])
+        y_title = txt(f"падение вдоль А–Б, {pressure_unit}", c["muted"])
         y_title.move_to([left + y_title.width / 2, g_title_y, 0])
         ax_top = g_title_y - text_h / 2 - gap / 2
         ax_bottom = g_floor + cbar_h + gap + x_lbl_h
@@ -279,7 +280,7 @@ class T1Scene(MovingCameraScene):
         cbar.stretch_to_fit_width(map_w).stretch_to_fit_height(u(16)).move_to([center[0], cb_y, 0])
         y_lbl = g_floor + text_h / 2
         lo = txt("0")
-        hi = txt(f"≥ {fmt_num(prep['color_max'])} МПа")
+        hi = txt(f"≥ {fmt_num(prep['color_max'])} {pressure_unit}")
         mid = txt("цвет карты: падение давления", c["muted"])
         lo.move_to([left + lo.width / 2, y_lbl, 0])
         hi.move_to([right - hi.width / 2, y_lbl, 0])

@@ -1,0 +1,236 @@
+{
+  "ext": {
+    "video": {
+      "manual_preparation": true,
+      "mentor_approved": false
+    }
+  },
+  "video_id": "latyshova_gl5_par17-20.resistivity_porosity.long",
+  "node_id": "latyshova_gl5_par17-20.resistivity_porosity",
+  "format": "long",
+  "phrases": [
+    {
+      "ext": {},
+      "id": "p1",
+      "text": "Высокое сопротивление. Значит, нашли нефть?",
+      "on_screen": "Высокое сопротивление — это нефть?",
+      "beat": "hook",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c3",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p2",
+      "text": "По одной кривой легко сделать поспешный вывод. Латышова предлагает рассматривать данные в комплексе.",
+      "on_screen": "Одна кривая может обмануть",
+      "beat": "problem",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c2",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p3",
+      "text": "Сопоставим сопротивление с пористостью на одной глубине. Затем отделим наблюдение от решения специалиста.",
+      "on_screen": "Сначала сопоставить, потом решать",
+      "beat": "solution",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c2",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p4",
+      "text": "Это комплексная интерпретация каротажа: показания приборов помогают оценивать свойства коллектора, но требуют проверки условий.",
+      "on_screen": "Комплексная интерпретация каротажа",
+      "beat": "naming",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p5",
+      "text": "Перед нами открытые данные месторождения Волве. Это дополнительный пример, а не диаграммы из учебника.",
+      "on_screen": "Реальные данные Volve",
+      "beat": "data",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p6",
+      "text": "Прибор на схеме движется вниз. На той же глубине раскрываются соответствующие участки кривых.",
+      "on_screen": "Прибор и кривые на одной глубине",
+      "beat": "data",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p7",
+      "text": "Слева гамма-каротаж, рядом сопротивление и нейтронная пористость. Схема прибора показывает назначение измерений.",
+      "on_screen": "Сопоставляем разные измерения",
+      "beat": "data",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p8",
+      "text": "Важно: нейтронная кривая сама по себе ещё не даёт окончательного заключения о насыщении.",
+      "on_screen": "Показание ещё не заключение",
+      "beat": "problem",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c2",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p9",
+      "text": "В книге сопротивление неизменённой части пласта сопоставляют с оценкой того же пласта в водонасыщенном состоянии.",
+      "on_screen": "Нужна водонасыщенная опора",
+      "beat": "solution",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c2",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p10",
+      "text": "Для такой оценки нужны сведения о пористости и пластовой воде. Эти условия нельзя пропускать.",
+      "on_screen": "Пористость и свойства воды важны",
+      "beat": "solution",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c2",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p11",
+      "text": "Отметит ли показанный фильтр каждый участок высокого сопротивления, если остальные признаки не совпадут?",
+      "on_screen": "Одного высокого сопротивления хватит?",
+      "beat": "prediction",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c3",
+      "is_analogy": false,
+      "pause_after_s": 1.2
+    },
+    {
+      "ext": {},
+      "id": "p12",
+      "text": "Нет. В этой демонстрации отметка появляется только там, где выполнены все условия показанного правила.",
+      "on_screen": "Отметка только при совместных условиях",
+      "beat": "data",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c3",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p13",
+      "text": "Пороги здесь условные, выбраны для объяснения работы фильтра. Это не нормативы Латышовой и не диагноз.",
+      "on_screen": "Пороги условные, не из учебника",
+      "beat": "data",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c3",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p14",
+      "text": "Посмотрите: высокое сопротивление встречается и без отметки. Значит, остальные условия этого фильтра не выполнены.",
+      "on_screen": "Контрпример: высокий сигнал без отметки",
+      "beat": "data",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c3",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p15",
+      "text": "Отмеченный интервал — кандидат для дальнейшей проверки. Мы не называем его доказанной нефтенасыщенной толщей.",
+      "on_screen": "Сигнал → кандидат для проверки",
+      "beat": "decision",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c2",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p16",
+      "text": "По Латышовой, изменчивая пористость может приводить к перекрытию диапазонов сопротивлений. Поэтому одного сигнала недостаточно.",
+      "on_screen": "Разные свойства дают похожий сигнал",
+      "beat": "decision",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c3",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p17",
+      "text": "Отсутствие градиента сопротивления тоже не исключает коллектор. Отрицательный признак требует аккуратного толкования.",
+      "on_screen": "Нет градиента — не значит нет коллектора",
+      "beat": "decision",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c4",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p18",
+      "text": "Проверим условия бурения и свойства промывочной жидкости: они влияют на информацию, которую регистрируют приборы.",
+      "on_screen": "Условия измерения влияют на вывод",
+      "beat": "decision",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c5",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p19",
+      "text": "Простая оценка по сопротивлению возможна лишь при дополнительных условиях. Нельзя переносить её на любой разрез.",
+      "on_screen": "Проверьте условия применимости",
+      "beat": "decision",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c6",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p20",
+      "text": "Запомним порядок: совмещаем глубину, сравниваем признаки, проверяем условия, затем формулируем ограниченный вывод.",
+      "on_screen": "Глубина → признаки → проверка → вывод",
+      "beat": "final",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c2",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p21",
+      "text": "Ствол теперь в истинном масштабе. Размеры прибора на поясняющей схеме условные; кривые остаются данными.",
+      "on_screen": "Истинный масштаб ствола",
+      "beat": "final",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c1",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    },
+    {
+      "ext": {},
+      "id": "p22",
+      "text": "Каких данных о пластовой воде и пористости не хватает, чтобы перейти от кандидата к оценке насыщения?",
+      "on_screen": "Что нужно проверить перед оценкой насыщения?",
+      "beat": "transfer",
+      "claim_id": "latyshova_gl5_par17-20.resistivity_porosity#c2",
+      "is_analogy": false,
+      "pause_after_s": 0.0
+    }
+  ],
+  "prediction_question": "Отметит ли показанный фильтр каждый участок высокого сопротивления, если остальные признаки не совпадут?",
+  "transfer_question": "Каких данных о пластовой воде и пористости не хватает, чтобы перейти от кандидата к оценке насыщения?",
+  "data_it_bridge": "Одно состояние управляет изображением и данными; наблюдение отделено от решения."
+}

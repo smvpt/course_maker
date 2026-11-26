@@ -1,0 +1,26 @@
+{
+  "ext": {
+    "video": {
+      "manual_preparation": true
+    }
+  },
+  "chapter": "basniev_gl23-24",
+  "routes": [
+    {
+      "ext": {},
+      "node_id": "basniev_gl23-24.pressure_diffusion",
+      "format": "шортс",
+      "secondary_format": null,
+      "video_scores": {
+        "ext": {},
+        "time": 2,
+        "invisible": 2,
+        "scale": 2,
+        "counterintuitive": 1,
+        "cause_effect": 2
+      },
+      "template": "T1",
+      "why": "Ручной выбор обязательного ролика P4 по ТЗ; не результат API-маршрутизации."
+    }
+  ]
+}

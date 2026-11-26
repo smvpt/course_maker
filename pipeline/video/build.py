@@ -97,8 +97,9 @@ def _prepare_template(spec, script, sg: dict, templates_dir: Path) -> tuple[dict
     info = {"model": cfg["model"], "influence_radius": cfg["influence_radius"],
             "params": {k: spec.params.get(k, d.get("default")) for k, d in cfg["params"].items()},
             "r_influence_end_m": round(prep["r_influence_end"], 3),
-            "well_argument_end": prep["well_argument_end"], "color_max_mpa": prep["color_max"],
-            "graph_max_mpa": prep["graph_max"], "config": str(Path(templates_dir) / "T1.json")}
+            "well_argument_end": prep["well_argument_end"], "color_max_mpa": prep["color_max"] if prep["pressure_unit"] == "МПа" else None,
+            "graph_max_mpa": prep["graph_max"] if prep["pressure_unit"] == "МПа" else None,
+            "pressure_unit": prep["pressure_unit"], "normalized_pressure": prep["pressure_unit"] != "МПа", "config": str(Path(templates_dir) / "T1.json")}
     return {"t1": prep}, {"field": _sg_color(sg, prep["field_color_key"]), "background": sg["background"]}, info
 
 
@@ -395,7 +396,7 @@ def _audio_check(mp4: Path, script, timeline: dict, probe: dict, wpm: float, voi
 def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, fmt: str | None,
           voice: str, styleguide: Path, out_root: Path, cache_dir: Path, domain: str = "geology",
           skip_asr: bool = False, asr_model: str = asr.DEFAULT_MODEL, layer_path: Path | None = None,
-          checklist_path: Path = DEFAULT_CHECKLIST) -> dict:
+          checklist_path: Path = DEFAULT_CHECKLIST, tts_rate: str = "+0%") -> dict:
     if not ID_RE.match(ch):
         raise VideoInputError(f"--ch «{ch}» — допустимы только [a-z0-9_.-]")
     if not ID_RE.match(domain):
@@ -441,7 +442,7 @@ def build(ch: str, node: str, script_path: Path, spec_path: Path, draft: bool, f
     work.mkdir(parents=True, exist_ok=True)
 
     # 1. озвучка по фразам (кэш) → PCM → фактическая длительность в сэмплах
-    params = TtsParams(voice=voice)
+    params = TtsParams(voice=voice, rate=tts_rate)
     tts, pcm = {}, {}
     for p in script.phrases:
         tts[p.id] = synthesize(p.text, params, cache_dir)
@@ -641,6 +642,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--format", choices=["short", "long"], help="по умолчанию — Script.format")
     ap.add_argument("--draft", action="store_true", help="черновик 540×960, 15 к/с")
     ap.add_argument("--voice", default=DEFAULT_VOICE, help="голос edge-tts (один на всю серию)")
+    ap.add_argument("--tts-rate", default="+0%", help="темп синтеза, например +25%%; одинаковый для всей серии")
     ap.add_argument("--styleguide", type=Path, default=DEFAULT_STYLEGUIDE)
     ap.add_argument("--domain", default="geology", help="доменный пакет: настройки шаблонов в domain/<домен>/templates/")
     ap.add_argument("--out-root", type=Path, default=ROOT / "out")
@@ -657,7 +659,7 @@ def main(argv: list[str] | None = None) -> int:
         script_path, spec_path, layer_path, fmt = resolve_inputs(
             a.ch, a.node, a.script, a.scene_spec, a.layer, a.routing, a.out_root, a.domain, a.format, a.dataset)
         r = build(a.ch, a.node, script_path, spec_path, a.draft, fmt, a.voice,
-                  a.styleguide, a.out_root, a.cache_dir, a.domain, a.skip_asr, a.asr_model, layer_path, a.checklist)
+                  a.styleguide, a.out_root, a.cache_dir, a.domain, a.skip_asr, a.asr_model, layer_path, a.checklist, a.tts_rate)
     except (VideoInputError, TtsError, ToolError, LayoutError, BuildCheckError) as e:
         print(f"ОШИБКА video.build: {e}", file=sys.stderr)
         return 2
